@@ -5,12 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.with
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -38,7 +36,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.percy.utxo.network.HttpClient
@@ -164,7 +161,6 @@ fun RowScope.TradeChart(trades: List<Trade>) {
 }
 
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Trade>) {
     Card(
@@ -195,7 +191,7 @@ fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Tr
                 AnimatedContent(
                     targetState = price,
                     transitionSpec = {
-                        fadeIn(animationSpec = tween(durationMillis = 300)) with fadeOut(animationSpec = tween(durationMillis = 300))
+                        fadeIn(animationSpec = tween(durationMillis = 300)) togetherWith fadeOut(animationSpec = tween(durationMillis = 300))
                     },
                     label = "Price Animation"
                 ) { targetPrice ->
@@ -219,8 +215,13 @@ fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Tr
                     } catch (e: Exception) {
                         LocalDateTime.parse(timestamp)
                     }
-                    val date = "${localDateTime.dayOfMonth.toString().padStart(2, '0')}/${localDateTime.monthNumber.toString().padStart(2, '0')}/${localDateTime.year}"
-                    val time = "${localDateTime.hour.toString().padStart(2, '0')}:${localDateTime.minute.toString().padStart(2, '0')}:${localDateTime.second.toString().padStart(2, '0')}"
+                    val date = "${localDateTime.dayOfMonth.toString().padStart(2, '0')}/" +
+                        "${localDateTime.monthNumber.toString().padStart(2, '0')}/" +
+                        "${localDateTime.year}"
+                    val time = "${localDateTime.hour.toString().padStart(2, '0')}:" +
+                        "${localDateTime.minute.toString().padStart(2, '0')}:" +
+                        localDateTime.second.toString().padStart(2, '0')
+
 
                     Column(
                         modifier = Modifier.align(Alignment.End),
@@ -230,10 +231,22 @@ fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Tr
                             text = date,
                             style = MaterialTheme.typography.bodyMedium
                         )
-                        Text(
-                            text = time,
-                            style = MaterialTheme.typography.bodyMedium
-                        )
+                        AnimatedContent(
+                            targetState = time,
+                            transitionSpec = {
+                                fadeIn(animationSpec = tween(durationMillis = 300)) togetherWith fadeOut(
+                                    animationSpec = tween(
+                                        durationMillis = 300
+                                    )
+                                )
+                            },
+                            label = "Time Animation"
+                        ) { targetTime ->
+                            Text(
+                                text = targetTime,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                        }
                     }
                 }
             }
@@ -249,18 +262,18 @@ fun DefaultPreview() {
         price = "34000.00",
         timestamp = "2024-07-27T18:36:32",
         trades = listOf(
-            Trade(1, "68026.01000000", "0.00008000", "5.44208080", 1722110167963, true, true),
-            Trade(2, "68026.00000000", "0.00028000", "19.04728000", 1722110167972, true, true),
-            Trade(3, "68026.00000000", "0.00394000", "268.02244000", 1722110168037, true, true),
-            Trade(4, "68026.00000000", "0.00178000", "121.08628000", 1722110168037, true, true),
-            Trade(5, "68024.00000000", "0.00392000", "266.65408000", 1722110168037, true, true),
-            Trade(6, "68024.00000000", "0.00208000", "141.48992000", 1722110168072, true, true),
-            Trade(7, "68024.00000000", "0.00113000", "76.86712000", 1722110168072, true, true),
-            Trade(8, "68024.00000000", "0.00321000", "218.35704000", 1722110168072, true, true),
-            Trade(9, "68022.69000000", "0.00318000", "216.31215420", 1722110168072, true, true),
-            Trade(10, "68022.69000000", "0.00012000", "8.16272280", 1722110168096, true, true),
-            Trade(11, "68022.69000000", "0.00332000", "225.83533080", 1722110168098, true, true),
-            Trade(12, "68022.38000000", "0.00332000", "225.83430160", 1722110168099, true, true)
+            Trade(1, "68026.01000000", "0.00008000", "5.44208080", 1722110167963, isBuyerMaker = true, isBestMatch = true),
+            Trade(2, "68026.00000000", "0.00028000", "19.04728000", 1722110167972, isBuyerMaker = true, isBestMatch = true),
+            Trade(3, "68026.00000000", "0.00394000", "268.02244000", 1722110168037, isBuyerMaker = true, isBestMatch = true),
+            Trade(4, "68026.00000000", "0.00178000", "121.08628000", 1722110168037, isBuyerMaker = true, isBestMatch = true),
+            Trade(5, "68024.00000000", "0.00392000", "266.65408000", 1722110168037, isBuyerMaker = true, isBestMatch = true),
+            Trade(6, "68024.00000000", "0.00208000", "141.48992000", 1722110168072, isBuyerMaker = true, isBestMatch = true),
+            Trade(7, "68024.00000000", "0.00113000", "76.86712000", 1722110168072, isBuyerMaker = true, isBestMatch = true),
+            Trade(8, "68024.00000000", "0.00321000", "218.35704000", 1722110168072, isBuyerMaker = true, isBestMatch = true),
+            Trade(9, "68022.69000000", "0.00318000", "216.31215420", 1722110168072, isBuyerMaker = true, isBestMatch = true),
+            Trade(10, "68022.69000000", "0.00012000", "8.16272280", 1722110168096, isBuyerMaker = true, isBestMatch = true),
+            Trade(11, "68022.69000000", "0.00332000", "225.83533080", 1722110168098, isBuyerMaker = true, isBestMatch = true),
+            Trade(12, "68022.38000000", "0.00332000", "225.83430160", 1722110168099, isBuyerMaker = true, isBestMatch = true)
         )
     )
 }

@@ -1,12 +1,20 @@
 package com.percy.utxo.network
 
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.client.plugins.websocket.*
-import io.ktor.client.request.*
-import io.ktor.http.*
-import io.ktor.websocket.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.websocket.WebSockets
+import io.ktor.client.plugins.websocket.wss
+import io.ktor.client.request.header
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMethod
+import io.ktor.http.ContentType
+import io.ktor.websocket.Frame
+import io.ktor.websocket.readText
+import io.ktor.websocket.readReason
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -67,7 +75,7 @@ class WebSocketClient {
                         job.join()
                     }
                 }.getOrElse {
-                    println("Error during WebSocket communication: ${it.message}")
+                    it.printStackTrace()
                     delay(5000) // Delay before reconnecting
                 }
             }
