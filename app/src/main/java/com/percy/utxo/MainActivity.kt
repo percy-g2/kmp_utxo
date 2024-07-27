@@ -19,17 +19,23 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import com.percy.utxo.network.HttpClient
 import com.percy.utxo.network.WebSocketClient
 import com.percy.utxo.network.model.MarkPriceUpdate
+import com.percy.utxo.network.model.NavItem
 import com.percy.utxo.network.model.Trade
 import com.percy.utxo.ui.theme.UTXOTheme
 import kotlinx.coroutines.launch
@@ -58,7 +65,36 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             UTXOTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = {
+                        BottomAppBar(
+                            actions = {
+                                val navItems = listOf(NavItem.Home, NavItem.Settings)
+                                var selectedItem by rememberSaveable { mutableIntStateOf(0) }
+
+                                NavigationBar {
+                                    navItems.forEachIndexed { index, item ->
+                                        NavigationBarItem(
+                                            alwaysShowLabel = true,
+                                            icon = {
+                                                Icon(
+                                                    imageVector = item.icon,
+                                                    contentDescription = item.title
+                                                )
+                                            },
+                                            label = { if (selectedItem == index) Text(item.title) },
+                                            selected = selectedItem == index,
+                                            onClick = {
+                                                selectedItem = index
+                                            }
+                                        )
+                                    }
+                                }
+                            }
+                        )
+                    }
+                ) { innerPadding ->
                     WebSocketApp(innerPadding)
                 }
             }
@@ -82,19 +118,22 @@ fun WebSocketApp(innerPadding: PaddingValues) {
             webSocketClient.connect()
             for (message in webSocketClient.getIncomingMessages()) {
                 val fetchedTrades = httpClient.fetchBtcTrades()
-                val newTrades = if (latestTradeId != null) {
-                    fetchedTrades.filter { it.id > latestTradeId!! }
-                } else {
-                    fetchedTrades
-                }
+                val newTrades = latestTradeId?.let { tradeId ->
+                    fetchedTrades.filter { it.id > tradeId }
+                } ?: fetchedTrades
+
                 if (newTrades.isNotEmpty()) {
                     trades = trades + newTrades
                     latestTradeId = newTrades.maxOfOrNull { it.id }
                 }
-                val markPriceUpdate = Json.decodeFromString<MarkPriceUpdate>(message)
-                latestPrice = formatPrice(markPriceUpdate.price)
-                symbol = markPriceUpdate.symbol
-                timestamp = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toString()
+                runCatching {
+                    val markPriceUpdate = Json.decodeFromString<MarkPriceUpdate>(message)
+                    latestPrice = formatPrice(markPriceUpdate.price)
+                    symbol = markPriceUpdate.symbol
+                    timestamp = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toString()
+                }.getOrElse {
+                    it.printStackTrace()
+                }
             }
         }
         onDispose {
@@ -102,7 +141,7 @@ fun WebSocketApp(innerPadding: PaddingValues) {
         }
     }
 
-    Column(Modifier.padding(innerPadding)) {
+    Column(modifier = Modifier.padding(innerPadding)) {
         TickerCard(
             symbol = symbol,
             price = latestPrice,
@@ -112,13 +151,10 @@ fun WebSocketApp(innerPadding: PaddingValues) {
     }
 }
 
-fun formatPrice(price: String): String {
-    return try {
-        val formattedPrice = DecimalFormat("#,##0.00").format(price.toDouble())
-        "$$formattedPrice"
-    } catch (e: NumberFormatException) {
-        price
-    }
+fun formatPrice(price: String): String = runCatching {
+    "$${DecimalFormat("#,##0.00").format(price.toDouble())}"
+}.getOrElse {
+    price
 }
 
 @Composable
@@ -215,9 +251,9 @@ fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Tr
                     } catch (e: Exception) {
                         LocalDateTime.parse(timestamp)
                     }
-                    val date = "${localDateTime.dayOfMonth.toString().padStart(2, '0')}/" +
-                        "${localDateTime.monthNumber.toString().padStart(2, '0')}/" +
-                        "${localDateTime.year}"
+                    val date = "${localDateTime.year}-" +
+                        "${localDateTime.monthNumber.toString().padStart(2, '0')}-" +
+                        localDateTime.dayOfMonth.toString().padStart(2, '0')
                     val time = "${localDateTime.hour.toString().padStart(2, '0')}:" +
                         "${localDateTime.minute.toString().padStart(2, '0')}:" +
                         localDateTime.second.toString().padStart(2, '0')
