@@ -4,6 +4,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -130,6 +131,7 @@ fun WebSocketApp(innerPadding: PaddingValues) {
     val coroutineScope = rememberCoroutineScope()
     var trades by remember { mutableStateOf(emptyMap<String, List<UiKline>>()) }
     var tickerDataMap by remember { mutableStateOf(emptyMap<String, TickerData>()) }
+    var globalTooltipState by remember { mutableStateOf<TooltipState?>(null) }
 
     DisposableEffect(Unit) {
         coroutineScope.launch {
@@ -171,14 +173,26 @@ fun WebSocketApp(innerPadding: PaddingValues) {
         }
     }
 
-    LazyColumn(modifier = Modifier.padding(innerPadding)) {
+    LazyColumn(
+        modifier = Modifier
+            .padding(innerPadding)
+            .pointerInput(Unit) {
+                detectTapGestures { _ ->
+                    globalTooltipState = null
+                }
+            }
+    ) {
         items(tickerDataMap.values.toList()) { tickerData ->
             trades[tickerData.symbol]?.let {
                 TickerCard(
                     symbol = tickerData.symbol,
                     price = tickerData.lastPrice,
                     timestamp = tickerData.timestamp,
-                    trades = it
+                    trades = it,
+                    globalTooltipState = globalTooltipState,
+                    onTooltipStateChanged = { newState ->
+                        globalTooltipState = newState
+                    }
                 )
             }
         }
@@ -186,7 +200,12 @@ fun WebSocketApp(innerPadding: PaddingValues) {
 }
 
 @Composable
-fun RowScope.TradeChart(trades: List<UiKline>) {
+fun RowScope.TradeChart(
+    trades: List<UiKline>,
+    symbol: String,
+    globalTooltipState: TooltipState?,
+    onTooltipStateChanged: (TooltipState?) -> Unit
+) {
     if (trades.isEmpty()) {
         Text(
             text = "No trade data available",
@@ -200,69 +219,85 @@ fun RowScope.TradeChart(trades: List<UiKline>) {
     val minPrice = prices.minOrNull() ?: 0f
     val priceRange = if (maxPrice != minPrice) maxPrice - minPrice else 1f
 
-    var tooltipState by remember { mutableStateOf<TooltipState?>(null) }
     var chartSize by remember { mutableStateOf(Offset.Zero) }
 
     Box(modifier = Modifier.weight(1f)) {
-        AnimatedContent(
-            targetState = trades,
-            transitionSpec = {
-                fadeIn(animationSpec = tween(durationMillis = 300)) togetherWith fadeOut(animationSpec = tween(durationMillis = 300))
-            },
-            label = "Price Animation"
-        ) { targetTrades ->
-            Canvas(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(vertical = 16.dp)
-                    .pointerInput(Unit) {
-                        detectTapGestures { offset ->
-                            val points = calculatePoints(targetTrades, chartSize, minPrice, priceRange)
-                            val clickedPoint = findNearestPoint(offset, points)
-                            tooltipState = clickedPoint?.let { point ->
-                                val index = points.indexOf(point)
-                                TooltipState(point, targetTrades[index].closePrice.toDouble())
-                            }
-                        }
+        Canvas(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 16.dp)
+                .pointerInput(Unit) {
+                    detectTapGestures { offset ->
+                        updateTooltip(offset, trades, chartSize, minPrice, priceRange, symbol, onTooltipStateChanged)
                     }
-            ) {
-                chartSize = Offset(size.width, size.height)
-                val path = Path()
-                val points = calculatePoints(targetTrades, chartSize, minPrice, priceRange)
-
-                points.forEachIndexed { index, point ->
-                    if (index == 0) path.moveTo(point.x, point.y)
-                    else path.lineTo(point.x, point.y)
                 }
+                .pointerInput(Unit) {
+                    detectDragGestures { change, _ ->
+                        updateTooltip(change.position, trades, chartSize, minPrice, priceRange, symbol, onTooltipStateChanged)
+                    }
+                }
+        ) {
+            chartSize = Offset(size.width, size.height)
+            val path = Path()
+            val points = calculatePoints(trades, chartSize, minPrice, priceRange)
 
-                drawPath(path = path, color = Color.Yellow, style = Stroke(width = 3f))
+            points.forEachIndexed { index, point ->
+                if (index == 0) path.moveTo(point.x, point.y)
+                else path.lineTo(point.x, point.y)
             }
+
+            drawPath(path = path, color = Color.Yellow, style = Stroke(width = 3f))
         }
 
-        tooltipState?.let { state ->
-            Popup(
-                alignment = Alignment.TopStart,
-                offset = IntOffset(state.position.x.toInt(), state.position.y.toInt()),
-                properties = PopupProperties(focusable = false)
-            ) {
-                Surface(
-                    color = Color.White,
-                    shape = RoundedCornerShape(4.dp),
-                    tonalElevation = 4.dp,
-                    shadowElevation = 4.dp
+        globalTooltipState?.let { state ->
+            if (state.symbol == symbol) {
+                Popup(
+                    alignment = Alignment.TopStart,
+                    offset = IntOffset(state.position.x.toInt(), state.position.y.toInt()),
+                    properties = PopupProperties(focusable = false)
                 ) {
-                    Text(
-                        text = "Price: $${state.price}",
-                        modifier = Modifier.padding(8.dp),
-                        color = Color.Black
-                    )
+                    Surface(
+                        color = Color.White,
+                        shape = RoundedCornerShape(4.dp),
+                        tonalElevation = 4.dp,
+                        shadowElevation = 4.dp
+                    ) {
+                        Text(
+                            text = "Price: $${state.price}",
+                            modifier = Modifier.padding(8.dp),
+                            color = Color.Black
+                        )
+                    }
                 }
             }
         }
     }
 }
 
-data class TooltipState(val position: Offset, val price: Double)
+data class TooltipState(val position: Offset, val price: Double, val symbol: String)
+
+fun updateTooltip(
+    offset: Offset,
+    trades: List<UiKline>,
+    chartSize: Offset,
+    minPrice: Float,
+    priceRange: Float,
+    symbol: String,
+    onTooltipStateChanged: (TooltipState?) -> Unit
+) {
+    val points = calculatePoints(trades, chartSize, minPrice, priceRange)
+    val nearestPoint = findNearestPoint(offset, points)
+    nearestPoint?.let { point ->
+        val index = points.indexOf(point)
+        onTooltipStateChanged(
+            TooltipState(
+                position = point,
+                price = trades[index].closePrice.toDouble(),
+                symbol = symbol
+            )
+        )
+    }
+}
 
 fun calculatePoints(trades: List<UiKline>, size: Offset, minPrice: Float, priceRange: Float): List<Offset> {
     return trades.mapIndexed { index, trade ->
@@ -286,7 +321,14 @@ fun calculateDistance(point1: Offset, point2: Offset): Float {
 
 
 @Composable
-fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<UiKline>) {
+fun TickerCard(
+    symbol: String,
+    price: String,
+    timestamp: String,
+    trades: List<UiKline>,
+    globalTooltipState: TooltipState?,
+    onTooltipStateChanged: (TooltipState?) -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -325,7 +367,14 @@ fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Ui
                     )
                 }
             }
-            TradeChart(trades = trades)
+
+            TradeChart(
+                trades = trades,
+                symbol = symbol,
+                globalTooltipState = globalTooltipState,
+                onTooltipStateChanged = onTooltipStateChanged
+            )
+
             Column(
                 modifier = Modifier
                     .padding(16.dp)
