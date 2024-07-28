@@ -40,3 +40,12 @@ data class Ticker(
     @SerialName("L") val lastTradeId: Long,           // Last trade ID
     @SerialName("n") val totalNumberOfTrades: Long    // Total number of trades
 )
+
+
+data class TickerData(
+    val symbol: String,
+    val lastPrice: String,
+    val timestamp: String,
+    val priceChangePercent: String,
+    val volume: String
+)

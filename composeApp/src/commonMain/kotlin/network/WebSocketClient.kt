@@ -11,11 +11,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class WebSocketClient {
-    private val client = HttpClient() {
+    private val client = HttpClient {
         install(WebSockets)
         install(Logging) {
             logger = Logger.SIMPLE
@@ -25,16 +27,16 @@ class WebSocketClient {
 
     private val incomingMessages = Channel<String>(Channel.UNLIMITED)
 
-    fun getIncomingMessages() = incomingMessages
+    fun getIncomingMessages(): Flow<String> = incomingMessages.receiveAsFlow()
 
-    fun connect(symbol: String = "btcusdt") {
+    fun connect() {
         CoroutineScope(Dispatchers.IO).launch {
             while (isActive) {
                 runCatching {
                     client.wss(
                         method = HttpMethod.Get,
                         host = "stream.binance.com",
-                        path = "/ws/$symbol@ticker",
+                        path = "/ws/!ticker@arr",
                         request = {
                             header(HttpHeaders.ContentType, ContentType.Application.Json)
                         }

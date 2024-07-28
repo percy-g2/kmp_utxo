@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
@@ -46,6 +48,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
@@ -57,6 +60,7 @@ import network.HttpClient
 import network.WebSocketClient
 import network.model.NavItem
 import network.model.Ticker
+import network.model.TickerData
 import network.model.UiKline
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.absoluteValue
@@ -124,42 +128,60 @@ fun WebSocketApp(innerPadding: PaddingValues) {
     val webSocketClient = remember { WebSocketClient() }
     val httpClient = remember { HttpClient() }
     val coroutineScope = rememberCoroutineScope()
-    var latestPrice by remember { mutableStateOf("") }
-    var symbol by remember { mutableStateOf("") }
-    var timestamp by remember { mutableStateOf("") }
-    var trades by remember { mutableStateOf(emptyList<UiKline>()) }
+    var trades by remember { mutableStateOf(emptyMap<String, List<UiKline>>()) }
+    var tickerDataMap by remember { mutableStateOf(emptyMap<String, TickerData>()) }
 
     DisposableEffect(Unit) {
         coroutineScope.launch {
             webSocketClient.connect()
-            for (message in webSocketClient.getIncomingMessages()) {
+            webSocketClient.getIncomingMessages().collectLatest { message ->
                 runCatching {
-                    val markPriceUpdate = Json.decodeFromString<Ticker>(message)
-                    latestPrice = formatPrice(markPriceUpdate.lastPrice)
-                    symbol = markPriceUpdate.symbol
-                    timestamp = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toString()
-                    trades = trades + listOf(UiKline(closePrice = markPriceUpdate.lastPrice))
+                    val tickers = Json.decodeFromString<List<Ticker>>(message)
+                    val updatedMap = buildMap {
+                        putAll(tickerDataMap)
+                        tickers.filter { it.symbol == "BTCUSDT" || it.symbol == "ETHUSDT" || it.symbol == "SOLUSDT" }.forEach { ticker ->
+                            put(
+                                ticker.symbol, TickerData(
+                                    symbol = ticker.symbol,
+                                    lastPrice = formatPrice(ticker.lastPrice),
+                                    priceChangePercent = ticker.priceChangePercent,
+                                    timestamp = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toString(),
+                                    volume = ticker.totalTradedQuoteAssetVolume
+                                )
+                            )
+                            trades = trades.toMutableMap().apply {
+                                put(ticker.symbol, (this[ticker.symbol] ?: emptyList()) + listOf(UiKline(closePrice = ticker.lastPrice)))
+                            }
+                        }
+                    }
+
+                    tickerDataMap = updatedMap.toList()
+                        .sortedByDescending { (_, value) -> value.volume.toDoubleOrNull() ?: 0.0 }
+                        .toMap()
                 }.getOrElse {
                     it.printStackTrace()
                 }
             }
         }
         coroutineScope.launch {
-            trades = httpClient.fetchUiKline()
-
+            trades = httpClient.fetchUiKlines(listOf("BTCUSDT", "ETHUSDT", "SOLUSDT"))
         }
         onDispose {
             webSocketClient.close()
         }
     }
 
-    Column(modifier = Modifier.padding(innerPadding)) {
-        TickerCard(
-            symbol = symbol,
-            price = latestPrice,
-            timestamp = timestamp,
-            trades = trades
-        )
+    LazyColumn(modifier = Modifier.padding(innerPadding)) {
+        items(tickerDataMap.values.toList()) { tickerData ->
+            trades[tickerData.symbol]?.let {
+                TickerCard(
+                    symbol = tickerData.symbol,
+                    price = tickerData.lastPrice,
+                    timestamp = tickerData.timestamp,
+                    trades = it
+                )
+            }
+        }
     }
 }
 
@@ -286,7 +308,7 @@ fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Ui
                 if (symbol.isNotEmpty()) {
                     Text(
                         text = symbol,
-                        style = MaterialTheme.typography.titleLarge,
+                        style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                 }
@@ -299,7 +321,7 @@ fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Ui
                 ) { targetPrice ->
                     Text(
                         text = targetPrice,
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleSmall
                     )
                 }
             }
