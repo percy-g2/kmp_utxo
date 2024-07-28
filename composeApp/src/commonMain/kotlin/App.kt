@@ -46,7 +46,6 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
-import com.percy.utxo.network.model.Trade
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
@@ -58,6 +57,7 @@ import network.HttpClient
 import network.WebSocketClient
 import network.model.NavItem
 import network.model.Ticker
+import network.model.UiKline
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.absoluteValue
 import kotlin.math.pow
@@ -127,7 +127,7 @@ fun WebSocketApp(innerPadding: PaddingValues) {
     var latestPrice by remember { mutableStateOf("") }
     var symbol by remember { mutableStateOf("") }
     var timestamp by remember { mutableStateOf("") }
-    var trades by remember { mutableStateOf(emptyList<Trade>()) }
+    var trades by remember { mutableStateOf(emptyList<UiKline>()) }
 
     DisposableEffect(Unit) {
         coroutineScope.launch {
@@ -138,14 +138,15 @@ fun WebSocketApp(innerPadding: PaddingValues) {
                     latestPrice = formatPrice(markPriceUpdate.lastPrice)
                     symbol = markPriceUpdate.symbol
                     timestamp = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toString()
-                    trades = trades + listOf(Trade(price = markPriceUpdate.lastPrice))
+                    trades = trades + listOf(UiKline(closePrice = markPriceUpdate.lastPrice))
                 }.getOrElse {
                     it.printStackTrace()
                 }
             }
         }
         coroutineScope.launch {
-            trades = httpClient.fetchBtcTrades()
+            trades = httpClient.fetchUiKline()
+
         }
         onDispose {
             webSocketClient.close()
@@ -163,7 +164,7 @@ fun WebSocketApp(innerPadding: PaddingValues) {
 }
 
 @Composable
-fun RowScope.TradeChart(trades: List<Trade>) {
+fun RowScope.TradeChart(trades: List<UiKline>) {
     if (trades.isEmpty()) {
         Text(
             text = "No trade data available",
@@ -172,7 +173,7 @@ fun RowScope.TradeChart(trades: List<Trade>) {
         return
     }
 
-    val prices = trades.map { it.price.toFloat() }
+    val prices = trades.map { it.closePrice.toFloat() }
     val maxPrice = prices.maxOrNull() ?: 0f
     val minPrice = prices.minOrNull() ?: 0f
     val priceRange = if (maxPrice != minPrice) maxPrice - minPrice else 1f
@@ -198,7 +199,7 @@ fun RowScope.TradeChart(trades: List<Trade>) {
                             val clickedPoint = findNearestPoint(offset, points)
                             tooltipState = clickedPoint?.let { point ->
                                 val index = points.indexOf(point)
-                                TooltipState(point, targetTrades[index].price.toDouble())
+                                TooltipState(point, targetTrades[index].closePrice.toDouble())
                             }
                         }
                     }
@@ -241,10 +242,10 @@ fun RowScope.TradeChart(trades: List<Trade>) {
 
 data class TooltipState(val position: Offset, val price: Double)
 
-fun calculatePoints(trades: List<Trade>, size: Offset, minPrice: Float, priceRange: Float): List<Offset> {
+fun calculatePoints(trades: List<UiKline>, size: Offset, minPrice: Float, priceRange: Float): List<Offset> {
     return trades.mapIndexed { index, trade ->
         val x = index.toFloat() / (trades.size - 1) * size.x
-        val y = size.y - ((trade.price.toFloat() - minPrice) / priceRange) * size.y
+        val y = size.y - ((trade.closePrice.toFloat() - minPrice) / priceRange) * size.y
         Offset(x, y)
     }
 }
@@ -263,7 +264,7 @@ fun calculateDistance(point1: Offset, point2: Offset): Float {
 
 
 @Composable
-fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<Trade>) {
+fun TickerCard(symbol: String, price: String, timestamp: String, trades: List<UiKline>) {
     Card(
         modifier = Modifier
             .fillMaxWidth()

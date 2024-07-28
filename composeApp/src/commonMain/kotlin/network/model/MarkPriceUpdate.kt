@@ -22,8 +22,13 @@ data class Ticker(
     @SerialName("p") val priceChange: String,         // Price change
     @SerialName("P") val priceChangePercent: String,  // Price change percent
     @SerialName("w") val weightedAvgPrice: String,    // Weighted average price
+    @SerialName("x") val firstTradePrice: String,     // First trade(F)-1 price (first trade before the 24hr rolling window)
     @SerialName("c") val lastPrice: String,           // Last price
     @SerialName("Q") val lastQuantity: String,        // Last quantity
+    @SerialName("b") val bestBidPrice: String,        // Best bid price
+    @SerialName("B") val bestBidQuantity: String,     // Best bid quantity
+    @SerialName("a") val bestAskPrice: String,        // Best ask price
+    @SerialName("A") val bestAskQuantity: String,     // Best ask quantity
     @SerialName("o") val openPrice: String,           // Open price
     @SerialName("h") val highPrice: String,           // High price
     @SerialName("l") val lowPrice: String,            // Low price

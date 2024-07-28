@@ -33,7 +33,7 @@ class WebSocketClient {
                 runCatching {
                     client.wss(
                         method = HttpMethod.Get,
-                        host = "fstream.binance.com",
+                        host = "stream.binance.com",
                         path = "/ws/$symbol@ticker",
                         request = {
                             header(HttpHeaders.ContentType, ContentType.Application.Json)

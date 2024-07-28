@@ -1,4 +1,4 @@
-package com.percy.utxo.network.model
+package network.model
 
 import kotlinx.serialization.Serializable
 
