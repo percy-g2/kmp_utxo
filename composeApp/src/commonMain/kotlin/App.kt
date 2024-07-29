@@ -54,6 +54,8 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
@@ -69,6 +71,7 @@ import network.model.Ticker
 import network.model.TickerData
 import network.model.UiKline
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import theme.UTXOTheme
 import kotlin.math.absoluteValue
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -95,7 +98,7 @@ fun Double.formatAsCurrency(): String {
 fun App() {
     val globalTooltipState = remember { mutableStateOf<TooltipState?>(null) }
 
-    MaterialTheme {
+    UTXOTheme {
         Scaffold(
             modifier = Modifier
                 .fillMaxSize()
@@ -147,7 +150,7 @@ fun WebSocketApp(innerPadding: PaddingValues, globalTooltipState: MutableState<T
     var isLoading by remember { mutableStateOf(true) }
 
     DisposableEffect(Unit) {
-        coroutineScope.launch {
+        coroutineScope.launch(Dispatchers.IO) {
             webSocketClient.connect()
             webSocketClient.getIncomingMessages().collectLatest { message ->
                 runCatching {
@@ -179,7 +182,7 @@ fun WebSocketApp(innerPadding: PaddingValues, globalTooltipState: MutableState<T
                 }
             }
         }
-        coroutineScope.launch {
+        coroutineScope.launch(Dispatchers.IO) {
             trades = httpClient.fetchUiKlines(listOf("BTCUSDT", "ETHUSDT", "SOLUSDT"))
         }
         onDispose {
@@ -237,6 +240,7 @@ fun RowScope.TradeChart(
 
     var chartSize by remember { mutableStateOf(Offset.Zero) }
     var highlightPoint by remember { mutableStateOf<Offset?>(null) }
+    val lineColor = MaterialTheme.colorScheme.onPrimary
 
     Box(modifier = Modifier.weight(1f)) {
         Canvas(
@@ -266,7 +270,7 @@ fun RowScope.TradeChart(
             }
 
             // Draw the chart line
-            drawPath(path = path, color = Color.Yellow, style = Stroke(width = 3f))
+            drawPath(path = path, color = lineColor, style = Stroke(width = 3f))
 
             // Draw the highlight point
             highlightPoint?.let { point ->
@@ -442,7 +446,7 @@ fun TickerCard(
                 modifier = Modifier
                     .padding(16.dp)
                     .weight(1f)
-                    .align(Alignment.Bottom)
+                    .align(Alignment.CenterVertically)
             ) {
                 if (timestamp.isNotEmpty()) {
                     val localDateTime = try {
