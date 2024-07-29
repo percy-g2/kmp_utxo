@@ -15,13 +15,16 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -31,6 +34,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -43,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.IntOffset
@@ -88,9 +93,17 @@ fun Double.formatAsCurrency(): String {
 @Composable
 @Preview
 fun App() {
+    val globalTooltipState = remember { mutableStateOf<TooltipState?>(null) }
+
     MaterialTheme {
         Scaffold(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .pointerInput(Unit) {
+                    detectTapGestures { _ ->
+                        globalTooltipState.value = null
+                    }
+                },
             bottomBar = {
                 BottomAppBar(
                     actions = {
@@ -119,19 +132,19 @@ fun App() {
                 )
             }
         ) { innerPadding ->
-            WebSocketApp(innerPadding)
+            WebSocketApp(innerPadding, globalTooltipState)
         }
     }
 }
 
 @Composable
-fun WebSocketApp(innerPadding: PaddingValues) {
+fun WebSocketApp(innerPadding: PaddingValues, globalTooltipState: MutableState<TooltipState?>) {
     val webSocketClient = remember { WebSocketClient() }
     val httpClient = remember { HttpClient() }
     val coroutineScope = rememberCoroutineScope()
     var trades by remember { mutableStateOf(emptyMap<String, List<UiKline>>()) }
     var tickerDataMap by remember { mutableStateOf(emptyMap<String, TickerData>()) }
-    var globalTooltipState by remember { mutableStateOf<TooltipState?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
 
     DisposableEffect(Unit) {
         coroutineScope.launch {
@@ -160,6 +173,7 @@ fun WebSocketApp(innerPadding: PaddingValues) {
                     tickerDataMap = updatedMap.toList()
                         .sortedByDescending { (_, value) -> value.volume.toDoubleOrNull() ?: 0.0 }
                         .toMap()
+                    isLoading = false
                 }.getOrElse {
                     it.printStackTrace()
                 }
@@ -173,27 +187,29 @@ fun WebSocketApp(innerPadding: PaddingValues) {
         }
     }
 
-    LazyColumn(
-        modifier = Modifier
-            .padding(innerPadding)
-            .pointerInput(Unit) {
-                detectTapGestures { _ ->
-                    globalTooltipState = null
-                }
-            }
-    ) {
-        items(tickerDataMap.values.toList()) { tickerData ->
-            trades[tickerData.symbol]?.let {
-                TickerCard(
-                    symbol = tickerData.symbol,
-                    price = tickerData.lastPrice,
-                    timestamp = tickerData.timestamp,
-                    trades = it,
-                    globalTooltipState = globalTooltipState,
-                    onTooltipStateChanged = { newState ->
-                        globalTooltipState = newState
+    Box(modifier = Modifier.fillMaxSize()) {
+        if (isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center)
+            )
+        } else {
+            LazyColumn(
+                modifier = Modifier.padding(innerPadding)
+            ) {
+                items(tickerDataMap.values.toList()) { tickerData ->
+                    trades[tickerData.symbol]?.let {
+                        TickerCard(
+                            symbol = tickerData.symbol,
+                            price = tickerData.lastPrice,
+                            timestamp = tickerData.timestamp,
+                            trades = it,
+                            globalTooltipState = globalTooltipState,
+                            onTooltipStateChanged = { newState ->
+                                globalTooltipState.value = newState
+                            }
+                        )
                     }
-                )
+                }
             }
         }
     }
@@ -203,7 +219,7 @@ fun WebSocketApp(innerPadding: PaddingValues) {
 fun RowScope.TradeChart(
     trades: List<UiKline>,
     symbol: String,
-    globalTooltipState: TooltipState?,
+    globalTooltipState: MutableState<TooltipState?>,
     onTooltipStateChanged: (TooltipState?) -> Unit
 ) {
     if (trades.isEmpty()) {
@@ -220,6 +236,7 @@ fun RowScope.TradeChart(
     val priceRange = if (maxPrice != minPrice) maxPrice - minPrice else 1f
 
     var chartSize by remember { mutableStateOf(Offset.Zero) }
+    var highlightPoint by remember { mutableStateOf<Offset?>(null) }
 
     Box(modifier = Modifier.weight(1f)) {
         Canvas(
@@ -229,11 +246,13 @@ fun RowScope.TradeChart(
                 .pointerInput(Unit) {
                     detectTapGestures { offset ->
                         updateTooltip(offset, trades, chartSize, minPrice, priceRange, symbol, onTooltipStateChanged)
+                        highlightPoint = findNearestPoint(offset, calculatePoints(trades, chartSize, minPrice, priceRange))
                     }
                 }
                 .pointerInput(Unit) {
                     detectDragGestures { change, _ ->
                         updateTooltip(change.position, trades, chartSize, minPrice, priceRange, symbol, onTooltipStateChanged)
+                        highlightPoint = findNearestPoint(change.position, calculatePoints(trades, chartSize, minPrice, priceRange))
                     }
                 }
         ) {
@@ -246,35 +265,77 @@ fun RowScope.TradeChart(
                 else path.lineTo(point.x, point.y)
             }
 
+            // Draw the chart line
             drawPath(path = path, color = Color.Yellow, style = Stroke(width = 3f))
+
+            // Draw the highlight point
+            highlightPoint?.let { point ->
+                globalTooltipState.value?.let { state ->
+                    if (state.symbol == symbol) {
+                        drawCircle(
+                            color = Color.Red,
+                            radius = 16f,
+                            center = point,
+                            style = Fill
+                        )
+                        drawCircle(
+                            color = Color.White,
+                            radius = 8f,
+                            center = point,
+                            style = Fill
+                        )
+                    }
+                }
+            }
         }
 
-        globalTooltipState?.let { state ->
+        globalTooltipState.value?.let { state ->
             if (state.symbol == symbol) {
                 Popup(
                     alignment = Alignment.TopStart,
-                    offset = IntOffset(state.position.x.toInt(), state.position.y.toInt()),
+                    offset = IntOffset(state.position.x.toInt() + 20 , state.position.y.toInt() - 30),
                     properties = PopupProperties(focusable = false)
                 ) {
-                    Surface(
-                        color = Color.White,
-                        shape = RoundedCornerShape(4.dp),
-                        tonalElevation = 4.dp,
-                        shadowElevation = 4.dp
+                    Box(
+                        modifier = Modifier.pointerInput(Unit) {
+                            detectTapGestures {
+                                onTooltipStateChanged(null)
+                            }
+                        }
                     ) {
-                        Text(
-                            text = "Price: $${state.price}",
-                            modifier = Modifier.padding(8.dp),
-                            color = Color.Black
-                        )
+                        Surface(
+                            color = Color.White,
+                            shape = RoundedCornerShape(4.dp),
+                            tonalElevation = 4.dp,
+                            shadowElevation = 4.dp
+                        ) {
+                            Text(
+                                text = "Price: $${state.price}",
+                                modifier = Modifier.padding(8.dp),
+                                color = Color.Black
+                            )
+                        }
+                        // Tooltip pointer
+                        Canvas(
+                            modifier = Modifier
+                                .size(10.dp)
+                                .align(Alignment.CenterStart)
+                                .offset(x = (-10).dp)
+                        ) {
+                            val path = Path().apply {
+                                moveTo(size.width, 0f)
+                                lineTo(0f, size.height / 2)
+                                lineTo(size.width, size.height)
+                                close()
+                            }
+                            drawPath(path, Color.White)
+                        }
                     }
                 }
             }
         }
     }
 }
-
-data class TooltipState(val position: Offset, val price: Double, val symbol: String)
 
 fun updateTooltip(
     offset: Offset,
@@ -298,6 +359,8 @@ fun updateTooltip(
         )
     }
 }
+
+data class TooltipState(val position: Offset, val price: Double, val symbol: String)
 
 fun calculatePoints(trades: List<UiKline>, size: Offset, minPrice: Float, priceRange: Float): List<Offset> {
     return trades.mapIndexed { index, trade ->
@@ -326,7 +389,7 @@ fun TickerCard(
     price: String,
     timestamp: String,
     trades: List<UiKline>,
-    globalTooltipState: TooltipState?,
+    globalTooltipState: MutableState<TooltipState?>,
     onTooltipStateChanged: (TooltipState?) -> Unit
 ) {
     Card(
