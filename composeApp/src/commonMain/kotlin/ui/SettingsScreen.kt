@@ -1,6 +1,7 @@
 package ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,9 +18,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -28,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import getCacheDirectoryPath
@@ -52,23 +52,38 @@ fun SettingsScreen(
     val themesList = Theme.entries.map { theme ->
         ThemeData(theme.title, theme.description)
     }
+    Column {
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Theme", fontSize = 24.sp, fontWeight = FontWeight.Bold) },
-                navigationIcon = {
-                    IconButton(onClick = onBackPress) {
-                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-                    }
-                }
+        Spacer(modifier = Modifier.height(2.dp))
+
+        Row(
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Spacer(modifier = Modifier.width(8.dp))
+
+            IconButton(
+                modifier = Modifier.align(Alignment.CenterVertically),
+                onClick = onBackPress
+            ) {
+                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+            }
+
+            Spacer(modifier = Modifier.width(2.dp))
+
+            Text(
+                text = "Theme",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
             )
         }
-    ) { paddingValues ->
+
+        Spacer(modifier = Modifier.height(2.dp))
+
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
+            modifier = Modifier.fillMaxSize()
         ) {
             Spacer(modifier = Modifier.height(8.dp))
             LazyColumn {
@@ -133,7 +148,7 @@ data class ThemeData(
 )
 
 enum class Theme(val id: Int, val title: String, val description: String? = null) {
-    SYSTEM(0,"Use Device Settings", "Upon activation, Day or Night mode will be followed by device settings."),
+    SYSTEM(0, "Use Device Settings", "Upon activation, Day or Night mode will be followed by device settings."),
     LIGHT(1, "Light"),
     DARK(2, "Dark")
 }
