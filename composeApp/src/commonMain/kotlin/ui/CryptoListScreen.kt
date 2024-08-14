@@ -93,6 +93,7 @@ fun CryptoList() {
                     isLoading = false
                 }.getOrElse {
                     it.printStackTrace()
+                    isLoading = false
                 }
             }
         }

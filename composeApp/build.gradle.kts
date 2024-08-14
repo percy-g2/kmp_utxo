@@ -62,6 +62,10 @@ kotlin {
 
             implementation(libs.kstore.file)
             implementation(libs.kstore)
+
+            implementation(libs.compottie.resources)
+            implementation(libs.kottie)
+            implementation(libs.compottie)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
