@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -22,10 +23,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -49,20 +47,13 @@ fun SettingsScreen(
     val store: KStore<Settings> = storeOf(file = "${getCacheDirectoryPath()}/settings.json".toPath())
     val coroutineScope = rememberCoroutineScope()
     val settings: Flow<Settings?> = store.updates
-    val selectedTheme = settings.collectAsState(initial = Settings(selectedTheme = 0))
-    var selectedOption by remember { mutableIntStateOf(0) }
+    val selectedTheme by settings.collectAsState(initial = Settings(selectedTheme = 0))
 
-    when (selectedTheme.value?.selectedTheme) {
-        0 -> {
-            selectedOption = 0
-        }
-        1 -> {
-            selectedOption = 1
-        }
-        2 -> {
-            selectedOption = 2
-        }
-    }
+    val themesList = listOf(
+        ThemeData("Use Device Settings", "Upon activation, Day or Night mode will be followed by device settings."),
+        ThemeData("Light"),
+        ThemeData("Dark")
+    )
 
     Scaffold(
         topBar = {
@@ -81,41 +72,17 @@ fun SettingsScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             LazyColumn {
-                item {
+                itemsIndexed(themesList) { index, theme ->
                     ThemeOption(
-                        title = "Use Device Settings",
-                        description = "Upon activation, Day or Night mode will be followed by device settings.",
-                        index = 0,
-                        isSelected = selectedOption == 0,
+                        title = theme.title,
+                        description = theme.description,
+                        index = index,
+                        isSelected = (selectedTheme?.selectedTheme ?: 0) == index,
                         onOptionSelected = {
                             coroutineScope.launch {
-                                ThemeManager.updateTheme(it)
-                            }
-                        }
-                    )
-                }
-                item {
-                    ThemeOption(
-                        title = "Light",
-                        index = 1,
-                        isSelected = selectedOption == 1,
-                        onOptionSelected = {
-                            coroutineScope.launch {
-                                ThemeManager.updateTheme(it)
-                            }
-                        }
-                    )
-                }
-                item {
-                    ThemeOption(
-                        title = "Dark",
-                        index = 2,
-                        isSelected = selectedOption == 2,
-                        onOptionSelected = {
-                            coroutineScope.launch {
-                                ThemeManager.updateTheme(it)
+                                ThemeManager.updateTheme(index)
                             }
                         }
                     )
@@ -147,9 +114,9 @@ fun ThemeOption(
             Spacer(modifier = Modifier.width(8.dp))
             Column {
                 Text(text = title, fontSize = 18.sp, fontWeight = FontWeight.Medium)
-                if (description != null) {
+                description?.let {
                     Text(
-                        text = description,
+                        text = it,
                         fontSize = 14.sp,
                         color = Color.Gray
                     )
@@ -161,3 +128,8 @@ fun ThemeOption(
 
 @Serializable
 data class Settings(val selectedTheme: Int = 0)
+
+data class ThemeData(
+    val title: String,
+    val description: String? = null
+)
