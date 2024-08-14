@@ -13,8 +13,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -30,11 +28,11 @@ import theme.ThemeManager
 import theme.UTXOTheme
 import ui.CryptoList
 import ui.SettingsScreen
+import ui.Theme
 
 @Composable
 fun App() {
     val navController: NavHostController = rememberNavController()
-    var isLoading by remember { mutableStateOf(true) }
     val themeState by ThemeManager.themeState.collectAsState()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
@@ -54,14 +52,12 @@ fun App() {
         ThemeManager.store.get()?.let { settings ->
             ThemeManager.themeState.value = settings.selectedTheme
         }
-        isLoading = false
     }
 
-    val colorScheme = when {
-        isLoading -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
-        themeState == 0 -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
-        themeState == 1 -> LightColorScheme
-        themeState == 2 -> DarkColorScheme
+    val colorScheme = when (themeState) {
+        Theme.SYSTEM.id -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
+        Theme.LIGHT.id -> LightColorScheme
+        Theme.DARK.id -> DarkColorScheme
         else -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
     }
 

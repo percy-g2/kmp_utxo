@@ -12,6 +12,7 @@ import io.github.xxfast.kstore.file.storeOf
 import kotlinx.coroutines.flow.MutableStateFlow
 import okio.Path.Companion.toPath
 import ui.Settings
+import ui.Theme
 
 val DarkColorScheme = darkColorScheme(
     primary = Blue80,
@@ -55,14 +56,12 @@ fun UTXOTheme(
     )
 }
 
-// Create a singleton object to hold the app-wide theme state
 object ThemeManager {
-    val themeState = MutableStateFlow(0) // 0: System, 1: Light, 2: Dark
+    val themeState = MutableStateFlow(Theme.SYSTEM.id)
     val store: KStore<Settings> = storeOf(file = "${getCacheDirectoryPath()}/settings.json".toPath())
 
     suspend fun updateTheme(newTheme: Int) {
         themeState.value = newTheme
-        // Update KStore
         store.update { it?.copy(selectedTheme = newTheme) ?: Settings(selectedTheme = newTheme) }
     }
 }

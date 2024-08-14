@@ -49,11 +49,9 @@ fun SettingsScreen(
     val settings: Flow<Settings?> = store.updates
     val selectedTheme by settings.collectAsState(initial = Settings(selectedTheme = 0))
 
-    val themesList = listOf(
-        ThemeData("Use Device Settings", "Upon activation, Day or Night mode will be followed by device settings."),
-        ThemeData("Light"),
-        ThemeData("Dark")
-    )
+    val themesList = Theme.entries.map { theme ->
+        ThemeData(theme.title, theme.description)
+    }
 
     Scaffold(
         topBar = {
@@ -79,7 +77,7 @@ fun SettingsScreen(
                         title = theme.title,
                         description = theme.description,
                         index = index,
-                        isSelected = (selectedTheme?.selectedTheme ?: 0) == index,
+                        isSelected = (selectedTheme?.selectedTheme ?: Theme.SYSTEM.id) == index,
                         onOptionSelected = {
                             coroutineScope.launch {
                                 ThemeManager.updateTheme(index)
@@ -133,3 +131,9 @@ data class ThemeData(
     val title: String,
     val description: String? = null
 )
+
+enum class Theme(val id: Int, val title: String, val description: String? = null) {
+    SYSTEM(0,"Use Device Settings", "Upon activation, Day or Night mode will be followed by device settings."),
+    LIGHT(1, "Light"),
+    DARK(2, "Dark")
+}

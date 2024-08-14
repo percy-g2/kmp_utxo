@@ -49,22 +49,19 @@ class WebSocketClient {
                                 when (frame) {
                                     is Frame.Text -> {
                                         val receivedText = frame.readText()
-                                       // println("Received: $receivedText")
                                         incomingMessages.send(receivedText)
                                     }
                                     is Frame.Ping -> {
-                                      //  println("Received Ping, sending Pong")
                                         send(Frame.Pong(frame.data))
                                     }
                                     is Frame.Pong -> {
-                                    //    println("Received Pong")
+                                        // no op
                                     }
                                     is Frame.Close -> {
-                                  //      println("Received Close frame: ${frame.readReason()}")
                                         break
                                     }
                                     else -> {
-                                    //    println("Received other frame: $frame")
+                                        // no op
                                     }
                                 }
                             }
@@ -80,7 +77,9 @@ class WebSocketClient {
     }
 
     fun close() {
-        job?.cancel()
+        if (job?.isActive == true) {
+            job?.cancel()
+        }
         client.close()
     }
 }

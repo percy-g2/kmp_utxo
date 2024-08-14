@@ -19,7 +19,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,6 +50,7 @@ import model.TickerData
 import model.UiKline
 import network.HttpClient
 import network.WebSocketClient
+import ui.component.ProgressDialog
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
@@ -108,18 +108,16 @@ fun CryptoList() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         if (isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center)
-            )
+            ProgressDialog()
         } else {
             LazyColumn {
                 items(tickerDataMap.values.toList()) { tickerData ->
-                    trades[tickerData.symbol]?.let {
+                    trades[tickerData.symbol]?.let { tradesList ->
                         TickerCard(
                             symbol = tickerData.symbol,
                             price = tickerData.lastPrice,
                             timestamp = tickerData.timestamp,
-                            trades = it
+                            trades = tradesList
                         )
                     }
                 }
