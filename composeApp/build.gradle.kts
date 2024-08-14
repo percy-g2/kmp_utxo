@@ -57,10 +57,17 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
 
             implementation(libs.kotlinx.datetime)
+
+            implementation(libs.navigation.compose)
+
+            implementation(libs.kstore.file)
+            implementation(libs.kstore)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.ktor.client.cio)
+
+            implementation(libs.harawata.appdirs)
         }
     }
 }
@@ -108,8 +115,17 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "org.androdevlinux.utxo"
+            packageName = "UTXO"
             packageVersion = "1.0.0"
+            macOS {
+                iconFile.set(project.file("src/macosMain/resources/AppIcon.icns"))
+            }
+            windows {
+                iconFile.set(project.file("src/windowsMain/resources/AppIcon.ico"))
+            }
+            linux {
+                iconFile.set(project.file("src/linuxMain/resources/AppIcon.png"))
+            }
         }
     }
 }

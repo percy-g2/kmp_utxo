@@ -9,6 +9,7 @@ import io.ktor.websocket.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -25,12 +26,14 @@ class WebSocketClient {
         }
     }
 
+    var job: Job? = null
+
     private val incomingMessages = Channel<String>(Channel.UNLIMITED)
 
     fun getIncomingMessages(): Flow<String> = incomingMessages.receiveAsFlow()
 
     fun connect() {
-        CoroutineScope(Dispatchers.IO).launch {
+        job = CoroutineScope(Dispatchers.IO).launch {
             while (isActive) {
                 runCatching {
                     client.wss(
@@ -77,6 +80,7 @@ class WebSocketClient {
     }
 
     fun close() {
+        job?.cancel()
         client.close()
     }
 }

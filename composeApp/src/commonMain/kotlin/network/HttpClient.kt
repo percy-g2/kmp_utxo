@@ -12,9 +12,9 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
-import network.model.Trade
-import network.model.UiKline
-import network.model.UiKlineSerializer
+import model.Trade
+import model.UiKline
+import model.UiKlineSerializer
 
 class HttpClient {
     private val json = Json {
