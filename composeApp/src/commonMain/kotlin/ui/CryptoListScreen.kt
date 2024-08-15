@@ -38,6 +38,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -86,7 +87,6 @@ fun CryptoList() {
     var showDialog by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
     val settings: Flow<Settings?> = store.updates
-    val snackBarHostState = remember { SnackbarHostState() }
 
     val favPairs by settings.collectAsState(
         initial = Settings(
@@ -95,17 +95,17 @@ fun CryptoList() {
         )
     )
 
+    LaunchedEffect(favPairs?.favPairs) {
+        coroutineScope.launch(Dispatchers.IO) {
+            trades = httpClient.fetchUiKlines(store.get()?.favPairs ?: emptyList())
+            webSocketClient.connect()
+        }
+    }
+
     if (showDialog) {
         CryptoPairDialog(
-            snackBarHostState = snackBarHostState,
             onDismiss = {
                 showDialog = false
-            },
-            onPairListUpdated = {
-                coroutineScope.launch(Dispatchers.IO) {
-                    trades = httpClient.fetchUiKlines(favPairs?.favPairs ?: emptyList())
-                    webSocketClient.connect()
-                }
             }
         )
     }
@@ -118,7 +118,7 @@ fun CryptoList() {
                     val tickers = Json.decodeFromString<List<Ticker>>(message)
                     val updatedMap = buildMap {
                         putAll(tickerDataMap)
-                        tickers.filter { favPairs?.favPairs?.contains(it.symbol) == true }.forEach { ticker ->
+                        tickers.filter { store.get()?.favPairs?.contains(it.symbol) == true }.forEach { ticker ->
                             put(
                                 key = ticker.symbol,
                                 value = TickerData(
@@ -146,7 +146,7 @@ fun CryptoList() {
             }
         }
         val fetchTradesJob = coroutineScope.launch(Dispatchers.IO) {
-            trades = httpClient.fetchUiKlines(favPairs?.favPairs ?: emptyList())
+            trades = httpClient.fetchUiKlines(store.get()?.favPairs ?: emptyList())
         }
         onDispose {
             webSocketJob.cancel()
@@ -171,14 +171,15 @@ fun CryptoList() {
                     showDialog = true
                 }
             )
-        },
-        snackbarHost = { SnackbarHost(snackBarHostState) }
+        }
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             if (isLoading) {
                 ProgressDialog()
             } else {
-                LazyColumn {
+                LazyColumn(
+                    state = listState
+                ) {
                     items(tickerDataMap.values.toList()) { tickerData ->
                         trades[tickerData.symbol]?.let { tradesList ->
                             TickerCard(
@@ -350,24 +351,28 @@ fun TickerCard(
 
 @Composable
 fun CryptoPairDialog(
-    snackBarHostState: SnackbarHostState,
-    onDismiss: () -> Unit,
-    onPairListUpdated: () -> Unit
+    onDismiss: () -> Unit
 ) {
     val settings = store.updates.collectAsState(null)
+    val snackBarHostState = remember { SnackbarHostState() }
 
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(text = "Select Crypto Pair (${settings.value?.favPairs?.size}/10)") },
         text = {
-            LazyColumn {
-                items(CryptoPair.getAllPairs()) { pair ->
-                    CryptoPairItem(
-                        snackBarHostState = snackBarHostState,
-                        pair = pair,
-                        onPairListUpdated = onPairListUpdated
-                    )
+            Box {
+                LazyColumn {
+                    items(CryptoPair.getAllPairs()) { pair ->
+                        CryptoPairItem(
+                            snackBarHostState = snackBarHostState,
+                            pair = pair
+                        )
+                    }
                 }
+                SnackbarHost(
+                    hostState = snackBarHostState,
+                    modifier = Modifier.align(Alignment.BottomCenter)
+                )
             }
         },
         confirmButton = {
@@ -381,8 +386,7 @@ fun CryptoPairDialog(
 @Composable
 fun CryptoPairItem(
     snackBarHostState: SnackbarHostState,
-    pair: String,
-    onPairListUpdated: () -> Unit
+    pair: String
 ) {
     val settings = store.updates.collectAsState(null)
     val coroutineScope = rememberCoroutineScope()
@@ -399,21 +403,20 @@ fun CryptoPairItem(
         Text(text = pair)
         IconButton(onClick = {
             coroutineScope.launch {
-                if (favPairs.size < 10) {
-                    if (isAdded) {
-                        store.update {
-                            it?.copy(favPairs = favPairs.minus(pair))
-                        }
-                        snackBarHostState.showSnackbar("$pair removed!")
-                    } else {
+                if (isAdded) {
+                    store.update {
+                        it?.copy(favPairs = favPairs.minus(pair))
+                    }
+                    snackBarHostState.showSnackbar("$pair removed!")
+                } else {
+                    if (favPairs.size < 10) {
                         store.update {
                             it?.copy(favPairs = favPairs.plus(pair))
                         }
                         snackBarHostState.showSnackbar("$pair added!")
+                    } else {
+                        snackBarHostState.showSnackbar("Max 10 can be added!")
                     }
-                    onPairListUpdated()
-                } else {
-                    snackBarHostState.showSnackbar("Max 10 can be added!")
                 }
             }
         }) {
