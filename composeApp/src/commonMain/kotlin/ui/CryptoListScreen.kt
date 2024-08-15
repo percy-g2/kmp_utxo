@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -16,14 +17,31 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -31,11 +49,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
@@ -50,6 +70,7 @@ import model.TickerData
 import model.UiKline
 import network.HttpClient
 import network.WebSocketClient
+import theme.ThemeManager.store
 import ui.component.ProgressDialog
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
@@ -62,6 +83,32 @@ fun CryptoList() {
     var trades by remember { mutableStateOf(emptyMap<String, List<UiKline>>()) }
     var tickerDataMap by remember { mutableStateOf(emptyMap<String, TickerData>()) }
     var isLoading by remember { mutableStateOf(true) }
+    var showDialog by remember { mutableStateOf(false) }
+    val listState = rememberLazyListState()
+    val settings: Flow<Settings?> = store.updates
+    val snackBarHostState = remember { SnackbarHostState() }
+
+    val favPairs by settings.collectAsState(
+        initial = Settings(
+            selectedTheme = 0,
+            favPairs = listOf(CryptoPair.BTCUSDT.symbol, CryptoPair.ETHUSDT.symbol, CryptoPair.SOLUSDT.symbol)
+        )
+    )
+
+    if (showDialog) {
+        CryptoPairDialog(
+            snackBarHostState = snackBarHostState,
+            onDismiss = {
+                showDialog = false
+            },
+            onPairListUpdated = {
+                coroutineScope.launch(Dispatchers.IO) {
+                    trades = httpClient.fetchUiKlines(favPairs?.favPairs ?: emptyList())
+                    webSocketClient.connect()
+                }
+            }
+        )
+    }
 
     DisposableEffect(Unit) {
         val webSocketJob = coroutineScope.launch(Dispatchers.IO) {
@@ -71,9 +118,10 @@ fun CryptoList() {
                     val tickers = Json.decodeFromString<List<Ticker>>(message)
                     val updatedMap = buildMap {
                         putAll(tickerDataMap)
-                        tickers.filter { CryptoPair.getAllPairs().contains(it.symbol) }.forEach { ticker ->
+                        tickers.filter { favPairs?.favPairs?.contains(it.symbol) == true }.forEach { ticker ->
                             put(
-                                ticker.symbol, TickerData(
+                                key = ticker.symbol,
+                                value = TickerData(
                                     symbol = ticker.symbol,
                                     lastPrice = formatPrice(ticker.lastPrice),
                                     priceChangePercent = ticker.priceChangePercent,
@@ -98,7 +146,7 @@ fun CryptoList() {
             }
         }
         val fetchTradesJob = coroutineScope.launch(Dispatchers.IO) {
-            trades = httpClient.fetchUiKlines(CryptoPair.getAllPairs())
+            trades = httpClient.fetchUiKlines(favPairs?.favPairs ?: emptyList())
         }
         onDispose {
             webSocketJob.cancel()
@@ -107,19 +155,39 @@ fun CryptoList() {
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        if (isLoading) {
-            ProgressDialog()
-        } else {
-            LazyColumn {
-                items(tickerDataMap.values.toList()) { tickerData ->
-                    trades[tickerData.symbol]?.let { tradesList ->
-                        TickerCard(
-                            symbol = tickerData.symbol,
-                            price = tickerData.lastPrice,
-                            timestamp = tickerData.timestamp,
-                            trades = tradesList
-                        )
+    Scaffold(
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                text = { Text(text = "Add Pair") },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "add-icon"
+                    )
+                },
+                expanded = listState.isScrollingUp(),
+                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp),
+                onClick = {
+                    showDialog = true
+                }
+            )
+        },
+        snackbarHost = { SnackbarHost(snackBarHostState) }
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            if (isLoading) {
+                ProgressDialog()
+            } else {
+                LazyColumn {
+                    items(tickerDataMap.values.toList()) { tickerData ->
+                        trades[tickerData.symbol]?.let { tradesList ->
+                            TickerCard(
+                                symbol = tickerData.symbol,
+                                price = tickerData.lastPrice,
+                                timestamp = tickerData.timestamp,
+                                trades = tradesList
+                            )
+                        }
                     }
                 }
             }
@@ -280,10 +348,90 @@ fun TickerCard(
     }
 }
 
+@Composable
+fun CryptoPairDialog(
+    snackBarHostState: SnackbarHostState,
+    onDismiss: () -> Unit,
+    onPairListUpdated: () -> Unit
+) {
+    val settings = store.updates.collectAsState(null)
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(text = "Select Crypto Pair (${settings.value?.favPairs?.size}/10)") },
+        text = {
+            LazyColumn {
+                items(CryptoPair.getAllPairs()) { pair ->
+                    CryptoPairItem(
+                        snackBarHostState = snackBarHostState,
+                        pair = pair,
+                        onPairListUpdated = onPairListUpdated
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Done")
+            }
+        }
+    )
+}
+
+@Composable
+fun CryptoPairItem(
+    snackBarHostState: SnackbarHostState,
+    pair: String,
+    onPairListUpdated: () -> Unit
+) {
+    val settings = store.updates.collectAsState(null)
+    val coroutineScope = rememberCoroutineScope()
+    val isAdded = settings.value?.favPairs?.contains(pair) ?: false
+    val favPairs = settings.value?.favPairs ?: emptyList()
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(text = pair)
+        IconButton(onClick = {
+            coroutineScope.launch {
+                if (favPairs.size < 10) {
+                    if (isAdded) {
+                        store.update {
+                            it?.copy(favPairs = favPairs.minus(pair))
+                        }
+                        snackBarHostState.showSnackbar("$pair removed!")
+                    } else {
+                        store.update {
+                            it?.copy(favPairs = favPairs.plus(pair))
+                        }
+                        snackBarHostState.showSnackbar("$pair added!")
+                    }
+                    onPairListUpdated()
+                } else {
+                    snackBarHostState.showSnackbar("Max 10 can be added!")
+                }
+            }
+        }) {
+            Icon(
+                imageVector = Icons.Default.Star,
+                contentDescription = null,
+                tint = if (isAdded) MaterialTheme.colorScheme.onSurface else Color.Gray
+            )
+        }
+    }
+}
+
 fun formatPrice(price: String): String = runCatching {
     val formattedPrice = price.toDouble().formatAsCurrency()
     "$$formattedPrice"
-}.getOrElse { price }
+}.getOrElse {
+    price
+}
 
 fun Double.formatAsCurrency(): String {
     val absValue = this.absoluteValue
@@ -294,4 +442,25 @@ fun Double.formatAsCurrency(): String {
     val formattedFractional = fractionalPart.toString().padStart(2, '0')
 
     return if (this < 0) "-$formattedInteger.$formattedFractional" else "$formattedInteger.$formattedFractional"
+}
+
+/**
+ * Returns whether the lazy list is currently scrolling up.
+ */
+@Composable
+fun LazyListState.isScrollingUp(): Boolean {
+    var previousIndex by remember(this) { mutableIntStateOf(value = firstVisibleItemIndex) }
+    var previousScrollOffset by remember(this) { mutableIntStateOf(value = firstVisibleItemScrollOffset) }
+    return remember(this) {
+        derivedStateOf {
+            if (previousIndex != firstVisibleItemIndex) {
+                previousIndex > firstVisibleItemIndex
+            } else {
+                previousScrollOffset >= firstVisibleItemScrollOffset
+            }.also {
+                previousIndex = firstVisibleItemIndex
+                previousScrollOffset = firstVisibleItemScrollOffset
+            }
+        }
+    }.value
 }

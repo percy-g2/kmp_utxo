@@ -36,6 +36,7 @@ import io.github.xxfast.kstore.file.storeOf
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import model.CryptoPair
 import okio.Path.Companion.toPath
 import theme.ThemeManager
 
@@ -140,7 +141,10 @@ fun ThemeOption(
 }
 
 @Serializable
-data class Settings(val selectedTheme: Int = 0)
+data class Settings(
+    val selectedTheme: Int = 0,
+    val favPairs: List<String> = listOf(CryptoPair.BTCUSDT.symbol, CryptoPair.ETHUSDT.symbol, CryptoPair.SOLUSDT.symbol)
+)
 
 data class ThemeData(
     val title: String,
