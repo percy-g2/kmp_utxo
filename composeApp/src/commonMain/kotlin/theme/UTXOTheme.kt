@@ -6,11 +6,8 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import getCacheDirectoryPath
-import io.github.xxfast.kstore.KStore
-import io.github.xxfast.kstore.file.storeOf
+import getKStore
 import kotlinx.coroutines.flow.MutableStateFlow
-import okio.Path.Companion.toPath
 import ui.Settings
 import ui.Theme
 
@@ -58,7 +55,7 @@ fun UTXOTheme(
 
 object ThemeManager {
     val themeState = MutableStateFlow(Theme.SYSTEM.id)
-    val store: KStore<Settings> = storeOf(file = "${getCacheDirectoryPath()}/settings.json".toPath())
+    val store = getKStore()
 
     suspend fun updateTheme(newTheme: Int) {
         themeState.value = newTheme

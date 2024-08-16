@@ -30,22 +30,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import getCacheDirectoryPath
+import getKStore
 import io.github.xxfast.kstore.KStore
-import io.github.xxfast.kstore.file.storeOf
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import model.CryptoPair
-import okio.Path.Companion.toPath
 import theme.ThemeManager
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
     onBackPress: () -> Unit
 ) {
-    val store: KStore<Settings> = storeOf(file = "${getCacheDirectoryPath()}/settings.json".toPath())
+    val store: KStore<Settings> = getKStore()
     val coroutineScope = rememberCoroutineScope()
     val settings: Flow<Settings?> = store.updates
     val selectedTheme by settings.collectAsState(initial = Settings(selectedTheme = 0))

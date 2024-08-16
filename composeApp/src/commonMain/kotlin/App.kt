@@ -21,12 +21,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import io.github.xxfast.kstore.KStore
 import model.NavItem
 import theme.DarkColorScheme
 import theme.LightColorScheme
 import theme.ThemeManager
 import theme.UTXOTheme
 import ui.CryptoList
+import ui.Settings
 import ui.SettingsScreen
 import ui.Theme
 
@@ -112,4 +114,4 @@ fun App() {
     }
 }
 
-expect fun getCacheDirectoryPath(): String?
+expect fun getKStore(): KStore<Settings>

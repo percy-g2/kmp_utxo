@@ -1,6 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -11,6 +12,16 @@ plugins {
 }
 
 kotlin {
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        moduleName = "composeApp"
+        browser {
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+            }
+        }
+        binaries.executable()
+    }
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -35,12 +46,18 @@ kotlin {
         val desktopMain by getting
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+
+            implementation(libs.kstore.file)
         }
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
             implementation(libs.ktor.client.android)
             implementation(libs.ktor.client.cio)
+
+            implementation(libs.kstore.file)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -60,14 +77,22 @@ kotlin {
 
             implementation(libs.navigation.compose)
 
-            implementation(libs.kstore.file)
             implementation(libs.kstore)
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.ktor.client.cio)
-
+            implementation(libs.kstore.file)
             implementation(libs.harawata.appdirs)
+        }
+
+        val wasmJsMain by getting
+
+        wasmJsMain.dependencies {
+            implementation(libs.kstore.storage)
+
+            implementation(libs.ktor.client.js)
         }
     }
 }
