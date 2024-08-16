@@ -54,7 +54,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -95,7 +94,7 @@ fun CryptoList() {
     )
 
     LaunchedEffect(favPairs?.favPairs) {
-        coroutineScope.launch(Dispatchers.Default) {
+        coroutineScope.launch {
             trades = httpClient.fetchUiKlines(store.get()?.favPairs ?: emptyList())
             webSocketClient.connect()
         }
@@ -110,7 +109,7 @@ fun CryptoList() {
     }
 
     DisposableEffect(Unit) {
-        val webSocketJob = coroutineScope.launch(Dispatchers.Default) {
+        val webSocketJob = coroutineScope.launch {
             webSocketClient.connect()
             webSocketClient.getIncomingMessages().collectLatest { message ->
                 runCatching {
@@ -144,7 +143,7 @@ fun CryptoList() {
                 }
             }
         }
-        val fetchTradesJob = coroutineScope.launch(Dispatchers.Default) {
+        val fetchTradesJob = coroutineScope.launch {
             trades = httpClient.fetchUiKlines(store.get()?.favPairs ?: emptyList())
         }
         onDispose {

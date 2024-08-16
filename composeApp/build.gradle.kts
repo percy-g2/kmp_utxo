@@ -78,7 +78,6 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(libs.kstore)
-
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

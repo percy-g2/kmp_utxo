@@ -22,6 +22,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import io.github.xxfast.kstore.KStore
+import io.ktor.client.*
 import model.NavItem
 import theme.DarkColorScheme
 import theme.LightColorScheme
@@ -113,5 +114,7 @@ fun App() {
         }
     }
 }
+
+expect fun getWebSocketClient(): HttpClient
 
 expect fun getKStore(): KStore<Settings>

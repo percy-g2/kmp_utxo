@@ -1,7 +1,6 @@
 package network
 
-import io.ktor.client.*
-import io.ktor.client.plugins.logging.*
+import getWebSocketClient
 import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.header
 import io.ktor.http.*
@@ -17,15 +16,9 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class WebSocketClient {
-    private val client = HttpClient {
-        install(WebSockets)
-        install(Logging) {
-            logger = Logger.SIMPLE
-            level = LogLevel.ALL
-        }
-    }
+    private val client = getWebSocketClient()
 
-    var job: Job? = null
+    private var job: Job? = null
 
     private val incomingMessages = Channel<String>(Channel.UNLIMITED)
 
