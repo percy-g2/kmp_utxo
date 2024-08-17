@@ -4,6 +4,7 @@ import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
+import model.CryptoPair
 import net.harawata.appdirs.AppDirsFactory
 import okio.Path.Companion.toPath
 import ui.Settings
@@ -16,7 +17,13 @@ actual fun getKStore(): KStore<Settings> {
     if (File(directory).exists().not()) {
         File(directory).mkdirs()
     }
-    return storeOf<Settings>(file = "${directory}/settings.json".toPath())
+    return storeOf<Settings>(
+        file = "${directory}/settings.json".toPath(),
+        default = Settings(
+            selectedTheme = 0,
+            favPairs = listOf(CryptoPair.BTCUSDT.symbol, CryptoPair.ETHUSDT.symbol, CryptoPair.SOLUSDT.symbol)
+        )
+    )
 }
 
 actual fun getWebSocketClient(): HttpClient {
