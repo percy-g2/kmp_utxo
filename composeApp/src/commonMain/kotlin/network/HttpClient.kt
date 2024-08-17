@@ -12,7 +12,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
-import model.Trade
 import model.UiKline
 import model.UiKlineSerializer
 
@@ -29,15 +28,6 @@ class HttpClient {
         }
         install(ContentNegotiation) {
             json(json)
-        }
-    }
-
-    suspend fun fetchBtcTrades(): List<Trade> {
-        return try {
-            json.decodeFromString<List<Trade>>(client.get("https://api.binance.com/api/v3/historicalTrades?symbol=BTCUSDT").bodyAsText())
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emptyList() // Return an empty list in case of an error
         }
     }
 

@@ -37,7 +37,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
@@ -54,35 +53,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import kotlinx.serialization.json.Json
 import model.CryptoPair
-import model.Ticker
-import model.TickerData
 import model.UiKline
-import network.HttpClient
-import network.WebSocketClient
 import theme.ThemeManager.store
 import ui.component.ProgressDialog
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
 @Composable
-fun CryptoList() {
-    val webSocketClient = remember { WebSocketClient() }
-    val httpClient = remember { HttpClient() }
-    val coroutineScope = rememberCoroutineScope()
-    var trades by remember { mutableStateOf(emptyMap<String, List<UiKline>>()) }
-    var tickerDataMap by remember { mutableStateOf(emptyMap<String, TickerData>()) }
-    var isLoading by remember { mutableStateOf(true) }
+fun CryptoList(
+    cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }
+) {
     var showDialog by remember { mutableStateOf(false) }
+    val trades by cryptoViewModel.trades.collectAsState()
+    val tickerDataMap by cryptoViewModel.tickerDataMap.collectAsState()
+    val isLoading by cryptoViewModel.isLoading.collectAsState()
     val listState = rememberLazyListState()
     val settings: Flow<Settings?> = store.updates
 
@@ -93,13 +85,6 @@ fun CryptoList() {
         )
     )
 
-    LaunchedEffect(favPairs?.favPairs) {
-        coroutineScope.launch {
-            trades = httpClient.fetchUiKlines(store.get()?.favPairs ?: emptyList())
-            webSocketClient.connect()
-        }
-    }
-
     if (showDialog) {
         CryptoPairDialog(
             onDismiss = {
@@ -108,49 +93,8 @@ fun CryptoList() {
         )
     }
 
-    DisposableEffect(Unit) {
-        val webSocketJob = coroutineScope.launch {
-            webSocketClient.connect()
-            webSocketClient.getIncomingMessages().collectLatest { message ->
-                runCatching {
-                    val tickers = Json.decodeFromString<List<Ticker>>(message)
-                    val updatedMap = buildMap {
-                        putAll(tickerDataMap)
-                        tickers.filter { store.get()?.favPairs?.contains(it.symbol) == true }.forEach { ticker ->
-                            put(
-                                key = ticker.symbol,
-                                value = TickerData(
-                                    symbol = ticker.symbol,
-                                    lastPrice = formatPrice(ticker.lastPrice),
-                                    priceChangePercent = ticker.priceChangePercent,
-                                    timestamp = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toString(),
-                                    volume = ticker.totalTradedQuoteAssetVolume
-                                )
-                            )
-                            trades = trades.toMutableMap().apply {
-                                put(ticker.symbol, (this[ticker.symbol] ?: emptyList()) + listOf(UiKline(closePrice = ticker.lastPrice)))
-                            }
-                        }
-                    }
-
-                    tickerDataMap = updatedMap.toList()
-                        .sortedByDescending { (_, value) -> value.volume.toDoubleOrNull() ?: 0.0 }
-                        .toMap()
-                    isLoading = false
-                }.getOrElse {
-                    it.printStackTrace()
-                    isLoading = false
-                }
-            }
-        }
-        val fetchTradesJob = coroutineScope.launch {
-            trades = httpClient.fetchUiKlines(store.get()?.favPairs ?: emptyList())
-        }
-        onDispose {
-            webSocketJob.cancel()
-            fetchTradesJob.cancel()
-            webSocketClient.close()
-        }
+    LaunchedEffect(favPairs?.favPairs) {
+        cryptoViewModel.reconnect()
     }
 
     Scaffold(

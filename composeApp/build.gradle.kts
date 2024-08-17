@@ -44,6 +44,9 @@ kotlin {
     
     sourceSets {
         val desktopMain by getting
+
+        val wasmJsMain by getting
+
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
 
@@ -78,15 +81,19 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(libs.kstore)
+
+            implementation(libs.lifecycle.viewmodel.compose)
+
+            implementation(libs.kotlinx.coroutines.core)
         }
+
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.ktor.client.cio)
             implementation(libs.kstore.file)
             implementation(libs.harawata.appdirs)
+            implementation(libs.kotlinx.coroutines.swing)
         }
-
-        val wasmJsMain by getting
 
         wasmJsMain.dependencies {
             implementation(libs.kstore.storage)
@@ -118,9 +125,7 @@ android {
     }
     buildTypes {
         debug {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            isDebuggable = false
+            isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         getByName("release") {

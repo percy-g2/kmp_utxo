@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.RadioButton
@@ -30,19 +29,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import getKStore
-import io.github.xxfast.kstore.KStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import model.CryptoPair
 import theme.ThemeManager
+import theme.ThemeManager.store
 
 @Composable
 fun SettingsScreen(
     onBackPress: () -> Unit
 ) {
-    val store: KStore<Settings> = getKStore()
     val coroutineScope = rememberCoroutineScope()
     val settings: Flow<Settings?> = store.updates
     val selectedTheme by settings.collectAsState(initial = Settings(selectedTheme = 0))
