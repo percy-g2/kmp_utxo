@@ -5,6 +5,7 @@ import io.ktor.client.*
 import io.ktor.client.engine.darwin.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
+import model.CryptoPair
 import okio.Path.Companion.toPath
 import platform.Foundation.NSCachesDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
@@ -13,7 +14,13 @@ import ui.Settings
 
 actual fun getKStore(): KStore<Settings> {
     val paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, true)
-    return storeOf<Settings>(file = "${paths.firstOrNull() as? String}/settings.json".toPath())
+    return storeOf<Settings>(
+        file = "${paths.firstOrNull() as? String}/settings.json".toPath(),
+        default = Settings(
+            selectedTheme = 0,
+            favPairs = listOf(CryptoPair.BTCUSDT.symbol, CryptoPair.ETHUSDT.symbol, CryptoPair.SOLUSDT.symbol)
+        )
+    )
 }
 
 actual fun getWebSocketClient(): HttpClient {

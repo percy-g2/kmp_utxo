@@ -9,13 +9,19 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
+import model.SymbolPriceTicker
 import model.Trade
 import model.UiKline
 import model.UiKlineSerializer
+import kotlin.experimental.ExperimentalObjCName
+import kotlin.native.ObjCName
 
+@OptIn(ExperimentalObjCName::class)
+@ObjCName("HttpClientKt")
 class HttpClient {
     private val json = Json {
         isLenient = true
@@ -67,6 +73,23 @@ class HttpClient {
             result[symbol] = klines
         }
         result
+    }
+
+    @ObjCName("fetchSymbolPriceTicker")
+    suspend fun fetchSymbolPriceTicker(symbols: List<String>): List<SymbolPriceTicker>? {
+        return try {
+            val response: HttpResponse = client.get("https://api.binance.com/api/v3/ticker/price") {
+                parameter("symbols", json.encodeToString(symbols))
+            }
+            if (response.status == HttpStatusCode.OK) {
+                json.decodeFromString<List<SymbolPriceTicker>>(response.bodyAsText())
+            } else {
+                null // Return null in case of a non-successful status
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null // Return null in case of an error
+        }
     }
 }
 

@@ -11,7 +11,37 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		D6AB73D32C710C7500E4E070 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6AB73A22C71069600E4E070 /* WidgetKit.framework */; };
+		D6AB73D42C710C7500E4E070 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6AB73A42C71069600E4E070 /* SwiftUI.framework */; };
+		D6AB73D72C710C7500E4E070 /* SymbolPriceWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB73D62C710C7500E4E070 /* SymbolPriceWidgetBundle.swift */; };
+		D6AB73D92C710C7500E4E070 /* SymbolPriceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB73D82C710C7500E4E070 /* SymbolPriceWidget.swift */; };
+		D6AB73DB2C710C7700E4E070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6AB73DA2C710C7700E4E070 /* Assets.xcassets */; };
+		D6AB73DF2C710C7700E4E070 /* SymbolPriceWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D6AB73D22C710C7500E4E070 /* SymbolPriceWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D6AB73DD2C710C7700E4E070 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7555FF73242A565900829871 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6AB73D12C710C7500E4E070;
+			remoteInfo = SymbolPriceWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D6AB73B52C71069800E4E070 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D6AB73DF2C710C7700E4E070 /* SymbolPriceWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -21,6 +51,13 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D6AB73A22C71069600E4E070 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D6AB73A42C71069600E4E070 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D6AB73D22C710C7500E4E070 /* SymbolPriceWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SymbolPriceWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6AB73D62C710C7500E4E070 /* SymbolPriceWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPriceWidgetBundle.swift; sourceTree = "<group>"; };
+		D6AB73D82C710C7500E4E070 /* SymbolPriceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPriceWidget.swift; sourceTree = "<group>"; };
+		D6AB73DA2C710C7700E4E070 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D6AB73DC2C710C7700E4E070 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +65,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6AB73CF2C710C7500E4E070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6AB73D42C710C7500E4E070 /* SwiftUI.framework in Frameworks */,
+				D6AB73D32C710C7500E4E070 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +91,8 @@
 		42799AB246E5F90AF97AA0EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6AB73A22C71069600E4E070 /* WidgetKit.framework */,
+				D6AB73A42C71069600E4E070 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -54,6 +102,7 @@
 			children = (
 				AB1DB47929225F7C00F7AF9C /* Configuration */,
 				7555FF7D242A565900829871 /* iosApp */,
+				D6AB73D52C710C7500E4E070 /* SymbolPriceWidget */,
 				7555FF7C242A565900829871 /* Products */,
 				42799AB246E5F90AF97AA0EF /* Frameworks */,
 			);
@@ -63,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7B242A565900829871 /* UTXO.app */,
+				D6AB73D22C710C7500E4E070 /* SymbolPriceWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,6 +137,17 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		D6AB73D52C710C7500E4E070 /* SymbolPriceWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D6AB73D62C710C7500E4E070 /* SymbolPriceWidgetBundle.swift */,
+				D6AB73D82C710C7500E4E070 /* SymbolPriceWidget.swift */,
+				D6AB73DA2C710C7700E4E070 /* Assets.xcassets */,
+				D6AB73DC2C710C7700E4E070 /* Info.plist */,
+			);
+			path = SymbolPriceWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -98,10 +159,12 @@
 				7555FF77242A565900829871 /* Sources */,
 				B92378962B6B1156000C7307 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
+				D6AB73B52C71069800E4E070 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D6AB73DE2C710C7700E4E070 /* PBXTargetDependency */,
 			);
 			name = iosApp;
 			packageProductDependencies = (
@@ -110,6 +173,23 @@
 			productReference = 7555FF7B242A565900829871 /* UTXO.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D6AB73D12C710C7500E4E070 /* SymbolPriceWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6AB73E02C710C7700E4E070 /* Build configuration list for PBXNativeTarget "SymbolPriceWidgetExtension" */;
+			buildPhases = (
+				D6AB73CE2C710C7500E4E070 /* Sources */,
+				D6AB73CF2C710C7500E4E070 /* Frameworks */,
+				D6AB73D02C710C7500E4E070 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SymbolPriceWidgetExtension;
+			productName = SymbolPriceWidgetExtension;
+			productReference = D6AB73D22C710C7500E4E070 /* SymbolPriceWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -117,12 +197,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = orgName;
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					D6AB73D12C710C7500E4E070 = {
+						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
@@ -142,6 +225,7 @@
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* iosApp */,
+				D6AB73D12C710C7500E4E070 /* SymbolPriceWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -153,6 +237,14 @@
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6AB73D02C710C7500E4E070 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6AB73DB2C710C7700E4E070 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +281,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6AB73CE2C710C7500E4E070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6AB73D72C710C7500E4E070 /* SymbolPriceWidgetBundle.swift in Sources */,
+				D6AB73D92C710C7500E4E070 /* SymbolPriceWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D6AB73DE2C710C7700E4E070 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6AB73D12C710C7500E4E070 /* SymbolPriceWidgetExtension */;
+			targetProxy = D6AB73DD2C710C7700E4E070 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7555FFA3242A565B00829871 /* Debug */ = {
@@ -315,6 +424,7 @@
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -342,6 +452,7 @@
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -366,6 +477,76 @@
 			};
 			name = Release;
 		};
+		D6AB73E12C710C7700E4E070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 37UYJHD27F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolPriceWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SymbolPriceWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 orgName. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.androdevlinux.utxo.UTXO.SymbolPriceWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D6AB73E22C710C7700E4E070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 37UYJHD27F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SymbolPriceWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SymbolPriceWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 orgName. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.androdevlinux.utxo.UTXO.SymbolPriceWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -383,6 +564,15 @@
 			buildConfigurations = (
 				7555FFA6242A565B00829871 /* Debug */,
 				7555FFA7242A565B00829871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6AB73E02C710C7700E4E070 /* Build configuration list for PBXNativeTarget "SymbolPriceWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6AB73E12C710C7700E4E070 /* Debug */,
+				D6AB73E22C710C7700E4E070 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

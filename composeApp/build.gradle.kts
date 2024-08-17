@@ -130,7 +130,13 @@ android {
     }
     dependencies {
         debugImplementation(compose.uiTooling)
+
+        implementation(libs.androidx.glance)
+        implementation(libs.androidx.glance.appwidget)
     }
+}
+dependencies {
+    implementation(libs.androidx.work.runtime.ktx)
 }
 
 compose.desktop {

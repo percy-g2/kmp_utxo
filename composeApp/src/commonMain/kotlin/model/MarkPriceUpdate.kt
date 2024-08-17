@@ -2,6 +2,8 @@ package model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.experimental.ExperimentalObjCName
+import kotlin.native.ObjCName
 
 @Serializable
 data class MarkPriceUpdate(
@@ -42,10 +44,19 @@ data class Ticker(
 )
 
 
+@Serializable
 data class TickerData(
     val symbol: String,
     val lastPrice: String,
     val timestamp: String,
     val priceChangePercent: String,
     val volume: String
+)
+
+@OptIn(ExperimentalObjCName::class)
+@Serializable
+@ObjCName("SymbolPriceTicker")
+data class SymbolPriceTicker(
+    @ObjCName("symbol") val symbol: String,
+    @ObjCName("price") val price: String
 )
