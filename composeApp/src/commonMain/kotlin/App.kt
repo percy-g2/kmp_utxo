@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -82,7 +83,9 @@ fun App() {
                     actions = {
                         val navItems = listOf(NavItem.Home, NavItem.Settings)
 
-                        NavigationBar {
+                        NavigationBar(
+                            tonalElevation = 0.dp
+                        ) {
                             navItems.forEachIndexed { index, item ->
                                 NavigationBarItem(
                                     alwaysShowLabel = true,
