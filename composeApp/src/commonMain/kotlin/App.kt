@@ -1,4 +1,13 @@
 
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,8 +27,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -50,8 +62,6 @@ fun App() {
     val networkStatus by networkObserver.observe().collectAsState(initial = NetworkStatus.Unavailable)
 
     LaunchedEffect(navBackStackEntry?.destination?.route) {
-        println(navBackStackEntry?.destination?.route)
-        println(navBackStackEntry?.destination?.id)
         when (navBackStackEntry?.destination?.id) {
             Home.serializer().generateHashCode() -> {
                 selectedItem = 0
@@ -119,10 +129,10 @@ fun App() {
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                composable<Home> {
+                animatedComposable<Home> {
                     CryptoList()
                 }
-                composable<model.Settings> {
+                animatedComposable<model.Settings> {
                     SettingsScreen {
                         navController.popBackStack()
                     }
@@ -135,9 +145,7 @@ fun App() {
 @Composable
 fun NetworkDialog() {
     AlertDialog(
-        onDismissRequest = {
-            // no op
-        },
+        onDismissRequest = { /*no op*/ },
         properties = DialogProperties(
             dismissOnClickOutside = false,
             dismissOnBackPress = false
@@ -148,10 +156,37 @@ fun NetworkDialog() {
         text = {
             Text(text = "It seems you are not connected to the internet. Please check your connection and try again.")
         },
-        confirmButton = {
-            // no op
-        }
+        confirmButton = { /*no op*/ }
     )
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+inline fun <reified T : Any> NavGraphBuilder.animatedComposable(
+    noinline content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
+) {
+    composable<T>(
+        enterTransition = { expandFromCenter() },
+        exitTransition = { shrinkToCenter() },
+        content = content
+    )
+}
+
+@ExperimentalAnimationApi
+fun expandFromCenter(): EnterTransition {
+    return scaleIn(
+        animationSpec = tween(300),
+        initialScale = 0.8f,
+        transformOrigin = TransformOrigin.Center
+    ) + fadeIn(animationSpec = tween(300))
+}
+
+@ExperimentalAnimationApi
+fun shrinkToCenter(): ExitTransition {
+    return scaleOut(
+        animationSpec = tween(300),
+        targetScale = 0.8f,
+        transformOrigin = TransformOrigin.Center
+    ) + fadeOut(animationSpec = tween(300))
 }
 
 expect fun getWebSocketClient(): HttpClient
