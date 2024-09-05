@@ -25,9 +25,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.serialization.generateHashCode
 import io.github.xxfast.kstore.KStore
 import io.ktor.client.*
 import kotlinx.coroutines.flow.Flow
+import model.Home
 import model.NavItem
 import theme.DarkColorScheme
 import theme.LightColorScheme
@@ -48,11 +50,13 @@ fun App() {
     val networkStatus by networkObserver.observe().collectAsState(initial = NetworkStatus.Unavailable)
 
     LaunchedEffect(navBackStackEntry?.destination?.route) {
-        when (navBackStackEntry?.destination?.route) {
-            NavItem.Home.path -> {
+        println(navBackStackEntry?.destination?.route)
+        println(navBackStackEntry?.destination?.id)
+        when (navBackStackEntry?.destination?.id) {
+            Home.serializer().generateHashCode() -> {
                 selectedItem = 0
             }
-            NavItem.Settings.path -> {
+            Settings.serializer().generateHashCode() -> {
                 selectedItem = 1
             }
         }
@@ -81,14 +85,14 @@ fun App() {
             bottomBar = {
                 BottomAppBar(
                     actions = {
-                        val navItems = listOf(NavItem.Home, NavItem.Settings)
+                        val navItems = listOf(NavItem.HomeScreen, NavItem.SettingsScreen)
 
                         NavigationBar(
                             tonalElevation = 0.dp
                         ) {
                             navItems.forEachIndexed { index, item ->
                                 NavigationBarItem(
-                                    alwaysShowLabel = true,
+                                    alwaysShowLabel = false,
                                     icon = {
                                         Icon(
                                             imageVector = item.icon,
@@ -110,15 +114,15 @@ fun App() {
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = NavItem.Home.path,
+                startDestination = Home,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                composable(route = NavItem.Home.path) {
+                composable<Home> {
                     CryptoList()
                 }
-                composable(route = NavItem.Settings.path) {
+                composable<model.Settings> {
                     SettingsScreen {
                         navController.popBackStack()
                     }
@@ -154,12 +158,9 @@ expect fun getWebSocketClient(): HttpClient
 
 expect fun getKStore(): KStore<Settings>
 
-class CommonFlow<T>(private val flow: Flow<T>) : Flow<T> by flow
-
-fun <T> Flow<T>.asCommonFlow(): CommonFlow<T> = CommonFlow(this)
 
 expect class NetworkConnectivityObserver() {
-    fun observe(): CommonFlow<NetworkStatus>
+    fun observe(): Flow<NetworkStatus>
 }
 
 enum class NetworkStatus {

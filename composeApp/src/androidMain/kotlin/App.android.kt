@@ -11,6 +11,7 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import model.CryptoPair
 import okio.Path.Companion.toPath
@@ -42,7 +43,7 @@ actual class NetworkConnectivityObserver {
     private val context = ContextProvider.getContext()
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    actual fun observe(): CommonFlow<NetworkStatus> = callbackFlow {
+    actual fun observe(): Flow<NetworkStatus> = callbackFlow {
         val callback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
                 trySend(NetworkStatus.Available)
@@ -69,5 +70,5 @@ actual class NetworkConnectivityObserver {
         awaitClose {
             connectivityManager.unregisterNetworkCallback(callback)
         }
-    }.asCommonFlow()
+    }
 }

@@ -6,6 +6,7 @@ import io.ktor.client.engine.darwin.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import model.CryptoPair
 import okio.Path.Companion.toPath
@@ -28,7 +29,7 @@ import platform.darwin.dispatch_queue_create
 import ui.Settings
 
 actual class NetworkConnectivityObserver {
-    actual fun observe(): CommonFlow<NetworkStatus> = callbackFlow {
+    actual fun observe(): Flow<NetworkStatus> = callbackFlow {
         val monitor = nw_path_monitor_create()
         val queue = dispatch_queue_create(
             "org.androdevlinux.utxo.connectivity.monitor",
@@ -56,7 +57,7 @@ actual class NetworkConnectivityObserver {
         awaitClose {
             nw_path_monitor_cancel(monitor)
         }
-    }.asCommonFlow()
+    }
 }
 
 actual fun getKStore(): KStore<Settings> {

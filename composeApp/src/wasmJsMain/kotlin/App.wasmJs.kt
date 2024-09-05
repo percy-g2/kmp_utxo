@@ -7,12 +7,13 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
 import kotlinx.browser.window
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import model.CryptoPair
 import ui.Settings
 
 actual class NetworkConnectivityObserver {
-    actual fun observe(): CommonFlow<NetworkStatus> = callbackFlow {
+    actual fun observe(): Flow<NetworkStatus> = callbackFlow {
         val updateStatus = {
             val status = if (window.navigator.onLine) NetworkStatus.Available else NetworkStatus.Unavailable
             trySend(status)
@@ -27,7 +28,7 @@ actual class NetworkConnectivityObserver {
             window.removeEventListener("online") { updateStatus() }
             window.removeEventListener("offline") { updateStatus() }
         }
-    }.asCommonFlow()
+    }
 }
 
 actual fun getKStore(): KStore<Settings> {

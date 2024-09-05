@@ -7,6 +7,7 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.isActive
 import model.CryptoPair
@@ -18,7 +19,7 @@ import java.net.InetSocketAddress
 import java.net.Socket
 
 actual class NetworkConnectivityObserver {
-    actual fun observe(): CommonFlow<NetworkStatus> = callbackFlow {
+    actual fun observe(): Flow<NetworkStatus> = callbackFlow {
         var previousStatus = checkNetworkStatus()
         trySend(previousStatus)
 
@@ -32,7 +33,7 @@ actual class NetworkConnectivityObserver {
         }
 
         awaitClose()
-    }.asCommonFlow()
+    }
 
     private fun checkNetworkStatus(): NetworkStatus {
         return if (isNetworkAvailable()) NetworkStatus.Available else NetworkStatus.Unavailable

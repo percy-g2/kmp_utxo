@@ -4,22 +4,27 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import kotlinx.serialization.Serializable
 
-open class Item(val path: String, val title: String, val icon: ImageVector)
-
+@Serializable
 sealed class NavItem {
-    object Home :
-        Item(path = NavPath.HOME.toString(), title = NavTitle.HOME, icon = Icons.Default.Home)
+    open class Item<T>(val path: T, val title: String, val icon: ImageVector) : NavItem()
 
-    object Settings :
-        Item(path = NavPath.SETTINGS.toString(), title = NavTitle.SETTINGS, icon = Icons.Default.Settings)
+    object HomeScreen : Item<Home>(
+        path = Home,
+        title = "Home",
+        icon = Icons.Default.Home
+    )
+
+    object SettingsScreen : Item<Settings>(
+        path = Settings,
+        title = "Settings",
+        icon = Icons.Default.Settings
+    )
 }
 
-enum class NavPath {
-    HOME, SETTINGS
-}
+@Serializable
+object Home
 
-object NavTitle {
-    const val HOME = "Home"
-    const val SETTINGS = "Settings"
-}
+@Serializable
+object Settings
