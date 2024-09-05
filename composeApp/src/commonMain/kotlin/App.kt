@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -48,12 +49,15 @@ import theme.LightColorScheme
 import theme.ThemeManager
 import theme.UTXOTheme
 import ui.CryptoList
+import ui.CryptoViewModel
 import ui.Settings
 import ui.SettingsScreen
 import ui.Theme
 
 @Composable
-fun App() {
+fun App(
+    cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }
+) {
     val navController: NavHostController = rememberNavController()
     val themeState by ThemeManager.themeState.collectAsState()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -113,7 +117,13 @@ fun App() {
                                     selected = selectedItem == index,
                                     onClick = {
                                         selectedItem = index
-                                        navController.navigate(item.path)
+                                        navController.navigate(item.path) {
+                                            popUpTo(navController.graph.startDestinationId) {
+                                                saveState = true
+                                            }
+                                            launchSingleTop = true
+                                            restoreState = true
+                                        }
                                     }
                                 )
                             }
@@ -130,7 +140,7 @@ fun App() {
                     .padding(innerPadding)
             ) {
                 animatedComposable<Home> {
-                    CryptoList()
+                    CryptoList(cryptoViewModel = cryptoViewModel)
                 }
                 animatedComposable<model.Settings> {
                     SettingsScreen {

@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
@@ -53,7 +54,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Instant
@@ -63,13 +63,12 @@ import kotlinx.datetime.toLocalDateTime
 import model.CryptoPair
 import model.UiKline
 import theme.ThemeManager.store
-import ui.component.ProgressDialog
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
 @Composable
 fun CryptoList(
-    cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }
+    cryptoViewModel: CryptoViewModel
 ) {
     var showDialog by remember { mutableStateOf(false) }
     val trades by cryptoViewModel.trades.collectAsState()
@@ -99,25 +98,33 @@ fun CryptoList(
 
     Scaffold(
         floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text(text = "Add Pair") },
-                icon = {
-                    Icon(
-                        imageVector = Icons.Filled.Add,
-                        contentDescription = "add-icon"
-                    )
-                },
-                expanded = listState.isScrollingUp(),
-                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp),
-                onClick = {
-                    showDialog = true
-                }
-            )
+            if (isLoading.not()) {
+                ExtendedFloatingActionButton(
+                    text = { Text(text = "Add Pair") },
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Filled.Add,
+                            contentDescription = "add-icon"
+                        )
+                    },
+                    expanded = listState.isScrollingUp(),
+                    elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp),
+                    onClick = {
+                        showDialog = true
+                    }
+                )
+            }
         }
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             if (isLoading) {
-                ProgressDialog()
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    CircularProgressIndicator()
+                }
             } else {
                 LazyColumn(
                     state = listState
