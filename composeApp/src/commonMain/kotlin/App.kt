@@ -63,7 +63,7 @@ fun App(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
     val networkObserver = remember { NetworkConnectivityObserver() }
-    val networkStatus by networkObserver.observe().collectAsState(initial = NetworkStatus.Unavailable)
+    val networkStatus by networkObserver.observe().collectAsState(initial = null)
 
     LaunchedEffect(navBackStackEntry?.destination?.route) {
         when (navBackStackEntry?.destination?.id) {
@@ -76,7 +76,7 @@ fun App(
         }
     }
 
-    if (networkStatus != NetworkStatus.Available) {
+    if (networkStatus == NetworkStatus.Unavailable) {
         NetworkDialog()
     }
 
@@ -205,7 +205,7 @@ expect fun getKStore(): KStore<Settings>
 
 
 expect class NetworkConnectivityObserver() {
-    fun observe(): Flow<NetworkStatus>
+    fun observe(): Flow<NetworkStatus?>
 }
 
 enum class NetworkStatus {

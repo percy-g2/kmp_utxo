@@ -29,7 +29,7 @@ import platform.darwin.dispatch_queue_create
 import ui.Settings
 
 actual class NetworkConnectivityObserver {
-    actual fun observe(): Flow<NetworkStatus> = callbackFlow {
+    actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
         val monitor = nw_path_monitor_create()
         val queue = dispatch_queue_create(
             "org.androdevlinux.utxo.connectivity.monitor",

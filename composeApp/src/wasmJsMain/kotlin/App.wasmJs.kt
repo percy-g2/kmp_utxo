@@ -13,7 +13,7 @@ import model.CryptoPair
 import ui.Settings
 
 actual class NetworkConnectivityObserver {
-    actual fun observe(): Flow<NetworkStatus> = callbackFlow {
+    actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
         val updateStatus = {
             val status = if (window.navigator.onLine) NetworkStatus.Available else NetworkStatus.Unavailable
             trySend(status)

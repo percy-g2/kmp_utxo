@@ -19,7 +19,7 @@ import java.net.InetSocketAddress
 import java.net.Socket
 
 actual class NetworkConnectivityObserver {
-    actual fun observe(): Flow<NetworkStatus> = callbackFlow {
+    actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
         var previousStatus = checkNetworkStatus()
         trySend(previousStatus)
 

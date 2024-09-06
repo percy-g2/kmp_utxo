@@ -43,7 +43,7 @@ actual class NetworkConnectivityObserver {
     private val context = ContextProvider.getContext()
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    actual fun observe(): Flow<NetworkStatus> = callbackFlow {
+    actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
         val callback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
                 trySend(NetworkStatus.Available)
