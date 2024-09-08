@@ -18,3 +18,19 @@ This project is a **Kotlin Multiplatform** application built with **Jetpack Comp
 ## Features
 - Real-time data visualization
 - Cross-platform compatibility
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 (GPLv3) - see the [LICENSE](LICENSE) file for details.
+
+The GPLv3 is a strong copyleft license that requires anyone who distributes your code or a derivative work to make the source available under the same terms. This license is particularly suitable for software that you want to keep open and free.
+
+Key points of the GPLv3:
+- You can use the software for any purpose
+- You can change the software and distribute modified versions
+- You can share the software with others
+- If you distribute modified versions, you must share your modifications under the GPLv3
+- You must include the license and copyright notice with each copy of the software
+- You must disclose your source code when you distribute the software
+
+For the full license text, visit: https://www.gnu.org/licenses/gpl-3.0.en.html
