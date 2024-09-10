@@ -55,7 +55,10 @@ class HttpClient {
                 val exchangeInfo = json.decodeFromString<List<TickerDataInfo>>(response.bodyAsText())
 
                 return exchangeInfo
-                    .filter { it.symbol.contains("USDT") && (it.priceChange.toFloatOrNull() ?: 0f) > 0f }
+                    .filter {
+                        it.symbol.contains("USDT")
+                            && (it.priceChange.toFloatOrNull() ?: 0f) > 0f
+                            && it.symbol.startsWith("USD").not() }
                     .sortedByDescending { it.quoteVolume.toDoubleOrNull() ?: 0.0 }
             } else emptyList()
         } catch (e: Exception) {
