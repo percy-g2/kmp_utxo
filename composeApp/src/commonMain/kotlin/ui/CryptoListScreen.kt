@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Star
@@ -49,6 +51,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
@@ -360,34 +363,41 @@ fun CryptoPairItem(
     val coroutineScope = rememberCoroutineScope()
     val isAdded = settings.value?.favPairs?.contains(pair) ?: false
     val favPairs = settings.value?.favPairs ?: emptyList()
+    val onClick: () -> Unit = {
+        coroutineScope.launch {
+            if (isAdded) {
+                store.update {
+                    it?.copy(favPairs = favPairs.minus(pair))
+                }
+                snackBarHostState.showSnackbar("$pair removed!")
+            } else {
+                if (favPairs.size < 10) {
+                    store.update {
+                        it?.copy(favPairs = favPairs.plus(pair))
+                    }
+                    snackBarHostState.showSnackbar("$pair added!")
+                } else {
+                    snackBarHostState.showSnackbar("Max 10 can be added!")
+                }
+            }
+        }
+    }
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .clickable(onClick = onClick),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = pair)
-        IconButton(onClick = {
-            coroutineScope.launch {
-                if (isAdded) {
-                    store.update {
-                        it?.copy(favPairs = favPairs.minus(pair))
-                    }
-                    snackBarHostState.showSnackbar("$pair removed!")
-                } else {
-                    if (favPairs.size < 10) {
-                        store.update {
-                            it?.copy(favPairs = favPairs.plus(pair))
-                        }
-                        snackBarHostState.showSnackbar("$pair added!")
-                    } else {
-                        snackBarHostState.showSnackbar("Max 10 can be added!")
-                    }
-                }
-            }
-        }) {
+        Text(
+            modifier = Modifier
+                .padding(start = 16.dp),
+            text = pair
+        )
+        IconButton(onClick = onClick) {
             Icon(
                 imageVector = Icons.Default.Star,
                 contentDescription = null,
