@@ -24,6 +24,7 @@ import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.json.Json
 import model.Ticker
 import model.TickerData
+import model.TickerDataInfo
 import model.UiKline
 import network.HttpClient
 import theme.ThemeManager
@@ -34,6 +35,9 @@ class CryptoViewModel : ViewModel() {
 
     private val _trades = MutableStateFlow<Map<String, List<UiKline>>>(emptyMap())
     val trades: StateFlow<Map<String, List<UiKline>>> = _trades.asStateFlow()
+
+    private val _symbols = MutableStateFlow<List<TickerDataInfo>>(emptyList())
+    val symbols: StateFlow<List<TickerDataInfo>> = _symbols.asStateFlow()
 
     private val _tickerDataMap = MutableStateFlow<Map<String, TickerData>>(emptyMap())
     val tickerDataMap: StateFlow<Map<String, TickerData>> = _tickerDataMap.asStateFlow()
@@ -50,7 +54,12 @@ class CryptoViewModel : ViewModel() {
             updateFavPairs()
             loadInitialData()
             startWebSocketConnection()
+            fetchSymbols()
         }
+    }
+
+    private suspend fun fetchSymbols() {
+        _symbols.value = httpClient.fetchBinancePairs()
     }
 
     private suspend fun updateFavPairs() {

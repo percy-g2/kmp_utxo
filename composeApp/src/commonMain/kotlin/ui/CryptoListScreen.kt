@@ -38,7 +38,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -54,13 +54,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import model.CryptoPair
+import model.TickerDataInfo
 import model.UiKline
 import theme.ThemeManager.store
 import kotlin.math.absoluteValue
@@ -70,30 +73,45 @@ import kotlin.math.roundToInt
 fun CryptoList(
     cryptoViewModel: CryptoViewModel
 ) {
+    val lifecycleOwner = LocalLifecycleOwner.current
     var showDialog by remember { mutableStateOf(false) }
     val trades by cryptoViewModel.trades.collectAsState()
     val tickerDataMap by cryptoViewModel.tickerDataMap.collectAsState()
     val isLoading by cryptoViewModel.isLoading.collectAsState()
     val listState = rememberLazyListState()
     val settings: Flow<Settings?> = store.updates
+    val symbols = cryptoViewModel.symbols.collectAsState()
 
     val favPairs by settings.collectAsState(
         initial = Settings(
             selectedTheme = 0,
-            favPairs = listOf(CryptoPair.BTCUSDT.symbol, CryptoPair.ETHUSDT.symbol, CryptoPair.SOLUSDT.symbol)
+            favPairs = listOf("BTCUSDT")
         )
     )
 
     if (showDialog) {
         CryptoPairDialog(
+            symbols = symbols.value.sortedWith(
+                compareByDescending { it.symbol in (favPairs?.favPairs ?: emptyList()) }
+            ),
             onDismiss = {
                 showDialog = false
             }
         )
     }
 
-    LaunchedEffect(favPairs?.favPairs) {
-        cryptoViewModel.reconnect()
+    DisposableEffect(lifecycleOwner, favPairs) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                cryptoViewModel.reconnect()
+            }
+        }
+
+        lifecycleOwner.lifecycle.addObserver(observer)
+
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
     }
 
     Scaffold(
@@ -300,6 +318,7 @@ fun TickerCard(
 
 @Composable
 fun CryptoPairDialog(
+    symbols: List<TickerDataInfo>,
     onDismiss: () -> Unit
 ) {
     val settings = store.updates.collectAsState(null)
@@ -311,10 +330,10 @@ fun CryptoPairDialog(
         text = {
             Box {
                 LazyColumn {
-                    items(CryptoPair.getAllPairs()) { pair ->
+                    items(symbols) { pair ->
                         CryptoPairItem(
                             snackBarHostState = snackBarHostState,
-                            pair = pair
+                            pair = pair.symbol
                         )
                     }
                 }

@@ -12,6 +12,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
+import model.TickerDataInfo
 import model.UiKline
 import model.UiKlineSerializer
 
@@ -24,7 +25,7 @@ class HttpClient {
     private val client = HttpClient {
         install(Logging) {
             logger = Logger.SIMPLE
-            level = LogLevel.ALL
+            level = LogLevel.NONE
         }
         install(ContentNegotiation) {
             json(json)
@@ -40,6 +41,22 @@ class HttpClient {
             }
             if (response.status == HttpStatusCode.OK) {
                 return JsonConfig.json.decodeFromString(UiKlineSerializer, response.bodyAsText())
+            } else emptyList()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList() // Return an empty list in case of an error
+        }
+    }
+
+    suspend fun fetchBinancePairs(): List<TickerDataInfo> {
+        return try {
+            val response: HttpResponse = client.get("https://api.binance.com/api/v3/ticker/24hr")
+            if (response.status == HttpStatusCode.OK) {
+                val exchangeInfo = json.decodeFromString<List<TickerDataInfo>>(response.bodyAsText())
+
+                return exchangeInfo
+                    .filter { it.symbol.contains("USDT") && (it.priceChange.toFloatOrNull() ?: 0f) > 0f }
+                    .sortedByDescending { it.quoteVolume.toDoubleOrNull() ?: 0.0 }
             } else emptyList()
         } catch (e: Exception) {
             e.printStackTrace()

@@ -10,7 +10,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.isActive
-import model.CryptoPair
 import net.harawata.appdirs.AppDirsFactory
 import okio.Path.Companion.toPath
 import ui.Settings
@@ -63,7 +62,7 @@ actual fun getKStore(): KStore<Settings> {
         file = "${directory}/settings.json".toPath(),
         default = Settings(
             selectedTheme = 0,
-            favPairs = listOf(CryptoPair.BTCUSDT.symbol, CryptoPair.ETHUSDT.symbol, CryptoPair.SOLUSDT.symbol)
+            favPairs = listOf("BTCUSDT")
         )
     )
 }
@@ -73,7 +72,7 @@ actual fun getWebSocketClient(): HttpClient {
         install(WebSockets)
         install(Logging) {
             logger = Logger.SIMPLE
-            level = LogLevel.ALL
+            level = LogLevel.NONE
         }
     }
 }

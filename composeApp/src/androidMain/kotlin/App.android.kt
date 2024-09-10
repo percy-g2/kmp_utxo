@@ -13,7 +13,6 @@ import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import model.CryptoPair
 import okio.Path.Companion.toPath
 import org.androdevlinux.utxo.ContextProvider
 import ui.Settings
@@ -24,7 +23,7 @@ actual fun getKStore(): KStore<Settings> {
         file = "${context.cacheDir?.absolutePath}/settings.json".toPath(),
         default = Settings(
             selectedTheme = 0,
-            favPairs = listOf(CryptoPair.BTCUSDT.symbol, CryptoPair.ETHUSDT.symbol, CryptoPair.SOLUSDT.symbol)
+            favPairs = listOf("BTCUSDT")
         )
     )
 }

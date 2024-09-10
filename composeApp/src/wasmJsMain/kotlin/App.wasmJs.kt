@@ -9,7 +9,6 @@ import kotlinx.browser.window
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import model.CryptoPair
 import ui.Settings
 
 actual class NetworkConnectivityObserver {
@@ -36,7 +35,7 @@ actual fun getKStore(): KStore<Settings> {
         key = "settings",
         default = Settings(
             selectedTheme = 0,
-            favPairs = listOf(CryptoPair.BTCUSDT.symbol, CryptoPair.ETHUSDT.symbol, CryptoPair.SOLUSDT.symbol)
+            favPairs = listOf("BTCUSDT")
         )
     )
 }
