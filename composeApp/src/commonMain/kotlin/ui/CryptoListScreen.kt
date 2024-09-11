@@ -44,7 +44,6 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -340,11 +339,11 @@ fun CryptoPairDialog(
                         )
                     }
                 }
-                SnackbarHost(
-                    hostState = snackBarHostState,
-                    modifier = Modifier.align(Alignment.BottomCenter)
-                )
+
             }
+        },
+        dismissButton = {
+            SnackbarHost(hostState = snackBarHostState)
         },
         confirmButton = {
             TextButton(onClick = onDismiss) {
@@ -430,18 +429,28 @@ fun Double.formatAsCurrency(): String {
  */
 @Composable
 fun LazyListState.isScrollingUp(): Boolean {
-    var previousIndex by remember(this) { mutableIntStateOf(value = firstVisibleItemIndex) }
-    var previousScrollOffset by remember(this) { mutableIntStateOf(value = firstVisibleItemScrollOffset) }
-    return remember(this) {
+    var previousFirstVisibleItem by remember { mutableStateOf(0) }
+    var previousFirstVisibleItemOffset by remember { mutableStateOf(0) }
+    var previousScrollDirection by remember { mutableStateOf(true) }
+
+    return remember {
         derivedStateOf {
-            if (previousIndex != firstVisibleItemIndex) {
-                previousIndex > firstVisibleItemIndex
-            } else {
-                previousScrollOffset >= firstVisibleItemScrollOffset
-            }.also {
-                previousIndex = firstVisibleItemIndex
-                previousScrollOffset = firstVisibleItemScrollOffset
+            val firstVisibleItemIndex = firstVisibleItemIndex
+            val firstVisibleItemOffset = firstVisibleItemScrollOffset
+
+            val scrollingUp = when {
+                firstVisibleItemIndex < previousFirstVisibleItem -> true
+                firstVisibleItemIndex > previousFirstVisibleItem -> false
+                firstVisibleItemOffset < previousFirstVisibleItemOffset -> true
+                firstVisibleItemOffset > previousFirstVisibleItemOffset -> false
+                else -> previousScrollDirection
             }
+
+            previousFirstVisibleItem = firstVisibleItemIndex
+            previousFirstVisibleItemOffset = firstVisibleItemOffset
+            previousScrollDirection = scrollingUp
+
+            scrollingUp
         }
     }.value
 }
