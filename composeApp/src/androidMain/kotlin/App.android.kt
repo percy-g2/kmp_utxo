@@ -13,14 +13,14 @@ import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import okio.Path.Companion.toPath
 import org.androdevlinux.utxo.ContextProvider
 import ui.Settings
+import kotlinx.io.files.Path
 
 actual fun getKStore(): KStore<Settings> {
     val context = ContextProvider.getContext()
     return storeOf<Settings>(
-        file = "${context.cacheDir?.absolutePath}/settings.json".toPath(),
+        file = Path("${context.cacheDir?.absolutePath}/settings.json"),
         default = Settings(
             selectedTheme = 0,
             favPairs = listOf("BTCUSDT")

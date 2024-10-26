@@ -8,7 +8,7 @@ import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import okio.Path.Companion.toPath
+import kotlinx.io.files.Path
 import platform.Foundation.NSCachesDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSUserDomainMask
@@ -62,7 +62,7 @@ actual class NetworkConnectivityObserver {
 actual fun getKStore(): KStore<Settings> {
     val paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, true)
     return storeOf<Settings>(
-        file = "${paths.firstOrNull() as? String}/settings.json".toPath(),
+        file = Path("${paths.firstOrNull() as? String}/settings.json"),
         default = Settings(
             selectedTheme = 0,
             favPairs = listOf("BTCUSDT")

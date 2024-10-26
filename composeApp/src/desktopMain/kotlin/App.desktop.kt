@@ -10,8 +10,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.isActive
+import kotlinx.io.files.Path
 import net.harawata.appdirs.AppDirsFactory
-import okio.Path.Companion.toPath
 import ui.Settings
 import java.io.File
 import java.net.InetSocketAddress
@@ -59,7 +59,7 @@ actual fun getKStore(): KStore<Settings> {
         File(directory).mkdirs()
     }
     return storeOf<Settings>(
-        file = "${directory}/settings.json".toPath(),
+        file = Path("${directory}/settings.json"),
         default = Settings(
             selectedTheme = 0,
             favPairs = listOf("BTCUSDT")
