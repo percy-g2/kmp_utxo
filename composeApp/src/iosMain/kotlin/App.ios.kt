@@ -75,7 +75,7 @@ actual fun getWebSocketClient(): HttpClient {
         install(WebSockets)
         install(Logging) {
             logger = Logger.SIMPLE
-            level = LogLevel.ALL
+            level = LogLevel.NONE
         }
     }
 }

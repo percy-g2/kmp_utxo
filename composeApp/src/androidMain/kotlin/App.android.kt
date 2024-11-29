@@ -13,9 +13,9 @@ import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.io.files.Path
 import org.androdevlinux.utxo.ContextProvider
 import ui.Settings
-import kotlinx.io.files.Path
 
 actual fun getKStore(): KStore<Settings> {
     val context = ContextProvider.getContext()
@@ -33,7 +33,7 @@ actual fun getWebSocketClient(): HttpClient {
         install(WebSockets)
         install(Logging) {
             logger = Logger.SIMPLE
-            level = LogLevel.ALL
+            level = LogLevel.NONE
         }
     }
 }
