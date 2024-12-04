@@ -38,9 +38,6 @@ class HttpClient {
                 parameter("symbol", symbol)
                 parameter("interval", "1s")
                 parameter("limit", 1000)
-                headers {
-                    append(HttpHeaders.AcceptEncoding, "identity")
-                }
             }
             if (response.status == HttpStatusCode.OK) {
                 return JsonConfig.json.decodeFromString(UiKlineSerializer, response.bodyAsText())
@@ -53,11 +50,7 @@ class HttpClient {
 
     suspend fun fetchBinancePairs(): List<TickerDataInfo> {
         return try {
-            val response: HttpResponse = client.get("https://api.binance.com/api/v3/ticker/24hr") {
-                headers {
-                    append(HttpHeaders.AcceptEncoding, "identity")
-                }
-            }
+            val response: HttpResponse = client.get("https://api.binance.com/api/v3/ticker/24hr")
             if (response.status == HttpStatusCode.OK) {
                 val exchangeInfo = json.decodeFromString<List<TickerDataInfo>>(response.bodyAsText())
 
