@@ -38,6 +38,9 @@ class HttpClient {
                 parameter("symbol", symbol)
                 parameter("interval", "1s")
                 parameter("limit", 1000)
+                headers {
+                    append(HttpHeaders.AcceptEncoding, "identity") // Disable compression
+                }
             }
             if (response.status == HttpStatusCode.OK) {
                 return JsonConfig.json.decodeFromString(UiKlineSerializer, response.bodyAsText())
