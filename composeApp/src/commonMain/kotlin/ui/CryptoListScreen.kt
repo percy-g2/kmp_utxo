@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -70,6 +71,7 @@ import model.TickerDataInfo
 import model.UiKline
 import theme.ThemeManager.store
 import theme.greenDark
+import theme.greenLight
 import theme.redDark
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
@@ -228,6 +230,10 @@ fun TickerCard(
     priceChangePercent: String,
     trades: List<UiKline>
 ) {
+    val selectedTheme by store.updates.collectAsState(initial = Settings(selectedTheme = Theme.SYSTEM.id))
+    val isDarkTheme = (selectedTheme?.selectedTheme == Theme.DARK.id
+        || (selectedTheme?.selectedTheme == Theme.SYSTEM.id && isSystemInDarkTheme()))
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -260,10 +266,15 @@ fun TickerCard(
                     },
                     label = "Price Change Percentage Animation"
                 ) { targetPriceChangePercent ->
+                    val priceChangeColor = when {
+                        priceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
+                        else -> redDark
+                    }
+
                     Text(
                         modifier = Modifier.padding(bottom = 8.dp),
-                        text = targetPriceChangePercent.plus(" %"),
-                        color = if (priceChangePercent.toFloat() > 0f) greenDark else redDark,
+                        text = "$targetPriceChangePercent %",
+                        color = priceChangeColor,
                         style = MaterialTheme.typography.titleSmall
                     )
                 }
