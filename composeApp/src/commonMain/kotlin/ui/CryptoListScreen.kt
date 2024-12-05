@@ -65,9 +65,12 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import ktx.formatPair
 import model.TickerDataInfo
 import model.UiKline
 import theme.ThemeManager.store
+import theme.greenDark
+import theme.redDark
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
@@ -155,7 +158,8 @@ fun CryptoList(
                                 symbol = tickerData.symbol,
                                 price = tickerData.lastPrice,
                                 timestamp = tickerData.timestamp,
-                                trades = tradesList
+                                trades = tradesList,
+                                priceChangePercent = tickerData.priceChangePercent
                             )
                         }
                     }
@@ -221,6 +225,7 @@ fun TickerCard(
     symbol: String,
     price: String,
     timestamp: String,
+    priceChangePercent: String,
     trades: List<UiKline>
 ) {
     Card(
@@ -243,9 +248,23 @@ fun TickerCard(
             ) {
                 if (symbol.isNotEmpty()) {
                     Text(
-                        text = symbol,
+                        text = symbol.formatPair(),
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                }
+                AnimatedContent(
+                    targetState = priceChangePercent,
+                    transitionSpec = {
+                        fadeIn(animationSpec = tween(durationMillis = 300)) togetherWith fadeOut(animationSpec = tween(durationMillis = 300))
+                    },
+                    label = "Price Change Percentage Animation"
+                ) { targetPriceChangePercent ->
+                    Text(
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        text = targetPriceChangePercent.plus(" %"),
+                        color = if (priceChangePercent.toFloat() > 0f) greenDark else redDark,
+                        style = MaterialTheme.typography.titleSmall
                     )
                 }
                 AnimatedContent(
@@ -394,7 +413,7 @@ fun CryptoPairItem(
         Text(
             modifier = Modifier
                 .padding(start = 16.dp),
-            text = pair
+            text = pair.formatPair()
         )
         IconButton(onClick = onClick) {
             Icon(
