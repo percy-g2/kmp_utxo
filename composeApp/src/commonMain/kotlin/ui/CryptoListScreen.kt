@@ -237,7 +237,7 @@ fun TickerCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(8.dp),
         elevation = CardDefaults.cardElevation(8.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primary,
@@ -245,11 +245,13 @@ fun TickerCard(
         )
     ) {
         Row(
-            modifier = Modifier.height(IntrinsicSize.Min),
+            modifier = Modifier
+                .height(IntrinsicSize.Min)
+                .padding(8.dp),
         ) {
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(horizontal = 4.dp)
                     .weight(1f)
             ) {
                 if (symbol.isNotEmpty()) {
@@ -298,7 +300,7 @@ fun TickerCard(
 
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(horizontal = 4.dp)
                     .weight(1f)
                     .align(Alignment.CenterVertically)
             ) {
