@@ -16,6 +16,8 @@ import ui.Settings
 import java.io.File
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.awt.Desktop
+import java.net.URI
 
 actual class NetworkConnectivityObserver {
     actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
@@ -75,4 +77,8 @@ actual fun getWebSocketClient(): HttpClient {
             level = LogLevel.NONE
         }
     }
+}
+
+actual fun openLink(link: String) {
+    Desktop.getDesktop().browse(URI(link));
 }

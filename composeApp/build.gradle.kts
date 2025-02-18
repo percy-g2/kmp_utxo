@@ -1,4 +1,6 @@
 
+import com.android.build.gradle.internal.api.ApkVariantOutputImpl
+import org.gradle.kotlin.dsl.support.uppercaseFirstChar
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -124,8 +126,8 @@ android {
         applicationId = "org.androdevlinux.utxo"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 3
-        versionName = "0.0.2"
+        versionCode = 4
+        versionName = "0.0.3"
     }
     packaging {
         resources {
@@ -154,6 +156,27 @@ android {
         debugImplementation(compose.uiTooling)
         implementation(libs.androidx.startup.runtime)
     }
+    applicationVariants.configureEach {
+        // rename the output APK file
+        outputs.configureEach {
+            (this as? ApkVariantOutputImpl)?.outputFileName =
+                "${rootProject.name}_${versionName}(${versionCode})_${buildType.name}.apk"
+        }
+
+        // rename the output AAB file
+        tasks.named(
+            "sign${flavorName.uppercaseFirstChar()}${buildType.name.uppercaseFirstChar()}Bundle",
+            com.android.build.gradle.internal.tasks.FinalizeBundleTask::class.java
+        ) {
+            val file = finalBundleFile.asFile.get()
+            val finalFile =
+                File(
+                    file.parentFile,
+                    "${rootProject.name}_$versionName($versionCode)_${buildType.name}.aab"
+                )
+            finalBundleFile.set(finalFile)
+        }
+    }
 }
 
 compose.desktop {
@@ -173,6 +196,12 @@ compose.desktop {
             linux {
                 iconFile.set(project.file("src/linuxMain/resources/AppIcon.png"))
             }
+        }
+
+        buildTypes.release.proguard {
+            version.set("7.4.0")
+            obfuscate.set(true)
+            configurationFiles.from(project.file("desktop/proguard-rules.pro"))
         }
     }
 }

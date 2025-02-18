@@ -1,9 +1,11 @@
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.net.Uri
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.*
@@ -70,4 +72,12 @@ actual class NetworkConnectivityObserver {
             connectivityManager.unregisterNetworkCallback(callback)
         }
     }
+}
+
+actual fun openLink(link: String) {
+    val context = ContextProvider.getContext()
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link)).apply {
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+    context.startActivity(intent)
 }

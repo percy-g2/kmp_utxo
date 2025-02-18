@@ -203,6 +203,7 @@ expect fun getWebSocketClient(): HttpClient
 
 expect fun getKStore(): KStore<Settings>
 
+expect fun openLink(link: String)
 
 expect class NetworkConnectivityObserver() {
     fun observe(): Flow<NetworkStatus?>

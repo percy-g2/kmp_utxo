@@ -11,6 +11,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import ui.Settings
 
+actual fun openLink(link: String) {
+    window.open(link)
+}
+
 actual class NetworkConnectivityObserver {
     actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
         val updateStatus = {

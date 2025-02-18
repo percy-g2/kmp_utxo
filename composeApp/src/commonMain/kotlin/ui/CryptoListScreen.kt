@@ -1,7 +1,7 @@
 package ui
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
@@ -77,9 +77,7 @@ import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 
 @Composable
-fun CryptoList(
-    cryptoViewModel: CryptoViewModel
-) {
+fun CryptoList(cryptoViewModel: CryptoViewModel) {
     val lifecycleOwner = LocalLifecycleOwner.current
     var showDialog by remember { mutableStateOf(false) }
     val trades by cryptoViewModel.trades.collectAsState()
@@ -89,21 +87,14 @@ fun CryptoList(
     val settings: Flow<Settings?> = store.updates
     val symbols = cryptoViewModel.symbols.collectAsState()
 
-    val favPairs by settings.collectAsState(
-        initial = Settings(
-            selectedTheme = 0,
-            favPairs = listOf("BTCUSDT")
-        )
-    )
+    val favPairs by settings.collectAsState(initial = Settings())
 
     if (showDialog) {
         CryptoPairDialog(
             symbols = symbols.value.sortedWith(
                 compareByDescending { it.symbol in (favPairs?.favPairs ?: emptyList()) }
             ),
-            onDismiss = {
-                showDialog = false
-            }
+            onDismiss = { showDialog = false }
         )
     }
 
@@ -113,12 +104,8 @@ fun CryptoList(
                 cryptoViewModel.reconnect()
             }
         }
-
         lifecycleOwner.lifecycle.addObserver(observer)
-
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(observer)
-        }
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
     Scaffold(
@@ -134,9 +121,7 @@ fun CryptoList(
                     },
                     expanded = listState.isScrollingUp(),
                     elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp),
-                    onClick = {
-                        showDialog = true
-                    }
+                    onClick = { showDialog = true }
                 )
             }
         }
@@ -151,10 +136,11 @@ fun CryptoList(
                     CircularProgressIndicator()
                 }
             } else {
-                LazyColumn(
-                    state = listState
-                ) {
-                    items(tickerDataMap.values.toList()) { tickerData ->
+                LazyColumn(state = listState) {
+                    items(
+                        items = tickerDataMap.values.toList(),
+                        key = { it.symbol }
+                    ) { tickerData ->
                         trades[tickerData.symbol]?.let { tradesList ->
                             TickerCard(
                                 symbol = tickerData.symbol,
@@ -183,31 +169,24 @@ fun RowScope.TradeChart(
         return
     }
 
-    val prices = trades.map { it.closePrice.toFloat() }
-    val maxPrice = prices.maxOrNull() ?: 0f
-    val minPrice = prices.minOrNull() ?: 0f
-    val priceRange = if (maxPrice != minPrice) maxPrice - minPrice else 1f
+    val prices = remember(trades) { trades.map { it.closePrice.toFloat() } }
+    val maxPrice by remember(prices) { derivedStateOf { prices.maxOrNull() ?: 0f } }
+    val minPrice by remember(prices) { derivedStateOf { prices.minOrNull() ?: 0f } }
+    val priceRange by remember(maxPrice, minPrice) { derivedStateOf { if (maxPrice != minPrice) maxPrice - minPrice else 1f } }
 
     var chartSize by remember { mutableStateOf(Offset.Zero) }
     val lineColor = MaterialTheme.colorScheme.onPrimary
 
-    Box(modifier = Modifier.weight(1f)) {
-        Canvas(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(vertical = 16.dp)
-
-        ) {
+    Box(Modifier.weight(1f)) {
+        Canvas(Modifier.fillMaxSize().padding(vertical = 16.dp)) {
             chartSize = Offset(size.width, size.height)
-            val path = Path()
-            val points = calculatePoints(trades, chartSize, minPrice, priceRange)
-
-            points.forEachIndexed { index, point ->
-                if (index == 0) path.moveTo(point.x, point.y)
-                else path.lineTo(point.x, point.y)
+            val path = Path().apply {
+                val points = calculatePoints(trades, chartSize, minPrice, priceRange)
+                points.forEachIndexed { index, point ->
+                    if (index == 0) moveTo(point.x, point.y)
+                    else lineTo(point.x, point.y)
+                }
             }
-
-            // Draw the chart line
             drawPath(path = path, color = lineColor, style = Stroke(width = 3f))
         }
     }
@@ -263,16 +242,13 @@ fun TickerCard(
                 }
                 AnimatedContent(
                     targetState = priceChangePercent,
-                    transitionSpec = {
-                        fadeIn(animationSpec = tween(durationMillis = 300)) togetherWith fadeOut(animationSpec = tween(durationMillis = 300))
-                    },
+                    transitionSpec = { fadeIn() togetherWith fadeOut() },
                     label = "Price Change Percentage Animation"
                 ) { targetPriceChangePercent ->
                     val priceChangeColor = when {
                         priceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
                         else -> redDark
                     }
-
                     Text(
                         modifier = Modifier.padding(bottom = 8.dp),
                         text = "$targetPriceChangePercent %",
@@ -282,32 +258,25 @@ fun TickerCard(
                 }
                 AnimatedContent(
                     targetState = price,
-                    transitionSpec = {
-                        fadeIn(animationSpec = tween(durationMillis = 300)) togetherWith fadeOut(animationSpec = tween(durationMillis = 300))
-                    },
+                    transitionSpec = { fadeIn() togetherWith fadeOut() },
                     label = "Price Animation"
                 ) { targetPrice ->
                     Text(
                         text = targetPrice,
-                        style = MaterialTheme.typography.titleSmall
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.animateContentSize()
                     )
                 }
             }
-
-            TradeChart(
-                trades = trades
-            )
-
+            TradeChart(trades = trades)
             Column(
                 modifier = Modifier
                     .padding(horizontal = 4.dp)
                     .weight(1f)
-                    .align(Alignment.CenterVertically)
             ) {
                 if (timestamp.isNotEmpty()) {
                     val localDateTime = try {
-                        val instant = Instant.parse(timestamp)
-                        instant.toLocalDateTime(TimeZone.currentSystemDefault())
+                        Instant.parse(timestamp).toLocalDateTime(TimeZone.currentSystemDefault())
                     } catch (e: Exception) {
                         LocalDateTime.parse(timestamp)
                     }
@@ -320,8 +289,11 @@ fun TickerCard(
 
 
                     Column(
-                        modifier = Modifier.align(Alignment.End),
-                        horizontalAlignment = Alignment.End
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .align(Alignment.End),
+                        horizontalAlignment = Alignment.End,
+                        verticalArrangement = Arrangement.Center
                     ) {
                         Text(
                             text = date,
@@ -329,13 +301,7 @@ fun TickerCard(
                         )
                         AnimatedContent(
                             targetState = time,
-                            transitionSpec = {
-                                fadeIn(animationSpec = tween(durationMillis = 300)) togetherWith fadeOut(
-                                    animationSpec = tween(
-                                        durationMillis = 300
-                                    )
-                                )
-                            },
+                            transitionSpec = { fadeIn() togetherWith fadeOut() },
                             label = "Time Animation"
                         ) { targetTime ->
                             Text(
@@ -371,12 +337,9 @@ fun CryptoPairDialog(
                         )
                     }
                 }
-
             }
         },
-        dismissButton = {
-            SnackbarHost(hostState = snackBarHostState)
-        },
+        dismissButton = { SnackbarHost(hostState = snackBarHostState) },
         confirmButton = {
             TextButton(onClick = onDismiss) {
                 Text("Done")
@@ -394,18 +357,15 @@ fun CryptoPairItem(
     val coroutineScope = rememberCoroutineScope()
     val isAdded = settings.value?.favPairs?.contains(pair) ?: false
     val favPairs = settings.value?.favPairs ?: emptyList()
+
     val onClick: () -> Unit = {
         coroutineScope.launch {
             if (isAdded) {
-                store.update {
-                    it?.copy(favPairs = favPairs.minus(pair))
-                }
+                store.update { it?.copy(favPairs = favPairs.minus(pair)) }
                 snackBarHostState.showSnackbar("$pair removed!")
             } else {
                 if (favPairs.size < 10) {
-                    store.update {
-                        it?.copy(favPairs = favPairs.plus(pair))
-                    }
+                    store.update { it?.copy(favPairs = favPairs.plus(pair)) }
                     snackBarHostState.showSnackbar("$pair added!")
                 } else {
                     snackBarHostState.showSnackbar("Max 10 can be added!")
@@ -424,8 +384,7 @@ fun CryptoPairItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = Modifier
-                .padding(start = 16.dp),
+            modifier = Modifier.padding(start = 16.dp),
             text = pair.formatPair()
         )
         IconButton(onClick = onClick) {

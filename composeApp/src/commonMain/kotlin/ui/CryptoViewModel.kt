@@ -19,8 +19,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.json.Json
 import model.Ticker
 import model.TickerData
@@ -48,6 +46,7 @@ class CryptoViewModel : ViewModel() {
     private val store = ThemeManager.store
     private var webSocketJob: Job? = null
     private val favPairsFlow = MutableStateFlow<List<String>>(emptyList())
+    private var lastUpdateTime = 0L
 
     init {
         viewModelScope.launch {
@@ -116,34 +115,49 @@ class CryptoViewModel : ViewModel() {
     }
 
     private fun updateTickerData(message: String) {
-        runCatching {
-            val tickers = Json.decodeFromString<List<Ticker>>(message)
-            val favPairs = favPairsFlow.value
-            val updatedMap = _tickerDataMap.value.toMutableMap()
-            val updatedTrades = _trades.value.toMutableMap()
+        val now = Clock.System.now().toEpochMilliseconds()
+        if (now - lastUpdateTime < 100) return
+        lastUpdateTime = now
 
-            tickers.asSequence()
-                .filter { it.symbol in favPairs }
-                .forEach { ticker ->
-                    updatedMap[ticker.symbol] = TickerData(
+        viewModelScope.launch {
+            runCatching {
+                val tickers = Json.decodeFromString<List<Ticker>>(message)
+                val favPairs = favPairsFlow.value
+
+                val updatedMap = _tickerDataMap.value.toMutableMap()
+                val updatedTrades = _trades.value.toMutableMap()
+
+                tickers.filter { it.symbol in favPairs }.forEach { ticker ->
+
+                    val newData = TickerData(
                         symbol = ticker.symbol,
                         lastPrice = formatPrice(ticker.lastPrice),
                         priceChangePercent = ticker.priceChangePercent,
-                        timestamp = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toString(),
+                        timestamp = Clock.System.now().toString(),
                         volume = ticker.totalTradedQuoteAssetVolume
                     )
-                    updatedTrades[ticker.symbol] = (updatedTrades[ticker.symbol] ?: emptyList()) +
-                        UiKline(closePrice = ticker.lastPrice)
+
+                    if (updatedMap[ticker.symbol] != newData) {
+                        updatedMap[ticker.symbol] = newData
+                    }
+
+                    val currentTrades = updatedTrades[ticker.symbol] ?: emptyList()
+                    if (currentTrades.size >= 100) {
+                        updatedTrades[ticker.symbol] = currentTrades.drop(1) + UiKline(closePrice = ticker.lastPrice)
+                    } else {
+                        updatedTrades[ticker.symbol] = currentTrades + UiKline(closePrice = ticker.lastPrice)
+                    }
                 }
 
-            _tickerDataMap.value = updatedMap.toList()
-                .sortedByDescending { (_, value) -> value.volume.toDoubleOrNull() ?: 0.0 }
-                .toMap()
-            _trades.value = updatedTrades
-            _isLoading.value = false
-        }.onFailure {
-            it.printStackTrace()
-            _isLoading.value = false
+                withContext(Dispatchers.Main) {
+                    _tickerDataMap.value = updatedMap
+                    _trades.value = updatedTrades
+                    _isLoading.value = false
+                }
+            }.onFailure {
+                it.printStackTrace()
+                _isLoading.value = false
+            }
         }
     }
 

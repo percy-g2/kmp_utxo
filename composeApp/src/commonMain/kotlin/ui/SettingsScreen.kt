@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -40,8 +41,12 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import openLink
+import org.jetbrains.compose.resources.painterResource
 import theme.ThemeManager
 import theme.ThemeManager.store
+import utxo.composeapp.generated.resources.Res
+import utxo.composeapp.generated.resources.github_icon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +55,7 @@ fun SettingsScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val settings: Flow<Settings?> = store.updates
-    val selectedTheme by settings.collectAsState(initial = Settings(selectedTheme = Theme.SYSTEM.id))
+    val selectedTheme by settings.collectAsState(initial = Settings())
 
     val themesList = Theme.entries.map { theme ->
         ThemeData(theme.title, theme.description)
@@ -64,7 +69,7 @@ fun SettingsScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor =  MaterialTheme.colorScheme.surface,
+                    containerColor = MaterialTheme.colorScheme.surface,
                     scrolledContainerColor = MaterialTheme.colorScheme.surface
                 ),
                 modifier = Modifier.shadow(
@@ -121,6 +126,30 @@ fun SettingsScreen(
                             }
                         )
                     }
+                }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .align(Alignment.End),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(
+                        modifier = Modifier.size(24.dp),
+                        onClick = { openLink("https://github.com/percy-g2/kmp_utxo") }
+                    ) {
+                        Icon(
+                            painter = painterResource(Res.drawable.github_icon),
+                            contentDescription = "Source Code",
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Version 0.0.4"
+                    )
                 }
             }
         }

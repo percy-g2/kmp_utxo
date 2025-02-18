@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
 import platform.Foundation.NSCachesDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
+import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 import platform.Network.nw_interface_type_wifi
 import platform.Network.nw_path_get_status
@@ -23,9 +24,21 @@ import platform.Network.nw_path_monitor_set_update_handler
 import platform.Network.nw_path_monitor_start
 import platform.Network.nw_path_status_satisfied
 import platform.Network.nw_path_uses_interface_type
+import platform.UIKit.UIApplication
 import platform.darwin.DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL
 import platform.darwin.dispatch_queue_create
 import ui.Settings
+
+actual fun openLink(link: String) {
+    runCatching {
+        val nsUrl = NSURL.URLWithString(link)
+        if (nsUrl != null) {
+            UIApplication.sharedApplication.openURL(nsUrl)
+        }
+    }.getOrElse {
+        it.printStackTrace()
+    }
+}
 
 actual class NetworkConnectivityObserver {
     actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
