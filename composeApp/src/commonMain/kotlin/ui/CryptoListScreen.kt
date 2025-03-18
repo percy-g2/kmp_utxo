@@ -53,10 +53,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -159,7 +164,8 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
 
 @Composable
 fun RowScope.TradeChart(
-    trades: List<UiKline>
+    trades: List<UiKline>,
+    priceChangePercent: String
 ) {
     if (trades.isEmpty()) {
         Text(
@@ -173,21 +179,81 @@ fun RowScope.TradeChart(
     val maxPrice by remember(prices) { derivedStateOf { prices.maxOrNull() ?: 0f } }
     val minPrice by remember(prices) { derivedStateOf { prices.minOrNull() ?: 0f } }
     val priceRange by remember(maxPrice, minPrice) { derivedStateOf { if (maxPrice != minPrice) maxPrice - minPrice else 1f } }
-
+    val selectedTheme by store.updates.collectAsState(initial = Settings(selectedTheme = Theme.SYSTEM.id))
+    val isDarkTheme = (selectedTheme?.selectedTheme == Theme.DARK.id
+        || (selectedTheme?.selectedTheme == Theme.SYSTEM.id && isSystemInDarkTheme()))
     var chartSize by remember { mutableStateOf(Offset.Zero) }
-    val lineColor = MaterialTheme.colorScheme.onPrimary
+    val priceChangeColor = when {
+        priceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
+        else -> redDark
+    }
 
     Box(Modifier.weight(1f)) {
         Canvas(Modifier.fillMaxSize().padding(vertical = 16.dp)) {
             chartSize = Offset(size.width, size.height)
-            val path = Path().apply {
-                val points = calculatePoints(trades, chartSize, minPrice, priceRange)
+            val points = calculatePoints(trades, chartSize, minPrice, priceRange)
+
+            // Create the main path for the line
+            val linePath = Path().apply {
                 points.forEachIndexed { index, point ->
                     if (index == 0) moveTo(point.x, point.y)
                     else lineTo(point.x, point.y)
                 }
             }
-            drawPath(path = path, color = lineColor, style = Stroke(width = 3f))
+
+            // Create a path for the gradient fill
+            val fillPath = Path().apply {
+                // Start from the bottom-left corner
+                moveTo(0f, size.height)
+
+                // Add all points from the line path
+                points.forEach { point ->
+                    lineTo(point.x, point.y)
+                }
+
+                // Close the path by going to the bottom-right corner
+                lineTo(size.width, size.height)
+                close()
+            }
+
+            // Determine gradient colors based on price change
+            val gradientColors = when {
+                priceChangePercent.toFloat() > 0f -> {
+                    // Green gradient for positive change
+                    listOf(
+                        priceChangeColor.copy(alpha = 0.6f),
+                        priceChangeColor.copy(alpha = 0.3f),
+                        priceChangeColor.copy(alpha = 0.1f),
+                        priceChangeColor.copy(alpha = 0f)
+                    )
+                }
+                else -> {
+                    // Red gradient for negative change
+                    listOf(
+                        priceChangeColor.copy(alpha = 0.6f),
+                        priceChangeColor.copy(alpha = 0.3f),
+                        priceChangeColor.copy(alpha = 0.1f),
+                        priceChangeColor.copy(alpha = 0f)
+                    )
+                }
+            }
+
+            // Draw the gradient fill
+            drawPath(
+                path = fillPath,
+                brush = Brush.verticalGradient(
+                    colors = gradientColors,
+                    startY = 0f,
+                    endY = size.height
+                )
+            )
+
+            // Draw the line on top
+            drawPath(
+                path = linePath,
+                color = priceChangeColor,
+                style = Stroke(width = 3f)
+            )
         }
     }
 }
@@ -234,9 +300,18 @@ fun TickerCard(
                     .weight(1f)
             ) {
                 if (symbol.isNotEmpty()) {
+                    val parts = symbol.formatPair().split("/")
+                    val value = buildAnnotatedString {
+                        withStyle(style = SpanStyle(fontSize = 18.sp)) {
+                            append(parts[0]) // First part (e.g., BTC, ETH)
+                        }
+                        withStyle(style = SpanStyle(fontSize = 14.sp)) {
+                            append("/${parts[1]}") // Second part (e.g., /USDT)
+                        }
+                    }
                     Text(
-                        text = symbol.formatPair(),
-                        style = MaterialTheme.typography.titleMedium,
+                        text = value,
+                      //  style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                 }
@@ -268,7 +343,7 @@ fun TickerCard(
                     )
                 }
             }
-            TradeChart(trades = trades)
+            TradeChart(trades = trades, priceChangePercent)
             Column(
                 modifier = Modifier
                     .padding(horizontal = 4.dp)
