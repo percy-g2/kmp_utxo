@@ -57,6 +57,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
@@ -91,19 +92,21 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
     val listState = rememberLazyListState()
     val settings: Flow<Settings?> = store.updates
     val symbols = cryptoViewModel.symbols.collectAsState()
-
     val favPairs by settings.collectAsState(initial = Settings())
+    val snackBarHostState = remember { SnackbarHostState() }
 
     if (showDialog) {
         CryptoPairDialog(
             symbols = symbols.value.sortedWith(
                 compareByDescending { it.symbol in (favPairs?.favPairs ?: emptyList()) }
             ),
-            onDismiss = { showDialog = false }
+            onDismiss = { showDialog = false },
+            snackBarHostState = snackBarHostState
         )
     }
 
-    DisposableEffect(lifecycleOwner, favPairs) {
+    // Lifecycle observer to reconnect when the app comes back to foreground
+    DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
                 cryptoViewModel.reconnect()
@@ -146,15 +149,13 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                         items = tickerDataMap.values.toList(),
                         key = { it.symbol }
                     ) { tickerData ->
-                        trades[tickerData.symbol]?.let { tradesList ->
-                            TickerCard(
-                                symbol = tickerData.symbol,
-                                price = tickerData.lastPrice,
-                                timestamp = tickerData.timestamp,
-                                trades = tradesList,
-                                priceChangePercent = tickerData.priceChangePercent
-                            )
-                        }
+                        TickerCard(
+                            symbol = tickerData.symbol,
+                            price = tickerData.lastPrice,
+                            timestamp = tickerData.timestamp,
+                            trades = trades[tickerData.symbol] ?: emptyList(),
+                            priceChangePercent = tickerData.priceChangePercent
+                        )
                     }
                 }
             }
@@ -176,22 +177,38 @@ fun RowScope.TradeChart(
     }
 
     val prices = remember(trades) { trades.map { it.closePrice.toFloat() } }
-    val maxPrice by remember(prices) { derivedStateOf { prices.maxOrNull() ?: 0f } }
-    val minPrice by remember(prices) { derivedStateOf { prices.minOrNull() ?: 0f } }
-    val priceRange by remember(maxPrice, minPrice) { derivedStateOf { if (maxPrice != minPrice) maxPrice - minPrice else 1f } }
+    val priceStats = remember(prices) {
+        val max = prices.maxOrNull() ?: 0f
+        val min = prices.minOrNull() ?: 0f
+        val range = if (max != min) max - min else 1f
+        Triple(min, max, range)
+    }
+    val (minPrice, _, priceRange) = priceStats
+
     val selectedTheme by store.updates.collectAsState(initial = Settings(selectedTheme = Theme.SYSTEM.id))
     val isDarkTheme = (selectedTheme?.selectedTheme == Theme.DARK.id
         || (selectedTheme?.selectedTheme == Theme.SYSTEM.id && isSystemInDarkTheme()))
-    var chartSize by remember { mutableStateOf(Offset.Zero) }
+
+    var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
+
     val priceChangeColor = when {
         priceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
         else -> redDark
     }
 
-    Box(Modifier.weight(1f)) {
-        Canvas(Modifier.fillMaxSize().padding(vertical = 16.dp)) {
-            chartSize = Offset(size.width, size.height)
-            val points = calculatePoints(trades, chartSize, minPrice, priceRange)
+    Box(
+        modifier = Modifier
+            .padding(vertical = 16.dp)
+            .weight(1f)
+            .onSizeChanged { size ->
+                chartSizeInPx = Offset(size.width.toFloat(), size.height.toFloat())
+            }
+    ) {
+        val points = remember(trades, chartSizeInPx, minPrice, priceRange) {
+            calculatePoints(trades, chartSizeInPx, minPrice, priceRange)
+        }
+        Canvas(Modifier.fillMaxSize()) {
+            if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0) return@Canvas
 
             // Create the main path for the line
             val linePath = Path().apply {
@@ -258,14 +275,14 @@ fun RowScope.TradeChart(
     }
 }
 
+// Extracted to a separate function for better organization
 fun calculatePoints(trades: List<UiKline>, size: Offset, minPrice: Float, priceRange: Float): List<Offset> {
     return trades.mapIndexed { index, trade ->
-        val x = index.toFloat() / (trades.size - 1) * size.x
+        val x = index.toFloat() / (trades.size - 1).coerceAtLeast(1) * size.x
         val y = size.y - ((trade.closePrice.toFloat() - minPrice) / priceRange) * size.y
         Offset(x, y)
     }
 }
-
 
 @Composable
 fun TickerCard(
@@ -311,7 +328,6 @@ fun TickerCard(
                     }
                     Text(
                         text = value,
-                      //  style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                 }
@@ -321,7 +337,7 @@ fun TickerCard(
                     label = "Price Change Percentage Animation"
                 ) { targetPriceChangePercent ->
                     val priceChangeColor = when {
-                        priceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
+                        targetPriceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
                         else -> redDark
                     }
                     Text(
@@ -343,25 +359,33 @@ fun TickerCard(
                     )
                 }
             }
-            TradeChart(trades = trades, priceChangePercent)
+            TradeChart(trades = trades, priceChangePercent = priceChangePercent)
             Column(
                 modifier = Modifier
                     .padding(horizontal = 4.dp)
                     .weight(1f)
             ) {
                 if (timestamp.isNotEmpty()) {
-                    val localDateTime = try {
-                        Instant.parse(timestamp).toLocalDateTime(TimeZone.currentSystemDefault())
-                    } catch (e: Exception) {
-                        LocalDateTime.parse(timestamp)
+                    val formattedDateTime = remember(timestamp) {
+                        try {
+                            val localDateTime = try {
+                                Instant.parse(timestamp).toLocalDateTime(TimeZone.currentSystemDefault())
+                            } catch (e: Exception) {
+                                LocalDateTime.parse(timestamp)
+                            }
+                            val date = "${localDateTime.year}-" +
+                                "${localDateTime.monthNumber.toString().padStart(2, '0')}-" +
+                                localDateTime.dayOfMonth.toString().padStart(2, '0')
+                            val time = "${localDateTime.hour.toString().padStart(2, '0')}:" +
+                                "${localDateTime.minute.toString().padStart(2, '0')}:" +
+                                localDateTime.second.toString().padStart(2, '0')
+                            Pair(date, time)
+                        } catch (e: Exception) {
+                            Pair("", "")
+                        }
                     }
-                    val date = "${localDateTime.year}-" +
-                        "${localDateTime.monthNumber.toString().padStart(2, '0')}-" +
-                        localDateTime.dayOfMonth.toString().padStart(2, '0')
-                    val time = "${localDateTime.hour.toString().padStart(2, '0')}:" +
-                        "${localDateTime.minute.toString().padStart(2, '0')}:" +
-                        localDateTime.second.toString().padStart(2, '0')
 
+                    val (date, time) = formattedDateTime
 
                     Column(
                         modifier = Modifier
@@ -394,14 +418,14 @@ fun TickerCard(
 @Composable
 fun CryptoPairDialog(
     symbols: List<TickerDataInfo>,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    snackBarHostState: SnackbarHostState
 ) {
-    val settings = store.updates.collectAsState(null)
-    val snackBarHostState = remember { SnackbarHostState() }
+    val settings = store.updates.collectAsState(initial = Settings())
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(text = "Select Crypto Pair (${settings.value?.favPairs?.size}/10)") },
+        title = { Text(text = "Select Crypto Pair (${settings.value?.favPairs?.size ?: 0}/10)") },
         text = {
             Box {
                 LazyColumn {
@@ -412,12 +436,20 @@ fun CryptoPairDialog(
                         )
                     }
                 }
+                SnackbarHost(
+                    modifier = Modifier.align(Alignment.Center),
+                    hostState = snackBarHostState
+                )
             }
         },
-        dismissButton = { SnackbarHost(hostState = snackBarHostState) },
         confirmButton = {
             TextButton(onClick = onDismiss) {
                 Text("Done")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel")
             }
         }
     )
@@ -428,7 +460,7 @@ fun CryptoPairItem(
     snackBarHostState: SnackbarHostState,
     pair: String
 ) {
-    val settings = store.updates.collectAsState(null)
+    val settings = store.updates.collectAsState(initial = Settings())
     val coroutineScope = rememberCoroutineScope()
     val isAdded = settings.value?.favPairs?.contains(pair) ?: false
     val favPairs = settings.value?.favPairs ?: emptyList()
@@ -465,29 +497,11 @@ fun CryptoPairItem(
         IconButton(onClick = onClick) {
             Icon(
                 imageVector = Icons.Default.Star,
-                contentDescription = null,
+                contentDescription = if (isAdded) "Remove from favorites" else "Add to favorites",
                 tint = if (isAdded) MaterialTheme.colorScheme.onSurface else Color.Gray
             )
         }
     }
-}
-
-fun formatPrice(price: String): String = runCatching {
-    val formattedPrice = price.toDouble().formatAsCurrency()
-    "$$formattedPrice"
-}.getOrElse {
-    price
-}
-
-fun Double.formatAsCurrency(): String {
-    val absValue = this.absoluteValue
-    val integerPart = absValue.toInt()
-    val fractionalPart = ((absValue - integerPart) * 100).roundToInt()
-
-    val formattedInteger = integerPart.toString().reversed().chunked(3).joinToString(",").reversed()
-    val formattedFractional = fractionalPart.toString().padStart(2, '0')
-
-    return if (this < 0) "-$formattedInteger.$formattedFractional" else "$formattedInteger.$formattedFractional"
 }
 
 /**
@@ -519,4 +533,22 @@ fun LazyListState.isScrollingUp(): Boolean {
             scrollingUp
         }
     }.value
+}
+
+fun formatPrice(price: String): String = runCatching {
+    val formattedPrice = price.toDouble().formatAsCurrency()
+    "$$formattedPrice"
+}.getOrElse {
+    price
+}
+
+fun Double.formatAsCurrency(): String {
+    val absValue = this.absoluteValue
+    val integerPart = absValue.toInt()
+    val fractionalPart = ((absValue - integerPart) * 100).roundToInt()
+
+    val formattedInteger = integerPart.toString().reversed().chunked(3).joinToString(",").reversed()
+    val formattedFractional = fractionalPart.toString().padStart(2, '0')
+
+    return if (this < 0) "-$formattedInteger.$formattedFractional" else "$formattedInteger.$formattedFractional"
 }

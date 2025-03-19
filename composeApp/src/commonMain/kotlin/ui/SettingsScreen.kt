@@ -148,7 +148,7 @@ fun SettingsScreen(
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Version 0.0.4"
+                        text = "Version 0.0.6"
                     )
                 }
             }

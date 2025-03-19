@@ -1,5 +1,6 @@
 package ui
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import getWebSocketClient
@@ -14,6 +15,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -40,6 +42,8 @@ class CryptoViewModel : ViewModel() {
     private val _tickerDataMap = MutableStateFlow<Map<String, TickerData>>(emptyMap())
     val tickerDataMap: StateFlow<Map<String, TickerData>> = _tickerDataMap.asStateFlow()
 
+    val quoteCoinList = mutableStateListOf<String>()
+
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
@@ -48,25 +52,82 @@ class CryptoViewModel : ViewModel() {
     private val favPairsFlow = MutableStateFlow<List<String>>(emptyList())
     private var lastUpdateTime = 0L
 
+    // Collect updates from store only once
+    private var storeUpdateJob: Job? = null
+    private val updateThrottleMs = 250L // Throttle updates to reduce UI redraws
+
     init {
+        initializeData()
+    }
+
+    private fun initializeData() {
         viewModelScope.launch {
-            updateFavPairs()
-            loadInitialData()
-            startWebSocketConnection()
-            fetchSymbols()
+            try {
+                // Get initial settings
+                store.get()?.let { settings ->
+                    favPairsFlow.value = settings.favPairs.ifEmpty { listOf("BTCUSDT") }
+                }
+
+                // Start collecting updates from store
+                startCollectingFavPairs()
+
+                // Load initial data
+                loadInitialData()
+
+                // Start WebSocket connection
+                startWebSocketConnection()
+
+                // Fetch symbols
+                fetchSymbols()
+            } catch (e: Exception) {
+                // Log the error
+                println("Error initializing data: ${e.message}")
+                _isLoading.value = false
+            }
         }
     }
 
-    private suspend fun fetchSymbols() {
-        _symbols.value = httpClient.fetchBinancePairs()
+    private fun startCollectingFavPairs() {
+        storeUpdateJob = viewModelScope.launch {
+            store.updates.collectLatest { settings ->
+                val newFavPairs = settings?.favPairs ?: listOf("BTCUSDT")
+                if (newFavPairs != favPairsFlow.value) {
+                    // Find newly added pairs
+                    val existingPairs = favPairsFlow.value
+                    val addedPairs = newFavPairs.filter { it !in existingPairs }
+
+                    // Update the favorite pairs flow value
+                    favPairsFlow.value = newFavPairs
+
+                    // Filter displayed data to only show favorite pairs
+                    _tickerDataMap.value = _tickerDataMap.value.filterKeys { it in newFavPairs }
+                    _trades.value = _trades.value.filterKeys { it in newFavPairs }
+
+                    // Fetch data for newly added pairs
+                    if (addedPairs.isNotEmpty()) {
+                        viewModelScope.launch {
+                            try {
+                                val newTradesData = httpClient.fetchUiKlines(addedPairs)
+                                // Merge new data with existing data
+                                _trades.value += newTradesData
+                            } catch (e: Exception) {
+                                println("Error loading data for new pairs: ${e.message}")
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    private suspend fun updateFavPairs() {
-        favPairsFlow.value = store.get()?.favPairs ?: emptyList()
-    }
-
-    private suspend fun loadInitialData() {
-        _trades.value = httpClient.fetchUiKlines(favPairsFlow.value)
+    private fun fetchSymbols() {
+        viewModelScope.launch {
+            try {
+                _symbols.value = httpClient.fetchBinancePairs()
+            } catch (e: Exception) {
+                println("Error fetching symbols: ${e.message}")
+            }
+        }
     }
 
     private fun startWebSocketConnection() {
@@ -94,7 +155,7 @@ class CryptoViewModel : ViewModel() {
                                     is Frame.Text -> {
                                         val message = frame.readText()
                                         withContext(Dispatchers.Default) {
-                                            updateTickerData(message)
+                                            processTickerMessage(message)
                                         }
                                     }
                                     is Frame.Ping -> send(Frame.Pong(frame.data))
@@ -106,7 +167,7 @@ class CryptoViewModel : ViewModel() {
                     } catch (e: CancellationException) {
                         throw e
                     } catch (e: Exception) {
-                        e.printStackTrace()
+                        println("WebSocket error: ${e.message}")
                         delay(5000)
                     }
                 }
@@ -114,9 +175,44 @@ class CryptoViewModel : ViewModel() {
         }
     }
 
-    private fun updateTickerData(message: String) {
+    // In CryptoViewModel.kt
+    private fun loadInitialData() {
+        viewModelScope.launch {
+            try {
+                val symbols = favPairsFlow.value.ifEmpty { listOf("BTCUSDT") }
+                // Load initial trade data
+                _trades.value = httpClient.fetchUiKlines(symbols)
+
+                // Ensure we have initial ticker data for each symbol before removing loading state
+                if (_tickerDataMap.value.isEmpty()) {
+                    // Create placeholder ticker data until real data arrives from WebSocket
+                    val initialTickerMap = symbols.associateWith { symbol ->
+                        TickerData(
+                            symbol = symbol,
+                            lastPrice = "Loading...",
+                            priceChangePercent = "0.0",
+                            timestamp = Clock.System.now().toString(),
+                            volume = "0"
+                        )
+                    }
+                    _tickerDataMap.value = initialTickerMap
+                }
+
+                // Only set loading to false when we have both trades and ticker data
+                if (_trades.value.isNotEmpty() && _tickerDataMap.value.isNotEmpty()) {
+                    _isLoading.value = false
+                }
+            } catch (e: Exception) {
+                println("Error loading initial data: ${e.message}")
+                _isLoading.value = false // Set to false on error so UI isn't stuck in loading state
+            }
+        }
+    }
+
+    private fun processTickerMessage(message: String) {
         val now = Clock.System.now().toEpochMilliseconds()
-        if (now - lastUpdateTime < 100) return
+        // Throttle updates to reduce UI redraws
+        if (now - lastUpdateTime < updateThrottleMs) return
         lastUpdateTime = now
 
         viewModelScope.launch {
@@ -128,7 +224,6 @@ class CryptoViewModel : ViewModel() {
                 val updatedTrades = _trades.value.toMutableMap()
 
                 tickers.filter { it.symbol in favPairs }.forEach { ticker ->
-
                     val newData = TickerData(
                         symbol = ticker.symbol,
                         lastPrice = formatPrice(ticker.lastPrice),
@@ -152,9 +247,14 @@ class CryptoViewModel : ViewModel() {
                 withContext(Dispatchers.Main) {
                     _tickerDataMap.value = updatedMap
                     _trades.value = updatedTrades
-                    _isLoading.value = false
+
+                    // Only set loading to false when we have both trades and ticker data for at least one symbol
+                    if (_trades.value.isNotEmpty() && _tickerDataMap.value.isNotEmpty()) {
+                        _isLoading.value = false
+                    }
                 }
             }.onFailure {
+                println("Error processing ticker message: ${it.message}")
                 it.printStackTrace()
                 _isLoading.value = false
             }
@@ -163,14 +263,27 @@ class CryptoViewModel : ViewModel() {
 
     fun reconnect() {
         viewModelScope.launch {
-            updateFavPairs()
-            _trades.value = httpClient.fetchUiKlines(favPairsFlow.value)
-            startWebSocketConnection()
+            try {
+                // Update favorite pairs
+                store.get()?.let { settings ->
+                    favPairsFlow.value = settings.favPairs.ifEmpty { listOf("BTCUSDT") }
+                }
+
+                // Reload data
+                loadInitialData()
+
+                // Restart WebSocket connection
+                startWebSocketConnection()
+            } catch (e: Exception) {
+                println("Error reconnecting: ${e.message}")
+            }
         }
     }
 
     override fun onCleared() {
+        // Cancel all jobs to prevent memory leaks
         webSocketJob?.cancel()
+        storeUpdateJob?.cancel()
         webSocketClient.close()
         super.onCleared()
     }
