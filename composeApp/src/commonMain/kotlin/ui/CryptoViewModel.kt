@@ -1,5 +1,7 @@
 package ui
 
+import NetworkConnectivityObserver
+import NetworkStatus
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -56,8 +58,25 @@ class CryptoViewModel : ViewModel() {
     private var storeUpdateJob: Job? = null
     private val updateThrottleMs = 250L // Throttle updates to reduce UI redraws
 
+    private var networkObserver: NetworkConnectivityObserver? = null
+    private var networkObserverJob: Job? = null
+
     init {
         initializeData()
+        observeNetworkChanges()
+    }
+
+    // Add this method to observe network changes
+    private fun observeNetworkChanges() {
+        networkObserver = NetworkConnectivityObserver()
+        networkObserverJob = viewModelScope.launch {
+            networkObserver?.observe()?.collectLatest { status ->
+                if (status == NetworkStatus.Available) {
+                    // Network is now available, reconnect
+                    reconnect()
+                }
+            }
+        }
     }
 
     private fun initializeData() {
@@ -284,6 +303,7 @@ class CryptoViewModel : ViewModel() {
         // Cancel all jobs to prevent memory leaks
         webSocketJob?.cancel()
         storeUpdateJob?.cancel()
+        networkObserverJob?.cancel()
         webSocketClient.close()
         super.onCleared()
     }

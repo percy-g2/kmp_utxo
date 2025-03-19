@@ -76,7 +76,7 @@ fun App(
         }
     }
 
-    if (networkStatus == NetworkStatus.Unavailable) {
+    if (networkStatus != NetworkStatus.Available) {
         NetworkDialog()
     }
 

@@ -13,17 +13,13 @@ import platform.Foundation.NSCachesDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
-import platform.Network.nw_interface_type_wifi
 import platform.Network.nw_path_get_status
-import platform.Network.nw_path_is_constrained
-import platform.Network.nw_path_is_expensive
 import platform.Network.nw_path_monitor_cancel
 import platform.Network.nw_path_monitor_create
 import platform.Network.nw_path_monitor_set_queue
 import platform.Network.nw_path_monitor_set_update_handler
 import platform.Network.nw_path_monitor_start
 import platform.Network.nw_path_status_satisfied
-import platform.Network.nw_path_uses_interface_type
 import platform.UIKit.UIApplication
 import platform.darwin.DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL
 import platform.darwin.dispatch_queue_create
@@ -52,12 +48,7 @@ actual class NetworkConnectivityObserver {
             val status = nw_path_get_status(path)
             when {
                 status == nw_path_status_satisfied -> {
-                    val isWifi = nw_path_uses_interface_type(path, nw_interface_type_wifi)
-                    val isExpensive = nw_path_is_expensive(path)
-                    val isConstrained = nw_path_is_constrained(path)
-                    val isMetered = !isWifi && (isExpensive || isConstrained)
-
-                    trySend(if (isMetered) NetworkStatus.Losing else NetworkStatus.Available)
+                    trySend(NetworkStatus.Available)
                 }
                 else -> trySend(NetworkStatus.Unavailable)
             }
