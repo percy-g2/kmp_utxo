@@ -111,16 +111,23 @@ class CryptoViewModel : ViewModel() {
         }
     }
 
-    fun fetchUiKlinesForVisibleSymbols(visibleSymbols: List<String>) {
-        viewModelScope.launch {
-            val currentTrades = _trades.value.keys
+    private var fetchJob: Job? = null
 
+    fun fetchUiKlinesForVisibleSymbols(visibleSymbols: List<String>) {
+        fetchJob?.cancel()
+        fetchJob = viewModelScope.launch {
+            delay(100) // Debounce time
+
+            val currentTrades = _trades.value.keys
             val newSymbols = visibleSymbols.filterNot { it in currentTrades }
 
             if (newSymbols.isNotEmpty()) {
-                val newData = httpClient.fetchUiKlines(newSymbols)
-
-                _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+                try {
+                    val newData = httpClient.fetchUiKlines(newSymbols)
+                    _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+                } catch (e: Exception) {
+                    println("Error fetching klines: ${e.message}")
+                }
             }
         }
     }

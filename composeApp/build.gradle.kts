@@ -87,6 +87,8 @@ kotlin {
             implementation(libs.ktor.client.websockets)
             implementation(libs.ktor.serialization.kotlinx.json)
 
+            implementation(libs.atomicfu)
+
             implementation(libs.kotlinx.datetime)
 
             implementation(libs.navigation.compose)

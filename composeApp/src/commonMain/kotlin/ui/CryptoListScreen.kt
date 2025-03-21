@@ -106,7 +106,7 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
             val layoutInfo = listState.layoutInfo
             val items = tickerDataMap.values.toList()
 
-            val prefetchBuffer = 3
+            val prefetchBuffer = 10
             val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
 
             val startIndex = visibleIndices.minOrNull()?.minus(prefetchBuffer)?.coerceAtLeast(0) ?: 0
