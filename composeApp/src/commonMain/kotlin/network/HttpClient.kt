@@ -12,7 +12,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
-import model.TickerDataInfo
+import model.MarginSymbols
 import model.UiKline
 import model.UiKlineSerializer
 
@@ -48,19 +48,20 @@ class HttpClient {
         }
     }
 
-    suspend fun fetchBinancePairs(): List<TickerDataInfo> {
+    suspend fun fetchMarginSymbols(): MarginSymbols? {
         return try {
-            val response: HttpResponse = client.get("https://api.binance.com/api/v3/ticker/24hr")
+            val response: HttpResponse = client.get("https://www.binance.com/bapi/margin/v1/public/margin/symbols") {
+                headers {
+                    append("Accept-Encoding", "identity")
+                    append("User-Agent", "Mozilla/5.0")
+                }
+            }
             if (response.status == HttpStatusCode.OK) {
-                val exchangeInfo = json.decodeFromString<List<TickerDataInfo>>(response.bodyAsText())
-
-                return exchangeInfo
-                    .filter { it.symbol.contains("USDT") && it.symbol.startsWith("USD").not() }
-                    .sortedByDescending { it.quoteVolume.toDoubleOrNull() ?: 0.0 }
-            } else emptyList()
+                json.decodeFromString<MarginSymbols>(response.bodyAsText())
+            } else null
         } catch (e: Exception) {
             e.printStackTrace()
-            emptyList() // Return an empty list in case of an error
+            null
         }
     }
 

@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -18,23 +19,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -42,6 +47,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -58,15 +64,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
@@ -85,24 +93,35 @@ import kotlin.math.roundToInt
 @Composable
 fun CryptoList(cryptoViewModel: CryptoViewModel) {
     val lifecycleOwner = LocalLifecycleOwner.current
-    var showDialog by remember { mutableStateOf(false) }
     val trades by cryptoViewModel.trades.collectAsState()
-    val tickerDataMap by cryptoViewModel.tickerDataMap.collectAsState()
+    val tickerDataMap by cryptoViewModel.filteredTickerDataMap.collectAsState()
     val isLoading by cryptoViewModel.isLoading.collectAsState()
     val listState = rememberLazyListState()
-    val settings: Flow<Settings?> = store.updates
-    val symbols = cryptoViewModel.symbols.collectAsState()
-    val favPairs by settings.collectAsState(initial = Settings())
-    val snackBarHostState = remember { SnackbarHostState() }
+    val tradingPairs = cryptoViewModel.tradingPairs.collectAsState()
+    val selectedTradingPair by cryptoViewModel.selectedTradingPair.collectAsState()
+    val coroutineScope = rememberCoroutineScope()
 
-    if (showDialog) {
-        CryptoPairDialog(
-            symbols = symbols.value.sortedWith(
-                compareByDescending { it.symbol in (favPairs?.favPairs ?: emptyList()) }
-            ),
-            onDismiss = { showDialog = false },
-            snackBarHostState = snackBarHostState
-        )
+    val visibleSymbols by remember {
+        derivedStateOf {
+            val layoutInfo = listState.layoutInfo
+            val items = tickerDataMap.values.toList()
+
+            val prefetchBuffer = 3
+            val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
+
+            val startIndex = visibleIndices.minOrNull()?.minus(prefetchBuffer)?.coerceAtLeast(0) ?: 0
+            val endIndex = visibleIndices.maxOrNull()?.plus(prefetchBuffer)?.coerceAtMost(items.lastIndex) ?: items.lastIndex
+
+            (startIndex..endIndex).mapNotNull { index ->
+                items.getOrNull(index)?.symbol
+            }
+        }
+    }
+
+    LaunchedEffect(visibleSymbols) {
+        if (visibleSymbols.isNotEmpty()) {
+            cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols)
+        }
     }
 
     // Lifecycle observer to reconnect when the app comes back to foreground
@@ -116,51 +135,163 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    Scaffold(
-        floatingActionButton = {
-            if (isLoading.not()) {
-                ExtendedFloatingActionButton(
-                    text = { Text(text = "Add Pair") },
-                    icon = {
-                        Icon(
-                            imageVector = Icons.Filled.Add,
-                            contentDescription = "add-icon"
-                        )
-                    },
-                    expanded = listState.isScrollingUp(),
-                    elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 6.dp),
-                    onClick = { showDialog = true }
-                )
-            }
-        }
-    ) {
+    Scaffold {
         Box(modifier = Modifier.fillMaxSize()) {
-            if (isLoading) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+            Column {
+                SearchBar(viewModel = cryptoViewModel)
+
+                LazyRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    CircularProgressIndicator()
+                    if (tradingPairs.value.isEmpty()) {
+                        items(6) {
+                            ShimmerTradingPairItem()
+                        }
+                    } else {
+                        items(tradingPairs.value) { symbol ->
+                            TradingPairItem(
+                                quote = symbol.quote,
+                                isSelected = symbol.quote == selectedTradingPair,
+                                onClick = { quote ->
+                                    cryptoViewModel.setSelectedTradingPair(quote)
+                                    val targetIndex = tickerDataMap.values.indexOfFirst {
+                                        it.symbol.endsWith(quote)
+                                    }
+                                    if (targetIndex >= 0) {
+                                        coroutineScope.launch {
+                                            listState.animateScrollToItem(targetIndex)
+                                        }
+                                    }
+                                }
+                            )
+                        }
+                    }
                 }
-            } else {
-                LazyColumn(state = listState) {
-                    items(
-                        items = tickerDataMap.values.toList(),
-                        key = { it.symbol }
-                    ) { tickerData ->
-                        TickerCard(
-                            symbol = tickerData.symbol,
-                            price = tickerData.lastPrice,
-                            timestamp = tickerData.timestamp,
-                            trades = trades[tickerData.symbol] ?: emptyList(),
-                            priceChangePercent = tickerData.priceChangePercent
-                        )
+
+                if (isLoading) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                } else {
+                    LazyColumn(state = listState) {
+                        items(
+                            items = tickerDataMap.values.toList(),
+                            key = { it.symbol }
+                        ) { tickerData ->
+                            TickerCard(
+                                symbol = tickerData.symbol,
+                                price = tickerData.lastPrice,
+                                selectedTradingPair = selectedTradingPair,
+                                timestamp = tickerData.timestamp,
+                                trades = trades[tickerData.symbol] ?: emptyList(),
+                                priceChangePercent = tickerData.priceChangePercent,
+                                cryptoViewModel = cryptoViewModel
+                            )
+                        }
                     }
                 }
             }
         }
     }
+}
+
+@Composable
+fun SearchBar(
+    viewModel: CryptoViewModel,
+    modifier: Modifier = Modifier
+) {
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val focusManager = LocalFocusManager.current
+    val selectedTradingPair by viewModel.selectedTradingPair.collectAsState()
+
+    OutlinedTextField(
+        value = searchQuery,
+        onValueChange = {
+            viewModel.setSearchQuery(it)
+        },
+        shape = RoundedCornerShape(8.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 8.dp),
+        placeholder = { Text("Search $selectedTradingPair pairs...") },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = "Search"
+            )
+        },
+        trailingIcon = {
+            if (searchQuery.isNotEmpty()) {
+                IconButton(onClick = { viewModel.setSearchQuery("") }) {
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "Clear search"
+                    )
+                }
+            }
+        },
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+        keyboardActions = KeyboardActions(
+            onSearch = {
+                focusManager.clearFocus()
+            }
+        )
+    )
+}
+
+@Composable
+fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Unit) {
+    Box(
+        modifier = Modifier
+            .padding(4.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(
+                if (isSelected) MaterialTheme.colorScheme.primary
+                else MaterialTheme.colorScheme.surfaceVariant
+            )
+            .clickable { onClick(quote) }
+            .padding(horizontal = 12.dp, vertical = 8.dp)
+    ) {
+        Text(
+            text = quote,
+            color = if (isSelected) MaterialTheme.colorScheme.onPrimary
+            else MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+        )
+    }
+}
+
+@Composable
+fun ShimmerTradingPairItem() {
+    Box(
+        modifier = Modifier
+            .padding(8.dp)
+            .size(width = 60.dp, height = 24.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .shimmerEffect()
+    )
+}
+
+@Composable
+fun Modifier.shimmerEffect(): Modifier {
+    val shimmerColors = listOf(
+        Color.LightGray.copy(alpha = 0.6f),
+        Color.LightGray.copy(alpha = 0.3f),
+        Color.LightGray.copy(alpha = 0.6f)
+    )
+
+    return this.background(
+        brush = Brush.horizontalGradient(shimmerColors)
+    )
 }
 
 @Composable
@@ -290,11 +421,17 @@ fun TickerCard(
     price: String,
     timestamp: String,
     priceChangePercent: String,
-    trades: List<UiKline>
+    trades: List<UiKline>,
+    selectedTradingPair: String,
+    cryptoViewModel: CryptoViewModel
 ) {
     val selectedTheme by store.updates.collectAsState(initial = Settings(selectedTheme = Theme.SYSTEM.id))
     val isDarkTheme = (selectedTheme?.selectedTheme == Theme.DARK.id
         || (selectedTheme?.selectedTheme == Theme.SYSTEM.id && isSystemInDarkTheme()))
+
+    LaunchedEffect(symbol) {
+        cryptoViewModel.ensureChartData(symbol)
+    }
 
     Card(
         modifier = Modifier
@@ -317,13 +454,13 @@ fun TickerCard(
                     .weight(1f)
             ) {
                 if (symbol.isNotEmpty()) {
-                    val parts = symbol.formatPair().split("/")
+                    val parts =  symbol.replace(selectedTradingPair, "/$selectedTradingPair").split("/")
                     val value = buildAnnotatedString {
                         withStyle(style = SpanStyle(fontSize = 18.sp)) {
-                            append(parts[0]) // First part (e.g., BTC, ETH)
+                            append(parts[0])
                         }
-                        withStyle(style = SpanStyle(fontSize = 14.sp)) {
-                            append("/${parts[1]}") // Second part (e.g., /USDT)
+                        withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
+                            append("/${parts[1]}")
                         }
                     }
                     Text(

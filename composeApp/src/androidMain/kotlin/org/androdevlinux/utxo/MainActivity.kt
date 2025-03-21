@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.startup.Initializer
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -25,6 +26,7 @@ import theme.DarkColorScheme
 import theme.LightColorScheme
 import theme.ThemeManager
 import theme.UTXOTheme
+import ui.CryptoViewModel
 import ui.Theme
 import ui.TickerCard
 
@@ -75,6 +77,7 @@ fun Preview() {
 @Preview
 @Composable
 fun Preview1() {
+    val cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }
     ContextProvider.setContext(LocalContext.current)
     val sampleTrades = listOf(
         UiKline(
@@ -163,7 +166,9 @@ fun Preview1() {
             price = "50000",
             timestamp = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).toString(),
             trades = sampleTrades,
-            priceChangePercent = "-1.60"
+            priceChangePercent = "-1.60",
+            selectedTradingPair = "USDT",
+            cryptoViewModel = cryptoViewModel
         )
     }
 }
