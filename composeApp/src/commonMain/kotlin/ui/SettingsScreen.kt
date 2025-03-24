@@ -148,7 +148,7 @@ fun SettingsScreen(
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Version 0.0.7"
+                        text = "Version 0.0.8"
                     )
                 }
             }
@@ -193,7 +193,8 @@ fun ThemeOption(
 @Serializable
 data class Settings(
     val selectedTheme: Int = Theme.SYSTEM.id,
-    val favPairs: List<String> = listOf("BTCUSDT")
+    val favPairs: List<String> = listOf("BTCUSDT"),
+    val selectedTradingPair: String = "BTC"
 )
 
 data class ThemeData(
