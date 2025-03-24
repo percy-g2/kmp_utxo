@@ -128,7 +128,13 @@ class CryptoViewModel : ViewModel() {
             }
 
             val currentTrades = _trades.value.keys
-            val newSymbols = if (forceRefresh) visibleSymbols else visibleSymbols.filterNot { it in currentTrades }
+            val newSymbols = if (forceRefresh) {
+                visibleSymbols
+            } else {
+                visibleSymbols.filterNot { symbol ->
+                    symbol in currentTrades && (_trades.value[symbol]?.size ?: 0) > 50
+                }
+            }
 
             if (newSymbols.isNotEmpty()) {
                 try {
@@ -238,7 +244,7 @@ class CryptoViewModel : ViewModel() {
             runCatching {
                 val tickers = Json.decodeFromString<List<Ticker>>(message)
                 val updatedTickerMap = _allTickerDataMap.value.toMutableMap()
-
+                val updatedTrades = _trades.value.toMutableMap()
                 tickers.forEach { ticker ->
                     updatedTickerMap[ticker.symbol] = TickerData(
                         symbol = ticker.symbol,
@@ -247,9 +253,16 @@ class CryptoViewModel : ViewModel() {
                         timestamp = Clock.System.now().toString(),
                         volume = ticker.totalTradedQuoteAssetVolume
                     )
+                    val currentTrades = updatedTrades[ticker.symbol] ?: emptyList()
+                    if (currentTrades.size >= 100) {
+                        updatedTrades[ticker.symbol] = currentTrades.drop(1) + UiKline(closePrice = ticker.lastPrice)
+                    } else {
+                        updatedTrades[ticker.symbol] = currentTrades + UiKline(closePrice = ticker.lastPrice)
+                    }
                 }
 
                 _allTickerDataMap.value = updatedTickerMap
+                _trades.value = updatedTrades.filterValues { it.size > 50 }
                 updateDisplayedPairs()
             }.onFailure {
                 println("Error processing ticker message: ${it.message}")

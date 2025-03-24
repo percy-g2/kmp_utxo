@@ -489,13 +489,12 @@ fun TickerCard(
                     .weight(1f)
             ) {
                 if (symbol.isNotEmpty()) {
-                    val parts =  symbol.replace(selectedTradingPair, "/$selectedTradingPair").split("/")
                     val value = buildAnnotatedString {
                         withStyle(style = SpanStyle(fontSize = 18.sp)) {
-                            append(parts[0])
+                            append(symbol.replace(selectedTradingPair, ""))
                         }
                         withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
-                            append("/${parts[1]}")
+                            append("/$selectedTradingPair")
                         }
                     }
                     Text(
