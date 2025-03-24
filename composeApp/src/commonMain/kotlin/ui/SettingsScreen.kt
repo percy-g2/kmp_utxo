@@ -193,7 +193,8 @@ fun ThemeOption(
 @Serializable
 data class Settings(
     val selectedTheme: Int = Theme.SYSTEM.id,
-    val favPairs: List<String> = listOf("BTCUSDT")
+    val favPairs: List<String> = listOf("BTCUSDT"),
+    val selectedTradingPair: String = "BTC"
 )
 
 data class ThemeData(

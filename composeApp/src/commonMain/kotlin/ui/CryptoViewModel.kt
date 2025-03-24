@@ -32,6 +32,7 @@ import model.TickerDataInfo
 import model.TradingPair
 import model.UiKline
 import network.HttpClient
+import theme.ThemeManager.store
 
 class CryptoViewModel : ViewModel() {
     private val httpClient = HttpClient()
@@ -45,9 +46,6 @@ class CryptoViewModel : ViewModel() {
     private val _tradingPairs = MutableStateFlow<List<TradingPair>>(emptyList())
     val tradingPairs: StateFlow<List<TradingPair>> = _tradingPairs.asStateFlow()
 
-    private val _selectedTradingPair = MutableStateFlow("BTC")
-    val selectedTradingPair: StateFlow<String> = _selectedTradingPair.asStateFlow()
-
     private val _allTickerDataMap = MutableStateFlow<Map<String, TickerData>>(emptyMap())
 
     private val _isLoading = MutableStateFlow(true)
@@ -59,12 +57,14 @@ class CryptoViewModel : ViewModel() {
     private var webSocketJob: Job? = null
     private var lastUpdateTime = 0L
     private val updateThrottleMs = 250L
+    private val settings = store.updates
 
     val filteredTickerDataMap: StateFlow<Map<String, TickerData>> = combine(
         _allTickerDataMap,
-        _selectedTradingPair,
+        settings,
         _searchQuery
-    ) { allData, selectedPair, query ->
+    ) { allData, settings, query ->
+        val selectedPair = settings?.selectedTradingPair ?: "BTC"
         val trimmedQuery = query.trim().uppercase()
         if (trimmedQuery.isEmpty()) {
             allData.filterKeys { it.endsWith(selectedPair) }
@@ -93,9 +93,13 @@ class CryptoViewModel : ViewModel() {
 
     fun setSelectedTradingPair(pair: String) {
         viewModelScope.launch {
-            _selectedTradingPair.value = pair
             _isLoading.value = true
             _searchQuery.value = ""
+
+            store.update { currentSettings ->
+                currentSettings?.copy(selectedTradingPair = pair)
+                    ?: Settings(selectedTradingPair = pair)
+            }
 
             if (filteredTickerDataMap.value.isNotEmpty()) {
                 _isLoading.value = false
@@ -113,13 +117,18 @@ class CryptoViewModel : ViewModel() {
 
     private var fetchJob: Job? = null
 
-    fun fetchUiKlinesForVisibleSymbols(visibleSymbols: List<String>) {
+    fun fetchUiKlinesForVisibleSymbols(
+        visibleSymbols: List<String>,
+        forceRefresh: Boolean = false
+    ) {
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
-            delay(100) // Debounce time
+            if (!forceRefresh) {
+                delay(100) // Debounce time
+            }
 
             val currentTrades = _trades.value.keys
-            val newSymbols = visibleSymbols.filterNot { it in currentTrades }
+            val newSymbols = if (forceRefresh) visibleSymbols else visibleSymbols.filterNot { it in currentTrades }
 
             if (newSymbols.isNotEmpty()) {
                 try {
@@ -131,6 +140,7 @@ class CryptoViewModel : ViewModel() {
             }
         }
     }
+
 
     private fun initializeData() {
         viewModelScope.launch {
