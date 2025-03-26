@@ -2,7 +2,15 @@
 
 # Kotlin/Compose Multiplatform Project
 
-<img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/presentation.png" alt="Presentation"/>
+<table>
+  <tr>
+    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/Screenshot_1.png" width="200" alt="1"></td>
+    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/Screenshot_2.png" width="200" alt="2"></td>
+    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/Screenshot_3.png" width="200" alt="3"></td>
+    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/Screenshot_4.png" width="200" alt="4"></td>
+    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/Screenshot_5.png" width="200" alt="5"></td>
+  </tr>
+</table>
 
 This project is a **Kotlin Multiplatform** application built with **Jetpack Compose** that targets **Android**, **iOS**, **Desktop**, and **Web** platforms. The primary goal is to display real-time cryptocurrency price data using the [Binance API](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams).
 
