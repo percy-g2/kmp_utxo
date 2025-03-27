@@ -248,7 +248,7 @@ class CryptoViewModel : ViewModel() {
                 tickers.forEach { ticker ->
                     updatedTickerMap[ticker.symbol] = TickerData(
                         symbol = ticker.symbol,
-                        lastPrice = formatPrice(ticker.lastPrice),
+                        lastPrice = formatPrice(ticker.lastPrice, ticker.symbol, tradingPairs.value),
                         priceChangePercent = ticker.priceChangePercent,
                         timestamp = Clock.System.now().toString(),
                         volume = ticker.totalTradedQuoteAssetVolume

@@ -44,22 +44,21 @@ import io.ktor.client.*
 import kotlinx.coroutines.flow.Flow
 import model.Home
 import model.NavItem
-import theme.DarkColorScheme
-import theme.LightColorScheme
-import theme.ThemeManager
+import theme.ThemeManager.store
 import theme.UTXOTheme
+import ui.AppTheme
 import ui.CryptoList
 import ui.CryptoViewModel
 import ui.Settings
 import ui.SettingsScreen
-import ui.Theme
 
 @Composable
 fun App(
     cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }
 ) {
     val navController: NavHostController = rememberNavController()
-    val themeState by ThemeManager.themeState.collectAsState()
+    val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
+    val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
     val networkObserver = remember { NetworkConnectivityObserver() }
@@ -80,20 +79,7 @@ fun App(
         NetworkDialog()
     }
 
-    LaunchedEffect(Unit) {
-        ThemeManager.store.get()?.let { settings ->
-            ThemeManager.themeState.value = settings.selectedTheme
-        }
-    }
-
-    val colorScheme = when (themeState) {
-        Theme.SYSTEM.id -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
-        Theme.LIGHT.id -> LightColorScheme
-        Theme.DARK.id -> DarkColorScheme
-        else -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
-    }
-
-    UTXOTheme(colorScheme) {
+    UTXOTheme(isDarkTheme) {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             bottomBar = {

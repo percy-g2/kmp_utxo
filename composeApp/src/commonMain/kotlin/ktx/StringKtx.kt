@@ -1,5 +1,13 @@
 package ktx
 
-fun String.formatPair(): String = if (contains("USDT")) {
-    replace("USDT", "/USDT")
-} else this
+fun String.toCryptoSymbol(): String = when(this.uppercase()) {
+    "BTC" -> "₿"
+    "USDT" -> "₮"
+    "USDC" -> "¢"
+    "ETH" -> "Ξ"
+    "DOGE" -> "Ð"
+    "FDUSD" -> "F"
+    "DAI" -> "◈"
+    "SOL" -> "◎"
+    else -> this
+}

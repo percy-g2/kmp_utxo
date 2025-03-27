@@ -2,6 +2,7 @@ package org.androdevlinux.utxo
 
 import App
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -24,41 +25,48 @@ import kotlinx.datetime.toLocalDateTime
 import model.UiKline
 import theme.DarkColorScheme
 import theme.LightColorScheme
-import theme.ThemeManager
+import theme.ThemeManager.store
 import theme.UTXOTheme
+import ui.AppTheme
 import ui.CryptoViewModel
-import ui.Theme
+import ui.Settings
 import ui.TickerCard
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val themeState by ThemeManager.themeState.collectAsState()
+            val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
             val view = LocalView.current
 
             if (!view.isInEditMode) {
                 // Determine color scheme based on themeState and system theme
-                val colorScheme = when (themeState) {
-                    Theme.SYSTEM.id -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
-                    Theme.LIGHT.id -> LightColorScheme
-                    Theme.DARK.id -> DarkColorScheme
+                val colorScheme = when (settingsState?.appTheme) {
+                    AppTheme.Light -> LightColorScheme
+                    AppTheme.System -> DarkColorScheme
                     else -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
                 }
 
                 // Set the system UI bar colors based on the app and system theme
                 val barColor = colorScheme.background.toArgb()
 
-                val isSystemInDarkTheme = isSystemInDarkTheme()
-                LaunchedEffect(themeState) {
-                    if (themeState == Theme.LIGHT.id || (!isSystemInDarkTheme && themeState == Theme.SYSTEM.id)) {
-                        enableEdgeToEdge(
-                            statusBarStyle = SystemBarStyle.light(barColor, barColor)
-                        )
-                    } else {
-                        enableEdgeToEdge(
-                            statusBarStyle = SystemBarStyle.dark(barColor)
-                        )
+                LaunchedEffect(settingsState?.appTheme) {
+                    when (settingsState?.appTheme) {
+                        AppTheme.Light -> {
+                            enableEdgeToEdge(
+                                statusBarStyle = SystemBarStyle.light(barColor, barColor)
+                            )
+                        }
+                        AppTheme.Dark -> {
+                            enableEdgeToEdge(
+                                statusBarStyle = SystemBarStyle.dark(barColor)
+                            )
+                        }
+                        else -> {
+                            enableEdgeToEdge(
+                                statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
+                            )
+                        }
                     }
                 }
             }
@@ -160,7 +168,7 @@ fun Preview1() {
         )
     )
 
-    UTXOTheme(LightColorScheme) {
+    UTXOTheme(false) {
         TickerCard(
             symbol = "BTCUSDT",
             price = "50000",

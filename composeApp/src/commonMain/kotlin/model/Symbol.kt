@@ -30,3 +30,24 @@ data class TradingPair(
     val status: String,
     val delistedTime: String? = null
 )
+
+enum class CryptoSymbol(val currency: String, val symbol: String) {
+    BTC("Bitcoin", "₿"),
+    USDT("Tether", "₮"),
+    USDC("USD Coin", "¢"),
+    ETH("Ethereum", "Ξ"),
+    DOGE("Dogecoin", "Ð"),
+    FDUSD("First Digital USD", "F"),
+    DAI("Dai", "◈"),
+    SOL("Solana", "◎");
+
+    companion object {
+        fun fromCurrency(currency: String): CryptoSymbol? =
+            entries.find { it.currency.equals(currency, ignoreCase = true) }
+
+        fun fromSymbol(symbol: String): CryptoSymbol? =
+            entries.find { it.symbol == symbol }
+    }
+
+    override fun toString(): String = "$currency ($symbol)"
+}

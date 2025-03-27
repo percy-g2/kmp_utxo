@@ -37,10 +37,7 @@ actual class NetworkConnectivityObserver {
 actual fun getKStore(): KStore<Settings> {
     return storeOf<Settings>(
         key = "settings",
-        default = Settings(
-            selectedTheme = 0,
-            favPairs = listOf("BTCUSDT")
-        )
+        default = Settings()
     )
 }
 

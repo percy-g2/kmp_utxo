@@ -67,10 +67,7 @@ actual fun getKStore(): KStore<Settings> {
     val paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, true)
     return storeOf<Settings>(
         file = Path("${paths.firstOrNull() as? String}/settings.json"),
-        default = Settings(
-            selectedTheme = 0,
-            favPairs = listOf("BTCUSDT")
-        )
+        default = Settings()
     )
 }
 

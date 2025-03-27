@@ -1,14 +1,13 @@
 package theme
 
-import androidx.compose.material3.ColorScheme
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import getKStore
-import kotlinx.coroutines.flow.MutableStateFlow
+import ui.AppTheme
 import ui.Settings
-import ui.Theme
 
 val DarkColorScheme = darkColorScheme(
     primary = primaryDark,
@@ -89,9 +88,13 @@ val LightColorScheme = lightColorScheme(
 
 @Composable
 fun UTXOTheme(
-    colorScheme: ColorScheme,
+    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
+    val colorScheme = when {
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
     MaterialTheme(
         colorScheme = colorScheme,
         content = content
@@ -99,11 +102,9 @@ fun UTXOTheme(
 }
 
 object ThemeManager {
-    val themeState = MutableStateFlow(Theme.SYSTEM.id)
     val store = getKStore()
 
-    suspend fun updateTheme(newTheme: Int) {
-        themeState.value = newTheme
-        store.update { it?.copy(selectedTheme = newTheme) ?: Settings(selectedTheme = newTheme) }
+    suspend fun updateTheme(newTheme: AppTheme) {
+        store.update { it?.copy(appTheme = newTheme) ?: Settings(appTheme = newTheme) }
     }
 }

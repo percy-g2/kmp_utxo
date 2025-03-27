@@ -62,10 +62,7 @@ actual fun getKStore(): KStore<Settings> {
     }
     return storeOf<Settings>(
         file = Path("${directory}/settings.json"),
-        default = Settings(
-            selectedTheme = 0,
-            favPairs = listOf("BTCUSDT")
-        )
+        default = Settings()
     )
 }
 

@@ -77,6 +77,8 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import ktx.toCryptoSymbol
+import model.TradingPair
 import model.UiKline
 import theme.ThemeManager.store
 import theme.greenDark
@@ -360,9 +362,8 @@ fun RowScope.TradeChart(
     }
     val (minPrice, _, priceRange) = priceStats
 
-    val selectedTheme by store.updates.collectAsState(initial = Settings(selectedTheme = Theme.SYSTEM.id))
-    val isDarkTheme = (selectedTheme?.selectedTheme == Theme.DARK.id
-        || (selectedTheme?.selectedTheme == Theme.SYSTEM.id && isSystemInDarkTheme()))
+    val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
+    val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
 
     var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
 
@@ -468,9 +469,8 @@ fun TickerCard(
     selectedTradingPair: String,
     cryptoViewModel: CryptoViewModel
 ) {
-    val selectedTheme by store.updates.collectAsState(initial = Settings(selectedTheme = Theme.SYSTEM.id))
-    val isDarkTheme = (selectedTheme?.selectedTheme == Theme.DARK.id
-        || (selectedTheme?.selectedTheme == Theme.SYSTEM.id && isSystemInDarkTheme()))
+    val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
+    val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
 
     LaunchedEffect(symbol) {
         cryptoViewModel.ensureChartData(symbol)
@@ -594,9 +594,14 @@ fun TickerCard(
     }
 }
 
-fun formatPrice(price: String): String = runCatching {
-    val formattedPrice = price.toDouble().formatAsCurrency()
-    "$$formattedPrice"
+fun formatPrice(price: String, symbol: String, tradingPairs: List<TradingPair>): String = runCatching {
+    val selectedPair = tradingPairs.find { pair ->
+        symbol.endsWith(pair.quote, true)
+    }?.quote ?: ""
+    val updatedPrice = if (selectedPair == "USDT" || selectedPair == "USDC") {
+        price.toDouble().formatAsCurrency()
+    } else price
+    "${selectedPair.toCryptoSymbol()} $updatedPrice"
 }.getOrElse {
     price
 }

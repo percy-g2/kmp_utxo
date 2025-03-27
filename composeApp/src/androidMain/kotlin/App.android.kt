@@ -18,15 +18,13 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
 import org.androdevlinux.utxo.ContextProvider
 import ui.Settings
+import androidx.core.net.toUri
 
 actual fun getKStore(): KStore<Settings> {
     val context = ContextProvider.getContext()
     return storeOf<Settings>(
         file = Path("${context.cacheDir?.absolutePath}/settings.json"),
-        default = Settings(
-            selectedTheme = 0,
-            favPairs = listOf("BTCUSDT")
-        )
+        default = Settings()
     )
 }
 
@@ -76,7 +74,7 @@ actual class NetworkConnectivityObserver {
 
 actual fun openLink(link: String) {
     val context = ContextProvider.getContext()
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link)).apply {
+    val intent = Intent(Intent.ACTION_VIEW, link.toUri()).apply {
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
     context.startActivity(intent)
