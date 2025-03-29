@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.net.Uri
+import androidx.core.net.toUri
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.*
@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
 import org.androdevlinux.utxo.ContextProvider
 import ui.Settings
-import androidx.core.net.toUri
 
 actual fun getKStore(): KStore<Settings> {
     val context = ContextProvider.getContext()

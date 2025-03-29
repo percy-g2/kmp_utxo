@@ -2,7 +2,6 @@ package org.androdevlinux.utxo
 
 import App
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -10,13 +9,16 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.startup.Initializer
 import kotlinx.datetime.Clock
@@ -36,6 +38,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val lifecycleOwner = LocalLifecycleOwner.current
             val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
             val view = LocalView.current
 
@@ -48,26 +51,35 @@ class MainActivity : ComponentActivity() {
                 }
 
                 // Set the system UI bar colors based on the app and system theme
-                val barColor = colorScheme.background.toArgb()
+                val scrimColor = colorScheme.background.toArgb()
+                val darkScrimColor = colorScheme.onBackground.toArgb()
 
-                LaunchedEffect(settingsState?.appTheme) {
-                    when (settingsState?.appTheme) {
-                        AppTheme.Light -> {
-                            enableEdgeToEdge(
-                                statusBarStyle = SystemBarStyle.light(barColor, barColor)
-                            )
-                        }
-                        AppTheme.Dark -> {
-                            enableEdgeToEdge(
-                                statusBarStyle = SystemBarStyle.dark(barColor)
-                            )
-                        }
-                        else -> {
-                            enableEdgeToEdge(
-                                statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
-                            )
+                DisposableEffect(lifecycleOwner, settingsState?.appTheme) {
+                    val observer = LifecycleEventObserver { _, event ->
+                        if (event == Lifecycle.Event.ON_RESUME) {
+                            when (settingsState?.appTheme) {
+                                AppTheme.Light -> {
+                                    enableEdgeToEdge(
+                                        statusBarStyle = SystemBarStyle.light(scrimColor, scrimColor),
+                                        navigationBarStyle = SystemBarStyle.light(scrimColor, scrimColor)
+                                    )
+                                }
+
+                                AppTheme.Dark -> {
+                                    enableEdgeToEdge(
+                                        statusBarStyle = SystemBarStyle.dark(darkScrimColor),
+                                        navigationBarStyle = SystemBarStyle.dark(darkScrimColor)
+                                    )
+                                }
+
+                                else -> {
+                                    enableEdgeToEdge()
+                                }
+                            }
                         }
                     }
+                    lifecycleOwner.lifecycle.addObserver(observer)
+                    onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
                 }
             }
             App()
