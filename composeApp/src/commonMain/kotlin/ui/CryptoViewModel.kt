@@ -2,6 +2,8 @@ package ui
 
 import NetworkConnectivityObserver
 import NetworkStatus
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import getWebSocketClient
@@ -26,6 +28,8 @@ import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
+import ktx.formatPrice
+import model.SortParams
 import model.Ticker
 import model.TickerData
 import model.TickerDataInfo
@@ -59,11 +63,16 @@ class CryptoViewModel : ViewModel() {
     private val updateThrottleMs = 250L
     private val settings = store.updates
 
+    val currentSortKey = mutableStateOf(SortParams.Vol)
+    val isSortDesc = mutableStateOf(false)
+
     val filteredTickerDataMap: StateFlow<Map<String, TickerData>> = combine(
         _allTickerDataMap,
         settings,
-        _searchQuery
-    ) { allData, settings, query ->
+        _searchQuery,
+        snapshotFlow { currentSortKey.value },
+        snapshotFlow { isSortDesc.value }
+    ) { allData, settings, query, sortKey, isDescending ->
         val selectedPair = settings?.selectedTradingPair ?: "BTC"
         val trimmedQuery = query.trim().uppercase()
         val filtered = if (trimmedQuery.isEmpty()) {
@@ -75,10 +84,43 @@ class CryptoViewModel : ViewModel() {
             }
         }
 
-        filtered
-            .toList()
-            .sortedByDescending { it.second.volume.toDoubleOrNull() ?: 0.0 }
-            .toMap()
+        val tickerList = filtered.map { (_, data) -> data }.toMutableList()
+
+        when (sortKey) {
+            SortParams.Pair -> {
+                if (!isDescending) {
+                    tickerList.sortByDescending { it.symbol }
+                } else {
+                    tickerList.sortBy { it.symbol }
+                }
+            }
+            SortParams.Vol -> {
+                if (!isDescending) {
+                    tickerList.sortByDescending { it.volume.toDoubleOrNull() ?: 0.0 }
+                } else {
+                    tickerList.sortBy { it.volume.toDoubleOrNull() ?: 0.0 }
+                }
+            }
+            SortParams.Price -> {
+                if (!isDescending) {
+                    tickerList.sortByDescending {
+                        it.lastPrice.filter { char -> char.isDigit() || char == '.' }.toDoubleOrNull() ?: 0.0
+                    }
+                } else {
+                    tickerList.sortBy {
+                        it.lastPrice.filter { char -> char.isDigit() || char == '.' }.toDoubleOrNull() ?: 0.0
+                    }
+                }
+            }
+            SortParams.Change -> {
+                if (!isDescending) {
+                    tickerList.sortByDescending { it.priceChangePercent.toDoubleOrNull() ?: 0.0 }
+                } else {
+                    tickerList.sortBy { it.priceChangePercent.toDoubleOrNull() ?: 0.0 }
+                }
+            }
+        }
+        tickerList.associateBy { it.symbol }
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
@@ -117,6 +159,13 @@ class CryptoViewModel : ViewModel() {
             if (filteredTickerDataMap.value.isNotEmpty()) {
                 _isLoading.value = false
             }
+        }
+    }
+
+    fun updateSortKey(key: SortParams) {
+        viewModelScope.launch {
+            isSortDesc.value = if (currentSortKey.value == key) !isSortDesc.value else isSortDesc.value
+            currentSortKey.value = key
         }
     }
 
@@ -253,9 +302,8 @@ class CryptoViewModel : ViewModel() {
                 tickers.forEach { ticker ->
                     updatedTickerMap[ticker.symbol] = TickerData(
                         symbol = ticker.symbol,
-                        lastPrice = formatPrice(ticker.lastPrice, ticker.symbol, tradingPairs.value),
+                        lastPrice = ticker.lastPrice.formatPrice(ticker.symbol, tradingPairs.value),
                         priceChangePercent = ticker.priceChangePercent,
-                        timestamp = Clock.System.now().toString(),
                         volume = ticker.totalTradedQuoteAssetVolume
                     )
                     val currentTrades = updatedTrades[ticker.symbol] ?: emptyList()

@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -21,6 +22,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -29,6 +31,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
@@ -54,6 +57,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -73,20 +77,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
-import ktx.toCryptoSymbol
-import model.TradingPair
+import ktx.formatVolume
+import model.SortParams
+import model.TickerData
 import model.UiKline
 import theme.ThemeManager.store
 import theme.greenDark
 import theme.greenLight
 import theme.redDark
-import kotlin.math.absoluteValue
-import kotlin.math.roundToInt
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CryptoList(cryptoViewModel: CryptoViewModel) {
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -210,17 +210,18 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                             modifier = Modifier.padding(top = 8.dp)
                         )
                     }
-                }  else {
+                } else {
                     LazyColumn(state = listState) {
+                        stickyHeader {
+                            TickerCardListHeader(cryptoViewModel)
+                        }
                         items(
                             items = tickerDataMap.values.toList(),
                             key = { it.symbol }
                         ) { tickerData ->
                             TickerCard(
-                                symbol = tickerData.symbol,
-                                price = tickerData.lastPrice,
+                                tickerData = tickerData,
                                 selectedTradingPair = settingsStore?.selectedTradingPair ?: "BTC",
-                                timestamp = tickerData.timestamp,
                                 trades = trades[tickerData.symbol] ?: emptyList(),
                                 priceChangePercent = tickerData.priceChangePercent,
                                 cryptoViewModel = cryptoViewModel
@@ -460,20 +461,120 @@ fun calculatePoints(trades: List<UiKline>, size: Offset, minPrice: Float, priceR
 }
 
 @Composable
+fun TickerCardListHeader(viewModel: CryptoViewModel) {
+    Row(
+        Modifier
+            .background(MaterialTheme.colorScheme.background)
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Row(
+            Modifier.weight(1f), horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(
+                Modifier
+                    .clickable {
+                        viewModel.updateSortKey(SortParams.Pair)
+                    },
+            ) {
+                TickerCardListHeaderItem("Name", SortParams.Pair, viewModel)
+            }
+            Text(
+                text = "/ ",
+                color = MaterialTheme.colorScheme.onSecondary,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.W300,
+            )
+            Row(
+                Modifier
+                    .clickable {
+                        viewModel.updateSortKey(SortParams.Vol)
+
+                    },
+            ) {
+                TickerCardListHeaderItem("Vol", SortParams.Vol, viewModel)
+            }
+        }
+        Row(
+            Modifier
+                .clickable {
+                    viewModel.updateSortKey(SortParams.Price)
+                },
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TickerCardListHeaderItem("Last Price", SortParams.Price, viewModel)
+        }
+        Row(
+            Modifier
+                .padding(start = 12.dp)
+                .width(86.dp)
+                .clickable {
+                    viewModel.updateSortKey(SortParams.Change)
+                },
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TickerCardListHeaderItem("24h Chg%", SortParams.Change, viewModel)
+        }
+    }
+}
+
+@Composable
+fun TickerCardListHeaderItem(
+    text: String,
+    sortKey: SortParams,
+    viewModel: CryptoViewModel,
+) {
+    val currentSortKey = viewModel.currentSortKey
+    val isSortDesc = viewModel.isSortDesc
+
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            text,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.W400,
+            color = if (currentSortKey.value == sortKey) MaterialTheme.colorScheme.onBackground else Color.Gray,
+            textAlign = TextAlign.End
+        )
+        Box {
+            Icon(
+                imageVector = Icons.Filled.ArrowDropDown,
+                contentDescription = "Change Up ${sortKey.name}",
+                tint = if (currentSortKey.value == sortKey && isSortDesc.value) MaterialTheme.colorScheme.onBackground
+                else Color.Gray,
+                modifier = Modifier
+                    .padding(bottom = 6.dp)
+                    .size(18.dp)
+                    .rotate(180f)
+            )
+            Icon(
+                imageVector = Icons.Filled.ArrowDropDown,
+                contentDescription = "Change Down ${sortKey.name}",
+                tint = if (viewModel.currentSortKey.value == sortKey && !isSortDesc.value) MaterialTheme.colorScheme.onBackground
+                else Color.Gray,
+                modifier = Modifier
+                    .padding(top = 6.dp)
+                    .size(18.dp)
+            )
+        }
+    }
+}
+
+@Composable
 fun TickerCard(
-    symbol: String,
-    price: String,
-    timestamp: String,
+    tickerData: TickerData,
     priceChangePercent: String,
     trades: List<UiKline>,
     selectedTradingPair: String,
-    cryptoViewModel: CryptoViewModel
+    cryptoViewModel: CryptoViewModel,
 ) {
     val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
 
-    LaunchedEffect(symbol) {
-        cryptoViewModel.ensureChartData(symbol)
+    LaunchedEffect(tickerData.symbol) {
+        cryptoViewModel.ensureChartData(tickerData.symbol)
     }
 
     Card(
@@ -496,10 +597,10 @@ fun TickerCard(
                     .padding(horizontal = 4.dp)
                     .weight(1f)
             ) {
-                if (symbol.isNotEmpty()) {
+                if (tickerData.symbol.isNotEmpty()) {
                     val value = buildAnnotatedString {
                         withStyle(style = SpanStyle(fontSize = 18.sp)) {
-                            append(symbol.replace(selectedTradingPair, ""))
+                            append(tickerData.symbol.replace(selectedTradingPair, ""))
                         }
                         withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
                             append("/$selectedTradingPair")
@@ -510,30 +611,16 @@ fun TickerCard(
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                 }
+
                 AnimatedContent(
-                    targetState = priceChangePercent,
+                    targetState = tickerData.volume.formatVolume(),
                     transitionSpec = { fadeIn() togetherWith fadeOut() },
-                    label = "Price Change Percentage Animation"
-                ) { targetPriceChangePercent ->
-                    val priceChangeColor = when {
-                        targetPriceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
-                        else -> redDark
-                    }
+                    label = "volume Animation"
+                ) { targetVolume ->
                     Text(
-                        modifier = Modifier.padding(bottom = 8.dp),
-                        text = "$targetPriceChangePercent %",
-                        color = priceChangeColor,
-                        style = MaterialTheme.typography.titleSmall
-                    )
-                }
-                AnimatedContent(
-                    targetState = price,
-                    transitionSpec = { fadeIn() togetherWith fadeOut() },
-                    label = "Price Animation"
-                ) { targetPrice ->
-                    Text(
-                        text = targetPrice,
+                        text = targetVolume,
                         style = MaterialTheme.typography.titleSmall,
+                        color = Color.Gray,
                         modifier = Modifier.animateContentSize()
                     )
                 }
@@ -544,75 +631,42 @@ fun TickerCard(
                     .padding(horizontal = 4.dp)
                     .weight(1f)
             ) {
-                if (timestamp.isNotEmpty()) {
-                    val formattedDateTime = remember(timestamp) {
-                        try {
-                            val localDateTime = try {
-                                Instant.parse(timestamp).toLocalDateTime(TimeZone.currentSystemDefault())
-                            } catch (e: Exception) {
-                                LocalDateTime.parse(timestamp)
-                            }
-                            val date = "${localDateTime.year}-" +
-                                "${localDateTime.monthNumber.toString().padStart(2, '0')}-" +
-                                localDateTime.dayOfMonth.toString().padStart(2, '0')
-                            val time = "${localDateTime.hour.toString().padStart(2, '0')}:" +
-                                "${localDateTime.minute.toString().padStart(2, '0')}:" +
-                                localDateTime.second.toString().padStart(2, '0')
-                            Pair(date, time)
-                        } catch (e: Exception) {
-                            Pair("", "")
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .align(Alignment.End),
+                    horizontalAlignment = Alignment.End,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    AnimatedContent(
+                        targetState = priceChangePercent,
+                        transitionSpec = { fadeIn() togetherWith fadeOut() },
+                        label = "Price Change Percentage Animation"
+                    ) { targetPriceChangePercent ->
+                        val priceChangeColor = when {
+                            targetPriceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
+                            else -> redDark
                         }
-                    }
-
-                    val (date, time) = formattedDateTime
-
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .align(Alignment.End),
-                        horizontalAlignment = Alignment.End,
-                        verticalArrangement = Arrangement.Center
-                    ) {
                         Text(
-                            text = date,
-                            style = MaterialTheme.typography.bodyMedium
+                            modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
+                            text = "$targetPriceChangePercent %",
+                            color = priceChangeColor,
+                            style = MaterialTheme.typography.titleSmall
                         )
-                        AnimatedContent(
-                            targetState = time,
-                            transitionSpec = { fadeIn() togetherWith fadeOut() },
-                            label = "Time Animation"
-                        ) { targetTime ->
-                            Text(
-                                text = targetTime,
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                        }
+                    }
+                    AnimatedContent(
+                        targetState = tickerData.lastPrice,
+                        transitionSpec = { fadeIn() togetherWith fadeOut() },
+                        label = "Price Animation"
+                    ) { targetPrice ->
+                        Text(
+                            text = targetPrice,
+                            style = MaterialTheme.typography.titleSmall,
+                            modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
+                        )
                     }
                 }
             }
         }
     }
-}
-
-fun formatPrice(price: String, symbol: String, tradingPairs: List<TradingPair>): String = runCatching {
-    val selectedPair = tradingPairs.find { pair ->
-        symbol.endsWith(pair.quote, true)
-    }?.quote ?: ""
-    val updatedPrice = if (selectedPair == "USDT" || selectedPair == "USDC") {
-        price.toDouble().formatAsCurrency()
-    } else price
-    "${selectedPair.toCryptoSymbol()} $updatedPrice"
-}.getOrElse {
-    price
-}
-
-fun Double.formatAsCurrency(): String {
-    val absValue = this.absoluteValue
-    val integerPart = absValue.toInt()
-    val fractionalPart = ((absValue - integerPart) * 100).roundToInt()
-
-    val formattedInteger = integerPart.toString().reversed().chunked(3).joinToString(",").reversed()
-    val formattedFractional = fractionalPart.toString().padStart(2, '0')
-
-    return if (this < 0) "-$formattedInteger.$formattedFractional" else "$formattedInteger.$formattedFractional"
 }

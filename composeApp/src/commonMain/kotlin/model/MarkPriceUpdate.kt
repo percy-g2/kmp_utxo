@@ -45,7 +45,13 @@ data class Ticker(
 data class TickerData(
     val symbol: String,
     val lastPrice: String,
-    val timestamp: String,
     val priceChangePercent: String,
     val volume: String
 )
+
+enum class SortParams {
+    Pair,
+    Vol,
+    Price,
+    Change
+}
