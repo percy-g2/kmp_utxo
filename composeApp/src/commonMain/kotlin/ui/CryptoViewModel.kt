@@ -66,7 +66,7 @@ class CryptoViewModel : ViewModel() {
     ) { allData, settings, query ->
         val selectedPair = settings?.selectedTradingPair ?: "BTC"
         val trimmedQuery = query.trim().uppercase()
-        if (trimmedQuery.isEmpty()) {
+        val filtered = if (trimmedQuery.isEmpty()) {
             allData.filterKeys { it.endsWith(selectedPair) }
         } else {
             allData.filterKeys {
@@ -74,6 +74,11 @@ class CryptoViewModel : ViewModel() {
                     it.replace(selectedPair, "").contains(trimmedQuery)
             }
         }
+
+        filtered
+            .toList()
+            .sortedByDescending { it.second.volume.toDoubleOrNull() ?: 0.0 }
+            .toMap()
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
