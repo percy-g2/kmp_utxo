@@ -183,6 +183,7 @@ class CryptoViewModel : ViewModel() {
 
             val currentTrades = _trades.value.keys
             val newSymbols = if (forceRefresh) {
+                _trades.value = emptyMap()
                 visibleSymbols
             } else {
                 visibleSymbols.filterNot { symbol ->

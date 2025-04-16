@@ -76,6 +76,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ktx.formatVolume
 import model.SortParams
@@ -157,11 +158,9 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                 isSelected = symbol.quote == settingsStore?.selectedTradingPair,
                                 onClick = { quote ->
                                     cryptoViewModel.setSelectedTradingPair(quote)
-                                    val targetIndex = tickerDataMap.values.indexOf(tickerDataMap.values.firstOrNull())
-                                    if (listState.firstVisibleItemIndex != targetIndex && targetIndex != -1) {
-                                        coroutineScope.launch {
-                                            listState.animateScrollToItem(targetIndex)
-                                        }
+                                    coroutineScope.launch {
+                                        delay(100)
+                                        listState.scrollToItem(0)
                                     }
                                 }
                             )
