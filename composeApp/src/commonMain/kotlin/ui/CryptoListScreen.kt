@@ -346,7 +346,7 @@ fun RowScope.TradeChart(
                 .padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
-            LinearProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
+            LinearProgressIndicator()
         }
         return
     }
@@ -578,11 +578,7 @@ fun TickerCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
-        )
+        elevation = CardDefaults.cardElevation(8.dp)
     ) {
         Row(
             modifier = Modifier
