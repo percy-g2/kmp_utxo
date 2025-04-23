@@ -87,6 +87,7 @@ import theme.ThemeManager.store
 import theme.greenDark
 import theme.greenLight
 import theme.redDark
+import ui.components.LazyColumnScrollbar
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -211,21 +212,32 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                         )
                     }
                 } else {
-                    LazyColumn(state = listState) {
-                        stickyHeader {
-                            TickerCardListHeader(cryptoViewModel)
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        LazyColumn(state = listState) {
+                            stickyHeader {
+                                TickerCardListHeader(cryptoViewModel)
+                            }
+                            items(
+                                items = tickerDataMap.values.toList(),
+                                key = { it.symbol }
+                            ) { tickerData ->
+                                TickerCard(
+                                    tickerData = tickerData,
+                                    selectedTradingPair = settingsStore?.selectedTradingPair ?: "BTC",
+                                    trades = trades[tickerData.symbol] ?: emptyList(),
+                                    priceChangePercent = tickerData.priceChangePercent,
+                                    cryptoViewModel = cryptoViewModel
+                                )
+                            }
                         }
-                        items(
-                            items = tickerDataMap.values.toList(),
-                            key = { it.symbol }
-                        ) { tickerData ->
-                            TickerCard(
-                                tickerData = tickerData,
-                                selectedTradingPair = settingsStore?.selectedTradingPair ?: "BTC",
-                                trades = trades[tickerData.symbol] ?: emptyList(),
-                                priceChangePercent = tickerData.priceChangePercent,
-                                cryptoViewModel = cryptoViewModel
-                            )
+
+                        LazyColumnScrollbar(
+                            listState = listState,
+                            modifier = Modifier
+                                .align(Alignment.CenterEnd)
+                                .padding(end = 2.dp)
+                        ) {
+
                         }
                     }
                 }
@@ -418,6 +430,7 @@ fun RowScope.TradeChart(
                         priceChangeColor.copy(alpha = 0f)
                     )
                 }
+
                 else -> {
                     // Red gradient for negative change
                     listOf(
