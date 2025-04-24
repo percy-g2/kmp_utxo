@@ -231,14 +231,7 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                             }
                         }
 
-                        LazyColumnScrollbar(
-                            listState = listState,
-                            modifier = Modifier
-                                .align(Alignment.CenterEnd)
-                                .padding(end = 2.dp)
-                        ) {
-
-                        }
+                        LazyColumnScrollbar(listState = listState)
                     }
                 }
             }

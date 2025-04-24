@@ -94,107 +94,104 @@ fun LazyColumnScrollbar(
     selectionMode: ScrollbarSelectionMode = ScrollbarSelectionMode.Thumb,
     selectionActionable: ScrollbarSelectionActionable = ScrollbarSelectionActionable.Always,
     hideDelay: Duration = 400.toDuration(DurationUnit.MILLISECONDS),
-    showItemIndicator: ListIndicatorSettings = ListIndicatorSettings.EnabledMirrored(
-        100.dp,
-        MaterialTheme.colorScheme.surface
+    showItemIndicator: ListIndicatorSettings = EnabledIndividualControl(
+        upperIndicatorHeight = 0.dp,
+        upperIndicatorColor = MaterialTheme.colorScheme.surface,
+        lowerIndicatorHeight = 100.dp,
+        lowerIndicatorColor = MaterialTheme.colorScheme.surface
     ),
-    enabled: Boolean = true,
-    indicatorContent: (@Composable (index: Int, isThumbSelected: Boolean) -> Unit)? = null,
-    content: @Composable () -> Unit
+    indicatorContent: (@Composable (index: Int, isThumbSelected: Boolean) -> Unit)? = null
 ) {
-    if ((!enabled)) {
-        content()
-    } else {
-        Box(modifier = modifier) {
-            val visibilityState = remember {
-                derivedStateOf {
-                    calculateVisibilityStates(listState, showItemIndicator)
-                }
+    Box(modifier = modifier) {
+        val visibilityState = remember {
+            derivedStateOf {
+                calculateVisibilityStates(listState, showItemIndicator)
             }
-
-            // Use animateFloatAsState to smoothly transition the alpha value
-            val alphaAbove: Float by animateFloatAsState(
-                if (visibilityState.value.first != VisibilityState.CompletelyVisible) 1f else 0f,
-                animationSpec = tween(250)
-            )
-            val alphaBelow: Float by animateFloatAsState(
-                if (visibilityState.value.second != VisibilityState.CompletelyVisible) 1f else 0f,
-                animationSpec = tween(250)
-            )
-
-            val heightAbove: Float by animateFloatAsState(
-                if (visibilityState.value.first == VisibilityState.NotVisible) .8f else .25f,
-                animationSpec = tween(1000)
-            )
-
-            val heightBelow: Float by animateFloatAsState(
-                if (visibilityState.value.second == VisibilityState.NotVisible) 1f else .25f,
-                animationSpec = tween(1000)
-            )
-
-            content()
-            when(showItemIndicator){
-                ListIndicatorSettings.Disabled -> {
-                    // Do nothing
-                }
-                is ListIndicatorSettings.EnabledIndividualControl -> {
-                    DisplayIndicator(
-                        upIndication = true,
-                        indicatorHeight = showItemIndicator.upperIndicatorHeight * heightAbove,
-                        indicatorColor = showItemIndicator.upperIndicatorColor,
-                        alpha = alphaAbove,
-                        graphicIndicator = showItemIndicator.upperGraphicIndicator,
-                        modifier = Modifier.align(Alignment.TopCenter).focusable(false)
-                    )
-
-                    DisplayIndicator(
-                        upIndication = false,
-                        indicatorHeight = showItemIndicator.lowerIndicatorHeight * heightBelow,
-                        indicatorColor = showItemIndicator.lowerIndicatorColor.copy(alpha = alphaBelow),
-                        alpha = alphaBelow,
-                        graphicIndicator = showItemIndicator.lowerGraphicIndicator,
-                        modifier = Modifier.align(Alignment.BottomCenter).focusable(false)
-                    )
-                }
-                is ListIndicatorSettings.EnabledMirrored -> {
-                    DisplayIndicator(
-                        upIndication = true,
-                        indicatorHeight = showItemIndicator.indicatorHeight * heightAbove,
-                        indicatorColor = showItemIndicator.indicatorColor,
-                        alpha = alphaAbove,
-                        graphicIndicator = showItemIndicator.graphicIndicator,
-                        modifier = Modifier.align(Alignment.TopCenter).focusable(false)
-                    )
-
-                    DisplayIndicator(
-                        upIndication = false,
-                        indicatorHeight = showItemIndicator.indicatorHeight * heightBelow,
-                        indicatorColor = showItemIndicator.indicatorColor.copy(alpha = alphaBelow),
-                        alpha = alphaBelow,
-                        graphicIndicator = showItemIndicator.graphicIndicator,
-                        modifier = Modifier.align(Alignment.BottomCenter).focusable(false),
-                        graphicModifier = Modifier.rotate(180f)
-                    )
-                }
-            }
-
-            InternalLazyColumnScrollbar(
-                listState = listState,
-                modifier = Modifier,
-                rightSide = rightSide,
-                alwaysShowScrollBar = alwaysShowScrollBar,
-                thickness = thickness,
-                padding = padding,
-                thumbMinHeight = thumbMinHeight,
-                thumbColor = thumbColor,
-                thumbSelectedColor = thumbSelectedColor,
-                selectionActionable = selectionActionable,
-                hideDelay = hideDelay,
-                thumbShape = thumbShape,
-                selectionMode = selectionMode,
-                indicatorContent = indicatorContent,
-            )
         }
+
+        // Use animateFloatAsState to smoothly transition the alpha value
+        val alphaAbove: Float by animateFloatAsState(
+            if (visibilityState.value.first != VisibilityState.CompletelyVisible) 1f else 0f,
+            animationSpec = tween(250)
+        )
+        val alphaBelow: Float by animateFloatAsState(
+            if (visibilityState.value.second != VisibilityState.CompletelyVisible) 1f else 0f,
+            animationSpec = tween(250)
+        )
+
+        val heightAbove: Float by animateFloatAsState(
+            if (visibilityState.value.first == VisibilityState.NotVisible) .8f else .25f,
+            animationSpec = tween(1000)
+        )
+
+        val heightBelow: Float by animateFloatAsState(
+            if (visibilityState.value.second == VisibilityState.NotVisible) 1f else .25f,
+            animationSpec = tween(1000)
+        )
+
+        when (showItemIndicator) {
+            Disabled -> {
+                // Do nothing
+            }
+
+            is EnabledIndividualControl -> {
+                DisplayIndicator(
+                    upIndication = true,
+                    indicatorHeight = showItemIndicator.upperIndicatorHeight * heightAbove,
+                    indicatorColor = showItemIndicator.upperIndicatorColor,
+                    alpha = alphaAbove,
+                    graphicIndicator = showItemIndicator.upperGraphicIndicator,
+                    modifier = Modifier.align(Alignment.TopCenter).focusable(false)
+                )
+
+                DisplayIndicator(
+                    upIndication = false,
+                    indicatorHeight = showItemIndicator.lowerIndicatorHeight * heightBelow,
+                    indicatorColor = showItemIndicator.lowerIndicatorColor.copy(alpha = alphaBelow),
+                    alpha = alphaBelow,
+                    graphicIndicator = showItemIndicator.lowerGraphicIndicator,
+                    modifier = Modifier.align(Alignment.BottomCenter).focusable(false)
+                )
+            }
+
+            is EnabledMirrored -> {
+                DisplayIndicator(
+                    upIndication = true,
+                    indicatorHeight = showItemIndicator.indicatorHeight * heightAbove,
+                    indicatorColor = showItemIndicator.indicatorColor,
+                    alpha = alphaAbove,
+                    graphicIndicator = showItemIndicator.graphicIndicator,
+                    modifier = Modifier.align(Alignment.TopCenter).focusable(false)
+                )
+
+                DisplayIndicator(
+                    upIndication = false,
+                    indicatorHeight = showItemIndicator.indicatorHeight * heightBelow,
+                    indicatorColor = showItemIndicator.indicatorColor.copy(alpha = alphaBelow),
+                    alpha = alphaBelow,
+                    graphicIndicator = showItemIndicator.graphicIndicator,
+                    modifier = Modifier.align(Alignment.BottomCenter).focusable(false),
+                    graphicModifier = Modifier.rotate(180f)
+                )
+            }
+        }
+
+        InternalLazyColumnScrollbar(
+            listState = listState,
+            modifier = Modifier,
+            rightSide = rightSide,
+            alwaysShowScrollBar = alwaysShowScrollBar,
+            thickness = thickness,
+            padding = padding,
+            thumbMinHeight = thumbMinHeight,
+            thumbColor = thumbColor,
+            thumbSelectedColor = thumbSelectedColor,
+            selectionActionable = selectionActionable,
+            hideDelay = hideDelay,
+            thumbShape = thumbShape,
+            selectionMode = selectionMode,
+            indicatorContent = indicatorContent,
+        )
     }
 }
 
@@ -481,7 +478,7 @@ internal fun calculateVisibilityStates(
         return Pair(VisibilityState.NotVisible, VisibilityState.NotVisible)
     }
 
-    if (showItemIndicator is ListIndicatorSettings.Disabled) {
+    if (showItemIndicator is Disabled) {
         return Pair(VisibilityState.CompletelyVisible, VisibilityState.CompletelyVisible)
     }
 
