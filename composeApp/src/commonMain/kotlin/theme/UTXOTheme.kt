@@ -97,7 +97,8 @@ fun UTXOTheme(
     }
     MaterialTheme(
         colorScheme = colorScheme,
-        content = content
+        content = content,
+        typography = AppTypography()
     )
 }
 

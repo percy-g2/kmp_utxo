@@ -87,9 +87,7 @@ fun App(
                     actions = {
                         val navItems = listOf(NavItem.HomeScreen, NavItem.SettingsScreen)
 
-                        NavigationBar(
-                            tonalElevation = 0.dp
-                        ) {
+                        NavigationBar {
                             navItems.forEachIndexed { index, item ->
                                 NavigationBarItem(
                                     alwaysShowLabel = false,
@@ -99,17 +97,11 @@ fun App(
                                             contentDescription = item.title
                                         )
                                     },
-                                    label = { if (selectedItem == index) Text(item.title) },
+                                    label = { Text(item.title) },
                                     selected = selectedItem == index,
                                     onClick = {
                                         selectedItem = index
-                                        navController.navigate(item.path) {
-                                            popUpTo(navController.graph.startDestinationId) {
-                                                saveState = true
-                                            }
-                                            launchSingleTop = true
-                                            restoreState = true
-                                        }
+                                        navController.navigate(item.path)
                                     }
                                 )
                             }

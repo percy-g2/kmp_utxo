@@ -6,7 +6,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -77,6 +76,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import io.ktor.util.Platform
+import io.ktor.util.PlatformUtils
+import io.ktor.util.platform
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ktx.formatVolume
@@ -89,7 +91,6 @@ import theme.greenLight
 import theme.redDark
 import ui.components.LazyColumnScrollbar
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CryptoList(cryptoViewModel: CryptoViewModel) {
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -128,9 +129,11 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
-                cryptoViewModel.reconnect()
-                if (visibleSymbols.isNotEmpty()) {
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, true)
+                if (PlatformUtils.platform != Platform.WasmJs(Platform.JsPlatform.Browser)) {
+                    cryptoViewModel.reconnect()
+                    if (visibleSymbols.isNotEmpty()) {
+                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, true)
+                    }
                 }
             }
         }
