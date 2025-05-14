@@ -76,9 +76,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import io.ktor.util.Platform
-import io.ktor.util.PlatformUtils
-import io.ktor.util.platform
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ktx.formatVolume
@@ -129,11 +126,9 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME) {
-                if (PlatformUtils.platform != Platform.WasmJs(Platform.JsPlatform.Browser)) {
-                    cryptoViewModel.reconnect()
-                    if (visibleSymbols.isNotEmpty()) {
-                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, true)
-                    }
+                cryptoViewModel.reconnect()
+                if (visibleSymbols.isNotEmpty()) {
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, true)
                 }
             }
         }
@@ -375,7 +370,8 @@ fun RowScope.TradeChart(
 
     val priceChangeColor = when {
         priceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
-        else -> redDark
+        priceChangePercent.toFloat() < 0f -> redDark
+        else -> MaterialTheme.colorScheme.primary
     }
 
     Box(
@@ -647,7 +643,8 @@ fun TickerCard(
                     ) { targetPriceChangePercent ->
                         val priceChangeColor = when {
                             targetPriceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
-                            else -> redDark
+                            targetPriceChangePercent.toFloat() < 0f -> redDark
+                            else -> MaterialTheme.colorScheme.primary
                         }
                         Text(
                             modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
