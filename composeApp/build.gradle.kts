@@ -81,6 +81,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.materialIconsExtended)
+            implementation(libs.lifecyle.runtime.compose)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.logging)

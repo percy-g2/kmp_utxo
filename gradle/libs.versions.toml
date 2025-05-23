@@ -11,6 +11,7 @@ kotlinxDatetime = "0.6.2"
 ktor = "3.1.3"
 lifecycleViewmodelCompose = "2.9.0"
 navigationCompose = "2.9.0-beta02"
+composeLifecyleRuntime = "2.9.0"
 kstore = "0.9.1"
 harawata-appdirs = "1.4.0"
 startupRuntime = "1.2.0"
@@ -38,6 +39,7 @@ kstore-storage = { module = "io.github.xxfast:kstore-storage", version.ref = "ks
 harawata-appdirs = { module = "net.harawata:appdirs", version.ref = "harawata-appdirs" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
 kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutinesVersion" }
+lifecyle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecyleRuntime" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
