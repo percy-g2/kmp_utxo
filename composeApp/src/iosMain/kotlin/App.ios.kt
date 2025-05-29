@@ -1,10 +1,13 @@
 
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
-import io.ktor.client.*
-import io.ktor.client.engine.darwin.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.client.plugins.websocket.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.darwin.Darwin
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.client.plugins.websocket.WebSockets
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -29,12 +32,19 @@ actual fun openLink(link: String) {
     runCatching {
         val nsUrl = NSURL.URLWithString(link)
         if (nsUrl != null) {
-            UIApplication.sharedApplication.openURL(nsUrl)
+            UIApplication.sharedApplication.openURL(
+                nsUrl,
+                mapOf<Any?, Any>(),
+                completionHandler = { success ->
+                    println("Open URL success: $success")
+                }
+            )
         }
     }.getOrElse {
         it.printStackTrace()
     }
 }
+
 
 actual class NetworkConnectivityObserver {
     actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
