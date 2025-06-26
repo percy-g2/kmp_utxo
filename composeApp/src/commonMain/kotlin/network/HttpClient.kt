@@ -1,18 +1,22 @@
 package network
 
-import io.ktor.client.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
+import io.ktor.client.HttpClient
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.client.request.get
+import io.ktor.client.request.headers
+import io.ktor.client.request.parameter
+import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.HttpStatusCode
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.atomicfu.atomic
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
@@ -20,18 +24,22 @@ import model.MarginSymbols
 import model.UiKline
 import model.UiKlineSerializer
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 class RateLimiter(
     private val maxRequests: Int,
     private val windowDurationMillis: Long
 ) {
     private val isLocked = atomic(false)
+    @OptIn(ExperimentalTime::class)
     private val requests = mutableListOf<Instant>()
 
+    @OptIn(ExperimentalTime::class)
     suspend fun acquire() {
         while (true) {
-            val now = Clock.System.now()
-            val windowStart = now.minus(windowDurationMillis.milliseconds)
+            val now = kotlin.time.Clock.System.now()
+            val windowStart: Instant = now.minus(windowDurationMillis.milliseconds)
 
             while (!isLocked.compareAndSet(expect = false, update = true)) {
                 delay(1)

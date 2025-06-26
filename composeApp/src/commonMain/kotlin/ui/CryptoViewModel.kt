@@ -7,10 +7,13 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import getWebSocketClient
-import io.ktor.client.plugins.websocket.*
-import io.ktor.client.request.*
-import io.ktor.http.*
-import io.ktor.websocket.*
+import io.ktor.client.plugins.websocket.wss
+import io.ktor.client.request.header
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMethod
+import io.ktor.websocket.Frame
+import io.ktor.websocket.readText
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -26,7 +29,6 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
-import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
 import ktx.formatPrice
 import model.SortParams
@@ -37,6 +39,8 @@ import model.TradingPair
 import model.UiKline
 import network.HttpClient
 import theme.ThemeManager.store
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
 class CryptoViewModel : ViewModel() {
     private val httpClient = HttpClient()
@@ -290,6 +294,7 @@ class CryptoViewModel : ViewModel() {
         }
     }
 
+    @OptIn(ExperimentalTime::class)
     private fun processTickerMessage(message: String) {
         val now = Clock.System.now().toEpochMilliseconds()
         if (now - lastUpdateTime < updateThrottleMs) return

@@ -28,7 +28,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.TransformOrigin
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
@@ -40,7 +39,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.serialization.generateHashCode
 import io.github.xxfast.kstore.KStore
-import io.ktor.client.*
+import io.ktor.client.HttpClient
 import kotlinx.coroutines.flow.Flow
 import model.Home
 import model.NavItem
@@ -101,7 +100,13 @@ fun App(
                                     selected = selectedItem == index,
                                     onClick = {
                                         selectedItem = index
-                                        navController.navigate(item.path)
+                                        navController.navigate(item.path) {
+                                            popUpTo(navController.graph.startDestinationId) {
+                                                saveState = true
+                                            }
+                                            launchSingleTop = true
+                                            restoreState = true
+                                        }
                                     }
                                 )
                             }
