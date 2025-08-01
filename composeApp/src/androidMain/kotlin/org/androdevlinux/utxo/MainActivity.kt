@@ -3,7 +3,9 @@ package org.androdevlinux.utxo
 import App
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -27,8 +29,19 @@ import ui.AppTheme
 import ui.Settings
 
 class MainActivity : ComponentActivity() {
+    private var backPressedTime = 0L
+    private var backToast: Toast? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val backCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                handleBackPress()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, backCallback)
+
         setContent {
             val lifecycleOwner = LocalLifecycleOwner.current
             val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
@@ -76,6 +89,27 @@ class MainActivity : ComponentActivity() {
             }
             App()
         }
+    }
+
+    private fun handleBackPress() {
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - backPressedTime < 2000) {
+            // Pressed back twice within 2 seconds, exit the app
+            backToast?.cancel()
+            finish()
+        } else {
+            // First back press, show toast
+            backPressedTime = currentTime
+            backToast?.cancel()
+            backToast = Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT)
+            backToast?.show()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        backToast?.cancel()
     }
 }
 
