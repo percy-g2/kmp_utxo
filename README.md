@@ -21,7 +21,7 @@ This project is a **Kotlin Multiplatform** application built with **Jetpack Comp
 
 ## Tech Stack
 - **Kotlin Multiplatform**
-- **Jetpack Compose**: For UI across all platforms.
+- **Compose Multiplatform**: For UI across all platforms.
 - **Coroutines**: For asynchronous operations.
 - **Ktor**: For network requests.
 - **KStore**: For storage management.
