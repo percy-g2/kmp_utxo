@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -232,7 +233,8 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                         ?: "BTC",
                                     trades = trades[tickerData.symbol] ?: emptyList(),
                                     priceChangePercent = tickerData.priceChangePercent,
-                                    cryptoViewModel = cryptoViewModel
+                                    cryptoViewModel = cryptoViewModel,
+                                    isFirst = tickerDataMap.values.indexOf(tickerData) == 0
                                 )
                             }
                         }
@@ -585,6 +587,7 @@ fun TickerCard(
     trades: List<UiKline>,
     selectedTradingPair: String,
     cryptoViewModel: CryptoViewModel,
+    isFirst: Boolean,
 ) {
     val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
@@ -593,116 +596,129 @@ fun TickerCard(
         cryptoViewModel.ensureChartData(tickerData.symbol)
     }
 
-    Card(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
-        elevation = CardDefaults.cardElevation(8.dp)
+            .padding(top = if (isFirst) 4.dp else 0.dp)
     ) {
-        Row(
+        Card(
             modifier = Modifier
-                .height(IntrinsicSize.Min)
+                .fillMaxWidth()
                 .padding(8.dp),
+            elevation = CardDefaults.cardElevation(8.dp)
         ) {
-            Column(
+            Row(
                 modifier = Modifier
-                    .padding(horizontal = 4.dp)
-                    .weight(1f)
-            ) {
-                if (tickerData.symbol.isNotEmpty()) {
-                    val value = buildAnnotatedString {
-                        withStyle(style = SpanStyle(fontSize = 18.sp)) {
-                            append(tickerData.symbol.replace(selectedTradingPair, ""))
-                        }
-                        withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
-                            append("/$selectedTradingPair")
-                        }
-                    }
-                    Text(
-                        text = value,
-                        modifier = Modifier.padding(bottom = 8.dp)
-                    )
-                }
-
-                Row(
-                   verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    AnimatedContent(
-                        targetState = tickerData.volume.formatVolume(),
-                        transitionSpec = { fadeIn() togetherWith fadeOut() },
-                        label = "volume Animation"
-                    ) { targetVolume ->
-                        Text(
-                            text = targetVolume,
-                            style = MaterialTheme.typography.titleSmall,
-                            color = Color.Gray,
-                            modifier = Modifier.animateContentSize()
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.width(4.dp))
-
-                    val isFavorite = settingsState?.favPairs?.contains(tickerData.symbol) == true
-                    IconButton(
-                        onClick = {
-                            if (isFavorite) cryptoViewModel.removeFromFavorites(tickerData.symbol)
-                            else cryptoViewModel.addToFavorites(tickerData.symbol)
-                        },
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(24.dp)
-                    ) {
-                        Icon(
-                            imageVector = if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
-                            contentDescription = if (isFavorite) "Unfavorite" else "Favorite"
-                        )
-                    }
-                }
-            }
-            TradeChart(trades = trades, priceChangePercent = priceChangePercent)
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = 4.dp)
-                    .weight(1f)
+                    .height(IntrinsicSize.Min)
+                    .padding(8.dp),
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .align(Alignment.End),
-                    horizontalAlignment = Alignment.End,
-                    verticalArrangement = Arrangement.Center
+                        .padding(horizontal = 4.dp)
+                        .weight(1f)
                 ) {
-                    AnimatedContent(
-                        targetState = priceChangePercent,
-                        transitionSpec = { fadeIn() togetherWith fadeOut() },
-                        label = "Price Change Percentage Animation"
-                    ) { targetPriceChangePercent ->
-                        val priceChangeColor = when {
-                            targetPriceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
-                            targetPriceChangePercent.toFloat() < 0f -> redDark
-                            else -> MaterialTheme.colorScheme.primary
+                    if (tickerData.symbol.isNotEmpty()) {
+                        val value = buildAnnotatedString {
+                            withStyle(style = SpanStyle(fontSize = 18.sp)) {
+                                append(tickerData.symbol.replace(selectedTradingPair, ""))
+                            }
+                            withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
+                                append("/$selectedTradingPair")
+                            }
                         }
                         Text(
-                            modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
-                            text = "$targetPriceChangePercent %",
-                            color = priceChangeColor,
-                            style = MaterialTheme.typography.titleSmall
+                            text = value,
+                            modifier = Modifier.padding(bottom = 8.dp)
                         )
                     }
-                    AnimatedContent(
-                        targetState = tickerData.lastPrice,
-                        transitionSpec = { fadeIn() togetherWith fadeOut() },
-                        label = "Price Animation"
-                    ) { targetPrice ->
-                        Text(
-                            text = targetPrice,
-                            style = MaterialTheme.typography.titleSmall,
-                            modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
-                        )
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        AnimatedContent(
+                            targetState = tickerData.volume.formatVolume(),
+                            transitionSpec = { fadeIn() togetherWith fadeOut() },
+                            label = "volume Animation"
+                        ) { targetVolume ->
+                            Text(
+                                text = targetVolume,
+                                style = MaterialTheme.typography.titleSmall,
+                                color = Color.Gray,
+                                modifier = Modifier.animateContentSize()
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(4.dp))
+                    }
+                }
+                TradeChart(trades = trades, priceChangePercent = priceChangePercent)
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = 4.dp)
+                        .weight(1f)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .align(Alignment.End),
+                        horizontalAlignment = Alignment.End,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        AnimatedContent(
+                            targetState = priceChangePercent,
+                            transitionSpec = { fadeIn() togetherWith fadeOut() },
+                            label = "Price Change Percentage Animation"
+                        ) { targetPriceChangePercent ->
+                            val priceChangeColor = when {
+                                targetPriceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
+                                targetPriceChangePercent.toFloat() < 0f -> redDark
+                                else -> MaterialTheme.colorScheme.primary
+                            }
+                            Text(
+                                modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
+                                text = "$targetPriceChangePercent %",
+                                color = priceChangeColor,
+                                style = MaterialTheme.typography.titleSmall
+                            )
+                        }
+                        AnimatedContent(
+                            targetState = tickerData.lastPrice,
+                            transitionSpec = { fadeIn() togetherWith fadeOut() },
+                            label = "Price Animation"
+                        ) { targetPrice ->
+                            Text(
+                                text = targetPrice,
+                                style = MaterialTheme.typography.titleSmall,
+                                modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
+                            )
+                        }
                     }
                 }
             }
+        }
+
+        val isFavorite = settingsState?.favPairs?.contains(tickerData.symbol) == true
+        IconButton(
+            onClick = {
+                if (isFavorite) cryptoViewModel.removeFromFavorites(tickerData.symbol)
+                else cryptoViewModel.addToFavorites(tickerData.symbol)
+            },
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .offset(x = 0.dp, y = (-4).dp)
+                .size(24.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    shape = CircleShape
+                )
+                .clip(CircleShape)
+        ) {
+            Icon(
+                modifier = Modifier.padding(4.dp),
+                imageVector = if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
+                contentDescription = if (isFavorite) "Unfavorite" else "Favorite",
+                tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+            )
         }
     }
 }
@@ -773,7 +789,8 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
                                         ?: "BTC",
                                     trades = trades[tickerData.symbol] ?: emptyList(),
                                     priceChangePercent = tickerData.priceChangePercent,
-                                    cryptoViewModel = cryptoViewModel
+                                    cryptoViewModel = cryptoViewModel,
+                                    isFirst = tickerDataMap.values.indexOf(tickerData) == 0
                                 )
                             }
                         }

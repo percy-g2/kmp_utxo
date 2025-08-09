@@ -54,6 +54,7 @@ fun String.formatVolume(): String {
             }
         }
     } catch (e: Exception) {
+        e.printStackTrace()
         this
     }
 }
