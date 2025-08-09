@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +27,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -33,6 +35,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -107,8 +111,11 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
             val prefetchBuffer = 10
             val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
 
-            val startIndex = visibleIndices.minOrNull()?.minus(prefetchBuffer)?.coerceAtLeast(0) ?: 0
-            val endIndex = visibleIndices.maxOrNull()?.plus(prefetchBuffer)?.coerceAtMost(items.lastIndex) ?: items.lastIndex
+            val startIndex =
+                visibleIndices.minOrNull()?.minus(prefetchBuffer)?.coerceAtLeast(0) ?: 0
+            val endIndex =
+                visibleIndices.maxOrNull()?.plus(prefetchBuffer)?.coerceAtMost(items.lastIndex)
+                    ?: items.lastIndex
 
             (startIndex..endIndex).mapNotNull { index ->
                 items.getOrNull(index)?.symbol
@@ -221,7 +228,8 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                             ) { tickerData ->
                                 TickerCard(
                                     tickerData = tickerData,
-                                    selectedTradingPair = settingsStore?.selectedTradingPair ?: "BTC",
+                                    selectedTradingPair = settingsStore?.selectedTradingPair
+                                        ?: "BTC",
                                     trades = trades[tickerData.symbol] ?: emptyList(),
                                     priceChangePercent = tickerData.priceChangePercent,
                                     cryptoViewModel = cryptoViewModel
@@ -364,7 +372,8 @@ fun RowScope.TradeChart(
     val (minPrice, _, priceRange) = priceStats
 
     val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
-    val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
+    val isDarkTheme =
+        (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
 
     var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
 
@@ -454,7 +463,12 @@ fun RowScope.TradeChart(
     }
 }
 
-fun calculatePoints(trades: List<UiKline>, size: Offset, minPrice: Float, priceRange: Float): List<Offset> {
+fun calculatePoints(
+    trades: List<UiKline>,
+    size: Offset,
+    minPrice: Float,
+    priceRange: Float
+): List<Offset> {
     return trades.mapIndexed { index, trade ->
         val x = index.toFloat() / (trades.size - 1).coerceAtLeast(1) * size.x
         val y = size.y - ((trade.closePrice.toFloat() - minPrice) / priceRange) * size.y
@@ -610,17 +624,40 @@ fun TickerCard(
                     )
                 }
 
-                AnimatedContent(
-                    targetState = tickerData.volume.formatVolume(),
-                    transitionSpec = { fadeIn() togetherWith fadeOut() },
-                    label = "volume Animation"
-                ) { targetVolume ->
-                    Text(
-                        text = targetVolume,
-                        style = MaterialTheme.typography.titleSmall,
-                        color = Color.Gray,
-                        modifier = Modifier.animateContentSize()
-                    )
+                Row(
+                   verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    AnimatedContent(
+                        targetState = tickerData.volume.formatVolume(),
+                        transitionSpec = { fadeIn() togetherWith fadeOut() },
+                        label = "volume Animation"
+                    ) { targetVolume ->
+                        Text(
+                            text = targetVolume,
+                            style = MaterialTheme.typography.titleSmall,
+                            color = Color.Gray,
+                            modifier = Modifier.animateContentSize()
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.width(4.dp))
+
+                    val isFavorite = settingsState?.favPairs?.contains(tickerData.symbol) == true
+                    IconButton(
+                        onClick = {
+                            if (isFavorite) cryptoViewModel.removeFromFavorites(tickerData.symbol)
+                            else cryptoViewModel.addToFavorites(tickerData.symbol)
+                        },
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(24.dp)
+                    ) {
+                        Icon(
+                            imageVector = if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
+                            contentDescription = if (isFavorite) "Unfavorite" else "Favorite"
+                        )
+                    }
                 }
             }
             TradeChart(trades = trades, priceChangePercent = priceChangePercent)
@@ -663,6 +700,84 @@ fun TickerCard(
                             style = MaterialTheme.typography.titleSmall,
                             modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
                         )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
+    val trades by cryptoViewModel.trades.collectAsState()
+    val tickerDataMap by cryptoViewModel.favoritesTickerDataMap.collectAsState()
+    val isLoading by cryptoViewModel.isLoading.collectAsState()
+    val listState = rememberLazyListState()
+    val settingsStore by store.updates.collectAsState(Settings())
+
+    Scaffold {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column {
+                Text(
+                    "Favorites",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(16.dp)
+                )
+                if (isLoading) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                } else if (tickerDataMap.isEmpty()) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.StarBorder,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(48.dp)
+                                .padding(bottom = 16.dp),
+                            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
+                        )
+                        Text(
+                            text = "No favorites yet",
+                            style = MaterialTheme.typography.titleMedium,
+                            textAlign = TextAlign.Center
+                        )
+                        Text(
+                            text = "Tap the star icon on any trading pair to add it here",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
+                    }
+                } else {
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        LazyColumn(state = listState) {
+                            items(
+                                items = tickerDataMap.values.toList(),
+                                key = { it.symbol }
+                            ) { tickerData ->
+                                TickerCard(
+                                    tickerData = tickerData,
+                                    selectedTradingPair = settingsStore?.selectedTradingPair
+                                        ?: "BTC",
+                                    trades = trades[tickerData.symbol] ?: emptyList(),
+                                    priceChangePercent = tickerData.priceChangePercent,
+                                    cryptoViewModel = cryptoViewModel
+                                )
+                            }
+                        }
+                        LazyColumnScrollbar(listState = listState)
                     }
                 }
             }

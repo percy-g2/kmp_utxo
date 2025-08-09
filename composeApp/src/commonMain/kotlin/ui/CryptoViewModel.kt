@@ -131,6 +131,38 @@ class CryptoViewModel : ViewModel() {
         emptyMap()
     )
 
+    val favoritesTickerDataMap: StateFlow<Map<String, TickerData>> = combine(
+        _allTickerDataMap,
+        settings
+    ) { allData: Map<String, TickerData>, settings: Settings? ->
+        val favorites = settings?.favPairs ?: emptyList()
+        allData.filterKeys { it in favorites }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.Eagerly,
+        emptyMap()
+    )
+
+    fun addToFavorites(symbol: String) {
+        viewModelScope.launch {
+            store.update { current ->
+                val prevFavs = current?.favPairs ?: emptyList()
+                if (symbol !in prevFavs && current is Settings) current.copy(favPairs = prevFavs + symbol)
+                else current
+            }
+        }
+    }
+
+    fun removeFromFavorites(symbol: String) {
+        viewModelScope.launch {
+            store.update { current ->
+                val prevFavs = current?.favPairs ?: emptyList()
+                if (symbol in prevFavs && current is Settings) current.copy(favPairs = prevFavs - symbol)
+                else current
+            }
+        }
+    }
+
     init {
         initializeData()
         observeNetworkChanges()

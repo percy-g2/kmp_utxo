@@ -41,14 +41,16 @@ import androidx.navigation.serialization.generateHashCode
 import io.github.xxfast.kstore.KStore
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.flow.Flow
-import model.Home
+import model.Favorites
+import model.Market
 import model.NavItem
+import model.Settings
 import theme.ThemeManager.store
 import theme.UTXOTheme
 import ui.AppTheme
 import ui.CryptoList
 import ui.CryptoViewModel
-import ui.Settings
+import ui.FavoritesListScreen
 import ui.SettingsScreen
 
 @Composable
@@ -56,7 +58,7 @@ fun App(
     cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }
 ) {
     val navController: NavHostController = rememberNavController()
-    val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
+    val settingsState by store.updates.collectAsState(initial = ui.Settings(appTheme = AppTheme.System))
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
@@ -65,11 +67,14 @@ fun App(
 
     LaunchedEffect(navBackStackEntry?.destination?.route) {
         when (navBackStackEntry?.destination?.id) {
-            Home.serializer().generateHashCode() -> {
+            Market.serializer().generateHashCode() -> {
                 selectedItem = 0
             }
-            Settings.serializer().generateHashCode() -> {
+            Favorites.serializer().generateHashCode() -> {
                 selectedItem = 1
+            }
+            Settings.serializer().generateHashCode() -> {
+                selectedItem = 2
             }
         }
     }
@@ -84,7 +89,11 @@ fun App(
             bottomBar = {
                 BottomAppBar(
                     actions = {
-                        val navItems = listOf(NavItem.HomeScreen, NavItem.SettingsScreen)
+                        val navItems = listOf(
+                            NavItem.HomeScreen,
+                            NavItem.FavoritesScreen,
+                            NavItem.SettingsScreen
+                        )
 
                         NavigationBar {
                             navItems.forEachIndexed { index, item ->
@@ -117,15 +126,18 @@ fun App(
         ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = Home,
+                startDestination = Market,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                animatedComposable<Home> {
+                animatedComposable<Market> {
                     CryptoList(cryptoViewModel = cryptoViewModel)
                 }
-                animatedComposable<model.Settings> {
+                animatedComposable<Favorites> {
+                    FavoritesListScreen(cryptoViewModel = cryptoViewModel)
+                }
+                animatedComposable<Settings> {
                     SettingsScreen {
                         navController.popBackStack()
                     }
@@ -184,7 +196,7 @@ fun shrinkToCenter(): ExitTransition {
 
 expect fun getWebSocketClient(): HttpClient
 
-expect fun getKStore(): KStore<Settings>
+expect fun getKStore(): KStore<ui.Settings>
 
 expect fun openLink(link: String)
 

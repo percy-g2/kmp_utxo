@@ -341,7 +341,7 @@ private fun RadioButtonItem(
 @Serializable
 data class Settings(
     val appTheme: AppTheme = AppTheme.System,
-    val favPairs: List<String> = listOf("BTCUSDT"),
+    val favPairs: List<String> = listOf(""),
     val selectedTradingPair: String = "BTC"
 )
 
