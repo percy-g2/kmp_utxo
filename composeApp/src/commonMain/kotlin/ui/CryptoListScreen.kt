@@ -227,14 +227,16 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                 items = tickerDataMap.values.toList(),
                                 key = { it.symbol }
                             ) { tickerData ->
+                                if (tickerDataMap.values.indexOf(tickerData) == 0) {
+                                    Spacer( modifier = Modifier.height(4.dp))
+                                }
                                 TickerCard(
                                     tickerData = tickerData,
                                     selectedTradingPair = settingsStore?.selectedTradingPair
                                         ?: "BTC",
                                     trades = trades[tickerData.symbol] ?: emptyList(),
                                     priceChangePercent = tickerData.priceChangePercent,
-                                    cryptoViewModel = cryptoViewModel,
-                                    isFirst = tickerDataMap.values.indexOf(tickerData) == 0
+                                    cryptoViewModel = cryptoViewModel
                                 )
                             }
                         }
@@ -586,8 +588,7 @@ fun TickerCard(
     priceChangePercent: String,
     trades: List<UiKline>,
     selectedTradingPair: String,
-    cryptoViewModel: CryptoViewModel,
-    isFirst: Boolean,
+    cryptoViewModel: CryptoViewModel
 ) {
     val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
@@ -596,11 +597,7 @@ fun TickerCard(
         cryptoViewModel.ensureChartData(tickerData.symbol)
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = if (isFirst) 4.dp else 0.dp)
-    ) {
+    Box(modifier = Modifier.fillMaxWidth()) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -783,14 +780,16 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
                                 items = tickerDataMap.values.toList(),
                                 key = { it.symbol }
                             ) { tickerData ->
+                                if (tickerDataMap.values.indexOf(tickerData) == 0) {
+                                    Spacer( modifier = Modifier.height(4.dp))
+                                }
                                 TickerCard(
                                     tickerData = tickerData,
                                     selectedTradingPair = settingsStore?.selectedTradingPair
                                         ?: "BTC",
                                     trades = trades[tickerData.symbol] ?: emptyList(),
                                     priceChangePercent = tickerData.priceChangePercent,
-                                    cryptoViewModel = cryptoViewModel,
-                                    isFirst = tickerDataMap.values.indexOf(tickerData) == 0
+                                    cryptoViewModel = cryptoViewModel
                                 )
                             }
                         }
