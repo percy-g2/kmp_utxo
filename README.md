@@ -1,8 +1,12 @@
-![Kotlin Version](https://img.shields.io/badge/kotlin-2.2.0-blue?logo=kotlin) [![Build and Publish](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml/badge.svg)](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml)
+![Kotlin Version](https://img.shields.io/badge/kotlin-2.2.10-blue?logo=kotlin) [![Build and Publish](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml/badge.svg)](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml)
 
 [<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
 alt="Get it on Google Play Store"
 height="40">](https://play.google.com/store/apps/details?id=org.androdevlinux.utxo)
+
+[<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Download_on_the_App_Store_RGB_blk.svg"
+alt="Get it on Google Play Store"
+height="40">](https://apps.apple.com/in/app/utxo/id6746167853)
 
 # Kotlin/Compose Multiplatform Project
 
