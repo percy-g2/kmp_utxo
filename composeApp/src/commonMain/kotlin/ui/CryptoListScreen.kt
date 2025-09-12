@@ -112,11 +112,15 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
             val prefetchBuffer = 10
             val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
 
-            val startIndex =
-                visibleIndices.minOrNull()?.minus(prefetchBuffer)?.coerceAtLeast(0) ?: 0
-            val endIndex =
-                visibleIndices.maxOrNull()?.plus(prefetchBuffer)?.coerceAtMost(items.lastIndex)
-                    ?: items.lastIndex
+            val startIndex = visibleIndices.minOrNull()
+                ?.minus(prefetchBuffer)
+                ?.coerceAtLeast(0)
+                ?: 0
+
+            val endIndex = visibleIndices.maxOrNull()
+                ?.plus(prefetchBuffer)
+                ?.coerceAtMost(items.lastIndex)
+                ?: items.lastIndex
 
             (startIndex..endIndex).mapNotNull { index ->
                 items.getOrNull(index)?.symbol

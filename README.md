@@ -1,4 +1,4 @@
-![Kotlin Version](https://img.shields.io/badge/kotlin-2.2.10-blue?logo=kotlin) [![Build and Publish](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml/badge.svg)](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml)
+![Kotlin Version](https://img.shields.io/badge/kotlin-2.2.20-blue?logo=kotlin) [![Build and Publish](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml/badge.svg)](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml)
 
 [<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
 alt="Get it on Google Play Store"
@@ -19,7 +19,7 @@ height="40">](https://apps.apple.com/in/app/utxo/id6746167853)
   </tr>
 </table>
 
-This project is a **Kotlin Multiplatform** application built with **Jetpack Compose** that targets **Android**, **iOS**, **Desktop**, and **Web** platforms. The primary goal is to display real-time cryptocurrency price data using the [Binance API](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams).
+This project is a **Kotlin Multiplatform** application built with **Compose Multiplatform** that targets **Android**, **iOS**, **Desktop**, and **Web** platforms. The primary goal is to display real-time cryptocurrency price data using the [Binance API](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams).
 
 **Note:** Development is in the early stages, and the project is currently a work in progress.
 
