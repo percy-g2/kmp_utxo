@@ -2,18 +2,15 @@ package ui
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -103,6 +100,7 @@ import theme.ThemeManager.store
 import theme.greenDark
 import theme.greenLight
 import theme.redDark
+import theme.yellowDark
 import ui.components.LazyColumnScrollbar
 import kotlin.math.abs
 
@@ -851,7 +849,7 @@ fun TickerCard(
                 modifier = Modifier.padding(4.dp),
                 imageVector = if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
                 contentDescription = if (isFavorite) "Unfavorite" else "Favorite",
-                tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+                tint = if (isFavorite) yellowDark else MaterialTheme.colorScheme.onSurface
             )
         }
     }
