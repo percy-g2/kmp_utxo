@@ -596,10 +596,16 @@ fun TickerCard(
 ) {
     val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
+    val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
 
     LaunchedEffect(tickerData.symbol) {
         cryptoViewModel.ensureChartData(tickerData.symbol)
     }
+
+    val actualTradingPair = tradingPairs
+        .filter { pair -> tickerData.symbol.endsWith(pair.quote) }
+        .maxByOrNull { it.quote.length }
+        ?.quote ?: selectedTradingPair
 
     Box(modifier = Modifier.fillMaxWidth()) {
         Card(
@@ -621,10 +627,10 @@ fun TickerCard(
                     if (tickerData.symbol.isNotEmpty()) {
                         val value = buildAnnotatedString {
                             withStyle(style = SpanStyle(fontSize = 18.sp)) {
-                                append(tickerData.symbol.replace(selectedTradingPair, ""))
+                                append(tickerData.symbol.replace(actualTradingPair, ""))
                             }
                             withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
-                                append("/$selectedTradingPair")
+                                append("/$actualTradingPair")
                             }
                         }
                         Text(
