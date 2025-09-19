@@ -2,9 +2,18 @@ package ui
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -69,6 +78,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
@@ -156,7 +166,9 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
             Column {
                 SearchBar(viewModel = cryptoViewModel)
 
+                val lazyRowState = rememberLazyListState()
                 LazyRow(
+                    state = lazyRowState,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 8.dp),
@@ -174,8 +186,13 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                 onClick = { quote ->
                                     cryptoViewModel.setSelectedTradingPair(quote)
                                     coroutineScope.launch {
-                                        delay(100)
-                                        listState.scrollToItem(0)
+                                        delay(150) // Slightly longer delay for smoother transition
+                                        listState.animateScrollToItem(0)
+                                        val selectedIndex =
+                                            tradingPairs.value.indexOfFirst { it.quote == quote }
+                                        if (selectedIndex != -1) {
+                                            lazyRowState.animateScrollToItem(selectedIndex)
+                                        }
                                     }
                                 }
                             )
@@ -226,16 +243,18 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                     }
                 } else {
                     val tradingPairList = tradingPairs.value.map { it.quote }
+                    val currentTradingPair = settingsStore?.selectedTradingPair ?: "BTC"
+
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .pointerInput(tradingPairList, settingsStore?.selectedTradingPair) {
+                            .pointerInput(tradingPairList, currentTradingPair) {
                                 detectHorizontalDragGestures(
                                     onDragEnd = { /* No-op */ },
                                     onDragCancel = { /* No-op */ },
                                     onHorizontalDrag = { change, dragAmount ->
                                         val currentIndex =
-                                            tradingPairList.indexOf(settingsStore?.selectedTradingPair)
+                                            tradingPairList.indexOf(currentTradingPair)
                                         // We'll use a threshold for a "swipe" action, ignore small moves
                                         val threshold = 80f // pixels
 
@@ -250,7 +269,6 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                                 dragAmount < -threshold -> (currentIndex + 1).coerceAtMost(
                                                     tradingPairList.lastIndex
                                                 )
-
                                                 else -> currentIndex
                                             }
                                             if (nextIndex != currentIndex) {
@@ -258,8 +276,9 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                                     tradingPairList[nextIndex]
                                                 )
                                                 coroutineScope.launch {
-                                                    delay(100)
-                                                    listState.scrollToItem(0)
+                                                    delay(150) // Match the delay with manual selection
+                                                    listState.animateScrollToItem(0)
+                                                    lazyRowState.animateScrollToItem(nextIndex)
                                                 }
                                             }
                                         }
@@ -267,33 +286,52 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                 )
                             }
                     ) {
-                        LazyColumn(
-                            state = listState,
-                            modifier = Modifier
-                                .fillMaxSize()
-                        ) {
-                            stickyHeader {
-                                TickerCardListHeader(cryptoViewModel)
-                            }
-                            items(
-                                items = tickerDataMap.values.toList(),
-                                key = { it.symbol }
-                            ) { tickerData ->
-                                if (tickerDataMap.values.indexOf(tickerData) == 0) {
-                                    Spacer( modifier = Modifier.height(4.dp))
-                                }
-                                TickerCard(
-                                    tickerData = tickerData,
-                                    selectedTradingPair = settingsStore?.selectedTradingPair
-                                        ?: "BTC",
-                                    trades = trades[tickerData.symbol] ?: emptyList(),
-                                    priceChangePercent = tickerData.priceChangePercent,
-                                    cryptoViewModel = cryptoViewModel
-                                )
-                            }
-                        }
+                        AnimatedContent(
+                            targetState = currentTradingPair,
+                            transitionSpec = {
+                                val currentIndex = tradingPairList.indexOf(initialState)
+                                val targetIndex = tradingPairList.indexOf(targetState)
+                                val isNext = targetIndex > currentIndex
 
-                        LazyColumnScrollbar(listState = listState)
+                                slideInHorizontally(
+                                    initialOffsetX = { fullWidth -> if (isNext) fullWidth else -fullWidth },
+                                    animationSpec = tween(300)
+                                ) + fadeIn(animationSpec = tween(300)) togetherWith
+                                        slideOutHorizontally(
+                                            targetOffsetX = { fullWidth -> if (isNext) -fullWidth else fullWidth },
+                                            animationSpec = tween(300)
+                                        ) + fadeOut(animationSpec = tween(300))
+                            },
+                            label = "Trading Pair Content Animation"
+                        ) { tradingPair ->
+                            LazyColumn(
+                                state = listState,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                            ) {
+                                stickyHeader {
+                                    TickerCardListHeader(cryptoViewModel)
+                                }
+                                items(
+                                    items = tickerDataMap.values.toList(),
+                                    key = { it.symbol }
+                                ) { tickerData ->
+                                    if (tickerDataMap.values.indexOf(tickerData) == 0) {
+                                        Spacer(modifier = Modifier.height(4.dp))
+                                    }
+                                    TickerCard(
+                                        tickerData = tickerData,
+                                        selectedTradingPair = settingsStore?.selectedTradingPair
+                                            ?: "BTC",
+                                        trades = trades[tickerData.symbol] ?: emptyList(),
+                                        priceChangePercent = tickerData.priceChangePercent,
+                                        cryptoViewModel = cryptoViewModel
+                                    )
+                                }
+                            }
+
+                            LazyColumnScrollbar(listState = listState)
+                        }
                     }
                 }
             }
@@ -355,6 +393,12 @@ fun SearchBar(
 
 @Composable
 fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Unit) {
+    val scale by animateFloatAsState(
+        targetValue = if (isSelected) 1.1f else 1f,
+        animationSpec = tween(200),
+        label = "Trading Pair Scale Animation"
+    )
+
     Box(
         modifier = Modifier
             .padding(4.dp)
@@ -365,14 +409,27 @@ fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Uni
             )
             .clickable { onClick(quote) }
             .padding(horizontal = 12.dp, vertical = 8.dp)
+            .animateContentSize(animationSpec = tween(200))
+            .let {
+                if (isSelected) it.graphicsLayer(scaleX = scale, scaleY = scale)
+                else it
+            }
     ) {
-        Text(
-            text = quote,
-            color = if (isSelected) MaterialTheme.colorScheme.onPrimary
-            else MaterialTheme.colorScheme.onSurfaceVariant,
-            style = MaterialTheme.typography.titleSmall,
-            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
-        )
+        AnimatedContent(
+            targetState = isSelected,
+            transitionSpec = {
+                fadeIn(animationSpec = tween(150)) togetherWith fadeOut(animationSpec = tween(150))
+            },
+            label = "Trading Pair Text Animation"
+        ) { selected ->
+            Text(
+                text = quote,
+                color = if (selected) MaterialTheme.colorScheme.onPrimary
+                else MaterialTheme.colorScheme.onSurfaceVariant,
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
+            )
+        }
     }
 }
 
@@ -646,6 +703,21 @@ fun TickerCard(
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
 
+    // --- Bounce animation magic on first appearance! ---
+    val appeared = remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        appeared.value = true
+    }
+    val bounceScale by animateFloatAsState(
+        targetValue = if (appeared.value) 1f else 0.95f,
+        animationSpec = spring(
+            stiffness = Spring.StiffnessMedium,
+            dampingRatio = 0.42f // subtle bounce
+        ),
+        label = "TickerCardBounceScale"
+    )
+    // --- End bounce animation ---
+
     LaunchedEffect(tickerData.symbol) {
         cryptoViewModel.ensureChartData(tickerData.symbol)
     }
@@ -655,7 +727,14 @@ fun TickerCard(
         .maxByOrNull { it.quote.length }
         ?.quote ?: selectedTradingPair
 
-    Box(modifier = Modifier.fillMaxWidth()) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .graphicsLayer(
+                scaleX = bounceScale,
+                scaleY = bounceScale
+            )
+    ) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
