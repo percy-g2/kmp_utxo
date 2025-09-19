@@ -8,6 +8,7 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -68,6 +69,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.SpanStyle
@@ -92,6 +94,7 @@ import theme.greenDark
 import theme.greenLight
 import theme.redDark
 import ui.components.LazyColumnScrollbar
+import kotlin.math.abs
 
 @Composable
 fun CryptoList(cryptoViewModel: CryptoViewModel) {
@@ -222,8 +225,53 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                         )
                     }
                 } else {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        LazyColumn(state = listState) {
+                    val tradingPairList = tradingPairs.value.map { it.quote }
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .pointerInput(tradingPairList, settingsStore?.selectedTradingPair) {
+                                detectHorizontalDragGestures(
+                                    onDragEnd = { /* No-op */ },
+                                    onDragCancel = { /* No-op */ },
+                                    onHorizontalDrag = { change, dragAmount ->
+                                        val currentIndex =
+                                            tradingPairList.indexOf(settingsStore?.selectedTradingPair)
+                                        // We'll use a threshold for a "swipe" action, ignore small moves
+                                        val threshold = 80f // pixels
+
+                                        if (abs(dragAmount) < threshold) return@detectHorizontalDragGestures
+
+                                        if (currentIndex != -1 && tradingPairList.isNotEmpty()) {
+                                            val nextIndex = when {
+                                                dragAmount > threshold -> (currentIndex - 1).coerceAtLeast(
+                                                    0
+                                                )
+
+                                                dragAmount < -threshold -> (currentIndex + 1).coerceAtMost(
+                                                    tradingPairList.lastIndex
+                                                )
+
+                                                else -> currentIndex
+                                            }
+                                            if (nextIndex != currentIndex) {
+                                                cryptoViewModel.setSelectedTradingPair(
+                                                    tradingPairList[nextIndex]
+                                                )
+                                                coroutineScope.launch {
+                                                    delay(100)
+                                                    listState.scrollToItem(0)
+                                                }
+                                            }
+                                        }
+                                    }
+                                )
+                            }
+                    ) {
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier
+                                .fillMaxSize()
+                        ) {
                             stickyHeader {
                                 TickerCardListHeader(cryptoViewModel)
                             }
