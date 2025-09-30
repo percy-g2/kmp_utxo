@@ -113,7 +113,7 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
     val isLoading by cryptoViewModel.isLoading.collectAsState()
     val listState = rememberLazyListState()
     val tradingPairs = cryptoViewModel.tradingPairs.collectAsState()
-    val settingsStore by store.updates.collectAsState(Settings())
+    val settingsStore by store.updates.collectAsState(initial = null)
     val coroutineScope = rememberCoroutineScope()
 
     val visibleSymbols by remember {
@@ -285,51 +285,61 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                 )
                             }
                     ) {
-                        AnimatedContent(
-                            targetState = currentTradingPair,
-                            transitionSpec = {
-                                val currentIndex = tradingPairList.indexOf(initialState)
-                                val targetIndex = tradingPairList.indexOf(targetState)
-                                val isNext = targetIndex > currentIndex
+                        if (settingsStore != null) {
+                            AnimatedContent(
+                                targetState = currentTradingPair,
+                                transitionSpec = {
+                                    val currentIndex = tradingPairList.indexOf(initialState)
+                                    val targetIndex = tradingPairList.indexOf(targetState)
+                                    val isNext = targetIndex > currentIndex
 
-                                slideInHorizontally(
-                                    initialOffsetX = { fullWidth -> if (isNext) fullWidth else -fullWidth },
-                                    animationSpec = tween(300)
-                                ) + fadeIn(animationSpec = tween(300)) togetherWith
-                                        slideOutHorizontally(
-                                            targetOffsetX = { fullWidth -> if (isNext) -fullWidth else fullWidth },
-                                            animationSpec = tween(300)
-                                        ) + fadeOut(animationSpec = tween(300))
-                            },
-                            label = "Trading Pair Content Animation"
-                        ) { tradingPair ->
-                            LazyColumn(
-                                state = listState,
-                                modifier = Modifier
-                                    .fillMaxSize()
-                            ) {
-                                stickyHeader {
-                                    TickerCardListHeader(cryptoViewModel)
-                                }
-                                items(
-                                    items = tickerDataMap.values.toList(),
-                                    key = { it.symbol }
-                                ) { tickerData ->
-                                    if (tickerDataMap.values.indexOf(tickerData) == 0) {
-                                        Spacer(modifier = Modifier.height(4.dp))
+                                    slideInHorizontally(
+                                        initialOffsetX = { fullWidth -> if (isNext) fullWidth else -fullWidth },
+                                        animationSpec = tween(300)
+                                    ) + fadeIn(animationSpec = tween(300)) togetherWith
+                                            slideOutHorizontally(
+                                                targetOffsetX = { fullWidth -> if (isNext) -fullWidth else fullWidth },
+                                                animationSpec = tween(300)
+                                            ) + fadeOut(animationSpec = tween(300))
+                                },
+                                label = "Trading Pair Content Animation"
+                            ) { tradingPair ->
+                                LazyColumn(
+                                    state = listState,
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                ) {
+                                    stickyHeader {
+                                        TickerCardListHeader(cryptoViewModel)
                                     }
-                                    TickerCard(
-                                        tickerData = tickerData,
-                                        selectedTradingPair = settingsStore?.selectedTradingPair
-                                            ?: "BTC",
-                                        trades = trades[tickerData.symbol] ?: emptyList(),
-                                        priceChangePercent = tickerData.priceChangePercent,
-                                        cryptoViewModel = cryptoViewModel
-                                    )
+                                    items(
+                                        items = tickerDataMap.values.toList(),
+                                        key = { it.symbol }
+                                    ) { tickerData ->
+                                        if (tickerDataMap.values.indexOf(tickerData) == 0) {
+                                            Spacer(modifier = Modifier.height(4.dp))
+                                        }
+                                        TickerCard(
+                                            tickerData = tickerData,
+                                            selectedTradingPair = settingsStore?.selectedTradingPair
+                                                ?: "BTC",
+                                            trades = trades[tickerData.symbol] ?: emptyList(),
+                                            priceChangePercent = tickerData.priceChangePercent,
+                                            cryptoViewModel = cryptoViewModel
+                                        )
+                                    }
                                 }
-                            }
 
-                            LazyColumnScrollbar(listState = listState)
+                                LazyColumnScrollbar(listState = listState)
+                            }
+                        } else {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                CircularProgressIndicator()
+                            }
                         }
                     }
                 }
@@ -345,7 +355,7 @@ fun SearchBar(
 ) {
     val searchQuery by viewModel.searchQuery.collectAsState()
     val focusManager = LocalFocusManager.current
-    val settingsStore by store.updates.collectAsState(Settings())
+    val settingsStore by store.updates.collectAsState(initial = null)
 
     TextField(
         value = searchQuery,
@@ -356,7 +366,7 @@ fun SearchBar(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 8.dp),
-        placeholder = { Text("Search ${settingsStore?.selectedTradingPair} pairs...") },
+        placeholder = { Text("Search ${settingsStore?.selectedTradingPair ?: "BTC"} pairs...") },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
@@ -483,10 +493,10 @@ fun RowScope.TradeChart(
     }
     val (minPrice, _, priceRange) = priceStats
 
-    val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
+    val settingsState by store.updates.collectAsState(initial = null)
     val isDarkTheme =
         (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
-
+                || (settingsState == null && isSystemInDarkTheme()) // Default to system theme when null
     var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
 
     val priceChangeColor = when {
@@ -698,8 +708,9 @@ fun TickerCard(
     selectedTradingPair: String,
     cryptoViewModel: CryptoViewModel
 ) {
-    val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
+    val settingsState by store.updates.collectAsState(initial = null)
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
+            || (settingsState == null && isSystemInDarkTheme()) // Default to system theme when null
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
 
     // --- Bounce animation magic on first appearance! ---
@@ -862,7 +873,7 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
     val tickerDataMap by cryptoViewModel.favoritesTickerDataMap.collectAsState()
     val isLoading by cryptoViewModel.isLoading.collectAsState()
     val listState = rememberLazyListState()
-    val settingsStore by store.updates.collectAsState(Settings())
+    val settingsStore by store.updates.collectAsState(initial = null)
 
     Scaffold {
         Box(modifier = Modifier.fillMaxSize()) {
