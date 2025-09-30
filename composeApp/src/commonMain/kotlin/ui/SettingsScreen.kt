@@ -125,7 +125,7 @@ fun SettingsScreen(
                     SettingsItem(
                         icon = Icons.Default.Info,
                         title = "Version",
-                        subtitle = "0.1.9",
+                        subtitle = "0.2.2",
                         onClick = null
                     )
                     SettingsItem(
