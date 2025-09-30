@@ -78,3 +78,4 @@ val greenDark = Color(0xFF38761D)
 val greenLight = Color(0xFF4CAF50)
 val redDark = Color(0xFFF44336)
 val yellowDark = Color(0xFFFFEB3B)
+val yellowLight = Color(0xFFF57F17) // Darker yellow for light mode

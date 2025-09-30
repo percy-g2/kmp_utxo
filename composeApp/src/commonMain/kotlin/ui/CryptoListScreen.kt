@@ -101,6 +101,7 @@ import theme.greenDark
 import theme.greenLight
 import theme.redDark
 import theme.yellowDark
+import theme.yellowLight
 import ui.components.LazyColumnScrollbar
 import kotlin.math.abs
 
@@ -849,7 +850,7 @@ fun TickerCard(
                 modifier = Modifier.padding(4.dp),
                 imageVector = if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
                 contentDescription = if (isFavorite) "Unfavorite" else "Favorite",
-                tint = if (isFavorite) yellowDark else MaterialTheme.colorScheme.onSurface
+                tint = if (isFavorite) if (isDarkTheme) yellowDark else yellowLight else MaterialTheme.colorScheme.onSurface
             )
         }
     }
