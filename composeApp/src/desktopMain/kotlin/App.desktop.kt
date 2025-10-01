@@ -1,10 +1,13 @@
 
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.client.plugins.websocket.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.client.plugins.websocket.WebSockets
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -13,10 +16,10 @@ import kotlinx.coroutines.isActive
 import kotlinx.io.files.Path
 import net.harawata.appdirs.AppDirsFactory
 import ui.Settings
+import java.awt.Desktop
 import java.io.File
 import java.net.InetSocketAddress
 import java.net.Socket
-import java.awt.Desktop
 import java.net.URI
 
 actual class NetworkConnectivityObserver {
@@ -25,7 +28,7 @@ actual class NetworkConnectivityObserver {
         trySend(previousStatus)
 
         while (isActive) {
-            delay(1) // Check every 5 seconds
+            delay(5000) // Check every 5 seconds
             val currentStatus = checkNetworkStatus()
             if (currentStatus != previousStatus) {
                 trySend(currentStatus)
@@ -44,7 +47,7 @@ actual class NetworkConnectivityObserver {
         return try {
             val socket = Socket()
             val socketAddress = InetSocketAddress("8.8.8.8", 53)
-            socket.connect(socketAddress, 3000) // 3 seconds timeout
+            socket.connect(socketAddress, 1500) // 1.5 seconds timeout
             socket.close()
             true
         } catch (e: Exception) {
