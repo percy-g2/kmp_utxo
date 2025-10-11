@@ -13,7 +13,7 @@ lifecycleViewmodelCompose = "2.9.4"
 navigationCompose = "2.9.0"
 composeLifecyleRuntime = "2.9.4"
 kstore = "1.0.0"
-harawata-appdirs = "1.4.0"
+harawata-appdirs = "1.5.0"
 startupRuntime = "1.2.0"
 coroutinesVersion = "1.10.2"
 
