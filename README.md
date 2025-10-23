@@ -1,4 +1,4 @@
-![Kotlin Version](https://img.shields.io/badge/kotlin-2.2.20-blue?logo=kotlin) [![Build and Publish](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml/badge.svg)](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml)
+![Kotlin Version](https://img.shields.io/badge/kotlin-2.2.21-blue?logo=kotlin) [![Build and Publish](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml/badge.svg)](https://github.com/percy-g2/kmp_utxo/actions/workflows/build-and-publish-web.yml)
 
 [<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
 alt="Get it on Google Play Store"
