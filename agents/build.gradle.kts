@@ -17,10 +17,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     
     // Ktor for HTTP client
-    implementation("io.ktor:ktor-client-core:3.3.1")
-    implementation("io.ktor:ktor-client-cio:3.3.1")
-    implementation("io.ktor:ktor-client-content-negotiation:3.3.1")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:3.3.1")
+    implementation("io.ktor:ktor-client-core:3.3.2")
+    implementation("io.ktor:ktor-client-cio:3.3.2")
+    implementation("io.ktor:ktor-client-content-negotiation:3.3.2")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:3.3.2")
     
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
