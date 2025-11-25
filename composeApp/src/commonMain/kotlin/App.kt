@@ -132,7 +132,7 @@ fun App(
                     .padding(innerPadding)
             ) {
                 animatedComposable<Market> {
-                    CryptoList(cryptoViewModel = cryptoViewModel)
+                    CryptoList(cryptoViewModel = cryptoViewModel, navController = navController)
                 }
                 animatedComposable<Favorites> {
                     FavoritesListScreen(cryptoViewModel = cryptoViewModel)
