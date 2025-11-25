@@ -1,8 +1,9 @@
 package com.cmpagents.prreview
 
 import com.cmpagents.prreview.analyzer.CodeAnalyzer
+import com.cmpagents.prreview.models.*
 import com.cmpagents.prreview.parser.PRParser
-import com.cmpagents.prreview.provider.GitProvider
+import com.cmpagents.prreview.provider.GitProviderFactory
 import com.cmpagents.prreview.reviewer.ReviewGenerator
 import com.cmpagents.prreview.rules.Rulebook
 

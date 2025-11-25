@@ -12,6 +12,8 @@ AI-powered code review agent for Pull Requests and Merge Requests. Analyzes code
 - 📊 **Code Quality Checks**: Analyzes complexity, duplication, and style issues
 - 🤖 **AI-Powered Reviews**: Generates intelligent, contextual review comments
 - 📖 **Rulebook-Driven**: Follows comprehensive rules defined in `rules/pr-review.md`
+- 🚀 **GitHub Integration**: Create PRs and push changes using GitHub CLI
+- 🔐 **Secure Authentication**: Uses GitHub CLI for authentication (no tokens in code)
 
 ## Rulebook
 
@@ -37,24 +39,45 @@ The agent will be available at `build/install/agents/bin/agents`
 
 ## Usage
 
-### Basic Usage
+### Review PRs
 
 Review a PR by URL:
 ```bash
-pr-review https://github.com/owner/repo/pull/123
+pr-review review https://github.com/owner/repo/pull/123
 ```
 
 Review a PR by number (uses repository from git config):
 ```bash
-pr-review 123
+pr-review review 123
 ```
 
-### With Authentication
+### Create Pull Requests
 
-For private repositories, set the appropriate token:
+Create a PR from current branch:
 ```bash
-GITHUB_TOKEN=your_token_here pr-review 123
+pr-review create-pr --title "Fix bug"
 ```
+
+Create a draft PR:
+```bash
+pr-review create-pr --title "WIP: Feature" --draft
+```
+
+### Push Changes
+
+Stage, commit, and push changes:
+```bash
+pr-review push --message "Fix bug"
+```
+
+### Authenticate
+
+Authenticate with GitHub CLI:
+```bash
+pr-review auth
+```
+
+See [GITHUB_INTEGRATION.md](GITHUB_INTEGRATION.md) for detailed usage examples.
 
 ### Examples
 

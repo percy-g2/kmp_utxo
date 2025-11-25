@@ -40,24 +40,28 @@ class Rulebook(private val rulebookPath: String = "agents/rules/pr-review.md") {
      */
     private fun parseRulebook(content: String): RulebookContent {
         // Extract rules from markdown
-        val rules = RulebookContent()
-        
         // Parse KMP Architecture Rules
-        rules.kmpRules = parseKMPRules(content)
+        val kmpRules = parseKMPRules(content)
         
         // Parse Code Quality Rules
-        rules.codeQualityRules = parseCodeQualityRules(content)
+        val codeQualityRules = parseCodeQualityRules(content)
         
         // Parse Security Rules
-        rules.securityRules = parseSecurityRules(content)
+        val securityRules = parseSecurityRules(content)
         
         // Parse Testing Rules
-        rules.testingRules = parseTestingRules(content)
+        val testingRules = parseTestingRules(content)
         
         // Parse Documentation Rules
-        rules.documentationRules = parseDocumentationRules(content)
+        val documentationRules = parseDocumentationRules(content)
         
-        return rules
+        return RulebookContent(
+            kmpRules = kmpRules,
+            codeQualityRules = codeQualityRules,
+            securityRules = securityRules,
+            testingRules = testingRules,
+            documentationRules = documentationRules
+        )
     }
     
     /**
@@ -152,46 +156,51 @@ class Rulebook(private val rulebookPath: String = "agents/rules/pr-review.md") {
     private fun parseKMPRules(content: String): KMPRules {
         // Extract KMP rules section
         val kmpSection = extractSection(content, "KMP/CMP Architecture Rules")
-        return KMPRules(
+        val rules = KMPRules(
             validateExpectActual = kmpSection.contains("Rule 1"),
             checkPlatformLeaks = kmpSection.contains("Rule 2"),
             verifyDependencies = kmpSection.contains("Rule 3"),
             checkSourceSetOrganization = kmpSection.contains("Rule 4")
         )
+        return rules
     }
     
     private fun parseCodeQualityRules(content: String): CodeQualityRules {
         val qualitySection = extractSection(content, "Code Quality Standards")
-        return CodeQualityRules(
+        val rules = CodeQualityRules(
             maxFunctionLength = extractMaxFunctionLength(qualitySection),
             checkDuplication = qualitySection.contains("Rule 6"),
             enforceNaming = qualitySection.contains("Rule 7"),
             requireErrorHandling = qualitySection.contains("Rule 8")
         )
+        return rules
     }
     
     private fun parseSecurityRules(content: String): SecurityRules {
         val securitySection = extractSection(content, "Security Guidelines")
-        return SecurityRules(
+        val rules = SecurityRules(
             checkHardcodedSecrets = securitySection.contains("Rule 9"),
             checkInsecureAPIs = securitySection.contains("Rule 10")
         )
+        return rules
     }
     
     private fun parseTestingRules(content: String): TestingRules {
         val testingSection = extractSection(content, "Testing Requirements")
-        return TestingRules(
+        val rules = TestingRules(
             requireTestsForNewFeatures = testingSection.contains("Rule 11"),
             minFilesForTestRequirement = 3
         )
+        return rules
     }
     
     private fun parseDocumentationRules(content: String): DocumentationRules {
         val docSection = extractSection(content, "Documentation Standards")
-        return DocumentationRules(
+        val rules = DocumentationRules(
             requirePublicAPIDocs = docSection.contains("Rule 13"),
             requireReadmeUpdates = docSection.contains("Rule 14")
         )
+        return rules
     }
     
     private fun extractSection(content: String, sectionTitle: String): String {
