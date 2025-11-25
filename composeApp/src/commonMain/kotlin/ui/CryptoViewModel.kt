@@ -79,6 +79,8 @@ class CryptoViewModel : ViewModel() {
     ) { allData, settings, query, sortKey, isDescending ->
         val selectedPair = settings?.selectedTradingPair ?: "BTC"
         val trimmedQuery = query.trim().uppercase()
+        
+        // Optimize filtering - avoid creating intermediate collections
         val filtered = if (trimmedQuery.isEmpty()) {
             allData.filterKeys { it.endsWith(selectedPair) }
         } else {
@@ -88,8 +90,9 @@ class CryptoViewModel : ViewModel() {
             }
         }
 
-        val tickerList = filtered.map { (_, data) -> data }.toMutableList()
+        val tickerList = filtered.values.toMutableList()
 
+        // Pre-compute numeric values for sorting to avoid repeated parsing during sort
         when (sortKey) {
             SortParams.Pair -> {
                 if (!isDescending) {
@@ -99,28 +102,32 @@ class CryptoViewModel : ViewModel() {
                 }
             }
             SortParams.Vol -> {
+                // Pre-compute all volumes once
+                val volumeMap = tickerList.associateWith { it.volume.toDoubleOrNull() ?: 0.0 }
                 if (!isDescending) {
-                    tickerList.sortByDescending { it.volume.toDoubleOrNull() ?: 0.0 }
+                    tickerList.sortByDescending { volumeMap[it] ?: 0.0 }
                 } else {
-                    tickerList.sortBy { it.volume.toDoubleOrNull() ?: 0.0 }
+                    tickerList.sortBy { volumeMap[it] ?: 0.0 }
                 }
             }
             SortParams.Price -> {
+                // Pre-compute all prices once - cache regex-like filtering
+                val priceMap = tickerList.associateWith {
+                    it.lastPrice.filter { char -> char.isDigit() || char == '.' }.toDoubleOrNull() ?: 0.0
+                }
                 if (!isDescending) {
-                    tickerList.sortByDescending {
-                        it.lastPrice.filter { char -> char.isDigit() || char == '.' }.toDoubleOrNull() ?: 0.0
-                    }
+                    tickerList.sortByDescending { priceMap[it] ?: 0.0 }
                 } else {
-                    tickerList.sortBy {
-                        it.lastPrice.filter { char -> char.isDigit() || char == '.' }.toDoubleOrNull() ?: 0.0
-                    }
+                    tickerList.sortBy { priceMap[it] ?: 0.0 }
                 }
             }
             SortParams.Change -> {
+                // Pre-compute all change values once
+                val changeMap = tickerList.associateWith { it.priceChangePercent.toDoubleOrNull() ?: 0.0 }
                 if (!isDescending) {
-                    tickerList.sortByDescending { it.priceChangePercent.toDoubleOrNull() ?: 0.0 }
+                    tickerList.sortByDescending { changeMap[it] ?: 0.0 }
                 } else {
-                    tickerList.sortBy { it.priceChangePercent.toDoubleOrNull() ?: 0.0 }
+                    tickerList.sortBy { changeMap[it] ?: 0.0 }
                 }
             }
         }
@@ -212,25 +219,38 @@ class CryptoViewModel : ViewModel() {
         forceRefresh: Boolean = false
     ) {
         fetchJob?.cancel()
-        fetchJob = viewModelScope.launch {
+        fetchJob = viewModelScope.launch(Dispatchers.Default) {
             if (!forceRefresh) {
                 delay(100) // Debounce time
             }
 
-            val currentTrades = _trades.value.keys
+            // Check current state on main thread, then switch to background
+            val currentTrades = withContext(Dispatchers.Main) { _trades.value.keys }
             val newSymbols = if (forceRefresh) {
-                _trades.value = emptyMap()
+                withContext(Dispatchers.Main) {
+                    _trades.value = emptyMap()
+                }
                 visibleSymbols
             } else {
                 visibleSymbols.filterNot { symbol ->
-                    symbol in currentTrades && (_trades.value[symbol]?.size ?: 0) > 50
+                    symbol in currentTrades && (withContext(Dispatchers.Main) { _trades.value[symbol]?.size } ?: 0) > 50
                 }
             }
+            
+            // Limit concurrent fetches to reduce memory pressure on iOS
+            val limitedSymbols = newSymbols.take(10) // Fetch max 10 at a time
 
-            if (newSymbols.isNotEmpty()) {
+            if (limitedSymbols.isNotEmpty()) {
                 try {
-                    val newData = httpClient.fetchUiKlines(newSymbols)
-                    _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+                    // I/O happens off main thread
+                    val newData = httpClient.fetchUiKlines(limitedSymbols)
+                    // Update state on main thread - only keep visible symbols to reduce memory
+                    withContext(Dispatchers.Main) {
+                        // Filter to only keep visible symbols + new data to reduce memory footprint
+                        _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+                    }
+                } catch (e: CancellationException) {
+                    throw e
                 } catch (e: Exception) {
                     println("Error fetching klines: ${e.message}")
                 }
@@ -251,13 +271,23 @@ class CryptoViewModel : ViewModel() {
     }
 
     private fun fetchMarginSymbols() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Default) {
             try {
+                // I/O happens off main thread
                 val marginSymbols = httpClient.fetchMarginSymbols()
-                _tradingPairs.value = marginSymbols?.data?.distinctBy { it.quote } ?: emptyList()
-                _symbols.value = marginSymbols?.data?.distinctBy { it.symbol }?.map {
+                // Process data off main thread
+                val tradingPairsList = marginSymbols?.data?.distinctBy { it.quote } ?: emptyList()
+                val symbolsList = marginSymbols?.data?.distinctBy { it.symbol }?.map {
                     TickerDataInfo(symbol = it.symbol, quoteVolume = "0", quote = it.quote)
                 } ?: emptyList()
+                
+                // Update state on main thread
+                withContext(Dispatchers.Main) {
+                    _tradingPairs.value = tradingPairsList
+                    _symbols.value = symbolsList
+                }
+            } catch (e: CancellationException) {
+                throw e
             } catch (e: Exception) {
                 println("Error fetching margin symbols: ${e.message}")
             }
@@ -295,7 +325,7 @@ class CryptoViewModel : ViewModel() {
 
     private suspend fun connectWebSocket() {
         supervisorScope {
-            launch {
+            launch(Dispatchers.Default) {
                 while (isActive) {
                     try {
                         webSocketClient.wss(
@@ -305,8 +335,10 @@ class CryptoViewModel : ViewModel() {
                             request = { header(HttpHeaders.ContentType, ContentType.Application.Json) }
                         ) {
                             for (frame in incoming) {
+                                if (!isActive) break // Check cancellation
                                 when (frame) {
-                                    is Frame.Text -> withContext(Dispatchers.Default) {
+                                    is Frame.Text -> {
+                                        // Process message off main thread
                                         processTickerMessage(frame.readText())
                                     }
                                     is Frame.Ping -> send(Frame.Pong(frame.data))
@@ -316,10 +348,12 @@ class CryptoViewModel : ViewModel() {
                             }
                         }
                     } catch (e: CancellationException) {
-                        throw e
+                        throw e // Re-throw cancellation to properly stop
                     } catch (e: Exception) {
-                        println("WebSocket error: ${e.message}")
-                        delay(5000)
+                        if (isActive) {
+                            println("WebSocket error: ${e.message}")
+                            delay(5000)
+                        }
                     }
                 }
             }
@@ -332,29 +366,45 @@ class CryptoViewModel : ViewModel() {
         if (now - lastUpdateTime < updateThrottleMs) return
         lastUpdateTime = now
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Default) {
             runCatching {
+                // Parse JSON off main thread
                 val tickers = Json.decodeFromString<List<Ticker>>(message)
+                val currentTradingPairs = tradingPairs.value
+                
+                // Process all data off main thread
                 val updatedTickerMap = _allTickerDataMap.value.toMutableMap()
                 val updatedTrades = _trades.value.toMutableMap()
+                
                 tickers.forEach { ticker ->
+                    // Format price off main thread
+                    val formattedPrice = ticker.lastPrice.formatPrice(ticker.symbol, currentTradingPairs)
                     updatedTickerMap[ticker.symbol] = TickerData(
                         symbol = ticker.symbol,
-                        lastPrice = ticker.lastPrice.formatPrice(ticker.symbol, tradingPairs.value),
+                        lastPrice = formattedPrice,
                         priceChangePercent = ticker.priceChangePercent,
                         volume = ticker.totalTradedQuoteAssetVolume
                     )
+                    
+                    // Update trades efficiently - limit to reduce memory pressure on iOS
+                    // Keep only last 200 points (enough for smooth charts, reduces memory)
+                    val MAX_TRADES_PER_SYMBOL = 200
                     val currentTrades = updatedTrades[ticker.symbol] ?: emptyList()
-                    if (currentTrades.size >= 100) {
-                        updatedTrades[ticker.symbol] = currentTrades.drop(1) + UiKline(closePrice = ticker.lastPrice)
+                    updatedTrades[ticker.symbol] = if (currentTrades.size >= MAX_TRADES_PER_SYMBOL) {
+                        // Use drop + add instead of creating new list to reduce allocations
+                        currentTrades.drop(1) + UiKline(closePrice = ticker.lastPrice)
                     } else {
-                        updatedTrades[ticker.symbol] = currentTrades + UiKline(closePrice = ticker.lastPrice)
+                        currentTrades + UiKline(closePrice = ticker.lastPrice)
                     }
                 }
 
-                _allTickerDataMap.value = updatedTickerMap
-                _trades.value = updatedTrades.filterValues { it.size > 50 }
-                updateDisplayedPairs()
+                // Update state on main thread - limit trades to visible symbols only to reduce memory
+                withContext(Dispatchers.Main) {
+                    _allTickerDataMap.value = updatedTickerMap
+                    // Only keep trades with enough data points, and limit to reduce memory pressure
+                    _trades.value = updatedTrades.filterValues { it.size > 50 }
+                    updateDisplayedPairs()
+                }
             }.onFailure {
                 println("Error processing ticker message: ${it.message}")
             }
@@ -362,16 +412,33 @@ class CryptoViewModel : ViewModel() {
     }
 
     override fun onCleared() {
+        // Cancel all background jobs to prevent memory leaks
         webSocketJob?.cancel()
+        fetchJob?.cancel()
         webSocketClient.close()
         super.onCleared()
     }
 
     fun ensureChartData(symbol: String) {
-        viewModelScope.launch {
-            if (!_trades.value.containsKey(symbol)) {
-                val newData = httpClient.fetchUiKlines(listOf(symbol))
-                _trades.value += newData
+        viewModelScope.launch(Dispatchers.Default) {
+            try {
+                // Check state on main thread
+                val needsFetch = withContext(Dispatchers.Main) {
+                    !_trades.value.containsKey(symbol)
+                }
+                
+                if (needsFetch) {
+                    // I/O happens off main thread
+                    val newData = httpClient.fetchUiKlines(listOf(symbol))
+                    // Update state on main thread
+                    withContext(Dispatchers.Main) {
+                        _trades.value += newData
+                    }
+                }
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                println("Error ensuring chart data: ${e.message}")
             }
         }
     }

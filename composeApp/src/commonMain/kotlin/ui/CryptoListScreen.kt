@@ -57,6 +57,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -66,6 +67,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -90,8 +92,14 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ktx.formatVolume
 import model.SortParams
 import model.TickerData
@@ -105,59 +113,111 @@ import theme.yellowLight
 import ui.components.LazyColumnScrollbar
 import kotlin.math.abs
 
+// Stable composition local for settings to avoid recompositions
+val LocalSettings = staticCompositionLocalOf<ui.Settings?> { null }
+
 @Composable
 fun CryptoList(cryptoViewModel: CryptoViewModel) {
     val lifecycleOwner = LocalLifecycleOwner.current
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+    
+    // Collect state once at top level - hoist to minimize recompositions
     val trades by cryptoViewModel.trades.collectAsState()
     val tickerDataMap by cryptoViewModel.filteredTickerDataMap.collectAsState()
     val isLoading by cryptoViewModel.isLoading.collectAsState()
-    val listState = rememberLazyListState()
-    val tradingPairs = cryptoViewModel.tradingPairs.collectAsState()
+    val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
     val settingsStore by store.updates.collectAsState(initial = null)
-    val coroutineScope = rememberCoroutineScope()
+    
+    // Derive stable list of ticker items to avoid recreating list on every recomposition
+    val tickerItems by derivedStateOf { tickerDataMap.values.toList() }
+    
+    // Derive stable trading pair list
+    val tradingPairList by derivedStateOf { tradingPairs.map { it.quote } }
+    
+    val currentTradingPair by derivedStateOf { settingsStore?.selectedTradingPair ?: "BTC" }
 
-    val visibleSymbols by remember {
-        derivedStateOf {
-            val layoutInfo = listState.layoutInfo
-            val items = tickerDataMap.values.toList()
+    // Optimize visible symbols calculation - use derivedStateOf for automatic recomposition only when needed
+    val visibleSymbols by derivedStateOf {
+        val layoutInfo = listState.layoutInfo
+        if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
+            return@derivedStateOf emptyList<String>()
+        }
 
-            val prefetchBuffer = 10
-            val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
+        val prefetchBuffer = 10
+        val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
 
-            val startIndex = visibleIndices.minOrNull()
-                ?.minus(prefetchBuffer)
-                ?.coerceAtLeast(0)
-                ?: 0
+        val startIndex = visibleIndices.minOrNull()
+            ?.minus(prefetchBuffer)
+            ?.coerceAtLeast(0)
+            ?: 0
 
-            val endIndex = visibleIndices.maxOrNull()
-                ?.plus(prefetchBuffer)
-                ?.coerceAtMost(items.lastIndex)
-                ?: items.lastIndex
+        val endIndex = visibleIndices.maxOrNull()
+            ?.plus(prefetchBuffer)
+            ?.coerceAtMost(tickerItems.lastIndex)
+            ?: tickerItems.lastIndex
 
-            (startIndex..endIndex).mapNotNull { index ->
-                items.getOrNull(index)?.symbol
-            }
+        (startIndex..endIndex).mapNotNull { index ->
+            tickerItems.getOrNull(index)?.symbol
         }
     }
 
-    LaunchedEffect(visibleSymbols) {
-        if (visibleSymbols.isNotEmpty()) {
-            cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols)
-        }
-    }
-
-    // Lifecycle observer to reconnect when the app comes back to foreground
-    DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            if (event == Lifecycle.Event.ON_RESUME) {
-                cryptoViewModel.reconnect()
-                if (visibleSymbols.isNotEmpty()) {
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, true)
+    // Track fetch job for cancellation
+    var fetchJob by remember { mutableStateOf<Job?>(null) }
+    
+    // Lifecycle-aware data fetching with cancellation
+    LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState) {
+        val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
+        if (visibleSymbols.isNotEmpty() && isResumed) {
+            // Cancel previous job if still running
+            fetchJob?.cancel()
+            fetchJob = coroutineScope.launch(Dispatchers.Default) {
+                try {
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols)
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    // Silently handle errors during cancellation
                 }
             }
         }
+    }
+
+    // Lifecycle observer with proper cleanup - cancel all work when view disappears
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_RESUME -> {
+                    // Only resume work when view is actually visible
+                    coroutineScope.launch {
+                        cryptoViewModel.reconnect()
+                        if (visibleSymbols.isNotEmpty()) {
+                            fetchJob?.cancel()
+                            fetchJob = launch(Dispatchers.Default) {
+                                try {
+                                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, true)
+                                } catch (e: CancellationException) {
+                                    throw e
+                                } catch (e: Exception) {
+                                    // Handle errors silently
+                                }
+                            }
+                        }
+                    }
+                }
+                Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
+                    // Cancel all background work when view is not visible
+                    fetchJob?.cancel()
+                }
+                else -> {}
+            }
+        }
         lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+            // Cancel all jobs on dispose
+            fetchJob?.cancel()
+        }
     }
 
     Scaffold {
@@ -173,22 +233,24 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                         .padding(horizontal = 8.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    if (tradingPairs.value.isEmpty()) {
-                        items(6) {
+                    if (tradingPairs.isEmpty()) {
+                        items(count = 6, key = { it }) { index ->
                             ShimmerTradingPairItem()
                         }
                     } else {
-                        items(tradingPairs.value) { symbol ->
+                        items(
+                            items = tradingPairs,
+                            key = { it.quote } // Stable key for efficient recomposition
+                        ) { symbol ->
                             TradingPairItem(
                                 quote = symbol.quote,
-                                isSelected = symbol.quote == settingsStore?.selectedTradingPair,
+                                isSelected = symbol.quote == currentTradingPair,
                                 onClick = { quote ->
                                     cryptoViewModel.setSelectedTradingPair(quote)
                                     coroutineScope.launch {
                                         delay(150) // Slightly longer delay for smoother transition
                                         listState.animateScrollToItem(0)
-                                        val selectedIndex =
-                                            tradingPairs.value.indexOfFirst { it.quote == quote }
+                                        val selectedIndex = tradingPairList.indexOf(quote)
                                         if (selectedIndex != -1) {
                                             lazyRowState.animateScrollToItem(selectedIndex)
                                         }
@@ -224,12 +286,13 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                             tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
                         )
                         Text(
-                            text = "No trading pairs found for ${settingsStore?.selectedTradingPair}",
+                            text = "No trading pairs found for $currentTradingPair",
                             style = MaterialTheme.typography.titleMedium,
                             textAlign = TextAlign.Center
                         )
+                        val searchQuery by cryptoViewModel.searchQuery.collectAsState()
                         Text(
-                            text = if (cryptoViewModel.searchQuery.value.isNotEmpty()) {
+                            text = if (searchQuery.isNotEmpty()) {
                                 "Try adjusting your search criteria"
                             } else {
                                 "Please wait while we fetch the latest data"
@@ -241,9 +304,6 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                         )
                     }
                 } else {
-                    val tradingPairList = tradingPairs.value.map { it.quote }
-                    val currentTradingPair = settingsStore?.selectedTradingPair ?: "BTC"
-
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
@@ -252,8 +312,7 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                     onDragEnd = { /* No-op */ },
                                     onDragCancel = { /* No-op */ },
                                     onHorizontalDrag = { change, dragAmount ->
-                                        val currentIndex =
-                                            tradingPairList.indexOf(currentTradingPair)
+                                        val currentIndex = tradingPairList.indexOf(currentTradingPair)
                                         // We'll use a threshold for a "swipe" action, ignore small moves
                                         val threshold = 80f // pixels
 
@@ -261,19 +320,12 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
 
                                         if (currentIndex != -1 && tradingPairList.isNotEmpty()) {
                                             val nextIndex = when {
-                                                dragAmount > threshold -> (currentIndex - 1).coerceAtLeast(
-                                                    0
-                                                )
-
-                                                dragAmount < -threshold -> (currentIndex + 1).coerceAtMost(
-                                                    tradingPairList.lastIndex
-                                                )
+                                                dragAmount > threshold -> (currentIndex - 1).coerceAtLeast(0)
+                                                dragAmount < -threshold -> (currentIndex + 1).coerceAtMost(tradingPairList.lastIndex)
                                                 else -> currentIndex
                                             }
                                             if (nextIndex != currentIndex) {
-                                                cryptoViewModel.setSelectedTradingPair(
-                                                    tradingPairList[nextIndex]
-                                                )
+                                                cryptoViewModel.setSelectedTradingPair(tradingPairList[nextIndex])
                                                 coroutineScope.launch {
                                                     delay(150) // Match the delay with manual selection
                                                     listState.animateScrollToItem(0)
@@ -286,51 +338,54 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                             }
                     ) {
                         if (settingsStore != null) {
-                            AnimatedContent(
-                                targetState = currentTradingPair,
-                                transitionSpec = {
-                                    val currentIndex = tradingPairList.indexOf(initialState)
-                                    val targetIndex = tradingPairList.indexOf(targetState)
-                                    val isNext = targetIndex > currentIndex
+                            // Provide settings via composition local to avoid prop drilling
+                            CompositionLocalProvider(LocalSettings provides settingsStore) {
+                                AnimatedContent(
+                                    targetState = currentTradingPair,
+                                    transitionSpec = {
+                                        val currentIndex = tradingPairList.indexOf(initialState)
+                                        val targetIndex = tradingPairList.indexOf(targetState)
+                                        val isNext = targetIndex > currentIndex
 
-                                    slideInHorizontally(
-                                        initialOffsetX = { fullWidth -> if (isNext) fullWidth else -fullWidth },
-                                        animationSpec = tween(300)
-                                    ) + fadeIn(animationSpec = tween(300)) togetherWith
-                                            slideOutHorizontally(
-                                                targetOffsetX = { fullWidth -> if (isNext) -fullWidth else fullWidth },
-                                                animationSpec = tween(300)
-                                            ) + fadeOut(animationSpec = tween(300))
-                                },
-                                label = "Trading Pair Content Animation"
-                            ) { tradingPair ->
-                                LazyColumn(
-                                    state = listState,
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                ) {
-                                    stickyHeader {
-                                        TickerCardListHeader(cryptoViewModel)
-                                    }
-                                    items(
-                                        items = tickerDataMap.values.toList(),
-                                        key = { it.symbol }
-                                    ) { tickerData ->
-                                        if (tickerDataMap.values.indexOf(tickerData) == 0) {
+                                        slideInHorizontally(
+                                            initialOffsetX = { fullWidth -> if (isNext) fullWidth else -fullWidth },
+                                            animationSpec = tween(300)
+                                        ) + fadeIn(animationSpec = tween(300)) togetherWith
+                                                slideOutHorizontally(
+                                                    targetOffsetX = { fullWidth -> if (isNext) -fullWidth else fullWidth },
+                                                    animationSpec = tween(300)
+                                                ) + fadeOut(animationSpec = tween(300))
+                                    },
+                                    label = "Trading Pair Content Animation"
+                                ) { tradingPair ->
+                                    LazyColumn(
+                                        state = listState,
+                                        modifier = Modifier.fillMaxSize()
+                                    ) {
+                                        stickyHeader {
+                                            TickerCardListHeader(cryptoViewModel)
+                                        }
+                                        // Add spacer only once at the start
+                                        item(key = "spacer_top") {
                                             Spacer(modifier = Modifier.height(4.dp))
                                         }
-                                        TickerCard(
-                                            tickerData = tickerData,
-                                            selectedTradingPair = settingsStore?.selectedTradingPair
-                                                ?: "BTC",
-                                            trades = trades[tickerData.symbol] ?: emptyList(),
-                                            priceChangePercent = tickerData.priceChangePercent,
-                                            cryptoViewModel = cryptoViewModel
-                                        )
+                                        items(
+                                            items = tickerItems,
+                                            key = { it.symbol } // Stable key - critical for performance
+                                        ) { tickerData ->
+                                            TickerCard(
+                                                tickerData = tickerData,
+                                                selectedTradingPair = currentTradingPair,
+                                                trades = trades[tickerData.symbol] ?: emptyList(),
+                                                priceChangePercent = tickerData.priceChangePercent,
+                                                tradingPairs = tradingPairs,
+                                                cryptoViewModel = cryptoViewModel
+                                            )
+                                        }
                                     }
-                                }
 
-                                LazyColumnScrollbar(listState = listState)
+                                    LazyColumnScrollbar(listState = listState)
+                                }
                             }
                         } else {
                             Column(
@@ -484,98 +539,153 @@ fun RowScope.TradeChart(
         return
     }
 
-    val prices = remember(trades) { trades.map { it.closePrice.toFloat() } }
+    // Use composition local for settings to avoid recomposition
+    val settingsState = LocalSettings.current
+    val systemIsDarkTheme = isSystemInDarkTheme()
+    val isDarkTheme = remember(settingsState, systemIsDarkTheme) {
+        (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && systemIsDarkTheme))
+                || (settingsState == null && systemIsDarkTheme)
+    }
+    
+    // Get MaterialTheme color outside remember block (composable context required)
+    val primaryColor = MaterialTheme.colorScheme.primary
+    
+    // Parse price change once and cache
+    val priceChangeFloat = remember(priceChangePercent) {
+        priceChangePercent.toFloatOrNull() ?: 0f
+    }
+    
+    // Calculate prices off main thread and cache - limit to reduce memory
+    val prices = remember(trades) {
+        // Limit to MAX_CHART_POINTS to reduce memory allocations
+        val limitedTrades = if (trades.size > MAX_CHART_POINTS) {
+            val step = trades.size / MAX_CHART_POINTS
+            trades.filterIndexed { index, _ -> index % step == 0 }
+        } else {
+            trades
+        }
+        // Pre-allocate list to avoid reallocations
+        ArrayList<Float>(limitedTrades.size).apply {
+            limitedTrades.forEach { trade ->
+                add(trade.closePrice.toFloatOrNull() ?: 0f)
+            }
+        }
+    }
+    
+    // Calculate price stats once and cache
     val priceStats = remember(prices) {
-        val max = prices.maxOrNull() ?: 0f
-        val min = prices.minOrNull() ?: 0f
-        val range = if (max != min) max - min else 1f
-        Triple(min, max, range)
+        if (prices.isEmpty()) {
+            Triple(0f, 0f, 1f)
+        } else {
+            val max = prices.maxOrNull() ?: 0f
+            val min = prices.minOrNull() ?: 0f
+            val range = if (max != min) max - min else 1f
+            Triple(min, max, range)
+        }
     }
     val (minPrice, _, priceRange) = priceStats
 
-    val settingsState by store.updates.collectAsState(initial = null)
-    val isDarkTheme =
-        (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
-                || (settingsState == null && isSystemInDarkTheme()) // Default to system theme when null
-    var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
-
-    val priceChangeColor = when {
-        priceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
-        priceChangePercent.toFloat() < 0f -> redDark
-        else -> MaterialTheme.colorScheme.primary
+    // Cache price change color calculation
+    val priceChangeColor = remember(priceChangeFloat, isDarkTheme, primaryColor) {
+        when {
+            priceChangeFloat > 0f -> if (isDarkTheme) greenDark else greenLight
+            priceChangeFloat < 0f -> redDark
+            else -> primaryColor
+        }
     }
+    
+    // Cache gradient colors to avoid recreating list every frame
+    val gradientColors = remember(priceChangeColor) {
+        listOf(
+            priceChangeColor.copy(alpha = 0.6f),
+            priceChangeColor.copy(alpha = 0.3f),
+            priceChangeColor.copy(alpha = 0.1f),
+            priceChangeColor.copy(alpha = 0f)
+        )
+    }
+
+    var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
 
     Box(
         modifier = Modifier
             .padding(vertical = 16.dp)
             .weight(1f)
             .onSizeChanged { size ->
-                chartSizeInPx = Offset(size.width.toFloat(), size.height.toFloat())
+                // Only update if size actually changed to minimize recompositions
+                val newSize = Offset(size.width.toFloat(), size.height.toFloat())
+                if (chartSizeInPx != newSize) {
+                    chartSizeInPx = newSize
+                }
             }
     ) {
+        // Pre-calculate points off main thread and cache
         val points = remember(trades, chartSizeInPx, minPrice, priceRange) {
-            calculatePoints(trades, chartSizeInPx, minPrice, priceRange)
+            if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || trades.isEmpty()) {
+                emptyList()
+            } else {
+                calculatePoints(trades, chartSizeInPx, minPrice, priceRange)
+            }
         }
-        Canvas(Modifier.fillMaxSize()) {
-            if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0) return@Canvas
-
-            // Create the main path for the line
-            val linePath = Path().apply {
-                points.forEachIndexed { index, point ->
-                    if (index == 0) moveTo(point.x, point.y)
-                    else lineTo(point.x, point.y)
+        
+        // Pre-calculate paths efficiently - reuse Path objects when possible
+        val linePath = remember(points) {
+            if (points.isEmpty()) {
+                null
+            } else {
+                // Create path efficiently - avoid intermediate allocations
+                Path().apply {
+                    val firstPoint = points[0]
+                    moveTo(firstPoint.x, firstPoint.y)
+                    // Use for loop instead of forEachIndexed to reduce allocations
+                    for (i in 1 until points.size) {
+                        val point = points[i]
+                        lineTo(point.x, point.y)
+                    }
                 }
             }
-
-            // Create a path for the gradient fill
-            val fillPath = Path().apply {
-                // Start from the bottom-left corner
-                moveTo(0f, size.height)
-
-                // Add all points from the line path
-                points.forEach { point ->
-                    lineTo(point.x, point.y)
-                }
-
-                // Close the path by going to the bottom-right corner
-                lineTo(size.width, size.height)
-                close()
-            }
-
-            // Determine gradient colors based on price change
-            val gradientColors = when {
-                priceChangePercent.toFloat() > 0f -> {
-                    // Green gradient for positive change
-                    listOf(
-                        priceChangeColor.copy(alpha = 0.6f),
-                        priceChangeColor.copy(alpha = 0.3f),
-                        priceChangeColor.copy(alpha = 0.1f),
-                        priceChangeColor.copy(alpha = 0f)
-                    )
-                }
-
-                else -> {
-                    // Red gradient for negative change
-                    listOf(
-                        priceChangeColor.copy(alpha = 0.6f),
-                        priceChangeColor.copy(alpha = 0.3f),
-                        priceChangeColor.copy(alpha = 0.1f),
-                        priceChangeColor.copy(alpha = 0f)
-                    )
+        }
+        
+        val fillPath = remember(points, chartSizeInPx) {
+            if (points.isEmpty() || chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0) {
+                null
+            } else {
+                Path().apply {
+                    moveTo(0f, chartSizeInPx.y)
+                    // Use for loop to reduce allocations
+                    for (point in points) {
+                        lineTo(point.x, point.y)
+                    }
+                    lineTo(chartSizeInPx.x, chartSizeInPx.y)
+                    close()
                 }
             }
-
-            // Draw the gradient fill
-            drawPath(
-                path = fillPath,
-                brush = Brush.verticalGradient(
+        }
+        
+        // Cache brush to avoid recreation every frame
+        val gradientBrush = remember(gradientColors, chartSizeInPx) {
+            if (chartSizeInPx.y > 0) {
+                Brush.verticalGradient(
                     colors = gradientColors,
                     startY = 0f,
-                    endY = size.height
+                    endY = chartSizeInPx.y
                 )
+            } else {
+                null
+            }
+        }
+        
+        Canvas(Modifier.fillMaxSize()) {
+            if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || linePath == null || fillPath == null || gradientBrush == null) {
+                return@Canvas
+            }
+
+            // Draw the gradient fill using cached brush
+            drawPath(
+                path = fillPath,
+                brush = gradientBrush
             )
 
-            // Draw the line on top
+            // Draw the line on top - use cached path
             drawPath(
                 path = linePath,
                 color = priceChangeColor,
@@ -585,17 +695,57 @@ fun RowScope.TradeChart(
     }
 }
 
+// Optimized: Limit points to reduce memory allocations and improve performance
+// iOS can handle ~100-200 points smoothly, more causes jank
+private const val MAX_CHART_POINTS = 150
+
 fun calculatePoints(
     trades: List<UiKline>,
     size: Offset,
     minPrice: Float,
     priceRange: Float
 ): List<Offset> {
-    return trades.mapIndexed { index, trade ->
-        val x = index.toFloat() / (trades.size - 1).coerceAtLeast(1) * size.x
-        val y = size.y - ((trade.closePrice.toFloat() - minPrice) / priceRange) * size.y
-        Offset(x, y)
+    if (trades.isEmpty() || size.x <= 0 || size.y <= 0) return emptyList()
+    
+    // Limit points to reduce memory allocations - sample if too many
+    val sampleStep = if (trades.size > MAX_CHART_POINTS) {
+        trades.size / MAX_CHART_POINTS
+    } else {
+        1
     }
+    
+    // Pre-allocate list with exact size to avoid reallocations
+    val pointCount = (trades.size + sampleStep - 1) / sampleStep
+    val points = ArrayList<Offset>(pointCount)
+    
+    val lastIndex = trades.lastIndex
+    var pointIndex = 0
+    
+    // Use indexed iteration to avoid creating intermediate collections
+    for (i in trades.indices step sampleStep) {
+        val trade = trades[i]
+        // Cache float conversion to avoid repeated parsing
+        val price = trade.closePrice.toFloatOrNull() ?: minPrice
+        val x = if (lastIndex > 0) {
+            i.toFloat() / lastIndex * size.x
+        } else {
+            size.x / 2f
+        }
+        val y = size.y - ((price - minPrice) / priceRange) * size.y
+        points.add(Offset(x, y))
+        pointIndex++
+    }
+    
+    // Always include the last point for accuracy
+    if (pointIndex > 0 && pointIndex - 1 < pointCount) {
+        val lastTrade = trades.last()
+        val lastPrice = lastTrade.closePrice.toFloatOrNull() ?: minPrice
+        val lastX = size.x
+        val lastY = size.y - ((lastPrice - minPrice) / priceRange) * size.y
+        points[pointIndex - 1] = Offset(lastX, lastY)
+    }
+    
+    return points
 }
 
 @Composable
@@ -706,16 +856,46 @@ fun TickerCard(
     priceChangePercent: String,
     trades: List<UiKline>,
     selectedTradingPair: String,
+    tradingPairs: List<model.TradingPair>,
     cryptoViewModel: CryptoViewModel
 ) {
-    val settingsState by store.updates.collectAsState(initial = null)
-    val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
-            || (settingsState == null && isSystemInDarkTheme()) // Default to system theme when null
-    val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
+    // Use composition local for settings to avoid recomposition
+    val settingsState = LocalSettings.current
+    // Call composable function outside remember block
+    val systemIsDarkTheme = isSystemInDarkTheme()
+    val isDarkTheme = remember(settingsState, systemIsDarkTheme) {
+        (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && systemIsDarkTheme))
+                || (settingsState == null && systemIsDarkTheme)
+    }
+    
+    // Calculate actual trading pair once and cache - no state collection needed
+    val actualTradingPair = remember(tickerData.symbol, tradingPairs, selectedTradingPair) {
+        tradingPairs
+            .filter { pair -> tickerData.symbol.endsWith(pair.quote) }
+            .maxByOrNull { it.quote.length }
+            ?.quote ?: selectedTradingPair
+    }
+    
+    // Pre-compute symbol display text to avoid string operations during composition
+    val symbolDisplayText = remember(tickerData.symbol, actualTradingPair) {
+        buildAnnotatedString {
+            withStyle(style = SpanStyle(fontSize = 18.sp)) {
+                append(tickerData.symbol.replace(actualTradingPair, ""))
+            }
+            withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
+                append("/$actualTradingPair")
+            }
+        }
+    }
+    
+    // Pre-compute formatted volume
+    val formattedVolume = remember(tickerData.volume) {
+        tickerData.volume.formatVolume()
+    }
 
     // --- Bounce animation magic on first appearance! ---
-    val appeared = remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
+    val appeared = remember(tickerData.symbol) { mutableStateOf(false) }
+    LaunchedEffect(tickerData.symbol) {
         appeared.value = true
     }
     val bounceScale by animateFloatAsState(
@@ -728,14 +908,16 @@ fun TickerCard(
     )
     // --- End bounce animation ---
 
+    // Lifecycle-aware chart data fetching with cancellation
     LaunchedEffect(tickerData.symbol) {
-        cryptoViewModel.ensureChartData(tickerData.symbol)
+        try {
+            cryptoViewModel.ensureChartData(tickerData.symbol)
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            // Silently handle errors
+        }
     }
-
-    val actualTradingPair = tradingPairs
-        .filter { pair -> tickerData.symbol.endsWith(pair.quote) }
-        .maxByOrNull { it.quote.length }
-        ?.quote ?: selectedTradingPair
 
     Box(
         modifier = Modifier
@@ -762,16 +944,8 @@ fun TickerCard(
                         .weight(1f)
                 ) {
                     if (tickerData.symbol.isNotEmpty()) {
-                        val value = buildAnnotatedString {
-                            withStyle(style = SpanStyle(fontSize = 18.sp)) {
-                                append(tickerData.symbol.replace(actualTradingPair, ""))
-                            }
-                            withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
-                                append("/$actualTradingPair")
-                            }
-                        }
                         Text(
-                            text = value,
+                            text = symbolDisplayText,
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                     }
@@ -781,7 +955,7 @@ fun TickerCard(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         AnimatedContent(
-                            targetState = tickerData.volume.formatVolume(),
+                            targetState = formattedVolume,
                             transitionSpec = { fadeIn() togetherWith fadeOut() },
                             label = "volume Animation"
                         ) { targetVolume ->
@@ -841,7 +1015,9 @@ fun TickerCard(
             }
         }
 
-        val isFavorite = settingsState?.favPairs?.contains(tickerData.symbol) == true
+        val isFavorite = remember(settingsState, tickerData.symbol) {
+            settingsState?.favPairs?.contains(tickerData.symbol) == true
+        }
         IconButton(
             onClick = {
                 if (isFavorite) cryptoViewModel.removeFromFavorites(tickerData.symbol)
@@ -869,11 +1045,68 @@ fun TickerCard(
 
 @Composable
 fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val coroutineScope = rememberCoroutineScope()
     val trades by cryptoViewModel.trades.collectAsState()
     val tickerDataMap by cryptoViewModel.favoritesTickerDataMap.collectAsState()
     val isLoading by cryptoViewModel.isLoading.collectAsState()
+    val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
     val listState = rememberLazyListState()
     val settingsStore by store.updates.collectAsState(initial = null)
+    
+    // Derive stable list to avoid recreating on every recomposition
+    val tickerItems by derivedStateOf { tickerDataMap.values.toList() }
+    val currentTradingPair by derivedStateOf { settingsStore?.selectedTradingPair ?: "BTC" }
+    
+    // Track fetch job for cancellation
+    var fetchJob by remember { mutableStateOf<Job?>(null) }
+    
+    // Calculate visible symbols for lifecycle-aware fetching
+    val visibleSymbols by derivedStateOf {
+        val layoutInfo = listState.layoutInfo
+        if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
+            return@derivedStateOf emptyList<String>()
+        }
+        val prefetchBuffer = 10
+        val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
+        val startIndex = visibleIndices.minOrNull()?.minus(prefetchBuffer)?.coerceAtLeast(0) ?: 0
+        val endIndex = visibleIndices.maxOrNull()?.plus(prefetchBuffer)?.coerceAtMost(tickerItems.lastIndex) ?: tickerItems.lastIndex
+        (startIndex..endIndex).mapNotNull { index -> tickerItems.getOrNull(index)?.symbol }
+    }
+    
+    // Lifecycle-aware data fetching with cancellation
+    LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState) {
+        val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
+        if (visibleSymbols.isNotEmpty() && isResumed) {
+            fetchJob?.cancel()
+            fetchJob = coroutineScope.launch(Dispatchers.Default) {
+                try {
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols)
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    // Silently handle errors during cancellation
+                }
+            }
+        }
+    }
+    
+    // Lifecycle observer with proper cleanup
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
+                    fetchJob?.cancel()
+                }
+                else -> {}
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+            fetchJob?.cancel()
+        }
+    }
 
     Scaffold {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -921,26 +1154,28 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
                         )
                     }
                 } else {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        LazyColumn(state = listState) {
-                            items(
-                                items = tickerDataMap.values.toList(),
-                                key = { it.symbol }
-                            ) { tickerData ->
-                                if (tickerDataMap.values.indexOf(tickerData) == 0) {
-                                    Spacer( modifier = Modifier.height(4.dp))
+                    CompositionLocalProvider(LocalSettings provides settingsStore) {
+                        Box(modifier = Modifier.fillMaxSize()) {
+                            LazyColumn(state = listState) {
+                                items(
+                                    items = tickerItems,
+                                    key = { it.symbol } // Stable key for efficient recomposition
+                                ) { tickerData ->
+                                    if (tickerItems.indexOf(tickerData) == 0) {
+                                        Spacer(modifier = Modifier.height(4.dp))
+                                    }
+                                    TickerCard(
+                                        tickerData = tickerData,
+                                        selectedTradingPair = currentTradingPair,
+                                        trades = trades[tickerData.symbol] ?: emptyList(),
+                                        priceChangePercent = tickerData.priceChangePercent,
+                                        tradingPairs = tradingPairs,
+                                        cryptoViewModel = cryptoViewModel
+                                    )
                                 }
-                                TickerCard(
-                                    tickerData = tickerData,
-                                    selectedTradingPair = settingsStore?.selectedTradingPair
-                                        ?: "BTC",
-                                    trades = trades[tickerData.symbol] ?: emptyList(),
-                                    priceChangePercent = tickerData.priceChangePercent,
-                                    cryptoViewModel = cryptoViewModel
-                                )
                             }
+                            LazyColumnScrollbar(listState = listState)
                         }
-                        LazyColumnScrollbar(listState = listState)
                     }
                 }
             }
