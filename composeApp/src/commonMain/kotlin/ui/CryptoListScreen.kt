@@ -81,7 +81,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -94,13 +93,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import ktx.formatVolume
 import model.SortParams
 import model.TickerData
@@ -120,7 +116,7 @@ val LocalSettings = staticCompositionLocalOf<ui.Settings?> { null }
 @Composable
 fun CryptoList(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String, AnnotatedString) -> Unit = { _, _ -> },
+    onCoinClick: (String, String) -> Unit = { _, _ -> },
     onReturnFromDetail: Int? = null // Trigger value that changes when returning from detail
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -890,7 +886,7 @@ fun TickerCard(
     selectedTradingPair: String,
     tradingPairs: List<model.TradingPair>,
     cryptoViewModel: CryptoViewModel,
-    onClick: (String, AnnotatedString) -> Unit = { _, _ -> }
+    onClick: (String, String) -> Unit = { _, _ -> }
 ) {
     // Use composition local for settings to avoid recomposition
     val settingsState = LocalSettings.current
@@ -964,7 +960,7 @@ fun TickerCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
-                .clickable { onClick(tickerData.symbol, symbolDisplayText) },
+                .clickable { onClick(tickerData.symbol, symbolDisplayText.text) },
             elevation = CardDefaults.cardElevation(8.dp)
         ) {
             Row(
@@ -1080,7 +1076,7 @@ fun TickerCard(
 @Composable
 fun FavoritesListScreen(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String, AnnotatedString) -> Unit = { _, _ -> }
+    onCoinClick: (String, String) -> Unit = { _, _ -> }
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()

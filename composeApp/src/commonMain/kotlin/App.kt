@@ -168,7 +168,7 @@ fun App(
                             navController.navigate(
                                 CoinDetail(
                                     symbol = symbol,
-                                    displaySymbol = displaySymbol.text
+                                    displaySymbol = displaySymbol
                                 )
                             )
                         },
@@ -182,7 +182,7 @@ fun App(
                             navController.navigate(
                                 CoinDetail(
                                     symbol = symbol,
-                                    displaySymbol = displaySymbol.text
+                                    displaySymbol = displaySymbol
                                 )
                             )
                         }
