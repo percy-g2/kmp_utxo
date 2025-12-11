@@ -198,6 +198,7 @@ fun App(
                     CoinDetailScreen(
                         symbol = coinDetail.symbol,
                         displaySymbol = coinDetail.displaySymbol,
+                        cryptoViewModel = cryptoViewModel,
                         onBackClick = { navController.popBackStack() }
                     )
                 }

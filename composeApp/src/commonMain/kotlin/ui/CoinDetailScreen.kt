@@ -43,9 +43,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ktx.buildStyledSymbol
 import ktx.formatNewsDate
+import ktx.formatPrice
 import ktx.formatVolume
 import model.NewsItem
 import model.Ticker24hr
+import model.TradingPair
 import openLink
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,9 +56,11 @@ fun CoinDetailScreen(
     symbol: String,
     displaySymbol: String,
     onBackClick: () -> Unit,
+    cryptoViewModel: CryptoViewModel,
     viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() }
 ) {
     val state by viewModel.state.collectAsState()
+    val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
 
     LaunchedEffect(symbol) {
         viewModel.loadCoinData(symbol)
@@ -130,7 +134,8 @@ fun CoinDetailScreen(
                             item {
                                 PriceInfoSection(
                                     symbol = symbol,
-                                    ticker = state.ticker
+                                    ticker = state.ticker,
+                                    tradingPairs = tradingPairs
                                 )
                             }
 
@@ -176,7 +181,8 @@ fun CoinDetailScreen(
 @Composable
 fun PriceInfoSection(
     symbol: String,
-    ticker: Ticker24hr?
+    ticker: Ticker24hr?,
+    tradingPairs: List<TradingPair> = emptyList()
 ) {
     Card(
         modifier = Modifier
@@ -204,7 +210,11 @@ fun PriceInfoSection(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 
-                PriceRow("Last Price", ticker.lastPrice, isHighlighted = true)
+                PriceRow(
+                    label = "Last Price",
+                    value = ticker.lastPrice.formatPrice(symbol, tradingPairs),
+                    isHighlighted = true
+                )
                 Spacer(modifier = Modifier.height(4.dp))
                 
                 val priceChangePercent = ticker.priceChangePercent.toDoubleOrNull() ?: 0.0
@@ -220,7 +230,10 @@ fun PriceInfoSection(
                     valueColor = priceChangeColor
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                PriceRow("Price Change", ticker.priceChange)
+                PriceRow(
+                    label = "Price Change",
+                    value = ticker.priceChange.formatPrice(symbol, tradingPairs)
+                )
                 
                 Spacer(modifier = Modifier.height(16.dp))
                 
@@ -233,15 +246,30 @@ fun PriceInfoSection(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 
-                PriceRow("Open Price", ticker.openPrice)
+                PriceRow(
+                    label = "Open Price",
+                    value = ticker.openPrice.formatPrice(symbol, tradingPairs)
+                )
                 Spacer(modifier = Modifier.height(4.dp))
-                PriceRow("Previous Close", ticker.prevClosePrice)
+                PriceRow(
+                    label = "Previous Close",
+                    value = ticker.prevClosePrice.formatPrice(symbol, tradingPairs)
+                )
                 Spacer(modifier = Modifier.height(4.dp))
-                PriceRow("24h High", ticker.highPrice)
+                PriceRow(
+                    label ="24h High",
+                    value = ticker.highPrice.formatPrice(symbol, tradingPairs)
+                )
                 Spacer(modifier = Modifier.height(4.dp))
-                PriceRow("24h Low", ticker.lowPrice)
+                PriceRow(
+                    label = "24h Low",
+                    value = ticker.lowPrice.formatPrice(symbol, tradingPairs)
+                )
                 Spacer(modifier = Modifier.height(4.dp))
-                PriceRow("Weighted Avg", ticker.weightedAvgPrice)
+                PriceRow(
+                    label = "Weighted Avg",
+                    value = ticker.weightedAvgPrice.formatPrice(symbol, tradingPairs)
+                )
                 
                 Spacer(modifier = Modifier.height(16.dp))
                 
@@ -254,11 +282,20 @@ fun PriceInfoSection(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 
-                PriceRow("Best Bid", "${ticker.bidPrice} (${ticker.bidQty})")
+                PriceRow(
+                    label ="Best Bid",
+                    value = "${ticker.bidPrice.formatPrice(symbol, tradingPairs)} (${ticker.bidQty})"
+                )
                 Spacer(modifier = Modifier.height(4.dp))
-                PriceRow("Best Ask", "${ticker.askPrice} (${ticker.askQty})")
+                PriceRow(
+                    label = "Best Ask",
+                    value = "${ticker.askPrice.formatPrice(symbol, tradingPairs)} (${ticker.askQty})"
+                )
                 Spacer(modifier = Modifier.height(4.dp))
-                PriceRow("Last Quantity", ticker.lastQty)
+                PriceRow(
+                    label = "Last Quantity",
+                    value = ticker.lastQty
+                )
                 
                 Spacer(modifier = Modifier.height(16.dp))
                 
