@@ -21,6 +21,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
 import model.MarginSymbols
+import model.Ticker
 import model.UiKline
 import model.UiKlineSerializer
 import kotlin.time.Duration.Companion.milliseconds
@@ -79,6 +80,10 @@ class HttpClient {
         install(ContentNegotiation) {
             json(json)
         }
+    }
+    
+    fun close() {
+        client.close()
     }
 
     private suspend fun fetchUiKline(symbol: String, maxRetries: Int = 3): List<UiKline> {
@@ -146,6 +151,42 @@ class HttpClient {
             }
         }
 
+        result
+    }
+    
+    suspend fun fetchTicker24hr(symbol: String): model.Ticker? {
+        return try {
+            rateLimiter.acquire()
+            val response: HttpResponse = client.get("https://api.binance.com/api/v3/ticker/24hr") {
+                parameter("symbol", symbol)
+            }
+            if (response.status == HttpStatusCode.OK) {
+                json.decodeFromString<model.Ticker>(response.bodyAsText())
+            } else null
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+    
+    suspend fun fetchTickers24hr(symbols: List<String>): Map<String, model.Ticker> = coroutineScope {
+        val result = mutableMapOf<String, model.Ticker>()
+        
+        // Process in smaller batches to respect rate limits
+        symbols.chunked(5).forEach { batch ->
+            val deferreds = batch.map { symbol ->
+                async {
+                    fetchTicker24hr(symbol)?.let { symbol to it }
+                }
+            }
+            
+            deferreds.forEach { deferred ->
+                deferred.await()?.let { (symbol, ticker) ->
+                    result[symbol] = ticker
+                }
+            }
+        }
+        
         result
     }
 }

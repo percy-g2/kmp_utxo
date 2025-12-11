@@ -8,6 +8,8 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.plugins.websocket.WebSockets
+import kotlinx.atomicfu.locks.SynchronizedObject
+import kotlinx.atomicfu.locks.synchronized
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -81,12 +83,21 @@ actual fun getKStore(): KStore<Settings> {
     )
 }
 
+// Singleton WebSocket client to prevent memory leaks from multiple instances
+private var webSocketClientInstance: HttpClient? = null
+private val webSocketClientLock = SynchronizedObject()
+
 actual fun getWebSocketClient(): HttpClient {
-    return HttpClient(Darwin) {
-        install(WebSockets)
-        install(Logging) {
-            logger = Logger.SIMPLE
-            level = LogLevel.NONE
+    synchronized(webSocketClientLock) {
+        if (webSocketClientInstance == null) {
+            webSocketClientInstance = HttpClient(Darwin) {
+                install(WebSockets)
+                install(Logging) {
+                    logger = Logger.SIMPLE
+                    level = LogLevel.NONE
+                }
+            }
         }
+        return webSocketClientInstance!!
     }
 }

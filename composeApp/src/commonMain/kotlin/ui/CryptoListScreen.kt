@@ -1075,15 +1075,31 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
     }
     
     // Lifecycle-aware data fetching with cancellation
-    LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState) {
+    // Also trigger when tickerItems change to ensure charts load even if trades were cleared
+    LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState, tickerItems.size) {
         val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
         if (visibleSymbols.isNotEmpty() && isResumed) {
             fetchJob?.cancel()
             fetchJob = coroutineScope.launch(Dispatchers.Default) {
                 try {
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols)
+                    // Force refresh to ensure charts load even if trades were cleared
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
                 } catch (e: CancellationException) {
-                    throw e
+                    // Silently handle errors during cancellation
+                } catch (e: Exception) {
+                    // Silently handle errors during cancellation
+                }
+            }
+        } else if (tickerItems.isNotEmpty() && isResumed && visibleSymbols.isEmpty()) {
+            // If we have favorites but visibleSymbols is empty (list not laid out yet),
+            // fetch data for all favorites to ensure charts load
+            fetchJob?.cancel()
+            fetchJob = coroutineScope.launch(Dispatchers.Default) {
+                try {
+                    val allFavoriteSymbols = tickerItems.map { it.symbol }
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
+                } catch (e: CancellationException) {
+                    // Silently handle errors during cancellation
                 } catch (e: Exception) {
                     // Silently handle errors during cancellation
                 }
@@ -1091,10 +1107,31 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
         }
     }
     
-    // Lifecycle observer with proper cleanup
+    // Lifecycle observer with proper cleanup and resume handling
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             when (event) {
+                Lifecycle.Event.ON_RESUME -> {
+                    // When resuming, fetch prices and chart data for all favorites
+                    if (tickerItems.isNotEmpty()) {
+                        val allFavoriteSymbols = tickerItems.map { it.symbol }
+                        
+                        // First, fetch current prices for favorites that don't have real data yet
+                        cryptoViewModel.fetchFavoritesPrices(allFavoriteSymbols)
+                        
+                        // Then fetch chart data
+                        fetchJob?.cancel()
+                        fetchJob = coroutineScope.launch(Dispatchers.Default) {
+                            try {
+                                cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
+                            } catch (e: CancellationException) {
+                                // Silently handle errors during cancellation
+                            } catch (e: Exception) {
+                                // Silently handle errors
+                            }
+                        }
+                    }
+                }
                 Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
                     fetchJob?.cancel()
                 }
@@ -1105,6 +1142,14 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
             fetchJob?.cancel()
+        }
+    }
+    
+    // Also fetch prices when favorites list changes (e.g., when navigating to favorites screen)
+    LaunchedEffect(tickerItems.size) {
+        if (tickerItems.isNotEmpty()) {
+            val allFavoriteSymbols = tickerItems.map { it.symbol }
+            cryptoViewModel.fetchFavoritesPrices(allFavoriteSymbols)
         }
     }
 

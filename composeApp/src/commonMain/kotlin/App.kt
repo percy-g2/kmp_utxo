@@ -69,12 +69,18 @@ fun App(
         when (navBackStackEntry?.destination?.id) {
             Market.serializer().generateHashCode() -> {
                 selectedItem = 0
+                // Resume WebSocket and data updates
+                cryptoViewModel.resume()
             }
             Favorites.serializer().generateHashCode() -> {
                 selectedItem = 1
+                // Resume WebSocket and data updates
+                cryptoViewModel.resume()
             }
             Settings.serializer().generateHashCode() -> {
                 selectedItem = 2
+                // Pause WebSocket when navigating to Settings to save memory
+                cryptoViewModel.pause()
             }
         }
     }
