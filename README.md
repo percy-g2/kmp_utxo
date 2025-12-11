@@ -34,6 +34,17 @@ This project is a **Kotlin Multiplatform** application built with **Compose Mult
 - Real-time data visualization
 - Cross-platform compatibility
 
+## Development Workflow
+
+This project uses Cursor AI agents to automate common development tasks. See the [Cursor Agents Guide](docs/CURSOR_AGENTS_GUIDE.md) for quick reference on using agents with single commands.
+
+**Quick Commands:**
+- Commit changes: `Use Git Commit & Push Agent to commit my changes`
+- Create PR: `Use GitHub PR Creation Agent to create a pull request`
+- Review PR: `Use GitHub PR Review Agent to review PR #42`
+
+For complete agent specifications, see [`AGENT_RULES.md`](AGENT_RULES.md).
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0 (GPLv3) - see the [LICENSE](LICENSE) file for details.
