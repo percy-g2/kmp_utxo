@@ -38,9 +38,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.serialization.generateHashCode
+import androidx.navigation.toRoute
 import io.github.xxfast.kstore.KStore
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.flow.Flow
+import model.CoinDetail
 import model.Favorites
 import model.Market
 import model.NavItem
@@ -48,6 +50,7 @@ import model.Settings
 import theme.ThemeManager.store
 import theme.UTXOTheme
 import ui.AppTheme
+import ui.CoinDetailScreen
 import ui.CryptoList
 import ui.CryptoViewModel
 import ui.FavoritesListScreen
@@ -138,7 +141,12 @@ fun App(
                     .padding(innerPadding)
             ) {
                 animatedComposable<Market> {
-                    CryptoList(cryptoViewModel = cryptoViewModel)
+                    CryptoList(
+                        cryptoViewModel = cryptoViewModel,
+                        onCoinClick = { symbol ->
+                            navController.navigate(CoinDetail(symbol = symbol))
+                        }
+                    )
                 }
                 animatedComposable<Favorites> {
                     FavoritesListScreen(cryptoViewModel = cryptoViewModel)
@@ -147,6 +155,13 @@ fun App(
                     SettingsScreen {
                         navController.popBackStack()
                     }
+                }
+                composable<CoinDetail> { backStackEntry ->
+                    val coinDetail = backStackEntry.toRoute<CoinDetail>()
+                    CoinDetailScreen(
+                        symbol = coinDetail.symbol,
+                        onBackClick = { navController.popBackStack() }
+                    )
                 }
             }
         }
@@ -205,6 +220,8 @@ expect fun getWebSocketClient(): HttpClient
 expect fun getKStore(): KStore<ui.Settings>
 
 expect fun openLink(link: String)
+
+expect fun createNewsHttpClient(): HttpClient
 
 expect class NetworkConnectivityObserver() {
     fun observe(): Flow<NetworkStatus?>

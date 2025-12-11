@@ -117,7 +117,10 @@ import kotlin.math.abs
 val LocalSettings = staticCompositionLocalOf<ui.Settings?> { null }
 
 @Composable
-fun CryptoList(cryptoViewModel: CryptoViewModel) {
+fun CryptoList(
+    cryptoViewModel: CryptoViewModel,
+    onCoinClick: (String) -> Unit = {}
+) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
@@ -379,7 +382,8 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                                 trades = trades[tickerData.symbol] ?: emptyList(),
                                                 priceChangePercent = tickerData.priceChangePercent,
                                                 tradingPairs = tradingPairs,
-                                                cryptoViewModel = cryptoViewModel
+                                                cryptoViewModel = cryptoViewModel,
+                                                onClick = onCoinClick
                                             )
                                         }
                                     }
@@ -857,7 +861,8 @@ fun TickerCard(
     trades: List<UiKline>,
     selectedTradingPair: String,
     tradingPairs: List<model.TradingPair>,
-    cryptoViewModel: CryptoViewModel
+    cryptoViewModel: CryptoViewModel,
+    onClick: (String) -> Unit = {}
 ) {
     // Use composition local for settings to avoid recomposition
     val settingsState = LocalSettings.current
@@ -930,7 +935,8 @@ fun TickerCard(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
+                .clickable { onClick(tickerData.symbol) },
             elevation = CardDefaults.cardElevation(8.dp)
         ) {
             Row(
@@ -1044,7 +1050,10 @@ fun TickerCard(
 }
 
 @Composable
-fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
+fun FavoritesListScreen(
+    cryptoViewModel: CryptoViewModel,
+    onCoinClick: (String) -> Unit = {}
+) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()
     val trades by cryptoViewModel.trades.collectAsState()
@@ -1215,7 +1224,8 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
                                         trades = trades[tickerData.symbol] ?: emptyList(),
                                         priceChangePercent = tickerData.priceChangePercent,
                                         tradingPairs = tradingPairs,
-                                        cryptoViewModel = cryptoViewModel
+                                        cryptoViewModel = cryptoViewModel,
+                                        onClick = onCoinClick
                                     )
                                 }
                             }

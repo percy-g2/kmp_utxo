@@ -388,7 +388,7 @@ class CryptoViewModel : ViewModel() {
                             symbol = symbol,
                             lastPrice = formattedPrice,
                             priceChangePercent = ticker.priceChangePercent,
-                            volume = ticker.totalTradedQuoteAssetVolume
+                            volume = ticker.quoteVolume
                         )
                     }
                     

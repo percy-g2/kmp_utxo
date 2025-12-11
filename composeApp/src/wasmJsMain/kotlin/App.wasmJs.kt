@@ -3,8 +3,10 @@ import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.storage.storeOf
 import io.ktor.client.*
 import io.ktor.client.engine.js.*
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.browser.window
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -47,6 +49,18 @@ actual fun getWebSocketClient(): HttpClient {
         install(Logging) {
             logger = Logger.SIMPLE
             level = LogLevel.NONE
+        }
+    }
+}
+
+actual fun createNewsHttpClient(): HttpClient {
+    return HttpClient(Js) {
+        install(Logging) {
+            logger = Logger.SIMPLE
+            level = LogLevel.NONE
+        }
+        install(ContentNegotiation) {
+            json()
         }
     }
 }

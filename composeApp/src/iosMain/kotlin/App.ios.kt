@@ -3,11 +3,13 @@ import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.plugins.websocket.WebSockets
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.atomicfu.locks.SynchronizedObject
 import kotlinx.atomicfu.locks.synchronized
 import kotlinx.coroutines.channels.awaitClose
@@ -99,5 +101,17 @@ actual fun getWebSocketClient(): HttpClient {
             }
         }
         return webSocketClientInstance!!
+    }
+}
+
+actual fun createNewsHttpClient(): HttpClient {
+    return HttpClient(Darwin) {
+        install(Logging) {
+            logger = Logger.SIMPLE
+            level = LogLevel.NONE
+        }
+        install(ContentNegotiation) {
+            json()
+        }
     }
 }

@@ -38,3 +38,6 @@ object Settings
 
 @Serializable
 object Favorites
+
+@Serializable
+data class CoinDetail(val symbol: String)

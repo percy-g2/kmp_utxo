@@ -41,6 +41,35 @@ data class Ticker(
     @SerialName("n") val totalNumberOfTrades: Long    // Total number of trades
 )
 
+// REST API 24hr ticker response (different format from WebSocket)
+@Serializable
+data class Ticker24hr(
+    @SerialName("symbol") val symbol: String,
+    @SerialName("priceChange") val priceChange: String,
+    @SerialName("priceChangePercent") val priceChangePercent: String,
+    @SerialName("weightedAvgPrice") val weightedAvgPrice: String,
+    @SerialName("prevClosePrice") val prevClosePrice: String,
+    @SerialName("lastPrice") val lastPrice: String,
+    @SerialName("lastQty") val lastQty: String,
+    @SerialName("bidPrice") val bidPrice: String,
+    @SerialName("bidQty") val bidQty: String,
+    @SerialName("askPrice") val askPrice: String,
+    @SerialName("askQty") val askQty: String,
+    @SerialName("openPrice") val openPrice: String,
+    @SerialName("highPrice") val highPrice: String,
+    @SerialName("lowPrice") val lowPrice: String,
+    @SerialName("volume") val volume: String,
+    @SerialName("quoteVolume") val quoteVolume: String,
+    @SerialName("openTime") val openTime: Long,
+    @SerialName("closeTime") val closeTime: Long
+)
+
+@Serializable
+data class BinanceError(
+    @SerialName("code") val code: Int,
+    @SerialName("msg") val msg: String
+)
+
 
 data class TickerData(
     val symbol: String,
