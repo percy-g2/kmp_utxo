@@ -2,6 +2,7 @@ package ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,6 +50,7 @@ import model.NewsItem
 import model.Ticker24hr
 import model.TradingPair
 import openLink
+import theme.ThemeManager.store
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,6 +61,8 @@ fun CoinDetailScreen(
     cryptoViewModel: CryptoViewModel,
     viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() }
 ) {
+    val settingsState by store.updates.collectAsState(initial = ui.Settings(appTheme = AppTheme.System))
+    val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
     val state by viewModel.state.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
 
@@ -174,7 +178,10 @@ fun CoinDetailScreen(
                                 }
                             } else {
                                 items(state.news) { newsItem ->
-                                    NewsItemCard(newsItem = newsItem)
+                                    NewsItemCard(
+                                        newsItem = newsItem,
+                                        isDarkTheme = isDarkTheme
+                                    )
                                 }
                             }
                         }
@@ -361,7 +368,10 @@ fun PriceRow(
 }
 
 @Composable
-fun NewsItemCard(newsItem: NewsItem) {
+fun NewsItemCard(
+    newsItem: NewsItem,
+    isDarkTheme: Boolean
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -388,10 +398,14 @@ fun NewsItemCard(newsItem: NewsItem) {
                 Text(
                     text = newsItem.source,
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.primary,
+                    color = if (isDarkTheme) {
+                        MaterialTheme.colorScheme.onSecondaryContainer
+                    } else MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier
                         .background(
-                            MaterialTheme.colorScheme.secondaryContainer,
+                            if (isDarkTheme) {
+                                MaterialTheme.colorScheme.secondaryContainer
+                            } else MaterialTheme.colorScheme.primaryContainer,
                             RoundedCornerShape(4.dp)
                         )
                         .padding(horizontal = 8.dp, vertical = 4.dp)
