@@ -81,6 +81,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -119,7 +120,8 @@ val LocalSettings = staticCompositionLocalOf<ui.Settings?> { null }
 @Composable
 fun CryptoList(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String) -> Unit = {}
+    onCoinClick: (String, AnnotatedString) -> Unit = { _, _ -> },
+    onReturnFromDetail: Int? = null // Trigger value that changes when returning from detail
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val listState = rememberLazyListState()
@@ -144,7 +146,7 @@ fun CryptoList(
     val visibleSymbols by derivedStateOf {
         val layoutInfo = listState.layoutInfo
         if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
-            return@derivedStateOf emptyList<String>()
+            return@derivedStateOf emptyList()
         }
 
         val prefetchBuffer = 10
@@ -169,6 +171,7 @@ fun CryptoList(
     var fetchJob by remember { mutableStateOf<Job?>(null) }
     
     // Lifecycle-aware data fetching with cancellation
+    // Only load charts for symbols that don't have them yet (normal behavior)
     LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState) {
         val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
         if (visibleSymbols.isNotEmpty() && isResumed) {
@@ -176,7 +179,8 @@ fun CryptoList(
             fetchJob?.cancel()
             fetchJob = coroutineScope.launch(Dispatchers.Default) {
                 try {
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols)
+                    // Only load charts for symbols that don't have them (no forceRefresh)
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = false)
                 } catch (e: CancellationException) {
                     throw e
                 } catch (e: Exception) {
@@ -185,7 +189,29 @@ fun CryptoList(
             }
         }
     }
-
+    
+    // Handle return from detail screen - refresh charts for visible items only
+    LaunchedEffect(onReturnFromDetail) {
+        if (onReturnFromDetail != null && visibleSymbols.isNotEmpty()) {
+            val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
+            if (isResumed) {
+                fetchJob?.cancel()
+                fetchJob = coroutineScope.launch(Dispatchers.Default) {
+                    try {
+                        // Small delay to ensure list is laid out when returning
+                        delay(150)
+                        // Refresh charts for visible items only when returning from detail
+                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
+                    } catch (e: CancellationException) {
+                        throw e
+                    } catch (e: Exception) {
+                        // Silently handle errors
+                    }
+                }
+            }
+        }
+    }
+    
     // Lifecycle observer with proper cleanup - cancel all work when view disappears
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
@@ -194,11 +220,12 @@ fun CryptoList(
                     // Only resume work when view is actually visible
                     coroutineScope.launch {
                         cryptoViewModel.reconnect()
+                        // Don't force refresh on resume - only load missing charts
                         if (visibleSymbols.isNotEmpty()) {
                             fetchJob?.cancel()
                             fetchJob = launch(Dispatchers.Default) {
                                 try {
-                                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, true)
+                                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = false)
                                 } catch (e: CancellationException) {
                                     throw e
                                 } catch (e: Exception) {
@@ -222,7 +249,8 @@ fun CryptoList(
             fetchJob?.cancel()
         }
     }
-
+    
+    // Expose callback to trigger chart refresh when returning from detail
     Scaffold {
         Box(modifier = Modifier.fillMaxSize()) {
             Column {
@@ -862,7 +890,7 @@ fun TickerCard(
     selectedTradingPair: String,
     tradingPairs: List<model.TradingPair>,
     cryptoViewModel: CryptoViewModel,
-    onClick: (String) -> Unit = {}
+    onClick: (String, AnnotatedString) -> Unit = { _, _ -> }
 ) {
     // Use composition local for settings to avoid recomposition
     val settingsState = LocalSettings.current
@@ -936,7 +964,7 @@ fun TickerCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
-                .clickable { onClick(tickerData.symbol) },
+                .clickable { onClick(tickerData.symbol, symbolDisplayText) },
             elevation = CardDefaults.cardElevation(8.dp)
         ) {
             Row(
@@ -1052,7 +1080,7 @@ fun TickerCard(
 @Composable
 fun FavoritesListScreen(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String) -> Unit = {}
+    onCoinClick: (String, AnnotatedString) -> Unit = { _, _ -> }
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()
@@ -1074,7 +1102,7 @@ fun FavoritesListScreen(
     val visibleSymbols by derivedStateOf {
         val layoutInfo = listState.layoutInfo
         if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
-            return@derivedStateOf emptyList<String>()
+            return@derivedStateOf emptyList()
         }
         val prefetchBuffer = 10
         val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }

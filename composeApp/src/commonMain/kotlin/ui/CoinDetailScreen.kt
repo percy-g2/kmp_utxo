@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -40,6 +41,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import ktx.buildStyledSymbol
+import ktx.formatNewsDate
 import ktx.formatVolume
 import model.NewsItem
 import model.Ticker24hr
@@ -49,6 +52,7 @@ import openLink
 @Composable
 fun CoinDetailScreen(
     symbol: String,
+    displaySymbol: String,
     onBackClick: () -> Unit,
     viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() }
 ) {
@@ -63,7 +67,7 @@ fun CoinDetailScreen(
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 ),
-                title = { Text(symbol) },
+                title = { Text(displaySymbol.buildStyledSymbol()) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -81,7 +85,11 @@ fun CoinDetailScreen(
             )
         }
     ) { paddingValues ->
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(PaddingValues(top = paddingValues.calculateTopPadding()))
+        ) {
 
                 when {
                     state.isLoading -> {
@@ -315,7 +323,6 @@ fun NewsItemCard(newsItem: NewsItem) {
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .clickable {
-                // Clean URL before opening (remove any remaining CDATA or whitespace)
                 if (newsItem.link.isNotEmpty()) {
                     try {
                         openLink(newsItem.link)
@@ -340,13 +347,13 @@ fun NewsItemCard(newsItem: NewsItem) {
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .background(
-                            MaterialTheme.colorScheme.primaryContainer,
+                            MaterialTheme.colorScheme.secondaryContainer,
                             RoundedCornerShape(4.dp)
                         )
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 )
                 Text(
-                    text = newsItem.pubDate.take(16), // Show date only
+                    text = newsItem.pubDate.formatNewsDate(),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

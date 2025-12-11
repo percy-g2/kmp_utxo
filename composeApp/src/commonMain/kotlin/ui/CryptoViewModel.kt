@@ -269,22 +269,23 @@ class CryptoViewModel : ViewModel() {
                 }
             }
             
-            // Limit concurrent fetches to reduce memory pressure on iOS
-            val limitedSymbols = newSymbols.take(10) // Fetch max 10 at a time
-
-            if (limitedSymbols.isNotEmpty()) {
-                try {
-                    // I/O happens off main thread
-                    val newData = httpClient.fetchUiKlines(limitedSymbols)
-                    // Update state on main thread - only keep visible symbols to reduce memory
-                    withContext(Dispatchers.Main) {
-                        // Filter to only keep visible symbols + new data to reduce memory footprint
-                        _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+            // Process all visible symbols in batches to ensure charts load for all visible items
+            // Process in batches of 10 to reduce memory pressure on iOS
+            val batchSize = 10
+            newSymbols.chunked(batchSize).forEach { batch ->
+                if (batch.isNotEmpty()) {
+                    try {
+                        // I/O happens off main thread
+                        val newData = httpClient.fetchUiKlines(batch)
+                        // Update state on main thread - only keep visible symbols + new data to reduce memory footprint
+                        withContext(Dispatchers.Main) {
+                            _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+                        }
+                    } catch (e: CancellationException) {
+                        throw e
+                    } catch (e: Exception) {
+                        println("Error fetching klines for batch: ${e.message}")
                     }
-                } catch (e: CancellationException) {
-                    throw e
-                } catch (e: Exception) {
-                    println("Error fetching klines: ${e.message}")
                 }
             }
         }

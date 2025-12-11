@@ -23,6 +23,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -85,6 +86,9 @@ fun App(
                 // Pause WebSocket when navigating to Settings to save memory
                 cryptoViewModel.pause()
             }
+            CoinDetail.serializer().generateHashCode() -> {
+                selectedItem = 3
+            }
         }
     }
 
@@ -96,41 +100,43 @@ fun App(
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             bottomBar = {
-                BottomAppBar(
-                    actions = {
-                        val navItems = listOf(
-                            NavItem.HomeScreen,
-                            NavItem.FavoritesScreen,
-                            NavItem.SettingsScreen
-                        )
+                if (selectedItem != 3) {
+                    BottomAppBar(
+                        actions = {
+                            val navItems = listOf(
+                                NavItem.HomeScreen,
+                                NavItem.FavoritesScreen,
+                                NavItem.SettingsScreen
+                            )
 
-                        NavigationBar {
-                            navItems.forEachIndexed { index, item ->
-                                NavigationBarItem(
-                                    alwaysShowLabel = false,
-                                    icon = {
-                                        Icon(
-                                            imageVector = item.icon,
-                                            contentDescription = item.title
-                                        )
-                                    },
-                                    label = { Text(item.title) },
-                                    selected = selectedItem == index,
-                                    onClick = {
-                                        selectedItem = index
-                                        navController.navigate(item.path) {
-                                            popUpTo(navController.graph.startDestinationId) {
-                                                saveState = true
+                            NavigationBar {
+                                navItems.forEachIndexed { index, item ->
+                                    NavigationBarItem(
+                                        alwaysShowLabel = false,
+                                        icon = {
+                                            Icon(
+                                                imageVector = item.icon,
+                                                contentDescription = item.title
+                                            )
+                                        },
+                                        label = { Text(item.title) },
+                                        selected = selectedItem == index,
+                                        onClick = {
+                                            selectedItem = index
+                                            navController.navigate(item.path) {
+                                                popUpTo(navController.graph.startDestinationId) {
+                                                    saveState = true
+                                                }
+                                                launchSingleTop = true
+                                                restoreState = true
                                             }
-                                            launchSingleTop = true
-                                            restoreState = true
                                         }
-                                    }
-                                )
+                                    )
+                                }
                             }
                         }
-                    }
-                )
+                    )
+                }
             }
         ) { innerPadding ->
             NavHost(
@@ -140,16 +146,47 @@ fun App(
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                animatedComposable<Market> {
+                animatedComposable<Market> { backStackEntry ->
+                    // Track previous destination to detect when returning from CoinDetail
+                    var previousDestinationId by rememberSaveable { mutableStateOf<Int?>(null) }
+                    var refreshTrigger by remember { mutableStateOf(0) }
+                    
+                    LaunchedEffect(backStackEntry.id) {
+                        val currentDestinationId = navBackStackEntry?.destination?.id
+                        // If we were on CoinDetail and now we're on Market, trigger refresh
+                        if (previousDestinationId != null && 
+                            currentDestinationId == Market.serializer().generateHashCode() &&
+                            previousDestinationId != currentDestinationId) {
+                            refreshTrigger++
+                        }
+                        previousDestinationId = currentDestinationId
+                    }
+                    
                     CryptoList(
                         cryptoViewModel = cryptoViewModel,
-                        onCoinClick = { symbol ->
-                            navController.navigate(CoinDetail(symbol = symbol))
-                        }
+                        onCoinClick = { symbol, displaySymbol ->
+                            navController.navigate(
+                                CoinDetail(
+                                    symbol = symbol,
+                                    displaySymbol = displaySymbol.text
+                                )
+                            )
+                        },
+                        onReturnFromDetail = if (refreshTrigger > 0) refreshTrigger else null
                     )
                 }
                 animatedComposable<Favorites> {
-                    FavoritesListScreen(cryptoViewModel = cryptoViewModel)
+                    FavoritesListScreen(
+                        cryptoViewModel = cryptoViewModel,
+                        onCoinClick = { symbol, displaySymbol ->
+                            navController.navigate(
+                                CoinDetail(
+                                    symbol = symbol,
+                                    displaySymbol = displaySymbol.text
+                                )
+                            )
+                        }
+                    )
                 }
                 animatedComposable<Settings> {
                     SettingsScreen {
@@ -160,6 +197,7 @@ fun App(
                     val coinDetail = backStackEntry.toRoute<CoinDetail>()
                     CoinDetailScreen(
                         symbol = coinDetail.symbol,
+                        displaySymbol = coinDetail.displaySymbol,
                         onBackClick = { navController.popBackStack() }
                     )
                 }

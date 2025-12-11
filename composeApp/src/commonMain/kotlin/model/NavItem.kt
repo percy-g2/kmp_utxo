@@ -40,4 +40,4 @@ object Settings
 object Favorites
 
 @Serializable
-data class CoinDetail(val symbol: String)
+data class CoinDetail(val symbol: String, val displaySymbol: String)
