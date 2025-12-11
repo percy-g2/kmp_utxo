@@ -65,6 +65,7 @@ fun CoinDetailScreen(
     LaunchedEffect(symbol) {
         viewModel.loadCoinData(symbol)
     }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -74,12 +75,18 @@ fun CoinDetailScreen(
                 title = { Text(displaySymbol.buildStyledSymbol()) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
                 },
                 actions = {
                     IconButton(onClick = { viewModel.refresh(symbol) }) {
-                        Icon(Icons.Default.Refresh, contentDescription = "Refresh")
+                        Icon(
+                            imageVector = Icons.Default.Refresh,
+                            contentDescription = "Refresh"
+                        )
                     }
                 },
                 windowInsets = WindowInsets(
