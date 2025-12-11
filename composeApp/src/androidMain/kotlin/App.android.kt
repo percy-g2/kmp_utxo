@@ -1,4 +1,3 @@
-
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -10,12 +9,15 @@ import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
+import kotlinx.serialization.json.Json
 import org.androdevlinux.utxo.ContextProvider
 import ui.Settings
 
@@ -28,11 +30,34 @@ actual fun getKStore(): KStore<Settings> {
 }
 
 actual fun getWebSocketClient(): HttpClient {
+    val json = Json {
+        isLenient = true
+        ignoreUnknownKeys = true
+    }
     return HttpClient(CIO) {
         install(WebSockets)
         install(Logging) {
             logger = Logger.SIMPLE
             level = LogLevel.NONE
+        }
+        install(ContentNegotiation) {
+            json(json)
+        }
+    }
+}
+
+actual fun createNewsHttpClient(): HttpClient {
+    val json = Json {
+        isLenient = true
+        ignoreUnknownKeys = true
+    }
+    return HttpClient(CIO) {
+        install(Logging) {
+            logger = Logger.SIMPLE
+            level = LogLevel.NONE
+        }
+        install(ContentNegotiation) {
+            json(json)
         }
     }
 }
@@ -47,12 +72,8 @@ actual class NetworkConnectivityObserver {
                 trySend(NetworkStatus.Available)
             }
 
-            override fun onLosing(network: Network, maxMsToLive: Int) {
-                trySend(NetworkStatus.Losing)
-            }
-
             override fun onLost(network: Network) {
-                trySend(NetworkStatus.Lost)
+                trySend(NetworkStatus.Unavailable)
             }
 
             override fun onUnavailable() {
@@ -63,6 +84,7 @@ actual class NetworkConnectivityObserver {
         val request = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             .build()
+
         connectivityManager.registerNetworkCallback(request, callback)
 
         awaitClose {

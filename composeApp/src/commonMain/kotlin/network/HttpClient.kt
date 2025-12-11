@@ -21,6 +21,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
 import model.MarginSymbols
+import model.Ticker
 import model.UiKline
 import model.UiKlineSerializer
 import kotlin.time.Duration.Companion.milliseconds
@@ -79,6 +80,10 @@ class HttpClient {
         install(ContentNegotiation) {
             json(json)
         }
+    }
+    
+    fun close() {
+        client.close()
     }
 
     private suspend fun fetchUiKline(symbol: String, maxRetries: Int = 3): List<UiKline> {
@@ -146,6 +151,66 @@ class HttpClient {
             }
         }
 
+        result
+    }
+    
+    suspend fun fetchTicker24hr(symbol: String): model.Ticker24hr? {
+        return try {
+            rateLimiter.acquire()
+            val response: HttpResponse = client.get("https://api.binance.com/api/v3/ticker/24hr") {
+                parameter("symbol", symbol)
+            }
+            val responseText = response.bodyAsText()
+            
+            if (response.status == HttpStatusCode.OK) {
+                // Check if response is an error object
+                if (responseText.contains("\"code\"") && responseText.contains("\"msg\"")) {
+                    try {
+                        val error = json.decodeFromString<model.BinanceError>(responseText)
+                        println("Binance API error for symbol $symbol: Code ${error.code}, Message: ${error.msg}")
+                    } catch (e: Exception) {
+                        println("Binance API error for symbol $symbol: $responseText")
+                    }
+                    return null
+                }
+                // Try to deserialize as Ticker24hr (REST API format)
+                try {
+                    json.decodeFromString<model.Ticker24hr>(responseText)
+                } catch (e: kotlinx.serialization.SerializationException) {
+                    println("Failed to deserialize ticker for symbol $symbol: ${e.message}")
+                    println("Response was (first 500 chars): ${responseText.take(500)}")
+                    e.printStackTrace()
+                    null
+                }
+            } else {
+                println("Binance API returned status ${response.status} for symbol $symbol: ${responseText.take(200)}")
+                null
+            }
+        } catch (e: Exception) {
+            println("Error fetching ticker for symbol $symbol: ${e.message}")
+            e.printStackTrace()
+            null
+        }
+    }
+    
+    suspend fun fetchTickers24hr(symbols: List<String>): Map<String, model.Ticker24hr> = coroutineScope {
+        val result = mutableMapOf<String, model.Ticker24hr>()
+        
+        // Process in smaller batches to respect rate limits
+        symbols.chunked(5).forEach { batch ->
+            val deferreds = batch.map { symbol ->
+                async {
+                    fetchTicker24hr(symbol)?.let { symbol to it }
+                }
+            }
+            
+            deferreds.forEach { deferred ->
+                deferred.await()?.let { (symbol, ticker) ->
+                    result[symbol] = ticker
+                }
+            }
+        }
+        
         result
     }
 }

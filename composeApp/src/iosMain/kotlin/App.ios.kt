@@ -3,11 +3,15 @@ import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.plugins.websocket.WebSockets
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.atomicfu.locks.SynchronizedObject
+import kotlinx.atomicfu.locks.synchronized
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -81,12 +85,33 @@ actual fun getKStore(): KStore<Settings> {
     )
 }
 
+// Singleton WebSocket client to prevent memory leaks from multiple instances
+private var webSocketClientInstance: HttpClient? = null
+private val webSocketClientLock = SynchronizedObject()
+
 actual fun getWebSocketClient(): HttpClient {
+    synchronized(webSocketClientLock) {
+        if (webSocketClientInstance == null) {
+            webSocketClientInstance = HttpClient(Darwin) {
+                install(WebSockets)
+                install(Logging) {
+                    logger = Logger.SIMPLE
+                    level = LogLevel.NONE
+                }
+            }
+        }
+        return webSocketClientInstance!!
+    }
+}
+
+actual fun createNewsHttpClient(): HttpClient {
     return HttpClient(Darwin) {
-        install(WebSockets)
         install(Logging) {
             logger = Logger.SIMPLE
             level = LogLevel.NONE
+        }
+        install(ContentNegotiation) {
+            json()
         }
     }
 }

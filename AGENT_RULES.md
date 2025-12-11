@@ -1,0 +1,542 @@
+# Cursor AI Agent Rules - Compose Multiplatform Crypto App
+
+## Project Context
+You are building a Compose Multiplatform (Kotlin) application with the following features:
+- **Crypto Price List**: Real-time cryptocurrency prices from Binance WebSocket
+- **News Feed**: RSS news feed for selected cryptocurrency
+- **App Settings**: User preferences and configuration
+
+## Core Principles
+- Always plan before executing
+- Break down tasks into logical steps
+- Verify prerequisites before proceeding
+- Provide detailed explanations for all changes
+- Follow Kotlin and Compose best practices
+- Ensure proper error handling and edge cases
+
+---
+
+## Git Commit & Push Agent
+
+### Purpose
+Push code changes to the current branch with comprehensive commit messages and proper validation.
+
+### Workflow
+1. **Pre-Commit Checks**
+   - Run `git status` to verify current branch and changed files
+   - Ensure you're not on `main` or `master` branch (abort if true)
+   - Check for merge conflicts
+   - Verify no untracked files that should be ignored
+
+2. **Code Quality Validation**
+   - Run Kotlin linter: `./gradlew ktlintCheck` (if available)
+   - Run unit tests: `./gradlew test`
+   - Check build: `./gradlew build`
+   - If any checks fail, report errors and do not proceed
+
+3. **Commit Message Structure**
+   ```
+   <type>(<scope>): <subject>
+   
+   <body>
+   
+   <footer>
+   ```
+   
+   **Types**: `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `perf`
+   
+   **Scope examples**: `websocket`, `news-feed`, `settings`, `ui`, `api`, `navigation`
+
+4. **Commit Message Guidelines**
+   - **Subject line** (50 chars max): Imperative mood, capitalize first letter, no period
+   - **Body**: Detailed explanation of WHAT changed and WHY
+     - List all modified files/modules
+     - Explain business logic changes
+     - Document any breaking changes
+     - Include implementation decisions
+   - **Footer**: Reference issues, breaking changes, co-authors
+
+5. **Example Commit**
+   ```
+   feat(websocket): implement Binance WebSocket connection for crypto prices
+   
+   - Added WebSocketManager class to handle Binance stream connections
+   - Implemented retry logic with exponential backoff (max 5 attempts)
+   - Created CryptoPriceModel data class for price updates
+   - Added StateFlow to emit real-time price updates to UI
+   - Configured connection to subscribe to BTC, ETH, and top 50 coins
+   
+   Technical details:
+   - Using Ktor WebSocket client for cross-platform compatibility
+   - Integrated kotlinx.serialization for JSON parsing
+   - Implemented proper coroutine scoping for lifecycle management
+   
+   Closes #12
+   ```
+
+6. **Push Command**
+   ```bash
+   git add .
+   git commit -m "<generated-message>"
+   git push origin <current-branch>
+   ```
+
+7. **Post-Push Verification**
+   - Confirm push success
+   - Display commit hash and branch name
+   - Provide GitHub URL to view the commit
+
+---
+
+## GitHub PR Creation Agent
+
+### Purpose
+Create GitHub Pull Request using GitHub CLI with comprehensive description and automated checks.
+
+### Prerequisites Check
+- Verify GitHub CLI is installed: `gh --version`
+- Verify authentication: `gh auth status`
+- Verify current branch is not `main` or `master`
+- Ensure all changes are committed and pushed
+
+### Workflow
+1. **Gather PR Information**
+   - Current branch name
+   - Commit history since branching from main: `git log main..HEAD --oneline`
+   - Changed files: `git diff main...HEAD --name-only`
+   - Branch purpose/feature name
+
+2. **PR Title Format**
+   ```
+   [<TYPE>] <Brief description of changes>
+   ```
+   Examples:
+   - `[FEATURE] Add Binance WebSocket integration for real-time crypto prices`
+   - `[FIX] Resolve memory leak in RSS feed parser`
+   - `[REFACTOR] Restructure settings screen with improved UX`
+
+3. **PR Description Template**
+   ```markdown
+   ## Description
+   [Clear explanation of what this PR does and why]
+   
+   ## Changes Made
+   - [Bullet point list of all changes]
+   - [Include file/module names]
+   - [Mention new dependencies if any]
+   
+   ## Type of Change
+   - [ ] New feature
+   - [ ] Bug fix
+   - [ ] Refactoring
+   - [ ] Documentation update
+   - [ ] Performance improvement
+   
+   ## Testing Done
+   - [ ] Unit tests added/updated
+   - [ ] Manual testing on Android
+   - [ ] Manual testing on iOS (if applicable)
+   - [ ] Manual testing on Desktop (if applicable)
+   
+   ## Screenshots/Videos
+   [If UI changes, include visual proof]
+   
+   ## Checklist
+   - [ ] Code follows project style guidelines
+   - [ ] Tests pass locally
+   - [ ] Documentation updated
+   - [ ] No breaking changes (or documented if present)
+   - [ ] Reviewed own code
+   
+   ## Related Issues
+   Closes #[issue-number]
+   
+   ## Additional Notes
+   [Any implementation decisions, trade-offs, or future improvements]
+   ```
+
+4. **Create PR Command**
+   ```bash
+   gh pr create \
+     --base main \
+     --head <current-branch> \
+     --title "<generated-title>" \
+     --body "<generated-description>" \
+     --assignee @me \
+     --label "feature" \
+     --reviewer <optional-reviewers>
+   ```
+
+5. **Automated Checks Configuration**
+   - Enable GitHub Actions if `.github/workflows/` exists
+   - Suggested checks:
+     - Kotlin compilation
+     - Unit tests
+     - Lint checks
+     - Code coverage
+     - Build verification for all platforms
+
+6. **Post-Creation Actions**
+   - Display PR URL
+   - Show PR number
+   - List enabled checks
+   - Suggest next steps (wait for CI, request reviews, etc.)
+
+---
+
+## GitHub PR Review Agent
+
+### Purpose
+Review a Pull Request using PR number or URL, providing comprehensive code analysis and feedback.
+
+### Input Handling
+Accept either:
+- PR number: `123`
+- PR URL: `https://github.com/owner/repo/pull/123`
+
+### Workflow
+1. **Fetch PR Information**
+   ```bash
+   gh pr view <pr-number-or-url> --json title,body,author,state,commits,files
+   ```
+
+2. **Analysis Categories**
+
+   **A. Code Quality Review**
+   - Kotlin idioms and best practices
+   - Proper null safety handling
+   - Coroutine usage and scope management
+   - Memory leak potential
+   - Performance considerations
+   - Security vulnerabilities
+
+   **B. Architecture Review**
+   - MVVM/MVI pattern adherence
+   - Separation of concerns
+   - Dependency injection usage
+   - Repository pattern implementation
+   - Proper abstraction layers
+
+   **C. Compose Multiplatform Specifics**
+   - Platform-specific code segregation
+   - Common/expect-actual implementations
+   - UI state management
+   - Recomposition optimization
+   - Resource handling across platforms
+
+   **D. Testing Coverage**
+   - Unit test presence and quality
+   - Test edge cases
+   - Mock usage appropriateness
+   - Test naming conventions
+
+   **E. Documentation**
+   - KDoc comments for public APIs
+   - README updates if needed
+   - Inline comments for complex logic
+   - Migration guides for breaking changes
+
+3. **Review Output Format**
+   ```markdown
+   # PR Review: [PR Title]
+   **PR #**: [number] | **Author**: [username] | **Status**: [open/closed]
+   
+   ## Summary
+   [High-level overview of changes]
+   
+   ## Strengths ✅
+   - [What was done well]
+   - [Good practices followed]
+   
+   ## Issues Found 🔴
+   ### Critical
+   - [Security issues, memory leaks, crashes]
+   
+   ### Major
+   - [Logic errors, performance problems, bad patterns]
+   
+   ### Minor
+   - [Style issues, naming, documentation]
+   
+   ## Suggestions 💡
+   - [Improvements and alternative approaches]
+   
+   ## Questions ❓
+   - [Clarifications needed from author]
+   
+   ## Testing Recommendations 🧪
+   - [Additional tests to add]
+   - [Edge cases to consider]
+   
+   ## Files Reviewed
+   - [List of changed files with brief notes]
+   
+   ## Overall Assessment
+   **Approve** / **Request Changes** / **Comment**
+   
+   [Final verdict and reasoning]
+   ```
+
+4. **Automated Analysis**
+   - Run static analysis: `./gradlew detekt` (if configured)
+   - Check code coverage: `./gradlew koverReport`
+   - Identify TODO/FIXME comments
+   - Check for hardcoded strings (i18n concerns)
+   - Verify proper resource usage (no leaks)
+
+5. **Interactive Review Commands**
+   - Checkout PR branch: `gh pr checkout <pr-number>`
+   - Run tests: `./gradlew test`
+   - Build and run: `./gradlew installDebug` (Android) or `./gradlew run` (Desktop)
+   - Add inline comments: `gh pr review <pr-number> --comment -b "comment"`
+
+6. **Post-Review Actions**
+   ```bash
+   # Approve
+   gh pr review <pr-number> --approve -b "<review-summary>"
+   
+   # Request changes
+   gh pr review <pr-number> --request-changes -b "<review-summary>"
+   
+   # Comment only
+   gh pr review <pr-number> --comment -b "<review-summary>"
+   ```
+
+---
+
+## Project-Specific Guidelines
+
+### Binance WebSocket Integration
+- Use Ktor WebSocket client for cross-platform support
+- Implement reconnection logic with exponential backoff
+- Handle connection state properly (Connected, Disconnected, Error)
+- Parse JSON responses with kotlinx.serialization
+- Manage subscriptions efficiently (subscribe/unsubscribe)
+- Handle rate limiting from Binance API
+
+### RSS News Feed
+- Use RSS parser library (e.g., Rome or kotlinx-rss)
+- Cache news items locally (consider SQLDelight or Room)
+- Filter news by selected cryptocurrency
+- Handle malformed RSS feeds gracefully
+- Implement pull-to-refresh functionality
+- Show loading states and error messages
+
+### App Settings
+- Use DataStore for preferences (cross-platform)
+- Settings categories:
+  - Display preferences (theme, currency format)
+  - Notification settings
+  - Default crypto selections
+  - Refresh intervals
+  - Data management (clear cache)
+- Validate user inputs
+- Provide defaults for all settings
+
+### UI/UX Best Practices
+- Material 3 design system
+- Responsive layouts for different screen sizes
+- Proper loading states (shimmer effects)
+- Error handling with retry options
+- Empty states with helpful messages
+- Smooth animations and transitions
+- Accessibility considerations (content descriptions, contrast)
+
+### Performance
+- Lazy loading for long lists
+- Image caching for crypto icons/logos
+- Debounce search inputs
+- Efficient recomposition (remember, derivedStateOf)
+- Background tasks on IO dispatcher
+- Proper lifecycle management
+
+---
+
+## Master Planning Agent Instructions
+
+When given a task, you should:
+
+1. **Understand the Full Scope**
+   - Analyze the feature requirements
+   - Identify all affected modules
+   - List dependencies and prerequisites
+   - Estimate complexity and time
+
+2. **Create Implementation Plan**
+   ```
+   Phase 1: Setup & Dependencies
+   - List all Gradle dependencies needed
+   - Create project structure
+   - Setup common/platform-specific modules
+   
+   Phase 2: Core Logic Implementation
+   - Data models
+   - Repository layer
+   - Use cases/ViewModels
+   - WebSocket/API integration
+   
+   Phase 3: UI Implementation
+   - Screen composables
+   - Navigation setup
+   - State management
+   - Error handling UI
+   
+   Phase 4: Testing
+   - Unit tests for ViewModels
+   - Repository tests
+   - UI tests (if applicable)
+   
+   Phase 5: Documentation
+   - Code comments
+   - README updates
+   - Architecture diagrams
+   ```
+
+3. **Execute Step-by-Step**
+   - Complete each phase fully before moving to next
+   - After each major milestone, use Git Commit & Push Agent to commit
+   - Verify functionality after each phase
+   - Ask for feedback if requirements are unclear
+
+4. **Quality Assurance**
+   - Run all tests before committing
+   - Check for code smells
+   - Verify cross-platform compatibility
+   - Test edge cases and error scenarios
+
+5. **Final Delivery**
+   - Create comprehensive PR with GitHub PR Creation Agent
+   - Self-review using GitHub PR Review Agent checklist
+   - Provide demo instructions
+   - Document any known issues or future improvements
+
+---
+
+## Usage Examples
+
+### Example 1: Implementing WebSocket Feature
+```
+Task: "Implement Binance WebSocket integration for BTC, ETH, and BNB"
+
+Planning:
+1. Add Ktor WebSocket dependency
+2. Create WebSocketManager class
+3. Implement connection/disconnection logic
+4. Add price data models
+5. Create StateFlow for UI updates
+6. Add error handling and retry logic
+7. Write unit tests
+8. Commit with Git Commit & Push Agent
+9. Create PR with GitHub PR Creation Agent
+```
+
+### Example 2: Bug Fix
+```
+Task: "Fix crash when no internet connection on app launch"
+
+Planning:
+1. Reproduce the crash
+2. Identify the crash location (likely WebSocket connection)
+3. Add connectivity check before connection attempt
+4. Implement offline mode UI
+5. Add proper error messaging
+6. Test with airplane mode
+7. Commit with detailed message
+8. Create PR with fix details
+```
+
+### Example 3: Code Review
+```
+Task: "Review PR #45 - Add RSS news feed"
+
+Process:
+1. Fetch PR details with `gh pr view 45`
+2. Checkout branch locally
+3. Review code structure
+4. Check for proper error handling
+5. Verify RSS parsing logic
+6. Test manually with different feeds
+7. Check test coverage
+8. Provide comprehensive review
+```
+
+---
+
+## Error Handling Protocols
+
+### If Build Fails
+1. Capture full error output
+2. Identify root cause (dependency, syntax, etc.)
+3. Fix the issue
+4. Re-run build
+5. Do not proceed with commit until build passes
+
+### If Tests Fail
+1. Run failing test in isolation
+2. Analyze failure reason
+3. Fix implementation or test
+4. Verify all tests pass
+5. Consider adding additional test cases
+
+### If Push Fails
+1. Check if remote branch has new commits
+2. Pull with rebase: `git pull --rebase origin <branch>`
+3. Resolve conflicts if any
+4. Re-run tests
+5. Push again
+
+### If PR Creation Fails
+1. Verify GitHub CLI authentication
+2. Check branch is pushed to remote
+3. Verify not already on main branch
+4. Check if PR already exists
+5. Retry with verbose output
+
+---
+
+## Commands Cheat Sheet
+
+```bash
+# Git Operations
+git status
+git branch
+git log main..HEAD --oneline
+git diff main...HEAD --name-only
+git add .
+git commit -m "message"
+git push origin <branch>
+
+# GitHub CLI
+gh auth status
+gh pr create --base main --head <branch> --title "title" --body "body"
+gh pr view <number>
+gh pr checkout <number>
+gh pr review <number> --approve
+gh pr list --state open
+
+# Gradle
+./gradlew build
+./gradlew test
+./gradlew ktlintCheck
+./gradlew detekt
+./gradlew koverReport
+
+# Run App
+./gradlew :androidApp:installDebug
+./gradlew :desktopApp:run
+```
+
+---
+
+## Final Notes
+
+- **Always ask for clarification** if requirements are ambiguous
+- **Prioritize code quality** over speed
+- **Write self-documenting code** with clear naming
+- **Think cross-platform** - consider Android, iOS, Desktop differences
+- **Security first** - never commit API keys, use environment variables
+- **User experience matters** - smooth animations, helpful error messages
+- **Test thoroughly** - unit tests, integration tests, manual testing
+- **Document decisions** - explain why, not just what
+
+These rules should enable Cursor to autonomously handle the entire development lifecycle from planning through implementation to PR creation and review.

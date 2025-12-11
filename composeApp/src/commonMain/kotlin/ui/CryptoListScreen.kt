@@ -93,13 +93,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import ktx.formatVolume
 import model.SortParams
 import model.TickerData
@@ -114,10 +111,14 @@ import ui.components.LazyColumnScrollbar
 import kotlin.math.abs
 
 // Stable composition local for settings to avoid recompositions
-val LocalSettings = staticCompositionLocalOf<ui.Settings?> { null }
+val LocalSettings = staticCompositionLocalOf<Settings?> { null }
 
 @Composable
-fun CryptoList(cryptoViewModel: CryptoViewModel) {
+fun CryptoList(
+    cryptoViewModel: CryptoViewModel,
+    onCoinClick: (String, String) -> Unit = { _, _ -> },
+    onReturnFromDetail: Int? = null // Trigger value that changes when returning from detail
+) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
@@ -141,7 +142,7 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
     val visibleSymbols by derivedStateOf {
         val layoutInfo = listState.layoutInfo
         if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
-            return@derivedStateOf emptyList<String>()
+            return@derivedStateOf emptyList()
         }
 
         val prefetchBuffer = 10
@@ -166,6 +167,7 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
     var fetchJob by remember { mutableStateOf<Job?>(null) }
     
     // Lifecycle-aware data fetching with cancellation
+    // Only load charts for symbols that don't have them yet (normal behavior)
     LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState) {
         val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
         if (visibleSymbols.isNotEmpty() && isResumed) {
@@ -173,7 +175,8 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
             fetchJob?.cancel()
             fetchJob = coroutineScope.launch(Dispatchers.Default) {
                 try {
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols)
+                    // Only load charts for symbols that don't have them (no forceRefresh)
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = false)
                 } catch (e: CancellationException) {
                     throw e
                 } catch (e: Exception) {
@@ -182,7 +185,29 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
             }
         }
     }
-
+    
+    // Handle return from detail screen - refresh charts for visible items only
+    LaunchedEffect(onReturnFromDetail) {
+        if (onReturnFromDetail != null && visibleSymbols.isNotEmpty()) {
+            val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
+            if (isResumed) {
+                fetchJob?.cancel()
+                fetchJob = coroutineScope.launch(Dispatchers.Default) {
+                    try {
+                        // Small delay to ensure list is laid out when returning
+                        delay(150)
+                        // Refresh charts for visible items only when returning from detail
+                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
+                    } catch (e: CancellationException) {
+                        throw e
+                    } catch (e: Exception) {
+                        // Silently handle errors
+                    }
+                }
+            }
+        }
+    }
+    
     // Lifecycle observer with proper cleanup - cancel all work when view disappears
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
@@ -191,11 +216,12 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                     // Only resume work when view is actually visible
                     coroutineScope.launch {
                         cryptoViewModel.reconnect()
+                        // Don't force refresh on resume - only load missing charts
                         if (visibleSymbols.isNotEmpty()) {
                             fetchJob?.cancel()
                             fetchJob = launch(Dispatchers.Default) {
                                 try {
-                                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, true)
+                                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = false)
                                 } catch (e: CancellationException) {
                                     throw e
                                 } catch (e: Exception) {
@@ -219,7 +245,8 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
             fetchJob?.cancel()
         }
     }
-
+    
+    // Expose callback to trigger chart refresh when returning from detail
     Scaffold {
         Box(modifier = Modifier.fillMaxSize()) {
             Column {
@@ -379,7 +406,8 @@ fun CryptoList(cryptoViewModel: CryptoViewModel) {
                                                 trades = trades[tickerData.symbol] ?: emptyList(),
                                                 priceChangePercent = tickerData.priceChangePercent,
                                                 tradingPairs = tradingPairs,
-                                                cryptoViewModel = cryptoViewModel
+                                                cryptoViewModel = cryptoViewModel,
+                                                onClick = onCoinClick
                                             )
                                         }
                                     }
@@ -487,6 +515,7 @@ fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Uni
             label = "Trading Pair Text Animation"
         ) { selected ->
             Text(
+                modifier = Modifier.padding(horizontal = 2.dp),
                 text = quote,
                 color = if (selected) MaterialTheme.colorScheme.onPrimary
                 else MaterialTheme.colorScheme.onSurfaceVariant,
@@ -857,7 +886,8 @@ fun TickerCard(
     trades: List<UiKline>,
     selectedTradingPair: String,
     tradingPairs: List<model.TradingPair>,
-    cryptoViewModel: CryptoViewModel
+    cryptoViewModel: CryptoViewModel,
+    onClick: (String, String) -> Unit = { _, _ -> }
 ) {
     // Use composition local for settings to avoid recomposition
     val settingsState = LocalSettings.current
@@ -930,7 +960,8 @@ fun TickerCard(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
+                .clickable { onClick(tickerData.symbol, symbolDisplayText.text) },
             elevation = CardDefaults.cardElevation(8.dp)
         ) {
             Row(
@@ -1044,7 +1075,10 @@ fun TickerCard(
 }
 
 @Composable
-fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
+fun FavoritesListScreen(
+    cryptoViewModel: CryptoViewModel,
+    onCoinClick: (String, String) -> Unit = { _, _ -> }
+) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()
     val trades by cryptoViewModel.trades.collectAsState()
@@ -1065,7 +1099,7 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
     val visibleSymbols by derivedStateOf {
         val layoutInfo = listState.layoutInfo
         if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
-            return@derivedStateOf emptyList<String>()
+            return@derivedStateOf emptyList()
         }
         val prefetchBuffer = 10
         val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
@@ -1075,15 +1109,31 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
     }
     
     // Lifecycle-aware data fetching with cancellation
-    LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState) {
+    // Also trigger when tickerItems change to ensure charts load even if trades were cleared
+    LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState, tickerItems.size) {
         val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
         if (visibleSymbols.isNotEmpty() && isResumed) {
             fetchJob?.cancel()
             fetchJob = coroutineScope.launch(Dispatchers.Default) {
                 try {
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols)
+                    // Force refresh to ensure charts load even if trades were cleared
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
                 } catch (e: CancellationException) {
-                    throw e
+                    // Silently handle errors during cancellation
+                } catch (e: Exception) {
+                    // Silently handle errors during cancellation
+                }
+            }
+        } else if (tickerItems.isNotEmpty() && isResumed && visibleSymbols.isEmpty()) {
+            // If we have favorites but visibleSymbols is empty (list not laid out yet),
+            // fetch data for all favorites to ensure charts load
+            fetchJob?.cancel()
+            fetchJob = coroutineScope.launch(Dispatchers.Default) {
+                try {
+                    val allFavoriteSymbols = tickerItems.map { it.symbol }
+                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
+                } catch (e: CancellationException) {
+                    // Silently handle errors during cancellation
                 } catch (e: Exception) {
                     // Silently handle errors during cancellation
                 }
@@ -1091,10 +1141,31 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
         }
     }
     
-    // Lifecycle observer with proper cleanup
+    // Lifecycle observer with proper cleanup and resume handling
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             when (event) {
+                Lifecycle.Event.ON_RESUME -> {
+                    // When resuming, fetch prices and chart data for all favorites
+                    if (tickerItems.isNotEmpty()) {
+                        val allFavoriteSymbols = tickerItems.map { it.symbol }
+                        
+                        // First, fetch current prices for favorites that don't have real data yet
+                        cryptoViewModel.fetchFavoritesPrices(allFavoriteSymbols)
+                        
+                        // Then fetch chart data
+                        fetchJob?.cancel()
+                        fetchJob = coroutineScope.launch(Dispatchers.Default) {
+                            try {
+                                cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
+                            } catch (e: CancellationException) {
+                                // Silently handle errors during cancellation
+                            } catch (e: Exception) {
+                                // Silently handle errors
+                            }
+                        }
+                    }
+                }
                 Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
                     fetchJob?.cancel()
                 }
@@ -1105,6 +1176,14 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
             fetchJob?.cancel()
+        }
+    }
+    
+    // Also fetch prices when favorites list changes (e.g., when navigating to favorites screen)
+    LaunchedEffect(tickerItems.size) {
+        if (tickerItems.isNotEmpty()) {
+            val allFavoriteSymbols = tickerItems.map { it.symbol }
+            cryptoViewModel.fetchFavoritesPrices(allFavoriteSymbols)
         }
     }
 
@@ -1170,7 +1249,8 @@ fun FavoritesListScreen(cryptoViewModel: CryptoViewModel) {
                                         trades = trades[tickerData.symbol] ?: emptyList(),
                                         priceChangePercent = tickerData.priceChangePercent,
                                         tradingPairs = tradingPairs,
-                                        cryptoViewModel = cryptoViewModel
+                                        cryptoViewModel = cryptoViewModel,
+                                        onClick = onCoinClick
                                     )
                                 }
                             }

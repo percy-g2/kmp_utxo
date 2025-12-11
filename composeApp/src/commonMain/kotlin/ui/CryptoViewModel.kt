@@ -45,6 +45,7 @@ import kotlin.time.ExperimentalTime
 class CryptoViewModel : ViewModel() {
     private val httpClient = HttpClient()
     private val webSocketClient = getWebSocketClient()
+    private var isWebSocketConnected = false
 
     private val _trades = MutableStateFlow<Map<String, List<UiKline>>>(emptyMap())
     val trades: StateFlow<Map<String, List<UiKline>>> = _trades.asStateFlow()
@@ -78,6 +79,7 @@ class CryptoViewModel : ViewModel() {
         snapshotFlow { isSortDesc.value }
     ) { allData, settings, query, sortKey, isDescending ->
         val selectedPair = settings?.selectedTradingPair ?: "BTC"
+        val favorites = settings?.favPairs ?: emptyList()
         val trimmedQuery = query.trim().uppercase()
         
         // Optimize filtering - avoid creating intermediate collections
@@ -91,47 +93,60 @@ class CryptoViewModel : ViewModel() {
         }
 
         val tickerList = filtered.values.toMutableList()
+        
+        // Separate favorites and non-favorites
+        val (favoritesList, nonFavoritesList) = tickerList.partition { it.symbol in favorites }
 
-        // Pre-compute numeric values for sorting to avoid repeated parsing during sort
-        when (sortKey) {
-            SortParams.Pair -> {
-                if (!isDescending) {
-                    tickerList.sortByDescending { it.symbol }
-                } else {
-                    tickerList.sortBy { it.symbol }
+        // Helper function to sort a list based on sortKey
+        fun sortTickerList(list: List<TickerData>): List<TickerData> {
+            val sortedList = list.toMutableList()
+            when (sortKey) {
+                SortParams.Pair -> {
+                    if (!isDescending) {
+                        sortedList.sortByDescending { it.symbol }
+                    } else {
+                        sortedList.sortBy { it.symbol }
+                    }
+                }
+                SortParams.Vol -> {
+                    // Pre-compute all volumes once
+                    val volumeMap = sortedList.associateWith { it.volume.toDoubleOrNull() ?: 0.0 }
+                    if (!isDescending) {
+                        sortedList.sortByDescending { volumeMap[it] ?: 0.0 }
+                    } else {
+                        sortedList.sortBy { volumeMap[it] ?: 0.0 }
+                    }
+                }
+                SortParams.Price -> {
+                    // Pre-compute all prices once - cache regex-like filtering
+                    val priceMap = sortedList.associateWith {
+                        it.lastPrice.filter { char -> char.isDigit() || char == '.' }.toDoubleOrNull() ?: 0.0
+                    }
+                    if (!isDescending) {
+                        sortedList.sortByDescending { priceMap[it] ?: 0.0 }
+                    } else {
+                        sortedList.sortBy { priceMap[it] ?: 0.0 }
+                    }
+                }
+                SortParams.Change -> {
+                    // Pre-compute all change values once
+                    val changeMap = sortedList.associateWith { it.priceChangePercent.toDoubleOrNull() ?: 0.0 }
+                    if (!isDescending) {
+                        sortedList.sortByDescending { changeMap[it] ?: 0.0 }
+                    } else {
+                        sortedList.sortBy { changeMap[it] ?: 0.0 }
+                    }
                 }
             }
-            SortParams.Vol -> {
-                // Pre-compute all volumes once
-                val volumeMap = tickerList.associateWith { it.volume.toDoubleOrNull() ?: 0.0 }
-                if (!isDescending) {
-                    tickerList.sortByDescending { volumeMap[it] ?: 0.0 }
-                } else {
-                    tickerList.sortBy { volumeMap[it] ?: 0.0 }
-                }
-            }
-            SortParams.Price -> {
-                // Pre-compute all prices once - cache regex-like filtering
-                val priceMap = tickerList.associateWith {
-                    it.lastPrice.filter { char -> char.isDigit() || char == '.' }.toDoubleOrNull() ?: 0.0
-                }
-                if (!isDescending) {
-                    tickerList.sortByDescending { priceMap[it] ?: 0.0 }
-                } else {
-                    tickerList.sortBy { priceMap[it] ?: 0.0 }
-                }
-            }
-            SortParams.Change -> {
-                // Pre-compute all change values once
-                val changeMap = tickerList.associateWith { it.priceChangePercent.toDoubleOrNull() ?: 0.0 }
-                if (!isDescending) {
-                    tickerList.sortByDescending { changeMap[it] ?: 0.0 }
-                } else {
-                    tickerList.sortBy { changeMap[it] ?: 0.0 }
-                }
-            }
+            return sortedList
         }
-        tickerList.associateBy { it.symbol }
+
+        // Sort favorites first, then non-favorites, and combine
+        val sortedFavorites = sortTickerList(favoritesList)
+        val sortedNonFavorites = sortTickerList(nonFavoritesList)
+        val finalList = sortedFavorites + sortedNonFavorites
+        
+        finalList.associateBy { it.symbol }
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
@@ -140,10 +155,27 @@ class CryptoViewModel : ViewModel() {
 
     val favoritesTickerDataMap: StateFlow<Map<String, TickerData>> = combine(
         _allTickerDataMap,
-        settings
-    ) { allData: Map<String, TickerData>, settings: Settings? ->
+        settings,
+        _symbols.asStateFlow()
+    ) { allData: Map<String, TickerData>, settings: Settings?, symbols: List<TickerDataInfo> ->
         val favorites = settings?.favPairs ?: emptyList()
-        allData.filterKeys { it in favorites }
+        val favoritesFromAllData = allData.filterKeys { it in favorites }
+        
+        // If a favorite is not in allData yet (WebSocket hasn't received it),
+        // create a placeholder entry from symbols list to ensure it shows up
+        val missingFavorites = favorites.filterNot { it in favoritesFromAllData.keys }
+        val placeholderEntries = missingFavorites.mapNotNull { symbol ->
+            symbols.find { it.symbol == symbol }?.let { symbolInfo ->
+                symbol to TickerData(
+                    symbol = symbolInfo.symbol,
+                    lastPrice = "0.00",
+                    priceChangePercent = "0.00",
+                    volume = symbolInfo.quoteVolume
+                )
+            }
+        }
+        
+        favoritesFromAllData + placeholderEntries
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
@@ -237,22 +269,23 @@ class CryptoViewModel : ViewModel() {
                 }
             }
             
-            // Limit concurrent fetches to reduce memory pressure on iOS
-            val limitedSymbols = newSymbols.take(10) // Fetch max 10 at a time
-
-            if (limitedSymbols.isNotEmpty()) {
-                try {
-                    // I/O happens off main thread
-                    val newData = httpClient.fetchUiKlines(limitedSymbols)
-                    // Update state on main thread - only keep visible symbols to reduce memory
-                    withContext(Dispatchers.Main) {
-                        // Filter to only keep visible symbols + new data to reduce memory footprint
-                        _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+            // Process all visible symbols in batches to ensure charts load for all visible items
+            // Process in batches of 10 to reduce memory pressure on iOS
+            val batchSize = 10
+            newSymbols.chunked(batchSize).forEach { batch ->
+                if (batch.isNotEmpty()) {
+                    try {
+                        // I/O happens off main thread
+                        val newData = httpClient.fetchUiKlines(batch)
+                        // Update state on main thread - only keep visible symbols + new data to reduce memory footprint
+                        withContext(Dispatchers.Main) {
+                            _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+                        }
+                    } catch (e: CancellationException) {
+                        throw e
+                    } catch (e: Exception) {
+                        println("Error fetching klines for batch: ${e.message}")
                     }
-                } catch (e: CancellationException) {
-                    throw e
-                } catch (e: Exception) {
-                    println("Error fetching klines: ${e.message}")
                 }
             }
         }
@@ -315,19 +348,82 @@ class CryptoViewModel : ViewModel() {
             }
         }
     }
+    
+    fun pause() {
+        // Stop WebSocket connection to prevent data accumulation
+        webSocketJob?.cancel()
+        isWebSocketConnected = false
+        
+        // Clear trades data to free memory when not on Market screen
+        viewModelScope.launch {
+            _trades.value = emptyMap()
+        }
+    }
+    
+    fun resume() {
+        // Resume WebSocket connection when returning to Market screen
+        if (!isWebSocketConnected) {
+            startWebSocketConnection()
+        }
+    }
+    
+    fun fetchFavoritesPrices(favoriteSymbols: List<String>) {
+        viewModelScope.launch(Dispatchers.Default) {
+            try {
+                // Find favorites that don't have real data yet (have placeholder "0.00" price)
+                val favoritesNeedingData = favoriteSymbols.filter { symbol ->
+                    val currentData = _allTickerDataMap.value[symbol]
+                    currentData == null || currentData.lastPrice == "0.00"
+                }
+                
+                if (favoritesNeedingData.isNotEmpty()) {
+                    // Fetch current ticker data for favorites that need it
+                    val tickers = httpClient.fetchTickers24hr(favoritesNeedingData)
+                    val currentTradingPairs = tradingPairs.value
+                    
+                    // Update _allTickerDataMap with fetched data
+                    val updatedTickerMap = _allTickerDataMap.value.toMutableMap()
+                    tickers.forEach { (symbol, ticker) ->
+                        val formattedPrice = ticker.lastPrice.formatPrice(symbol, currentTradingPairs)
+                        updatedTickerMap[symbol] = TickerData(
+                            symbol = symbol,
+                            lastPrice = formattedPrice,
+                            priceChangePercent = ticker.priceChangePercent,
+                            volume = ticker.quoteVolume
+                        )
+                    }
+                    
+                    withContext(Dispatchers.Main) {
+                        _allTickerDataMap.value = updatedTickerMap
+                    }
+                }
+            } catch (e: CancellationException) {
+                e.printStackTrace()
+            } catch (e: Exception) {
+                println("Error fetching favorites prices: ${e.message}")
+            }
+        }
+    }
 
     private fun startWebSocketConnection() {
+        // Cancel existing connection before starting a new one
         webSocketJob?.cancel()
+        isWebSocketConnected = false
+        
+        // Wait a bit for the previous connection to fully close
         webSocketJob = viewModelScope.launch {
+            delay(100) // Small delay to ensure previous connection is closed
             connectWebSocket()
         }
     }
 
     private suspend fun connectWebSocket() {
+        // Use a single coroutine scope to ensure only one connection at a time
         supervisorScope {
             launch(Dispatchers.Default) {
                 while (isActive) {
                     try {
+                        isWebSocketConnected = true
                         webSocketClient.wss(
                             method = HttpMethod.Get,
                             host = "stream.binance.com",
@@ -335,24 +431,33 @@ class CryptoViewModel : ViewModel() {
                             request = { header(HttpHeaders.ContentType, ContentType.Application.Json) }
                         ) {
                             for (frame in incoming) {
-                                if (!isActive) break // Check cancellation
+                                if (!isActive) {
+                                    isWebSocketConnected = false
+                                    break // Check cancellation
+                                }
                                 when (frame) {
                                     is Frame.Text -> {
                                         // Process message off main thread
                                         processTickerMessage(frame.readText())
                                     }
                                     is Frame.Ping -> send(Frame.Pong(frame.data))
-                                    is Frame.Close -> throw CancellationException("WebSocket closed")
+                                    is Frame.Close -> {
+                                        isWebSocketConnected = false
+                                        throw CancellationException("WebSocket closed")
+                                    }
                                     else -> {} // no-op
                                 }
                             }
                         }
+                        isWebSocketConnected = false
                     } catch (e: CancellationException) {
-                        throw e // Re-throw cancellation to properly stop
+                        isWebSocketConnected = false
+                        e.printStackTrace()
                     } catch (e: Exception) {
+                        isWebSocketConnected = false
                         if (isActive) {
                             println("WebSocket error: ${e.message}")
-                            delay(5000)
+                            delay(5000) // Wait before reconnecting
                         }
                     }
                 }
@@ -415,7 +520,20 @@ class CryptoViewModel : ViewModel() {
         // Cancel all background jobs to prevent memory leaks
         webSocketJob?.cancel()
         fetchJob?.cancel()
-        webSocketClient.close()
+
+        // Close HTTP client (this is per-ViewModel instance)
+        try {
+            viewModelScope.launch {
+                try {
+                    httpClient.close()
+                } catch (e: Exception) {
+                    // Ignore errors during cleanup
+                }
+            }
+        } catch (e: Exception) {
+            // Ignore errors during cleanup
+        }
+        
         super.onCleared()
     }
 

@@ -1,0 +1,30 @@
+# Cursor AI Agent Rules for KMP UTXO Project
+
+This project uses comprehensive agent rules for development workflow. See `AGENT_RULES.md` for complete documentation.
+
+## Quick Reference
+
+### Project Type
+- Compose Multiplatform (Kotlin) crypto app
+- Targets: Android, iOS, Desktop, Web
+- Features: Binance WebSocket, RSS News Feed, Settings
+
+### Key Workflows
+1. **Git Commit & Push Agent**: Follow conventional commits with detailed messages
+2. **GitHub PR Creation Agent**: Create comprehensive PRs with GitHub CLI
+3. **GitHub PR Review Agent**: Thorough code review with automated checks
+
+### Core Principles
+- Plan before executing
+- Break tasks into logical steps
+- Verify prerequisites
+- Follow Kotlin/Compose best practices
+- Ensure proper error handling
+
+### Important Commands
+- Build: `./gradlew build`
+- Test: `./gradlew test`
+- Lint: `./gradlew ktlintCheck`
+- PR: `gh pr create --base main --head <branch>`
+
+**For detailed rules and examples, see `AGENT_RULES.md`**
