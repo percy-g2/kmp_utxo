@@ -111,7 +111,7 @@ import ui.components.LazyColumnScrollbar
 import kotlin.math.abs
 
 // Stable composition local for settings to avoid recompositions
-val LocalSettings = staticCompositionLocalOf<ui.Settings?> { null }
+val LocalSettings = staticCompositionLocalOf<Settings?> { null }
 
 @Composable
 fun CryptoList(
@@ -515,6 +515,7 @@ fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Uni
             label = "Trading Pair Text Animation"
         ) { selected ->
             Text(
+                modifier = Modifier.padding(horizontal = 2.dp),
                 text = quote,
                 color = if (selected) MaterialTheme.colorScheme.onPrimary
                 else MaterialTheme.colorScheme.onSurfaceVariant,

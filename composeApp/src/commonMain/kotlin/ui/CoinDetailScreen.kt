@@ -61,7 +61,7 @@ fun CoinDetailScreen(
     cryptoViewModel: CryptoViewModel,
     viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() }
 ) {
-    val settingsState by store.updates.collectAsState(initial = ui.Settings(appTheme = AppTheme.System))
+    val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
     val state by viewModel.state.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
