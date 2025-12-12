@@ -51,11 +51,29 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import openLink
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import theme.ThemeManager
 import theme.ThemeManager.store
 import utxo.composeapp.generated.resources.Res
+import utxo.composeapp.generated.resources.back
+import utxo.composeapp.generated.resources.cancel
 import utxo.composeapp.generated.resources.github_icon
+import utxo.composeapp.generated.resources.settings_about
+import utxo.composeapp.generated.resources.settings_appearance
+import utxo.composeapp.generated.resources.settings_dark_mode
+import utxo.composeapp.generated.resources.settings_github
+import utxo.composeapp.generated.resources.settings_privacy_policy
+import utxo.composeapp.generated.resources.settings_select_theme
+import utxo.composeapp.generated.resources.settings_theme
+import utxo.composeapp.generated.resources.settings_title
+import utxo.composeapp.generated.resources.settings_use_dark_theme
+import utxo.composeapp.generated.resources.settings_version
+import utxo.composeapp.generated.resources.settings_version_number
+import utxo.composeapp.generated.resources.settings_website
+import utxo.composeapp.generated.resources.theme_dark
+import utxo.composeapp.generated.resources.theme_light
+import utxo.composeapp.generated.resources.theme_system
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -81,10 +99,13 @@ fun SettingsScreen(
                     ambientColor = if (isDarkTheme) Color.White else Color.LightGray,
                     spotColor = if (isDarkTheme) Color.White else Color.LightGray
                 ),
-                title = { Text("Settings") },
+                title = { Text(stringResource(Res.string.settings_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBackPress) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(Res.string.back)
+                        )
                     }
                 },
                 windowInsets = WindowInsets(
@@ -99,17 +120,17 @@ fun SettingsScreen(
         ) {
             LazyColumn {
                 item {
-                    SettingsHeader(title = "Appearance")
+                    SettingsHeader(title = stringResource(Res.string.settings_appearance))
                     SettingsItem(
                         icon = Icons.Default.Palette,
-                        title = "Theme",
-                        subtitle = settingsState?.appTheme.toString(),
+                        title = stringResource(Res.string.settings_theme),
+                        subtitle = getThemeDisplayName(settingsState?.appTheme ?: AppTheme.System),
                         onClick = { showThemeDialog = true }
                     )
                     SettingsSwitchItem(
                         icon = Icons.Default.DarkMode,
-                        title = "Dark Mode",
-                        subtitle = "Use dark theme",
+                        title = stringResource(Res.string.settings_dark_mode),
+                        subtitle = stringResource(Res.string.settings_use_dark_theme),
                         checked = isDarkTheme,
                         onCheckedChange = { isDark ->
                             coroutineScope.launch {
@@ -121,26 +142,26 @@ fun SettingsScreen(
                 }
 
                 item {
-                    SettingsHeader(title = "About")
+                    SettingsHeader(title = stringResource(Res.string.settings_about))
                     SettingsItem(
                         icon = Icons.Default.Info,
-                        title = "Version",
-                        subtitle = "0.2.2",
+                        title = stringResource(Res.string.settings_version),
+                        subtitle = stringResource(Res.string.settings_version_number),
                         onClick = null
                     )
                     SettingsItem(
                         icon = Icons.Default.Policy,
-                        title = "Privacy Policy",
+                        title = stringResource(Res.string.settings_privacy_policy),
                         onClick = { openLink("https://raw.githubusercontent.com/percy-g2/kmp_utxo/refs/heads/main/PrivacyPolicy.md") }
                     )
                     SettingsItem(
                         icon = Icons.Default.Web,
-                        title = "Website",
+                        title = stringResource(Res.string.settings_website),
                         onClick = { openLink("https://androdevlinux.com/") }
                     )
                     SettingsItem(
                         icon = vectorResource(Res.drawable.github_icon),
-                        title = "Github",
+                        title = stringResource(Res.string.settings_github),
                         onClick = { openLink("https://github.com/percy-g2/kmp_utxo") }
                     )
                 }
@@ -289,12 +310,12 @@ private fun ThemeSelectionDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Select Theme") },
+        title = { Text(stringResource(Res.string.settings_select_theme)) },
         text = {
             Column {
                 AppTheme.entries.forEach { theme ->
                     RadioButtonItem(
-                        text = theme.toString(),
+                        text = getThemeDisplayName(theme),
                         selected = theme == currentTheme,
                         onClick = {
                             onThemeSelected(theme)
@@ -307,10 +328,19 @@ private fun ThemeSelectionDialog(
         confirmButton = {},
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(Res.string.cancel))
             }
         }
     )
+}
+
+@Composable
+private fun getThemeDisplayName(theme: AppTheme): String {
+    return when (theme) {
+        AppTheme.System -> stringResource(Res.string.theme_system)
+        AppTheme.Light -> stringResource(Res.string.theme_light)
+        AppTheme.Dark -> stringResource(Res.string.theme_dark)
+    }
 }
 
 @Composable

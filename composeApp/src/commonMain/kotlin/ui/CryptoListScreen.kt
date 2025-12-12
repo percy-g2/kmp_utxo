@@ -101,6 +101,7 @@ import ktx.formatVolume
 import model.SortParams
 import model.TickerData
 import model.UiKline
+import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import theme.greenDark
 import theme.greenLight
@@ -108,6 +109,25 @@ import theme.redDark
 import theme.yellowDark
 import theme.yellowLight
 import ui.components.LazyColumnScrollbar
+import utxo.composeapp.generated.resources.Res
+import utxo.composeapp.generated.resources.clear_search
+import utxo.composeapp.generated.resources.favorite
+import utxo.composeapp.generated.resources.favorites_title
+import utxo.composeapp.generated.resources.header_24h_chg
+import utxo.composeapp.generated.resources.header_last_price
+import utxo.composeapp.generated.resources.header_name
+import utxo.composeapp.generated.resources.header_slash
+import utxo.composeapp.generated.resources.header_vol
+import utxo.composeapp.generated.resources.no_favorites_yet
+import utxo.composeapp.generated.resources.no_trading_pairs_found
+import utxo.composeapp.generated.resources.please_wait_fetching
+import utxo.composeapp.generated.resources.search
+import utxo.composeapp.generated.resources.search_placeholder
+import utxo.composeapp.generated.resources.sort_change_down
+import utxo.composeapp.generated.resources.sort_change_up
+import utxo.composeapp.generated.resources.tap_star_to_add
+import utxo.composeapp.generated.resources.try_adjusting_search
+import utxo.composeapp.generated.resources.unfavorite
 import kotlin.math.abs
 
 // Stable composition local for settings to avoid recompositions
@@ -313,16 +333,19 @@ fun CryptoList(
                             tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
                         )
                         Text(
-                            text = "No trading pairs found for $currentTradingPair",
+                            text = stringResource(
+                                Res.string.no_trading_pairs_found,
+                                currentTradingPair
+                            ),
                             style = MaterialTheme.typography.titleMedium,
                             textAlign = TextAlign.Center
                         )
                         val searchQuery by cryptoViewModel.searchQuery.collectAsState()
                         Text(
                             text = if (searchQuery.isNotEmpty()) {
-                                "Try adjusting your search criteria"
+                                stringResource(Res.string.try_adjusting_search)
                             } else {
-                                "Please wait while we fetch the latest data"
+                                stringResource(Res.string.please_wait_fetching)
                             },
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
@@ -449,11 +472,18 @@ fun SearchBar(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 8.dp),
-        placeholder = { Text("Search ${settingsStore?.selectedTradingPair ?: "BTC"} pairs...") },
+        placeholder = {
+            Text(
+                stringResource(
+                    Res.string.search_placeholder,
+                    settingsStore?.selectedTradingPair ?: "BTC"
+                )
+            )
+        },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = "Search"
+                contentDescription = stringResource(Res.string.search)
             )
         },
         trailingIcon = {
@@ -461,7 +491,7 @@ fun SearchBar(
                 IconButton(onClick = { viewModel.setSearchQuery("") }) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Clear search"
+                        contentDescription = stringResource(Res.string.clear_search)
                     )
                 }
             }
@@ -785,34 +815,43 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
             .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
-            Modifier.weight(1f), horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
             Row(
-                Modifier
-                    .clickable {
-                        viewModel.updateSortKey(SortParams.Pair)
-                    },
+                Modifier.weight(1f), horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                TickerCardListHeaderItem("Name", SortParams.Pair, viewModel)
-            }
-            Text(
-                text = "/ ",
-                color = MaterialTheme.colorScheme.onSecondary,
-                fontSize = 11.sp,
-                fontWeight = FontWeight.W300,
-            )
-            Row(
-                Modifier
-                    .clickable {
-                        viewModel.updateSortKey(SortParams.Vol)
+                Row(
+                    Modifier
+                        .clickable {
+                            viewModel.updateSortKey(SortParams.Pair)
+                        },
+                ) {
+                    TickerCardListHeaderItem(
+                        stringResource(
+                            Res.string.header_name
+                        ),
+                        SortParams.Pair, viewModel
+                    )
+                }
+                Text(
+                    text = stringResource(Res.string.header_slash),
+                    color = MaterialTheme.colorScheme.onSecondary,
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.W300,
+                )
+                Row(
+                    Modifier
+                        .clickable {
+                            viewModel.updateSortKey(SortParams.Vol)
 
-                    },
-            ) {
-                TickerCardListHeaderItem("Vol", SortParams.Vol, viewModel)
+                        },
+                ) {
+                    TickerCardListHeaderItem(
+                        text = stringResource(Res.string.header_vol),
+                        sortKey = SortParams.Vol,
+                        viewModel = viewModel
+                    )
+                }
             }
-        }
         Row(
             Modifier
                 .clickable {
@@ -821,7 +860,13 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TickerCardListHeaderItem("Last Price", SortParams.Price, viewModel)
+            TickerCardListHeaderItem(
+                text = stringResource(
+                    resource = Res.string.header_last_price
+                ),
+                sortKey = SortParams.Price,
+                viewModel = viewModel
+            )
         }
         Row(
             Modifier
@@ -833,7 +878,13 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TickerCardListHeaderItem("24h Chg%", SortParams.Change, viewModel)
+            TickerCardListHeaderItem(
+                text = stringResource(
+                    resource = Res.string.header_24h_chg
+                ),
+                sortKey = SortParams.Change,
+                viewModel = viewModel
+            )
         }
     }
 }
@@ -858,8 +909,12 @@ fun TickerCardListHeaderItem(
         Box {
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
-                contentDescription = "Change Up ${sortKey.name}",
-                tint = if (currentSortKey.value == sortKey && isSortDesc.value) MaterialTheme.colorScheme.onBackground
+                contentDescription = stringResource(
+                    Res.string.sort_change_up,
+                    sortKey.name
+                ),
+                tint = if (currentSortKey.value == sortKey && isSortDesc.value)
+                    MaterialTheme.colorScheme.onBackground
                 else Color.Gray,
                 modifier = Modifier
                     .padding(bottom = 6.dp)
@@ -868,12 +923,13 @@ fun TickerCardListHeaderItem(
             )
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
-                contentDescription = "Change Down ${sortKey.name}",
-                tint = if (viewModel.currentSortKey.value == sortKey && !isSortDesc.value) MaterialTheme.colorScheme.onBackground
+                contentDescription = stringResource(
+                    Res.string.sort_change_down, sortKey.name
+                ),
+                tint = if (viewModel.currentSortKey.value == sortKey && !isSortDesc.value)
+                    MaterialTheme.colorScheme.onBackground
                 else Color.Gray,
-                modifier = Modifier
-                    .padding(top = 6.dp)
-                    .size(18.dp)
+                modifier = Modifier.padding(top = 6.dp).size(18.dp)
             )
         }
     }
@@ -1067,7 +1123,9 @@ fun TickerCard(
             Icon(
                 modifier = Modifier.padding(4.dp),
                 imageVector = if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
-                contentDescription = if (isFavorite) "Unfavorite" else "Favorite",
+                contentDescription = if (isFavorite)
+                    stringResource(Res.string.unfavorite)
+                else stringResource(Res.string.favorite),
                 tint = if (isFavorite) if (isDarkTheme) yellowDark else yellowLight else MaterialTheme.colorScheme.onSurface
             )
         }
@@ -1191,7 +1249,7 @@ fun FavoritesListScreen(
         Box(modifier = Modifier.fillMaxSize()) {
             Column {
                 Text(
-                    "Favorites",
+                    text = stringResource(resource = Res.string.favorites_title),
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(16.dp)
                 )
@@ -1220,12 +1278,12 @@ fun FavoritesListScreen(
                             tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
                         )
                         Text(
-                            text = "No favorites yet",
+                            text = stringResource(resource = Res.string.no_favorites_yet),
                             style = MaterialTheme.typography.titleMedium,
                             textAlign = TextAlign.Center
                         )
                         Text(
-                            text = "Tap the star icon on any trading pair to add it here",
+                            text = stringResource(resource = Res.string.tap_star_to_add),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                             textAlign = TextAlign.Center,

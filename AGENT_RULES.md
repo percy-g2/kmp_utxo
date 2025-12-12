@@ -19,12 +19,52 @@ You are building a Compose Multiplatform (Kotlin) application with the following
 ## Git Commit & Push Agent
 
 ### Purpose
-Push code changes to the current branch with comprehensive commit messages and proper validation.
+Push code changes to the current branch with comprehensive commit messages and proper validation. Automatically creates a new branch if attempting to commit on `main` or `master`.
+
+### Branch Naming Rules
+
+When creating a new branch, follow these naming conventions:
+
+**Format**: `<type>/<short-description>`
+
+**Types**:
+- `feat/` - New features
+- `fix/` - Bug fixes
+- `refactor/` - Code refactoring
+- `docs/` - Documentation updates
+- `style/` - Code style changes (formatting, etc.)
+- `test/` - Test additions or updates
+- `chore/` - Build tasks, dependency updates, etc.
+- `perf/` - Performance improvements
+
+**Description Guidelines**:
+- Use lowercase letters and hyphens (kebab-case)
+- Keep it concise (2-4 words)
+- Be descriptive but brief
+- Examples:
+  - `feat/i18n-strings` - Adding internationalization strings
+  - `fix/websocket-reconnection` - Fixing WebSocket reconnection issue
+  - `refactor/settings-screen` - Refactoring settings screen
+  - `feat/dark-mode-toggle` - Adding dark mode toggle
+  - `fix/memory-leak-news` - Fixing memory leak in news feed
+
+**Branch Name Generation Process**:
+1. Analyze changed files to determine the primary change type
+2. Identify the main feature/area affected (scope)
+3. Generate branch name: `<type>/<scope>-<description>`
+4. If multiple changes detected, use the most significant one
+5. Ensure branch name doesn't already exist (check with `git branch -a`)
 
 ### Workflow
 1. **Pre-Commit Checks**
    - Run `git status` to verify current branch and changed files
-   - Ensure you're not on `main` or `master` branch (abort if true)
+   - **Branch Protection Check**:
+     - If on `main` or `master` branch:
+       - Analyze changes to determine appropriate branch name
+       - Create new branch: `git checkout -b <generated-branch-name>`
+       - Inform user: "Created branch '<branch-name>' from main to protect main branch"
+       - Continue with workflow on new branch
+     - If not on `main`/`master`: proceed normally
    - Check for merge conflicts
    - Verify no untracked files that should be ignored
 
