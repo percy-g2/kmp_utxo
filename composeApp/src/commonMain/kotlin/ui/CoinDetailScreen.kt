@@ -61,6 +61,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import ktx.buildStyledSymbol
 import ktx.formatNewsDate
 import ktx.formatPrice
@@ -331,6 +334,7 @@ fun CoinDetailChart(
     var tooltipPosition by remember { mutableStateOf<Offset?>(null) }
     var chartPointPosition by remember { mutableStateOf<Offset?>(null) }
     var tooltipPrice by remember { mutableStateOf<String?>(null) }
+    var tooltipTime by remember { mutableStateOf<String?>(null) }
     var showTooltip by remember { mutableStateOf(false) }
     var hideTooltipTrigger by remember { mutableStateOf(0L) }
 
@@ -343,7 +347,41 @@ fun CoinDetailChart(
                 tooltipPosition = null
                 chartPointPosition = null
                 tooltipPrice = null
+                tooltipTime = null
             }
+        }
+    }
+
+    // Format timestamp to readable time
+    fun formatTimestamp(timestamp: Long?): String {
+        if (timestamp == null) return ""
+        return try {
+            val instant = Instant.fromEpochMilliseconds(timestamp)
+            val systemTimeZone = TimeZone.currentSystemDefault()
+            val localDateTime = instant.toLocalDateTime(systemTimeZone)
+            
+            val monthNames = listOf(
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            )
+            
+            val month = monthNames[localDateTime.monthNumber - 1]
+            val day = localDateTime.dayOfMonth
+            val hour = localDateTime.hour
+            val minute = localDateTime.minute
+            
+            val amPm = if (hour < 12) "AM" else "PM"
+            val displayHour = when {
+                hour == 0 -> 12
+                hour > 12 -> hour - 12
+                else -> hour
+            }
+            
+            val minuteStr = if (minute < 10) "0$minute" else "$minute"
+            
+            "$month $day, $displayHour:$minuteStr $amPm"
+        } catch (e: Exception) {
+            ""
         }
     }
 
@@ -396,6 +434,7 @@ fun CoinDetailChart(
                             tooltipPosition = tapOffset
                             chartPointPosition = chartPoint
                             tooltipPrice = closestKline.closePrice.formatPrice(symbol, tradingPairs)
+                            tooltipTime = formatTimestamp(closestKline.closeTime ?: closestKline.openTime)
                             showTooltip = true
                             hideTooltipTrigger = Clock.System.now().toEpochMilliseconds()
                         }
@@ -414,6 +453,7 @@ fun CoinDetailChart(
                             tooltipPosition = dragOffset
                             chartPointPosition = chartPoint
                             tooltipPrice = closestKline.closePrice.formatPrice(symbol, tradingPairs)
+                            tooltipTime = formatTimestamp(closestKline.closeTime ?: closestKline.openTime)
                             showTooltip = true
                             hideTooltipTrigger = Clock.System.now().toEpochMilliseconds()
                         }
@@ -506,8 +546,8 @@ fun CoinDetailChart(
                 val density = LocalDensity.current
                 val chartPoint = chartPointPosition!!
                 val paddingPx = with(density) { 16.dp.toPx() }
-                val estimatedTooltipWidthPx = with(density) { 140.dp.toPx() }
-                val tooltipHeightPx = with(density) { 36.dp.toPx() }
+                val estimatedTooltipWidthPx = with(density) { 160.dp.toPx() }
+                val tooltipHeightPx = with(density) { if (tooltipTime != null) 56.dp.toPx() else 36.dp.toPx() }
                 val minMarginPx = with(density) { 8.dp.toPx() }
                 
                 // Determine best side: right if point is on left half, left if on right half
@@ -538,13 +578,24 @@ fun CoinDetailChart(
                         ),
                         shape = RoundedCornerShape(8.dp)
                     ) {
-                        Text(
-                            text = tooltipPrice!!,
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                        Column(
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+                        ) {
+                            Text(
+                                text = tooltipPrice!!,
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            if (tooltipTime != null && tooltipTime!!.isNotEmpty()) {
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = tooltipTime!!,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                                )
+                            }
+                        }
                     }
                 }
             }
