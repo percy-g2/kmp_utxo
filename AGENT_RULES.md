@@ -1,5 +1,26 @@
 # Cursor AI Agent Rules - Compose Multiplatform Crypto App
 
+## Agent Overview
+
+This project uses **5 specialized agents** for the development workflow:
+
+1. **Git Commit & Push Agent** - Commits and pushes code changes
+   - ✅ **Branch Protection**: MANDATORY - Auto-creates feature branch if on main/master
+   
+2. **GitHub PR Creation Agent** - Creates Pull Requests
+   - ✅ **Branch Protection**: MANDATORY - Aborts if on main/master
+   
+3. **GitHub PR Review Agent** - Reviews Pull Requests
+   - ℹ️ **Branch Protection**: N/A - Reviews any PR
+   
+4. **GitHub PR Merge Agent** - Merges approved Pull Requests
+   - ℹ️ **Branch Protection**: N/A - Merges PRs (GitHub handles protection)
+   
+5. **Master Planning Agent** - Plans and executes features
+   - ✅ **Branch Protection**: Uses Git Commit & Push Agent (inherits protection)
+
+**⚠️ ALL agents MUST respect branch protection rules. Pushing to main/master is STRICTLY PROHIBITED.**
+
 ## Project Context
 You are building a Compose Multiplatform (Kotlin) application with the following features:
 - **Crypto Price List**: Real-time cryptocurrency prices from Binance WebSocket
@@ -13,6 +34,23 @@ You are building a Compose Multiplatform (Kotlin) application with the following
 - Provide detailed explanations for all changes
 - Follow Kotlin and Compose best practices
 - Ensure proper error handling and edge cases
+
+## ⚠️ CRITICAL: Branch Protection Rules
+
+**NEVER push directly to `main` or `master` branch. This is STRICTLY PROHIBITED.**
+
+**MANDATORY Workflow:**
+1. **ALWAYS** check current branch first: `git status` or `git branch`
+2. **IF** on `main` or `master`: **MUST** create a feature branch first
+3. **NEVER** commit or push to `main`/`master` directly
+4. **ALWAYS** create PR from feature branch to main
+
+**Violation Consequences:**
+- If you push to main/master, you have violated a critical rule
+- User will lose trust and may delete Cursor
+- Always create a feature branch when on main/master
+
+**Branch Protection Check MUST be the FIRST step in ANY git operation.**
 
 ---
 
@@ -56,17 +94,27 @@ When creating a new branch, follow these naming conventions:
 5. Ensure branch name doesn't already exist (check with `git branch -a`)
 
 ### Workflow
-1. **Pre-Commit Checks**
+1. **Pre-Commit Checks - MANDATORY FIRST STEP**
+   - **CRITICAL: Branch Protection Check MUST be done FIRST**
    - Run `git status` to verify current branch and changed files
-   - **Branch Protection Check**:
-     - If on `main` or `master` branch:
-       - Analyze changes to determine appropriate branch name
+   - **Extract current branch name from git status output**
+   - **Branch Protection Check (MANDATORY)**:
+     - **IF current branch is `main` or `master`:**
+       - **STOP immediately - DO NOT proceed with commit**
+       - Analyze changes to determine appropriate branch name using branch naming rules
+       - Check if branch already exists: `git branch -a | grep <branch-name>`
        - Create new branch: `git checkout -b <generated-branch-name>`
-       - Inform user: "Created branch '<branch-name>' from main to protect main branch"
-       - Continue with workflow on new branch
-     - If not on `main`/`master`: proceed normally
+       - Inform user: "⚠️ On main branch detected. Created branch '<branch-name>' from main to protect main branch"
+       - **Continue with workflow on new branch ONLY**
+     - **IF current branch is NOT `main`/`master`:**
+       - Proceed normally with commit workflow
    - Check for merge conflicts
    - Verify no untracked files that should be ignored
+
+**⚠️ ERROR HANDLING:**
+- If you detect you're on main/master AFTER committing: **ABORT IMMEDIATELY**
+- Do NOT push to main/master under ANY circumstances
+- If already pushed to main: Inform user immediately and provide rollback instructions
 
 2. **Code Quality Validation**
    - Run Kotlin linter: `./gradlew ktlintCheck` (if available)
@@ -116,10 +164,22 @@ When creating a new branch, follow these naming conventions:
 
 6. **Push Command**
    ```bash
+   # VERIFY BRANCH AGAIN BEFORE PUSHING
+   CURRENT_BRANCH=$(git branch --show-current)
+   if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "master" ]; then
+     echo "ERROR: Cannot push to main/master branch"
+     exit 1
+   fi
+   
    git add .
    git commit -m "<generated-message>"
    git push origin <current-branch>
    ```
+   
+   **⚠️ CRITICAL: Before executing `git push`, verify the branch name again**
+   - Double-check: `git branch --show-current` or `git status`
+   - If branch is `main` or `master`: **ABORT and create feature branch first**
+   - Only push to feature branches
 
 7. **Post-Push Verification**
    - Confirm push success
@@ -136,7 +196,15 @@ Create GitHub Pull Request using GitHub CLI with comprehensive description and a
 ### Prerequisites Check
 - Verify GitHub CLI is installed: `gh --version`
 - Verify authentication: `gh auth status`
-- Verify current branch is not `main` or `master`
+- **CRITICAL: Branch Protection Check (MANDATORY FIRST STEP)**:
+  - Run `git status` or `git branch --show-current` to get current branch name
+  - **IF current branch is `main` or `master`:**
+    - **ABORT immediately - DO NOT create PR from main/master**
+    - Inform user: "Cannot create PR from main/master branch. Please create a feature branch first."
+    - Suggest: "Use Git Commit & Push Agent to create a feature branch first"
+    - **DO NOT proceed with PR creation**
+  - **IF current branch is NOT `main`/`master`:**
+    - Proceed with PR creation workflow
 - Ensure all changes are committed and pushed
 
 ### Workflow
@@ -414,6 +482,7 @@ Automatically merge approved Pull Requests after successful review and CI checks
 - Verify authentication: `gh auth status`
 - Verify user has merge permissions (check with `gh repo view --json permissions`)
 - Ensure PR number or URL is provided
+- **Note**: This agent merges PRs, so branch protection is handled by GitHub. However, ensure you're not merging a PR that targets main/master directly without proper review.
 
 ### Input Handling
 Accept either:
@@ -747,6 +816,10 @@ When given a task, you should:
 
 3. **Execute Step-by-Step**
    - Complete each phase fully before moving to next
+   - **⚠️ CRITICAL: Before using Git Commit & Push Agent:**
+     - **ALWAYS** verify you're not on main/master branch
+     - If on main/master, the Git Commit & Push Agent will automatically create a feature branch
+     - **NEVER** instruct the agent to push to main/master directly
    - After each major milestone, use Git Commit & Push Agent to commit
    - Verify functionality after each phase
    - Ask for feedback if requirements are unclear
@@ -841,9 +914,16 @@ Process:
 ### If PR Creation Fails
 1. Verify GitHub CLI authentication
 2. Check branch is pushed to remote
-3. Verify not already on main branch
+3. **CRITICAL: Verify not already on main branch** - If on main, abort and create feature branch first
 4. Check if PR already exists
 5. Retry with verbose output
+
+### If Attempting to Push to Main/Master
+1. **STOP IMMEDIATELY** - Do not proceed with push
+2. Create feature branch: `git checkout -b <type>/<description>`
+3. Inform user about the branch protection violation
+4. Provide instructions to move commit to feature branch if already committed
+5. Never force push to main/master
 
 ---
 
@@ -883,6 +963,7 @@ gh pr list --state open
 
 ## Final Notes
 
+- **⚠️ CRITICAL: NEVER push to main/master** - Always check branch first, create feature branch if on main/master
 - **Always ask for clarification** if requirements are ambiguous
 - **Prioritize code quality** over speed
 - **Write self-documenting code** with clear naming
@@ -891,5 +972,7 @@ gh pr list --state open
 - **User experience matters** - smooth animations, helpful error messages
 - **Test thoroughly** - unit tests, integration tests, manual testing
 - **Document decisions** - explain why, not just what
+
+**Remember**: Branch protection is the FIRST and MOST IMPORTANT check before any git operation. Violating this rule will result in loss of user trust.
 
 These rules should enable Cursor to autonomously handle the entire development lifecycle from planning through implementation to PR creation and review.
