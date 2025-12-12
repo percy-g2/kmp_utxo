@@ -42,6 +42,7 @@ This project uses Cursor AI agents to automate common development tasks. See the
 - Commit changes: `Use Git Commit & Push Agent to commit my changes`
 - Create PR: `Use GitHub PR Creation Agent to create a pull request`
 - Review PR: `Use GitHub PR Review Agent to review PR #42`
+- Merge PR: `Use GitHub PR Merge Agent to merge PR #42`
 
 For complete agent specifications, see [`AGENT_RULES.md`](AGENT_RULES.md).
 
