@@ -4,10 +4,11 @@ This guide explains how to use the Cursor AI agents in this project with simple,
 
 ## Quick Start
 
-The project includes three specialized agents that automate common development workflows:
+The project includes four specialized agents that automate common development workflows:
 - **Git Commit & Push Agent** - Automated commits with conventional commit messages
 - **GitHub PR Creation Agent** - Create PRs with GitHub CLI
-- **GitHub PR Review Agent** - Comprehensive code reviews
+- **GitHub PR Review Agent** - Comprehensive code reviews with automatic approval
+- **GitHub PR Merge Agent** - Automatically merge approved PRs after successful review
 
 ## Prerequisites
 
@@ -199,6 +200,81 @@ GitHub PR Review Agent: Review PR #45 focusing on architecture and testing cover
 - ✅ Suggestions for improvement
 - ✅ Testing recommendations
 - ✅ Overall assessment (Approve/Request Changes/Comment)
+- ✅ **Automatic review comment posted to PR**
+- ✅ **Automatic approval/request-changes/comment submitted**
+
+---
+
+## GitHub PR Merge Agent
+
+### Purpose
+Automatically merge approved Pull Requests after successful review and CI checks pass.
+
+### Single Command Usage
+
+**Merge by PR number:**
+```
+Use GitHub PR Merge Agent to merge PR #152
+```
+
+**Merge by URL:**
+```
+GitHub PR Merge Agent: Merge this PR https://github.com/percy-g2/kmp_utxo/pull/152
+```
+
+**Merge current branch PR:**
+```
+Use GitHub PR Merge Agent to merge the current branch's PR
+```
+
+**Merge with specific strategy:**
+```
+GitHub PR Merge Agent: Merge PR #152 using squash and merge
+```
+
+### What It Does
+1. ✅ Validates PR is mergeable (no conflicts)
+2. ✅ Checks all CI/CD status checks pass
+3. ✅ Verifies PR has required approvals
+4. ✅ Confirms branch protection rules satisfied
+5. ✅ Merges PR with appropriate strategy (squash/merge/rebase)
+6. ✅ Deletes branch after merge (optional)
+7. ✅ Updates local repository
+
+### Merge Criteria
+- ✅ PR is OPEN and not a draft
+- ✅ No merge conflicts
+- ✅ All required CI checks passing
+- ✅ At least one approval (or auto-approve configured)
+- ✅ No blocking review comments
+- ✅ Branch protection rules satisfied
+
+### Example Commands
+
+**Basic merge:**
+```
+Merge PR #152 using GitHub PR Merge Agent
+```
+
+**Auto-merge after review:**
+```
+Use GitHub PR Review Agent to review PR #152, then GitHub PR Merge Agent to merge if approved
+```
+
+**Merge with squash:**
+```
+GitHub PR Merge Agent: Merge PR #152 with squash strategy and delete branch
+```
+
+**Merge current PR:**
+```
+Use GitHub PR Merge Agent to merge the PR for the current branch
+```
+
+### Merge Strategies
+- **Squash and Merge** (default) - Single commit, clean history
+- **Merge Commit** - Preserves full PR history
+- **Rebase and Merge** - Linear history
 
 ---
 
@@ -219,6 +295,11 @@ Use GitHub PR Creation Agent to create a pull request for this feature
 **3. Self-review:**
 ```
 Use GitHub PR Review Agent to review the PR I just created
+```
+
+**4. Auto-merge if approved:**
+```
+Use GitHub PR Merge Agent to merge PR #152 if it's approved and CI passes
 ```
 
 ### Quick Fix Workflow
@@ -338,8 +419,10 @@ GitHub PR Review Agent: Review PR #42 and checkout the branch for local testing
 | Commit changes | `Use Git Commit & Push Agent to commit my changes` |
 | Create PR | `Use GitHub PR Creation Agent to create a pull request` |
 | Review PR | `Use GitHub PR Review Agent to review PR #42` |
+| Merge PR | `Use GitHub PR Merge Agent to merge PR #42` |
 | Commit + PR | `Use Git Commit & Push Agent to commit, then GitHub PR Creation Agent to create PR` |
-| Full workflow | `Use Git Commit & Push Agent to commit, GitHub PR Creation Agent for PR, then GitHub PR Review Agent to review` |
+| Review + Merge | `Use GitHub PR Review Agent to review PR #42, then GitHub PR Merge Agent to merge if approved` |
+| Full workflow | `Use Git Commit & Push Agent to commit, GitHub PR Creation Agent for PR, GitHub PR Review Agent to review, then GitHub PR Merge Agent to merge` |
 
 ---
 

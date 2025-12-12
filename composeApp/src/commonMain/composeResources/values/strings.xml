@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">UTXO</string>
+    
+    <!-- Navigation -->
+    <string name="nav_market">Market</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_favorites">Favorites</string>
+    
+    <!-- Common -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="search">Search</string>
+    <string name="clear_search">Clear search</string>
+    <string name="refresh">Refresh</string>
+    <string name="error">Error</string>
+    <string name="unknown_error">Unknown error</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+    <string name="settings_use_dark_theme">Use dark theme</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_version_number">0.2.3</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_website">Website</string>
+    <string name="settings_github">Github</string>
+    <string name="settings_select_theme">Select Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    
+    <!-- Crypto List Screen -->
+    <string name="search_placeholder">Search %1$s pairs…</string>
+    <string name="no_trading_pairs_found">No trading pairs found for %1$s</string>
+    <string name="try_adjusting_search">Try adjusting your search criteria</string>
+    <string name="please_wait_fetching">Please wait while we fetch the latest data</string>
+    <string name="header_name">Name</string>
+    <string name="header_slash">/ </string>
+    <string name="header_vol">Vol</string>
+    <string name="header_last_price">Last Price</string>
+    <string name="header_24h_chg">24h Chg%</string>
+    <string name="sort_change_up">Change Up %1$s</string>
+    <string name="sort_change_down">Change Down %1$s</string>
+    <string name="favorite">Favorite</string>
+    <string name="unfavorite">Unfavorite</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="no_favorites_yet">No favorites yet</string>
+    <string name="tap_star_to_add">Tap the star icon on any trading pair to add it here</string>
+    
+    <!-- Coin Detail Screen -->
+    <string name="latest_news">Latest News</string>
+    <string name="no_news_available">No news available for this coin</string>
+    <string name="price_information">Price Information</string>
+    <string name="current_price">Current Price</string>
+    <string name="label_last_price">Last Price</string>
+    <string name="label_24h_change">24h Change</string>
+    <string name="label_price_change">Price Change</string>
+    <string name="label_24h_statistics">24h Statistics</string>
+    <string name="label_open_price">Open Price</string>
+    <string name="label_previous_close">Previous Close</string>
+    <string name="label_24h_high">24h High</string>
+    <string name="label_24h_low">24h Low</string>
+    <string name="label_weighted_avg">Weighted Avg</string>
+    <string name="label_trading_information">Trading Information</string>
+    <string name="label_best_bid">Best Bid</string>
+    <string name="label_best_ask">Best Ask</string>
+    <string name="label_last_quantity">Last Quantity</string>
+    <string name="label_volume">Volume</string>
+    <string name="label_24h_volume_quote">24h Volume (Quote)</string>
+    <string name="label_24h_volume_base">24h Volume (Base)</string>
+    <string name="price_data_not_available">Price data not available</string>
+    
+    <!-- Network -->
+    <string name="network_unavailable">Network Unavailable</string>
+    <string name="network_unavailable_message">It seems you are not connected to the internet. Please check your connection and try again.</string>
+</resources>

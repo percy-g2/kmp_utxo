@@ -48,6 +48,7 @@ import model.Favorites
 import model.Market
 import model.NavItem
 import model.Settings
+import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import theme.UTXOTheme
 import ui.AppTheme
@@ -56,6 +57,9 @@ import ui.CryptoList
 import ui.CryptoViewModel
 import ui.FavoritesListScreen
 import ui.SettingsScreen
+import utxo.composeapp.generated.resources.Res
+import utxo.composeapp.generated.resources.network_unavailable
+import utxo.composeapp.generated.resources.network_unavailable_message
 
 @Composable
 fun App(
@@ -216,10 +220,10 @@ fun NetworkDialog() {
             dismissOnBackPress = false
         ),
         title = {
-            Text(text = "Network Unavailable")
+            Text(text = stringResource(Res.string.network_unavailable))
         },
         text = {
-            Text(text = "It seems you are not connected to the internet. Please check your connection and try again.")
+            Text(text = stringResource(Res.string.network_unavailable_message))
         },
         confirmButton = { /*no op*/ }
     )

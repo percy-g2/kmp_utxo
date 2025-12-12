@@ -50,7 +50,34 @@ import model.NewsItem
 import model.Ticker24hr
 import model.TradingPair
 import openLink
+import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
+import utxo.composeapp.generated.resources.Res
+import utxo.composeapp.generated.resources.back
+import utxo.composeapp.generated.resources.current_price
+import utxo.composeapp.generated.resources.error
+import utxo.composeapp.generated.resources.label_24h_change
+import utxo.composeapp.generated.resources.label_24h_high
+import utxo.composeapp.generated.resources.label_24h_low
+import utxo.composeapp.generated.resources.label_24h_statistics
+import utxo.composeapp.generated.resources.label_24h_volume_base
+import utxo.composeapp.generated.resources.label_24h_volume_quote
+import utxo.composeapp.generated.resources.label_best_ask
+import utxo.composeapp.generated.resources.label_best_bid
+import utxo.composeapp.generated.resources.label_last_price
+import utxo.composeapp.generated.resources.label_last_quantity
+import utxo.composeapp.generated.resources.label_open_price
+import utxo.composeapp.generated.resources.label_previous_close
+import utxo.composeapp.generated.resources.label_price_change
+import utxo.composeapp.generated.resources.label_trading_information
+import utxo.composeapp.generated.resources.label_volume
+import utxo.composeapp.generated.resources.label_weighted_avg
+import utxo.composeapp.generated.resources.latest_news
+import utxo.composeapp.generated.resources.no_news_available
+import utxo.composeapp.generated.resources.price_data_not_available
+import utxo.composeapp.generated.resources.price_information
+import utxo.composeapp.generated.resources.refresh
+import utxo.composeapp.generated.resources.unknown_error
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,7 +89,8 @@ fun CoinDetailScreen(
     viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() }
 ) {
     val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
-    val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
+    val isDarkTheme =
+        (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
     val state by viewModel.state.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
 
@@ -81,7 +109,7 @@ fun CoinDetailScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(Res.string.back)
                         )
                     }
                 },
@@ -89,7 +117,7 @@ fun CoinDetailScreen(
                     IconButton(onClick = { viewModel.refresh(symbol) }) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
-                            contentDescription = "Refresh"
+                            contentDescription = stringResource(Res.string.refresh)
                         )
                     }
                 },
@@ -100,95 +128,96 @@ fun CoinDetailScreen(
             )
         }
     ) { paddingValues ->
-        Box(modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(PaddingValues(top = paddingValues.calculateTopPadding()))
+        Box(
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(PaddingValues(top = paddingValues.calculateTopPadding()))
         ) {
 
-                when {
-                    state.isLoading -> {
-                        Column(
-                            modifier = Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            CircularProgressIndicator()
-                        }
+            when {
+                state.isLoading -> {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        CircularProgressIndicator()
                     }
+                }
 
-                    state.error != null -> {
-                        Column(
-                            modifier = Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
+                state.error != null -> {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.error),
+                            style = MaterialTheme.typography.headlineSmall,
+                            color = MaterialTheme.colorScheme.error
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = state.error ?: stringResource(Res.string.unknown_error),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+
+                else -> {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        // Price Info Section
+                        item {
+                            PriceInfoSection(
+                                symbol = symbol,
+                                ticker = state.ticker,
+                                tradingPairs = tradingPairs
+                            )
+                        }
+
+                        // News Section Header
+                        item {
                             Text(
-                                text = "Error",
+                                text = stringResource(Res.string.latest_news),
                                 style = MaterialTheme.typography.headlineSmall,
-                                color = MaterialTheme.colorScheme.error
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = state.error ?: "Unknown error",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(16.dp)
                             )
                         }
-                    }
 
-                    else -> {
-                        LazyColumn(
-                            modifier = Modifier.fillMaxSize()
-                        ) {
-                            // Price Info Section
+                        // News Items
+                        if (state.news.isEmpty()) {
                             item {
-                                PriceInfoSection(
-                                    symbol = symbol,
-                                    ticker = state.ticker,
-                                    tradingPairs = tradingPairs
-                                )
-                            }
-
-                            // News Section Header
-                            item {
-                                Text(
-                                    text = "Latest News",
-                                    style = MaterialTheme.typography.headlineSmall,
-                                    fontWeight = FontWeight.Bold,
-                                    modifier = Modifier.padding(16.dp)
-                                )
-                            }
-
-                            // News Items
-                            if (state.news.isEmpty()) {
-                                item {
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(32.dp),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(
-                                            text = "No news available for this coin",
-                                            style = MaterialTheme.typography.bodyMedium,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-                                }
-                            } else {
-                                items(state.news) { newsItem ->
-                                    NewsItemCard(
-                                        newsItem = newsItem,
-                                        isDarkTheme = isDarkTheme
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(32.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = stringResource(Res.string.no_news_available),
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
+                            }
+                        } else {
+                            items(state.news) { newsItem ->
+                                NewsItemCard(
+                                    newsItem = newsItem,
+                                    isDarkTheme = isDarkTheme
+                                )
                             }
                         }
                     }
                 }
             }
         }
+    }
 
 }
 
@@ -208,7 +237,7 @@ fun PriceInfoSection(
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = "Price Information",
+                text = stringResource(Res.string.price_information),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold
             )
@@ -217,118 +246,136 @@ fun PriceInfoSection(
             if (ticker != null) {
                 // Current Price Section
                 Text(
-                    text = "Current Price",
+                    text = stringResource(Res.string.current_price),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                
+
                 PriceRow(
-                    label = "Last Price",
+                    label = stringResource(Res.string.label_last_price),
                     value = ticker.lastPrice.formatPrice(symbol, tradingPairs),
                     isHighlighted = true
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                
+
                 val priceChangePercent = ticker.priceChangePercent.toDoubleOrNull() ?: 0.0
                 val priceChangeColor = when {
                     priceChangePercent > 0 -> Color(0xFF4CAF50) // Green
                     priceChangePercent < 0 -> Color(0xFFF44336) // Red
                     else -> MaterialTheme.colorScheme.onSurface
                 }
-                
+
                 PriceRow(
-                    "24h Change", 
+                    stringResource(Res.string.label_24h_change),
                     "${if (priceChangePercent >= 0) "+" else ""}${ticker.priceChangePercent}%",
                     valueColor = priceChangeColor
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 PriceRow(
-                    label = "Price Change",
+                    label = stringResource(Res.string.label_price_change),
                     value = ticker.priceChange.formatPrice(symbol, tradingPairs)
                 )
-                
+
                 Spacer(modifier = Modifier.height(16.dp))
-                
+
                 // 24h Statistics Section
                 Text(
-                    text = "24h Statistics",
+                    text = stringResource(Res.string.label_24h_statistics),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                
+
                 PriceRow(
-                    label = "Open Price",
+                    label = stringResource(Res.string.label_open_price),
                     value = ticker.openPrice.formatPrice(symbol, tradingPairs)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 PriceRow(
-                    label = "Previous Close",
+                    label = stringResource(Res.string.label_previous_close),
                     value = ticker.prevClosePrice.formatPrice(symbol, tradingPairs)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 PriceRow(
-                    label ="24h High",
+                    label = stringResource(Res.string.label_24h_high),
                     value = ticker.highPrice.formatPrice(symbol, tradingPairs)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 PriceRow(
-                    label = "24h Low",
+                    label = stringResource(Res.string.label_24h_low),
                     value = ticker.lowPrice.formatPrice(symbol, tradingPairs)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 PriceRow(
-                    label = "Weighted Avg",
+                    label = stringResource(Res.string.label_weighted_avg),
                     value = ticker.weightedAvgPrice.formatPrice(symbol, tradingPairs)
                 )
-                
+
                 Spacer(modifier = Modifier.height(16.dp))
-                
+
                 // Trading Info Section
                 Text(
-                    text = "Trading Information",
+                    text = stringResource(Res.string.label_trading_information),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                
+
                 PriceRow(
-                    label ="Best Bid",
-                    value = "${ticker.bidPrice.formatPrice(symbol, tradingPairs)} (${ticker.bidQty})"
+                    label = stringResource(Res.string.label_best_bid),
+                    value = "${
+                        ticker.bidPrice.formatPrice(
+                            symbol,
+                            tradingPairs
+                        )
+                    } (${ticker.bidQty})"
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 PriceRow(
-                    label = "Best Ask",
-                    value = "${ticker.askPrice.formatPrice(symbol, tradingPairs)} (${ticker.askQty})"
+                    label = stringResource(Res.string.label_best_ask),
+                    value = "${
+                        ticker.askPrice.formatPrice(
+                            symbol,
+                            tradingPairs
+                        )
+                    } (${ticker.askQty})"
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 PriceRow(
-                    label = "Last Quantity",
+                    label = stringResource(Res.string.label_last_quantity),
                     value = ticker.lastQty
                 )
-                
+
                 Spacer(modifier = Modifier.height(16.dp))
-                
+
                 // Volume Section
                 Text(
-                    text = "Volume",
+                    text = stringResource(Res.string.label_volume),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                
-                PriceRow("24h Volume (Quote)", ticker.quoteVolume.formatVolume())
+
+                PriceRow(
+                    label = stringResource(Res.string.label_24h_volume_quote),
+                    value = ticker.quoteVolume.formatVolume()
+                )
                 Spacer(modifier = Modifier.height(4.dp))
-                PriceRow("24h Volume (Base)", ticker.volume.formatVolume())
-                
+                PriceRow(
+                    stringResource(
+                        resource = Res.string.label_24h_volume_base
+                    ),
+                    value = ticker.volume.formatVolume()
+                )
+
             } else {
                 Text(
-                    text = "Price data not available",
+                    text = stringResource(Res.string.price_data_not_available),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -339,7 +386,7 @@ fun PriceInfoSection(
 
 @Composable
 fun PriceRow(
-    label: String, 
+    label: String,
     value: String,
     isHighlighted: Boolean = false,
     valueColor: Color? = null
