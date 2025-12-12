@@ -61,8 +61,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
-import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.number
 import kotlinx.datetime.toLocalDateTime
 import ktx.buildStyledSymbol
 import ktx.formatNewsDate
@@ -105,6 +105,33 @@ import utxo.composeapp.generated.resources.refresh
 import utxo.composeapp.generated.resources.unknown_error
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
+
+@OptIn(ExperimentalTime::class)
+fun formatTickerUpdateTime(timestamp: Long): String {
+    return try {
+        val instant = Instant.fromEpochMilliseconds(timestamp)
+        val systemTimeZone = TimeZone.currentSystemDefault()
+        val localDateTime = instant.toLocalDateTime(systemTimeZone)
+        
+        val hour = localDateTime.hour
+        val minute = localDateTime.minute
+        
+        val amPm = if (hour < 12) "AM" else "PM"
+        val displayHour = when {
+            hour == 0 -> 12
+            hour > 12 -> hour - 12
+            else -> hour
+        }
+        
+        val minuteStr = if (minute < 10) "0$minute" else "$minute"
+        
+        "Updated: $displayHour:$minuteStr $amPm"
+    } catch (e: Exception) {
+        println("Error formatting ticker update time: ${e.message}")
+        ""
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -131,7 +158,18 @@ fun CoinDetailScreen(
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 ),
-                title = { Text(displaySymbol.buildStyledSymbol()) },
+                title = {
+                    Column {
+                        Text(displaySymbol.buildStyledSymbol())
+                        state.ticker?.closeTime?.let { timestamp ->
+                            Text(
+                                text = formatTickerUpdateTime(timestamp),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                            )
+                        }
+                    }
+                },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
@@ -365,8 +403,8 @@ fun CoinDetailChart(
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
             )
             
-            val month = monthNames[localDateTime.monthNumber - 1]
-            val day = localDateTime.dayOfMonth
+            val month = monthNames[localDateTime.month.number - 1]
+            val day = localDateTime.day
             val hour = localDateTime.hour
             val minute = localDateTime.minute
             
@@ -381,6 +419,7 @@ fun CoinDetailChart(
             
             "$month $day, $displayHour:$minuteStr $amPm"
         } catch (e: Exception) {
+            println("Error formatting timestamp: ${e.message}")
             ""
         }
     }
@@ -399,14 +438,14 @@ fun CoinDetailChart(
         val normalizedX = (xPosition / chartSizeInPx.x).coerceIn(0f, 1f)
         val index = (normalizedX * (limitedKlines.size - 1)).toInt().coerceIn(0, limitedKlines.lastIndex)
         val kline = limitedKlines[index]
-        
+
         if (kline != null) {
             val price = kline.closePrice.toFloatOrNull() ?: minPrice
             val x = normalizedX * chartSizeInPx.x
             val y = chartSizeInPx.y - ((price - minPrice) / priceRange) * chartSizeInPx.y
             return Pair(kline, Offset(x, y))
         }
-        
+
         return Pair(null, null)
     }
 
