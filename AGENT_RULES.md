@@ -323,24 +323,337 @@ Accept either:
    - Identify TODO/FIXME comments
    - Check for hardcoded strings (i18n concerns)
    - Verify proper resource usage (no leaks)
+   - Check CI/CD status: `gh pr checks <pr-number>`
+   - Verify mergeability: `gh pr view <pr-number> --json mergeable,mergeStateStatus`
 
-5. **Interactive Review Commands**
+5. **Automatic Review Actions**
+   
+   After completing the review analysis, the agent MUST automatically:
+   
+   **A. Post Review Comment**
+   - Always post the comprehensive review as a comment on the PR
+   - Use `gh pr comment <pr-number> --body "<review-content>"`
+   - Include the full review markdown with all sections
+   
+   **B. Determine Review Decision**
+   
+   **Approve** if ALL of the following are true:
+   - No critical issues found
+   - No major issues found (or only minor issues that are non-blocking)
+   - Code follows project conventions
+   - Tests pass (verified via CI or local execution)
+   - PR is mergeable (no conflicts, CI checks passing)
+   - Backward compatibility maintained (or breaking changes documented)
+   
+   **Request Changes** if ANY of the following are true:
+   - Critical issues found (security, crashes, data loss)
+   - Major issues found that affect functionality
+   - Code doesn't follow project conventions
+   - Tests failing or missing critical test coverage
+   - Breaking changes not documented
+   - PR has merge conflicts
+   
+   **Comment** (no approval) if:
+   - Only minor issues found (non-blocking)
+   - Questions need clarification
+   - Suggestions for improvement (but code is acceptable)
+   - PR needs manual intervention (CI issues, etc.)
+   
+   **C. Submit Review Decision**
+   ```bash
+   # Approve (if criteria met)
+   gh pr review <pr-number> --approve -b "<review-summary>"
+   
+   # Request changes (if blocking issues)
+   gh pr review <pr-number> --request-changes -b "<review-summary>"
+   
+   # Comment only (if minor issues or questions)
+   gh pr review <pr-number> --comment -b "<review-summary>"
+   ```
+   
+   **Review Summary Format** (for approval/request-changes):
+   ```
+   ## Review Summary
+   
+   **Verdict**: [APPROVE / REQUEST CHANGES]
+   
+   **Key Findings**:
+   - [Brief summary of main points]
+   - [Critical/Major issues if any]
+   - [Strengths if approving]
+   
+   **Next Steps**:
+   - [If approving: Ready to merge]
+   - [If requesting changes: List required fixes]
+   - [If commenting: List suggestions]
+   
+   See full review in comments above.
+   ```
+
+6. **Interactive Review Commands** (Optional)
    - Checkout PR branch: `gh pr checkout <pr-number>`
    - Run tests: `./gradlew test`
    - Build and run: `./gradlew installDebug` (Android) or `./gradlew run` (Desktop)
    - Add inline comments: `gh pr review <pr-number> --comment -b "comment"`
 
-6. **Post-Review Actions**
+7. **Post-Review Verification**
+   - Confirm review comment was posted
+   - Confirm review decision was submitted (approve/request-changes/comment)
+   - Display review URL and decision
+   - If approved, suggest using PR Merge Agent to merge
+
+---
+
+## GitHub PR Merge Agent
+
+### Purpose
+Automatically merge approved Pull Requests after successful review and CI checks. Ensures PRs meet all merge criteria before merging.
+
+### Prerequisites Check
+- Verify GitHub CLI is installed: `gh --version`
+- Verify authentication: `gh auth status`
+- Verify user has merge permissions (check with `gh repo view --json permissions`)
+- Ensure PR number or URL is provided
+
+### Input Handling
+Accept either:
+- PR number: `152`
+- PR URL: `https://github.com/owner/repo/pull/152`
+- Current branch PR: Automatically detect PR for current branch
+
+### Merge Criteria (ALL must be met)
+
+1. **PR Status Checks**
+   - PR must be in `OPEN` state
+   - PR must be mergeable (no conflicts)
+   - All required CI checks must pass
+   - PR must not be a draft
+
+2. **Review Status**
+   - PR must have at least one approval (or configured auto-approve)
+   - No blocking review comments (request-changes)
+   - Review status verified: `gh pr view <pr-number> --json reviews,reviewDecision`
+
+3. **Branch Protection**
+   - Base branch protection rules satisfied
+   - Required reviewers approved (if configured)
+   - Status checks passed (if required)
+
+4. **Code Quality**
+   - No critical issues in review
+   - Tests passing (verified via CI)
+   - Build successful
+
+### Workflow
+
+1. **Pre-Merge Validation**
    ```bash
-   # Approve
-   gh pr review <pr-number> --approve -b "<review-summary>"
+   # Fetch PR details
+   gh pr view <pr-number> --json \
+     number,title,state,mergeable,mergeStateStatus,reviews,reviewDecision,statusCheckRollup,isDraft
    
-   # Request changes
-   gh pr review <pr-number> --request-changes -b "<review-summary>"
+   # Check CI status
+   gh pr checks <pr-number>
    
-   # Comment only
-   gh pr review <pr-number> --comment -b "<review-summary>"
+   # Verify mergeability
+   gh pr view <pr-number> --json mergeable,mergeStateStatus
    ```
+
+2. **Validation Checks**
+
+   **A. PR State Validation**
+   - ✅ PR is OPEN
+   - ✅ PR is not a draft
+   - ✅ PR is mergeable (no conflicts)
+   - ✅ Merge state status is CLEAN or UNSTABLE (with passing required checks)
+
+   **B. Review Validation**
+   - ✅ At least one approval exists
+   - ✅ No blocking "request-changes" reviews
+   - ✅ Review decision is APPROVED (or auto-approve configured)
+
+   **C. CI/CD Validation**
+   - ✅ All required status checks are passing
+   - ✅ No failing required checks
+   - ✅ Check conclusion is SUCCESS for required checks
+
+   **D. Branch Protection**
+   - ✅ Base branch protection rules satisfied
+   - ✅ Required reviewers approved (if configured)
+   - ✅ Up to date with base branch (or auto-merge enabled)
+
+3. **Merge Strategy Selection**
+
+   Determine merge method based on repository settings:
+   ```bash
+   # Check repository merge settings
+   gh repo view --json mergeCommitAllowed,squashMergeAllowed,rebaseMergeAllowed
+   ```
+
+   **Preferred Order**:
+   1. **Squash and Merge** (default for feature branches)
+      - Creates single commit with PR title/description
+      - Cleaner history
+      - Command: `gh pr merge <pr-number> --squash --delete-branch`
+   
+   2. **Merge Commit** (for important features)
+      - Preserves full PR history
+      - Command: `gh pr merge <pr-number> --merge --delete-branch`
+   
+   3. **Rebase and Merge** (for linear history)
+      - Clean linear history
+      - Command: `gh pr merge <pr-number> --rebase --delete-branch`
+
+4. **Merge Execution**
+
+   **Standard Merge Flow**:
+   ```bash
+   # Merge with squash (recommended for feature branches)
+   gh pr merge <pr-number> \
+     --squash \
+     --delete-branch \
+     --subject "<PR title>" \
+     --body "<PR description>"
+   ```
+
+   **Merge with Auto-Delete Branch**:
+   ```bash
+   # Automatically delete branch after merge
+   gh pr merge <pr-number> --squash --delete-branch
+   ```
+
+   **Merge with Custom Message**:
+   ```bash
+   # Custom merge commit message
+   gh pr merge <pr-number> \
+     --squash \
+     --subject "feat: <feature-name>" \
+     --body "Merged via PR Merge Agent\n\n<PR description>"
+   ```
+
+5. **Post-Merge Actions**
+
+   **A. Verification**
+   - Confirm merge success: `gh pr view <pr-number> --json state`
+   - Verify branch deletion (if enabled)
+   - Check merge commit: `gh pr view <pr-number> --json mergedAt,mergedBy`
+
+   **B. Notifications**
+   - Display merge confirmation
+   - Show merge commit hash
+   - Display merged PR URL
+   - List any post-merge actions needed
+
+   **C. Cleanup**
+   - Delete local branch (if merged): `git branch -d <branch-name>`
+   - Update local main branch: `git checkout main && git pull`
+   - Clean up remote tracking: `git remote prune origin`
+
+### Error Handling
+
+**If PR is not mergeable:**
+1. Check merge conflicts: `gh pr diff <pr-number>`
+2. Inform user about conflicts
+3. Suggest: "PR has merge conflicts. Please resolve conflicts first."
+4. Abort merge attempt
+
+**If CI checks are failing:**
+1. List failing checks: `gh pr checks <pr-number>`
+2. Inform user about failing checks
+3. Suggest: "CI checks are failing. Please fix issues before merging."
+4. Abort merge attempt
+
+**If PR needs approval:**
+1. Check review status: `gh pr view <pr-number> --json reviews`
+2. Inform user: "PR requires approval before merging."
+3. Suggest: "Use GitHub PR Review Agent to review and approve first."
+4. Abort merge attempt
+
+**If branch protection blocks merge:**
+1. Check protection rules: `gh api repos/:owner/:repo/branches/:branch/protection`
+2. Inform user about protection requirements
+3. Suggest manual merge or admin override
+4. Abort merge attempt
+
+### Merge Strategy Guidelines
+
+**Use Squash and Merge when:**
+- Feature branch with multiple commits
+- Want clean, linear history
+- Commits are implementation details
+- PR description contains full context
+
+**Use Merge Commit when:**
+- Want to preserve full PR history
+- Multiple contributors with meaningful commits
+- Important feature with detailed commit history
+- Need to reference individual commits
+
+**Use Rebase and Merge when:**
+- Want completely linear history
+- All commits are meaningful
+- No merge conflicts expected
+- Repository policy requires linear history
+
+### Safety Features
+
+1. **Dry Run Mode**
+   - Use `--dry-run` flag to preview merge without executing
+   - Shows what would happen without actually merging
+
+2. **Confirmation Prompt**
+   - Always confirm before merging (unless `--auto` flag provided)
+   - Display PR summary and merge strategy
+   - Show potential impact
+
+3. **Rollback Information**
+   - Display merge commit hash for easy rollback
+   - Show how to revert: `git revert <commit-hash>`
+
+4. **Merge Conflict Detection**
+   - Check conflicts before attempting merge
+   - Abort if conflicts detected
+   - Provide conflict resolution guidance
+
+### Example Usage
+
+**Basic merge:**
+```bash
+# Merge PR #152 with default settings
+Use GitHub PR Merge Agent to merge PR #152
+```
+
+**Merge with specific strategy:**
+```bash
+# Merge PR #152 using squash and merge
+Use GitHub PR Merge Agent: Merge PR #152 with squash strategy
+```
+
+**Auto-merge after approval:**
+```bash
+# Review and merge if approved
+Use GitHub PR Review Agent to review PR #152, then GitHub PR Merge Agent to merge if approved
+```
+
+**Merge current branch PR:**
+```bash
+# Merge PR for current branch
+Use GitHub PR Merge Agent to merge the current branch's PR
+```
+
+### Integration with PR Review Agent
+
+**Combined Workflow:**
+1. Review PR using GitHub PR Review Agent
+2. If approved, automatically proceed to merge
+3. If merge criteria met, execute merge
+4. If criteria not met, inform user of blockers
+
+**Auto-merge after review:**
+- Review Agent approves PR
+- Merge Agent validates merge criteria
+- If all checks pass, automatically merge
+- If checks fail, inform user and wait
 
 ---
 

@@ -12,7 +12,8 @@ This project uses comprehensive agent rules for development workflow. See `AGENT
 ### Key Workflows
 1. **Git Commit & Push Agent**: Follow conventional commits with detailed messages
 2. **GitHub PR Creation Agent**: Create comprehensive PRs with GitHub CLI
-3. **GitHub PR Review Agent**: Thorough code review with automated checks
+3. **GitHub PR Review Agent**: Thorough code review with automatic approval/comments
+4. **GitHub PR Merge Agent**: Automatically merge approved PRs after successful review
 
 ### Core Principles
 - Plan before executing
