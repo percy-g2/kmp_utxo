@@ -92,6 +92,7 @@ fun App(
             }
             CoinDetail.serializer().generateHashCode() -> {
                 selectedItem = 3
+                cryptoViewModel.pause()
             }
         }
     }
