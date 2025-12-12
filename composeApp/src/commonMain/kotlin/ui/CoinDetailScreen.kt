@@ -19,11 +19,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Article
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Refresh
@@ -45,6 +47,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,10 +60,12 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.number
 import kotlinx.datetime.toLocalDateTime
@@ -99,6 +104,9 @@ import utxo.composeapp.generated.resources.label_volume
 import utxo.composeapp.generated.resources.label_weighted_avg
 import utxo.composeapp.generated.resources.latest_news
 import utxo.composeapp.generated.resources.no_news_available
+import utxo.composeapp.generated.resources.no_news_available_hint
+import utxo.composeapp.generated.resources.no_news_providers_selected
+import utxo.composeapp.generated.resources.no_news_providers_selected_hint
 import utxo.composeapp.generated.resources.price_data_not_available
 import utxo.composeapp.generated.resources.price_information
 import utxo.composeapp.generated.resources.refresh
@@ -147,9 +155,36 @@ fun CoinDetailScreen(
         (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
     val state by viewModel.state.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
+    
+    // Get enabled providers from settings - allow empty set (no providers selected)
+    // If settings don't have enabledRssProviders field (old settings), default to all enabled
+    val enabledProviders = if (settingsState?.enabledRssProviders != null) {
+        settingsState!!.enabledRssProviders
+    } else {
+        model.RssProvider.DEFAULT_ENABLED_PROVIDERS
+    }
+    
+    // Convert Set to a stable, sorted string key for LaunchedEffect dependency
+    // Use "empty" as key when no providers are selected
+    val enabledProvidersKey = if (enabledProviders.isEmpty()) {
+        "empty"
+    } else {
+        enabledProviders.sorted().joinToString(",")
+    }
+    
+    val coroutineScope = rememberCoroutineScope()
 
-    LaunchedEffect(symbol) {
-        viewModel.loadCoinData(symbol)
+    // Reload when symbol or enabled providers change
+    LaunchedEffect(symbol, enabledProvidersKey) {
+        println("CoinDetailScreen: LaunchedEffect triggered - symbol: $symbol, providers: $enabledProviders, key: $enabledProvidersKey")
+        // Always clear cache first to ensure we fetch fresh data with correct providers
+        coroutineScope.launch {
+            viewModel.clearCache()
+        }
+        // Use a local copy to ensure we're using the correct providers
+        val providersToUse = enabledProviders.toSet()
+        println("CoinDetailScreen: About to call loadCoinData with providers: $providersToUse")
+        viewModel.loadCoinData(symbol, providersToUse)
     }
 
     Scaffold(
@@ -179,7 +214,10 @@ fun CoinDetailScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { viewModel.refresh(symbol) }) {
+                    IconButton(onClick = { 
+                        println("CoinDetailScreen: Manual refresh for $symbol with providers: $enabledProviders")
+                        viewModel.refresh(symbol, enabledProviders) 
+                    }) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
                             contentDescription = stringResource(Res.string.refresh)
@@ -266,7 +304,8 @@ fun CoinDetailScreen(
                         }
 
                         // News Items
-                        if (state.news.isEmpty()) {
+                        val hasNoProviders = enabledProviders.isEmpty()
+                        if (hasNoProviders) {
                             item {
                                 Box(
                                     modifier = Modifier
@@ -274,11 +313,68 @@ fun CoinDetailScreen(
                                         .padding(32.dp),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    Text(
-                                        text = stringResource(Res.string.no_news_available),
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.Center
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Article,
+                                            contentDescription = null,
+                                            modifier = Modifier
+                                                .size(64.dp)
+                                                .padding(bottom = 16.dp),
+                                            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                                        )
+                                        Text(
+                                            text = stringResource(Res.string.no_news_providers_selected),
+                                            style = MaterialTheme.typography.titleMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            textAlign = TextAlign.Center
+                                        )
+                                        Text(
+                                            text = stringResource(Res.string.no_news_providers_selected_hint),
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                                            modifier = Modifier.padding(top = 8.dp),
+                                            textAlign = TextAlign.Center
+                                        )
+                                    }
+                                }
+                            }
+                        } else if (state.news.isEmpty()) {
+                            item {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(32.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.Center
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Article,
+                                            contentDescription = null,
+                                            modifier = Modifier
+                                                .size(64.dp)
+                                                .padding(bottom = 16.dp),
+                                            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                                        )
+                                        Text(
+                                            text = stringResource(Res.string.no_news_available),
+                                            style = MaterialTheme.typography.titleMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            textAlign = TextAlign.Center
+                                        )
+                                        Text(
+                                            text = stringResource(Res.string.no_news_available_hint),
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                                            modifier = Modifier.padding(top = 8.dp),
+                                            textAlign = TextAlign.Center
+                                        )
+                                    }
                                 }
                             }
                         } else {

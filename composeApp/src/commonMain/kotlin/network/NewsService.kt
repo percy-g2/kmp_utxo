@@ -10,6 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import ktx.parseRssDate
+import kotlinx.datetime.Instant
 import model.NewsItem
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -26,42 +28,70 @@ class NewsService {
     )
 
     @OptIn(ExperimentalTime::class)
-    suspend fun fetchNewsForCoin(coinSymbol: String): Result<List<NewsItem>> {
+    suspend fun fetchNewsForCoin(
+        coinSymbol: String,
+        enabledProviders: Set<String> = model.RssProvider.DEFAULT_ENABLED_PROVIDERS
+    ): Result<List<NewsItem>> {
         return try {
-            val cacheKey = coinSymbol.uppercase()
+            // Make a local copy to ensure we're using the correct providers
+            val providersToUse = enabledProviders.toSet()
+            
+            // Include enabled providers in cache key to invalidate cache when providers change
+            val providersKey = providersToUse.sorted().joinToString(",")
+            val cacheKey = "${coinSymbol.uppercase()}_$providersKey"
+            
+            println("NewsService: Cache key for $coinSymbol: $cacheKey")
+            println("NewsService: Enabled providers set: $providersToUse")
             
             // Check cache first
             cacheMutex.withLock {
                 val cached = cache[cacheKey]
                 if (cached != null && (Clock.System.now().toEpochMilliseconds() - cached.timestamp) < cacheDurationMs) {
+                    println("NewsService: Returning cached news (${cached.news.size} items) for key: $cacheKey")
                     return Result.success(cached.news)
+                } else {
+                    println("NewsService: Cache miss or expired for key: $cacheKey")
                 }
             }
 
             // Fetch from multiple RSS sources
             val allNews = mutableListOf<NewsItem>()
             
-            // Fetch from CoinDesk
-            val coindeskNews = fetchRSSFeed("https://www.coindesk.com/arc/outboundfeeds/rss/", coinSymbol)
-            if (coindeskNews != null) {
-                allNews.addAll(coindeskNews)
-                println("NewsService: Found ${coindeskNews.size} news items from CoinDesk for $coinSymbol")
-            } else {
-                println("NewsService: Failed to fetch or parse CoinDesk RSS for $coinSymbol")
+            // If no providers are enabled, return empty list immediately
+            if (providersToUse.isEmpty()) {
+                println("NewsService: No providers enabled, returning empty news list")
+                return Result.success(emptyList())
             }
             
-            // Fetch from CoinTelegraph
-            val cointelegraphNews = fetchRSSFeed("https://cointelegraph.com/rss", coinSymbol)
-            if (cointelegraphNews != null) {
-                allNews.addAll(cointelegraphNews)
-                println("NewsService: Found ${cointelegraphNews.size} news items from CoinTelegraph for $coinSymbol")
-            } else {
-                println("NewsService: Failed to fetch or parse CoinTelegraph RSS for $coinSymbol")
+            // Fetch only from enabled providers - use local copy
+            println("NewsService: Fetching news for $coinSymbol with enabled providers: $providersToUse")
+            model.RssProvider.ALL_PROVIDERS.forEach { provider ->
+                if (providersToUse.contains(provider.id)) {
+                    println("NewsService: Fetching from ${provider.name} (${provider.id})")
+                    val news = fetchRSSFeed(provider.url, coinSymbol)
+                    if (news != null) {
+                        allNews.addAll(news)
+                        println("NewsService: Found ${news.size} news items from ${provider.name} for $coinSymbol")
+                    } else {
+                        println("NewsService: Failed to fetch or parse ${provider.name} RSS for $coinSymbol")
+                    }
+                } else {
+                    println("NewsService: Skipping ${provider.name} (${provider.id}) - not enabled")
+                }
             }
+            println("NewsService: Total news items collected: ${allNews.size}")
 
-            // Sort by date (newest first) and limit to 50
+            // Sort by parsed date (newest first) and limit to 50
             val sortedNews = allNews
-                .sortedByDescending { it.pubDate }
+                .sortedWith(compareByDescending<NewsItem> { item ->
+                    try {
+                        parseRssDate(item.pubDate)
+                    } catch (e: Exception) {
+                        // If parsing fails, use epoch 0 (oldest) so unparseable dates go to the end
+                        println("NewsService: Failed to parse date '${item.pubDate}': ${e.message}")
+                        Instant.fromEpochMilliseconds(0)
+                    }
+                })
                 .take(50)
 
             // Update cache
@@ -208,6 +238,12 @@ class NewsService {
                 val source = when {
                     link.contains("coindesk", ignoreCase = true) -> "CoinDesk"
                     link.contains("cointelegraph", ignoreCase = true) -> "CoinTelegraph"
+                    link.contains("decrypt.co", ignoreCase = true) -> "Decrypt"
+                    link.contains("theblock.co", ignoreCase = true) -> "The Block"
+                    link.contains("cryptoslate.com", ignoreCase = true) -> "CryptoSlate"
+                    link.contains("u.today", ignoreCase = true) -> "U.Today"
+                    link.contains("bitcoinmagazine.com", ignoreCase = true) -> "Bitcoin Magazine"
+                    link.contains("beincrypto.com", ignoreCase = true) -> "BeInCrypto"
                     else -> "Crypto News"
                 }
                 
@@ -277,6 +313,7 @@ class NewsService {
 
     suspend fun clearCache() {
         cacheMutex.withLock {
+            println("NewsService: Clearing all cache entries (${cache.size} entries)")
             cache.clear()
         }
     }

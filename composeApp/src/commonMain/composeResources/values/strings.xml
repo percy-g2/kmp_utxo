@@ -30,6 +30,14 @@
     <string name="settings_website">Website</string>
     <string name="settings_github">Github</string>
     <string name="settings_select_theme">Select Theme</string>
+    <string name="settings_news_sources">News Sources</string>
+    <string name="settings_select_news_sources">Select News Sources</string>
+    <string name="settings_all_sources_enabled">All sources enabled</string>
+    <string name="settings_no_sources_enabled">No sources enabled</string>
+    <string name="settings_sources_count">%1$d of %2$d sources enabled</string>
+    <string name="settings_select_all">Select All</string>
+    <string name="settings_deselect_all">Deselect All</string>
+    <string name="settings_done">Done</string>
     <string name="theme_system">System</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
@@ -55,6 +63,9 @@
     <!-- Coin Detail Screen -->
     <string name="latest_news">Latest News</string>
     <string name="no_news_available">No news available for this coin</string>
+    <string name="no_news_available_hint">Try refreshing or check back later</string>
+    <string name="no_news_providers_selected">No news sources selected</string>
+    <string name="no_news_providers_selected_hint">Enable news sources in Settings to see news</string>
     <string name="price_information">Price Information</string>
     <string name="current_price">Current Price</string>
     <string name="label_last_price">Last Price</string>

@@ -239,7 +239,7 @@ private fun extractDateAndTimeFallback(dateStr: String): String {
  * Parses an RSS date string (RFC 822 format) to an Instant.
  * Handles various formats commonly found in RSS feeds.
  */
-private fun parseRssDate(dateStr: String): Instant {
+internal fun parseRssDate(dateStr: String): Instant {
     // Common RSS date formats:
     // "Wed, 01 Jan 2024 12:00:00 +0000"
     // "Wed, 01 Jan 2024 12:00:00 GMT"
