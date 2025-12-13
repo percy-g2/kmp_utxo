@@ -8,7 +8,9 @@ height="40">](https://play.google.com/store/apps/details?id=org.androdevlinux.ut
 alt="Get it on Google Play Store"
 height="40">](https://apps.apple.com/in/app/utxo/id6746167853)
 
-# Kotlin/Compose Multiplatform Project
+# UTXO - Cryptocurrency Tracker
+
+A modern, cross-platform cryptocurrency tracking application built with Kotlin Multiplatform and Compose Multiplatform.
 
 <table>
   <tr>
@@ -19,20 +21,74 @@ height="40">](https://apps.apple.com/in/app/utxo/id6746167853)
   </tr>
 </table>
 
-This project is a **Kotlin Multiplatform** application built with **Compose Multiplatform** that targets **Android**, **iOS**, **Desktop**, and **Web** platforms. The primary goal is to display real-time cryptocurrency price data using the [Binance API](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams).
-
-**Note:** Development is in the early stages, and the project is currently a work in progress.
+**UTXO** is a **Kotlin Multiplatform** cryptocurrency tracking application built with **Compose Multiplatform** that targets **Android**, **iOS**, **JVM (Desktop)**, and **Web** platforms. The app provides real-time cryptocurrency price data using the [Binance WebSocket API](https://developers.binance.com/docs/binance-spot-api-docs/web-socket-streams) and comprehensive market information.
 
 ## Tech Stack
-- **Kotlin Multiplatform**
-- **Compose Multiplatform**: For UI across all platforms.
-- **Coroutines**: For asynchronous operations.
-- **Ktor**: For network requests.
-- **KStore**: For storage management.
+- **Kotlin Multiplatform** - Shared business logic across all platforms
+- **Compose Multiplatform** - Modern declarative UI framework
+- **Coroutines & Flow** - Asynchronous operations and reactive data streams
+- **Ktor** - HTTP client and WebSocket support for network operations
+- **KStore** - Persistent storage management for user preferences
+- **Kotlinx Serialization** - JSON parsing and data serialization
+- **Kotlinx DateTime** - Date and time handling
 
 ## Features
-- Real-time data visualization
-- Cross-platform compatibility
+
+### 📊 Market Screen
+- **Real-time price updates** via Binance WebSocket connection
+- **Live cryptocurrency list** with price changes, 24h volume, and market statistics
+- **Search functionality** to quickly find cryptocurrencies
+- **Sorting options** by volume, price change, and more
+- **Smooth animations** and transitions
+
+### ⭐ Favorites
+- **Save favorite cryptocurrencies** for quick access
+- **Persistent favorites** stored locally across app sessions
+- **Quick navigation** to favorite coin details
+
+### 📈 Coin Detail Screen
+- **Interactive candlestick charts** with price history visualization
+- **24-hour ticker statistics** including:
+  - High/Low prices
+  - Price change percentage
+  - Trading volume (base and quote)
+  - Best bid/ask prices
+  - Weighted average price
+- **Latest news feed** aggregated from multiple RSS sources:
+  - CoinDesk
+  - CoinTelegraph
+  - Decrypt
+  - The Block
+  - CryptoSlate
+  - U.Today
+  - Bitcoin Magazine
+  - BeInCrypto
+- **News filtering** by coin symbol with intelligent matching
+- **Real-time price updates** displayed in the header
+
+### ⚙️ Settings
+- **Theme customization**:
+  - System default (follows device theme)
+  - Light mode
+  - Dark mode
+- **News source selection** - Enable/disable RSS providers
+- **About section** with:
+  - App version information
+  - Privacy Policy link
+  - Website link
+  - GitHub repository link
+
+### 🌐 Cross-Platform Support
+- **Android** - Native Android app with Material Design 3
+- **iOS** - Native iOS app with SwiftUI integration
+- **JVM (Desktop)** - Native desktop applications for Windows, macOS, and Linux
+- **Web** - Web with wasmJS
+
+### 🔔 Additional Features
+- **Network connectivity monitoring** - Alerts when offline
+- **Optimized performance** - WebSocket pause/resume for memory efficiency
+- **Error handling** - Graceful error states and retry mechanisms
+- **Responsive design** - Adapts to different screen sizes
 
 ## Development Workflow
 
@@ -45,6 +101,51 @@ This project uses Cursor AI agents to automate common development tasks. See the
 - Merge PR: `Use GitHub PR Merge Agent to merge PR #42`
 
 For complete agent specifications, see [`AGENT_RULES.md`](AGENT_RULES.md).
+
+## Building the Project
+
+### Prerequisites
+- JDK 17 or higher
+- Android Studio or IntelliJ IDEA
+- Xcode (for iOS builds)
+- Gradle 8.0+
+
+### Build Commands
+```bash
+# Build for all platforms
+./gradlew build
+
+# Build for specific platform
+./gradlew :composeApp:assembleDebug          # Android
+./gradlew :composeApp:iosSimulatorArm64Binaries # iOS Simulator
+./gradlew :composeApp:runDistributable      # JVM Desktop
+./gradlew :composeApp:wasmJsBrowserDevelopmentRun # Web
+
+# Run tests
+./gradlew test
+```
+
+## Platform-Specific Notes
+
+### Android
+- Minimum SDK: 24
+- Target SDK: 34
+- Uses Material Design 3 components
+
+### iOS
+- Minimum iOS version: 15.0
+- Requires Xcode 14.0+
+- Uses SwiftUI for app lifecycle
+
+### Web
+- Built with Kotlin/Wasm
+- Uses WebSocket API for real-time updates
+- CORS proxy support for RSS feeds
+
+### JVM (Desktop)
+- Built on JVM for Windows, macOS, and Linux
+- Native window management with Compose Desktop
+- Requires JDK 17+ for building and running
 
 ## License
 
