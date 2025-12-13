@@ -239,8 +239,7 @@ fun CoinDetailScreen(
         }
     ) { paddingValues ->
         Box(
-            modifier =
-                Modifier
+            modifier = Modifier
                     .fillMaxSize()
                     .padding(PaddingValues(top = paddingValues.calculateTopPadding()))
         ) {
@@ -373,7 +372,10 @@ fun CoinDetailScreen(
                             }
                             
                             // Show empty state only if no news and no providers loading
-                            if (state.news.isEmpty() && state.loadingNewsProviders.isEmpty() && !state.isLoadingNews) {
+                            if (state.news.isEmpty()
+                                && state.loadingNewsProviders.isEmpty()
+                                && !state.isLoadingNews
+                            ) {
                                 item {
                                     Box(
                                         modifier = Modifier
@@ -591,9 +593,9 @@ fun CoinDetailChart(
     ) {
         Box(
             modifier = Modifier
-                .padding(all = 16.dp)
+                .padding(top = 64.dp, start = 16.dp, bottom = 16.dp, end = 16.dp)
                 .fillMaxWidth()
-                .height(80.dp)
+                .height(240.dp)
                 .onSizeChanged { size ->
                     // Only update if size actually changed to minimize recompositions
                     val newSize = Offset(size.width.toFloat(), size.height.toFloat())
