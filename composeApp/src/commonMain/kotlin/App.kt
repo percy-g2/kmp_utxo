@@ -159,18 +159,24 @@ fun App(
             ) {
                 animatedComposable<Market> { backStackEntry ->
                     // Track previous destination to detect when returning from CoinDetail
-                    var previousDestinationId by rememberSaveable { mutableStateOf<Int?>(null) }
+                    val previousDestinationIdState = rememberSaveable { mutableStateOf<Int?>(null) }
                     var refreshTrigger by remember { mutableStateOf(0) }
                     
-                    LaunchedEffect(backStackEntry.id) {
-                        val currentDestinationId = navBackStackEntry?.destination?.id
-                        // If we were on CoinDetail and now we're on Market, trigger refresh
-                        if (previousDestinationId != null && 
-                            currentDestinationId == Market.serializer().generateHashCode() &&
-                            previousDestinationId != currentDestinationId) {
+                    LaunchedEffect(backStackEntry.destination.id) {
+                        val currentDestinationId = backStackEntry.destination.id
+
+                        val coinDetailId = CoinDetail.serializer().generateHashCode()
+                        val marketId = Market.serializer().generateHashCode()
+                        
+                        // Check if returning from CoinDetail to Market using previous state
+                        val previousDestinationId = previousDestinationIdState.value
+                        val wasOnCoinDetail = previousDestinationId == coinDetailId
+                        if (wasOnCoinDetail && currentDestinationId == marketId) {
                             refreshTrigger++
                         }
-                        previousDestinationId = currentDestinationId
+                        
+                        // Update state for next execution - value persists via rememberSaveable
+                        previousDestinationIdState.value = currentDestinationId
                     }
                     
                     CryptoList(
@@ -275,10 +281,11 @@ expect fun createNewsHttpClient(): HttpClient
 
 expect fun wrapRssUrlForPlatform(url: String): String
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect class NetworkConnectivityObserver() {
     fun observe(): Flow<NetworkStatus?>
 }
 
 enum class NetworkStatus {
-    Available, Unavailable, Losing, Lost
+    Available, Unavailable
 }
