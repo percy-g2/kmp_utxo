@@ -48,6 +48,13 @@ class OrderBookWebSocketService {
     private var currentSymbol: String? = null
     private var lastUpdateId: Long = 0
     
+    // Maintain current order book state for merging incremental updates
+    private var currentBids: MutableMap<String, OrderBookLevel> = mutableMapOf()
+    private var currentAsks: MutableMap<String, OrderBookLevel> = mutableMapOf()
+    
+    // Flag to trigger reconnection when update ID validation fails
+    private var needsReconnect = false
+    
     /**
      * Connect to order book depth stream for a symbol
      * @param symbol Trading pair symbol (e.g., "BTCUSDT")
@@ -61,12 +68,14 @@ class OrderBookWebSocketService {
         
         disconnect()
         currentSymbol = symbol
+        needsReconnect = false
         
         webSocketJob = kotlinx.coroutines.CoroutineScope(Dispatchers.Default).launch {
             supervisorScope {
                 while (isActive) {
                     try {
                         isConnected = true
+                        needsReconnect = false
                         AppLogger.logger.d { "OrderBookWebSocket: Connecting to depth stream for $symbol" }
                         
                         // Binance WebSocket Stream format: <symbol>@depth<levels>
@@ -85,7 +94,7 @@ class OrderBookWebSocketService {
                             }
                         ) {
                             for (frame in incoming) {
-                                if (!isActive) {
+                                if (!isActive || needsReconnect) {
                                     isConnected = false
                                     break
                                 }
@@ -95,6 +104,12 @@ class OrderBookWebSocketService {
                                         try {
                                             val message = frame.readText()
                                             processDepthUpdate(symbol, message)
+                                            
+                                            // Check if reconnection is needed after processing
+                                            if (needsReconnect) {
+                                                isConnected = false
+                                                break
+                                            }
                                         } catch (e: Exception) {
                                             AppLogger.logger.e(throwable = e) { 
                                                 "OrderBookWebSocket: Error processing depth update" 
@@ -111,14 +126,25 @@ class OrderBookWebSocketService {
                             }
                         }
                         isConnected = false
+                        
+                        // If reconnection is needed, break and reconnect
+                        if (needsReconnect && isActive) {
+                            AppLogger.logger.d { 
+                                "OrderBookWebSocket: Reconnecting due to update ID validation failure" 
+                            }
+                            delay(1000) // Brief delay before reconnecting
+                            continue // Continue loop to reconnect
+                        }
                     } catch (e: CancellationException) {
                         isConnected = false
+                        needsReconnect = false
                         AppLogger.logger.d(throwable = e) { 
                             "OrderBookWebSocket: Connection cancelled for $symbol" 
                         }
                         break
                     } catch (e: Exception) {
                         isConnected = false
+                        needsReconnect = false
                         if (isActive) {
                             AppLogger.logger.e(throwable = e) { 
                                 "OrderBookWebSocket: Error connecting to $symbol" 
@@ -134,48 +160,120 @@ class OrderBookWebSocketService {
     /**
      * Process depth update from WebSocket stream
      * Handles both snapshot (first message) and incremental updates
+     * 
+     * Binance WebSocket Protocol:
+     * - First message is a snapshot with full order book
+     * - Subsequent messages are incremental updates containing only changed levels
+     * - Update IDs must be validated: firstUpdateId should be lastUpdateId + 1
+     * - Levels with quantity "0" should be removed from the order book
      */
     private fun processDepthUpdate(symbol: String, message: String) {
         try {
             // Try parsing as snapshot first (has lastUpdateId, no event fields)
             val snapshot = json.decodeFromString<OrderBookDepthSnapshot>(message)
             
-            // Convert to OrderBookLevel lists
-            val bids = snapshot.bids.map { 
-                OrderBookLevel(price = it[0], quantity = it[1]) 
+            // Snapshot: Replace entire order book
+            currentBids.clear()
+            currentAsks.clear()
+            
+            snapshot.bids.forEach { level ->
+                val price = level[0]
+                val quantity = level[1]
+                if (quantity != "0") {
+                    currentBids[price] = OrderBookLevel(price = price, quantity = quantity)
+                }
             }
-            val asks = snapshot.asks.map { 
-                OrderBookLevel(price = it[0], quantity = it[1]) 
+            
+            snapshot.asks.forEach { level ->
+                val price = level[0]
+                val quantity = level[1]
+                if (quantity != "0") {
+                    currentAsks[price] = OrderBookLevel(price = price, quantity = quantity)
+                }
             }
             
             lastUpdateId = snapshot.lastUpdateId
             
+            // Convert to sorted lists (bids descending, asks ascending)
+            val sortedBids = currentBids.values.sortedByDescending { it.priceDouble }
+            val sortedAsks = currentAsks.values.sortedBy { it.priceDouble }
+            
             _orderBookData.value = OrderBookData(
                 symbol = symbol,
-                bids = bids,
-                asks = asks,
+                bids = sortedBids,
+                asks = sortedAsks,
                 lastUpdateId = lastUpdateId,
                 timestamp = Clock.System.now().toEpochMilliseconds()
             )
+            
+            AppLogger.logger.d { 
+                "OrderBookWebSocket: Snapshot processed for $symbol, lastUpdateId=$lastUpdateId, bids=${sortedBids.size}, asks=${sortedAsks.size}" 
+            }
         } catch (e: kotlinx.serialization.SerializationException) {
             // If snapshot parsing fails, try parsing as incremental update
             try {
                 val depthUpdate = json.decodeFromString<OrderBookDepthUpdate>(message)
                 
-                // Convert to OrderBookLevel lists
-                val bids = depthUpdate.bids.map { 
-                    OrderBookLevel(price = it[0], quantity = it[1]) 
+                // Validate update ID according to Binance protocol
+                // firstUpdateId should be lastUpdateId + 1
+                // If not, we've missed updates and should reconnect
+                if (lastUpdateId > 0) {
+                    val expectedFirstUpdateId = lastUpdateId + 1
+                    if (depthUpdate.firstUpdateId != expectedFirstUpdateId) {
+                        if (depthUpdate.firstUpdateId < expectedFirstUpdateId) {
+                            AppLogger.logger.w { 
+                                "OrderBookWebSocket: Out-of-order update detected. Expected firstUpdateId=$expectedFirstUpdateId, got ${depthUpdate.firstUpdateId}. Reconnecting..." 
+                            }
+                        } else {
+                            AppLogger.logger.w { 
+                                "OrderBookWebSocket: Missed updates detected. Expected firstUpdateId=$expectedFirstUpdateId, got ${depthUpdate.firstUpdateId}. Reconnecting..." 
+                            }
+                        }
+                        // Set flag to trigger reconnection
+                        needsReconnect = true
+                        return
+                    }
                 }
-                val asks = depthUpdate.asks.map { 
-                    OrderBookLevel(price = it[0], quantity = it[1]) 
+                
+                // Merge incremental update with current order book state
+                // Update bids
+                depthUpdate.bids.forEach { level ->
+                    val price = level[0]
+                    val quantity = level[1]
+                    
+                    if (quantity == "0" || quantity.toDoubleOrNull() == 0.0) {
+                        // Remove level if quantity is zero
+                        currentBids.remove(price)
+                    } else {
+                        // Update or add level
+                        currentBids[price] = OrderBookLevel(price = price, quantity = quantity)
+                    }
+                }
+                
+                // Update asks
+                depthUpdate.asks.forEach { level ->
+                    val price = level[0]
+                    val quantity = level[1]
+                    
+                    if (quantity == "0" || quantity.toDoubleOrNull() == 0.0) {
+                        // Remove level if quantity is zero
+                        currentAsks.remove(price)
+                    } else {
+                        // Update or add level
+                        currentAsks[price] = OrderBookLevel(price = price, quantity = quantity)
+                    }
                 }
                 
                 lastUpdateId = depthUpdate.finalUpdateId
                 
+                // Convert to sorted lists (bids descending, asks ascending)
+                val sortedBids = currentBids.values.sortedByDescending { it.priceDouble }
+                val sortedAsks = currentAsks.values.sortedBy { it.priceDouble }
+                
                 _orderBookData.value = OrderBookData(
                     symbol = symbol,
-                    bids = bids,
-                    asks = asks,
+                    bids = sortedBids,
+                    asks = sortedAsks,
                     lastUpdateId = lastUpdateId,
                     timestamp = Clock.System.now().toEpochMilliseconds()
                 )
@@ -198,7 +296,11 @@ class OrderBookWebSocketService {
         webSocketJob?.cancel()
         webSocketJob = null
         isConnected = false
+        needsReconnect = false
         currentSymbol = null
+        lastUpdateId = 0
+        currentBids.clear()
+        currentAsks.clear()
         _orderBookData.value = null
         AppLogger.logger.d { "OrderBookWebSocket: Disconnected" }
     }
