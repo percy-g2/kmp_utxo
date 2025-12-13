@@ -32,7 +32,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Article
+import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Refresh
@@ -333,7 +333,7 @@ fun CoinDetailScreen(
                                         verticalArrangement = Arrangement.Center
                                     ) {
                                         Icon(
-                                            imageVector = Icons.Default.Article,
+                                            imageVector = Icons.AutoMirrored.Filled.Article,
                                             contentDescription = null,
                                             modifier = Modifier
                                                 .size(64.dp)
@@ -386,7 +386,7 @@ fun CoinDetailScreen(
                                             verticalArrangement = Arrangement.Center
                                         ) {
                                             Icon(
-                                                imageVector = Icons.Default.Article,
+                                                imageVector = Icons.AutoMirrored.Filled.Article,
                                                 contentDescription = null,
                                                 modifier = Modifier
                                                     .size(64.dp)
