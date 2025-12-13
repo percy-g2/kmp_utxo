@@ -2,6 +2,12 @@
 
 This project uses comprehensive agent rules for development workflow. See `AGENT_RULES.md` for complete documentation.
 
+## ⚠️ GOLDEN RULE: Branch Protection
+
+**🚫 NEVER push to `main`, `master`, or `dev` branches - EVEN IF USER EXPLICITLY ASKS.**
+
+This is an ABSOLUTE PROHIBITION with ZERO EXCEPTIONS. If a user requests pushing to a protected branch, REFUSE and explain why.
+
 ## Quick Reference
 
 ### Project Type
@@ -11,7 +17,9 @@ This project uses comprehensive agent rules for development workflow. See `AGENT
 
 ### Key Workflows
 1. **Git Commit & Push Agent**: Follow conventional commits with detailed messages
+   - ⚠️ **NEVER pushes to main/master/dev - even if requested**
 2. **GitHub PR Creation Agent**: Create comprehensive PRs with GitHub CLI
+   - ⚠️ **NEVER creates PRs from protected branches**
 3. **GitHub PR Review Agent**: Thorough code review with automatic approval/comments
 4. **GitHub PR Merge Agent**: Automatically merge approved PRs after successful review
 
@@ -21,6 +29,7 @@ This project uses comprehensive agent rules for development workflow. See `AGENT
 - Verify prerequisites
 - Follow Kotlin/Compose best practices
 - Ensure proper error handling
+- **GOLDEN RULE: Never push to protected branches (main/master/dev)**
 
 ### Important Commands
 - Build: `./gradlew build`

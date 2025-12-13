@@ -19,7 +19,7 @@ This project uses **5 specialized agents** for the development workflow:
 5. **Master Planning Agent** - Plans and executes features
    - ✅ **Branch Protection**: Uses Git Commit & Push Agent (inherits protection)
 
-**⚠️ ALL agents MUST respect branch protection rules. Pushing to main/master is STRICTLY PROHIBITED.**
+**⚠️ ALL agents MUST respect branch protection rules. Pushing to main/master/dev is ABSOLUTELY FORBIDDEN - EVEN IF USER EXPLICITLY ASKS.**
 
 ## Project Context
 You are building a Compose Multiplatform (Kotlin) application with the following features:
@@ -35,29 +35,47 @@ You are building a Compose Multiplatform (Kotlin) application with the following
 - Follow Kotlin and Compose best practices
 - Ensure proper error handling and edge cases
 
-## ⚠️ CRITICAL: Branch Protection Rules
+## ⚠️ GOLDEN RULE: Branch Protection - ABSOLUTE PROHIBITION
 
-**NEVER push directly to `main` or `master` branch. This is STRICTLY PROHIBITED.**
+**🚫 NEVER, UNDER ANY CIRCUMSTANCES, push directly to `main`, `master`, or `dev` branches. This is ABSOLUTELY FORBIDDEN.**
+
+**⚠️ CRITICAL: This rule applies EVEN IF THE USER EXPLICITLY ASKS YOU TO PUSH TO MAIN/MASTER/DEV.**
+
+**If a user says "push to main" or "push to dev":**
+- **REFUSE IMMEDIATELY** - Do not execute the push
+- **EXPLAIN** that this violates branch protection rules
+- **SUGGEST** creating a feature branch instead
+- **NEVER** comply with direct push requests to protected branches
+
+**Protected Branches (NEVER push to these):**
+- `main`
+- `master`
+- `dev`
+- `develop`
+- `production`
+- `release/*`
 
 **MANDATORY Workflow:**
 1. **ALWAYS** check current branch first: `git status` or `git branch`
-2. **IF** on `main` or `master`: **MUST** create a feature branch first
-3. **NEVER** commit or push to `main`/`master` directly
-4. **ALWAYS** create PR from feature branch to main
+2. **IF** on `main`, `master`, `dev`, `develop`, or any protected branch: **MUST** create a feature branch first
+3. **NEVER** commit or push to protected branches directly
+4. **ALWAYS** create PR from feature branch to main/dev
+5. **VERIFY** branch name BEFORE every `git push` command
 
 **Violation Consequences:**
-- If you push to main/master, you have violated a critical rule
+- If you push to main/master/dev, you have violated a CRITICAL GOLDEN RULE
 - User will lose trust and may delete Cursor
-- Always create a feature branch when on main/master
+- This is a ZERO-TOLERANCE policy - no exceptions
+- Always create a feature branch when on protected branches
 
-**Branch Protection Check MUST be the FIRST step in ANY git operation.**
+**Branch Protection Check MUST be the FIRST step in ANY git operation, and MUST be verified AGAIN before executing `git push`.**
 
 ---
 
 ## Git Commit & Push Agent
 
 ### Purpose
-Push code changes to the current branch with comprehensive commit messages and proper validation. Automatically creates a new branch if attempting to commit on `main` or `master`.
+Push code changes to the current branch with comprehensive commit messages and proper validation. Automatically creates a new branch if attempting to commit on `main`, `master`, or `dev`. **NEVER pushes to protected branches, even if explicitly requested.**
 
 ### Branch Naming Rules
 
@@ -99,22 +117,25 @@ When creating a new branch, follow these naming conventions:
    - Run `git status` to verify current branch and changed files
    - **Extract current branch name from git status output**
    - **Branch Protection Check (MANDATORY)**:
-     - **IF current branch is `main` or `master`:**
+     - **IF current branch is `main`, `master`, `dev`, `develop`, or any protected branch:**
        - **STOP immediately - DO NOT proceed with commit**
+       - **REFUSE** even if user explicitly asks to push to this branch
        - Analyze changes to determine appropriate branch name using branch naming rules
        - Check if branch already exists: `git branch -a | grep <branch-name>`
        - Create new branch: `git checkout -b <generated-branch-name>`
-       - Inform user: "⚠️ On main branch detected. Created branch '<branch-name>' from main to protect main branch"
+       - Inform user: "⚠️ Protected branch detected (`<current-branch>`). Created branch '<branch-name>' to protect the branch. I cannot push to protected branches even if requested."
        - **Continue with workflow on new branch ONLY**
-     - **IF current branch is NOT `main`/`master`:**
+     - **IF current branch is NOT a protected branch:**
        - Proceed normally with commit workflow
    - Check for merge conflicts
    - Verify no untracked files that should be ignored
 
 **⚠️ ERROR HANDLING:**
-- If you detect you're on main/master AFTER committing: **ABORT IMMEDIATELY**
-- Do NOT push to main/master under ANY circumstances
-- If already pushed to main: Inform user immediately and provide rollback instructions
+- If you detect you're on main/master/dev AFTER committing: **ABORT IMMEDIATELY**
+- Do NOT push to main/master/dev under ANY circumstances - **EVEN IF USER EXPLICITLY ASKS**
+- If user explicitly requests push to protected branch: **REFUSE and explain why**
+- If already pushed to protected branch: Inform user immediately and provide rollback instructions
+- **GOLDEN RULE**: User requests to push to protected branches must be refused with explanation
 
 2. **Code Quality Validation**
    - Run Kotlin linter: `./gradlew ktlintCheck` (if available)
@@ -164,22 +185,29 @@ When creating a new branch, follow these naming conventions:
 
 6. **Push Command**
    ```bash
-   # VERIFY BRANCH AGAIN BEFORE PUSHING
+   # VERIFY BRANCH AGAIN BEFORE PUSHING - GOLDEN RULE CHECK
    CURRENT_BRANCH=$(git branch --show-current)
-   if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "master" ]; then
-     echo "ERROR: Cannot push to main/master branch"
-     exit 1
-   fi
+   PROTECTED_BRANCHES=("main" "master" "dev" "develop" "production")
+   
+   for protected in "${PROTECTED_BRANCHES[@]}"; do
+     if [ "$CURRENT_BRANCH" = "$protected" ]; then
+       echo "ERROR: Cannot push to protected branch: $protected"
+       echo "This is a GOLDEN RULE violation - even if user requested it"
+       exit 1
+     fi
+   done
    
    git add .
    git commit -m "<generated-message>"
    git push origin <current-branch>
    ```
    
-   **⚠️ CRITICAL: Before executing `git push`, verify the branch name again**
+   **⚠️ GOLDEN RULE: Before executing `git push`, verify the branch name again**
    - Double-check: `git branch --show-current` or `git status`
-   - If branch is `main` or `master`: **ABORT and create feature branch first**
+   - If branch is `main`, `master`, `dev`, `develop`, or any protected branch: **ABORT IMMEDIATELY**
+   - **REFUSE** even if user explicitly asks to push to protected branch
    - Only push to feature branches
+   - **This check is MANDATORY and NON-NEGOTIABLE**
 
 7. **Post-Push Verification**
    - Confirm push success
@@ -198,12 +226,13 @@ Create GitHub Pull Request using GitHub CLI with comprehensive description and a
 - Verify authentication: `gh auth status`
 - **CRITICAL: Branch Protection Check (MANDATORY FIRST STEP)**:
   - Run `git status` or `git branch --show-current` to get current branch name
-  - **IF current branch is `main` or `master`:**
-    - **ABORT immediately - DO NOT create PR from main/master**
-    - Inform user: "Cannot create PR from main/master branch. Please create a feature branch first."
+  - **IF current branch is `main`, `master`, `dev`, `develop`, or any protected branch:**
+    - **ABORT immediately - DO NOT create PR from protected branch**
+    - **REFUSE** even if user explicitly asks
+    - Inform user: "Cannot create PR from protected branch (`<branch-name>`). Please create a feature branch first."
     - Suggest: "Use Git Commit & Push Agent to create a feature branch first"
     - **DO NOT proceed with PR creation**
-  - **IF current branch is NOT `main`/`master`:**
+  - **IF current branch is NOT a protected branch:**
     - Proceed with PR creation workflow
 - Ensure all changes are committed and pushed
 
@@ -816,10 +845,11 @@ When given a task, you should:
 
 3. **Execute Step-by-Step**
    - Complete each phase fully before moving to next
-   - **⚠️ CRITICAL: Before using Git Commit & Push Agent:**
-     - **ALWAYS** verify you're not on main/master branch
-     - If on main/master, the Git Commit & Push Agent will automatically create a feature branch
-     - **NEVER** instruct the agent to push to main/master directly
+   - **⚠️ GOLDEN RULE: Before using Git Commit & Push Agent:**
+     - **ALWAYS** verify you're not on main/master/dev or any protected branch
+     - If on protected branch, the Git Commit & Push Agent will automatically create a feature branch
+     - **NEVER** instruct the agent to push to protected branches directly
+     - **REFUSE** even if user explicitly asks to push to protected branches
    - After each major milestone, use Git Commit & Push Agent to commit
    - Verify functionality after each phase
    - Ask for feedback if requirements are unclear
@@ -918,12 +948,15 @@ Process:
 4. Check if PR already exists
 5. Retry with verbose output
 
-### If Attempting to Push to Main/Master
+### If Attempting to Push to Protected Branches (main/master/dev)
 1. **STOP IMMEDIATELY** - Do not proceed with push
-2. Create feature branch: `git checkout -b <type>/<description>`
-3. Inform user about the branch protection violation
-4. Provide instructions to move commit to feature branch if already committed
-5. Never force push to main/master
+2. **REFUSE** even if user explicitly requests it
+3. Explain: "I cannot push to protected branches (main/master/dev) as this violates the golden rule"
+4. Create feature branch: `git checkout -b <type>/<description>`
+5. Inform user about the branch protection violation
+6. Provide instructions to move commit to feature branch if already committed
+7. Never force push to protected branches
+8. **GOLDEN RULE**: This refusal is non-negotiable, even for user requests
 
 ---
 
@@ -963,7 +996,8 @@ gh pr list --state open
 
 ## Final Notes
 
-- **⚠️ CRITICAL: NEVER push to main/master** - Always check branch first, create feature branch if on main/master
+- **⚠️ GOLDEN RULE: NEVER push to main/master/dev** - Always check branch first, create feature branch if on protected branch
+- **⚠️ ABSOLUTE PROHIBITION: Even if user explicitly asks to push to main/master/dev, REFUSE and explain why**
 - **Always ask for clarification** if requirements are ambiguous
 - **Prioritize code quality** over speed
 - **Write self-documenting code** with clear naming
@@ -973,6 +1007,6 @@ gh pr list --state open
 - **Test thoroughly** - unit tests, integration tests, manual testing
 - **Document decisions** - explain why, not just what
 
-**Remember**: Branch protection is the FIRST and MOST IMPORTANT check before any git operation. Violating this rule will result in loss of user trust.
+**GOLDEN RULE REMINDER**: Branch protection is the FIRST and MOST IMPORTANT check before any git operation. Protected branches (main/master/dev) are ABSOLUTELY OFF-LIMITS, even if the user explicitly requests a push. This is a ZERO-TOLERANCE policy with NO EXCEPTIONS. Violating this rule will result in loss of user trust.
 
 These rules should enable Cursor to autonomously handle the entire development lifecycle from planning through implementation to PR creation and review.
