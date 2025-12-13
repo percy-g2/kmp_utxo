@@ -12,10 +12,12 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import logging.AppLogger
 import model.NewsItem
+import model.OrderBookData
 import model.RssProvider
 import model.Ticker24hr
 import model.UiKline
 import network.NewsService
+import network.OrderBookWebSocketService
 import kotlin.time.ExperimentalTime
 import network.HttpClient as NetworkClient
 
@@ -28,6 +30,7 @@ data class CoinDetailState(
     val news: List<NewsItem> = emptyList(),
     val ticker: Ticker24hr? = null,
     val klines: List<UiKline> = emptyList(),
+    val orderBookData: OrderBookData? = null,
     val error: String? = null
 )
 
@@ -35,6 +38,7 @@ data class CoinDetailState(
 class CoinDetailViewModel : ViewModel() {
     private val httpClient = NetworkClient()
     private val newsService = NewsService()
+    private val orderBookService = OrderBookWebSocketService()
     
     private val _state = MutableStateFlow(CoinDetailState())
     val state: StateFlow<CoinDetailState> = _state.asStateFlow()
@@ -44,6 +48,15 @@ class CoinDetailViewModel : ViewModel() {
     
     // Mutex to synchronize news state updates
     private val newsUpdateMutex = Mutex()
+    
+    init {
+        // Observe order book updates
+        viewModelScope.launch {
+            orderBookService.orderBookData.collect { orderBook ->
+                _state.value = _state.value.copy(orderBookData = orderBook)
+            }
+        }
+    }
     
     /**
      * Helper function to atomically update state within the mutex.
@@ -60,6 +73,9 @@ class CoinDetailViewModel : ViewModel() {
         // Cancel any existing load job
         currentLoadJob?.cancel()
         
+        // Connect to order book WebSocket
+        orderBookService.connect(symbol, levels = 20)
+        
         currentLoadJob = viewModelScope.launch {
             AppLogger.logger.d { "CoinDetailViewModel: Starting loadCoinData for $symbol with providers: $enabledRssProviders" }
             
@@ -72,6 +88,7 @@ class CoinDetailViewModel : ViewModel() {
                 news = emptyList(),
                 ticker = null,
                 klines = emptyList(),
+                orderBookData = null,
                 error = null
             )
             
@@ -215,6 +232,7 @@ class CoinDetailViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+        orderBookService.close()
         httpClient.close()
         newsService.close()
     }
