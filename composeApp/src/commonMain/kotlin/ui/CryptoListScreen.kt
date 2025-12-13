@@ -236,12 +236,11 @@ fun CryptoList(
                     // Only resume work when view is actually visible
                     coroutineScope.launch {
                         cryptoViewModel.reconnect()
-                        // Don't force refresh on resume - only load missing charts
                         if (visibleSymbols.isNotEmpty()) {
                             fetchJob?.cancel()
                             fetchJob = launch(Dispatchers.Default) {
                                 try {
-                                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = false)
+                                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
                                 } catch (e: CancellationException) {
                                     throw e
                                 } catch (e: Exception) {
