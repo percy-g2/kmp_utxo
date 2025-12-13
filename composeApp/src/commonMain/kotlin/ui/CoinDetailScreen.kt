@@ -279,7 +279,10 @@ fun CoinDetailScreen(
                                     priceChangePercent = state.ticker?.priceChangePercent ?: "0",
                                     isDarkTheme = isDarkTheme,
                                     symbol = symbol,
-                                    tradingPairs = tradingPairs
+                                    tradingPairs = tradingPairs,
+                                    onTooltipVisibilityChange = { visible ->
+                                        viewModel.setTooltipVisible(visible)
+                                    }
                                 )
                             }
                         }
@@ -428,7 +431,8 @@ fun CoinDetailChart(
     priceChangePercent: String,
     isDarkTheme: Boolean,
     symbol: String,
-    tradingPairs: List<TradingPair>
+    tradingPairs: List<TradingPair>,
+    onTooltipVisibilityChange: (Boolean) -> Unit = {}
 ) {
     // If no klines data, show empty state (loading is handled by shimmer placeholder)
     if (klines.isEmpty()) {
@@ -512,6 +516,11 @@ fun CoinDetailChart(
     var showTooltip by remember { mutableStateOf(false) }
     var hideTooltipTrigger by remember { mutableStateOf(0L) }
 
+    // Notify ViewModel when tooltip visibility changes
+    LaunchedEffect(showTooltip) {
+        onTooltipVisibilityChange(showTooltip)
+    }
+    
     // Hide tooltip after 5 seconds
     LaunchedEffect(showTooltip, hideTooltipTrigger) {
         if (showTooltip && tooltipPosition != null) {

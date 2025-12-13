@@ -52,6 +52,11 @@ class CoinDetailViewModel : ViewModel() {
     // Mutex to synchronize news state updates
     private val newsUpdateMutex = Mutex()
     
+    // Track tooltip visibility and queue updates
+    private var isTooltipVisible = false
+    private val queuedKlineUpdates = mutableListOf<UiKline>()
+    private val klineUpdateMutex = Mutex()
+    
     init {
         // Observe order book updates
         viewModelScope.launch {
@@ -66,36 +71,41 @@ class CoinDetailViewModel : ViewModel() {
                 if (ticker != null) {
                     val currentState = _state.value
                     
-                    // Update ticker state
-                    // Also append new UiKline point for real-time chart updates
-                    // Only append if initial klines are loaded (not during initial load)
-                    val updatedKlines = if (currentState.klines.isNotEmpty() && !currentState.isLoadingChart) {
-                        // Keep only last 200 points (enough for smooth charts, reduces memory)
+                    // Always update ticker immediately
+                    // Only update klines if initial data is loaded
+                    if (currentState.klines.isNotEmpty() && !currentState.isLoadingChart) {
                         val MAX_KLINES = 200
-                        val currentKlines = currentState.klines
-                        // Use current timestamp for real-time updates
                         val currentTimestamp = Clock.System.now().toEpochMilliseconds()
                         val newKline = UiKline(
                             closePrice = ticker.lastPrice,
                             closeTime = currentTimestamp,
-                            openTime = currentTimestamp // Use same timestamp for openTime as fallback
+                            openTime = currentTimestamp
                         )
-                        if (currentKlines.size >= MAX_KLINES) {
-                            // Drop oldest point and add new one
-                            currentKlines.drop(1) + newKline
-                        } else {
-                            // Just add new point
-                            currentKlines + newKline
+                        
+                        klineUpdateMutex.withLock {
+                            if (isTooltipVisible) {
+                                // Queue the update when tooltip is visible
+                                queuedKlineUpdates.add(newKline)
+                                // Only update ticker, keep klines unchanged
+                                _state.value = currentState.copy(ticker = ticker)
+                            } else {
+                                // Apply immediately when tooltip is not visible
+                                val currentKlines = currentState.klines
+                                val newKlinesList = if (currentKlines.size >= MAX_KLINES) {
+                                    currentKlines.drop(1) + newKline
+                                } else {
+                                    currentKlines + newKline
+                                }
+                                _state.value = currentState.copy(
+                                    ticker = ticker,
+                                    klines = newKlinesList
+                                )
+                            }
                         }
                     } else {
-                        // Keep existing klines if not loaded yet
-                        currentState.klines
+                        // Initial load or no klines yet - just update ticker
+                        _state.value = currentState.copy(ticker = ticker)
                     }
-                    
-                    _state.value = currentState.copy(
-                        ticker = ticker,
-                        klines = updatedKlines
-                    )
                 }
             }
         }
@@ -271,6 +281,44 @@ class CoinDetailViewModel : ViewModel() {
     fun clearCache() {
         viewModelScope.launch {
             newsService.clearCache()
+        }
+    }
+    
+    /**
+     * Set tooltip visibility state
+     * When tooltip is shown, chart updates are queued
+     * When tooltip is hidden, queued updates are applied
+     */
+    fun setTooltipVisible(visible: Boolean) {
+        viewModelScope.launch {
+            klineUpdateMutex.withLock {
+                val wasVisible = isTooltipVisible
+                isTooltipVisible = visible
+                
+                if (wasVisible && !visible && queuedKlineUpdates.isNotEmpty()) {
+                    // Apply queued updates when tooltip is hidden
+                    val currentState = _state.value
+                    val currentKlines = currentState.klines
+                    val MAX_KLINES = 200
+                    val queueSize = queuedKlineUpdates.size
+                    
+                    // Apply all queued updates
+                    var updatedKlines = currentKlines
+                    for (queuedKline in queuedKlineUpdates) {
+                        if (updatedKlines.size >= MAX_KLINES) {
+                            updatedKlines = updatedKlines.drop(1) + queuedKline
+                        } else {
+                            updatedKlines = updatedKlines + queuedKline
+                        }
+                    }
+                    
+                    // Clear queue and update state
+                    queuedKlineUpdates.clear()
+                    _state.value = currentState.copy(klines = updatedKlines)
+                    
+                    AppLogger.logger.d { "CoinDetailViewModel: Applied $queueSize queued kline updates" }
+                }
+            }
         }
     }
 
