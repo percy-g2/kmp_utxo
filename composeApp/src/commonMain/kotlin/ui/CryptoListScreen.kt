@@ -199,7 +199,7 @@ fun CryptoList(
                     cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = false)
                 } catch (e: CancellationException) {
                     throw e
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     // Silently handle errors during cancellation
                 }
             }
@@ -220,7 +220,7 @@ fun CryptoList(
                         cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
                     } catch (e: CancellationException) {
                         throw e
-                    } catch (e: Exception) {
+                    } catch (_: Exception) {
                         // Silently handle errors
                     }
                 }
@@ -243,7 +243,7 @@ fun CryptoList(
                                     cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
                                 } catch (e: CancellationException) {
                                     throw e
-                                } catch (e: Exception) {
+                                } catch (_: Exception) {
                                     // Handle errors silently
                                 }
                             }
@@ -280,7 +280,7 @@ fun CryptoList(
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     if (tradingPairs.isEmpty()) {
-                        items(count = 6, key = { it }) { index ->
+                        items(count = 6, key = { it }) { _ ->
                             ShimmerTradingPairItem()
                         }
                     } else {
@@ -360,7 +360,7 @@ fun CryptoList(
                                 detectHorizontalDragGestures(
                                     onDragEnd = { /* No-op */ },
                                     onDragCancel = { /* No-op */ },
-                                    onHorizontalDrag = { change, dragAmount ->
+                                    onHorizontalDrag = { _, dragAmount ->
                                         val currentIndex = tradingPairList.indexOf(currentTradingPair)
                                         // We'll use a threshold for a "swipe" action, ignore small moves
                                         val threshold = 80f // pixels
@@ -424,7 +424,7 @@ fun CryptoList(
                                         ) { tickerData ->
                                             TickerCard(
                                                 tickerData = tickerData,
-                                                selectedTradingPair = currentTradingPair,
+                                                selectedTradingPair = tradingPair,
                                                 trades = trades[tickerData.symbol] ?: emptyList(),
                                                 priceChangePercent = tickerData.priceChangePercent,
                                                 tradingPairs = tradingPairs,
@@ -999,7 +999,7 @@ fun TickerCard(
             cryptoViewModel.ensureChartData(tickerData.symbol)
         } catch (e: CancellationException) {
             throw e
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             // Silently handle errors
         }
     }
@@ -1175,9 +1175,9 @@ fun FavoritesListScreen(
                 try {
                     // Force refresh to ensure charts load even if trades were cleared
                     cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
-                } catch (e: CancellationException) {
+                } catch (_: CancellationException) {
                     // Silently handle errors during cancellation
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     // Silently handle errors during cancellation
                 }
             }
@@ -1189,9 +1189,9 @@ fun FavoritesListScreen(
                 try {
                     val allFavoriteSymbols = tickerItems.map { it.symbol }
                     cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
-                } catch (e: CancellationException) {
+                } catch (_: CancellationException) {
                     // Silently handle errors during cancellation
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     // Silently handle errors during cancellation
                 }
             }
@@ -1215,9 +1215,9 @@ fun FavoritesListScreen(
                         fetchJob = coroutineScope.launch(Dispatchers.Default) {
                             try {
                                 cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
-                            } catch (e: CancellationException) {
+                            } catch (_: CancellationException) {
                                 // Silently handle errors during cancellation
-                            } catch (e: Exception) {
+                            } catch (_: Exception) {
                                 // Silently handle errors
                             }
                         }
