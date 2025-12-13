@@ -16,9 +16,8 @@ import model.RssProvider
 import model.Ticker24hr
 import model.UiKline
 import network.NewsService
-import network.HttpClient as NetworkClient
-import ktx.parseRssDate
 import kotlin.time.ExperimentalTime
+import network.HttpClient as NetworkClient
 
 @OptIn(ExperimentalTime::class)
 data class CoinDetailState(
@@ -57,7 +56,7 @@ class CoinDetailViewModel : ViewModel() {
         }
     }
 
-    fun loadCoinData(symbol: String, enabledRssProviders: Set<String> = model.RssProvider.DEFAULT_ENABLED_PROVIDERS) {
+    fun loadCoinData(symbol: String, enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS) {
         // Cancel any existing load job
         currentLoadJob?.cancel()
         
@@ -119,16 +118,20 @@ class CoinDetailViewModel : ViewModel() {
             if (enabledRssProviders.isNotEmpty()) {
                 launch {
                     try {
-                        val allNews = mutableListOf<NewsItem>()
                         val providersToLoad = enabledRssProviders.toSet()
                         
                         // Fetch from each provider independently
-                        val providerJobs = model.RssProvider.ALL_PROVIDERS
+                        val providerJobs = RssProvider.ALL_PROVIDERS
                             .filter { providersToLoad.contains(it.id) }
                             .map { provider ->
                                 async {
                                     try {
                                         val news = newsService.fetchNewsFromProvider(provider, symbol)
+                                        
+                                        // If provider failed (returned empty list), remove from loading immediately
+                                        // This prevents showing shimmer for failed providers
+                                        val isFailure = news.isEmpty()
+                                        
                                         // Update state atomically as each provider responds
                                         // Use helper function to ensure we always read the most recent state
                                         updateNewsState { currentState ->
@@ -138,8 +141,8 @@ class CoinDetailViewModel : ViewModel() {
                                                     .sortedByDescending { item ->
                                                         try {
                                                             ktx.parseRssDate(item.pubDate)
-                                                        } catch (e: Exception) {
-                                                            kotlinx.datetime.Instant.fromEpochMilliseconds(0)
+                                                        } catch (_: Exception) {
+                                                            kotlin.time.Instant.fromEpochMilliseconds(0)
                                                         }
                                                     }
                                                     .take(50)
@@ -149,19 +152,26 @@ class CoinDetailViewModel : ViewModel() {
                                             
                                             currentState.copy(
                                                 news = updatedNews,
+                                                // Remove provider from loading set immediately if it failed or succeeded
                                                 loadingNewsProviders = currentState.loadingNewsProviders - provider.id
                                             )
                                         }
+                                        
+                                        if (isFailure) {
+                                            AppLogger.logger.w { "CoinDetailViewModel: Provider ${provider.name} returned no news items" }
+                                        }
+                                        
                                         news
                                     } catch (e: Exception) {
                                         AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading news from ${provider.name}" }
                                         // Use helper function to ensure we always read the most recent state
+                                        // Remove failed provider immediately to prevent shimmer
                                         updateNewsState { currentState ->
                                             currentState.copy(
                                                 loadingNewsProviders = currentState.loadingNewsProviders - provider.id
                                             )
                                         }
-                                        emptyList<NewsItem>()
+                                        emptyList()
                                     }
                                 }
                             }
@@ -190,7 +200,7 @@ class CoinDetailViewModel : ViewModel() {
         }
     }
 
-    fun refresh(symbol: String, enabledRssProviders: Set<String> = model.RssProvider.DEFAULT_ENABLED_PROVIDERS) {
+    fun refresh(symbol: String, enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS) {
         viewModelScope.launch {
             newsService.clearCache()
             loadCoinData(symbol, enabledRssProviders)
