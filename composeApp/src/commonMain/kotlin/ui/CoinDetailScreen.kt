@@ -591,9 +591,9 @@ fun CoinDetailChart(
     ) {
         Box(
             modifier = Modifier
+                .padding(all = 16.dp)
                 .fillMaxWidth()
-                .height(250.dp)
-                .padding(vertical = 16.dp)
+                .height(80.dp)
                 .onSizeChanged { size ->
                     // Only update if size actually changed to minimize recompositions
                     val newSize = Offset(size.width.toFloat(), size.height.toFloat())

@@ -19,6 +19,7 @@ import model.UiKline
 import network.NewsService
 import network.OrderBookWebSocketService
 import network.TickerWebSocketService
+import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import network.HttpClient as NetworkClient
 
@@ -72,12 +73,19 @@ class CoinDetailViewModel : ViewModel() {
                         // Keep only last 200 points (enough for smooth charts, reduces memory)
                         val MAX_KLINES = 200
                         val currentKlines = currentState.klines
+                        // Use current timestamp for real-time updates
+                        val currentTimestamp = Clock.System.now().toEpochMilliseconds()
+                        val newKline = UiKline(
+                            closePrice = ticker.lastPrice,
+                            closeTime = currentTimestamp,
+                            openTime = currentTimestamp // Use same timestamp for openTime as fallback
+                        )
                         if (currentKlines.size >= MAX_KLINES) {
                             // Drop oldest point and add new one
-                            currentKlines.drop(1) + UiKline(closePrice = ticker.lastPrice)
+                            currentKlines.drop(1) + newKline
                         } else {
                             // Just add new point
-                            currentKlines + UiKline(closePrice = ticker.lastPrice)
+                            currentKlines + newKline
                         }
                     } else {
                         // Keep existing klines if not loaded yet
