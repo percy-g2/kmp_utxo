@@ -43,6 +43,7 @@ import androidx.navigation.toRoute
 import io.github.xxfast.kstore.KStore
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.flow.Flow
+import logging.AppLogger
 import model.CoinDetail
 import model.Favorites
 import model.Market
@@ -65,6 +66,11 @@ import utxo.composeapp.generated.resources.network_unavailable_message
 fun App(
     cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }
 ) {
+    // Initialize logger early to ensure it's ready
+    LaunchedEffect(Unit) {
+        AppLogger.logger.d { "App initialized" }
+    }
+    
     val navController: NavHostController = rememberNavController()
     val settingsState by store.updates.collectAsState(initial = ui.Settings(appTheme = AppTheme.System))
     val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))

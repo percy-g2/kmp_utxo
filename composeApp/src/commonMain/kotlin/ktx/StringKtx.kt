@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import logging.AppLogger
 import model.TradingPair
 import kotlin.math.roundToInt
 import kotlin.time.ExperimentalTime
@@ -66,7 +67,7 @@ fun String.formatVolume(): String {
             }
         }
     } catch (e: Exception) {
-        e.printStackTrace()
+        AppLogger.logger.e(throwable = e) { "Error formatting volume: $this" }
         this
     }
 }
@@ -146,7 +147,7 @@ fun String.formatNewsDate(): String {
         "$month $day, $year $displayHour:$minuteStr $amPm"
     } catch (e: Exception) {
         // If parsing fails, try to extract date and time manually from common formats
-        e.printStackTrace()
+        AppLogger.logger.w(throwable = e) { "Error parsing RSS date: $this" }
         try {
             // Try to extract time from common RSS formats as fallback
             extractDateAndTimeFallback(this)

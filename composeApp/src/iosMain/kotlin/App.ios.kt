@@ -30,6 +30,7 @@ import platform.Network.nw_path_status_satisfied
 import platform.UIKit.UIApplication
 import platform.darwin.DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL
 import platform.darwin.dispatch_queue_create
+import logging.AppLogger
 import ui.Settings
 
 actual fun openLink(link: String) {
@@ -40,12 +41,12 @@ actual fun openLink(link: String) {
                 nsUrl,
                 mapOf<Any?, Any>(),
                 completionHandler = { success ->
-                    println("Open URL success: $success")
+                    AppLogger.logger.d { "Open URL success: $success" }
                 }
             )
         }
     }.getOrElse {
-        it.printStackTrace()
+        AppLogger.logger.e(throwable = it) { "Failed to open URL: $link" }
     }
 }
 

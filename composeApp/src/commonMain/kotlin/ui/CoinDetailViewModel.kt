@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import logging.AppLogger
 import model.NewsItem
 import model.RssProvider
 import model.Ticker24hr
@@ -36,7 +37,7 @@ class CoinDetailViewModel : ViewModel() {
         currentLoadJob?.cancel()
         
         currentLoadJob = viewModelScope.launch {
-            println("CoinDetailViewModel: Starting loadCoinData for $symbol with providers: $enabledRssProviders")
+            AppLogger.logger.d { "CoinDetailViewModel: Starting loadCoinData for $symbol with providers: $enabledRssProviders" }
             _state.value = _state.value.copy(isLoading = true, error = null)
             
             try {
@@ -53,16 +54,16 @@ class CoinDetailViewModel : ViewModel() {
                 
                 // Log for debugging
                 if (ticker == null) {
-                    println("CoinDetailViewModel: Failed to fetch ticker for symbol: $symbol")
+                    AppLogger.logger.w { "CoinDetailViewModel: Failed to fetch ticker for symbol: $symbol" }
                 }
                 if (news.isEmpty()) {
-                    println("CoinDetailViewModel: No news found for symbol: $symbol")
+                    AppLogger.logger.d { "CoinDetailViewModel: No news found for symbol: $symbol" }
                 }
                 if (klines.isEmpty()) {
-                    println("CoinDetailViewModel: No kline data found for symbol: $symbol")
+                    AppLogger.logger.d { "CoinDetailViewModel: No kline data found for symbol: $symbol" }
                 }
                 
-                println("CoinDetailViewModel: Successfully loaded data - news: ${news.size} items")
+                AppLogger.logger.i { "CoinDetailViewModel: Successfully loaded data - news: ${news.size} items" }
                 _state.value = CoinDetailState(
                     isLoading = false,
                     news = news,
@@ -71,11 +72,10 @@ class CoinDetailViewModel : ViewModel() {
                     error = if (news.isEmpty() && ticker == null) "No data available for $symbol" else null
                 )
             } catch (e: kotlinx.coroutines.CancellationException) {
-                println("CoinDetailViewModel: Load cancelled for $symbol")
+                AppLogger.logger.d { "CoinDetailViewModel: Load cancelled for $symbol" }
                 throw e // Re-throw cancellation exceptions
             } catch (e: Exception) {
-                println("CoinDetailViewModel: Error loading data for $symbol: ${e.message}")
-                e.printStackTrace()
+                AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading data for $symbol" }
                 _state.value = _state.value.copy(
                     isLoading = false,
                     error = "Failed to load data: ${e.message}"

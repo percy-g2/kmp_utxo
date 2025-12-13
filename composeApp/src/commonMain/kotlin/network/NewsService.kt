@@ -1,7 +1,6 @@
 package network
 
 import createNewsHttpClient
-import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
@@ -10,8 +9,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import ktx.parseRssDate
 import kotlinx.datetime.Instant
+import ktx.parseRssDate
+import logging.AppLogger
 import model.NewsItem
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -40,17 +40,17 @@ class NewsService {
             val providersKey = providersToUse.sorted().joinToString(",")
             val cacheKey = "${coinSymbol.uppercase()}_$providersKey"
             
-            println("NewsService: Cache key for $coinSymbol: $cacheKey")
-            println("NewsService: Enabled providers set: $providersToUse")
+            AppLogger.logger.d { "NewsService: Cache key for $coinSymbol: $cacheKey" }
+            AppLogger.logger.d { "NewsService: Enabled providers set: $providersToUse" }
             
             // Check cache first
             cacheMutex.withLock {
                 val cached = cache[cacheKey]
                 if (cached != null && (Clock.System.now().toEpochMilliseconds() - cached.timestamp) < cacheDurationMs) {
-                    println("NewsService: Returning cached news (${cached.news.size} items) for key: $cacheKey")
+                    AppLogger.logger.d { "NewsService: Returning cached news (${cached.news.size} items) for key: $cacheKey" }
                     return Result.success(cached.news)
                 } else {
-                    println("NewsService: Cache miss or expired for key: $cacheKey")
+                    AppLogger.logger.d { "NewsService: Cache miss or expired for key: $cacheKey" }
                 }
             }
 
@@ -59,27 +59,27 @@ class NewsService {
             
             // If no providers are enabled, return empty list immediately
             if (providersToUse.isEmpty()) {
-                println("NewsService: No providers enabled, returning empty news list")
+                AppLogger.logger.d { "NewsService: No providers enabled, returning empty news list" }
                 return Result.success(emptyList())
             }
             
             // Fetch only from enabled providers - use local copy
-            println("NewsService: Fetching news for $coinSymbol with enabled providers: $providersToUse")
+            AppLogger.logger.d { "NewsService: Fetching news for $coinSymbol with enabled providers: $providersToUse" }
             model.RssProvider.ALL_PROVIDERS.forEach { provider ->
                 if (providersToUse.contains(provider.id)) {
-                    println("NewsService: Fetching from ${provider.name} (${provider.id})")
+                    AppLogger.logger.d { "NewsService: Fetching from ${provider.name} (${provider.id})" }
                     val news = fetchRSSFeed(provider.url, coinSymbol)
                     if (news != null) {
                         allNews.addAll(news)
-                        println("NewsService: Found ${news.size} news items from ${provider.name} for $coinSymbol")
+                        AppLogger.logger.d { "NewsService: Found ${news.size} news items from ${provider.name} for $coinSymbol" }
                     } else {
-                        println("NewsService: Failed to fetch or parse ${provider.name} RSS for $coinSymbol")
+                        AppLogger.logger.w { "NewsService: Failed to fetch or parse ${provider.name} RSS for $coinSymbol" }
                     }
                 } else {
-                    println("NewsService: Skipping ${provider.name} (${provider.id}) - not enabled")
+                    AppLogger.logger.d { "NewsService: Skipping ${provider.name} (${provider.id}) - not enabled" }
                 }
             }
-            println("NewsService: Total news items collected: ${allNews.size}")
+            AppLogger.logger.d { "NewsService: Total news items collected: ${allNews.size}" }
 
             // Sort by parsed date (newest first) and limit to 50
             val sortedNews = allNews
@@ -88,7 +88,7 @@ class NewsService {
                         parseRssDate(item.pubDate)
                     } catch (e: Exception) {
                         // If parsing fails, use epoch 0 (oldest) so unparseable dates go to the end
-                        println("NewsService: Failed to parse date '${item.pubDate}': ${e.message}")
+                        AppLogger.logger.w(throwable = e) { "NewsService: Failed to parse date '${item.pubDate}'" }
                         Instant.fromEpochMilliseconds(0)
                     }
                 })
@@ -114,16 +114,15 @@ class NewsService {
                 }
                 // Debug: log first 500 chars to see feed structure
                 if (url.contains("coindesk", ignoreCase = true)) {
-                    println("CoinDesk RSS sample (first 500 chars): ${xmlContent.take(500)}")
+                    AppLogger.logger.d { "CoinDesk RSS sample (first 500 chars): ${xmlContent.take(500)}" }
                 }
                 parseRSSFeed(xmlContent, coinSymbol)
             } else {
-                println("RSS feed returned status ${response.status} for $url")
+                AppLogger.logger.w { "RSS feed returned status ${response.status} for $url" }
                 null
             }
         } catch (e: Exception) {
-            println("Error fetching RSS feed $url: ${e.message}")
-            e.printStackTrace()
+            AppLogger.logger.e(throwable = e) { "Error fetching RSS feed $url" }
             null
         }
     }
@@ -313,7 +312,7 @@ class NewsService {
 
     suspend fun clearCache() {
         cacheMutex.withLock {
-            println("NewsService: Clearing all cache entries (${cache.size} entries)")
+            AppLogger.logger.d { "NewsService: Clearing all cache entries (${cache.size} entries)" }
             cache.clear()
         }
     }

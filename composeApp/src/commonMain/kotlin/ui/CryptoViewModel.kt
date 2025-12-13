@@ -31,6 +31,7 @@ import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import ktx.formatPrice
+import logging.AppLogger
 import model.SortParams
 import model.Ticker
 import model.TickerData
@@ -284,7 +285,7 @@ class CryptoViewModel : ViewModel() {
                     } catch (e: CancellationException) {
                         throw e
                     } catch (e: Exception) {
-                        println("Error fetching klines for batch: ${e.message}")
+                        AppLogger.logger.e(throwable = e) { "Error fetching klines for batch" }
                     }
                 }
             }
@@ -298,7 +299,7 @@ class CryptoViewModel : ViewModel() {
                 fetchMarginSymbols()
                 startWebSocketConnection()
             } catch (e: Exception) {
-                println("Error initializing data: ${e.message}")
+                AppLogger.logger.e(throwable = e) { "Error initializing data" }
             }
         }
     }
@@ -322,7 +323,7 @@ class CryptoViewModel : ViewModel() {
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                println("Error fetching margin symbols: ${e.message}")
+                AppLogger.logger.e(throwable = e) { "Error fetching margin symbols" }
             }
         }
     }
@@ -344,7 +345,7 @@ class CryptoViewModel : ViewModel() {
                 updateDisplayedPairs()
                 startWebSocketConnection()
             } catch (e: Exception) {
-                println("Error reconnecting: ${e.message}")
+                AppLogger.logger.e(throwable = e) { "Error reconnecting" }
             }
         }
     }
@@ -398,9 +399,9 @@ class CryptoViewModel : ViewModel() {
                     }
                 }
             } catch (e: CancellationException) {
-                e.printStackTrace()
+                AppLogger.logger.d(throwable = e) { "Cancelled fetching favorites prices" }
             } catch (e: Exception) {
-                println("Error fetching favorites prices: ${e.message}")
+                AppLogger.logger.e(throwable = e) { "Error fetching favorites prices" }
             }
         }
     }
@@ -452,11 +453,11 @@ class CryptoViewModel : ViewModel() {
                         isWebSocketConnected = false
                     } catch (e: CancellationException) {
                         isWebSocketConnected = false
-                        e.printStackTrace()
+                        AppLogger.logger.d(throwable = e) { "WebSocket connection cancelled" }
                     } catch (e: Exception) {
                         isWebSocketConnected = false
                         if (isActive) {
-                            println("WebSocket error: ${e.message}")
+                            AppLogger.logger.e(throwable = e) { "WebSocket error" }
                             delay(5000) // Wait before reconnecting
                         }
                     }
@@ -511,7 +512,7 @@ class CryptoViewModel : ViewModel() {
                     updateDisplayedPairs()
                 }
             }.onFailure {
-                println("Error processing ticker message: ${it.message}")
+                AppLogger.logger.e(throwable = it) { "Error processing ticker message" }
             }
         }
     }
@@ -556,7 +557,7 @@ class CryptoViewModel : ViewModel() {
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                println("Error ensuring chart data: ${e.message}")
+                AppLogger.logger.e(throwable = e) { "Error ensuring chart data" }
             }
         }
     }

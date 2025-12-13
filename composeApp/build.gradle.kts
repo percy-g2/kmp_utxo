@@ -85,6 +85,8 @@ kotlin {
             implementation(libs.lifecycle.viewmodel.compose)
 
             implementation(libs.kotlinx.coroutines.core)
+
+            implementation(libs.kermit)
         }
 
         desktopMain.dependencies {

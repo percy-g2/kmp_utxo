@@ -73,6 +73,7 @@ import ktx.buildStyledSymbol
 import ktx.formatNewsDate
 import ktx.formatPrice
 import ktx.formatVolume
+import logging.AppLogger
 import model.NewsItem
 import model.Ticker24hr
 import model.TradingPair
@@ -136,7 +137,7 @@ fun formatTickerUpdateTime(timestamp: Long): String {
         
         "Updated: $displayHour:$minuteStr $amPm"
     } catch (e: Exception) {
-        println("Error formatting ticker update time: ${e.message}")
+        AppLogger.logger.e(throwable = e) { "Error formatting ticker update time" }
         ""
     }
 }
@@ -176,14 +177,14 @@ fun CoinDetailScreen(
 
     // Reload when symbol or enabled providers change
     LaunchedEffect(symbol, enabledProvidersKey) {
-        println("CoinDetailScreen: LaunchedEffect triggered - symbol: $symbol, providers: $enabledProviders, key: $enabledProvidersKey")
+        AppLogger.logger.d { "CoinDetailScreen: LaunchedEffect triggered - symbol: $symbol, providers: $enabledProviders, key: $enabledProvidersKey" }
         // Always clear cache first to ensure we fetch fresh data with correct providers
         coroutineScope.launch {
             viewModel.clearCache()
         }
         // Use a local copy to ensure we're using the correct providers
         val providersToUse = enabledProviders.toSet()
-        println("CoinDetailScreen: About to call loadCoinData with providers: $providersToUse")
+        AppLogger.logger.d { "CoinDetailScreen: About to call loadCoinData with providers: $providersToUse" }
         viewModel.loadCoinData(symbol, providersToUse)
     }
 
@@ -214,9 +215,9 @@ fun CoinDetailScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { 
-                        println("CoinDetailScreen: Manual refresh for $symbol with providers: $enabledProviders")
-                        viewModel.refresh(symbol, enabledProviders) 
+                    IconButton(onClick = {
+                        AppLogger.logger.d { "CoinDetailScreen: Manual refresh for $symbol with providers: $enabledProviders" }
+                        viewModel.refresh(symbol, enabledProviders)
                     }) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
@@ -515,7 +516,7 @@ fun CoinDetailChart(
             
             "$month $day, $displayHour:$minuteStr $amPm"
         } catch (e: Exception) {
-            println("Error formatting timestamp: ${e.message}")
+            AppLogger.logger.e(throwable = e) { "Error formatting timestamp" }
             ""
         }
     }
@@ -1015,7 +1016,7 @@ fun NewsItemCard(
                     try {
                         openLink(newsItem.link)
                     } catch (e: Exception) {
-                        println("Failed to open link: $newsItem.link - ${e.message}")
+                        AppLogger.logger.e(throwable = e) { "Failed to open link: ${newsItem.link}" }
                     }
                 }
             },

@@ -13,6 +13,7 @@ import androidx.compose.ui.text.platform.Font
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import logging.AppLogger
 import org.jetbrains.compose.resources.InternalResourceApi
 import org.jetbrains.compose.resources.readResourceBytes
 
@@ -48,7 +49,7 @@ fun NotoSansFontFamily(): FontFamily? {
                 )
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            AppLogger.logger.e(throwable = e) { "Error loading NotoSans fonts" }
         }
     }
 

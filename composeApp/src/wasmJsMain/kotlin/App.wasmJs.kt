@@ -1,11 +1,14 @@
 
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.storage.storeOf
-import io.ktor.client.*
-import io.ktor.client.engine.js.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.js.Js
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.logging.*
-import io.ktor.client.plugins.websocket.*
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.browser.window
 import kotlinx.coroutines.channels.awaitClose

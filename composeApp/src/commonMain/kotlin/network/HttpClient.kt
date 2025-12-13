@@ -20,6 +20,7 @@ import kotlinx.coroutines.delay
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
+import logging.AppLogger
 import model.MarginSymbols
 import model.Ticker
 import model.UiKline
@@ -107,7 +108,7 @@ class HttpClient {
                 }
             } catch (e: Exception) {
                 if (attempt == maxRetries - 1) {
-                    e.printStackTrace()
+                    AppLogger.logger.e(throwable = e) { "Failed to fetch UI klines for symbol $symbol after $maxRetries attempts" }
                     return emptyList()
                 }
                 delay(1000L * (attempt + 1))
@@ -128,7 +129,7 @@ class HttpClient {
                 json.decodeFromString<MarginSymbols>(response.bodyAsText())
             } else null
         } catch (e: Exception) {
-            e.printStackTrace()
+            AppLogger.logger.e(throwable = e) { "Error fetching margin symbols" }
             null
         }
     }
@@ -167,9 +168,9 @@ class HttpClient {
                 if (responseText.contains("\"code\"") && responseText.contains("\"msg\"")) {
                     try {
                         val error = json.decodeFromString<model.BinanceError>(responseText)
-                        println("Binance API error for symbol $symbol: Code ${error.code}, Message: ${error.msg}")
+                        AppLogger.logger.w { "Binance API error for symbol $symbol: Code ${error.code}, Message: ${error.msg}" }
                     } catch (e: Exception) {
-                        println("Binance API error for symbol $symbol: $responseText")
+                        AppLogger.logger.w { "Binance API error for symbol $symbol: $responseText" }
                     }
                     return null
                 }
@@ -177,18 +178,17 @@ class HttpClient {
                 try {
                     json.decodeFromString<model.Ticker24hr>(responseText)
                 } catch (e: kotlinx.serialization.SerializationException) {
-                    println("Failed to deserialize ticker for symbol $symbol: ${e.message}")
-                    println("Response was (first 500 chars): ${responseText.take(500)}")
-                    e.printStackTrace()
+                    AppLogger.logger.e(throwable = e) { 
+                        "Failed to deserialize ticker for symbol $symbol. Response was (first 500 chars): ${responseText.take(500)}" 
+                    }
                     null
                 }
             } else {
-                println("Binance API returned status ${response.status} for symbol $symbol: ${responseText.take(200)}")
+                AppLogger.logger.w { "Binance API returned status ${response.status} for symbol $symbol: ${responseText.take(200)}" }
                 null
             }
         } catch (e: Exception) {
-            println("Error fetching ticker for symbol $symbol: ${e.message}")
-            e.printStackTrace()
+            AppLogger.logger.e(throwable = e) { "Error fetching ticker for symbol $symbol" }
             null
         }
     }
