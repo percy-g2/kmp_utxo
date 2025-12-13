@@ -18,6 +18,7 @@ import model.Ticker24hr
 import model.UiKline
 import network.NewsService
 import network.OrderBookWebSocketService
+import network.TickerWebSocketService
 import kotlin.time.ExperimentalTime
 import network.HttpClient as NetworkClient
 
@@ -39,6 +40,7 @@ class CoinDetailViewModel : ViewModel() {
     private val httpClient = NetworkClient()
     private val newsService = NewsService()
     private val orderBookService = OrderBookWebSocketService()
+    private val tickerWebSocketService = TickerWebSocketService()
     
     private val _state = MutableStateFlow(CoinDetailState())
     val state: StateFlow<CoinDetailState> = _state.asStateFlow()
@@ -54,6 +56,39 @@ class CoinDetailViewModel : ViewModel() {
         viewModelScope.launch {
             orderBookService.orderBookData.collect { orderBook ->
                 _state.value = _state.value.copy(orderBookData = orderBook)
+            }
+        }
+        
+        // Observe ticker WebSocket updates for real-time price data
+        viewModelScope.launch {
+            tickerWebSocketService.tickerData.collect { ticker ->
+                if (ticker != null) {
+                    val currentState = _state.value
+                    
+                    // Update ticker state
+                    // Also append new UiKline point for real-time chart updates
+                    // Only append if initial klines are loaded (not during initial load)
+                    val updatedKlines = if (currentState.klines.isNotEmpty() && !currentState.isLoadingChart) {
+                        // Keep only last 200 points (enough for smooth charts, reduces memory)
+                        val MAX_KLINES = 200
+                        val currentKlines = currentState.klines
+                        if (currentKlines.size >= MAX_KLINES) {
+                            // Drop oldest point and add new one
+                            currentKlines.drop(1) + UiKline(closePrice = ticker.lastPrice)
+                        } else {
+                            // Just add new point
+                            currentKlines + UiKline(closePrice = ticker.lastPrice)
+                        }
+                    } else {
+                        // Keep existing klines if not loaded yet
+                        currentState.klines
+                    }
+                    
+                    _state.value = currentState.copy(
+                        ticker = ticker,
+                        klines = updatedKlines
+                    )
+                }
             }
         }
     }
@@ -73,8 +108,9 @@ class CoinDetailViewModel : ViewModel() {
         // Cancel any existing load job
         currentLoadJob?.cancel()
         
-        // Connect to order book WebSocket
+        // Connect to WebSocket streams for real-time data
         orderBookService.connect(symbol, levels = 20)
+        tickerWebSocketService.connect(symbol)
         
         currentLoadJob = viewModelScope.launch {
             AppLogger.logger.d { "CoinDetailViewModel: Starting loadCoinData for $symbol with providers: $enabledRssProviders" }
@@ -233,6 +269,7 @@ class CoinDetailViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         orderBookService.close()
+        tickerWebSocketService.close()
         httpClient.close()
         newsService.close()
     }

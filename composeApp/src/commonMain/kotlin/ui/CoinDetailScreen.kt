@@ -591,10 +591,11 @@ fun CoinDetailChart(
     ) {
         Box(
             modifier = Modifier
-                .padding(top = 64.dp, start = 16.dp, bottom = 16.dp, end = 16.dp)
                 .fillMaxWidth()
                 .height(250.dp)
+                .padding(vertical = 16.dp)
                 .onSizeChanged { size ->
+                    // Only update if size actually changed to minimize recompositions
                     val newSize = Offset(size.width.toFloat(), size.height.toFloat())
                     if (chartSizeInPx != newSize) {
                         chartSizeInPx = newSize
@@ -783,21 +784,25 @@ private fun calculateChartPoints(
     priceRange: Float
 ): List<Offset> {
     if (klines.isEmpty() || size.x <= 0 || size.y <= 0) return emptyList()
-
-    val sampleStep = if (klines.size > 150) {
-        klines.size / 150
+    
+    // Limit points to reduce memory allocations - sample if too many
+    val sampleStep = if (klines.size > MAX_CHART_POINTS) {
+        klines.size / MAX_CHART_POINTS
     } else {
         1
     }
-
+    
+    // Pre-allocate list with exact size to avoid reallocations
     val pointCount = (klines.size + sampleStep - 1) / sampleStep
     val points = ArrayList<Offset>(pointCount)
-
+    
     val lastIndex = klines.lastIndex
     var pointIndex = 0
-
+    
+    // Use indexed iteration to avoid creating intermediate collections
     for (i in klines.indices step sampleStep) {
         val kline = klines[i]
+        // Cache float conversion to avoid repeated parsing
         val price = kline.closePrice.toFloatOrNull() ?: minPrice
         val x = if (lastIndex > 0) {
             i.toFloat() / lastIndex * size.x
@@ -808,19 +813,22 @@ private fun calculateChartPoints(
         points.add(Offset(x, y))
         pointIndex++
     }
-
-    if (pointIndex > 0 && pointIndex - 1 < pointCount && klines.isNotEmpty()) {
+    
+    // Always include the last point for accuracy
+    if (pointIndex > 0 && pointIndex - 1 < pointCount) {
         val lastKline = klines.last()
         val lastPrice = lastKline.closePrice.toFloatOrNull() ?: minPrice
         val lastX = size.x
         val lastY = size.y - ((lastPrice - minPrice) / priceRange) * size.y
-        if (pointIndex - 1 < points.size) {
-            points[pointIndex - 1] = Offset(lastX, lastY)
-        }
+        points[pointIndex - 1] = Offset(lastX, lastY)
     }
-
+    
     return points
 }
+
+// Optimized: Limit points to reduce memory allocations and improve performance
+// iOS can handle ~100-200 points smoothly, more causes jank
+private const val MAX_CHART_POINTS = 150
 
 @Composable
 fun PriceInfoSection(
