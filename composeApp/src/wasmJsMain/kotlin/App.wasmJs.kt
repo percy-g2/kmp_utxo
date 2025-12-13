@@ -67,3 +67,13 @@ actual fun createNewsHttpClient(): HttpClient {
         }
     }
 }
+
+actual fun wrapRssUrlForPlatform(url: String): String {
+    // Use CORS proxy for WASM/web platform to bypass CORS restrictions
+    // Using allorigins.win as a reliable CORS proxy service
+    val encodedUrl = encodeURIComponent(url)
+    return "https://api.allorigins.win/raw?url=$encodedUrl"
+}
+
+@JsName("encodeURIComponent")
+private external fun encodeURIComponent(str: String): String

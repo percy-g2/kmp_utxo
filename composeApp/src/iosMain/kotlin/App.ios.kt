@@ -116,3 +116,8 @@ actual fun createNewsHttpClient(): HttpClient {
         }
     }
 }
+
+actual fun wrapRssUrlForPlatform(url: String): String {
+    // No CORS restrictions on iOS, return URL as-is
+    return url
+}

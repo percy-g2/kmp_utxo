@@ -1,6 +1,7 @@
 package network
 
 import createNewsHttpClient
+import wrapRssUrlForPlatform
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
@@ -107,7 +108,9 @@ class NewsService {
 
     private suspend fun fetchRSSFeed(url: String, coinSymbol: String): List<NewsItem>? {
         return try {
-            val response: HttpResponse = httpClient.get(url)
+            // Wrap URL with CORS proxy for WASM/web platform, or return as-is for other platforms
+            val wrappedUrl = wrapRssUrlForPlatform(url)
+            val response: HttpResponse = httpClient.get(wrappedUrl)
             if (response.status == HttpStatusCode.OK) {
                 val xmlContent = withContext(Dispatchers.Default) {
                     response.body<String>()

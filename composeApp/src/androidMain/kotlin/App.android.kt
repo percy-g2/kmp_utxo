@@ -62,6 +62,11 @@ actual fun createNewsHttpClient(): HttpClient {
     }
 }
 
+actual fun wrapRssUrlForPlatform(url: String): String {
+    // No CORS restrictions on Android, return URL as-is
+    return url
+}
+
 actual class NetworkConnectivityObserver {
     private val context = ContextProvider.getContext()
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

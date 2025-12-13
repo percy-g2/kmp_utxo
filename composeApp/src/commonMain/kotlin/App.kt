@@ -273,6 +273,8 @@ expect fun openLink(link: String)
 
 expect fun createNewsHttpClient(): HttpClient
 
+expect fun wrapRssUrlForPlatform(url: String): String
+
 expect class NetworkConnectivityObserver() {
     fun observe(): Flow<NetworkStatus?>
 }

@@ -93,6 +93,11 @@ actual fun createNewsHttpClient(): HttpClient {
     }
 }
 
+actual fun wrapRssUrlForPlatform(url: String): String {
+    // No CORS restrictions on Desktop, return URL as-is
+    return url
+}
+
 actual fun openLink(link: String) {
     Desktop.getDesktop().browse(URI(link));
 }
