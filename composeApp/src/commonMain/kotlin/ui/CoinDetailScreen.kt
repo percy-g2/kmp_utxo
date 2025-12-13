@@ -30,20 +30,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.draw.clip
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Article
+import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -59,6 +56,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -241,8 +239,7 @@ fun CoinDetailScreen(
         }
     ) { paddingValues ->
         Box(
-            modifier =
-                Modifier
+            modifier = Modifier
                     .fillMaxSize()
                     .padding(PaddingValues(top = paddingValues.calculateTopPadding()))
         ) {
@@ -282,7 +279,10 @@ fun CoinDetailScreen(
                                     priceChangePercent = state.ticker?.priceChangePercent ?: "0",
                                     isDarkTheme = isDarkTheme,
                                     symbol = symbol,
-                                    tradingPairs = tradingPairs
+                                    tradingPairs = tradingPairs,
+                                    onTooltipVisibilityChange = { visible ->
+                                        viewModel.setTooltipVisible(visible)
+                                    }
                                 )
                             }
                         }
@@ -298,6 +298,17 @@ fun CoinDetailScreen(
                                     tradingPairs = tradingPairs
                                 )
                             }
+                        }
+
+                        // Order Book Heat Map Section
+                        item {
+                            OrderBookHeatMap(
+                                orderBookData = state.orderBookData,
+                                orderBookError = state.orderBookError,
+                                symbol = symbol,
+                                tradingPairs = tradingPairs,
+                                isDarkTheme = isDarkTheme
+                            )
                         }
 
                         // News Section Header
@@ -325,7 +336,7 @@ fun CoinDetailScreen(
                                         verticalArrangement = Arrangement.Center
                                     ) {
                                         Icon(
-                                            imageVector = Icons.Default.Article,
+                                            imageVector = Icons.AutoMirrored.Filled.Article,
                                             contentDescription = null,
                                             modifier = Modifier
                                                 .size(64.dp)
@@ -365,7 +376,10 @@ fun CoinDetailScreen(
                             }
                             
                             // Show empty state only if no news and no providers loading
-                            if (state.news.isEmpty() && state.loadingNewsProviders.isEmpty() && !state.isLoadingNews) {
+                            if (state.news.isEmpty()
+                                && state.loadingNewsProviders.isEmpty()
+                                && !state.isLoadingNews
+                            ) {
                                 item {
                                     Box(
                                         modifier = Modifier
@@ -378,7 +392,7 @@ fun CoinDetailScreen(
                                             verticalArrangement = Arrangement.Center
                                         ) {
                                             Icon(
-                                                imageVector = Icons.Default.Article,
+                                                imageVector = Icons.AutoMirrored.Filled.Article,
                                                 contentDescription = null,
                                                 modifier = Modifier
                                                     .size(64.dp)
@@ -418,7 +432,8 @@ fun CoinDetailChart(
     priceChangePercent: String,
     isDarkTheme: Boolean,
     symbol: String,
-    tradingPairs: List<TradingPair>
+    tradingPairs: List<TradingPair>,
+    onTooltipVisibilityChange: (Boolean) -> Unit = {}
 ) {
     // If no klines data, show empty state (loading is handled by shimmer placeholder)
     if (klines.isEmpty()) {
@@ -502,6 +517,11 @@ fun CoinDetailChart(
     var showTooltip by remember { mutableStateOf(false) }
     var hideTooltipTrigger by remember { mutableStateOf(0L) }
 
+    // Notify ViewModel when tooltip visibility changes
+    LaunchedEffect(showTooltip) {
+        onTooltipVisibilityChange(showTooltip)
+    }
+    
     // Hide tooltip after 5 seconds
     LaunchedEffect(showTooltip, hideTooltipTrigger) {
         if (showTooltip && tooltipPosition != null) {
@@ -565,14 +585,10 @@ fun CoinDetailChart(
         val index = (normalizedX * (limitedKlines.size - 1)).toInt().coerceIn(0, limitedKlines.lastIndex)
         val kline = limitedKlines[index]
 
-        if (kline != null) {
-            val price = kline.closePrice.toFloatOrNull() ?: minPrice
-            val x = normalizedX * chartSizeInPx.x
-            val y = chartSizeInPx.y - ((price - minPrice) / priceRange) * chartSizeInPx.y
-            return Pair(kline, Offset(x, y))
-        }
-
-        return Pair(null, null)
+        val price = kline.closePrice.toFloatOrNull() ?: minPrice
+        val x = normalizedX * chartSizeInPx.x
+        val y = chartSizeInPx.y - ((price - minPrice) / priceRange) * chartSizeInPx.y
+        return Pair(kline, Offset(x, y))
     }
 
     Card(
@@ -585,8 +601,9 @@ fun CoinDetailChart(
             modifier = Modifier
                 .padding(top = 64.dp, start = 16.dp, bottom = 16.dp, end = 16.dp)
                 .fillMaxWidth()
-                .height(250.dp)
+                .height(240.dp)
                 .onSizeChanged { size ->
+                    // Only update if size actually changed to minimize recompositions
                     val newSize = Offset(size.width.toFloat(), size.height.toFloat())
                     if (chartSizeInPx != newSize) {
                         chartSizeInPx = newSize
@@ -775,21 +792,25 @@ private fun calculateChartPoints(
     priceRange: Float
 ): List<Offset> {
     if (klines.isEmpty() || size.x <= 0 || size.y <= 0) return emptyList()
-
-    val sampleStep = if (klines.size > 150) {
-        klines.size / 150
+    
+    // Limit points to reduce memory allocations - sample if too many
+    val sampleStep = if (klines.size > MAX_CHART_POINTS) {
+        klines.size / MAX_CHART_POINTS
     } else {
         1
     }
-
+    
+    // Pre-allocate list with exact size to avoid reallocations
     val pointCount = (klines.size + sampleStep - 1) / sampleStep
     val points = ArrayList<Offset>(pointCount)
-
+    
     val lastIndex = klines.lastIndex
     var pointIndex = 0
-
+    
+    // Use indexed iteration to avoid creating intermediate collections
     for (i in klines.indices step sampleStep) {
         val kline = klines[i]
+        // Cache float conversion to avoid repeated parsing
         val price = kline.closePrice.toFloatOrNull() ?: minPrice
         val x = if (lastIndex > 0) {
             i.toFloat() / lastIndex * size.x
@@ -800,19 +821,22 @@ private fun calculateChartPoints(
         points.add(Offset(x, y))
         pointIndex++
     }
-
-    if (pointIndex > 0 && pointIndex - 1 < pointCount && klines.isNotEmpty()) {
+    
+    // Always include the last point for accuracy
+    if (pointIndex > 0 && pointIndex - 1 < pointCount) {
         val lastKline = klines.last()
         val lastPrice = lastKline.closePrice.toFloatOrNull() ?: minPrice
         val lastX = size.x
         val lastY = size.y - ((lastPrice - minPrice) / priceRange) * size.y
-        if (pointIndex - 1 < points.size) {
-            points[pointIndex - 1] = Offset(lastX, lastY)
-        }
+        points[pointIndex - 1] = Offset(lastX, lastY)
     }
-
+    
     return points
 }
+
+// Optimized: Limit points to reduce memory allocations and improve performance
+// iOS can handle ~100-200 points smoothly, more causes jank
+private const val MAX_CHART_POINTS = 150
 
 @Composable
 fun PriceInfoSection(
