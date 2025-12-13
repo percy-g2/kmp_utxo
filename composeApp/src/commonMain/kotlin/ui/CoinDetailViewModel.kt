@@ -2,12 +2,12 @@ package ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import logging.AppLogger
@@ -45,6 +45,17 @@ class CoinDetailViewModel : ViewModel() {
     
     // Mutex to synchronize news state updates
     private val newsUpdateMutex = Mutex()
+    
+    /**
+     * Helper function to atomically update state within the mutex.
+     * Ensures we always read the most recent state before applying updates,
+     * preventing race conditions where concurrent updates overwrite each other.
+     */
+    private suspend fun updateNewsState(update: (CoinDetailState) -> CoinDetailState) {
+        newsUpdateMutex.withLock {
+            _state.value = update(_state.value)
+        }
+    }
 
     fun loadCoinData(symbol: String, enabledRssProviders: Set<String> = model.RssProvider.DEFAULT_ENABLED_PROVIDERS) {
         // Cancel any existing load job
@@ -119,8 +130,8 @@ class CoinDetailViewModel : ViewModel() {
                                     try {
                                         val news = newsService.fetchNewsFromProvider(provider, symbol)
                                         // Update state atomically as each provider responds
-                                        newsUpdateMutex.withLock {
-                                            val currentState = _state.value
+                                        // Use helper function to ensure we always read the most recent state
+                                        updateNewsState { currentState ->
                                             val updatedNews = if (news.isNotEmpty()) {
                                                 (currentState.news + news)
                                                     .distinctBy { it.link } // Remove duplicates
@@ -136,7 +147,7 @@ class CoinDetailViewModel : ViewModel() {
                                                 currentState.news
                                             }
                                             
-                                            _state.value = currentState.copy(
+                                            currentState.copy(
                                                 news = updatedNews,
                                                 loadingNewsProviders = currentState.loadingNewsProviders - provider.id
                                             )
@@ -144,9 +155,9 @@ class CoinDetailViewModel : ViewModel() {
                                         news
                                     } catch (e: Exception) {
                                         AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading news from ${provider.name}" }
-                                        newsUpdateMutex.withLock {
-                                            val currentState = _state.value
-                                            _state.value = currentState.copy(
+                                        // Use helper function to ensure we always read the most recent state
+                                        updateNewsState { currentState ->
+                                            currentState.copy(
                                                 loadingNewsProviders = currentState.loadingNewsProviders - provider.id
                                             )
                                         }
