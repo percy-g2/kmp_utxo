@@ -29,6 +29,27 @@ class NewsService {
     )
 
     @OptIn(ExperimentalTime::class)
+    suspend fun fetchNewsFromProvider(
+        provider: model.RssProvider,
+        coinSymbol: String
+    ): List<NewsItem> {
+        return try {
+            AppLogger.logger.d { "NewsService: Fetching from ${provider.name} (${provider.id}) for $coinSymbol" }
+            val news = fetchRSSFeed(provider.url, coinSymbol)
+            if (news != null) {
+                AppLogger.logger.d { "NewsService: Found ${news.size} news items from ${provider.name} for $coinSymbol" }
+                news
+            } else {
+                AppLogger.logger.w { "NewsService: Failed to fetch or parse ${provider.name} RSS for $coinSymbol" }
+                emptyList()
+            }
+        } catch (e: Exception) {
+            AppLogger.logger.e(throwable = e) { "NewsService: Error fetching from ${provider.name}" }
+            emptyList()
+        }
+    }
+
+    @OptIn(ExperimentalTime::class)
     suspend fun fetchNewsForCoin(
         coinSymbol: String,
         enabledProviders: Set<String> = model.RssProvider.DEFAULT_ENABLED_PROVIDERS

@@ -1,6 +1,12 @@
 package ui
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,9 +26,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Article
@@ -240,16 +248,6 @@ fun CoinDetailScreen(
         ) {
 
             when {
-                state.isLoading -> {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        CircularProgressIndicator()
-                    }
-                }
-
                 state.error != null -> {
                     Column(
                         modifier = Modifier.fillMaxSize(),
@@ -274,24 +272,32 @@ fun CoinDetailScreen(
                     LazyColumn(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        // Chart Section - Show first
+                        // Chart Section - Show shimmer if loading, otherwise show chart
                         item {
-                            CoinDetailChart(
-                                klines = state.klines,
-                                priceChangePercent = state.ticker?.priceChangePercent ?: "0",
-                                isDarkTheme = isDarkTheme,
-                                symbol = symbol,
-                                tradingPairs = tradingPairs
-                            )
+                            if (state.isLoadingChart) {
+                                ShimmerChartPlaceholder()
+                            } else {
+                                CoinDetailChart(
+                                    klines = state.klines,
+                                    priceChangePercent = state.ticker?.priceChangePercent ?: "0",
+                                    isDarkTheme = isDarkTheme,
+                                    symbol = symbol,
+                                    tradingPairs = tradingPairs
+                                )
+                            }
                         }
 
-                        // Price Info Section - Minimized by default
+                        // Price Info Section - Show shimmer if loading, otherwise show price info
                         item {
-                            PriceInfoSection(
-                                symbol = symbol,
-                                ticker = state.ticker,
-                                tradingPairs = tradingPairs
-                            )
+                            if (state.isLoadingTicker) {
+                                ShimmerPriceInfoPlaceholder()
+                            } else {
+                                PriceInfoSection(
+                                    symbol = symbol,
+                                    ticker = state.ticker,
+                                    tradingPairs = tradingPairs
+                                )
+                            }
                         }
 
                         // News Section Header
@@ -304,7 +310,7 @@ fun CoinDetailScreen(
                             )
                         }
 
-                        // News Items
+                        // News Items - Show shimmer placeholders for pending providers, show items as they arrive
                         val hasNoProviders = enabledProviders.isEmpty()
                         if (hasNoProviders) {
                             item {
@@ -342,48 +348,59 @@ fun CoinDetailScreen(
                                     }
                                 }
                             }
-                        } else if (state.news.isEmpty()) {
-                            item {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(32.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Column(
-                                        horizontalAlignment = Alignment.CenterHorizontally,
-                                        verticalArrangement = Arrangement.Center
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.Default.Article,
-                                            contentDescription = null,
-                                            modifier = Modifier
-                                                .size(64.dp)
-                                                .padding(bottom = 16.dp),
-                                            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
-                                        )
-                                        Text(
-                                            text = stringResource(Res.string.no_news_available),
-                                            style = MaterialTheme.typography.titleMedium,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                            textAlign = TextAlign.Center
-                                        )
-                                        Text(
-                                            text = stringResource(Res.string.no_news_available_hint),
-                                            style = MaterialTheme.typography.bodyMedium,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
-                                            modifier = Modifier.padding(top = 8.dp),
-                                            textAlign = TextAlign.Center
-                                        )
-                                    }
-                                }
-                            }
                         } else {
+                            // Show news items as they arrive
                             items(state.news) { newsItem ->
                                 NewsItemCard(
                                     newsItem = newsItem,
                                     isDarkTheme = isDarkTheme
                                 )
+                            }
+                            
+                            // Show shimmer placeholders for providers that are still loading
+                            if (state.loadingNewsProviders.isNotEmpty()) {
+                                items(count = state.loadingNewsProviders.size, key = { it }) {
+                                    ShimmerNewsItemPlaceholder()
+                                }
+                            }
+                            
+                            // Show empty state only if no news and no providers loading
+                            if (state.news.isEmpty() && state.loadingNewsProviders.isEmpty() && !state.isLoadingNews) {
+                                item {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(32.dp),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Column(
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                            verticalArrangement = Arrangement.Center
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Default.Article,
+                                                contentDescription = null,
+                                                modifier = Modifier
+                                                    .size(64.dp)
+                                                    .padding(bottom = 16.dp),
+                                                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                                            )
+                                            Text(
+                                                text = stringResource(Res.string.no_news_available),
+                                                style = MaterialTheme.typography.titleMedium,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                textAlign = TextAlign.Center
+                                            )
+                                            Text(
+                                                text = stringResource(Res.string.no_news_available_hint),
+                                                style = MaterialTheme.typography.bodyMedium,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                                                modifier = Modifier.padding(top = 8.dp),
+                                                textAlign = TextAlign.Center
+                                            )
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -403,15 +420,27 @@ fun CoinDetailChart(
     symbol: String,
     tradingPairs: List<TradingPair>
 ) {
+    // If no klines data, show empty state (loading is handled by shimmer placeholder)
     if (klines.isEmpty()) {
-        Box(
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp)
-                .padding(16.dp),
-            contentAlignment = Alignment.Center
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            elevation = CardDefaults.cardElevation(2.dp)
         ) {
-            LinearProgressIndicator()
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.dp)
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Chart data not available",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
         return
     }
@@ -1069,6 +1098,159 @@ fun NewsItemCard(
                     overflow = TextOverflow.Ellipsis
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun Modifier.animatedShimmerEffect(): Modifier {
+    val infiniteTransition = rememberInfiniteTransition(label = "shimmer")
+    val shimmerTranslate by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1000f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1000, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "shimmer_translate"
+    )
+
+    val shimmerColors = listOf(
+        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
+        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f),
+        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+    )
+
+    return this.background(
+        brush = Brush.linearGradient(
+            colors = shimmerColors,
+            start = Offset(shimmerTranslate - 300f, shimmerTranslate - 300f),
+            end = Offset(shimmerTranslate, shimmerTranslate)
+        )
+    )
+}
+
+@Composable
+fun ShimmerChartPlaceholder() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        elevation = CardDefaults.cardElevation(2.dp)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(250.dp)
+                .padding(16.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .animatedShimmerEffect()
+        )
+    }
+}
+
+@Composable
+fun ShimmerPriceInfoPlaceholder() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        elevation = CardDefaults.cardElevation(2.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            // Header shimmer
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(24.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .shimmerEffect()
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            // Price rows shimmer
+            repeat(3) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(20.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .shimmerEffect()
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun ShimmerNewsItemPlaceholder() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        elevation = CardDefaults.cardElevation(2.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            // Source and date shimmer
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Box(
+                    modifier = Modifier
+                        .width(80.dp)
+                        .height(20.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .shimmerEffect()
+                )
+                Box(
+                    modifier = Modifier
+                        .width(60.dp)
+                        .height(20.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .shimmerEffect()
+                )
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            // Title shimmer
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(24.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .shimmerEffect()
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.7f)
+                    .height(24.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .shimmerEffect()
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            // Description shimmer
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(16.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .shimmerEffect()
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .height(16.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .shimmerEffect()
+            )
         }
     }
 }
