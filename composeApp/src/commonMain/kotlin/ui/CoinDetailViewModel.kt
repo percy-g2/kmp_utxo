@@ -7,6 +7,7 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -33,11 +34,16 @@ data class CoinDetailState(
     val ticker: Ticker24hr? = null,
     val klines: List<UiKline> = emptyList(),
     val orderBookData: OrderBookData? = null,
+    val orderBookError: String? = null,
     val error: String? = null
 )
 
 @OptIn(ExperimentalTime::class)
 class CoinDetailViewModel : ViewModel() {
+    companion object {
+        private const val MAX_KLINES = 200
+    }
+    
     private val httpClient = NetworkClient()
     private val newsService = NewsService()
     private val orderBookService = OrderBookWebSocketService()
@@ -61,7 +67,20 @@ class CoinDetailViewModel : ViewModel() {
         // Observe order book updates
         viewModelScope.launch {
             orderBookService.orderBookData.collect { orderBook ->
-                _state.value = _state.value.copy(orderBookData = orderBook)
+                // Clear error when order book data is successfully received
+                _state.update { 
+                    it.copy(
+                        orderBookData = orderBook,
+                        orderBookError = if (orderBook != null) null else it.orderBookError
+                    )
+                }
+            }
+        }
+        
+        // Observe order book errors
+        viewModelScope.launch {
+            orderBookService.error.collect { error ->
+                _state.update { it.copy(orderBookError = error) }
             }
         }
         
@@ -74,7 +93,6 @@ class CoinDetailViewModel : ViewModel() {
                     // Always update ticker immediately
                     // Only update klines if initial data is loaded
                     if (currentState.klines.isNotEmpty() && !currentState.isLoadingChart) {
-                        val MAX_KLINES = 200
                         val currentTimestamp = Clock.System.now().toEpochMilliseconds()
                         val newKline = UiKline(
                             closePrice = ticker.lastPrice,
@@ -87,24 +105,26 @@ class CoinDetailViewModel : ViewModel() {
                                 // Queue the update when tooltip is visible
                                 queuedKlineUpdates.add(newKline)
                                 // Only update ticker, keep klines unchanged
-                                _state.value = currentState.copy(ticker = ticker)
+                                _state.update { it.copy(ticker = ticker) }
                             } else {
                                 // Apply immediately when tooltip is not visible
-                                val currentKlines = currentState.klines
-                                val newKlinesList = if (currentKlines.size >= MAX_KLINES) {
-                                    currentKlines.drop(1) + newKline
-                                } else {
-                                    currentKlines + newKline
+                                _state.update { currentState ->
+                                    val currentKlines = currentState.klines
+                                    val newKlinesList = if (currentKlines.size >= MAX_KLINES) {
+                                        currentKlines.drop(1) + newKline
+                                    } else {
+                                        currentKlines + newKline
+                                    }
+                                    currentState.copy(
+                                        ticker = ticker,
+                                        klines = newKlinesList
+                                    )
                                 }
-                                _state.value = currentState.copy(
-                                    ticker = ticker,
-                                    klines = newKlinesList
-                                )
                             }
                         }
                     } else {
                         // Initial load or no klines yet - just update ticker
-                        _state.value = currentState.copy(ticker = ticker)
+                        _state.update { it.copy(ticker = ticker) }
                     }
                 }
             }
@@ -143,6 +163,7 @@ class CoinDetailViewModel : ViewModel() {
                 ticker = null,
                 klines = emptyList(),
                 orderBookData = null,
+                orderBookError = null,
                 error = null
             )
             
@@ -151,10 +172,12 @@ class CoinDetailViewModel : ViewModel() {
                 try {
                     val klinesResult = httpClient.fetchUiKlines(listOf(symbol))
                     val klines = klinesResult[symbol] ?: emptyList()
-                    _state.value = _state.value.copy(
-                        klines = klines,
-                        isLoadingChart = false
-                    )
+                    _state.update {
+                        it.copy(
+                            klines = klines,
+                            isLoadingChart = false
+                        )
+                    }
                     if (klines.isEmpty()) {
                         AppLogger.logger.d { "CoinDetailViewModel: No kline data found for symbol: $symbol" }
                     }
@@ -162,7 +185,7 @@ class CoinDetailViewModel : ViewModel() {
                     throw e
                 } catch (e: Exception) {
                     AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading klines for $symbol" }
-                    _state.value = _state.value.copy(isLoadingChart = false)
+                    _state.update { it.copy(isLoadingChart = false) }
                 }
             }
             
@@ -170,10 +193,12 @@ class CoinDetailViewModel : ViewModel() {
             launch {
                 try {
                     val ticker = httpClient.fetchTicker24hr(symbol)
-                    _state.value = _state.value.copy(
-                        ticker = ticker,
-                        isLoadingTicker = false
-                    )
+                    _state.update {
+                        it.copy(
+                            ticker = ticker,
+                            isLoadingTicker = false
+                        )
+                    }
                     if (ticker == null) {
                         AppLogger.logger.w { "CoinDetailViewModel: Failed to fetch ticker for symbol: $symbol" }
                     }
@@ -181,7 +206,7 @@ class CoinDetailViewModel : ViewModel() {
                     throw e
                 } catch (e: Exception) {
                     AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading ticker for $symbol" }
-                    _state.value = _state.value.copy(isLoadingTicker = false)
+                    _state.update { it.copy(isLoadingTicker = false) }
                 }
             }
             
@@ -251,22 +276,24 @@ class CoinDetailViewModel : ViewModel() {
                         providerJobs.awaitAll()
                         
                         // Mark news loading as complete
-                        _state.value = _state.value.copy(isLoadingNews = false)
+                        _state.update { it.copy(isLoadingNews = false) }
                         
                         AppLogger.logger.i { "CoinDetailViewModel: Finished loading news - ${_state.value.news.size} items" }
                     } catch (e: kotlinx.coroutines.CancellationException) {
                         throw e
                     } catch (e: Exception) {
                         AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading news for $symbol" }
-                        _state.value = _state.value.copy(
-                            isLoadingNews = false,
-                            loadingNewsProviders = emptySet()
-                        )
+                        _state.update {
+                            it.copy(
+                                isLoadingNews = false,
+                                loadingNewsProviders = emptySet()
+                            )
+                        }
                     }
                 }
             } else {
                 // No providers enabled, mark news as not loading
-                _state.value = _state.value.copy(isLoadingNews = false, loadingNewsProviders = emptySet())
+                _state.update { it.copy(isLoadingNews = false, loadingNewsProviders = emptySet()) }
             }
         }
     }
@@ -299,7 +326,6 @@ class CoinDetailViewModel : ViewModel() {
                     // Apply queued updates when tooltip is hidden
                     val currentState = _state.value
                     val currentKlines = currentState.klines
-                    val MAX_KLINES = 200
                     val queueSize = queuedKlineUpdates.size
                     
                     // Apply all queued updates
@@ -314,7 +340,7 @@ class CoinDetailViewModel : ViewModel() {
                     
                     // Clear queue and update state
                     queuedKlineUpdates.clear()
-                    _state.value = currentState.copy(klines = updatedKlines)
+                    _state.update { it.copy(klines = updatedKlines) }
                     
                     AppLogger.logger.d { "CoinDetailViewModel: Applied $queueSize queued kline updates" }
                 }

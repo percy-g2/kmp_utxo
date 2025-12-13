@@ -33,6 +33,11 @@ import kotlin.time.ExperimentalTime
  */
 @OptIn(ExperimentalTime::class)
 class OrderBookWebSocketService {
+    companion object {
+        private const val RECONNECTION_DELAY_MS = 3000L
+        private const val RECONNECTION_DELAY_SHORT_MS = 1000L
+    }
+    
     private val webSocketClient = getWebSocketClient()
     private val json = Json {
         ignoreUnknownKeys = true
@@ -44,6 +49,9 @@ class OrderBookWebSocketService {
     
     private val _orderBookData = MutableStateFlow<OrderBookData?>(null)
     val orderBookData: StateFlow<OrderBookData?> = _orderBookData.asStateFlow()
+    
+    private val _error = MutableStateFlow<String?>(null)
+    val error: StateFlow<String?> = _error.asStateFlow()
     
     private var currentSymbol: String? = null
     private var lastUpdateId: Long = 0
@@ -69,6 +77,7 @@ class OrderBookWebSocketService {
         disconnect()
         currentSymbol = symbol
         needsReconnect = false
+        _error.value = null // Clear any previous errors
         
         webSocketJob = kotlinx.coroutines.CoroutineScope(Dispatchers.Default).launch {
             supervisorScope {
@@ -132,7 +141,7 @@ class OrderBookWebSocketService {
                             AppLogger.logger.d { 
                                 "OrderBookWebSocket: Reconnecting due to update ID validation failure" 
                             }
-                            delay(1000) // Brief delay before reconnecting
+                            delay(RECONNECTION_DELAY_SHORT_MS)
                             continue // Continue loop to reconnect
                         }
                     } catch (e: CancellationException) {
@@ -146,10 +155,12 @@ class OrderBookWebSocketService {
                         isConnected = false
                         needsReconnect = false
                         if (isActive) {
+                            val errorMessage = "Failed to connect to order book: ${e.message ?: "Unknown error"}"
                             AppLogger.logger.e(throwable = e) { 
                                 "OrderBookWebSocket: Error connecting to $symbol" 
                             }
-                            delay(3000) // Wait before reconnecting
+                            _error.value = errorMessage
+                            delay(RECONNECTION_DELAY_MS)
                         }
                     }
                 }
@@ -302,6 +313,7 @@ class OrderBookWebSocketService {
         currentBids.clear()
         currentAsks.clear()
         _orderBookData.value = null
+        _error.value = null
         AppLogger.logger.d { "OrderBookWebSocket: Disconnected" }
     }
     

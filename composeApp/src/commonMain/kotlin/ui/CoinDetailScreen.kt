@@ -304,6 +304,7 @@ fun CoinDetailScreen(
                         item {
                             OrderBookHeatMap(
                                 orderBookData = state.orderBookData,
+                                orderBookError = state.orderBookError,
                                 symbol = symbol,
                                 tradingPairs = tradingPairs,
                                 isDarkTheme = isDarkTheme
@@ -584,14 +585,10 @@ fun CoinDetailChart(
         val index = (normalizedX * (limitedKlines.size - 1)).toInt().coerceIn(0, limitedKlines.lastIndex)
         val kline = limitedKlines[index]
 
-        if (kline != null) {
-            val price = kline.closePrice.toFloatOrNull() ?: minPrice
-            val x = normalizedX * chartSizeInPx.x
-            val y = chartSizeInPx.y - ((price - minPrice) / priceRange) * chartSizeInPx.y
-            return Pair(kline, Offset(x, y))
-        }
-
-        return Pair(null, null)
+        val price = kline.closePrice.toFloatOrNull() ?: minPrice
+        val x = normalizedX * chartSizeInPx.x
+        val y = chartSizeInPx.y - ((price - minPrice) / priceRange) * chartSizeInPx.y
+        return Pair(kline, Offset(x, y))
     }
 
     Card(

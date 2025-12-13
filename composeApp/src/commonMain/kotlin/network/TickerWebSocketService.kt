@@ -31,6 +31,10 @@ import kotlin.time.ExperimentalTime
  */
 @OptIn(ExperimentalTime::class)
 class TickerWebSocketService {
+    companion object {
+        private const val RECONNECTION_DELAY_MS = 3000L
+    }
+    
     private val webSocketClient = getWebSocketClient()
     private val json = Json {
         ignoreUnknownKeys = true
@@ -115,7 +119,7 @@ class TickerWebSocketService {
                             AppLogger.logger.e(throwable = e) { 
                                 "TickerWebSocket: Error connecting to $symbol" 
                             }
-                            delay(3000) // Wait before reconnecting
+                            delay(RECONNECTION_DELAY_MS)
                         }
                     }
                 }

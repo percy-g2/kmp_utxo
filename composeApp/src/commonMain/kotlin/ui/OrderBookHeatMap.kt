@@ -41,9 +41,12 @@ import kotlin.math.sqrt
  * Side-by-side layout: Buy (left 50%), Sell (right 50%)
  * Depth bars rendered with sqrt normalization, max 80% width, opacity ≤ 0.25
  */
+private const val ORDER_BOOK_DISPLAY_LEVELS = 10
+
 @Composable
 fun OrderBookHeatMap(
     orderBookData: OrderBookData?,
+    orderBookError: String? = null,
     symbol: String,
     tradingPairs: List<model.TradingPair>,
     isDarkTheme: Boolean,
@@ -67,7 +70,33 @@ fun OrderBookHeatMap(
                 modifier = Modifier.padding(bottom = 16.dp)
             )
             
-            if (orderBookData == null) {
+            if (orderBookError != null) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = "Failed to load order book",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.error,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = orderBookError,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            } else if (orderBookData == null) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -94,12 +123,11 @@ fun OrderBookHeatMap(
                 val baseCurrency = symbol.replace(quoteCurrency, "", ignoreCase = true)
                 
                 // Calculate height based on data
-                val displayLevels = 10
                 val rowHeight = 32.dp
                 val dividerHeight = 8.dp // Divider with padding (4dp top + 4dp bottom)
                 val maxRows = maxOf(
-                    orderBookData.bids.take(displayLevels).size,
-                    orderBookData.asks.take(displayLevels).size
+                    orderBookData.bids.take(ORDER_BOOK_DISPLAY_LEVELS).size,
+                    orderBookData.asks.take(ORDER_BOOK_DISPLAY_LEVELS).size
                 )
                 // Calculate height: rows + divider (if rows >= 2, divider is inserted at middle)
                 val calculatedHeight = remember(maxRows) {
@@ -195,9 +223,8 @@ private fun OrderBookList(
     val buyColor = if (isDarkTheme) Color(0xFF2E7D32) else Color(0xFF388E3C) // Muted green
     
     // Get top N levels for display
-    val displayLevels = 10
-    val asks = orderBookData.asks.take(displayLevels).reversed() // Highest ask first (descending)
-    val bids = orderBookData.bids.take(displayLevels) // Highest bid first (descending)
+    val asks = orderBookData.asks.take(ORDER_BOOK_DISPLAY_LEVELS).reversed() // Highest ask first (descending)
+    val bids = orderBookData.bids.take(ORDER_BOOK_DISPLAY_LEVELS) // Highest bid first (descending)
     
     // Calculate cumulative quantity (not notional value) for each side
     val buyCumulativeQuantities = remember(bids) {
