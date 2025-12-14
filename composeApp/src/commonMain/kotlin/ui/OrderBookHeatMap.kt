@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
+import ktx.formatAsCurrency
 import ktx.formatPrice
 import model.OrderBookData
 import theme.redDark
@@ -525,42 +526,79 @@ private fun OrderBookRowWithDepthBar(
 }
 
 /**
- * Format order book price with proper decimal precision
- * Uses the same approach as CryptoListScreen - use formatPrice for consistency
- * For non-USDT/USDC/FDUSD pairs, use the original price string as-is (no formatting)
- * Only convert exponential notation to decimal if present
+ * Intelligently calculate decimal precision based on price value
+ * Algorithm analyzes the magnitude and significant digits of the price
+ * Returns appropriate precision: higher prices need fewer decimals, lower prices need more
+ */
+private fun calculatePricePrecision(priceValue: Double): Int {
+    if (priceValue <= 0.0) return 8 // Default for invalid/zero prices
+    
+    // Calculate order of magnitude (logarithm base 10)
+    val magnitude = kotlin.math.log10(kotlin.math.abs(priceValue))
+    val orderOfMagnitude = magnitude.toInt()
+    
+    // Algorithm: Determine precision based on price magnitude
+    // Higher prices (larger magnitude) → fewer decimals needed
+    // Lower prices (smaller magnitude) → more decimals needed
+    return when {
+        // Very high prices (>= 1000): 2 decimals
+        orderOfMagnitude >= 3 -> 2
+        
+        // High prices (100-999): 3 decimals
+        orderOfMagnitude == 2 -> 3
+        
+        // Medium-high prices (10-99): 4 decimals
+        orderOfMagnitude == 1 -> 4
+        
+        // Medium prices (1-9): 5 decimals
+        orderOfMagnitude == 0 -> 5
+        
+        // Low prices (0.1-0.9): 6 decimals
+        orderOfMagnitude == -1 -> 6
+        
+        // Very low prices (0.01-0.09): 7 decimals
+        orderOfMagnitude == -2 -> 7
+        
+        // Extremely low prices (<0.01): 8 decimals
+        else -> 8
+    }
+}
+
+/**
+ * Format order book price with intelligent precision calculation
+ * Returns price WITHOUT crypto symbol (unlike formatPrice which adds symbol)
+ * Algorithm automatically determines precision based on price value analysis
  */
 private fun formatOrderBookPrice(price: String, symbol: String, tradingPairs: List<model.TradingPair>): String {
     val selectedPair = tradingPairs.find { pair ->
         symbol.endsWith(pair.quote, ignoreCase = true)
     }?.quote.orEmpty()
     
-    // For USDT/USDC/FDUSD: formatPrice handles formatting
-    // For others (BTC, etc.): use original string as-is, but convert exponential to decimal if needed
-    val normalizedPrice = if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD") {
-        // formatPrice will handle formatting for these
-        price
-    } else {
-        // For non-USDT pairs, check if price has exponential notation
+    return try {
+        val priceValue = price.toDouble()
+        
+        // For USDT/USDC/FDUSD/USD1: format as currency (no symbol)
+        if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD" || selectedPair == "USD1") {
+            priceValue.formatAsCurrency()
+        } else {
+            // For other pairs: use intelligent precision calculation
+            val precision = calculatePricePrecision(priceValue)
+            formatDoubleToString(priceValue, maxDecimals = precision)
+        }
+    } catch (e: Exception) {
+        // Fallback: if conversion fails, check if it's exponential notation
         if (price.contains('e', ignoreCase = true) || price.contains('E', ignoreCase = true)) {
-            // Convert exponential to decimal format (no additional formatting)
             try {
                 val priceValue = price.toDouble()
-                // Format with enough precision to avoid exponential, then trim trailing zeros
-                formatDoubleToString(priceValue, maxDecimals = 15)
-            } catch (e: Exception) {
-                price // Fallback to original if conversion fails
+                val precision = calculatePricePrecision(priceValue)
+                formatDoubleToString(priceValue, maxDecimals = precision)
+            } catch (e2: Exception) {
+                price // Last resort: return original
             }
         } else {
-            // Already in decimal format, use as-is
-            price
+            price // Return original if not exponential and conversion failed
         }
     }
-    
-    // Use formatPrice to add currency symbol (same as CryptoListScreen)
-    // For USDT/USDC/FDUSD: will format with formatAsCurrency
-    // For others: will return normalizedPrice as-is with currency symbol
-    return normalizedPrice.formatPrice(symbol, tradingPairs)
 }
 
 /**
