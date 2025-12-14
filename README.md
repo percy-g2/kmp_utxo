@@ -17,7 +17,11 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
     <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/s1.png" width="200" alt="1"></td>
     <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/s2.png" width="200" alt="2"></td>
     <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/s3.png" width="200" alt="3"></td>
+  </tr>
+  <tr>
     <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/s4.png" width="200" alt="4"></td>
+    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/s5.png" width="200" alt="5"></td>
+    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/s6.png" width="200" alt="6"></td>
   </tr>
 </table>
 

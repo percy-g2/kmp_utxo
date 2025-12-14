@@ -25,6 +25,7 @@ fun String.toCryptoSymbol(): String = when(this.uppercase()) {
     "FDUSD" -> "F"
     "DAI" -> "◈"
     "SOL" -> "◎"
+    "USD1" -> "$1"
     else -> this
 }
 
@@ -77,11 +78,11 @@ fun String.formatPrice(symbol: String, tradingPairs: List<TradingPair>): String 
         symbol.endsWith(pair.quote, ignoreCase = true)
     }?.quote.orEmpty()
 
-    val updatedPrice = if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD") {
+    val updatedPrice = if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD" || selectedPair == "USD1") {
         this.toDouble().formatAsCurrency()
     } else this
 
-    "${selectedPair.toCryptoSymbol()} $updatedPrice"
+    "$updatedPrice ${selectedPair.toCryptoSymbol()}"
 }.getOrElse {
     this
 }
