@@ -49,15 +49,16 @@ class MainActivity : ComponentActivity() {
 
             if (!view.isInEditMode) {
                 // Determine color scheme based on themeState and system theme
+                val isDarkTheme = isSystemInDarkTheme()
                 val colorScheme = when (settingsState?.appTheme) {
                     AppTheme.Light -> LightColorScheme
                     AppTheme.System -> DarkColorScheme
-                    else -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
+                    else -> if (isDarkTheme) DarkColorScheme else LightColorScheme
                 }
 
                 // Set the system UI bar colors based on the app and system theme
                 val scrimColor = colorScheme.background.toArgb()
-                val darkScrimColor = colorScheme.onBackground.toArgb()
+                val darkScrimColor = colorScheme.background.toArgb()
 
                 DisposableEffect(lifecycleOwner, settingsState?.appTheme) {
                     val observer = LifecycleEventObserver { _, event ->
@@ -78,7 +79,17 @@ class MainActivity : ComponentActivity() {
                                 }
 
                                 else -> {
-                                    enableEdgeToEdge()
+                                    if (isDarkTheme) {
+                                        enableEdgeToEdge(
+                                            statusBarStyle = SystemBarStyle.dark(darkScrimColor),
+                                            navigationBarStyle = SystemBarStyle.dark(darkScrimColor)
+                                        )
+                                    } else {
+                                        enableEdgeToEdge(
+                                            statusBarStyle = SystemBarStyle.light(scrimColor, scrimColor),
+                                            navigationBarStyle = SystemBarStyle.light(scrimColor, scrimColor)
+                                        )
+                                    }
                                 }
                             }
                         }
