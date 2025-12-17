@@ -61,7 +61,6 @@ class MainActivity : ComponentActivity() {
                     }
                     
                     val scrimColor = currentColorScheme.background.toArgb()
-                    val darkScrimColor = currentColorScheme.background.toArgb()
 
                     when (currentTheme) {
                         AppTheme.Light -> {
@@ -73,8 +72,8 @@ class MainActivity : ComponentActivity() {
 
                         AppTheme.Dark -> {
                             enableEdgeToEdge(
-                                statusBarStyle = SystemBarStyle.dark(darkScrimColor),
-                                navigationBarStyle = SystemBarStyle.dark(darkScrimColor)
+                                statusBarStyle = SystemBarStyle.dark(scrimColor),
+                                navigationBarStyle = SystemBarStyle.dark(scrimColor)
                             )
                         }
 
@@ -82,8 +81,8 @@ class MainActivity : ComponentActivity() {
                             // System theme - adapt to current system theme
                             if (isSystemDark) {
                                 enableEdgeToEdge(
-                                    statusBarStyle = SystemBarStyle.dark(darkScrimColor),
-                                    navigationBarStyle = SystemBarStyle.dark(darkScrimColor)
+                                    statusBarStyle = SystemBarStyle.dark(scrimColor),
+                                    navigationBarStyle = SystemBarStyle.dark(scrimColor)
                                 )
                             } else {
                                 enableEdgeToEdge(
@@ -96,9 +95,6 @@ class MainActivity : ComponentActivity() {
 
                     // Capture values for the observer callback
                     val capturedTheme = currentTheme
-                    val capturedIsSystemDark = isSystemDark
-                    val capturedScrimColor = scrimColor
-                    val capturedDarkScrimColor = darkScrimColor
 
                     val observer = LifecycleEventObserver { _, event ->
                         if (event == Lifecycle.Event.ON_RESUME) {
@@ -107,29 +103,41 @@ class MainActivity : ComponentActivity() {
                             when (capturedTheme) {
                                 AppTheme.Light -> {
                                     enableEdgeToEdge(
-                                        statusBarStyle = SystemBarStyle.light(capturedScrimColor, capturedScrimColor),
-                                        navigationBarStyle = SystemBarStyle.light(capturedScrimColor, capturedScrimColor)
+                                        statusBarStyle = SystemBarStyle.light(
+                                            scrimColor,
+                                            scrimColor
+                                        ),
+                                        navigationBarStyle = SystemBarStyle.light(
+                                            scrimColor,
+                                            scrimColor
+                                        )
                                     )
                                 }
 
                                 AppTheme.Dark -> {
                                     enableEdgeToEdge(
-                                        statusBarStyle = SystemBarStyle.dark(capturedDarkScrimColor),
-                                        navigationBarStyle = SystemBarStyle.dark(capturedDarkScrimColor)
+                                        statusBarStyle = SystemBarStyle.dark(scrimColor),
+                                        navigationBarStyle = SystemBarStyle.dark(scrimColor)
                                     )
                                 }
 
                                 else -> {
                                     // System theme - use captured system dark value
-                                    if (capturedIsSystemDark) {
+                                    if (isSystemDark) {
                                         enableEdgeToEdge(
-                                            statusBarStyle = SystemBarStyle.dark(capturedDarkScrimColor),
-                                            navigationBarStyle = SystemBarStyle.dark(capturedDarkScrimColor)
+                                            statusBarStyle = SystemBarStyle.dark(scrimColor),
+                                            navigationBarStyle = SystemBarStyle.dark(scrimColor)
                                         )
                                     } else {
                                         enableEdgeToEdge(
-                                            statusBarStyle = SystemBarStyle.light(capturedScrimColor, capturedScrimColor),
-                                            navigationBarStyle = SystemBarStyle.light(capturedScrimColor, capturedScrimColor)
+                                            statusBarStyle = SystemBarStyle.light(
+                                                scrimColor,
+                                                scrimColor
+                                            ),
+                                            navigationBarStyle = SystemBarStyle.light(
+                                                scrimColor,
+                                                scrimColor
+                                            )
                                         )
                                     }
                                 }
