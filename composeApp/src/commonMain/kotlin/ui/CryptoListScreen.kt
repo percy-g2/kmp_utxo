@@ -15,7 +15,6 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -103,12 +102,16 @@ import model.TickerData
 import model.UiKline
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
-import theme.greenDark
-import theme.greenLight
-import theme.redDark
 import theme.yellowDark
 import theme.yellowLight
 import ui.components.LazyColumnScrollbar
+import ui.utils.calculateChartPoints
+import ui.utils.calculatePriceStats
+import ui.utils.createPriceChangeGradientColors
+import ui.utils.getPriceChangeColor
+import ui.utils.isDarkTheme
+import ui.utils.limitKlinesForChart
+import ui.utils.shimmerEffect
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.clear_search
 import utxo.composeapp.generated.resources.favorite
@@ -136,8 +139,7 @@ val LocalSettings = staticCompositionLocalOf<Settings?> { null }
 @Composable
 fun CryptoList(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String, String) -> Unit = { _, _ -> },
-    onReturnFromDetail: Int? = null // Trigger value that changes when returning from detail
+    onCoinClick: (String, String) -> Unit = { _, _ -> }
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val listState = rememberLazyListState()
@@ -201,28 +203,6 @@ fun CryptoList(
                     throw e
                 } catch (_: Exception) {
                     // Silently handle errors during cancellation
-                }
-            }
-        }
-    }
-    
-    // Handle return from detail screen - refresh charts for visible items only
-    LaunchedEffect(onReturnFromDetail) {
-        if (onReturnFromDetail != null && visibleSymbols.isNotEmpty()) {
-            val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
-            if (isResumed) {
-                fetchJob?.cancel()
-                fetchJob = coroutineScope.launch(Dispatchers.Default) {
-                    try {
-                        // Small delay to ensure list is laid out when returning
-                        delay(150)
-                        // Refresh charts for visible items only when returning from detail
-                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
-                    } catch (e: CancellationException) {
-                        throw e
-                    } catch (_: Exception) {
-                        // Silently handle errors
-                    }
                 }
             }
         }
@@ -566,18 +546,6 @@ fun ShimmerTradingPairItem() {
     )
 }
 
-@Composable
-fun Modifier.shimmerEffect(): Modifier {
-    val shimmerColors = listOf(
-        Color.LightGray.copy(alpha = 0.6f),
-        Color.LightGray.copy(alpha = 0.3f),
-        Color.LightGray.copy(alpha = 0.6f)
-    )
-
-    return this.background(
-        brush = Brush.horizontalGradient(shimmerColors)
-    )
-}
 
 @Composable
 fun RowScope.TradeChart(
@@ -599,11 +567,7 @@ fun RowScope.TradeChart(
 
     // Use composition local for settings to avoid recomposition
     val settingsState = LocalSettings.current
-    val systemIsDarkTheme = isSystemInDarkTheme()
-    val isDarkTheme = remember(settingsState, systemIsDarkTheme) {
-        (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && systemIsDarkTheme))
-                || (settingsState == null && systemIsDarkTheme)
-    }
+    val isDarkTheme = isDarkTheme(settingsState)
     
     // Get MaterialTheme color outside remember block (composable context required)
     val primaryColor = MaterialTheme.colorScheme.primary
@@ -615,13 +579,7 @@ fun RowScope.TradeChart(
     
     // Calculate prices off main thread and cache - limit to reduce memory
     val prices = remember(trades) {
-        // Limit to MAX_CHART_POINTS to reduce memory allocations
-        val limitedTrades = if (trades.size > MAX_CHART_POINTS) {
-            val step = trades.size / MAX_CHART_POINTS
-            trades.filterIndexed { index, _ -> index % step == 0 }
-        } else {
-            trades
-        }
+        val limitedTrades = limitKlinesForChart(trades)
         // Pre-allocate list to avoid reallocations
         ArrayList<Float>(limitedTrades.size).apply {
             limitedTrades.forEach { trade ->
@@ -631,35 +589,18 @@ fun RowScope.TradeChart(
     }
     
     // Calculate price stats once and cache
-    val priceStats = remember(prices) {
-        if (prices.isEmpty()) {
-            Triple(0f, 0f, 1f)
-        } else {
-            val max = prices.maxOrNull() ?: 0f
-            val min = prices.minOrNull() ?: 0f
-            val range = if (max != min) max - min else 1f
-            Triple(min, max, range)
-        }
+    val (minPrice, _, priceRange) = remember(prices) {
+        calculatePriceStats(prices)
     }
-    val (minPrice, _, priceRange) = priceStats
 
     // Cache price change color calculation
     val priceChangeColor = remember(priceChangeFloat, isDarkTheme, primaryColor) {
-        when {
-            priceChangeFloat > 0f -> if (isDarkTheme) greenDark else greenLight
-            priceChangeFloat < 0f -> redDark
-            else -> primaryColor
-        }
+        getPriceChangeColor(priceChangeFloat, isDarkTheme, primaryColor)
     }
     
     // Cache gradient colors to avoid recreating list every frame
     val gradientColors = remember(priceChangeColor) {
-        listOf(
-            priceChangeColor.copy(alpha = 0.6f),
-            priceChangeColor.copy(alpha = 0.3f),
-            priceChangeColor.copy(alpha = 0.1f),
-            priceChangeColor.copy(alpha = 0f)
-        )
+        createPriceChangeGradientColors(priceChangeColor)
     }
 
     var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
@@ -681,7 +622,7 @@ fun RowScope.TradeChart(
             if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || trades.isEmpty()) {
                 emptyList()
             } else {
-                calculatePoints(trades, chartSizeInPx, minPrice, priceRange)
+                calculateChartPoints(trades, chartSizeInPx, minPrice, priceRange)
             }
         }
         
@@ -753,58 +694,6 @@ fun RowScope.TradeChart(
     }
 }
 
-// Optimized: Limit points to reduce memory allocations and improve performance
-// iOS can handle ~100-200 points smoothly, more causes jank
-private const val MAX_CHART_POINTS = 150
-
-fun calculatePoints(
-    trades: List<UiKline>,
-    size: Offset,
-    minPrice: Float,
-    priceRange: Float
-): List<Offset> {
-    if (trades.isEmpty() || size.x <= 0 || size.y <= 0) return emptyList()
-    
-    // Limit points to reduce memory allocations - sample if too many
-    val sampleStep = if (trades.size > MAX_CHART_POINTS) {
-        trades.size / MAX_CHART_POINTS
-    } else {
-        1
-    }
-    
-    // Pre-allocate list with exact size to avoid reallocations
-    val pointCount = (trades.size + sampleStep - 1) / sampleStep
-    val points = ArrayList<Offset>(pointCount)
-    
-    val lastIndex = trades.lastIndex
-    var pointIndex = 0
-    
-    // Use indexed iteration to avoid creating intermediate collections
-    for (i in trades.indices step sampleStep) {
-        val trade = trades[i]
-        // Cache float conversion to avoid repeated parsing
-        val price = trade.closePrice.toFloatOrNull() ?: minPrice
-        val x = if (lastIndex > 0) {
-            i.toFloat() / lastIndex * size.x
-        } else {
-            size.x / 2f
-        }
-        val y = size.y - ((price - minPrice) / priceRange) * size.y
-        points.add(Offset(x, y))
-        pointIndex++
-    }
-    
-    // Always include the last point for accuracy
-    if (pointIndex > 0 && pointIndex - 1 < pointCount) {
-        val lastTrade = trades.last()
-        val lastPrice = lastTrade.closePrice.toFloatOrNull() ?: minPrice
-        val lastX = size.x
-        val lastY = size.y - ((lastPrice - minPrice) / priceRange) * size.y
-        points[pointIndex - 1] = Offset(lastX, lastY)
-    }
-    
-    return points
-}
 
 @Composable
 fun TickerCardListHeader(viewModel: CryptoViewModel) {
@@ -946,12 +835,7 @@ fun TickerCard(
 ) {
     // Use composition local for settings to avoid recomposition
     val settingsState = LocalSettings.current
-    // Call composable function outside remember block
-    val systemIsDarkTheme = isSystemInDarkTheme()
-    val isDarkTheme = remember(settingsState, systemIsDarkTheme) {
-        (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && systemIsDarkTheme))
-                || (settingsState == null && systemIsDarkTheme)
-    }
+    val isDarkTheme = isDarkTheme(settingsState)
     
     // Calculate actual trading pair once and cache - no state collection needed
     val actualTradingPair = remember(tickerData.symbol, tradingPairs, selectedTradingPair) {
@@ -1073,11 +957,11 @@ fun TickerCard(
                             transitionSpec = { fadeIn() togetherWith fadeOut() },
                             label = "Price Change Percentage Animation"
                         ) { targetPriceChangePercent ->
-                            val priceChangeColor = when {
-                                targetPriceChangePercent.toFloat() > 0f -> if (isDarkTheme) greenDark else greenLight
-                                targetPriceChangePercent.toFloat() < 0f -> redDark
-                                else -> MaterialTheme.colorScheme.primary
-                            }
+                            val priceChangeColor = getPriceChangeColor(
+                                targetPriceChangePercent,
+                                isDarkTheme,
+                                MaterialTheme.colorScheme.primary
+                            )
                             Text(
                                 modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
                                 text = "$targetPriceChangePercent %",

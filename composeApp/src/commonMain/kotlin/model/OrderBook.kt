@@ -42,16 +42,6 @@ data class OrderBookDepthSnapshot(
 )
 
 /**
- * Order book snapshot from Binance WebSocket API request
- */
-@Serializable
-data class OrderBookSnapshot(
-    @SerialName("lastUpdateId") val lastUpdateId: Long,
-    @SerialName("bids") val bids: List<List<String>>, // Bid levels [price, quantity]
-    @SerialName("asks") val asks: List<List<String>>  // Ask levels [price, quantity]
-)
-
-/**
  * Processed order book data for UI display
  */
 data class OrderBookData(
@@ -68,17 +58,6 @@ data class OrderBookData(
         val bid = bestBid?.priceDouble ?: return null
         val ask = bestAsk?.priceDouble ?: return null
         return (bid + ask) / 2.0
-    }
-    
-    /**
-     * Calculate cumulative depth for heat map visualization
-     */
-    fun getCumulativeDepth(levels: List<OrderBookLevel>, isBid: Boolean): List<Pair<Double, Double>> {
-        var cumulative = 0.0
-        return levels.map { level ->
-            cumulative += level.quantityDouble
-            Pair(level.priceDouble, cumulative)
-        }
     }
 }
 
