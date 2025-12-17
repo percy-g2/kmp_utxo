@@ -300,7 +300,6 @@ private fun OrderBookList(
                 }
 
                 VerticalDivider(
-                    modifier = Modifier.padding(vertical = 4.dp),
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
                     thickness = 1.dp
                 )
