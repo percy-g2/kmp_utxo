@@ -93,7 +93,7 @@ fun LazyColumnScrollbar(
     thumbShape: Shape = CircleShape,
     selectionMode: ScrollbarSelectionMode = ScrollbarSelectionMode.Thumb,
     selectionActionable: ScrollbarSelectionActionable = ScrollbarSelectionActionable.Always,
-    hideDelay: Duration = 400.toDuration(DurationUnit.MILLISECONDS),
+    hideDelay: Duration = 2.toDuration(DurationUnit.SECONDS),
     showItemIndicator: ListIndicatorSettings = EnabledIndividualControl(
         upperIndicatorHeight = 0.dp,
         upperIndicatorColor = MaterialTheme.colorScheme.surface,

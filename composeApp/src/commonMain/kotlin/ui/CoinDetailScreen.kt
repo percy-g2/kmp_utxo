@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -80,6 +81,7 @@ import model.UiKline
 import openLink
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
+import ui.components.LazyColumnScrollbar
 import ui.utils.animatedShimmerEffect
 import ui.utils.calculateChartPoints
 import ui.utils.calculatePriceStats
@@ -177,6 +179,7 @@ fun CoinDetailScreen(
     }
     
     val coroutineScope = rememberCoroutineScope()
+    val listState = rememberLazyListState()
 
     // Reload when symbol or enabled providers change
     LaunchedEffect(symbol, enabledProvidersKey) {
@@ -263,120 +266,67 @@ fun CoinDetailScreen(
                 }
 
                 else -> {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        // Chart Section - Show shimmer if loading, otherwise show chart
-                        item {
-                            if (state.isLoadingChart) {
-                                ShimmerChartPlaceholder()
-                            } else {
-                                CoinDetailChart(
-                                    klines = state.klines,
-                                    priceChangePercent = state.ticker?.priceChangePercent ?: "0",
-                                    isDarkTheme = isDarkTheme,
-                                    symbol = symbol,
-                                    tradingPairs = tradingPairs,
-                                    onTooltipVisibilityChange = { visible ->
-                                        viewModel.setTooltipVisible(visible)
-                                    }
-                                )
-                            }
-                        }
-
-                        // Price Info Section - Show shimmer if loading, otherwise show price info
-                        item {
-                            if (state.isLoadingTicker) {
-                                ShimmerPriceInfoPlaceholder()
-                            } else {
-                                PriceInfoSection(
-                                    symbol = symbol,
-                                    ticker = state.ticker,
-                                    tradingPairs = tradingPairs
-                                )
-                            }
-                        }
-
-                        // Order Book Heat Map Section
-                        item {
-                            OrderBookHeatMap(
-                                orderBookData = state.orderBookData,
-                                orderBookError = state.orderBookError,
-                                symbol = symbol,
-                                tradingPairs = tradingPairs,
-                                isDarkTheme = isDarkTheme
-                            )
-                        }
-
-                        // News Section Header
-                        item {
-                            Text(
-                                text = stringResource(Res.string.latest_news),
-                                style = MaterialTheme.typography.headlineSmall,
-                                fontWeight = FontWeight.Bold,
-                                modifier = Modifier.padding(16.dp)
-                            )
-                        }
-
-                        // News Items - Show shimmer placeholders for pending providers, show items as they arrive
-                        val hasNoProviders = enabledProviders.isEmpty()
-                        if (hasNoProviders) {
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            // Chart Section - Show shimmer if loading, otherwise show chart
                             item {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(32.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Column(
-                                        horizontalAlignment = Alignment.CenterHorizontally,
-                                        verticalArrangement = Arrangement.Center
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.AutoMirrored.Filled.Article,
-                                            contentDescription = null,
-                                            modifier = Modifier
-                                                .size(64.dp)
-                                                .padding(bottom = 16.dp),
-                                            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
-                                        )
-                                        Text(
-                                            text = stringResource(Res.string.no_news_providers_selected),
-                                            style = MaterialTheme.typography.titleMedium,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                            textAlign = TextAlign.Center
-                                        )
-                                        Text(
-                                            text = stringResource(Res.string.no_news_providers_selected_hint),
-                                            style = MaterialTheme.typography.bodyMedium,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
-                                            modifier = Modifier.padding(top = 8.dp),
-                                            textAlign = TextAlign.Center
-                                        )
-                                    }
+                                if (state.isLoadingChart) {
+                                    ShimmerChartPlaceholder()
+                                } else {
+                                    CoinDetailChart(
+                                        klines = state.klines,
+                                        priceChangePercent = state.ticker?.priceChangePercent
+                                            ?: "0",
+                                        isDarkTheme = isDarkTheme,
+                                        symbol = symbol,
+                                        tradingPairs = tradingPairs,
+                                        onTooltipVisibilityChange = { visible ->
+                                            viewModel.setTooltipVisible(visible)
+                                        }
+                                    )
                                 }
                             }
-                        } else {
-                            // Show news items as they arrive
-                            items(state.news) { newsItem ->
-                                NewsItemCard(
-                                    newsItem = newsItem,
+
+                            // Price Info Section - Show shimmer if loading, otherwise show price info
+                            item {
+                                if (state.isLoadingTicker) {
+                                    ShimmerPriceInfoPlaceholder()
+                                } else {
+                                    PriceInfoSection(
+                                        symbol = symbol,
+                                        ticker = state.ticker,
+                                        tradingPairs = tradingPairs
+                                    )
+                                }
+                            }
+
+                            // Order Book Heat Map Section
+                            item {
+                                OrderBookHeatMap(
+                                    orderBookData = state.orderBookData,
+                                    orderBookError = state.orderBookError,
+                                    symbol = symbol,
+                                    tradingPairs = tradingPairs,
                                     isDarkTheme = isDarkTheme
                                 )
                             }
-                            
-                            // Show shimmer placeholders for providers that are still loading
-                            if (state.loadingNewsProviders.isNotEmpty()) {
-                                items(count = state.loadingNewsProviders.size, key = { it }) {
-                                    ShimmerNewsItemPlaceholder()
-                                }
+
+                            // News Section Header
+                            item {
+                                Text(
+                                    text = stringResource(Res.string.latest_news),
+                                    style = MaterialTheme.typography.headlineSmall,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.padding(16.dp)
+                                )
                             }
-                            
-                            // Show empty state only if no news and no providers loading
-                            if (state.news.isEmpty()
-                                && state.loadingNewsProviders.isEmpty()
-                                && !state.isLoadingNews
-                            ) {
+
+                            // News Items - Show shimmer placeholders for pending providers, show items as they arrive
+                            val hasNoProviders = enabledProviders.isEmpty()
+                            if (hasNoProviders) {
                                 item {
                                     Box(
                                         modifier = Modifier
@@ -394,26 +344,92 @@ fun CoinDetailScreen(
                                                 modifier = Modifier
                                                     .size(64.dp)
                                                     .padding(bottom = 16.dp),
-                                                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                                                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                    alpha = 0.6f
+                                                )
                                             )
                                             Text(
-                                                text = stringResource(Res.string.no_news_available),
+                                                text = stringResource(Res.string.no_news_providers_selected),
                                                 style = MaterialTheme.typography.titleMedium,
                                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                                 textAlign = TextAlign.Center
                                             )
                                             Text(
-                                                text = stringResource(Res.string.no_news_available_hint),
+                                                text = stringResource(Res.string.no_news_providers_selected_hint),
                                                 style = MaterialTheme.typography.bodyMedium,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                    alpha = 0.7f
+                                                ),
                                                 modifier = Modifier.padding(top = 8.dp),
                                                 textAlign = TextAlign.Center
                                             )
                                         }
                                     }
                                 }
+                            } else {
+                                // Show news items as they arrive
+                                items(state.news) { newsItem ->
+                                    NewsItemCard(
+                                        newsItem = newsItem,
+                                        isDarkTheme = isDarkTheme
+                                    )
+                                }
+
+                                // Show shimmer placeholders for providers that are still loading
+                                if (state.loadingNewsProviders.isNotEmpty()) {
+                                    items(count = state.loadingNewsProviders.size, key = { it }) {
+                                        ShimmerNewsItemPlaceholder()
+                                    }
+                                }
+
+                                // Show empty state only if no news and no providers loading
+                                if (state.news.isEmpty()
+                                    && state.loadingNewsProviders.isEmpty()
+                                    && !state.isLoadingNews
+                                ) {
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(32.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Column(
+                                                horizontalAlignment = Alignment.CenterHorizontally,
+                                                verticalArrangement = Arrangement.Center
+                                            ) {
+                                                Icon(
+                                                    imageVector = Icons.AutoMirrored.Filled.Article,
+                                                    contentDescription = null,
+                                                    modifier = Modifier
+                                                        .size(64.dp)
+                                                        .padding(bottom = 16.dp),
+                                                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                        alpha = 0.6f
+                                                    )
+                                                )
+                                                Text(
+                                                    text = stringResource(Res.string.no_news_available),
+                                                    style = MaterialTheme.typography.titleMedium,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                    textAlign = TextAlign.Center
+                                                )
+                                                Text(
+                                                    text = stringResource(Res.string.no_news_available_hint),
+                                                    style = MaterialTheme.typography.bodyMedium,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                        alpha = 0.7f
+                                                    ),
+                                                    modifier = Modifier.padding(top = 8.dp),
+                                                    textAlign = TextAlign.Center
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
+                        LazyColumnScrollbar(listState = listState)
                     }
                 }
             }

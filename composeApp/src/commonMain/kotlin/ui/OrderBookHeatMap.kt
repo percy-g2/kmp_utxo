@@ -31,9 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 import ktx.formatAsCurrency
-import ktx.formatPrice
 import model.OrderBookData
-import theme.redDark
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
@@ -56,7 +54,7 @@ fun OrderBookHeatMap(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(all = 8.dp),
+            .padding(all = 16.dp),
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
         Column(
@@ -68,7 +66,7 @@ fun OrderBookHeatMap(
                 text = "Order Book",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(bottom = 8.dp, start = 8.dp, end = 8.dp)
             )
             
             if (orderBookError != null) {
@@ -140,7 +138,7 @@ fun OrderBookHeatMap(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 8.dp, vertical = 4.dp),
+                        .padding(all = 4.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     // Buy column header (left 50%): Amount (left) | Price (right)
@@ -345,48 +343,6 @@ private fun OrderBookList(
 }
 
 @Composable
-private fun CurrentPriceRow(
-    price: Double,
-    symbol: String,
-    tradingPairs: List<model.TradingPair>,
-    isDarkTheme: Boolean
-) {
-    val formattedPrice = remember(price, symbol, tradingPairs) {
-        // Format price to 8 decimal places without String.format
-        price.toString().formatPrice(symbol, tradingPairs)
-    }
-    
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                if (isDarkTheme) MaterialTheme.colorScheme.surfaceVariant
-                else MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
-            )
-            .padding(vertical = 8.dp, horizontal = 8.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = formattedPrice,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = redDark // Current price in red (like Binance)
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                text = formattedPrice, // Repeat price on right
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-            )
-        }
-    }
-}
-
-@Composable
 private fun OrderBookRowWithDepthBar(
     price: String,
     quantity: String,
@@ -446,7 +402,8 @@ private fun OrderBookRowWithDepthBar(
     }
     
     Box(
-        modifier = modifier
+        modifier = modifier,
+        contentAlignment = Alignment.Center
     ) {
         // Depth bar background layer (bottom layer - shadow-like)
         if (isBuy) {
@@ -474,7 +431,7 @@ private fun OrderBookRowWithDepthBar(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 12.dp),
+                .padding(horizontal = 4.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

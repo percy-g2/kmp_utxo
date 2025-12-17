@@ -500,9 +500,9 @@ class CryptoViewModel : ViewModel() {
                     
                     // Update trades efficiently - limit to reduce memory pressure on iOS
                     // Keep only last 200 points (enough for smooth charts, reduces memory)
-                    val MAX_TRADES_PER_SYMBOL = 200
+                    val maxTradesPerSymbol = 200
                     val currentTrades = updatedTrades[ticker.symbol] ?: emptyList()
-                    updatedTrades[ticker.symbol] = if (currentTrades.size >= MAX_TRADES_PER_SYMBOL) {
+                    updatedTrades[ticker.symbol] = if (currentTrades.size >= maxTradesPerSymbol) {
                         // Use drop + add instead of creating new list to reduce allocations
                         currentTrades.drop(1) + UiKline(closePrice = ticker.lastPrice)
                     } else {
