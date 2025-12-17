@@ -1,7 +1,6 @@
 package ui
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -62,6 +61,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import theme.ThemeManager
 import theme.ThemeManager.store
+import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.cancel
@@ -100,7 +100,7 @@ fun SettingsScreen(
     val coroutineScope = rememberCoroutineScope()
     val settings: Flow<Settings?> = store.updates
     val settingsState by settings.collectAsState(initial = Settings(appTheme = AppTheme.System))
-    val isDarkTheme = settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme())
+    val isDarkTheme = isDarkTheme(settingsState)
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),

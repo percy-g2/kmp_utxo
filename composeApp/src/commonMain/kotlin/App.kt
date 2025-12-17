@@ -8,7 +8,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
@@ -58,6 +57,7 @@ import ui.CryptoList
 import ui.CryptoViewModel
 import ui.FavoritesListScreen
 import ui.SettingsScreen
+import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.network_unavailable
 import utxo.composeapp.generated.resources.network_unavailable_message
@@ -73,27 +73,27 @@ fun App(
     
     val navController: NavHostController = rememberNavController()
     val settingsState by store.updates.collectAsState(initial = ui.Settings(appTheme = AppTheme.System))
-    val isDarkTheme = (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
+    val isDarkTheme = isDarkTheme(settingsState)
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
     val networkObserver = remember { NetworkConnectivityObserver() }
     val networkStatus by networkObserver.observe().collectAsState(initial = null)
 
-    LaunchedEffect(navBackStackEntry?.destination?.route) {
-        when (navBackStackEntry?.destination?.id) {
+    // Simplified navigation state management
+    LaunchedEffect(navBackStackEntry?.destination?.id) {
+        val destinationId = navBackStackEntry?.destination?.id ?: return@LaunchedEffect
+        
+        when (destinationId) {
             Market.serializer().generateHashCode() -> {
                 selectedItem = 0
-                // Resume WebSocket and data updates
                 cryptoViewModel.resume()
             }
             Favorites.serializer().generateHashCode() -> {
                 selectedItem = 1
-                // Resume WebSocket and data updates
                 cryptoViewModel.resume()
             }
             Settings.serializer().generateHashCode() -> {
                 selectedItem = 2
-                // Pause WebSocket when navigating to Settings to save memory
                 cryptoViewModel.pause()
             }
             CoinDetail.serializer().generateHashCode() -> {
@@ -157,28 +157,7 @@ fun App(
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                animatedComposable<Market> { backStackEntry ->
-                    // Track previous destination to detect when returning from CoinDetail
-                    val previousDestinationIdState = rememberSaveable { mutableStateOf<Int?>(null) }
-                    var refreshTrigger by remember { mutableStateOf(0) }
-                    
-                    LaunchedEffect(backStackEntry.destination.id) {
-                        val currentDestinationId = backStackEntry.destination.id
-
-                        val coinDetailId = CoinDetail.serializer().generateHashCode()
-                        val marketId = Market.serializer().generateHashCode()
-                        
-                        // Check if returning from CoinDetail to Market using previous state
-                        val previousDestinationId = previousDestinationIdState.value
-                        val wasOnCoinDetail = previousDestinationId == coinDetailId
-                        if (wasOnCoinDetail && currentDestinationId == marketId) {
-                            refreshTrigger++
-                        }
-                        
-                        // Update state for next execution - value persists via rememberSaveable
-                        previousDestinationIdState.value = currentDestinationId
-                    }
-                    
+                animatedComposable<Market> {
                     CryptoList(
                         cryptoViewModel = cryptoViewModel,
                         onCoinClick = { symbol, displaySymbol ->
@@ -188,8 +167,7 @@ fun App(
                                     displaySymbol = displaySymbol
                                 )
                             )
-                        },
-                        onReturnFromDetail = if (refreshTrigger > 0) refreshTrigger else null
+                        }
                     )
                 }
                 animatedComposable<Favorites> {

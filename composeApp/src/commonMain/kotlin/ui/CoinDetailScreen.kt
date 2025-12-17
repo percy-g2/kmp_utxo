@@ -1,18 +1,11 @@
 package ui
 
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -87,9 +80,14 @@ import model.UiKline
 import openLink
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
-import theme.greenDark
-import theme.greenLight
-import theme.redDark
+import ui.utils.animatedShimmerEffect
+import ui.utils.calculateChartPoints
+import ui.utils.calculatePriceStats
+import ui.utils.createPriceChangeGradientColors
+import ui.utils.getPriceChangeColor
+import ui.utils.isDarkTheme
+import ui.utils.limitKlinesForChart
+import ui.utils.shimmerEffect
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.error
@@ -158,8 +156,7 @@ fun CoinDetailScreen(
     viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() }
 ) {
     val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
-    val isDarkTheme =
-        (settingsState?.appTheme == AppTheme.Dark || (settingsState?.appTheme == AppTheme.System && isSystemInDarkTheme()))
+    val isDarkTheme = isDarkTheme(settingsState)
     val state by viewModel.state.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
     
@@ -465,12 +462,7 @@ fun CoinDetailChart(
     }
 
     val prices = remember(klines) {
-        val limitedKlines = if (klines.size > 150) {
-            val step = klines.size / 150
-            klines.filterIndexed { index, _ -> index % step == 0 }
-        } else {
-            klines
-        }
+        val limitedKlines = limitKlinesForChart(klines)
         ArrayList<Float>(limitedKlines.size).apply {
             limitedKlines.forEach { kline ->
                 add(kline.closePrice.toFloatOrNull() ?: 0f)
@@ -478,35 +470,18 @@ fun CoinDetailChart(
         }
     }
 
-    val priceStats = remember(prices) {
-        if (prices.isEmpty()) {
-            Triple(0f, 0f, 1f)
-        } else {
-            val max = prices.maxOrNull() ?: 0f
-            val min = prices.minOrNull() ?: 0f
-            val range = if (max != min) max - min else 1f
-            Triple(min, max, range)
-        }
+    val (minPrice, _, priceRange) = remember(prices) {
+        calculatePriceStats(prices)
     }
-    val (minPrice, _, priceRange) = priceStats
 
     val primaryColor = MaterialTheme.colorScheme.primary
 
-    val priceChangeColor = remember(priceChangeFloat, isDarkTheme) {
-        when {
-            priceChangeFloat > 0f -> if (isDarkTheme) greenDark else greenLight
-            priceChangeFloat < 0f -> redDark
-            else -> primaryColor
-        }
+    val priceChangeColor = remember(priceChangeFloat, isDarkTheme, primaryColor) {
+        getPriceChangeColor(priceChangeFloat, isDarkTheme, primaryColor)
     }
 
     val gradientColors = remember(priceChangeColor) {
-        listOf(
-            priceChangeColor.copy(alpha = 0.6f),
-            priceChangeColor.copy(alpha = 0.3f),
-            priceChangeColor.copy(alpha = 0.1f),
-            priceChangeColor.copy(alpha = 0f)
-        )
+        createPriceChangeGradientColors(priceChangeColor)
     }
 
     var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
@@ -574,12 +549,7 @@ fun CoinDetailChart(
     fun findClosestKlineAndPosition(xPosition: Float): Pair<UiKline?, Offset?> {
         if (klines.isEmpty() || chartSizeInPx.x <= 0 || priceRange <= 0) return Pair(null, null)
         
-        val limitedKlines = if (klines.size > 150) {
-            val step = klines.size / 150
-            klines.filterIndexed { index, _ -> index % step == 0 }
-        } else {
-            klines
-        }
+        val limitedKlines = limitKlinesForChart(klines)
         
         val normalizedX = (xPosition / chartSizeInPx.x).coerceIn(0f, 1f)
         val index = (normalizedX * (limitedKlines.size - 1)).toInt().coerceIn(0, limitedKlines.lastIndex)
@@ -785,58 +755,6 @@ fun CoinDetailChart(
     }
 }
 
-private fun calculateChartPoints(
-    klines: List<UiKline>,
-    size: Offset,
-    minPrice: Float,
-    priceRange: Float
-): List<Offset> {
-    if (klines.isEmpty() || size.x <= 0 || size.y <= 0) return emptyList()
-    
-    // Limit points to reduce memory allocations - sample if too many
-    val sampleStep = if (klines.size > MAX_CHART_POINTS) {
-        klines.size / MAX_CHART_POINTS
-    } else {
-        1
-    }
-    
-    // Pre-allocate list with exact size to avoid reallocations
-    val pointCount = (klines.size + sampleStep - 1) / sampleStep
-    val points = ArrayList<Offset>(pointCount)
-    
-    val lastIndex = klines.lastIndex
-    var pointIndex = 0
-    
-    // Use indexed iteration to avoid creating intermediate collections
-    for (i in klines.indices step sampleStep) {
-        val kline = klines[i]
-        // Cache float conversion to avoid repeated parsing
-        val price = kline.closePrice.toFloatOrNull() ?: minPrice
-        val x = if (lastIndex > 0) {
-            i.toFloat() / lastIndex * size.x
-        } else {
-            size.x / 2f
-        }
-        val y = size.y - ((price - minPrice) / priceRange) * size.y
-        points.add(Offset(x, y))
-        pointIndex++
-    }
-    
-    // Always include the last point for accuracy
-    if (pointIndex > 0 && pointIndex - 1 < pointCount) {
-        val lastKline = klines.last()
-        val lastPrice = lastKline.closePrice.toFloatOrNull() ?: minPrice
-        val lastX = size.x
-        val lastY = size.y - ((lastPrice - minPrice) / priceRange) * size.y
-        points[pointIndex - 1] = Offset(lastX, lastY)
-    }
-    
-    return points
-}
-
-// Optimized: Limit points to reduce memory allocations and improve performance
-// iOS can handle ~100-200 points smoothly, more causes jank
-private const val MAX_CHART_POINTS = 150
 
 @Composable
 fun PriceInfoSection(
@@ -1126,33 +1044,6 @@ fun NewsItemCard(
     }
 }
 
-@Composable
-fun Modifier.animatedShimmerEffect(): Modifier {
-    val infiniteTransition = rememberInfiniteTransition(label = "shimmer")
-    val shimmerTranslate by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1000f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "shimmer_translate"
-    )
-
-    val shimmerColors = listOf(
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f),
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
-    )
-
-    return this.background(
-        brush = Brush.linearGradient(
-            colors = shimmerColors,
-            start = Offset(shimmerTranslate - 300f, shimmerTranslate - 300f),
-            end = Offset(shimmerTranslate, shimmerTranslate)
-        )
-    )
-}
 
 @Composable
 fun ShimmerChartPlaceholder() {

@@ -4,17 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MarkPriceUpdate(
-    @SerialName("e") val event: String,
-    @SerialName("E") val eventTime: Long,
-    @SerialName("s") val symbol: String,
-    @SerialName("p") val price: String,
-    @SerialName("i") val indexPrice: String,
-    @SerialName("r") val rate: String,
-    @SerialName("T") val timestamp: Long
-)
-
-@Serializable
 data class Ticker(
     @SerialName("e") val eventType: String,           // Event type
     @SerialName("E") val eventTime: Long,             // Event time
