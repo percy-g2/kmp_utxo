@@ -56,13 +56,13 @@ fun OrderBookHeatMap(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(all = 8.dp),
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(all = 8.dp)
         ) {
             Text(
                 text = "Order Book",

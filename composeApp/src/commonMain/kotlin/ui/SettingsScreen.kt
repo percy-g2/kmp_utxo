@@ -18,7 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Article
+import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
@@ -168,7 +168,7 @@ fun SettingsScreen(
                         else -> stringResource(Res.string.settings_sources_count, enabledCount, totalCount)
                     }
                     SettingsItem(
-                        icon = Icons.Default.Article,
+                        icon = Icons.AutoMirrored.Filled.Article,
                         title = stringResource(Res.string.settings_news_sources),
                         subtitle = subtitle,
                         onClick = { showRssProvidersDialog = true }
@@ -425,7 +425,6 @@ private fun RssProvidersSelectionDialog(
 ) {
     var localEnabledProviders by remember(enabledProviders) { mutableStateOf(enabledProviders) }
     val allSelected = localEnabledProviders.size == RssProvider.ALL_PROVIDERS.size
-    val noneSelected = localEnabledProviders.isEmpty()
     
     AlertDialog(
         onDismissRequest = onDismiss,

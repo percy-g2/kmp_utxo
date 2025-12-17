@@ -176,7 +176,13 @@ class CryptoViewModel : ViewModel() {
             }
         }
         
-        favoritesFromAllData + placeholderEntries
+        // Combine all favorites and sort by volume (descending - highest volume first)
+        val allFavorites = (favoritesFromAllData + placeholderEntries).values.toList()
+        val sortedFavorites = allFavorites.sortedByDescending { 
+            it.volume.toDoubleOrNull() ?: 0.0 
+        }
+        
+        sortedFavorites.associateBy { it.symbol }
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
@@ -527,11 +533,11 @@ class CryptoViewModel : ViewModel() {
             viewModelScope.launch {
                 try {
                     httpClient.close()
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     // Ignore errors during cleanup
                 }
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             // Ignore errors during cleanup
         }
         
