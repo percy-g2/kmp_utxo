@@ -101,7 +101,9 @@ actual fun getWebSocketClient(): HttpClient {
                 }
             }
         }
-        return webSocketClientInstance!!
+        return requireNotNull(webSocketClientInstance) {
+            "WebSocket client instance should not be null after initialization"
+        }
     }
 }
 

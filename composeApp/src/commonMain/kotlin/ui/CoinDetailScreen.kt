@@ -164,11 +164,7 @@ fun CoinDetailScreen(
     
     // Get enabled providers from settings - allow empty set (no providers selected)
     // If settings don't have enabledRssProviders field (old settings), default to all enabled
-    val enabledProviders = if (settingsState?.enabledRssProviders != null) {
-        settingsState!!.enabledRssProviders
-    } else {
-        model.RssProvider.DEFAULT_ENABLED_PROVIDERS
-    }
+    val enabledProviders = settingsState?.enabledRssProviders ?: model.RssProvider.DEFAULT_ENABLED_PROVIDERS
     
     // Convert Set to a stable, sorted string key for LaunchedEffect dependency
     // Use "empty" as key when no providers are selected
@@ -691,8 +687,7 @@ fun CoinDetailChart(
                 )
 
                 // Draw indicator dot on chart line at touch point
-                if (showTooltip && chartPointPosition != null) {
-                    val point = chartPointPosition!!
+                chartPointPosition?.let { point ->
                     // Draw a circle at the touch point on the line
                     drawCircle(
                         color = priceChangeColor,
@@ -710,58 +705,61 @@ fun CoinDetailChart(
             }
 
             // Tooltip - positioned next to the chart point
-            if (showTooltip && chartPointPosition != null && tooltipPrice != null) {
+            if (showTooltip) {
                 val density = LocalDensity.current
-                val chartPoint = chartPointPosition!!
-                val paddingPx = with(density) { 16.dp.toPx() }
-                val estimatedTooltipWidthPx = with(density) { 160.dp.toPx() }
-                val tooltipHeightPx = with(density) { if (tooltipTime != null) 56.dp.toPx() else 36.dp.toPx() }
-                val minMarginPx = with(density) { 8.dp.toPx() }
-                
-                // Determine best side: right if point is on left half, left if on right half
-                val spaceOnRight = chartSizeInPx.x - chartPoint.x
-                val spaceOnLeft = chartPoint.x
-                val useRightSide = spaceOnRight >= estimatedTooltipWidthPx + paddingPx || spaceOnRight > spaceOnLeft
-                
-                val tooltipXPx = if (useRightSide) {
-                    // Position to the right of the point
-                    (chartPoint.x + paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx - minMarginPx)
-                } else {
-                    // Position to the left of the point
-                    (chartPoint.x - estimatedTooltipWidthPx - paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx)
-                }
-                
-                // Position vertically centered with the chart point, but keep within bounds
-                val tooltipYPx = (chartPoint.y - tooltipHeightPx / 2).coerceIn(minMarginPx, chartSizeInPx.y - tooltipHeightPx - minMarginPx)
+                chartPointPosition?.let { chartPoint ->
+                    tooltipPrice?.let { price ->
+                        val paddingPx = with(density) { 16.dp.toPx() }
+                        val estimatedTooltipWidthPx = with(density) { 160.dp.toPx() }
+                        val tooltipHeightPx = with(density) { if (tooltipTime?.isNotEmpty() == true) 56.dp.toPx() else 36.dp.toPx() }
+                        val minMarginPx = with(density) { 8.dp.toPx() }
+                        
+                        // Determine best side: right if point is on left half, left if on right half
+                        val spaceOnRight = chartSizeInPx.x - chartPoint.x
+                        val spaceOnLeft = chartPoint.x
+                        val useRightSide = spaceOnRight >= estimatedTooltipWidthPx + paddingPx || spaceOnRight > spaceOnLeft
+                        
+                        val tooltipXPx = if (useRightSide) {
+                            // Position to the right of the point
+                            (chartPoint.x + paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx - minMarginPx)
+                        } else {
+                            // Position to the left of the point
+                            (chartPoint.x - estimatedTooltipWidthPx - paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx)
+                        }
+                        
+                        // Position vertically centered with the chart point, but keep within bounds
+                        val tooltipYPx = (chartPoint.y - tooltipHeightPx / 2).coerceIn(minMarginPx, chartSizeInPx.y - tooltipHeightPx - minMarginPx)
 
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.TopStart)
-                        .offset(x = with(density) { tooltipXPx.toDp() }, y = with(density) { tooltipYPx.toDp() })
-                ) {
-                    Card(
-                        elevation = CardDefaults.cardElevation(4.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.TopStart)
+                                .offset(x = with(density) { tooltipXPx.toDp() }, y = with(density) { tooltipYPx.toDp() })
                         ) {
-                            Text(
-                                text = tooltipPrice!!,
-                                style = MaterialTheme.typography.bodyMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            if (tooltipTime != null && tooltipTime!!.isNotEmpty()) {
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Text(
-                                    text = tooltipTime!!,
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                                )
+                            Card(
+                                elevation = CardDefaults.cardElevation(4.dp),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                                ),
+                                shape = RoundedCornerShape(8.dp)
+                            ) {
+                                Column(
+                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+                                ) {
+                                    Text(
+                                        text = price,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = FontWeight.Bold,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                    tooltipTime?.takeIf { it.isNotEmpty() }?.let { time ->
+                                        Spacer(modifier = Modifier.height(4.dp))
+                                        Text(
+                                            text = time,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
