@@ -18,14 +18,22 @@ kotlin {
     wasmJs {
         browser()
         binaries.executable()
+        compilerOptions {
+            freeCompilerArgs.add("-Xexplicit-backing-fields")
+        }
     }
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
+            freeCompilerArgs.add("-Xexplicit-backing-fields")
         }
     }
     
-    jvm("desktop")
+    jvm("desktop") {
+        compilerOptions {
+            freeCompilerArgs.add("-Xexplicit-backing-fields")
+        }
+    }
     
     listOf(
         iosX64(),
@@ -35,6 +43,9 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+        }
+        iosTarget.compilerOptions {
+            freeCompilerArgs.add("-Xexplicit-backing-fields")
         }
     }
     

@@ -47,11 +47,11 @@ class OrderBookWebSocketService {
     private var webSocketJob: Job? = null
     private var isConnected = false
     
-    private val _orderBookData = MutableStateFlow<OrderBookData?>(null)
-    val orderBookData: StateFlow<OrderBookData?> = _orderBookData.asStateFlow()
+    val orderBookData: StateFlow<OrderBookData?>
+        field = MutableStateFlow(null)
     
-    private val _error = MutableStateFlow<String?>(null)
-    val error: StateFlow<String?> = _error.asStateFlow()
+    val error: StateFlow<String?>
+        field = MutableStateFlow(null)
     
     private var currentSymbol: String? = null
     private var lastUpdateId: Long = 0
@@ -77,7 +77,7 @@ class OrderBookWebSocketService {
         disconnect()
         currentSymbol = symbol
         needsReconnect = false
-        _error.value = null // Clear any previous errors
+        error.value = null // Clear any previous errors
         
         webSocketJob = kotlinx.coroutines.CoroutineScope(Dispatchers.Default).launch {
             supervisorScope {
@@ -159,7 +159,7 @@ class OrderBookWebSocketService {
                             AppLogger.logger.e(throwable = e) { 
                                 "OrderBookWebSocket: Error connecting to $symbol" 
                             }
-                            _error.value = errorMessage
+                            error.value = errorMessage
                             delay(RECONNECTION_DELAY_MS)
                         }
                     }
@@ -209,7 +209,7 @@ class OrderBookWebSocketService {
             val sortedBids = currentBids.values.sortedByDescending { it.priceDouble }
             val sortedAsks = currentAsks.values.sortedBy { it.priceDouble }
             
-            _orderBookData.value = OrderBookData(
+            orderBookData.value = OrderBookData(
                 symbol = symbol,
                 bids = sortedBids,
                 asks = sortedAsks,
@@ -281,7 +281,7 @@ class OrderBookWebSocketService {
                 val sortedBids = currentBids.values.sortedByDescending { it.priceDouble }
                 val sortedAsks = currentAsks.values.sortedBy { it.priceDouble }
                 
-                _orderBookData.value = OrderBookData(
+                orderBookData.value = OrderBookData(
                     symbol = symbol,
                     bids = sortedBids,
                     asks = sortedAsks,
@@ -312,8 +312,8 @@ class OrderBookWebSocketService {
         lastUpdateId = 0
         currentBids.clear()
         currentAsks.clear()
-        _orderBookData.value = null
-        _error.value = null
+        orderBookData.value = null
+        error.value = null
         AppLogger.logger.d { "OrderBookWebSocket: Disconnected" }
     }
     

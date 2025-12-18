@@ -44,8 +44,8 @@ class TickerWebSocketService {
     private var webSocketJob: Job? = null
     private var isConnected = false
     
-    private val _tickerData = MutableStateFlow<Ticker24hr?>(null)
-    val tickerData: StateFlow<Ticker24hr?> = _tickerData.asStateFlow()
+    val tickerData: StateFlow<Ticker24hr?>
+        field = MutableStateFlow(null)
     
     private var currentSymbol: String? = null
     
@@ -157,7 +157,7 @@ class TickerWebSocketService {
                 closeTime = ticker.statisticsCloseTime
             )
             
-            _tickerData.value = ticker24hr
+            tickerData.value = ticker24hr
         } catch (e: Exception) {
             AppLogger.logger.e(throwable = e) { 
                 "TickerWebSocket: Failed to parse ticker update: ${message.take(200)}" 
@@ -173,7 +173,7 @@ class TickerWebSocketService {
         webSocketJob = null
         isConnected = false
         currentSymbol = null
-        _tickerData.value = null
+        tickerData.value = null
         AppLogger.logger.d { "TickerWebSocket: Disconnected" }
     }
     

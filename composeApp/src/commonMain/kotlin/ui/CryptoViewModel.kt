@@ -48,21 +48,23 @@ class CryptoViewModel : ViewModel() {
     private val webSocketClient = getWebSocketClient()
     private var isWebSocketConnected = false
 
-    private val _trades = MutableStateFlow<Map<String, List<UiKline>>>(emptyMap())
-    val trades: StateFlow<Map<String, List<UiKline>>> = _trades.asStateFlow()
+    val trades: StateFlow<Map<String, List<UiKline>>>
+        field = MutableStateFlow(emptyMap())
 
-    private val _symbols = MutableStateFlow<List<TickerDataInfo>>(emptyList())
+    val symbols: StateFlow<List<TickerDataInfo>>
+        field = MutableStateFlow(emptyList())
 
-    private val _tradingPairs = MutableStateFlow<List<TradingPair>>(emptyList())
-    val tradingPairs: StateFlow<List<TradingPair>> = _tradingPairs.asStateFlow()
+    val tradingPairs: StateFlow<List<TradingPair>>
+        field = MutableStateFlow(emptyList())
 
-    private val _allTickerDataMap = MutableStateFlow<Map<String, TickerData>>(emptyMap())
+    val allTickerDataMap: StateFlow<Map<String, TickerData>>
+        field = MutableStateFlow(emptyMap())
 
-    private val _isLoading = MutableStateFlow(true)
-    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+    val isLoading: StateFlow<Boolean>
+        field = MutableStateFlow(true)
 
-    private val _searchQuery = MutableStateFlow("")
-    val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
+    val searchQuery: StateFlow<String>
+        field = MutableStateFlow("")
 
     private var webSocketJob: Job? = null
     private var lastUpdateTime = 0L
@@ -73,9 +75,9 @@ class CryptoViewModel : ViewModel() {
     val isSortDesc = mutableStateOf(false)
 
     val filteredTickerDataMap: StateFlow<Map<String, TickerData>> = combine(
-        _allTickerDataMap,
+        allTickerDataMap,
         settings,
-        _searchQuery,
+        searchQuery,
         snapshotFlow { currentSortKey.value },
         snapshotFlow { isSortDesc.value }
     ) { allData, settings, query, sortKey, isDescending ->
@@ -155,9 +157,9 @@ class CryptoViewModel : ViewModel() {
     )
 
     val favoritesTickerDataMap: StateFlow<Map<String, TickerData>> = combine(
-        _allTickerDataMap,
+        allTickerDataMap,
         settings,
-        _symbols.asStateFlow()
+        symbols
     ) { allData: Map<String, TickerData>, settings: Settings?, symbols: List<TickerDataInfo> ->
         val favorites = settings?.favPairs ?: emptyList()
         val favoritesFromAllData = allData.filterKeys { it in favorites }
@@ -216,14 +218,14 @@ class CryptoViewModel : ViewModel() {
 
     fun setSearchQuery(query: String) {
         viewModelScope.launch {
-            _searchQuery.value = query
+            searchQuery.value = query
         }
     }
 
     fun setSelectedTradingPair(pair: String) {
         viewModelScope.launch {
-            _isLoading.value = true
-            _searchQuery.value = ""
+            isLoading.value = true
+            searchQuery.value = ""
 
             store.update { currentSettings ->
                 currentSettings?.copy(selectedTradingPair = pair)
@@ -231,7 +233,7 @@ class CryptoViewModel : ViewModel() {
             }
 
             if (filteredTickerDataMap.value.isNotEmpty()) {
-                _isLoading.value = false
+                isLoading.value = false
             }
         }
     }
@@ -239,7 +241,7 @@ class CryptoViewModel : ViewModel() {
     private fun updateDisplayedPairs() {
         viewModelScope.launch {
             if (filteredTickerDataMap.value.isNotEmpty()) {
-                _isLoading.value = false
+                isLoading.value = false
             }
         }
     }
@@ -264,15 +266,15 @@ class CryptoViewModel : ViewModel() {
             }
 
             // Check current state on main thread, then switch to background
-            val currentTrades = withContext(Dispatchers.Main) { _trades.value.keys }
+            val currentTrades = withContext(Dispatchers.Main) { trades.value.keys }
             val newSymbols = if (forceRefresh) {
                 withContext(Dispatchers.Main) {
-                    _trades.value = emptyMap()
+                    trades.value = emptyMap()
                 }
                 visibleSymbols
             } else {
                 visibleSymbols.filterNot { symbol ->
-                    symbol in currentTrades && (withContext(Dispatchers.Main) { _trades.value[symbol]?.size } ?: 0) > 50
+                    symbol in currentTrades && (withContext(Dispatchers.Main) { trades.value[symbol]?.size } ?: 0) > 50
                 }
             }
             
@@ -286,7 +288,7 @@ class CryptoViewModel : ViewModel() {
                         val newData = httpClient.fetchUiKlines(batch)
                         // Update state on main thread - only keep visible symbols + new data to reduce memory footprint
                         withContext(Dispatchers.Main) {
-                            _trades.value = _trades.value.filterKeys { it in visibleSymbols } + newData
+                            trades.value = trades.value.filterKeys { it in visibleSymbols } + newData
                         }
                     } catch (e: CancellationException) {
                         throw e
@@ -323,8 +325,8 @@ class CryptoViewModel : ViewModel() {
                 
                 // Update state on main thread
                 withContext(Dispatchers.Main) {
-                    _tradingPairs.value = tradingPairsList
-                    _symbols.value = symbolsList
+                    tradingPairs.value = tradingPairsList
+                    symbols.value = symbolsList
                 }
             } catch (e: CancellationException) {
                 throw e
@@ -363,7 +365,7 @@ class CryptoViewModel : ViewModel() {
         
         // Clear trades data to free memory when not on Market screen
         viewModelScope.launch {
-            _trades.value = emptyMap()
+            trades.value = emptyMap()
         }
     }
     
@@ -379,7 +381,7 @@ class CryptoViewModel : ViewModel() {
             try {
                 // Find favorites that don't have real data yet (have placeholder "0.00" price)
                 val favoritesNeedingData = favoriteSymbols.filter { symbol ->
-                    val currentData = _allTickerDataMap.value[symbol]
+                    val currentData = allTickerDataMap.value[symbol]
                     currentData == null || currentData.lastPrice == "0.00"
                 }
                 
@@ -388,8 +390,8 @@ class CryptoViewModel : ViewModel() {
                     val tickers = httpClient.fetchTickers24hr(favoritesNeedingData)
                     val currentTradingPairs = tradingPairs.value
                     
-                    // Update _allTickerDataMap with fetched data
-                    val updatedTickerMap = _allTickerDataMap.value.toMutableMap()
+                    // Update allTickerDataMap with fetched data
+                    val updatedTickerMap = allTickerDataMap.value.toMutableMap()
                     tickers.forEach { (symbol, ticker) ->
                         val formattedPrice = ticker.lastPrice.formatPrice(symbol, currentTradingPairs)
                         updatedTickerMap[symbol] = TickerData(
@@ -401,7 +403,7 @@ class CryptoViewModel : ViewModel() {
                     }
                     
                     withContext(Dispatchers.Main) {
-                        _allTickerDataMap.value = updatedTickerMap
+                        allTickerDataMap.value = updatedTickerMap
                     }
                 }
             } catch (e: CancellationException) {
@@ -485,8 +487,8 @@ class CryptoViewModel : ViewModel() {
                 val currentTradingPairs = tradingPairs.value
                 
                 // Process all data off main thread
-                val updatedTickerMap = _allTickerDataMap.value.toMutableMap()
-                val updatedTrades = _trades.value.toMutableMap()
+                val updatedTickerMap = allTickerDataMap.value.toMutableMap()
+                val updatedTrades = trades.value.toMutableMap()
                 
                 tickers.forEach { ticker ->
                     // Format price off main thread
@@ -512,9 +514,9 @@ class CryptoViewModel : ViewModel() {
 
                 // Update state on main thread - limit trades to visible symbols only to reduce memory
                 withContext(Dispatchers.Main) {
-                    _allTickerDataMap.value = updatedTickerMap
+                    allTickerDataMap.value = updatedTickerMap
                     // Only keep trades with enough data points, and limit to reduce memory pressure
-                    _trades.value = updatedTrades.filterValues { it.size > 50 }
+                    trades.value = updatedTrades.filterValues { it.size > 50 }
                     updateDisplayedPairs()
                 }
             }.onFailure {
@@ -549,7 +551,7 @@ class CryptoViewModel : ViewModel() {
             try {
                 // Check state on main thread
                 val needsFetch = withContext(Dispatchers.Main) {
-                    !_trades.value.containsKey(symbol)
+                    !trades.value.containsKey(symbol)
                 }
                 
                 if (needsFetch) {
@@ -557,7 +559,7 @@ class CryptoViewModel : ViewModel() {
                     val newData = httpClient.fetchUiKlines(listOf(symbol))
                     // Update state on main thread
                     withContext(Dispatchers.Main) {
-                        _trades.value += newData
+                        trades.value += newData
                     }
                 }
             } catch (e: CancellationException) {
