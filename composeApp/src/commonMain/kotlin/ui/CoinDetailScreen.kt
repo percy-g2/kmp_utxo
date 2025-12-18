@@ -43,6 +43,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -122,6 +123,7 @@ import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
+// Extract helper functions outside composable to prevent recreation on every recomposition
 @OptIn(ExperimentalTime::class)
 fun formatTickerUpdateTime(timestamp: Long): String {
     return try {
@@ -148,6 +150,59 @@ fun formatTickerUpdateTime(timestamp: Long): String {
     }
 }
 
+@OptIn(ExperimentalTime::class)
+private fun formatTimestamp(timestamp: Long?): String {
+    if (timestamp == null) return ""
+    return try {
+        val instant = Instant.fromEpochMilliseconds(timestamp)
+        val systemTimeZone = TimeZone.currentSystemDefault()
+        val localDateTime = instant.toLocalDateTime(systemTimeZone)
+        
+        val monthNames = listOf(
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        )
+        
+        val month = monthNames[localDateTime.month.number - 1]
+        val day = localDateTime.day
+        val hour = localDateTime.hour
+        val minute = localDateTime.minute
+        
+        val amPm = if (hour < 12) "AM" else "PM"
+        val displayHour = when {
+            hour == 0 -> 12
+            hour > 12 -> hour - 12
+            else -> hour
+        }
+        
+        val minuteStr = if (minute < 10) "0$minute" else "$minute"
+        
+        "$month $day, $displayHour:$minuteStr $amPm"
+    } catch (e: Exception) {
+        AppLogger.logger.e(throwable = e) { "Error formatting timestamp" }
+        ""
+    }
+}
+
+// Data class to combine related tooltip state
+private data class TooltipState(
+    val position: Offset? = null,
+    val chartPoint: Offset? = null,
+    val price: String? = null,
+    val time: String? = null,
+    val isVisible: Boolean = false
+)
+
+// Data class to combine chart calculations and reduce recompositions
+private data class ChartData(
+    val limitedKlines: List<UiKline>,
+    val prices: List<Float>,
+    val minPrice: Float,
+    val priceRange: Float,
+    val priceChangeColor: Color,
+    val gradientColors: List<Color>
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CoinDetailScreen(
@@ -164,26 +219,27 @@ fun CoinDetailScreen(
     
     // Get enabled providers from settings - allow empty set (no providers selected)
     // If settings don't have enabledRssProviders field (old settings), default to all enabled
-    val enabledProviders = settingsState?.enabledRssProviders ?: model.RssProvider.DEFAULT_ENABLED_PROVIDERS
+    val enabledProviders = remember(settingsState?.enabledRssProviders) {
+        settingsState?.enabledRssProviders ?: model.RssProvider.DEFAULT_ENABLED_PROVIDERS
+    }
     
     // Convert Set to a stable, sorted string key for LaunchedEffect dependency
     // Use "empty" as key when no providers are selected
-    val enabledProvidersKey = if (enabledProviders.isEmpty()) {
-        "empty"
-    } else {
-        enabledProviders.sorted().joinToString(",")
+    val enabledProvidersKey = remember(enabledProviders) {
+        if (enabledProviders.isEmpty()) {
+            "empty"
+        } else {
+            enabledProviders.sorted().joinToString(",")
+        }
     }
     
-    val coroutineScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
 
     // Reload when symbol or enabled providers change
     LaunchedEffect(symbol, enabledProvidersKey) {
         AppLogger.logger.d { "CoinDetailScreen: LaunchedEffect triggered - symbol: $symbol, providers: $enabledProviders, key: $enabledProvidersKey" }
         // Always clear cache first to ensure we fetch fresh data with correct providers
-        coroutineScope.launch {
-            viewModel.clearCache()
-        }
+        viewModel.clearCache()
         // Use a local copy to ensure we're using the correct providers
         val providersToUse = enabledProviders.toSet()
         AppLogger.logger.d { "CoinDetailScreen: About to call loadCoinData with providers: $providersToUse" }
@@ -321,6 +377,7 @@ fun CoinDetailScreen(
                             }
 
                             // News Items - Show shimmer placeholders for pending providers, show items as they arrive
+                            // Use derivedStateOf to avoid recomposition when enabledProviders changes but result is same
                             val hasNoProviders = enabledProviders.isEmpty()
                             if (hasNoProviders) {
                                 item {
@@ -364,7 +421,11 @@ fun CoinDetailScreen(
                                 }
                             } else {
                                 // Show news items as they arrive
-                                items(state.news) { newsItem ->
+                                // Use stable key for efficient recomposition
+                                items(
+                                    items = state.news,
+                                    key = { it.link } // Use link as unique identifier
+                                ) { newsItem ->
                                     NewsItemCard(
                                         newsItem = newsItem,
                                         isDarkTheme = isDarkTheme
@@ -372,17 +433,21 @@ fun CoinDetailScreen(
                                 }
 
                                 // Show shimmer placeholders for providers that are still loading
-                                if (state.loadingNewsProviders.isNotEmpty()) {
-                                    items(count = state.loadingNewsProviders.size, key = { it }) {
+                                val showShimmerPlaceholders = state.loadingNewsProviders.isNotEmpty()
+                                if (showShimmerPlaceholders) {
+                                    items(
+                                        items = state.loadingNewsProviders.toList(),
+                                        key = { it }
+                                    ) {
                                         ShimmerNewsItemPlaceholder()
                                     }
                                 }
 
                                 // Show empty state only if no news and no providers loading
-                                if (state.news.isEmpty()
+                                val showEmptyState = state.news.isEmpty()
                                     && state.loadingNewsProviders.isEmpty()
                                     && !state.isLoadingNews
-                                ) {
+                                if (showEmptyState) {
                                     item {
                                         Box(
                                             modifier = Modifier
@@ -469,107 +534,66 @@ fun CoinDetailChart(
         return
     }
 
-    val priceChangeFloat = remember(priceChangePercent) {
-        priceChangePercent.toFloatOrNull() ?: 0f
-    }
-
-    val prices = remember(klines) {
+    // Get primary color - access MaterialTheme in composable context
+    val primaryColor = MaterialTheme.colorScheme.primary
+    
+    // Combine related calculations to reduce recompositions
+    val chartData = remember(klines, priceChangePercent, isDarkTheme, primaryColor) {
+        val priceChangeFloat = priceChangePercent.toFloatOrNull() ?: 0f
         val limitedKlines = limitKlinesForChart(klines)
-        ArrayList<Float>(limitedKlines.size).apply {
+        val prices = ArrayList<Float>(limitedKlines.size).apply {
             limitedKlines.forEach { kline ->
                 add(kline.closePrice.toFloatOrNull() ?: 0f)
             }
         }
-    }
-
-    val (minPrice, _, priceRange) = remember(prices) {
-        calculatePriceStats(prices)
-    }
-
-    val primaryColor = MaterialTheme.colorScheme.primary
-
-    val priceChangeColor = remember(priceChangeFloat, isDarkTheme, primaryColor) {
-        getPriceChangeColor(priceChangeFloat, isDarkTheme, primaryColor)
-    }
-
-    val gradientColors = remember(priceChangeColor) {
-        createPriceChangeGradientColors(priceChangeColor)
+        val (minPrice, _, priceRange) = calculatePriceStats(prices)
+        val priceChangeColor = getPriceChangeColor(priceChangeFloat, isDarkTheme, primaryColor)
+        val gradientColors = createPriceChangeGradientColors(priceChangeColor)
+        
+        ChartData(
+            limitedKlines = limitedKlines,
+            prices = prices,
+            minPrice = minPrice,
+            priceRange = priceRange,
+            priceChangeColor = priceChangeColor,
+            gradientColors = gradientColors
+        )
     }
 
     var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
-    var tooltipPosition by remember { mutableStateOf<Offset?>(null) }
-    var chartPointPosition by remember { mutableStateOf<Offset?>(null) }
-    var tooltipPrice by remember { mutableStateOf<String?>(null) }
-    var tooltipTime by remember { mutableStateOf<String?>(null) }
-    var showTooltip by remember { mutableStateOf(false) }
+    var tooltipState by remember { mutableStateOf(TooltipState()) }
     var hideTooltipTrigger by remember { mutableStateOf(0L) }
 
     // Notify ViewModel when tooltip visibility changes
-    LaunchedEffect(showTooltip) {
-        onTooltipVisibilityChange(showTooltip)
+    LaunchedEffect(tooltipState.isVisible) {
+        onTooltipVisibilityChange(tooltipState.isVisible)
     }
     
     // Hide tooltip after 5 seconds
-    LaunchedEffect(showTooltip, hideTooltipTrigger) {
-        if (showTooltip && tooltipPosition != null) {
+    LaunchedEffect(tooltipState.isVisible, hideTooltipTrigger) {
+        if (tooltipState.isVisible && tooltipState.position != null) {
             delay(5000)
-            if (showTooltip) {
-                showTooltip = false
-                tooltipPosition = null
-                chartPointPosition = null
-                tooltipPrice = null
-                tooltipTime = null
+            if (tooltipState.isVisible) {
+                tooltipState = TooltipState()
             }
-        }
-    }
-
-    // Format timestamp to readable time
-    fun formatTimestamp(timestamp: Long?): String {
-        if (timestamp == null) return ""
-        return try {
-            val instant = Instant.fromEpochMilliseconds(timestamp)
-            val systemTimeZone = TimeZone.currentSystemDefault()
-            val localDateTime = instant.toLocalDateTime(systemTimeZone)
-            
-            val monthNames = listOf(
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            )
-            
-            val month = monthNames[localDateTime.month.number - 1]
-            val day = localDateTime.day
-            val hour = localDateTime.hour
-            val minute = localDateTime.minute
-            
-            val amPm = if (hour < 12) "AM" else "PM"
-            val displayHour = when {
-                hour == 0 -> 12
-                hour > 12 -> hour - 12
-                else -> hour
-            }
-            
-            val minuteStr = if (minute < 10) "0$minute" else "$minute"
-            
-            "$month $day, $displayHour:$minuteStr $amPm"
-        } catch (e: Exception) {
-            AppLogger.logger.e(throwable = e) { "Error formatting timestamp" }
-            ""
         }
     }
 
     // Find the closest kline data point and its chart position for a given x position
+    // Use chartData to avoid recalculating limitedKlines
     fun findClosestKlineAndPosition(xPosition: Float): Pair<UiKline?, Offset?> {
-        if (klines.isEmpty() || chartSizeInPx.x <= 0 || priceRange <= 0) return Pair(null, null)
-        
-        val limitedKlines = limitKlinesForChart(klines)
+        if (chartData.limitedKlines.isEmpty() || chartSizeInPx.x <= 0 || chartData.priceRange <= 0) {
+            return Pair(null, null)
+        }
         
         val normalizedX = (xPosition / chartSizeInPx.x).coerceIn(0f, 1f)
-        val index = (normalizedX * (limitedKlines.size - 1)).toInt().coerceIn(0, limitedKlines.lastIndex)
-        val kline = limitedKlines[index]
+        val index = (normalizedX * (chartData.limitedKlines.size - 1)).toInt()
+            .coerceIn(0, chartData.limitedKlines.lastIndex)
+        val kline = chartData.limitedKlines[index]
 
-        val price = kline.closePrice.toFloatOrNull() ?: minPrice
+        val price = kline.closePrice.toFloatOrNull() ?: chartData.minPrice
         val x = normalizedX * chartSizeInPx.x
-        val y = chartSizeInPx.y - ((price - minPrice) / priceRange) * chartSizeInPx.y
+        val y = chartSizeInPx.y - ((price - chartData.minPrice) / chartData.priceRange) * chartSizeInPx.y
         return Pair(kline, Offset(x, y))
     }
 
@@ -587,24 +611,28 @@ fun CoinDetailChart(
                 .onSizeChanged { size ->
                     // Only update if size actually changed to minimize recompositions
                     val newSize = Offset(size.width.toFloat(), size.height.toFloat())
-                    if (chartSizeInPx != newSize) {
+                    // Use comparison with epsilon to avoid unnecessary updates from floating point precision
+                    if (kotlin.math.abs(chartSizeInPx.x - newSize.x) > 0.5f || 
+                        kotlin.math.abs(chartSizeInPx.y - newSize.y) > 0.5f) {
                         chartSizeInPx = newSize
                     }
                 }
-                .pointerInput(klines, chartSizeInPx, minPrice, priceRange) {
+                .pointerInput(chartData.limitedKlines, chartSizeInPx, chartData.minPrice, chartData.priceRange, symbol, tradingPairs) {
                     detectTapGestures { tapOffset ->
                         val (closestKline, chartPoint) = findClosestKlineAndPosition(tapOffset.x)
                         if (closestKline != null && chartPoint != null) {
-                            tooltipPosition = tapOffset
-                            chartPointPosition = chartPoint
-                            tooltipPrice = closestKline.closePrice.formatPrice(symbol, tradingPairs)
-                            tooltipTime = formatTimestamp(closestKline.closeTime ?: closestKline.openTime)
-                            showTooltip = true
+                            tooltipState = TooltipState(
+                                position = tapOffset,
+                                chartPoint = chartPoint,
+                                price = closestKline.closePrice.formatPrice(symbol, tradingPairs),
+                                time = formatTimestamp(closestKline.closeTime ?: closestKline.openTime),
+                                isVisible = true
+                            )
                             hideTooltipTrigger = Clock.System.now().toEpochMilliseconds()
                         }
                     }
                 }
-                .pointerInput(klines, chartSizeInPx, minPrice, priceRange) {
+                .pointerInput(chartData.limitedKlines, chartSizeInPx, chartData.minPrice, chartData.priceRange, symbol, tradingPairs) {
                     detectDragGestures(
                         onDragEnd = {
                             // Trigger hide tooltip after 5 seconds
@@ -614,21 +642,24 @@ fun CoinDetailChart(
                         val dragOffset = change.position
                         val (closestKline, chartPoint) = findClosestKlineAndPosition(dragOffset.x)
                         if (closestKline != null && chartPoint != null) {
-                            tooltipPosition = dragOffset
-                            chartPointPosition = chartPoint
-                            tooltipPrice = closestKline.closePrice.formatPrice(symbol, tradingPairs)
-                            tooltipTime = formatTimestamp(closestKline.closeTime ?: closestKline.openTime)
-                            showTooltip = true
+                            tooltipState = TooltipState(
+                                position = dragOffset,
+                                chartPoint = chartPoint,
+                                price = closestKline.closePrice.formatPrice(symbol, tradingPairs),
+                                time = formatTimestamp(closestKline.closeTime ?: closestKline.openTime),
+                                isVisible = true
+                            )
                             hideTooltipTrigger = Clock.System.now().toEpochMilliseconds()
                         }
                     }
                 }
         ) {
-            val points = remember(klines, chartSizeInPx, minPrice, priceRange) {
-                if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || klines.isEmpty()) {
+            // Use chartData.limitedKlines instead of full klines list to avoid recalculation
+            val points = remember(chartData.limitedKlines, chartSizeInPx, chartData.minPrice, chartData.priceRange) {
+                if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || chartData.limitedKlines.isEmpty()) {
                     emptyList()
                 } else {
-                    calculateChartPoints(klines, chartSizeInPx, minPrice, priceRange)
+                    calculateChartPoints(chartData.limitedKlines, chartSizeInPx, chartData.minPrice, chartData.priceRange)
                 }
             }
 
@@ -640,8 +671,7 @@ fun CoinDetailChart(
                         val firstPoint = points[0]
                         moveTo(firstPoint.x, firstPoint.y)
                         for (i in 1 until points.size) {
-                            val point = points[i]
-                            lineTo(point.x, point.y)
+                            lineTo(points[i].x, points[i].y)
                         }
                     }
                 }
@@ -653,7 +683,7 @@ fun CoinDetailChart(
                 } else {
                     Path().apply {
                         moveTo(0f, chartSizeInPx.y)
-                        for (point in points) {
+                        points.forEach { point ->
                             lineTo(point.x, point.y)
                         }
                         lineTo(chartSizeInPx.x, chartSizeInPx.y)
@@ -662,10 +692,10 @@ fun CoinDetailChart(
                 }
             }
 
-            val gradientBrush = remember(gradientColors, chartSizeInPx) {
+            val gradientBrush = remember(chartData.gradientColors, chartSizeInPx) {
                 if (chartSizeInPx.y > 0) {
                     Brush.verticalGradient(
-                        colors = gradientColors,
+                        colors = chartData.gradientColors,
                         startY = 0f,
                         endY = chartSizeInPx.y
                     )
@@ -682,15 +712,15 @@ fun CoinDetailChart(
                 drawPath(path = fillPath, brush = gradientBrush)
                 drawPath(
                     path = linePath,
-                    color = priceChangeColor,
+                    color = chartData.priceChangeColor,
                     style = Stroke(width = 3f)
                 )
 
                 // Draw indicator dot on chart line at touch point
-                chartPointPosition?.let { point ->
+                tooltipState.chartPoint?.let { point ->
                     // Draw a circle at the touch point on the line
                     drawCircle(
-                        color = priceChangeColor,
+                        color = chartData.priceChangeColor,
                         radius = 6.dp.toPx(),
                         center = point
                     )
@@ -705,60 +735,59 @@ fun CoinDetailChart(
             }
 
             // Tooltip - positioned next to the chart point
-            if (showTooltip) {
-                val density = LocalDensity.current
-                chartPointPosition?.let { chartPoint ->
-                    tooltipPrice?.let { price ->
-                        val paddingPx = with(density) { 16.dp.toPx() }
-                        val estimatedTooltipWidthPx = with(density) { 160.dp.toPx() }
-                        val tooltipHeightPx = with(density) { if (tooltipTime?.isNotEmpty() == true) 56.dp.toPx() else 36.dp.toPx() }
-                        val minMarginPx = with(density) { 8.dp.toPx() }
-                        
-                        // Determine best side: right if point is on left half, left if on right half
-                        val spaceOnRight = chartSizeInPx.x - chartPoint.x
-                        val spaceOnLeft = chartPoint.x
-                        val useRightSide = spaceOnRight >= estimatedTooltipWidthPx + paddingPx || spaceOnRight > spaceOnLeft
-                        
-                        val tooltipXPx = if (useRightSide) {
-                            // Position to the right of the point
-                            (chartPoint.x + paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx - minMarginPx)
-                        } else {
-                            // Position to the left of the point
-                            (chartPoint.x - estimatedTooltipWidthPx - paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx)
-                        }
-                        
-                        // Position vertically centered with the chart point, but keep within bounds
-                        val tooltipYPx = (chartPoint.y - tooltipHeightPx / 2).coerceIn(minMarginPx, chartSizeInPx.y - tooltipHeightPx - minMarginPx)
+            // Cache density to avoid repeated LocalDensity.current calls
+            val density = LocalDensity.current
+            tooltipState.chartPoint?.let { chartPoint ->
+                tooltipState.price?.let { price ->
+                    val hasTime = tooltipState.time?.isNotEmpty() == true
+                    
+                    // Cache density calculations - calculate once per recomposition
+                    val paddingPx = with(density) { 16.dp.toPx() }
+                    val estimatedTooltipWidthPx = with(density) { 160.dp.toPx() }
+                    val tooltipHeightPx = with(density) { if (hasTime) 56.dp.toPx() else 36.dp.toPx() }
+                    val minMarginPx = with(density) { 8.dp.toPx() }
+                    
+                    // Calculate tooltip position
+                    val spaceOnRight = chartSizeInPx.x - chartPoint.x
+                    val spaceOnLeft = chartPoint.x
+                    val useRightSide = spaceOnRight >= estimatedTooltipWidthPx + paddingPx || spaceOnRight > spaceOnLeft
+                    
+                    val tooltipXPx = if (useRightSide) {
+                        (chartPoint.x + paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx - minMarginPx)
+                    } else {
+                        (chartPoint.x - estimatedTooltipWidthPx - paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx)
+                    }
+                    
+                    val tooltipYPx = (chartPoint.y - tooltipHeightPx / 2).coerceIn(minMarginPx, chartSizeInPx.y - tooltipHeightPx - minMarginPx)
 
-                        Box(
-                            modifier = Modifier
-                                .align(Alignment.TopStart)
-                                .offset(x = with(density) { tooltipXPx.toDp() }, y = with(density) { tooltipYPx.toDp() })
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.TopStart)
+                            .offset(x = with(density) { tooltipXPx.toDp() }, y = with(density) { tooltipYPx.toDp() })
+                    ) {
+                        Card(
+                            elevation = CardDefaults.cardElevation(4.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                            ),
+                            shape = RoundedCornerShape(8.dp)
                         ) {
-                            Card(
-                                elevation = CardDefaults.cardElevation(4.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.surfaceVariant
-                                ),
-                                shape = RoundedCornerShape(8.dp)
+                            Column(
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
                             ) {
-                                Column(
-                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
-                                ) {
+                                Text(
+                                    text = price,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                                tooltipState.time?.takeIf { it.isNotEmpty() }?.let { time ->
+                                    Spacer(modifier = Modifier.height(4.dp))
                                     Text(
-                                        text = price,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        fontWeight = FontWeight.Bold,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        text = time,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                                     )
-                                    tooltipTime?.takeIf { it.isNotEmpty() }?.let { time ->
-                                        Spacer(modifier = Modifier.height(4.dp))
-                                        Text(
-                                            text = time,
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                                        )
-                                    }
                                 }
                             }
                         }
@@ -777,6 +806,25 @@ fun PriceInfoSection(
     tradingPairs: List<TradingPair> = emptyList()
 ) {
     var isExpanded by remember { mutableStateOf(false) }
+    
+    // Cache price change calculations at the top level
+    val priceChangePercent = remember(ticker?.priceChangePercent) {
+        ticker?.priceChangePercent?.toDoubleOrNull() ?: 0.0
+    }
+    // Get MaterialTheme color outside remember block
+    val defaultColor = MaterialTheme.colorScheme.onSurface
+    val priceChangeColor = remember(priceChangePercent, defaultColor) {
+        when {
+            priceChangePercent > 0 -> Color(0xFF4CAF50) // Green
+            priceChangePercent < 0 -> Color(0xFFF44336) // Red
+            else -> defaultColor
+        }
+    }
+    val formattedPriceChange = remember(ticker?.priceChangePercent, priceChangePercent) {
+        ticker?.let {
+            "${if (priceChangePercent >= 0) "+" else ""}${it.priceChangePercent}%"
+        } ?: "0%"
+    }
 
     Card(
         modifier = Modifier
@@ -821,16 +869,9 @@ fun PriceInfoSection(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
 
-                    val priceChangePercent = ticker.priceChangePercent.toDoubleOrNull() ?: 0.0
-                    val priceChangeColor = when {
-                        priceChangePercent > 0 -> Color(0xFF4CAF50) // Green
-                        priceChangePercent < 0 -> Color(0xFFF44336) // Red
-                        else -> MaterialTheme.colorScheme.onSurface
-                    }
-
                     PriceRow(
                         stringResource(Res.string.label_24h_change),
-                        "${if (priceChangePercent >= 0) "+" else ""}${ticker.priceChangePercent}%",
+                        formattedPriceChange,
                         valueColor = priceChangeColor
                     )
                 }
@@ -992,6 +1033,33 @@ fun NewsItemCard(
     newsItem: NewsItem,
     isDarkTheme: Boolean
 ) {
+    // Cache formatted date to avoid recomputation on every recomposition
+    val formattedDate = remember(newsItem.pubDate) {
+        newsItem.pubDate.formatNewsDate()
+    }
+    
+    // Cache colors to avoid accessing MaterialTheme.colorScheme multiple times
+    // Access MaterialTheme outside remember blocks
+    val onSecondaryContainerColor = MaterialTheme.colorScheme.onSecondaryContainer
+    val onPrimaryContainerColor = MaterialTheme.colorScheme.onPrimaryContainer
+    val secondaryContainerColor = MaterialTheme.colorScheme.secondaryContainer
+    val primaryContainerColor = MaterialTheme.colorScheme.primaryContainer
+    
+    val sourceColor = remember(isDarkTheme, onSecondaryContainerColor, onPrimaryContainerColor) {
+        if (isDarkTheme) {
+            onSecondaryContainerColor
+        } else {
+            onPrimaryContainerColor
+        }
+    }
+    val sourceBackgroundColor = remember(isDarkTheme, secondaryContainerColor, primaryContainerColor) {
+        if (isDarkTheme) {
+            secondaryContainerColor
+        } else {
+            primaryContainerColor
+        }
+    }
+    
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -1018,20 +1086,16 @@ fun NewsItemCard(
                 Text(
                     text = newsItem.source,
                     style = MaterialTheme.typography.labelSmall,
-                    color = if (isDarkTheme) {
-                        MaterialTheme.colorScheme.onSecondaryContainer
-                    } else MaterialTheme.colorScheme.onPrimaryContainer,
+                    color = sourceColor,
                     modifier = Modifier
                         .background(
-                            if (isDarkTheme) {
-                                MaterialTheme.colorScheme.secondaryContainer
-                            } else MaterialTheme.colorScheme.primaryContainer,
+                            sourceBackgroundColor,
                             RoundedCornerShape(4.dp)
                         )
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 )
                 Text(
-                    text = newsItem.pubDate.formatNewsDate(),
+                    text = formattedDate,
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

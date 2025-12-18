@@ -111,9 +111,16 @@ class CoinDetailViewModel : ViewModel() {
                                 state.update { currentState ->
                                     val currentKlines = currentState.klines
                                     val newKlinesList = if (currentKlines.size >= MAX_KLINES) {
-                                        currentKlines.drop(1) + newKline
+                                        // Pre-allocate list to avoid reallocation
+                                        ArrayList<UiKline>(MAX_KLINES).apply {
+                                            addAll(currentKlines.drop(1))
+                                            add(newKline)
+                                        }
                                     } else {
-                                        currentKlines + newKline
+                                        ArrayList<UiKline>(currentKlines.size + 1).apply {
+                                            addAll(currentKlines)
+                                            add(newKline)
+                                        }
                                     }
                                     currentState.copy(
                                         ticker = ticker,
@@ -232,8 +239,13 @@ class CoinDetailViewModel : ViewModel() {
                                         // Use helper function to ensure we always read the most recent state
                                         updateNewsState { currentState ->
                                             val updatedNews = if (news.isNotEmpty()) {
-                                                (currentState.news + news)
-                                                    .distinctBy { it.link } // Remove duplicates
+                                                // Use LinkedHashSet to maintain insertion order and remove duplicates efficiently
+                                                val newsSet = LinkedHashSet<NewsItem>(currentState.news.size + news.size)
+                                                newsSet.addAll(currentState.news)
+                                                newsSet.addAll(news)
+                                                
+                                                // Convert to list, sort, and limit in one pass
+                                                newsSet.asSequence()
                                                     .sortedByDescending { item ->
                                                         try {
                                                             ktx.parseRssDate(item.pubDate)
@@ -242,6 +254,7 @@ class CoinDetailViewModel : ViewModel() {
                                                         }
                                                     }
                                                     .take(50)
+                                                    .toList()
                                             } else {
                                                 currentState.news
                                             }
@@ -328,13 +341,17 @@ class CoinDetailViewModel : ViewModel() {
                     val currentKlines = currentState.klines
                     val queueSize = queuedKlineUpdates.size
                     
-                    // Apply all queued updates
-                    var updatedKlines = currentKlines
-                    for (queuedKline in queuedKlineUpdates) {
-                        if (updatedKlines.size >= MAX_KLINES) {
-                            updatedKlines = updatedKlines.drop(1) + queuedKline
-                        } else {
-                            updatedKlines = updatedKlines + queuedKline
+                    // Pre-allocate list with correct size to avoid multiple reallocations
+                    val updatedKlines = if (currentKlines.size + queueSize > MAX_KLINES) {
+                        val dropCount = (currentKlines.size + queueSize) - MAX_KLINES
+                        ArrayList<UiKline>(MAX_KLINES).apply {
+                            addAll(currentKlines.drop(dropCount))
+                            addAll(queuedKlineUpdates)
+                        }
+                    } else {
+                        ArrayList<UiKline>(currentKlines.size + queueSize).apply {
+                            addAll(currentKlines)
+                            addAll(queuedKlineUpdates)
                         }
                     }
                     

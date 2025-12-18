@@ -81,11 +81,22 @@ fun calculatePriceStats(prices: List<Float>): Triple<Float, Float, Float> {
 
 /**
  * Limits klines to MAX_CHART_POINTS for optimal rendering performance.
+ * Uses pre-allocated list to avoid intermediate collections.
  */
 fun limitKlinesForChart(klines: List<UiKline>): List<UiKline> {
     return if (klines.size > MAX_CHART_POINTS) {
         val step = klines.size / MAX_CHART_POINTS
-        klines.filterIndexed { index, _ -> index % step == 0 }
+        // Pre-allocate list with exact size to avoid reallocations
+        val result = ArrayList<UiKline>(MAX_CHART_POINTS + 1) // +1 for last point
+        for (i in klines.indices step step) {
+            result.add(klines[i])
+        }
+        // Always include the last point for accuracy if not already included
+        val lastKline = klines.last()
+        if (result.lastOrNull() != lastKline) {
+            result.add(lastKline)
+        }
+        result
     } else {
         klines
     }
