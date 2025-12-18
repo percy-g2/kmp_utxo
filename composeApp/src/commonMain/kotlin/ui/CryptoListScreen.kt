@@ -1,6 +1,7 @@
 package ui
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -9,7 +10,9 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -145,6 +148,38 @@ fun CryptoList(
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     
+    // Track scroll direction for search bar visibility
+    var previousScrollOffset by remember { mutableStateOf(0) }
+    var isSearchBarVisible by remember { mutableStateOf(true) }
+    
+    // Detect scroll direction immediately using derivedStateOf for scroll position
+    val currentScrollOffset by derivedStateOf {
+        listState.firstVisibleItemIndex * 10000 + listState.firstVisibleItemScrollOffset
+    }
+    
+    // Update visibility based on scroll direction changes
+    LaunchedEffect(currentScrollOffset) {
+        val scrollDelta = currentScrollOffset - previousScrollOffset
+        val isAtTop = listState.firstVisibleItemIndex == 0 && listState.firstVisibleItemScrollOffset == 0
+        
+        // Update visibility immediately when scroll direction is detected
+        when {
+            isAtTop -> {
+                isSearchBarVisible = true
+            }
+            scrollDelta < 0 -> {
+                // Scrolling up - show search bar
+                isSearchBarVisible = true
+            }
+            scrollDelta > 0 && listState.firstVisibleItemIndex > 0 -> {
+                // Scrolling down - hide search bar
+                isSearchBarVisible = false
+            }
+        }
+        
+        previousScrollOffset = currentScrollOffset
+    }
+    
     // Collect state once at top level - hoist to minimize recompositions
     val trades by cryptoViewModel.trades.collectAsState()
     val tickerDataMap by cryptoViewModel.filteredTickerDataMap.collectAsState()
@@ -249,7 +284,29 @@ fun CryptoList(
     Scaffold {
         Box(modifier = Modifier.fillMaxSize()) {
             Column {
-                SearchBar(viewModel = cryptoViewModel)
+                AnimatedVisibility(
+                    visible = isSearchBarVisible,
+                    enter = slideInVertically(
+                        initialOffsetY = { -it },
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioNoBouncy,
+                            stiffness = Spring.StiffnessHigh
+                        )
+                    ) + fadeIn(
+                        animationSpec = tween(150)
+                    ),
+                    exit = slideOutVertically(
+                        targetOffsetY = { -it },
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioNoBouncy,
+                            stiffness = Spring.StiffnessHigh
+                        )
+                    ) + fadeOut(
+                        animationSpec = tween(150)
+                    )
+                ) {
+                    SearchBar(viewModel = cryptoViewModel)
+                }
 
                 val lazyRowState = rememberLazyListState()
                 LazyRow(
