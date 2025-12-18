@@ -20,6 +20,24 @@ import model.UiKline
 import network.NewsService
 import network.OrderBookWebSocketService
 import network.TickerWebSocketService
+import trading.api.AggTradeWebSocketService
+import trading.config.StrategyConfig
+import trading.data.AggTrade
+import trading.data.MarketSnapshotBuilder
+import trading.data.TradeFlowMetrics
+import trading.engine.TradingEngine
+import trading.engine.TradingEngineFactory
+import trading.execution.MockOrderExecutor
+import trading.risk.RiskStatus
+import trading.strategy.ImbalanceCalculator
+import trading.strategy.TradeFlowAnalyzer
+import trading.strategy.TradeSignal
+import trading.data.OrderBook as TradingOrderBook
+import io.ktor.client.HttpClient as KtorHttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import network.HttpClient as NetworkClient
@@ -35,7 +53,14 @@ data class CoinDetailState(
     val klines: List<UiKline> = emptyList(),
     val orderBookData: OrderBookData? = null,
     val orderBookError: String? = null,
-    val error: String? = null
+    val error: String? = null,
+    // Trading engine state
+    val tradingEnabled: Boolean = false,
+    val currentSignal: TradeSignal = TradeSignal.None,
+    val orderBookImbalance: Double = 1.0,
+    val tradeFlowMetrics: TradeFlowMetrics? = null,
+    val riskStatus: RiskStatus? = null,
+    val lastTradeResult: String? = null
 )
 
 @OptIn(ExperimentalTime::class)
@@ -48,6 +73,36 @@ class CoinDetailViewModel : ViewModel() {
     private val newsService = NewsService()
     private val orderBookService = OrderBookWebSocketService()
     private val tickerWebSocketService = TickerWebSocketService()
+    private val aggTradeService = AggTradeWebSocketService()
+    
+    // Trading engine components
+    private val tradingConfig = StrategyConfig.DEFAULT
+    private val tradingEquity = 10000.0  // $10,000 default equity
+    // Create separate HTTP client for trading engine (requires io.ktor.client.HttpClient)
+    private val tradingHttpClient = KtorHttpClient(CIO) {
+        install(ContentNegotiation) {
+            json(Json {
+                ignoreUnknownKeys = true
+                isLenient = true
+            })
+        }
+    }
+    private val tradingEngineFactory = TradingEngineFactory(
+        httpClient = tradingHttpClient,
+        config = tradingConfig,
+        equity = tradingEquity,
+        orderExecutor = MockOrderExecutor()  // Use mock for safety
+    )
+    private val tradingEngine: TradingEngine = tradingEngineFactory.create()
+    private val imbalanceCalculator = ImbalanceCalculator(
+        longThreshold = tradingConfig.imbalanceLong,
+        shortThreshold = tradingConfig.imbalanceShort,
+        topNLevels = tradingConfig.topNLevels
+    )
+    private val tradeFlowAnalyzer = TradeFlowAnalyzer(
+        confirmationThreshold = tradingConfig.tradeFlowThreshold
+    )
+    private val snapshotBuilder = MarketSnapshotBuilder(tradeFlowAnalyzer)
     
     val state: StateFlow<CoinDetailState>
         field = MutableStateFlow(CoinDetailState())
@@ -81,6 +136,29 @@ class CoinDetailViewModel : ViewModel() {
         viewModelScope.launch {
             orderBookService.error.collect { error ->
                 state.update { it.copy(orderBookError = error) }
+            }
+        }
+        
+        // Observe aggregated trades for trading engine
+        viewModelScope.launch {
+            aggTradeService.trades.collect { trades ->
+                // Update trading metrics when we have order book and trades
+                val currentState = state.value
+                if (currentState.orderBookData != null && trades.isNotEmpty()) {
+                    updateTradingMetrics(currentState.orderBookData!!, trades)
+                }
+            }
+        }
+        
+        // Process trading signals when order book updates
+        viewModelScope.launch {
+            orderBookService.orderBookData.collect { orderBook ->
+                if (orderBook != null && state.value.tradingEnabled) {
+                    val trades = aggTradeService.trades.value.take(500)
+                    if (trades.isNotEmpty()) {
+                        processTradingUpdate(orderBook, trades)
+                    }
+                }
             }
         }
         
@@ -312,6 +390,107 @@ class CoinDetailViewModel : ViewModel() {
     }
     
     /**
+     * Enable or disable trading engine
+     */
+    fun setTradingEnabled(enabled: Boolean, symbol: String) {
+        viewModelScope.launch {
+            state.update { it.copy(tradingEnabled = enabled) }
+            if (enabled) {
+                aggTradeService.connect(symbol)
+            } else {
+                aggTradeService.disconnect()
+                state.update { 
+                    it.copy(
+                        currentSignal = TradeSignal.None,
+                        orderBookImbalance = 1.0,
+                        tradeFlowMetrics = null
+                    )
+                }
+            }
+        }
+    }
+    
+    /**
+     * Update trading metrics from order book and trades
+     */
+    private suspend fun updateTradingMetrics(orderBook: OrderBookData, trades: List<AggTrade>) {
+        val imbalance = TradingOrderBook.calculateImbalance(orderBook, tradingConfig.topNLevels)
+        val tradeFlow = tradeFlowAnalyzer.calculateMetrics(trades, tradingConfig.tradeFlowWindowMs)
+        
+        // Get risk status if we have a snapshot
+        val snapshot = snapshotBuilder.build(
+            symbol = orderBook.symbol,
+            orderBook = orderBook,
+            trades = trades
+        )
+        val riskStatus = tradingEngine.getRiskStatus(snapshot)
+        
+        state.update {
+            it.copy(
+                orderBookImbalance = imbalance,
+                tradeFlowMetrics = tradeFlow,
+                riskStatus = riskStatus
+            )
+        }
+    }
+    
+    /**
+     * Process trading update and generate signals
+     */
+    private suspend fun processTradingUpdate(orderBook: OrderBookData, trades: List<AggTrade>) {
+        try {
+            val snapshot = snapshotBuilder.build(
+                symbol = orderBook.symbol,
+                orderBook = orderBook,
+                trades = trades
+            )
+            
+            // Calculate current signal
+            val imbalance = imbalanceCalculator.calculateImbalance(snapshot)
+            val signalDirection = imbalanceCalculator.evaluate(snapshot)
+            
+            val signal = when {
+                signalDirection > 0 && tradeFlowAnalyzer.confirmsLong(snapshot.tradeFlow) -> {
+                    val confidence = imbalanceCalculator.calculateConfidence(imbalance, isLong = true)
+                    TradeSignal.Long(
+                        confidence = confidence,
+                        entryPrice = snapshot.bestAsk,
+                        stopLoss = snapshot.bestAsk * 0.99,
+                        takeProfit = snapshot.bestAsk * 1.02
+                    )
+                }
+                signalDirection < 0 && tradeFlowAnalyzer.confirmsShort(snapshot.tradeFlow) -> {
+                    val confidence = imbalanceCalculator.calculateConfidence(imbalance, isLong = false)
+                    TradeSignal.Short(
+                        confidence = confidence,
+                        entryPrice = snapshot.bestBid,
+                        stopLoss = snapshot.bestBid * 1.01,
+                        takeProfit = snapshot.bestBid * 0.98
+                    )
+                }
+                else -> TradeSignal.None
+            }
+            
+            state.update { it.copy(currentSignal = signal) }
+            
+            // Process through trading engine (will be logged but not executed with mock executor)
+            val result = tradingEngine.onMarketUpdate(snapshot)
+            val resultMessage = when (result) {
+                is trading.execution.ExecutionResult.Success -> "Trade executed: ${result.orderId}"
+                is trading.execution.ExecutionResult.Rejected -> "Trade rejected: ${result.reason}"
+                is trading.execution.ExecutionResult.Error -> "Error: ${result.message}"
+                else -> null
+            }
+            
+            if (resultMessage != null) {
+                state.update { it.copy(lastTradeResult = resultMessage) }
+            }
+        } catch (e: Exception) {
+            AppLogger.logger.e(throwable = e) { "Error processing trading update" }
+        }
+    }
+    
+    /**
      * Set tooltip visibility state
      * When tooltip is shown, chart updates are queued
      * When tooltip is hidden, queued updates are applied
@@ -352,7 +531,9 @@ class CoinDetailViewModel : ViewModel() {
         super.onCleared()
         orderBookService.close()
         tickerWebSocketService.close()
+        aggTradeService.close()
         httpClient.close()
+        tradingHttpClient.close()
         newsService.close()
     }
 }

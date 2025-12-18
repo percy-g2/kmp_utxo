@@ -310,6 +310,20 @@ fun CoinDetailScreen(
                                 )
                             }
 
+                            // Trading Engine Panel
+                            item {
+                                ui.components.TradingPanel(
+                                    tradingEnabled = state.tradingEnabled,
+                                    currentSignal = state.currentSignal,
+                                    orderBookImbalance = state.orderBookImbalance,
+                                    tradeFlowMetrics = state.tradeFlowMetrics,
+                                    riskStatus = state.riskStatus,
+                                    onTradingEnabledChange = { enabled ->
+                                        viewModel.setTradingEnabled(enabled, symbol)
+                                    }
+                                )
+                            }
+
                             // News Section Header
                             item {
                                 Text(
