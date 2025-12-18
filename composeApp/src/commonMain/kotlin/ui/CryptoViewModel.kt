@@ -65,25 +65,6 @@ class CryptoViewModel : ViewModel() {
 
     val searchQuery: StateFlow<String>
         field = MutableStateFlow("")
-    
-    // Helper properties to access mutable backing fields
-    private val mutableTrades: MutableStateFlow<Map<String, List<UiKline>>>
-        get() = trades as MutableStateFlow<Map<String, List<UiKline>>>
-    
-    private val mutableSymbols: MutableStateFlow<List<TickerDataInfo>>
-        get() = symbols as MutableStateFlow<List<TickerDataInfo>>
-    
-    private val mutableTradingPairs: MutableStateFlow<List<TradingPair>>
-        get() = tradingPairs as MutableStateFlow<List<TradingPair>>
-    
-    private val mutableAllTickerDataMap: MutableStateFlow<Map<String, TickerData>>
-        get() = allTickerDataMap as MutableStateFlow<Map<String, TickerData>>
-    
-    private val mutableIsLoading: MutableStateFlow<Boolean>
-        get() = isLoading as MutableStateFlow<Boolean>
-    
-    private val mutableSearchQuery: MutableStateFlow<String>
-        get() = searchQuery as MutableStateFlow<String>
 
     private var webSocketJob: Job? = null
     private var lastUpdateTime = 0L
@@ -237,14 +218,14 @@ class CryptoViewModel : ViewModel() {
 
     fun setSearchQuery(query: String) {
         viewModelScope.launch {
-            mutableSearchQuery.value = query
+            searchQuery.value = query
         }
     }
 
     fun setSelectedTradingPair(pair: String) {
         viewModelScope.launch {
-            mutableIsLoading.value = true
-            mutableSearchQuery.value = ""
+            isLoading.value = true
+            searchQuery.value = ""
 
             store.update { currentSettings ->
                 currentSettings?.copy(selectedTradingPair = pair)
@@ -252,7 +233,7 @@ class CryptoViewModel : ViewModel() {
             }
 
             if (filteredTickerDataMap.value.isNotEmpty()) {
-                mutableIsLoading.value = false
+                isLoading.value = false
             }
         }
     }
@@ -260,7 +241,7 @@ class CryptoViewModel : ViewModel() {
     private fun updateDisplayedPairs() {
         viewModelScope.launch {
             if (filteredTickerDataMap.value.isNotEmpty()) {
-                mutableIsLoading.value = false
+                isLoading.value = false
             }
         }
     }
@@ -288,7 +269,7 @@ class CryptoViewModel : ViewModel() {
             val currentTrades = withContext(Dispatchers.Main) { trades.value.keys }
             val newSymbols = if (forceRefresh) {
                 withContext(Dispatchers.Main) {
-                    mutableTrades.value = emptyMap()
+                    trades.value = emptyMap()
                 }
                 visibleSymbols
             } else {
@@ -307,7 +288,7 @@ class CryptoViewModel : ViewModel() {
                         val newData = httpClient.fetchUiKlines(batch)
                         // Update state on main thread - only keep visible symbols + new data to reduce memory footprint
                         withContext(Dispatchers.Main) {
-                            mutableTrades.value = trades.value.filterKeys { it in visibleSymbols } + newData
+                            trades.value = trades.value.filterKeys { it in visibleSymbols } + newData
                         }
                     } catch (e: CancellationException) {
                         throw e
@@ -344,8 +325,8 @@ class CryptoViewModel : ViewModel() {
                 
                 // Update state on main thread
                 withContext(Dispatchers.Main) {
-                    mutableTradingPairs.value = tradingPairsList
-                    mutableSymbols.value = symbolsList
+                    tradingPairs.value = tradingPairsList
+                    symbols.value = symbolsList
                 }
             } catch (e: CancellationException) {
                 throw e
@@ -384,7 +365,7 @@ class CryptoViewModel : ViewModel() {
         
         // Clear trades data to free memory when not on Market screen
         viewModelScope.launch {
-            mutableTrades.value = emptyMap()
+            trades.value = emptyMap()
         }
     }
     
@@ -422,7 +403,7 @@ class CryptoViewModel : ViewModel() {
                     }
                     
                     withContext(Dispatchers.Main) {
-                        mutableAllTickerDataMap.value = updatedTickerMap
+                        allTickerDataMap.value = updatedTickerMap
                     }
                 }
             } catch (e: CancellationException) {
@@ -533,9 +514,9 @@ class CryptoViewModel : ViewModel() {
 
                 // Update state on main thread - limit trades to visible symbols only to reduce memory
                 withContext(Dispatchers.Main) {
-                    mutableAllTickerDataMap.value = updatedTickerMap
+                    allTickerDataMap.value = updatedTickerMap
                     // Only keep trades with enough data points, and limit to reduce memory pressure
-                    mutableTrades.value = updatedTrades.filterValues { it.size > 50 }
+                    trades.value = updatedTrades.filterValues { it.size > 50 }
                     updateDisplayedPairs()
                 }
             }.onFailure {
@@ -578,7 +559,7 @@ class CryptoViewModel : ViewModel() {
                     val newData = httpClient.fetchUiKlines(listOf(symbol))
                     // Update state on main thread
                     withContext(Dispatchers.Main) {
-                        mutableTrades.value += newData
+                        trades.value += newData
                     }
                 }
             } catch (e: CancellationException) {

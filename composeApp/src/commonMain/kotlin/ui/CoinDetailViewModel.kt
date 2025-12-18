@@ -52,10 +52,6 @@ class CoinDetailViewModel : ViewModel() {
     val state: StateFlow<CoinDetailState>
         field = MutableStateFlow(CoinDetailState())
     
-    // Helper to access mutable backing field
-    private val mutableState: MutableStateFlow<CoinDetailState>
-        get() = state as MutableStateFlow<CoinDetailState>
-    
     // Track the current loading job to cancel it when a new one starts
     private var currentLoadJob: kotlinx.coroutines.Job? = null
     
@@ -72,7 +68,7 @@ class CoinDetailViewModel : ViewModel() {
         viewModelScope.launch {
             orderBookService.orderBookData.collect { orderBook ->
                 // Clear error when order book data is successfully received
-                mutableState.update { 
+                state.update { 
                     it.copy(
                         orderBookData = orderBook,
                         orderBookError = if (orderBook != null) null else it.orderBookError
@@ -84,7 +80,7 @@ class CoinDetailViewModel : ViewModel() {
         // Observe order book errors
         viewModelScope.launch {
             orderBookService.error.collect { error ->
-                mutableState.update { it.copy(orderBookError = error) }
+                state.update { it.copy(orderBookError = error) }
             }
         }
         
@@ -109,10 +105,10 @@ class CoinDetailViewModel : ViewModel() {
                                 // Queue the update when tooltip is visible
                                 queuedKlineUpdates.add(newKline)
                                 // Only update ticker, keep klines unchanged
-                                mutableState.update { it.copy(ticker = ticker) }
+                                state.update { it.copy(ticker = ticker) }
                             } else {
                                 // Apply immediately when tooltip is not visible
-                                mutableState.update { currentState ->
+                                state.update { currentState ->
                                     val currentKlines = currentState.klines
                                     val newKlinesList = if (currentKlines.size >= MAX_KLINES) {
                                         currentKlines.drop(1) + newKline
@@ -128,7 +124,7 @@ class CoinDetailViewModel : ViewModel() {
                         }
                     } else {
                         // Initial load or no klines yet - just update ticker
-                        mutableState.update { it.copy(ticker = ticker) }
+                        state.update { it.copy(ticker = ticker) }
                     }
                 }
             }
@@ -142,7 +138,7 @@ class CoinDetailViewModel : ViewModel() {
      */
     private suspend fun updateNewsState(update: (CoinDetailState) -> CoinDetailState) {
         newsUpdateMutex.withLock {
-            mutableState.value = update(state.value)
+            state.value = update(state.value)
         }
     }
 
@@ -158,7 +154,7 @@ class CoinDetailViewModel : ViewModel() {
             AppLogger.logger.d { "CoinDetailViewModel: Starting loadCoinData for $symbol with providers: $enabledRssProviders" }
             
             // Reset state and set loading flags
-            mutableState.value = CoinDetailState(
+            state.value = CoinDetailState(
                 isLoadingChart = true,
                 isLoadingTicker = true,
                 isLoadingNews = enabledRssProviders.isNotEmpty(),
@@ -176,7 +172,7 @@ class CoinDetailViewModel : ViewModel() {
                 try {
                     val klinesResult = httpClient.fetchUiKlines(listOf(symbol))
                     val klines = klinesResult[symbol] ?: emptyList()
-                    mutableState.update {
+                    state.update {
                         it.copy(
                             klines = klines,
                             isLoadingChart = false
@@ -189,7 +185,7 @@ class CoinDetailViewModel : ViewModel() {
                     throw e
                 } catch (e: Exception) {
                     AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading klines for $symbol" }
-                    mutableState.update { it.copy(isLoadingChart = false) }
+                    state.update { it.copy(isLoadingChart = false) }
                 }
             }
             
@@ -197,7 +193,7 @@ class CoinDetailViewModel : ViewModel() {
             launch {
                 try {
                     val ticker = httpClient.fetchTicker24hr(symbol)
-                    mutableState.update {
+                    state.update {
                         it.copy(
                             ticker = ticker,
                             isLoadingTicker = false
@@ -210,7 +206,7 @@ class CoinDetailViewModel : ViewModel() {
                     throw e
                 } catch (e: Exception) {
                     AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading ticker for $symbol" }
-                    mutableState.update { it.copy(isLoadingTicker = false) }
+                    state.update { it.copy(isLoadingTicker = false) }
                 }
             }
             
@@ -280,14 +276,14 @@ class CoinDetailViewModel : ViewModel() {
                         providerJobs.awaitAll()
                         
                         // Mark news loading as complete
-                        mutableState.update { it.copy(isLoadingNews = false) }
+                        state.update { it.copy(isLoadingNews = false) }
                         
                         AppLogger.logger.i { "CoinDetailViewModel: Finished loading news - ${state.value.news.size} items" }
                     } catch (e: kotlinx.coroutines.CancellationException) {
                         throw e
                     } catch (e: Exception) {
                         AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading news for $symbol" }
-                        mutableState.update {
+                        state.update {
                             it.copy(
                                 isLoadingNews = false,
                                 loadingNewsProviders = emptySet()
@@ -297,7 +293,7 @@ class CoinDetailViewModel : ViewModel() {
                 }
             } else {
                 // No providers enabled, mark news as not loading
-                mutableState.update { it.copy(isLoadingNews = false, loadingNewsProviders = emptySet()) }
+                state.update { it.copy(isLoadingNews = false, loadingNewsProviders = emptySet()) }
             }
         }
     }
@@ -344,7 +340,7 @@ class CoinDetailViewModel : ViewModel() {
                     
                     // Clear queue and update state
                     queuedKlineUpdates.clear()
-                    mutableState.update { it.copy(klines = updatedKlines) }
+                    state.update { it.copy(klines = updatedKlines) }
                     
                     AppLogger.logger.d { "CoinDetailViewModel: Applied $queueSize queued kline updates" }
                 }
