@@ -126,8 +126,8 @@ android {
         applicationId = "org.androdevlinux.utxo"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 26
-        versionName = "0.2.6"
+        versionCode = 28
+        versionName = "0.2.8"
     }
     packaging {
         resources {
