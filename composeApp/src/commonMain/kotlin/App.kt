@@ -77,6 +77,20 @@ fun App(
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
     val networkObserver = remember { NetworkConnectivityObserver() }
     val networkStatus by networkObserver.observe().collectAsState(initial = null)
+    
+    // Handle coin detail intent from widget
+    LaunchedEffect(Unit) {
+        // Check for pending coin detail navigation (from widget click)
+        val pendingCoinDetail = getPendingCoinDetailFromIntent()
+        if (pendingCoinDetail != null) {
+            navController.navigate(
+                CoinDetail(
+                    symbol = pendingCoinDetail.first,
+                    displaySymbol = pendingCoinDetail.second
+                )
+            )
+        }
+    }
 
     // Simplified navigation state management
     LaunchedEffect(navBackStackEntry?.destination?.id) {
@@ -257,6 +271,8 @@ expect fun openLink(link: String)
 expect fun createNewsHttpClient(): HttpClient
 
 expect fun wrapRssUrlForPlatform(url: String): String
+
+expect fun getPendingCoinDetailFromIntent(): Pair<String, String>?
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect class NetworkConnectivityObserver() {

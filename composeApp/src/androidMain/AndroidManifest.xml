@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -33,6 +35,25 @@
                 android:name="org.androdevlinux.utxo.AppInitializer"
                 android:value="androidx.startup" />
         </provider>
+
+        <!-- Widget Provider -->
+        <receiver
+            android:name=".widget.FavoritesWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="org.androdevlinux.utxo.widget.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_favorites_info" />
+        </receiver>
+
+        <!-- Widget Service -->
+        <service
+            android:name=".widget.service.FavoritesWidgetService"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -101,3 +101,7 @@ actual fun wrapRssUrlForPlatform(url: String): String {
 actual fun openLink(link: String) {
     Desktop.getDesktop().browse(URI(link));
 }
+
+actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {
+    return null // Not applicable for desktop
+}

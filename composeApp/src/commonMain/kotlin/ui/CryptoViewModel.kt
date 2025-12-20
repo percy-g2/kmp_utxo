@@ -465,7 +465,20 @@ class CryptoViewModel : ViewModel() {
                     } catch (e: Exception) {
                         isWebSocketConnected = false
                         if (isActive) {
-                            AppLogger.logger.e(throwable = e) { "WebSocket error" }
+                            // Don't log network resolution errors as errors - they're expected when network is unavailable
+                            // Check error message for network-related errors (cross-platform compatible)
+                            val errorMessage = e.message?.lowercase() ?: ""
+                            val isNetworkError = errorMessage.contains("unresolved", ignoreCase = true) ||
+                                    errorMessage.contains("unknown host", ignoreCase = true) ||
+                                    errorMessage.contains("connect", ignoreCase = true) ||
+                                    errorMessage.contains("network", ignoreCase = true) ||
+                                    errorMessage.contains("unreachable", ignoreCase = true)
+                            
+                            if (isNetworkError) {
+                                AppLogger.logger.d(throwable = e) { "WebSocket network error (expected when offline)" }
+                            } else {
+                                AppLogger.logger.e(throwable = e) { "WebSocket error" }
+                            }
                             delay(5000) // Wait before reconnecting
                         }
                     }
