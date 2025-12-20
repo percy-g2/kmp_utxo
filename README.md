@@ -50,6 +50,19 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 - **Persistent favorites** stored locally across app sessions
 - **Quick navigation** to favorite coin details
 
+### 📱 Widgets (Android Only)
+- **Home screen widget** displaying up to 4 favorite cryptocurrency pairs
+- **Real-time price data** with automatic updates every 5 minutes
+- **Interactive sparkline charts** showing 1000 data points (1-second intervals)
+- **Price information** including:
+  - Current price with proper formatting
+  - 24-hour price change percentage (color-coded)
+  - Trading volume (formatted for readability)
+- **Theme-aware design** that matches your app theme (light/dark mode)
+- **Quick navigation** - Tap any favorite to open its coin detail screen
+- **Manual refresh** button for instant updates
+- **Rounded corners** and modern Material Design styling
+
 ### 📈 Coin Detail Screen
 - **Interactive candlestick charts** with price history visualization
 - **24-hour ticker statistics** including:
@@ -135,6 +148,18 @@ For complete agent specifications, see [`AGENT_RULES.md`](AGENT_RULES.md).
 - Minimum SDK: 24
 - Target SDK: 34
 - Uses Material Design 3 components
+- **Home Screen Widget** - Add the favorites widget to your home screen:
+  1. Long-press on home screen
+  2. Select "Widgets" from the menu
+  3. Find "UTXO Favorites" widget
+  4. Drag to desired location
+  5. Widget automatically displays your favorite cryptocurrencies
+- Widget features:
+  - Automatic refresh every 5 minutes
+  - Manual refresh button
+  - Tap any coin to view details
+  - Theme-aware (matches app theme)
+  - Displays up to 4 favorites with charts
 
 ### iOS
 - Minimum iOS version: 15.0
