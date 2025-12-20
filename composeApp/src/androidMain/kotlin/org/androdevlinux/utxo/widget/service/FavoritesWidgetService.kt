@@ -25,6 +25,7 @@ import android.widget.ImageView
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
+import ktx.toCryptoSymbol
 
 class FavoritesWidgetService : Service() {
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -185,10 +186,10 @@ class FavoritesWidgetService : Service() {
                                 views.setTextViewText(getVolumeViewId(itemId), formattedVolume)
                                 views.setTextColor(getVolumeViewId(itemId), secondaryTextColor)
                                 
-                                // Set price
+                                // Set price with trading pair symbol
                                 views.setTextViewText(
                                     getPriceViewId(itemId),
-                                    formatPrice(tickerData.lastPrice)
+                                    formatPrice(tickerData.lastPrice, quoteSymbol)
                                 )
                                 views.setTextColor(getPriceViewId(itemId), textColor)
                                 
@@ -320,13 +321,19 @@ class FavoritesWidgetService : Service() {
         return Pair(symbol, "")
     }
 
-    private fun formatPrice(price: String): String {
+    private fun formatPrice(price: String, quoteSymbol: String): String {
         val priceValue = price.toDoubleOrNull() ?: return price
-        return when {
+        val formattedPrice = when {
             priceValue >= 1000 -> DecimalFormat("#,###", DecimalFormatSymbols(Locale.US)).format(priceValue)
             priceValue >= 1 -> DecimalFormat("#,##0.00", DecimalFormatSymbols(Locale.US)).format(priceValue)
             priceValue >= 0.01 -> DecimalFormat("#,##0.0000", DecimalFormatSymbols(Locale.US)).format(priceValue)
             else -> DecimalFormat("#,##0.00000000", DecimalFormatSymbols(Locale.US)).format(priceValue)
+        }
+        // Append trading pair symbol if available
+        return if (quoteSymbol.isNotEmpty()) {
+            "$formattedPrice ${quoteSymbol.toCryptoSymbol()}"
+        } else {
+            formattedPrice
         }
     }
 
