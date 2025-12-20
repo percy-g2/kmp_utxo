@@ -123,3 +123,7 @@ actual fun wrapRssUrlForPlatform(url: String): String {
     // No CORS restrictions on iOS, return URL as-is
     return url
 }
+
+actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {
+    return null // Not applicable for iOS widgets
+}

@@ -67,6 +67,10 @@ actual fun wrapRssUrlForPlatform(url: String): String {
     return url
 }
 
+actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {
+    return org.androdevlinux.utxo.CoinDetailIntentHandler.getPendingCoinDetail()
+}
+
 actual class NetworkConnectivityObserver {
     private val context = ContextProvider.getContext()
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

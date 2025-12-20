@@ -68,6 +68,10 @@ actual fun createNewsHttpClient(): HttpClient {
     }
 }
 
+actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {
+    return null // Not applicable for WASM/web
+}
+
 actual fun wrapRssUrlForPlatform(url: String): String {
     // Use CORS proxy for WASM/web platform to bypass CORS restrictions
     // Using allorigins.win as a reliable CORS proxy service
