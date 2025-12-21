@@ -111,5 +111,7 @@ actual fun openLink(link: String) {
 }
 
 actual fun syncSettingsToWidget(settings: ui.Settings) {
-    // No-op for Android - widget reads directly from settings file
+    // Refresh widget immediately when favorites change
+    val context = ContextProvider.getContext()
+    org.androdevlinux.utxo.widget.FavoritesWidgetProvider.updateAllWidgets(context)
 }
