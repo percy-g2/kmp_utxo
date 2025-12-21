@@ -9,6 +9,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import org.androdevlinux.utxo.MainActivity
 import org.androdevlinux.utxo.R
+import org.androdevlinux.utxo.widget.helper.WidgetRefreshHelper
 import org.androdevlinux.utxo.widget.service.FavoritesWidgetService
 
 class FavoritesWidgetProvider : AppWidgetProvider() {
@@ -47,7 +48,7 @@ class FavoritesWidgetProvider : AppWidgetProvider() {
                 updateAppWidget(context, appWidgetManager, appWidgetId)
             }
             // Schedule next refresh after manual refresh
-            org.androdevlinux.utxo.widget.helper.WidgetRefreshHelper.scheduleNextRefresh(context)
+            WidgetRefreshHelper.scheduleNextRefresh(context)
         }
     }
 

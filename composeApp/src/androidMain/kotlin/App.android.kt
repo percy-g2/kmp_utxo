@@ -1,3 +1,4 @@
+
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -7,11 +8,14 @@ import android.net.NetworkRequest
 import androidx.core.net.toUri
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.logging.*
-import io.ktor.client.plugins.websocket.*
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.SIMPLE
+import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -19,6 +23,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
 import kotlinx.serialization.json.Json
 import org.androdevlinux.utxo.ContextProvider
+import org.androdevlinux.utxo.widget.FavoritesWidgetProvider
 import ui.Settings
 
 actual fun getKStore(): KStore<Settings> {
@@ -110,8 +115,8 @@ actual fun openLink(link: String) {
     context.startActivity(intent)
 }
 
-actual fun syncSettingsToWidget(settings: ui.Settings) {
+actual fun syncSettingsToWidget(settings: Settings) {
     // Refresh widget immediately when favorites change
     val context = ContextProvider.getContext()
-    org.androdevlinux.utxo.widget.FavoritesWidgetProvider.updateAllWidgets(context)
+    FavoritesWidgetProvider.updateAllWidgets(context)
 }
