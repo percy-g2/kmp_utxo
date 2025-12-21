@@ -105,3 +105,7 @@ actual fun openLink(link: String) {
 actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {
     return null // Not applicable for desktop
 }
+
+actual fun syncSettingsToWidget(settings: ui.Settings) {
+    // No-op for desktop - no widgets
+}

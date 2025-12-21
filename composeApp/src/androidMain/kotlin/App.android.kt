@@ -109,3 +109,7 @@ actual fun openLink(link: String) {
     }
     context.startActivity(intent)
 }
+
+actual fun syncSettingsToWidget(settings: ui.Settings) {
+    // No-op for Android - widget reads directly from settings file
+}

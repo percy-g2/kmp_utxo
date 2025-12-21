@@ -73,6 +73,11 @@ fun App(
     val navController: NavHostController = rememberNavController()
     val settingsState by store.updates.collectAsState(initial = ui.Settings(appTheme = AppTheme.System))
     val isDarkTheme = isDarkTheme(settingsState)
+    
+    // Sync settings to widget (iOS App Group)
+    LaunchedEffect(settingsState) {
+        settingsState?.let { syncSettingsToWidget(it) }
+    }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
     val networkObserver = remember { NetworkConnectivityObserver() }
@@ -273,6 +278,8 @@ expect fun createNewsHttpClient(): HttpClient
 expect fun wrapRssUrlForPlatform(url: String): String
 
 expect fun getPendingCoinDetailFromIntent(): Pair<String, String>?
+
+expect fun syncSettingsToWidget(settings: ui.Settings)
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect class NetworkConnectivityObserver() {
