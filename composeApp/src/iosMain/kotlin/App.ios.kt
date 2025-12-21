@@ -16,6 +16,8 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.serializer
 import platform.Foundation.NSCachesDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSURL
@@ -30,6 +32,7 @@ import platform.Network.nw_path_status_satisfied
 import platform.UIKit.UIApplication
 import platform.darwin.DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL
 import platform.darwin.dispatch_queue_create
+import kotlinx.cinterop.ExperimentalForeignApi
 import logging.AppLogger
 import ui.Settings
 
@@ -125,5 +128,75 @@ actual fun wrapRssUrlForPlatform(url: String): String {
 }
 
 actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {
-    return null // Not applicable for iOS widgets
+    // Read from UserDefaults (set by Swift URL handler)
+    val userDefaults = platform.Foundation.NSUserDefaults.standardUserDefaults
+    val symbol = userDefaults.stringForKey("pendingCoinSymbol") as? String
+    val displaySymbol = userDefaults.stringForKey("pendingCoinDisplaySymbol") as? String
+    
+    if (symbol != null && displaySymbol != null && symbol.isNotEmpty()) {
+        // Clear after reading
+        userDefaults.removeObjectForKey("pendingCoinSymbol")
+        userDefaults.removeObjectForKey("pendingCoinDisplaySymbol")
+        userDefaults.synchronize()
+        return Pair(symbol, displaySymbol)
+    }
+    
+    return null
+}
+
+actual fun syncSettingsToWidget(settings: ui.Settings) {
+    // Sync settings to App Group for widget access using UserDefaults
+    val appGroupId = "group.org.androdevlinux.utxo"
+    val sharedDefaults = platform.Foundation.NSUserDefaults(suiteName = appGroupId)
+    
+    if (sharedDefaults != null) {
+        try {
+            // Filter out empty strings from favorites
+            val validFavorites = settings.favPairs.filter { it.isNotEmpty() && it.isNotBlank() }
+            
+            // Sync favorites as JSON string
+            val favPairsJson = kotlinx.serialization.json.Json { 
+                ignoreUnknownKeys = true 
+            }.encodeToString(
+                ListSerializer(String.serializer()), 
+                validFavorites
+            )
+            
+            AppLogger.logger.d { "Syncing to App Group: favPairs=${validFavorites}, JSON=$favPairsJson" }
+            
+            // Store in UserDefaults
+            // Note: In Kotlin/Native, NSUserDefaults uses setObject for Any? type
+            sharedDefaults.setObject(favPairsJson, forKey = "favPairs")
+            sharedDefaults.setObject(settings.selectedTradingPair, forKey = "selectedTradingPair")
+            sharedDefaults.setObject(settings.appTheme.name, forKey = "appTheme")
+            sharedDefaults.synchronize()
+            
+            // Verify it was written
+            val verifyJson = sharedDefaults.stringForKey("favPairs") as? String
+            AppLogger.logger.d { "Verification - Read back from UserDefaults: $verifyJson" }
+            
+            AppLogger.logger.d { "Successfully synced settings to App Group UserDefaults: favPairs=${validFavorites}" }
+            
+            // Reload widget timeline immediately when favorites change
+            reloadWidgetTimeline()
+        } catch (e: Exception) {
+            AppLogger.logger.e(throwable = e) { "Failed to sync settings to widget: ${e.message}" }
+        }
+    } else {
+        AppLogger.logger.w { "App Group UserDefaults not available: $appGroupId - Make sure App Groups capability is configured" }
+    }
+}
+
+private fun reloadWidgetTimeline() {
+    try {
+        // Use UserDefaults flag that Swift can observe instead of NSNotification
+        // This is simpler and avoids NSNotificationName API issues
+        val userDefaults = platform.Foundation.NSUserDefaults.standardUserDefaults
+        val currentTime = platform.Foundation.NSDate()
+        userDefaults.setObject(currentTime, forKey = "WidgetReloadRequested")
+        userDefaults.synchronize()
+        AppLogger.logger.d { "Set widget reload flag in UserDefaults" }
+    } catch (e: Exception) {
+        AppLogger.logger.w(throwable = e) { "Failed to reload widget timeline: ${e.message}" }
+    }
 }

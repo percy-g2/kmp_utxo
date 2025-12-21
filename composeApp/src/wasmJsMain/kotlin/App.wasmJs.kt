@@ -72,6 +72,10 @@ actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {
     return null // Not applicable for WASM/web
 }
 
+actual fun syncSettingsToWidget(settings: ui.Settings) {
+    // No-op for WASM/web - no widgets
+}
+
 actual fun wrapRssUrlForPlatform(url: String): String {
     // Use CORS proxy for WASM/web platform to bypass CORS restrictions
     // Using allorigins.win as a reliable CORS proxy service

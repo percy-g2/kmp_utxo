@@ -50,7 +50,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 - **Persistent favorites** stored locally across app sessions
 - **Quick navigation** to favorite coin details
 
-### 📱 Widgets (Android Only)
+### 📱 Widgets
 - **Home screen widget** displaying up to 4 favorite cryptocurrency pairs
 - **Real-time price data** with automatic updates every 5 minutes
 - **Interactive sparkline charts** showing 1000 data points (1-second intervals)
@@ -61,7 +61,9 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 - **Theme-aware design** that matches your app theme (light/dark mode)
 - **Quick navigation** - Tap any favorite to open its coin detail screen
 - **Manual refresh** button for instant updates
-- **Rounded corners** and modern Material Design styling
+- **Platform-specific features:**
+  - **Android**: Rounded corners and modern Material Design styling
+  - **iOS**: Native WidgetKit integration with medium and large widget sizes (2 and 4 favorites respectively)
 
 ### 📈 Coin Detail Screen
 - **Interactive candlestick charts** with price history visualization
@@ -165,6 +167,21 @@ For complete agent specifications, see [`AGENT_RULES.md`](AGENT_RULES.md).
 - Minimum iOS version: 15.0
 - Requires Xcode 14.0+
 - Uses SwiftUI for app lifecycle
+- **Home Screen Widget** - Add the favorites widget to your home screen:
+  1. Long-press on home screen
+  2. Tap the "+" button in the top-left corner
+  3. Search for "UTXO" or scroll to find "UTXO Favorites"
+  4. Select widget size (Medium or Large)
+  5. Tap "Add Widget" and position on home screen
+  6. Widget automatically displays your favorite cryptocurrencies
+- Widget features:
+  - Automatic refresh every 5 minutes (managed by iOS WidgetKit)
+  - Manual refresh button (↻ icon in header)
+  - Tap any coin to view details (deep linking)
+  - Theme-aware (respects system light/dark mode)
+  - Medium widget: Displays 2 favorites with charts
+  - Large widget: Displays 4 favorites with charts
+  - Empty state message when no favorites are added
 
 ### Web
 - Built with Kotlin/Wasm
