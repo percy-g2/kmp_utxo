@@ -18,16 +18,20 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
@@ -40,6 +44,7 @@ import androidx.navigation.serialization.generateHashCode
 import androidx.navigation.toRoute
 import io.github.xxfast.kstore.KStore
 import io.ktor.client.HttpClient
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import logging.AppLogger
 import model.CoinDetail
@@ -82,10 +87,19 @@ fun App(
     var selectedItem by rememberSaveable { mutableIntStateOf(0) }
     val networkObserver = remember { NetworkConnectivityObserver() }
     val networkStatus by networkObserver.observe().collectAsState(initial = null)
+    val lifecycleOwner = LocalLifecycleOwner.current
     
     // Handle coin detail intent from widget
-    LaunchedEffect(Unit) {
-        // Check for pending coin detail navigation (from widget click)
+    // Check whenever NavHost is ready and we're not on CoinDetail screen
+    // This handles app launch case
+    LaunchedEffect(navBackStackEntry?.destination?.id) {
+        // Only proceed if NavHost is ready
+        val currentDestination = navBackStackEntry?.destination?.id ?: return@LaunchedEffect
+        
+        // Don't check if we're already on CoinDetail screen
+        if (currentDestination == CoinDetail.serializer().generateHashCode()) return@LaunchedEffect
+        
+        // Check for pending coin detail
         val pendingCoinDetail = getPendingCoinDetailFromIntent()
         if (pendingCoinDetail != null) {
             navController.navigate(
@@ -94,6 +108,53 @@ fun App(
                     displaySymbol = pendingCoinDetail.second
                 )
             )
+        } else {
+            // If not found immediately, check periodically for up to 2 seconds
+            // This covers the case where URL handler sets UserDefaults slightly after URL is opened
+            var elapsed = 0L
+            val checkInterval = 200L // Check every 200ms
+            val maxWaitTime = 2000L // Stop after 2 seconds
+            
+            while (elapsed < maxWaitTime) {
+                delay(checkInterval)
+                elapsed += checkInterval
+                
+                val foundPendingCoinDetail = getPendingCoinDetailFromIntent()
+                if (foundPendingCoinDetail != null) {
+                    navController.navigate(
+                        CoinDetail(
+                            symbol = foundPendingCoinDetail.first,
+                            displaySymbol = foundPendingCoinDetail.second
+                        )
+                    )
+                    break // Stop checking once we've navigated
+                }
+            }
+        }
+    }
+    
+    // Check for pending coin detail when app resumes (for when widget is clicked while app is already running)
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
+                // Only check if NavHost is ready and we're not on CoinDetail screen
+                val currentDestination = navBackStackEntry?.destination?.id
+                if (currentDestination != null && currentDestination != CoinDetail.serializer().generateHashCode()) {
+                    val pendingCoinDetail = getPendingCoinDetailFromIntent()
+                    if (pendingCoinDetail != null) {
+                        navController.navigate(
+                            CoinDetail(
+                                symbol = pendingCoinDetail.first,
+                                displaySymbol = pendingCoinDetail.second
+                            )
+                        )
+                    }
+                }
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
         }
     }
 
