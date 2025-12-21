@@ -8,13 +8,14 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
-import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.number
 import kotlinx.datetime.toLocalDateTime
 import logging.AppLogger
 import model.TradingPair
 import kotlin.math.roundToInt
 import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 fun String.toCryptoSymbol(): String = when(this.uppercase()) {
     "BTC" -> "₿"
@@ -130,8 +131,8 @@ fun String.formatNewsDate(): String {
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
         )
 
-        val month = monthNames[localDateTime.monthNumber - 1]
-        val day = localDateTime.dayOfMonth
+        val month = monthNames[localDateTime.month.number - 1]
+        val day = localDateTime.day
         val year = localDateTime.year
         val hour = localDateTime.hour
         val minute = localDateTime.minute
@@ -152,7 +153,7 @@ fun String.formatNewsDate(): String {
         try {
             // Try to extract time from common RSS formats as fallback
             extractDateAndTimeFallback(this)
-        } catch (e2: Exception) {
+        } catch (_: Exception) {
             // Last resort: return first 16 chars (date only) or original string
             if (this.length > 16) this.take(16) else this
         }
@@ -196,11 +197,6 @@ private fun extractDateAndTimeFallback(dateStr: String): String {
             if (dateMatch != null) {
                 // Found a date pattern, format it nicely
                 val monthNames = listOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-                val monthMap = mapOf(
-                    "Jan" to "Jan", "Feb" to "Feb", "Mar" to "Mar", "Apr" to "Apr",
-                    "May" to "May", "Jun" to "Jun", "Jul" to "Jul", "Aug" to "Aug",
-                    "Sep" to "Sep", "Oct" to "Oct", "Nov" to "Nov", "Dec" to "Dec"
-                )
 
                 when {
                     // Format: "Wed, 01 Jan 2024"
