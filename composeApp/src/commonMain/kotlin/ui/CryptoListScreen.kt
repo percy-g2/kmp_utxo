@@ -104,6 +104,7 @@ import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import theme.yellowDark
 import theme.yellowLight
+import ui.components.CryptoIcon
 import ui.components.LazyColumnScrollbar
 import ui.utils.calculateChartPoints
 import ui.utils.calculatePriceStats
@@ -908,6 +909,14 @@ fun TickerCard(
                     .height(IntrinsicSize.Min)
                     .padding(8.dp),
             ) {
+                // Crypto Icon
+                CryptoIcon(
+                    symbol = tickerData.symbol,
+                    tradingPair = actualTradingPair,
+                    modifier = Modifier.padding(end = 12.dp),
+                    size = 40.dp
+                )
+                
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 4.dp)
