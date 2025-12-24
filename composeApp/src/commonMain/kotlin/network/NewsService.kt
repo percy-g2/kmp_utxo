@@ -9,8 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import kotlin.time.Instant
-import ktx.parseRssDate
 import logging.AppLogger
 import model.NewsItem
 import wrapRssUrlForPlatform
