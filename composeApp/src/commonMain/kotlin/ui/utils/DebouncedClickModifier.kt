@@ -5,6 +5,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.semantics.Role
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -52,6 +54,10 @@ fun Modifier.debouncedClickable(
     // Using a simple class wrapper ensures state is stable across recompositions
     // without triggering recomposition when the timestamp changes
     val lastClickTimeHolder = remember { LastClickTimeHolder() }
+
+    // Get haptic feedback in composable scope
+    // LocalHapticFeedback is supported in Compose Multiplatform across all platforms
+    val hapticFeedback = LocalHapticFeedback.current
     
     return this.clickable(
         enabled = enabled,
@@ -69,7 +75,7 @@ fun Modifier.debouncedClickable(
                 
                 // Trigger haptic feedback only on accepted clicks
                 if (haptic) {
-                    triggerHapticFeedback(HapticStyle.Light)
+                    hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress)
                 }
                 
                 // Execute the click action
