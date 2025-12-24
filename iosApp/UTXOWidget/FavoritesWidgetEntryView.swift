@@ -33,22 +33,15 @@ struct MediumWidgetView: View {
                     .fontWeight(.bold)
                 Spacer()
                 Button(intent: RefreshWidgetIntent()) {
-                    RefreshIconView(isRefreshing: entry.isRefreshing)
+                    RefreshIconView(isRefreshing: entry.isRefreshing, rotationAngle: entry.rotationAngle)
                 }
-                .buttonStyle(PlainButtonStyle())
+                .buttonStyle(.plain)
+                .contentShape(Rectangle())
             }
             .padding(.bottom, 8)
             .padding(.horizontal, 0)
             
-            if entry.isLoading {
-                Spacer()
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }
-                Spacer()
-            } else if let errorMessage = entry.errorMessage {
+            if let errorMessage = entry.errorMessage {
                 Spacer()
                 Text(errorMessage)
                     .font(.caption)
@@ -88,22 +81,15 @@ struct LargeWidgetView: View {
                     .fontWeight(.bold)
                 Spacer()
                 Button(intent: RefreshWidgetIntent()) {
-                    RefreshIconView(isRefreshing: entry.isRefreshing)
+                    RefreshIconView(isRefreshing: entry.isRefreshing, rotationAngle: entry.rotationAngle)
                 }
-                .buttonStyle(PlainButtonStyle())
+                .buttonStyle(.plain)
+                .contentShape(Rectangle())
             }
             .padding(.bottom, 8)
             .padding(.horizontal, 0)
             
-            if entry.isLoading {
-                Spacer()
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }
-                Spacer()
-            } else if let errorMessage = entry.errorMessage {
+            if let errorMessage = entry.errorMessage {
                 Spacer()
                 Text(errorMessage)
                     .font(.caption)
@@ -189,16 +175,39 @@ struct FavoriteRowView: View {
     }
 }
 
-// Refresh icon with visual feedback
+// Refresh icon with visual feedback - styled like a native iOS button
 struct RefreshIconView: View {
     let isRefreshing: Bool
+    let rotationAngle: Double
     
     var body: some View {
-        Image(systemName: isRefreshing ? "arrow.clockwise.circle.fill" : "arrow.clockwise")
-            .font(.system(size: 14))
-            .foregroundColor(isRefreshing ? .blue.opacity(0.7) : .blue)
-            .rotationEffect(.degrees(isRefreshing ? 90 : 0))
-            .symbolEffect(.pulse, isActive: isRefreshing)
+        HStack(spacing: 4) {
+            Image(systemName: isRefreshing ? "arrow.clockwise.circle.fill" : "arrow.clockwise")
+                .font(.system(size: 12, weight: isRefreshing ? .semibold : .medium))
+                .foregroundColor(isRefreshing ? .white : .blue)
+                .rotationEffect(.degrees(rotationAngle))
+                .symbolEffect(.pulse, isActive: isRefreshing)
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(
+            Group {
+                if isRefreshing {
+                    // Active state - filled button
+                    RoundedRectangle(cornerRadius: 7)
+                        .fill(Color.blue)
+                } else {
+                    // Normal state - outlined button (more obviously tappable)
+                    RoundedRectangle(cornerRadius: 7)
+                        .fill(Color.blue.opacity(0.1))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 7)
+                                .strokeBorder(Color.blue.opacity(0.5), lineWidth: 1.5)
+                        )
+                }
+            }
+        )
+        .frame(height: 28)
     }
 }
 

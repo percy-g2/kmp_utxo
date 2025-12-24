@@ -30,6 +30,7 @@ struct FavoritesWidgetEntry: TimelineEntry {
     let isLoading: Bool
     let isRefreshing: Bool
     let errorMessage: String?
+    let rotationAngle: Double
     
     struct FavoriteCoin: Identifiable {
         let id: String
@@ -40,6 +41,15 @@ struct FavoritesWidgetEntry: TimelineEntry {
         let changePercent: Double
         let volume: String
         let chartData: [Double]
+    }
+    
+    init(date: Date, favorites: [FavoriteCoin], isLoading: Bool, isRefreshing: Bool, errorMessage: String?, rotationAngle: Double = 0) {
+        self.date = date
+        self.favorites = favorites
+        self.isLoading = isLoading
+        self.isRefreshing = isRefreshing
+        self.errorMessage = errorMessage
+        self.rotationAngle = rotationAngle
     }
 }
 
@@ -53,7 +63,8 @@ struct FavoritesTimelineProvider: TimelineProvider {
             ],
             isLoading: false,
             isRefreshing: false,
-            errorMessage: nil
+            errorMessage: nil,
+            rotationAngle: 0
         )
     }
 
@@ -62,36 +73,64 @@ struct FavoritesTimelineProvider: TimelineProvider {
         completion(entry)
     }
     
-    // Track refresh state
+    // Track refresh state and cache last favorites to show while refreshing
     static var isRefreshing = false
+    static var lastFavorites: [FavoritesWidgetEntry.FavoriteCoin] = []
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<FavoritesWidgetEntry>) -> ()) {
         Task {
+            let now = Date()
+            var allEntries: [FavoritesWidgetEntry] = []
+            
             // Check if this is a refresh request
             let wasRefreshing = FavoritesTimelineProvider.isRefreshing
             
-            // If refreshing, create an immediate refreshing entry for visual feedback
+            // If refreshing, create refreshing entry with visual feedback
             if wasRefreshing {
-                let refreshingEntry = FavoritesWidgetEntry(
-                    date: Date(),
-                    favorites: [],
-                    isLoading: true,
-                    isRefreshing: true,
-                    errorMessage: nil
-                )
-                // Schedule immediate refresh
-                let immediateTimeline = Timeline(entries: [refreshingEntry], policy: .after(Date()))
-                completion(immediateTimeline)
+                FavoritesTimelineProvider.isRefreshing = false
+                
+                // Create multiple refreshing entries with progressive rotation for smoother visual feedback
+                // This makes the refresh feel more responsive and animated
+                for i in 0..<3 {
+                    let rotationAngle = Double(i) * 120.0 // 0°, 120°, 240°
+                    let entryDate = now.addingTimeInterval(Double(i) * 0.1) // 0.1 seconds apart
+                    allEntries.append(FavoritesWidgetEntry(
+                        date: entryDate,
+                        favorites: FavoritesTimelineProvider.lastFavorites,
+                        isLoading: false,
+                        isRefreshing: true,
+                        errorMessage: nil,
+                        rotationAngle: rotationAngle
+                    ))
+                }
+                
+                // Small delay to ensure refreshing state is visible before loading new data
+                try? await Task.sleep(nanoseconds: 400_000_000) // 0.4 seconds
             }
             
             // Load actual data
             let entry = await loadFavoritesData()
             
+            // Cache the favorites for next refresh
+            FavoritesTimelineProvider.lastFavorites = entry.favorites
+            
+            // Add the final data entry after the refreshing entries (if any)
+            let finalEntryDate = wasRefreshing ? now.addingTimeInterval(0.8) : now
+            let finalEntry = FavoritesWidgetEntry(
+                date: finalEntryDate,
+                favorites: entry.favorites,
+                isLoading: false,
+                isRefreshing: false,
+                errorMessage: entry.errorMessage,
+                rotationAngle: 0
+            )
+            allEntries.append(finalEntry)
+            
             // Schedule next update in 5 minutes
             let nextUpdate = Calendar.current.date(byAdding: .minute, value: 5, to: Date()) ?? Date()
             // Use .after policy to ensure refresh happens at the scheduled time
             // iOS will refresh the widget around this time (may vary based on system heuristics)
-            let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
+            let timeline = Timeline(entries: allEntries, policy: .after(nextUpdate))
             completion(timeline)
         }
     }
@@ -145,7 +184,8 @@ struct FavoritesTimelineProvider: TimelineProvider {
                     favorites: [],
                     isLoading: false,
                     isRefreshing: false,
-                    errorMessage: "No favorites added"
+                    errorMessage: "No favorites added",
+                    rotationAngle: 0
                 )
             }
             
@@ -172,24 +212,24 @@ struct FavoritesTimelineProvider: TimelineProvider {
                 }
             }
             
-            let refreshing = FavoritesTimelineProvider.isRefreshing
-            FavoritesTimelineProvider.isRefreshing = false
+            // isRefreshing is already reset in getTimeline, so use false here
             return FavoritesWidgetEntry(
                 date: Date(),
                 favorites: Array(favoriteCoins),
                 isLoading: false,
-                isRefreshing: refreshing,
-                errorMessage: nil
+                isRefreshing: false,
+                errorMessage: nil,
+                rotationAngle: 0
             )
         } catch {
-            let refreshing = FavoritesTimelineProvider.isRefreshing
-            FavoritesTimelineProvider.isRefreshing = false
+            // isRefreshing is already reset in getTimeline, so use false here
             return FavoritesWidgetEntry(
                 date: Date(),
                 favorites: [],
                 isLoading: false,
-                isRefreshing: refreshing,
-                errorMessage: "Failed to load data"
+                isRefreshing: false,
+                errorMessage: "Failed to load data",
+                rotationAngle: 0
             )
         }
     }
@@ -206,6 +246,7 @@ struct FavoritesTimelineProvider: TimelineProvider {
         ],
         isLoading: false,
         isRefreshing: false,
-        errorMessage: nil
+        errorMessage: nil,
+        rotationAngle: 0
     )
 }
