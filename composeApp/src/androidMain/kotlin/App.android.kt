@@ -9,7 +9,9 @@ import androidx.core.net.toUri
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
 import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -56,13 +58,18 @@ actual fun createNewsHttpClient(): HttpClient {
         isLenient = true
         ignoreUnknownKeys = true
     }
-    return HttpClient(CIO) {
+    return HttpClient(Android) {
         install(Logging) {
             logger = Logger.SIMPLE
             level = LogLevel.NONE
         }
         install(ContentNegotiation) {
             json(json)
+        }
+        install(HttpTimeout) {
+            connectTimeoutMillis = 15_000 // 15 seconds
+            socketTimeoutMillis = 30_000 // 30 seconds (RSS feeds can be large)
+            requestTimeoutMillis = 45_000 // 45 seconds (allow more time for slow LineageOS connections)
         }
     }
 }
