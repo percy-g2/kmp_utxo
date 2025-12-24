@@ -40,6 +40,7 @@ import model.TradingPair
 import model.UiKline
 import network.HttpClient
 import theme.ThemeManager.store
+import syncSettingsToWidget
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
@@ -193,21 +194,35 @@ class CryptoViewModel : ViewModel() {
 
     fun addToFavorites(symbol: String) {
         viewModelScope.launch {
+            var updatedSettings: Settings? = null
             store.update { current ->
                 val prevFavs = current?.favPairs ?: emptyList()
-                if (symbol !in prevFavs && current is Settings) current.copy(favPairs = prevFavs + symbol)
-                else current
+                if (symbol !in prevFavs && current is Settings) {
+                    updatedSettings = current.copy(favPairs = prevFavs + symbol)
+                    updatedSettings
+                } else {
+                    current
+                }
             }
+            // Refresh widget immediately when favorites change
+            updatedSettings?.let { syncSettingsToWidget(it) }
         }
     }
 
     fun removeFromFavorites(symbol: String) {
         viewModelScope.launch {
+            var updatedSettings: Settings? = null
             store.update { current ->
                 val prevFavs = current?.favPairs ?: emptyList()
-                if (symbol in prevFavs && current is Settings) current.copy(favPairs = prevFavs - symbol)
-                else current
+                if (symbol in prevFavs && current is Settings) {
+                    updatedSettings = current.copy(favPairs = prevFavs - symbol)
+                    updatedSettings
+                } else {
+                    current
+                }
             }
+            // Refresh widget immediately when favorites change
+            updatedSettings?.let { syncSettingsToWidget(it) }
         }
     }
 

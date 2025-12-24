@@ -1,7 +1,6 @@
 package network
 
 import createNewsHttpClient
-import wrapRssUrlForPlatform
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
@@ -14,14 +13,13 @@ import kotlin.time.Instant
 import ktx.parseRssDate
 import logging.AppLogger
 import model.NewsItem
-import kotlin.time.Clock
+import wrapRssUrlForPlatform
 import kotlin.time.ExperimentalTime
 
 class NewsService {
     private val httpClient = createNewsHttpClient()
     private val cache = mutableMapOf<String, CachedNews>()
     private val cacheMutex = Mutex()
-    private val cacheDurationMs = 5 * 60 * 1000L // 5 minutes cache
 
     private data class CachedNews(
         val news: List<NewsItem>,
@@ -46,84 +44,6 @@ class NewsService {
         } catch (e: Exception) {
             AppLogger.logger.e(throwable = e) { "NewsService: Error fetching from ${provider.name}" }
             emptyList()
-        }
-    }
-
-    @OptIn(ExperimentalTime::class)
-    suspend fun fetchNewsForCoin(
-        coinSymbol: String,
-        enabledProviders: Set<String> = model.RssProvider.DEFAULT_ENABLED_PROVIDERS
-    ): Result<List<NewsItem>> {
-        return try {
-            // Make a local copy to ensure we're using the correct providers
-            val providersToUse = enabledProviders.toSet()
-            
-            // Include enabled providers in cache key to invalidate cache when providers change
-            val providersKey = providersToUse.sorted().joinToString(",")
-            val cacheKey = "${coinSymbol.uppercase()}_$providersKey"
-            
-            AppLogger.logger.d { "NewsService: Cache key for $coinSymbol: $cacheKey" }
-            AppLogger.logger.d { "NewsService: Enabled providers set: $providersToUse" }
-            
-            // Check cache first
-            cacheMutex.withLock {
-                val cached = cache[cacheKey]
-                if (cached != null && (Clock.System.now().toEpochMilliseconds() - cached.timestamp) < cacheDurationMs) {
-                    AppLogger.logger.d { "NewsService: Returning cached news (${cached.news.size} items) for key: $cacheKey" }
-                    return Result.success(cached.news)
-                } else {
-                    AppLogger.logger.d { "NewsService: Cache miss or expired for key: $cacheKey" }
-                }
-            }
-
-            // Fetch from multiple RSS sources
-            val allNews = mutableListOf<NewsItem>()
-            
-            // If no providers are enabled, return empty list immediately
-            if (providersToUse.isEmpty()) {
-                AppLogger.logger.d { "NewsService: No providers enabled, returning empty news list" }
-                return Result.success(emptyList())
-            }
-            
-            // Fetch only from enabled providers - use local copy
-            AppLogger.logger.d { "NewsService: Fetching news for $coinSymbol with enabled providers: $providersToUse" }
-            model.RssProvider.ALL_PROVIDERS.forEach { provider ->
-                if (providersToUse.contains(provider.id)) {
-                    AppLogger.logger.d { "NewsService: Fetching from ${provider.name} (${provider.id})" }
-                    val news = fetchRSSFeed(provider.url, coinSymbol)
-                    if (news != null) {
-                        allNews.addAll(news)
-                        AppLogger.logger.d { "NewsService: Found ${news.size} news items from ${provider.name} for $coinSymbol" }
-                    } else {
-                        AppLogger.logger.w { "NewsService: Failed to fetch or parse ${provider.name} RSS for $coinSymbol" }
-                    }
-                } else {
-                    AppLogger.logger.d { "NewsService: Skipping ${provider.name} (${provider.id}) - not enabled" }
-                }
-            }
-            AppLogger.logger.d { "NewsService: Total news items collected: ${allNews.size}" }
-
-            // Sort by parsed date (newest first) and limit to 50
-            val sortedNews = allNews
-                .sortedWith(compareByDescending<NewsItem> { item ->
-                    try {
-                        parseRssDate(item.pubDate)
-                    } catch (e: Exception) {
-                        // If parsing fails, use epoch 0 (oldest) so unparseable dates go to the end
-                        AppLogger.logger.w(throwable = e) { "NewsService: Failed to parse date '${item.pubDate}'" }
-                        Instant.fromEpochMilliseconds(0)
-                    }
-                })
-                .take(50)
-
-            // Update cache
-            cacheMutex.withLock {
-                cache[cacheKey] = CachedNews(sortedNews, Clock.System.now().toEpochMilliseconds())
-            }
-
-            Result.success(sortedNews)
-        } catch (e: Exception) {
-            Result.failure(e)
         }
     }
 
