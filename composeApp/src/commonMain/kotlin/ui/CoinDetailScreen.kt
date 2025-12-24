@@ -3,7 +3,6 @@ package ui
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -86,6 +85,7 @@ import ui.utils.animatedShimmerEffect
 import ui.utils.calculateChartPoints
 import ui.utils.calculatePriceStats
 import ui.utils.createPriceChangeGradientColors
+import ui.utils.debouncedClickable
 import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
 import ui.utils.limitKlinesForChart
@@ -793,7 +793,7 @@ fun PriceInfoSection(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { isExpanded = !isExpanded }
+                    .debouncedClickable { isExpanded = !isExpanded }
                     .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -996,7 +996,7 @@ fun NewsItemCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp)
-            .clickable {
+            .debouncedClickable {
                 if (newsItem.link.isNotEmpty()) {
                     try {
                         openLink(newsItem.link)

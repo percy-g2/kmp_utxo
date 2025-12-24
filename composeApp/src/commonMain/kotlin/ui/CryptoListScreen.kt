@@ -13,7 +13,6 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -108,6 +107,7 @@ import ui.components.LazyColumnScrollbar
 import ui.utils.calculateChartPoints
 import ui.utils.calculatePriceStats
 import ui.utils.createPriceChangeGradientColors
+import ui.utils.debouncedClickable
 import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
 import ui.utils.limitKlinesForChart
@@ -508,7 +508,7 @@ fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Uni
                 if (isSelected) MaterialTheme.colorScheme.primary
                 else MaterialTheme.colorScheme.surfaceVariant
             )
-            .clickable { onClick(quote) }
+            .debouncedClickable { onClick(quote) }
             .padding(horizontal = 12.dp, vertical = 8.dp)
             .animateContentSize(animationSpec = tween(200))
             .let {
@@ -709,7 +709,7 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
             ) {
                 Row(
                     Modifier
-                        .clickable {
+                        .debouncedClickable {
                             viewModel.updateSortKey(SortParams.Pair)
                         },
                 ) {
@@ -728,7 +728,7 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
                 )
                 Row(
                     Modifier
-                        .clickable {
+                        .debouncedClickable {
                             viewModel.updateSortKey(SortParams.Vol)
 
                         },
@@ -742,7 +742,7 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
             }
         Row(
             Modifier
-                .clickable {
+                .debouncedClickable {
                     viewModel.updateSortKey(SortParams.Price)
                 },
             horizontalArrangement = Arrangement.Center,
@@ -760,7 +760,7 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
             Modifier
                 .padding(start = 12.dp)
                 .width(86.dp)
-                .clickable {
+                .debouncedClickable {
                     viewModel.updateSortKey(SortParams.Change)
                 },
             horizontalArrangement = Arrangement.End,
@@ -900,7 +900,7 @@ fun TickerCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
-                .clickable { onClick(tickerData.symbol, symbolDisplayText.text) },
+                .debouncedClickable { onClick(tickerData.symbol, symbolDisplayText.text) },
             elevation = CardDefaults.cardElevation(8.dp)
         ) {
             Row(

@@ -197,9 +197,7 @@ private fun extractDateAndTimeFallback(dateStr: String): String {
             if (dateMatch != null) {
                 // Found a date pattern, format it nicely
                 val monthNames = listOf(
-                    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-                    "Sep", "Oct", "Nov", "Dec"
-                )
+                    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
                 when {
                     // Format: "Wed, 01 Jan 2024"
