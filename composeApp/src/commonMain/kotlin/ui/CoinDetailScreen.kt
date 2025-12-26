@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -40,6 +41,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -176,6 +178,7 @@ fun CoinDetailScreen(
     
     val coroutineScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
+    val selectedTimeframe = state.selectedTimeframe
 
     // Reload when symbol or enabled providers change
     LaunchedEffect(symbol, enabledProvidersKey) {
@@ -188,6 +191,14 @@ fun CoinDetailScreen(
         val providersToUse = enabledProviders.toSet()
         AppLogger.logger.d { "CoinDetailScreen: About to call loadCoinData with providers: $providersToUse" }
         viewModel.loadCoinData(symbol, providersToUse)
+    }
+    
+    // Clean up WebSocket when screen leaves composition
+    DisposableEffect(symbol) {
+        onDispose {
+            AppLogger.logger.d { "CoinDetailScreen: Disposing WebSocket connections for $symbol" }
+            // WebSocket cleanup is handled by ViewModel.onCleared()
+        }
     }
 
     Scaffold(
@@ -267,6 +278,16 @@ fun CoinDetailScreen(
                             state = listState,
                             modifier = Modifier.fillMaxSize()
                         ) {
+                            // Timeframe Selection Buttons
+                            item {
+                                TimeframeSelector(
+                                    selectedTimeframe = selectedTimeframe,
+                                    onTimeframeSelected = { timeframe ->
+                                        viewModel.changeTimeframe(timeframe)
+                                    }
+                                )
+                            }
+                            
                             // Chart Section - Show shimmer if loading, otherwise show chart
                             item {
                                 if (state.isLoadingChart) {
@@ -1180,6 +1201,62 @@ fun ShimmerNewsItemPlaceholder() {
                     .clip(RoundedCornerShape(4.dp))
                     .shimmerEffect()
             )
+        }
+    }
+}
+
+@Composable
+fun TimeframeSelector(
+    selectedTimeframe: String,
+    onTimeframeSelected: (String) -> Unit
+) {
+    val timeframes = listOf("1m", "5m", "15m", "1h", "4h", "1d")
+    
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        elevation = CardDefaults.cardElevation(2.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            timeframes.forEach { timeframe ->
+                val isSelected = timeframe == selectedTimeframe
+                Box(
+                    modifier = Modifier
+                        .debouncedClickable(
+                            debounceMillis = 500L,
+                            haptic = true
+                        ) {
+                            onTimeframeSelected(timeframe)
+                        }
+                        .clip(CircleShape)
+                        .background(
+                            if (isSelected) {
+                                MaterialTheme.colorScheme.primary
+                            } else {
+                                MaterialTheme.colorScheme.surfaceVariant
+                            }
+                        )
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = timeframe,
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
+                        color = if (isSelected) {
+                            MaterialTheme.colorScheme.onPrimary
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        }
+                    )
+                }
+            }
         }
     }
 }

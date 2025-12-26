@@ -17,9 +17,12 @@ import model.OrderBookData
 import model.RssProvider
 import model.Ticker24hr
 import model.UiKline
+import network.KlineWebSocketService
 import network.NewsService
 import network.OrderBookWebSocketService
 import network.TickerWebSocketService
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import network.HttpClient as NetworkClient
@@ -35,7 +38,8 @@ data class CoinDetailState(
     val klines: List<UiKline> = emptyList(),
     val orderBookData: OrderBookData? = null,
     val orderBookError: String? = null,
-    val error: String? = null
+    val error: String? = null,
+    val selectedTimeframe: String = "1m" // Default timeframe
 )
 
 @OptIn(ExperimentalTime::class)
@@ -48,12 +52,19 @@ class CoinDetailViewModel : ViewModel() {
     private val newsService = NewsService()
     private val orderBookService = OrderBookWebSocketService()
     private val tickerWebSocketService = TickerWebSocketService()
+    private val klineWebSocketService = KlineWebSocketService()
     
     val state: StateFlow<CoinDetailState>
         field = MutableStateFlow(CoinDetailState())
     
     // Track the current loading job to cancel it when a new one starts
     private var currentLoadJob: kotlinx.coroutines.Job? = null
+    
+    // Track debounced timeframe change job
+    private var timeframeChangeJob: Job? = null
+    
+    // Current symbol for timeframe changes
+    private var currentSymbol: String? = null
     
     // Mutex to synchronize news state updates
     private val newsUpdateMutex = Mutex()
@@ -88,44 +99,55 @@ class CoinDetailViewModel : ViewModel() {
         viewModelScope.launch {
             tickerWebSocketService.tickerData.collect { ticker ->
                 if (ticker != null) {
+                    // Only update ticker, klines are now handled by kline WebSocket
+                    state.update { it.copy(ticker = ticker) }
+                }
+            }
+        }
+        
+        // Observe kline WebSocket updates for real-time chart data
+        viewModelScope.launch {
+            klineWebSocketService.klineData.collect { kline ->
+                if (kline != null) {
                     val currentState = state.value
                     
-                    // Always update ticker immediately
-                    // Only update klines if initial data is loaded
+                    // Only update klines if initial data is loaded and not loading
                     if (currentState.klines.isNotEmpty() && !currentState.isLoadingChart) {
-                        val currentTimestamp = Clock.System.now().toEpochMilliseconds()
-                        val newKline = UiKline(
-                            closePrice = ticker.lastPrice,
-                            closeTime = currentTimestamp,
-                            openTime = currentTimestamp
-                        )
-                        
                         klineUpdateMutex.withLock {
                             if (isTooltipVisible) {
                                 // Queue the update when tooltip is visible
-                                queuedKlineUpdates.add(newKline)
-                                // Only update ticker, keep klines unchanged
-                                state.update { it.copy(ticker = ticker) }
+                                queuedKlineUpdates.add(kline)
                             } else {
                                 // Apply immediately when tooltip is not visible
                                 state.update { currentState ->
                                     val currentKlines = currentState.klines
-                                    val newKlinesList = if (currentKlines.size >= MAX_KLINES) {
-                                        currentKlines.drop(1) + newKline
+                                    // Update the last kline if it has the same openTime, otherwise append
+                                    val newKlinesList = if (currentKlines.isNotEmpty() && 
+                                        currentKlines.last().openTime == kline.openTime) {
+                                        // Update existing kline
+                                        currentKlines.dropLast(1) + kline
                                     } else {
-                                        currentKlines + newKline
+                                        // Add new kline
+                                        if (currentKlines.size >= MAX_KLINES) {
+                                            currentKlines.drop(1) + kline
+                                        } else {
+                                            currentKlines + kline
+                                        }
                                     }
-                                    currentState.copy(
-                                        ticker = ticker,
-                                        klines = newKlinesList
-                                    )
+                                    currentState.copy(klines = newKlinesList)
                                 }
                             }
                         }
-                    } else {
-                        // Initial load or no klines yet - just update ticker
-                        state.update { it.copy(ticker = ticker) }
                     }
+                }
+            }
+        }
+        
+        // Observe kline WebSocket errors
+        viewModelScope.launch {
+            klineWebSocketService.error.collect { error ->
+                if (error != null) {
+                    AppLogger.logger.w { "KlineWebSocket error: $error" }
                 }
             }
         }
@@ -146,12 +168,16 @@ class CoinDetailViewModel : ViewModel() {
         // Cancel any existing load job
         currentLoadJob?.cancel()
         
+        currentSymbol = symbol
+        val timeframe = state.value.selectedTimeframe
+        
         // Connect to WebSocket streams for real-time data
         orderBookService.connect(symbol, levels = 20)
         tickerWebSocketService.connect(symbol)
+        klineWebSocketService.connect(symbol, timeframe)
         
         currentLoadJob = viewModelScope.launch {
-            AppLogger.logger.d { "CoinDetailViewModel: Starting loadCoinData for $symbol with providers: $enabledRssProviders" }
+            AppLogger.logger.d { "CoinDetailViewModel: Starting loadCoinData for $symbol with providers: $enabledRssProviders, timeframe: $timeframe" }
             
             // Reset state and set loading flags
             state.value = CoinDetailState(
@@ -164,14 +190,14 @@ class CoinDetailViewModel : ViewModel() {
                 klines = emptyList(),
                 orderBookData = null,
                 orderBookError = null,
-                error = null
+                error = null,
+                selectedTimeframe = timeframe
             )
             
-            // Load chart data independently
+            // Load chart data independently with selected timeframe
             launch {
                 try {
-                    val klinesResult = httpClient.fetchUiKlines(listOf(symbol))
-                    val klines = klinesResult[symbol] ?: emptyList()
+                    val klines = httpClient.fetchKlines(symbol, timeframe, limit = 500)
                     state.update {
                         it.copy(
                             klines = klines,
@@ -179,12 +205,14 @@ class CoinDetailViewModel : ViewModel() {
                         )
                     }
                     if (klines.isEmpty()) {
-                        AppLogger.logger.d { "CoinDetailViewModel: No kline data found for symbol: $symbol" }
+                        AppLogger.logger.d { "CoinDetailViewModel: No kline data found for symbol: $symbol@$timeframe" }
+                    } else {
+                        AppLogger.logger.d { "CoinDetailViewModel: Loaded ${klines.size} klines for $symbol@$timeframe" }
                     }
                 } catch (e: kotlinx.coroutines.CancellationException) {
                     throw e
                 } catch (e: Exception) {
-                    AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading klines for $symbol" }
+                    AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading klines for $symbol@$timeframe" }
                     state.update { it.copy(isLoadingChart = false) }
                 }
             }
@@ -312,6 +340,55 @@ class CoinDetailViewModel : ViewModel() {
     }
     
     /**
+     * Change timeframe with debounce (500ms)
+     * Cancels existing connection, fetches historical klines, and starts WebSocket
+     */
+    fun changeTimeframe(timeframe: String) {
+        timeframeChangeJob?.cancel()
+        timeframeChangeJob = viewModelScope.launch {
+            delay(500) // Debounce 500ms
+            
+            val symbol = currentSymbol ?: return@launch
+            val currentTimeframe = state.value.selectedTimeframe
+            
+            // Don't reconnect if timeframe hasn't changed
+            if (currentTimeframe == timeframe) {
+                return@launch
+            }
+            
+            AppLogger.logger.d { "CoinDetailViewModel: Changing timeframe from $currentTimeframe to $timeframe for $symbol" }
+            
+            // Update state with new timeframe
+            state.update { it.copy(selectedTimeframe = timeframe, isLoadingChart = true) }
+            
+            // Cancel existing kline WebSocket connection
+            klineWebSocketService.disconnect()
+            
+            // Fetch historical klines with new timeframe
+            try {
+                val klines = httpClient.fetchKlines(symbol, timeframe, limit = 500)
+                state.update {
+                    it.copy(
+                        klines = klines,
+                        isLoadingChart = false
+                    )
+                }
+                if (klines.isEmpty()) {
+                    AppLogger.logger.d { "CoinDetailViewModel: No kline data found for symbol: $symbol@$timeframe" }
+                } else {
+                    AppLogger.logger.d { "CoinDetailViewModel: Loaded ${klines.size} klines for $symbol@$timeframe" }
+                }
+            } catch (e: Exception) {
+                AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading klines for $symbol@$timeframe" }
+                state.update { it.copy(isLoadingChart = false) }
+            }
+            
+            // Start WebSocket connection with new timeframe
+            klineWebSocketService.connect(symbol, timeframe)
+        }
+    }
+    
+    /**
      * Set tooltip visibility state
      * When tooltip is shown, chart updates are queued
      * When tooltip is hidden, queued updates are applied
@@ -350,8 +427,10 @@ class CoinDetailViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+        timeframeChangeJob?.cancel()
         orderBookService.close()
         tickerWebSocketService.close()
+        klineWebSocketService.close()
         httpClient.close()
         newsService.close()
     }
