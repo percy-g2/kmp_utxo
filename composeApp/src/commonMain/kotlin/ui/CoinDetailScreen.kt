@@ -1255,11 +1255,17 @@ private fun TimeframeChip(
         label = {
             Text(
                 text = timeframe,
-                fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium
+                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
             )
         },
         leadingIcon = if (isSelected) {
-            { Icon(Icons.AutoMirrored.Filled.ShowChart, contentDescription = null, modifier = Modifier.size(18.dp)) }
+            {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ShowChart,
+                    contentDescription = null,
+                    modifier = Modifier.size(18.dp)
+                )
+            }
         } else null
     )
 }

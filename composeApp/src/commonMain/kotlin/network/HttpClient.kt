@@ -22,7 +22,6 @@ import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
 import logging.AppLogger
 import model.MarginSymbols
-import model.Ticker
 import model.UiKline
 import model.UiKlineSerializer
 import kotlin.time.Duration.Companion.milliseconds
