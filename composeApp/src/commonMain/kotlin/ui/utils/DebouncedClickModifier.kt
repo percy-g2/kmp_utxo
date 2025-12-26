@@ -34,7 +34,7 @@ import kotlin.time.ExperimentalTime
  * ```
  * Modifier.debouncedClickable(
  *     enabled = true,
- *     debounceMillis = 1000L,
+ *     debounceMillis = 500L,
  *     haptic = true,
  *     onClick = { /* handle click */ }
  * )
@@ -44,7 +44,7 @@ import kotlin.time.ExperimentalTime
 @Composable
 fun Modifier.debouncedClickable(
     enabled: Boolean = true,
-    debounceMillis: Long = 1000L,
+    debounceMillis: Long = 500L,
     haptic: Boolean = true,
     role: Role = Role.Button,
     interactionSource: MutableInteractionSource? = null,
