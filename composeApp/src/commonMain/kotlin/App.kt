@@ -88,25 +88,61 @@ fun App(
     val networkStatus by networkObserver.observe().collectAsState(initial = null)
     val lifecycleOwner = LocalLifecycleOwner.current
     
+    // Helper function to get current CoinDetail route if we're on CoinDetail screen
+    fun getCurrentCoinDetailRoute(): CoinDetail? {
+        val currentEntry = navBackStackEntry ?: return null
+        val currentDestination = currentEntry.destination.id
+        if (currentDestination == CoinDetail.serializer().generateHashCode()) {
+            return try {
+                currentEntry.toRoute<CoinDetail>()
+            } catch (e: Exception) {
+                null
+            }
+        }
+        return null
+    }
+    
+    // Helper function to navigate to CoinDetail, replacing if already on CoinDetail
+    fun navigateToCoinDetail(symbol: String, displaySymbol: String) {
+        val currentCoinDetail = getCurrentCoinDetailRoute()
+        val isAlreadyOnCoinDetail = currentCoinDetail != null
+        val isDifferentSymbol = currentCoinDetail?.symbol != symbol
+        
+        if (isAlreadyOnCoinDetail && isDifferentSymbol) {
+            // Replace current CoinDetail destination by popping and navigating
+            // This ensures we don't duplicate the backstack
+            val currentDestinationId = navBackStackEntry?.destination?.id
+            if (currentDestinationId != null) {
+                navController.popBackStack()
+            }
+            navController.navigate(
+                CoinDetail(
+                    symbol = symbol,
+                    displaySymbol = displaySymbol
+                )
+            )
+        } else if (!isAlreadyOnCoinDetail) {
+            // Normal navigation when not on CoinDetail screen
+            navController.navigate(
+                CoinDetail(
+                    symbol = symbol,
+                    displaySymbol = displaySymbol
+                )
+            )
+        }
+        // If already on CoinDetail with same symbol, do nothing
+    }
+    
     // Handle coin detail intent from widget
-    // Check whenever NavHost is ready and we're not on CoinDetail screen
-    // This handles app launch case
+    // This handles app launch case and updates when already on CoinDetail
     LaunchedEffect(navBackStackEntry?.destination?.id) {
         // Only proceed if NavHost is ready
         val currentDestination = navBackStackEntry?.destination?.id ?: return@LaunchedEffect
         
-        // Don't check if we're already on CoinDetail screen
-        if (currentDestination == CoinDetail.serializer().generateHashCode()) return@LaunchedEffect
-        
         // Check for pending coin detail
         val pendingCoinDetail = getPendingCoinDetailFromIntent()
         if (pendingCoinDetail != null) {
-            navController.navigate(
-                CoinDetail(
-                    symbol = pendingCoinDetail.first,
-                    displaySymbol = pendingCoinDetail.second
-                )
-            )
+            navigateToCoinDetail(pendingCoinDetail.first, pendingCoinDetail.second)
         } else {
             // If not found immediately, check periodically for up to 2 seconds
             // This covers the case where URL handler sets UserDefaults slightly after URL is opened
@@ -120,12 +156,7 @@ fun App(
                 
                 val foundPendingCoinDetail = getPendingCoinDetailFromIntent()
                 if (foundPendingCoinDetail != null) {
-                    navController.navigate(
-                        CoinDetail(
-                            symbol = foundPendingCoinDetail.first,
-                            displaySymbol = foundPendingCoinDetail.second
-                        )
-                    )
+                    navigateToCoinDetail(foundPendingCoinDetail.first, foundPendingCoinDetail.second)
                     break // Stop checking once we've navigated
                 }
             }
@@ -136,17 +167,12 @@ fun App(
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
-                // Only check if NavHost is ready and we're not on CoinDetail screen
+                // Check if NavHost is ready
                 val currentDestination = navBackStackEntry?.destination?.id
-                if (currentDestination != null && currentDestination != CoinDetail.serializer().generateHashCode()) {
+                if (currentDestination != null) {
                     val pendingCoinDetail = getPendingCoinDetailFromIntent()
                     if (pendingCoinDetail != null) {
-                        navController.navigate(
-                            CoinDetail(
-                                symbol = pendingCoinDetail.first,
-                                displaySymbol = pendingCoinDetail.second
-                            )
-                        )
+                        navigateToCoinDetail(pendingCoinDetail.first, pendingCoinDetail.second)
                     }
                 }
             }
