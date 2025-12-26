@@ -96,6 +96,8 @@ fun App(
             return try {
                 currentEntry.toRoute<CoinDetail>()
             } catch (e: Exception) {
+                // Defensive handling: toRoute may throw various exceptions during deserialization
+                // Return null to gracefully handle any route parsing errors
                 null
             }
         }
@@ -109,18 +111,23 @@ fun App(
         val isDifferentSymbol = currentCoinDetail?.symbol != symbol
         
         if (isAlreadyOnCoinDetail && isDifferentSymbol) {
-            // Replace current CoinDetail destination by popping and navigating
-            // This ensures we don't duplicate the backstack
+            // Replace current CoinDetail destination using atomic navigation
+            // We already know we're on CoinDetail from getCurrentCoinDetailRoute(), so destination ID exists
             val currentDestinationId = navBackStackEntry?.destination?.id
-            if (currentDestinationId != null) {
-                navController.popBackStack()
-            }
             navController.navigate(
                 CoinDetail(
                     symbol = symbol,
                     displaySymbol = displaySymbol
                 )
-            )
+            ) {
+                // Pop the current CoinDetail destination and replace it atomically
+                currentDestinationId?.let {
+                    popUpTo(it) { inclusive = true }
+                } ?: run {
+                    // Fallback: pop backstack if destination ID unavailable (shouldn't happen)
+                    popUpTo(navController.graph.startDestinationId) { saveState = false }
+                }
+            }
         } else if (!isAlreadyOnCoinDetail) {
             // Normal navigation when not on CoinDetail screen
             navController.navigate(
