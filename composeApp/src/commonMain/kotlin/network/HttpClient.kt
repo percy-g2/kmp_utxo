@@ -117,6 +117,37 @@ class HttpClient {
         return emptyList()
     }
 
+    /**
+     * Fetch historical klines for a symbol with a specific interval
+     * @param symbol Trading pair symbol (e.g., "BTCUSDT")
+     * @param interval Kline interval (e.g., "1m", "5m", "15m", "1h", "4h", "1d")
+     * @param limit Maximum number of klines to return (default: 500)
+     * @return List of UiKline objects
+     */
+    suspend fun fetchKlines(symbol: String, interval: String, limit: Int = 500): List<UiKline> {
+        return try {
+            rateLimiter.acquire()
+            val response: HttpResponse = client.get("https://api.binance.com/api/v3/klines") {
+                parameter("symbol", symbol)
+                parameter("interval", interval)
+                parameter("limit", limit)
+            }
+
+            when {
+                response.status == HttpStatusCode.OK -> {
+                    JsonConfig.json.decodeFromString(UiKlineSerializer, response.bodyAsText())
+                }
+                else -> {
+                    AppLogger.logger.w { "Binance API returned status ${response.status} for klines $symbol@$interval" }
+                    emptyList()
+                }
+            }
+        } catch (e: Exception) {
+            AppLogger.logger.e(throwable = e) { "Error fetching klines for symbol $symbol@$interval" }
+            emptyList()
+        }
+    }
+
     suspend fun fetchMarginSymbols(): MarginSymbols? {
         return try {
             val response: HttpResponse = client.get("https://www.binance.com/bapi/margin/v1/public/margin/symbols") {
