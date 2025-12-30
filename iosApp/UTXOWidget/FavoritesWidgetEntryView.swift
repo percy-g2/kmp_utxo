@@ -268,7 +268,7 @@ struct LockscreenWidgetView: View {
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.7)
                                 .fixedSize(horizontal: false, vertical: true)
-                            
+
                             // Change percentage with arrow icon
                             HStack(spacing: 2) {
                                 Image(systemName: firstFavorite.changePercent >= 0 ? "arrow.up.right" : "arrow.down.right")
@@ -279,7 +279,7 @@ struct LockscreenWidgetView: View {
                                     .minimumScaleFactor(0.8)
                             }
                             .foregroundColor(changeColor(for: firstFavorite.changePercent))
-                            .fixedSize(horizontal: false, vertical: true)
+                            .fixedSize() // Changed from .fixedSize(horizontal: false, vertical: true)
                         }
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     }
