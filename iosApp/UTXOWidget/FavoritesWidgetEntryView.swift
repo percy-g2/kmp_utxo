@@ -228,60 +228,63 @@ struct LockscreenWidgetView: View {
     var body: some View {
         Group {
             if let firstFavorite = entry.favorites.first {
-                HStack(alignment: .center, spacing: 8) {
-                    // Left: Symbol section - fixed width to prevent truncation
-                    VStack(alignment: .leading, spacing: 1) {
-                        // Base symbol - readable size, no truncation
-                        Text(firstFavorite.baseSymbol)
-                            .font(.system(size: 16, weight: .bold, design: .default))
-                            .foregroundColor(.primary)
-                            .lineLimit(1)
-                            .fixedSize(horizontal: true, vertical: false)
-                        
-                        // Quote symbol
-                        Text(firstFavorite.quoteSymbol)
-                            .font(.system(size: 12, weight: .regular, design: .default))
-                            .foregroundColor(.secondary)
-                            .lineLimit(1)
-                            .fixedSize(horizontal: true, vertical: false)
-                    }
-                    .frame(minWidth: 50, alignment: .leading)
-                    
-                    // Center: Small chart - compact size
-                    if !firstFavorite.chartData.isEmpty {
-                        SparklineChartView(data: firstFavorite.chartData, isPositive: firstFavorite.changePercent >= 0)
-                            .frame(width: 40, height: 18)
-                    } else {
-                        // Placeholder if no chart data
-                        Rectangle()
-                            .fill(Color.clear)
-                            .frame(width: 40, height: 18)
-                    }
-                    
-                    // Right: Price and change section - flexible, scales down if needed
-                    VStack(alignment: .trailing, spacing: 1) {
-                        // Price - readable size, scales down if needed
-                        Text(formatPrice(firstFavorite.price))
-                            .font(.system(size: 15, weight: .semibold, design: .default))
-                            .foregroundColor(.primary)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.7)
-                            .fixedSize(horizontal: false, vertical: true)
-                        
-                        // Change percentage with arrow icon
-                        HStack(spacing: 2) {
-                            Image(systemName: firstFavorite.changePercent >= 0 ? "arrow.up.right" : "arrow.down.right")
-                                .font(.system(size: 9, weight: .semibold))
-                            Text(formatChangePercent(firstFavorite.changePercent))
-                                .font(.system(size: 12, weight: .semibold, design: .default))
+                Link(destination: URL(string: "utxo://coin/\(firstFavorite.symbol)") ?? URL(string: "utxo://favorites")!) {
+                    HStack(alignment: .center, spacing: 8) {
+                        // Left: Symbol section - fixed width to prevent truncation
+                        VStack(alignment: .leading, spacing: 1) {
+                            // Base symbol - readable size, no truncation
+                            Text(firstFavorite.baseSymbol)
+                                .font(.system(size: 16, weight: .bold, design: .default))
+                                .foregroundColor(.primary)
                                 .lineLimit(1)
-                                .minimumScaleFactor(0.8)
+                                .fixedSize(horizontal: true, vertical: false)
+                            
+                            // Quote symbol
+                            Text(firstFavorite.quoteSymbol)
+                                .font(.system(size: 12, weight: .regular, design: .default))
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                                .fixedSize(horizontal: true, vertical: false)
                         }
-                        .foregroundColor(changeColor(for: firstFavorite.changePercent))
-                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(minWidth: 50, alignment: .leading)
+                        
+                        // Center: Small chart - compact size
+                        if !firstFavorite.chartData.isEmpty {
+                            SparklineChartView(data: firstFavorite.chartData, isPositive: firstFavorite.changePercent >= 0)
+                                .frame(width: 40, height: 18)
+                        } else {
+                            // Placeholder if no chart data
+                            Rectangle()
+                                .fill(Color.clear)
+                                .frame(width: 40, height: 18)
+                        }
+                        
+                        // Right: Price and change section - flexible, scales down if needed
+                        VStack(alignment: .trailing, spacing: 1) {
+                            // Price - readable size, scales down if needed
+                            Text(formatPrice(firstFavorite.price))
+                                .font(.system(size: 15, weight: .semibold, design: .default))
+                                .foregroundColor(.primary)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.7)
+                                .fixedSize(horizontal: false, vertical: true)
+                            
+                            // Change percentage with arrow icon
+                            HStack(spacing: 2) {
+                                Image(systemName: firstFavorite.changePercent >= 0 ? "arrow.up.right" : "arrow.down.right")
+                                    .font(.system(size: 9, weight: .semibold))
+                                Text(formatChangePercent(firstFavorite.changePercent))
+                                    .font(.system(size: 12, weight: .semibold, design: .default))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
+                            }
+                            .foregroundColor(changeColor(for: firstFavorite.changePercent))
+                            .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
+                .buttonStyle(PlainButtonStyle())
             } else if let errorMessage = entry.errorMessage {
                 HStack(spacing: 6) {
                     Image(systemName: "exclamationmark.triangle.fill")
@@ -293,13 +296,16 @@ struct LockscreenWidgetView: View {
                 }
                 .foregroundColor(.secondary)
             } else {
-                HStack(spacing: 6) {
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 14, weight: .medium))
-                    Text("No favorites")
-                        .font(.system(size: 15, weight: .medium, design: .default))
+                Link(destination: URL(string: "utxo://favorites")!) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 14, weight: .medium))
+                        Text("No favorites")
+                            .font(.system(size: 15, weight: .medium, design: .default))
+                    }
+                    .foregroundColor(.secondary)
                 }
-                .foregroundColor(.secondary)
+                .buttonStyle(PlainButtonStyle())
             }
         }
     }
