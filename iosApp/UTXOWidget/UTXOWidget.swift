@@ -15,12 +15,10 @@ struct UTXOWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: FavoritesTimelineProvider()) { entry in
             FavoritesWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
-                .padding(.horizontal, 0)
         }
         .configurationDisplayName("Favorites")
         .description("Display your favorite cryptocurrencies with live prices and charts.")
-        .supportedFamilies([.systemMedium, .systemLarge])
+        .supportedFamilies([.systemMedium, .systemLarge, .accessoryRectangular])
     }
 }
 
@@ -243,6 +241,21 @@ struct FavoritesTimelineProvider: TimelineProvider {
         favorites: [
             .init(id: "1", symbol: "BTCUSDT", baseSymbol: "BTC", quoteSymbol: "USDT", price: "50,000 USDT", changePercent: 2.5, volume: "1.2B", chartData: []),
             .init(id: "2", symbol: "ETHUSDT", baseSymbol: "ETH", quoteSymbol: "USDT", price: "3,000 USDT", changePercent: -1.2, volume: "800M", chartData: [])
+        ],
+        isLoading: false,
+        isRefreshing: false,
+        errorMessage: nil,
+        rotationAngle: 0
+    )
+}
+
+#Preview(as: .accessoryRectangular) {
+    UTXOWidget()
+} timeline: {
+    FavoritesWidgetEntry(
+        date: Date(),
+        favorites: [
+            .init(id: "1", symbol: "BTCUSDT", baseSymbol: "BTC", quoteSymbol: "USDT", price: "50,000 USDT", changePercent: 2.5, volume: "1.2B", chartData: [])
         ],
         isLoading: false,
         isRefreshing: false,
