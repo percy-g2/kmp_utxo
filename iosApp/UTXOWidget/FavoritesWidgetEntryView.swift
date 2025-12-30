@@ -11,10 +11,19 @@ struct FavoritesWidgetEntryView: View {
             switch family {
             case .systemMedium:
                 MediumWidgetView(entry: entry)
+                    .containerBackground(.fill.tertiary, for: .widget)
+                    .padding(.horizontal, 0)
             case .systemLarge:
                 LargeWidgetView(entry: entry)
+                    .containerBackground(.fill.tertiary, for: .widget)
+                    .padding(.horizontal, 0)
+            case .accessoryRectangular:
+                LockscreenWidgetView(entry: entry)
+                    .containerBackground(.fill.tertiary, for: .widget)
             default:
                 MediumWidgetView(entry: entry)
+                    .containerBackground(.fill.tertiary, for: .widget)
+                    .padding(.horizontal, 0)
             }
         }
         .widgetURL(URL(string: "utxo://favorites"))
@@ -211,6 +220,121 @@ struct RefreshIconView: View {
     }
 }
 
+// Lockscreen widget view - shows first favorite symbol with small chart
+// Optimized for iOS lockscreen widget - readable text with compact chart
+struct LockscreenWidgetView: View {
+    var entry: FavoritesWidgetEntry
+    
+    var body: some View {
+        Group {
+            if let firstFavorite = entry.favorites.first {
+                HStack(alignment: .center, spacing: 8) {
+                    // Left: Symbol section - fixed width to prevent truncation
+                    VStack(alignment: .leading, spacing: 1) {
+                        // Base symbol - readable size, no truncation
+                        Text(firstFavorite.baseSymbol)
+                            .font(.system(size: 16, weight: .bold, design: .default))
+                            .foregroundColor(.primary)
+                            .lineLimit(1)
+                            .fixedSize(horizontal: true, vertical: false)
+                        
+                        // Quote symbol
+                        Text(firstFavorite.quoteSymbol)
+                            .font(.system(size: 12, weight: .regular, design: .default))
+                            .foregroundColor(.secondary)
+                            .lineLimit(1)
+                            .fixedSize(horizontal: true, vertical: false)
+                    }
+                    .frame(minWidth: 50, alignment: .leading)
+                    
+                    // Center: Small chart - compact size
+                    if !firstFavorite.chartData.isEmpty {
+                        SparklineChartView(data: firstFavorite.chartData, isPositive: firstFavorite.changePercent >= 0)
+                            .frame(width: 40, height: 18)
+                    } else {
+                        // Placeholder if no chart data
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(width: 40, height: 18)
+                    }
+                    
+                    // Right: Price and change section - flexible, scales down if needed
+                    VStack(alignment: .trailing, spacing: 1) {
+                        // Price - readable size, scales down if needed
+                        Text(formatPrice(firstFavorite.price))
+                            .font(.system(size: 15, weight: .semibold, design: .default))
+                            .foregroundColor(.primary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
+                        // Change percentage with arrow icon
+                        HStack(spacing: 2) {
+                            Image(systemName: firstFavorite.changePercent >= 0 ? "arrow.up.right" : "arrow.down.right")
+                                .font(.system(size: 9, weight: .semibold))
+                            Text(formatChangePercent(firstFavorite.changePercent))
+                                .font(.system(size: 12, weight: .semibold, design: .default))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                        }
+                        .foregroundColor(changeColor(for: firstFavorite.changePercent))
+                        .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            } else if let errorMessage = entry.errorMessage {
+                HStack(spacing: 6) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 14, weight: .medium))
+                    Text(errorMessage)
+                        .font(.system(size: 15, weight: .medium, design: .default))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
+                .foregroundColor(.secondary)
+            } else {
+                HStack(spacing: 6) {
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 14, weight: .medium))
+                    Text("No favorites")
+                        .font(.system(size: 15, weight: .medium, design: .default))
+                }
+                .foregroundColor(.secondary)
+            }
+        }
+    }
+    
+    private func formatPrice(_ price: String) -> String {
+        // Remove quote symbol if present for cleaner display on lockscreen
+        let components = price.components(separatedBy: " ")
+        if components.count > 1 {
+            return components[0] // Return just the price number
+        }
+        return price
+    }
+    
+    private func formatChangePercent(_ value: Double) -> String {
+        let sign = value >= 0 ? "+" : ""
+        // Format to 2 decimal places max, remove unnecessary zeros
+        let absValue = abs(value)
+        if absValue >= 100 {
+            return String(format: "%@%.0f%%", sign, absValue)
+        } else if absValue >= 10 {
+            return String(format: "%@%.1f%%", sign, absValue)
+        } else {
+            return String(format: "%@%.2f%%", sign, absValue)
+        }
+    }
+    
+    private func changeColor(for value: Double) -> Color {
+        if value >= 0 {
+            return Color.green
+        } else {
+            return Color.red
+        }
+    }
+}
+
 // Simple sparkline chart view for widgets (Charts framework not available in widgets)
 struct SparklineChartView: View {
     let data: [Double]
@@ -229,7 +353,7 @@ struct SparklineChartView: View {
                 
                 let width = geometry.size.width
                 let height = geometry.size.height
-                let padding: CGFloat = 2
+                let padding: CGFloat = 1
                 let chartWidth = width - padding * 2
                 let chartHeight = height - padding * 2
                 
@@ -245,7 +369,7 @@ struct SparklineChartView: View {
                     }
                 }
             }
-            .stroke(isPositive ? Color.green : Color.red, lineWidth: 2)
+            .stroke(isPositive ? Color.green : Color.red, lineWidth: 1.5)
         }
     }
 }
