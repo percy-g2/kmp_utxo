@@ -59,7 +59,6 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
 
             implementation(libs.ktor.client.android)
@@ -68,13 +67,13 @@ kotlin {
             implementation(libs.kstore.file)
         }
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(compose.materialIconsExtended)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.components.resources)
+            implementation(libs.compose.ui.tooling.preview)
+            implementation(libs.compose.material.icons.extended)
             implementation(libs.lifecyle.runtime.compose)
 
             implementation(libs.ktor.client.core)
@@ -153,7 +152,7 @@ android {
         compose = true
     }
     dependencies {
-        debugImplementation(compose.uiTooling)
+        debugImplementation(libs.compose.ui.tooling)
         implementation(libs.androidx.startup.runtime)
     }
     applicationVariants.configureEach {
