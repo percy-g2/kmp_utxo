@@ -1,13 +1,11 @@
 
-import com.android.build.gradle.internal.api.ApkVariantOutputImpl
-import org.gradle.kotlin.dsl.support.uppercaseFirstChar
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
@@ -28,7 +26,15 @@ kotlin {
         browser()
         binaries.executable()
     }
-    androidTarget {
+    androidLibrary {
+        namespace = "org.androdevlinux.utxo"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        
+        androidResources {
+            enable = true
+        }
+        
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
@@ -60,6 +66,7 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.startup.runtime)
 
             implementation(libs.ktor.client.android)
             implementation(libs.ktor.client.cio)
@@ -109,71 +116,6 @@ kotlin {
             implementation(libs.kstore.storage)
 
             implementation(libs.ktor.client.js)
-        }
-    }
-}
-
-android {
-    namespace = "org.androdevlinux.utxo"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
-
-    defaultConfig {
-        applicationId = "org.androdevlinux.utxo"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 33
-        versionName = "0.3.3"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        debug {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-        release {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    buildFeatures {
-        compose = true
-    }
-    dependencies {
-        debugImplementation(libs.compose.ui.tooling)
-        implementation(libs.androidx.startup.runtime)
-    }
-    applicationVariants.configureEach {
-        // rename the output APK file
-        outputs.configureEach {
-            (this as? ApkVariantOutputImpl)?.outputFileName =
-                "${rootProject.name}_${versionName}(${versionCode})_${buildType.name}.apk"
-        }
-
-        // rename the output AAB file
-        tasks.named(
-            "sign${flavorName.uppercaseFirstChar()}${buildType.name.uppercaseFirstChar()}Bundle",
-            com.android.build.gradle.internal.tasks.FinalizeBundleTask::class.java
-        ) {
-            val file = finalBundleFile.asFile.get()
-            val finalFile =
-                File(
-                    file.parentFile,
-                    "${rootProject.name}_$versionName($versionCode)_${buildType.name}.aab"
-                )
-            finalBundleFile.set(finalFile)
         }
     }
 }
