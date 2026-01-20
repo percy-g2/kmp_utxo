@@ -33,7 +33,9 @@ object WidgetUpdateHelper {
                 val views = RemoteViews(context.packageName, R.layout.widget_favorites)
                 
                 // Set up click intent to open the app
-                val mainIntent = android.content.Intent(context, org.androdevlinux.utxo.MainActivity::class.java)
+                val mainIntent = android.content.Intent().apply {
+                    setClassName(context, "org.androdevlinux.utxo.MainActivity")
+                }
                 val pendingIntent = android.app.PendingIntent.getActivity(
                     context,
                     0,
@@ -147,9 +149,10 @@ object WidgetUpdateHelper {
                         val (baseSymbol, quoteSymbol) = extractSymbolParts(symbol, settings?.selectedTradingPair ?: "BTC")
                         val displaySymbol = if (quoteSymbol.isNotEmpty()) "$baseSymbol/$quoteSymbol" else symbol
                         
-                        val coinDetailIntent = android.content.Intent(context, org.androdevlinux.utxo.MainActivity::class.java).apply {
-                            putExtra(org.androdevlinux.utxo.MainActivity.EXTRA_COIN_SYMBOL, symbol)
-                            putExtra(org.androdevlinux.utxo.MainActivity.EXTRA_COIN_DISPLAY_SYMBOL, displaySymbol)
+                        val coinDetailIntent = android.content.Intent().apply {
+                            setClassName(context, "org.androdevlinux.utxo.MainActivity")
+                            putExtra("coin_symbol", symbol)
+                            putExtra("coin_display_symbol", displaySymbol)
                             flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
                         }
                         val coinDetailPendingIntent = android.app.PendingIntent.getActivity(

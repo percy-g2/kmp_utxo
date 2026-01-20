@@ -7,7 +7,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
-import org.androdevlinux.utxo.MainActivity
 import org.androdevlinux.utxo.R
 import org.androdevlinux.utxo.widget.helper.WidgetRefreshHelper
 import org.androdevlinux.utxo.widget.service.FavoritesWidgetService
@@ -65,7 +64,9 @@ class FavoritesWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget_favorites)
             
             // Set up click intent to open the app
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent().apply {
+                setClassName(context, "org.androdevlinux.utxo.MainActivity")
+            }
             val pendingIntent = PendingIntent.getActivity(
                 context,
                 0,
