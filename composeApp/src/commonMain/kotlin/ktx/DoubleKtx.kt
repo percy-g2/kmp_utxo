@@ -5,7 +5,7 @@ import kotlin.math.roundToInt
 
 fun Double.formatAsCurrency(): String {
     val absValue = this.absoluteValue
-    val integerPart = absValue.toInt()
+    val integerPart = absValue.toLong()
     val fractionalPart = ((absValue - integerPart) * 100).roundToInt()
 
     val formattedInteger = integerPart.toString().reversed().chunked(3).joinToString(",").reversed()
