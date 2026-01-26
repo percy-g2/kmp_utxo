@@ -3,6 +3,7 @@ package ui
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,34 +14,150 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
 import ktx.formatAsCurrency
 import model.OrderBookData
-import kotlin.math.roundToInt
-import kotlin.math.sqrt
+import model.OrderBookLevel
+import kotlin.math.floor
+import kotlin.math.roundToLong
 
 /**
  * Binance-style Order Book visualization
- * Side-by-side layout: Buy (left 50%), Sell (right 50%)
- * Depth bars rendered with sqrt normalization, max 80% width, opacity ≤ 0.25
+ * Side-by-side layout: Bid (left) | Ask (right)
+ * Prices in CENTER, depth bars grow OUTWARD from center
+ * Supports price grouping with dynamic options based on symbol price
  */
 private const val ORDER_BOOK_DISPLAY_LEVELS = 10
+
+/**
+ * Data class for grouped order book level
+ */
+private data class GroupedLevel(
+    val price: Double,
+    val quantity: Double
+)
+
+/**
+ * Calculate dynamic price grouping options based on current price
+ * Returns list of grouping values matching Binance's options for each price range
+ */
+private fun calculateGroupingOptions(currentPrice: Double): List<Double> {
+    if (currentPrice <= 0.0) return listOf(0.01, 0.1, 1.0)
+    
+    val magnitude = kotlin.math.log10(currentPrice).toInt()
+    
+    return when {
+        // Very high prices (>= 10000, e.g., BTC): 0.01, 0.1, 1, 10, 50, 100, 1000
+        magnitude >= 4 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0, 100.0, 1000.0)
+        
+        // High prices (1000-9999, e.g., ETH): 0.01, 0.1, 1, 10, 50, 100
+        magnitude == 3 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0, 100.0)
+        
+        // Medium-high prices (100-999): 0.01, 0.1, 1, 10, 50
+        magnitude == 2 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0)
+        
+        // Medium prices (10-99): 0.001, 0.01, 0.1, 1, 10
+        magnitude == 1 -> listOf(0.001, 0.01, 0.1, 1.0, 10.0)
+        
+        // Low prices (1-9): 0.0001, 0.001, 0.01, 0.1, 1
+        magnitude == 0 -> listOf(0.0001, 0.001, 0.01, 0.1, 1.0)
+        
+        // Very low prices (0.1-0.9): 0.00001, 0.0001, 0.001, 0.01, 0.1
+        magnitude == -1 -> listOf(0.00001, 0.0001, 0.001, 0.01, 0.1)
+        
+        // Very low prices (0.01-0.09): 0.000001, 0.00001, 0.0001, 0.001, 0.01
+        magnitude == -2 -> listOf(0.000001, 0.00001, 0.0001, 0.001, 0.01)
+        
+        // Extremely low prices (< 0.01): 0.0000001, 0.000001, 0.00001, 0.0001, 0.001
+        else -> listOf(0.0000001, 0.000001, 0.00001, 0.0001, 0.001)
+    }
+}
+
+/**
+ * Format grouping value for display (KMP compatible)
+ */
+private fun formatGroupingValue(value: Double): String {
+    return when {
+        value >= 1.0 -> value.toLong().toString()
+        else -> {
+            // Convert to string and clean up
+            val str = value.toString()
+            if (str.contains('E') || str.contains('e')) {
+                // Handle scientific notation
+                formatDoubleToString(value, maxDecimals = 8)
+            } else {
+                str.trimEnd('0').trimEnd('.')
+            }
+        }
+    }
+}
+
+/**
+ * Group order book levels by price bucket
+ * For bids: round DOWN to nearest grouping (87859.99 with grouping 10 -> 87850)
+ * For asks: round UP to nearest grouping (87860.01 with grouping 10 -> 87870)
+ */
+private fun groupOrderBookLevels(
+    levels: List<OrderBookLevel>,
+    grouping: Double,
+    isBid: Boolean
+): List<GroupedLevel> {
+    if (grouping <= 0.0 || levels.isEmpty()) return levels.map { 
+        GroupedLevel(it.priceDouble, it.quantityDouble) 
+    }
+    
+    val grouped = mutableMapOf<Double, Double>()
+    
+    levels.forEach { level ->
+        val price = level.priceDouble
+        val quantity = level.quantityDouble
+        
+        // Calculate bucket price
+        val bucketPrice = if (isBid) {
+            // For bids: round DOWN (floor)
+            floor(price / grouping) * grouping
+        } else {
+            // For asks: round UP (ceil)
+            kotlin.math.ceil(price / grouping) * grouping
+        }
+        
+        // Aggregate quantity
+        grouped[bucketPrice] = (grouped[bucketPrice] ?: 0.0) + quantity
+    }
+    
+    // Sort and return
+    return if (isBid) {
+        // Bids: descending by price
+        grouped.entries.sortedByDescending { it.key }.map { GroupedLevel(it.key, it.value) }
+    } else {
+        // Asks: ascending by price
+        grouped.entries.sortedBy { it.key }.map { GroupedLevel(it.key, it.value) }
+    }
+}
 
 @Composable
 fun OrderBookHeatMap(
@@ -51,6 +168,22 @@ fun OrderBookHeatMap(
     isDarkTheme: Boolean,
     modifier: Modifier = Modifier
 ) {
+    // Calculate dynamic grouping options based on current price
+    val currentPrice = orderBookData?.midPrice 
+        ?: orderBookData?.bestBid?.priceDouble 
+        ?: orderBookData?.bestAsk?.priceDouble 
+        ?: 0.0
+    
+    val groupingOptions = remember(currentPrice) {
+        calculateGroupingOptions(currentPrice)
+    }
+    
+    // State for price grouping - default to smallest option
+    var selectedGrouping by remember(groupingOptions) { 
+        mutableStateOf(groupingOptions.firstOrNull() ?: 0.01) 
+    }
+    var dropdownExpanded by remember { mutableStateOf(false) }
+    
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -109,98 +242,111 @@ fun OrderBookHeatMap(
                     )
                 }
             } else {
-                // Get last traded price (mid price)
-                val lastPrice = orderBookData.midPrice ?: orderBookData.bestBid?.priceDouble
-                    ?: orderBookData.bestAsk?.priceDouble ?: 0.0
-                
-                // Get quote currency for display
-                val quoteCurrency = tradingPairs.find { pair ->
-                    symbol.endsWith(pair.quote, ignoreCase = true)
-                }?.quote ?: "USDT"
-                
-                // Get base currency
-                val baseCurrency = symbol.replace(quoteCurrency, "", ignoreCase = true)
-                
-                // Calculate height based on data
-                val rowHeight = 32.dp
-                val dividerHeight = 8.dp // Divider with padding (4dp top + 4dp bottom)
-                val maxRows = maxOf(
-                    orderBookData.bids.take(ORDER_BOOK_DISPLAY_LEVELS).size,
-                    orderBookData.asks.take(ORDER_BOOK_DISPLAY_LEVELS).size
-                )
-                // Calculate height: rows + divider (if rows >= 2, divider is inserted at middle)
-                val calculatedHeight = remember(maxRows) {
-                    val divider = if (maxRows >= 2) dividerHeight else 0.dp
-                    (maxRows * rowHeight) + divider
+                // Group the order book data based on selected grouping
+                val groupedBids = remember(orderBookData.bids, selectedGrouping) {
+                    groupOrderBookLevels(orderBookData.bids, selectedGrouping, isBid = true)
+                        .take(ORDER_BOOK_DISPLAY_LEVELS)
                 }
                 
-                // Column headers - side by side
+                val groupedAsks = remember(orderBookData.asks, selectedGrouping) {
+                    groupOrderBookLevels(orderBookData.asks, selectedGrouping, isBid = false)
+                        .take(ORDER_BOOK_DISPLAY_LEVELS)
+                }
+                
+                // Calculate height based on data
+                val rowHeight = 28.dp
+                val maxRows = maxOf(groupedBids.size, groupedAsks.size)
+                val calculatedHeight = remember(maxRows) {
+                    maxRows * rowHeight
+                }
+                
+                // Binance-style header: Bid | Ask | Dropdown
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(all = 4.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                        .padding(horizontal = 8.dp, vertical = 6.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // Buy column header (left 50%): Amount (left) | Price (right)
-                    Row(
-                        modifier = Modifier.weight(1f),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = "Amount ($baseCurrency)",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier.weight(1f)
-                        )
-                        Text(
-                            text = "Price ($quoteCurrency)",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.End,
-                            modifier = Modifier.weight(1f)
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.padding(horizontal = 4.dp))
+                    // Bid label (left)
+                    Text(
+                        text = "Bid",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontWeight = FontWeight.Medium
+                    )
                     
-                    // Sell column header (right 50%): Price (left) | Amount (right)
+                    // Ask label (center-right) with dropdown
                     Row(
-                        modifier = Modifier.weight(1f),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Price ($quoteCurrency)",
-                            style = MaterialTheme.typography.labelSmall,
+                            text = "Ask",
+                            style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier.weight(1f)
+                            fontWeight = FontWeight.Medium
                         )
-                        Text(
-                            text = "Amount ($baseCurrency)",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.End,
-                            modifier = Modifier.weight(1f)
-                        )
+                        
+                        Spacer(modifier = Modifier.width(16.dp))
+                        
+                        // Price grouping dropdown
+                        Box {
+                            Row(
+                                modifier = Modifier
+                                    .clickable { dropdownExpanded = true }
+                                    .background(
+                                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                                        shape = MaterialTheme.shapes.small
+                                    )
+                                    .padding(horizontal = 8.dp, vertical = 4.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = formatGroupingValue(selectedGrouping),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                                Icon(
+                                    imageVector = Icons.Default.ArrowDropDown,
+                                    contentDescription = "Select grouping",
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            
+                            DropdownMenu(
+                                expanded = dropdownExpanded,
+                                onDismissRequest = { dropdownExpanded = false }
+                            ) {
+                                groupingOptions.forEach { option ->
+                                    DropdownMenuItem(
+                                        text = {
+                                            Text(
+                                                text = formatGroupingValue(option),
+                                                style = MaterialTheme.typography.bodySmall
+                                            )
+                                        },
+                                        onClick = {
+                                            selectedGrouping = option
+                                            dropdownExpanded = false
+                                        }
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
                 
-                // Order book list - side by side columns with dynamic height
+                // Order book list with grouped data
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(calculatedHeight)
                 ) {
                     OrderBookList(
-                        orderBookData = orderBookData,
+                        groupedBids = groupedBids,
+                        groupedAsks = groupedAsks,
                         symbol = symbol,
                         tradingPairs = tradingPairs,
-                        lastPrice = lastPrice,
                         isDarkTheme = isDarkTheme
                     )
                 }
@@ -211,51 +357,31 @@ fun OrderBookHeatMap(
 
 @Composable
 private fun OrderBookList(
-    orderBookData: OrderBookData,
+    groupedBids: List<GroupedLevel>,
+    groupedAsks: List<GroupedLevel>,
     symbol: String,
     tradingPairs: List<model.TradingPair>,
-    lastPrice: Double,
     isDarkTheme: Boolean
 ) {
-    // Subdued exchange-grade colors (not neon)
-    val sellColor = Color(0xFFD32F2F) // Muted red
-    val buyColor = if (isDarkTheme) Color(0xFF2E7D32) else Color(0xFF388E3C) // Muted green
-    
-    // Get top N levels for display
-    val asks = orderBookData.asks.take(ORDER_BOOK_DISPLAY_LEVELS).reversed() // Highest ask first (descending)
-    val bids = orderBookData.bids.take(ORDER_BOOK_DISPLAY_LEVELS) // Highest bid first (descending)
-    
-    // Calculate cumulative quantity (not notional value) for each side
-    val buyCumulativeQuantities = remember(bids) {
-        var cumulative = 0.0
-        bids.map { bid ->
-            cumulative += bid.quantityDouble
-            cumulative
-        }
+    // Get quantities for depth calculation
+    val buyQuantities = remember(groupedBids) {
+        groupedBids.map { it.quantity }
     }
     
-    val sellCumulativeQuantities = remember(asks) {
-        var cumulative = 0.0
-        asks.map { ask ->
-            cumulative += ask.quantityDouble
-            cumulative
-        }
+    val sellQuantities = remember(groupedAsks) {
+        groupedAsks.map { it.quantity }
     }
     
-    // Find max cumulative quantity per side for normalization
-    val maxBuyQty = remember(buyCumulativeQuantities) {
-        buyCumulativeQuantities.maxOrNull() ?: 1.0
+    // Find max quantity across BOTH sides for consistent normalization
+    val maxQty = remember(buyQuantities, sellQuantities) {
+        maxOf(
+            buyQuantities.maxOrNull() ?: 1.0,
+            sellQuantities.maxOrNull() ?: 1.0
+        )
     }
     
-    val maxSellQty = remember(sellCumulativeQuantities) {
-        sellCumulativeQuantities.maxOrNull() ?: 1.0
-    }
-    
-    // Fixed row height (32-36dp range, using 32dp for professional look)
-    val rowHeight = 32.dp
-    
-    // Use single LazyColumn with rows containing both buy and sell for horizontal alignment
-    val maxRows = maxOf(bids.size, asks.size)
+    val rowHeight = 28.dp
+    val maxRows = maxOf(groupedBids.size, groupedAsks.size)
     
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -266,32 +392,26 @@ private fun OrderBookList(
                     .fillMaxWidth()
                     .height(rowHeight)
             ) {
-                // Left 50%: Buy side
+                // Left side: Bid
                 Box(
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxHeight()
                 ) {
-                    if (index < bids.size) {
-                        val cumulativeQty = buyCumulativeQuantities[index]
-                        val depthRatio by remember(cumulativeQty, maxBuyQty) {
+                    if (index < groupedBids.size) {
+                        val level = groupedBids[index]
+                        val depthRatio by remember(level.quantity, maxQty) {
                             derivedStateOf {
-                                if (maxBuyQty > 0) {
-                                    sqrt(cumulativeQty / maxBuyQty).coerceIn(0.0, 1.0)
-                                } else {
-                                    0.0
-                                }
+                                if (maxQty > 0) (level.quantity / maxQty).coerceIn(0.0, 1.0) else 0.0
                             }
                         }
                         
-                        OrderBookRowWithDepthBar(
-                            price = bids[index].price,
-                            quantity = bids[index].quantity,
+                        OrderBookRow(
+                            price = level.price,
+                            quantity = level.quantity,
                             symbol = symbol,
                             tradingPairs = tradingPairs,
                             isBuy = true,
-                            lastPrice = lastPrice,
-                            barColor = buyColor,
                             depthRatio = depthRatio,
                             isDarkTheme = isDarkTheme,
                             modifier = Modifier.fillMaxSize()
@@ -299,37 +419,26 @@ private fun OrderBookList(
                     }
                 }
 
-                VerticalDivider(
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
-                    thickness = 1.dp
-                )
-
-                // Right 50%: Sell side
+                // Right side: Ask
                 Box(
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxHeight()
                 ) {
-                    if (index < asks.size) {
-                        val cumulativeQty = sellCumulativeQuantities[index]
-                        val depthRatio by remember(cumulativeQty, maxSellQty) {
+                    if (index < groupedAsks.size) {
+                        val level = groupedAsks[index]
+                        val depthRatio by remember(level.quantity, maxQty) {
                             derivedStateOf {
-                                if (maxSellQty > 0) {
-                                    sqrt(cumulativeQty / maxSellQty).coerceIn(0.0, 1.0)
-                                } else {
-                                    0.0
-                                }
+                                if (maxQty > 0) (level.quantity / maxQty).coerceIn(0.0, 1.0) else 0.0
                             }
                         }
                         
-                        OrderBookRowWithDepthBar(
-                            price = asks[index].price,
-                            quantity = asks[index].quantity,
+                        OrderBookRow(
+                            price = level.price,
+                            quantity = level.quantity,
                             symbol = symbol,
                             tradingPairs = tradingPairs,
                             isBuy = false,
-                            lastPrice = lastPrice,
-                            barColor = sellColor,
                             depthRatio = depthRatio,
                             isDarkTheme = isDarkTheme,
                             modifier = Modifier.fillMaxSize()
@@ -342,22 +451,16 @@ private fun OrderBookList(
 }
 
 @Composable
-private fun OrderBookRowWithDepthBar(
-    price: String,
-    quantity: String,
+private fun OrderBookRow(
+    price: Double,
+    quantity: Double,
     symbol: String,
     tradingPairs: List<model.TradingPair>,
     isBuy: Boolean,
-    lastPrice: Double,
-    barColor: Color,
     depthRatio: Double,
     isDarkTheme: Boolean,
     modifier: Modifier = Modifier
 ) {
-    val priceDouble = price.toDoubleOrNull() ?: 0.0
-    val isHighlighted = kotlin.math.abs(priceDouble - lastPrice) / lastPrice < 0.001 // Within 0.1%
-    
-    // Format price and quantity
     val formattedPrice = remember(price, symbol, tradingPairs) {
         formatOrderBookPrice(price, symbol, tradingPairs)
     }
@@ -366,9 +469,8 @@ private fun OrderBookRowWithDepthBar(
         formatOrderBookAmount(quantity)
     }
     
-    // Calculate bar width: max 75% of side width (never overlap center), animated
     val targetBarWidth = remember(depthRatio) {
-        (depthRatio.toFloat() * 0.75f).coerceIn(0f, 0.75f)
+        depthRatio.toFloat().coerceIn(0f, 1f)
     }
     
     val animatedBarWidth by animateFloatAsState(
@@ -377,102 +479,67 @@ private fun OrderBookRowWithDepthBar(
         label = "depthBarWidth"
     )
     
-    // Bar opacity: 0.12-0.22 range (subdued, shadow-like)
-    val barAlpha = remember(depthRatio) {
-        if (depthRatio <= 0.0) {
-            0f
-        } else {
-            // Map depthRatio [0, 1] to opacity [0.12, 0.22]
-            (0.12f + (depthRatio.toFloat() * 0.10f)).coerceIn(0.12f, 0.22f)
-        }
-    }
+    // Binance colors
+    val buyColor = Color(0xFF0ECB81)  // Binance green
+    val sellColor = Color(0xFFF6465D) // Binance red
+    val barAlpha = 0.15f
     
-    // Text colors: neutral, never blend with depth color
-    // Always use high-contrast colors for readability
-    val textColor = if (isDarkTheme) {
-        Color(0xFFE0E0E0) // Light gray for dark theme
-    } else {
-        Color(0xFF212121) // Dark gray for light theme
-    }
-    val mutedTextColor = if (isDarkTheme) {
-        Color(0xFFB0B0B0) // Muted light gray
-    } else {
-        Color(0xFF757575) // Muted dark gray
-    }
+    // Quantity text color
+    val quantityColor = if (isDarkTheme) Color(0xFFB0B0B0) else Color(0xFF666666)
     
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
-        // Depth bar background layer (bottom layer - shadow-like)
-        if (isBuy) {
-            // Buy: green bar, aligned CenterEnd, grows right → left
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(animatedBarWidth)
-                    .background(barColor.copy(alpha = barAlpha))
-                    .align(Alignment.CenterEnd)
-            )
-        } else {
-            // Sell: red bar, aligned CenterStart, grows left → right
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(animatedBarWidth)
-                    .background(barColor.copy(alpha = barAlpha))
-                    .align(Alignment.CenterStart)
-            )
-        }
+        // Depth bar: grows OUTWARD from center
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(animatedBarWidth)
+                .background(
+                    if (isBuy) buyColor.copy(alpha = barAlpha)
+                    else sellColor.copy(alpha = barAlpha)
+                )
+                .align(if (isBuy) Alignment.CenterEnd else Alignment.CenterStart)
+        )
         
-        // Text layer above depth bar (top layer - always readable)
-        // Use SpaceBetween to ensure edge alignment: Buy side (Amount left, Price right), Sell side (Price left, Amount right)
+        // Text layer
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 4.dp),
+                .padding(horizontal = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (isBuy) {
-                // Buy side: Amount (left-aligned) | Price (right-aligned)
+                // Bid: Quantity (far left) | Price (near center, GREEN)
                 Text(
                     text = formattedQuantity,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = mutedTextColor,
+                    style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+                    color = quantityColor,
                     textAlign = TextAlign.Start,
                     modifier = Modifier.weight(1f)
                 )
                 Text(
                     text = formattedPrice,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = if (isHighlighted) {
-                        MaterialTheme.colorScheme.primary
-                    } else {
-                        textColor
-                    },
-                    fontWeight = if (isHighlighted) FontWeight.Bold else FontWeight.Normal,
+                    style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+                    color = buyColor,
                     textAlign = TextAlign.End,
                     modifier = Modifier.weight(1f)
                 )
             } else {
-                // Sell side: Price (left-aligned) | Amount (right-aligned)
+                // Ask: Price (near center, RED) | Quantity (far right)
                 Text(
                     text = formattedPrice,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = if (isHighlighted) {
-                        MaterialTheme.colorScheme.primary
-                    } else {
-                        textColor
-                    },
-                    fontWeight = if (isHighlighted) FontWeight.Bold else FontWeight.Normal,
+                    style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+                    color = sellColor,
                     textAlign = TextAlign.Start,
                     modifier = Modifier.weight(1f)
                 )
                 Text(
                     text = formattedQuantity,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = mutedTextColor,
+                    style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+                    color = quantityColor,
                     textAlign = TextAlign.End,
                     modifier = Modifier.weight(1f)
                 )
@@ -482,121 +549,66 @@ private fun OrderBookRowWithDepthBar(
 }
 
 /**
- * Intelligently calculate decimal precision based on price value
- * Algorithm analyzes the magnitude and significant digits of the price
- * Returns appropriate precision: higher prices need fewer decimals, lower prices need more
+ * Calculate decimal precision based on price value
  */
 private fun calculatePricePrecision(priceValue: Double): Int {
-    if (priceValue <= 0.0) return 8 // Default for invalid/zero prices
+    if (priceValue <= 0.0) return 8
     
-    // Calculate order of magnitude (logarithm base 10)
     val magnitude = kotlin.math.log10(kotlin.math.abs(priceValue))
     val orderOfMagnitude = magnitude.toInt()
     
-    // Algorithm: Determine precision based on price magnitude
-    // Higher prices (larger magnitude) → fewer decimals needed
-    // Lower prices (smaller magnitude) → more decimals needed
     return when {
-        // Very high prices (>= 1000): 2 decimals
         orderOfMagnitude >= 3 -> 2
-        
-        // High prices (100-999): 3 decimals
         orderOfMagnitude == 2 -> 3
-        
-        // Medium-high prices (10-99): 4 decimals
         orderOfMagnitude == 1 -> 4
-        
-        // Medium prices (1-9): 5 decimals
         orderOfMagnitude == 0 -> 5
-        
-        // Low prices (0.1-0.9): 6 decimals
         orderOfMagnitude == -1 -> 6
-        
-        // Very low prices (0.01-0.09): 7 decimals
         orderOfMagnitude == -2 -> 7
-        
-        // Extremely low prices (<0.01): 8 decimals
         else -> 8
     }
 }
 
 /**
- * Format order book price with intelligent precision calculation
- * Returns price WITHOUT crypto symbol (unlike formatPrice which adds symbol)
- * Algorithm automatically determines precision based on price value analysis
+ * Format order book price (Double version)
  */
-private fun formatOrderBookPrice(price: String, symbol: String, tradingPairs: List<model.TradingPair>): String {
+private fun formatOrderBookPrice(price: Double, symbol: String, tradingPairs: List<model.TradingPair>): String {
     val selectedPair = tradingPairs.find { pair ->
         symbol.endsWith(pair.quote, ignoreCase = true)
     }?.quote.orEmpty()
     
-    return try {
-        val priceValue = price.toDouble()
-        
-        // For USDT/USDC/FDUSD/USD1: format as currency (no symbol)
-        if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD" || selectedPair == "USD1") {
-            priceValue.formatAsCurrency()
-        } else {
-            // For other pairs: use intelligent precision calculation
-            val precision = calculatePricePrecision(priceValue)
-            formatDoubleToString(priceValue, maxDecimals = precision)
-        }
-    } catch (e: Exception) {
-        // Fallback: if conversion fails, check if it's exponential notation
-        if (price.contains('e', ignoreCase = true) || price.contains('E', ignoreCase = true)) {
-            try {
-                val priceValue = price.toDouble()
-                val precision = calculatePricePrecision(priceValue)
-                formatDoubleToString(priceValue, maxDecimals = precision)
-            } catch (e2: Exception) {
-                price // Last resort: return original
-            }
-        } else {
-            price // Return original if not exponential and conversion failed
-        }
+    return if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD" || selectedPair == "USD1") {
+        price.formatAsCurrency()
+    } else {
+        val precision = calculatePricePrecision(price)
+        formatDoubleToString(price, maxDecimals = precision)
     }
 }
 
 /**
- * Format order book amount (quantity) with proper decimal precision
- * For BTC and other crypto, show up to 8 decimal places
- * Kotlin Multiplatform-compatible (no String.format)
+ * Format order book quantity (Double version)
  */
-private fun formatOrderBookAmount(quantity: String): String {
-    return try {
-        val quantityValue = quantity.toDouble()
-        // Format with up to 8 decimal places, handling exponential notation if present
-        formatDoubleToString(quantityValue, maxDecimals = 8)
-    } catch (e: Exception) {
-        // Fallback to original if parsing fails
-        quantity
-    }
+private fun formatOrderBookAmount(quantity: Double): String {
+    return formatDoubleToString(quantity, maxDecimals = 5)
 }
 
 /**
- * Format a Double to string with specified max decimal places
- * Kotlin Multiplatform-compatible (no String.format)
+ * Format double to string with max decimals
  */
 private fun formatDoubleToString(value: Double, maxDecimals: Int): String {
     return try {
-        // Handle very small numbers
         if (value == 0.0) return "0"
         
-        // Build multiplier without using pow
         var multiplier = 1.0
         repeat(maxDecimals) {
             multiplier *= 10.0
         }
         
-        val rounded = (value * multiplier).roundToInt()
-        val result = rounded / multiplier
+        val rounded = (value * multiplier).roundToLong()
+        val result = rounded.toDouble() / multiplier
         
-        // Convert to string and trim trailing zeros
         var resultStr = result.toString()
         
-        // Handle scientific notation that might appear
         if (resultStr.contains('e', ignoreCase = true) || resultStr.contains('E', ignoreCase = true)) {
-            // If still in exponential format, build decimal string manually
             val integerPart = result.toLong()
             val fractionalPart = ((result - integerPart) * multiplier).toLong()
             
@@ -611,34 +623,29 @@ private fun formatDoubleToString(value: Double, maxDecimals: Int): String {
                 }
             }
         } else {
-            // Trim trailing zeros and decimal point
             resultStr.trimEnd('0').trimEnd('.')
         }
     } catch (e: Exception) {
-        // Fallback: use toString and clean up exponential notation manually
         value.toString().let { str ->
             if (str.contains('e', ignoreCase = true) || str.contains('E', ignoreCase = true)) {
-                // Manual conversion for exponential - build multiplier without pow
                 val parts = str.split('e', 'E', ignoreCase = true)
                 if (parts.size == 2) {
                     val base = parts[0].toDoubleOrNull() ?: return str
                     val exponent = parts[1].toIntOrNull() ?: return str
                     
-                    // Build multiplier for exponent
                     var expMultiplier = 1.0
                     val absExponent = kotlin.math.abs(exponent)
                     repeat(absExponent) {
                         expMultiplier *= 10.0
                     }
                     
-                    val result = if (exponent >= 0) {
+                    val calcResult = if (exponent >= 0) {
                         base * expMultiplier
                     } else {
                         base / expMultiplier
                     }
                     
-                    // Format result with max decimals
-                    formatDoubleToString(result, maxDecimals)
+                    formatDoubleToString(calcResult, maxDecimals)
                 } else {
                     str
                 }
