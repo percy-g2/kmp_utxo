@@ -95,7 +95,7 @@ kotlin {
 
             implementation(libs.navigation.compose)
 
-            implementation(libs.kstore)
+            api(libs.kstore)
 
             implementation(libs.lifecycle.viewmodel.compose)
 
