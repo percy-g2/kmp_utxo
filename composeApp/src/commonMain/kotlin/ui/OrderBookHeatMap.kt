@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -64,36 +63,43 @@ private data class GroupedLevel(
 /**
  * Calculate dynamic price grouping options based on current price
  * Returns list of grouping values matching Binance's options for each price range
+ * Handles boundary cases and ensures appropriate grouping for all price ranges
  */
 private fun calculateGroupingOptions(currentPrice: Double): List<Double> {
     if (currentPrice <= 0.0) return listOf(0.01, 0.1, 1.0)
     
-    val magnitude = kotlin.math.log10(currentPrice).toInt()
+    val absPrice = kotlin.math.abs(currentPrice)
     
     return when {
+        // Very high prices (>= 100000, e.g., BTC at $100k+): 1, 10, 50, 100, 500, 1000, 5000
+        absPrice >= 100000.0 -> listOf(1.0, 10.0, 50.0, 100.0, 500.0, 1000.0, 5000.0)
+        
         // Very high prices (>= 10000, e.g., BTC): 0.01, 0.1, 1, 10, 50, 100, 1000
-        magnitude >= 4 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0, 100.0, 1000.0)
+        absPrice >= 10000.0 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0, 100.0, 1000.0)
         
         // High prices (1000-9999, e.g., ETH): 0.01, 0.1, 1, 10, 50, 100
-        magnitude == 3 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0, 100.0)
+        absPrice >= 1000.0 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0, 100.0)
         
         // Medium-high prices (100-999): 0.01, 0.1, 1, 10, 50
-        magnitude == 2 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0)
+        absPrice >= 100.0 -> listOf(0.01, 0.1, 1.0, 10.0, 50.0)
         
         // Medium prices (10-99): 0.001, 0.01, 0.1, 1, 10
-        magnitude == 1 -> listOf(0.001, 0.01, 0.1, 1.0, 10.0)
+        absPrice >= 10.0 -> listOf(0.001, 0.01, 0.1, 1.0, 10.0)
         
         // Low prices (1-9): 0.0001, 0.001, 0.01, 0.1, 1
-        magnitude == 0 -> listOf(0.0001, 0.001, 0.01, 0.1, 1.0)
+        absPrice >= 1.0 -> listOf(0.0001, 0.001, 0.01, 0.1, 1.0)
         
         // Very low prices (0.1-0.9): 0.00001, 0.0001, 0.001, 0.01, 0.1
-        magnitude == -1 -> listOf(0.00001, 0.0001, 0.001, 0.01, 0.1)
+        absPrice >= 0.1 -> listOf(0.00001, 0.0001, 0.001, 0.01, 0.1)
         
         // Very low prices (0.01-0.09): 0.000001, 0.00001, 0.0001, 0.001, 0.01
-        magnitude == -2 -> listOf(0.000001, 0.00001, 0.0001, 0.001, 0.01)
+        absPrice >= 0.01 -> listOf(0.000001, 0.00001, 0.0001, 0.001, 0.01)
         
-        // Extremely low prices (< 0.01): 0.0000001, 0.000001, 0.00001, 0.0001, 0.001
-        else -> listOf(0.0000001, 0.000001, 0.00001, 0.0001, 0.001)
+        // Extremely low prices (0.001-0.009): 0.0000001, 0.000001, 0.00001, 0.0001, 0.001
+        absPrice >= 0.001 -> listOf(0.0000001, 0.000001, 0.00001, 0.0001, 0.001)
+        
+        // Ultra low prices (< 0.001): 0.00000001, 0.0000001, 0.000001, 0.00001, 0.0001
+        else -> listOf(0.00000001, 0.0000001, 0.000001, 0.00001, 0.0001)
     }
 }
 
@@ -265,31 +271,33 @@ fun OrderBookHeatMap(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 8.dp, vertical = 6.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // Bid label (left)
+                    // Bid label (left, aligned to start)
                     Text(
                         text = "Bid",
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.weight(1f)
                     )
-                    
-                    // Ask label (center-right) with dropdown
+
+                    // Ask label and dropdown (right side)
                     Row(
+                        modifier = Modifier.weight(1f),
+                        horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+                        // Ask label (aligned to start of right section)
                         Text(
+                            modifier = Modifier.padding(start = 8.dp),
                             text = "Ask",
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontWeight = FontWeight.Medium
                         )
                         
-                        Spacer(modifier = Modifier.width(16.dp))
-                        
-                        // Price grouping dropdown
+                        // Price grouping dropdown (aligned to end)
                         Box {
                             Row(
                                 modifier = Modifier
@@ -550,45 +558,123 @@ private fun OrderBookRow(
 
 /**
  * Calculate decimal precision based on price value
+ * Matches Binance's precision display logic for all trading pairs
  */
 private fun calculatePricePrecision(priceValue: Double): Int {
     if (priceValue <= 0.0) return 8
     
-    val magnitude = kotlin.math.log10(kotlin.math.abs(priceValue))
-    val orderOfMagnitude = magnitude.toInt()
+    val absValue = kotlin.math.abs(priceValue)
     
     return when {
-        orderOfMagnitude >= 3 -> 2
-        orderOfMagnitude == 2 -> 3
-        orderOfMagnitude == 1 -> 4
-        orderOfMagnitude == 0 -> 5
-        orderOfMagnitude == -1 -> 6
-        orderOfMagnitude == -2 -> 7
+        // Very high prices (>= 100000, e.g., BTC at $100k+): 0 decimal places
+        absValue >= 100000.0 -> 0
+        
+        // High prices (10000-99999): 1 decimal place
+        absValue >= 10000.0 -> 1
+        
+        // High prices (1000-9999, e.g., ETH): 2 decimal places
+        absValue >= 1000.0 -> 2
+        
+        // Medium-high prices (100-999): 3 decimal places
+        absValue >= 100.0 -> 3
+        
+        // Medium prices (10-99): 4 decimal places
+        absValue >= 10.0 -> 4
+        
+        // Low prices (1-9): 5 decimal places
+        absValue >= 1.0 -> 5
+        
+        // Very low prices (0.1-0.9): 6 decimal places
+        absValue >= 0.1 -> 6
+        
+        // Very low prices (0.01-0.09): 7 decimal places
+        absValue >= 0.01 -> 7
+        
+        // Extremely low prices (0.001-0.009): 8 decimal places
+        absValue >= 0.001 -> 8
+        
+        // Ultra low prices (< 0.001): 8 decimal places (max precision)
         else -> 8
     }
 }
 
 /**
  * Format order book price (Double version)
+ * Handles all trading pair types consistently like Binance app
  */
 private fun formatOrderBookPrice(price: Double, symbol: String, tradingPairs: List<model.TradingPair>): String {
     val selectedPair = tradingPairs.find { pair ->
         symbol.endsWith(pair.quote, ignoreCase = true)
     }?.quote.orEmpty()
     
-    return if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD" || selectedPair == "USD1") {
-        price.formatAsCurrency()
-    } else {
-        val precision = calculatePricePrecision(price)
-        formatDoubleToString(price, maxDecimals = precision)
+    // For USD-stablecoin pairs (USDT, USDC, FDUSD, USD1), use currency formatting
+    if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD" || selectedPair == "USD1") {
+        return price.formatAsCurrency()
     }
+    
+    // For BTC pairs (e.g., ETHBTC, ALTBTC), use higher precision
+    if (selectedPair == "BTC") {
+        val precision = calculatePricePrecision(price)
+        // Ensure minimum 8 decimals for BTC pairs (Binance standard)
+        return formatDoubleToString(price, maxDecimals = maxOf(precision, 8))
+    }
+    
+    // For ETH pairs (e.g., ALTHETH), use higher precision
+    if (selectedPair == "ETH") {
+        val precision = calculatePricePrecision(price)
+        // Ensure minimum 6 decimals for ETH pairs
+        return formatDoubleToString(price, maxDecimals = maxOf(precision, 6))
+    }
+    
+    // For other pairs (BNB, BUSD, etc.), use calculated precision
+    val precision = calculatePricePrecision(price)
+    return formatDoubleToString(price, maxDecimals = precision)
 }
 
 /**
  * Format order book quantity (Double version)
+ * Uses dynamic precision and formats large quantities with abbreviations (K, M, B) like Binance
  */
 private fun formatOrderBookAmount(quantity: Double): String {
-    return formatDoubleToString(quantity, maxDecimals = 5)
+    if (quantity <= 0.0) return "0"
+    
+    val absQuantity = kotlin.math.abs(quantity)
+    
+    // Format large quantities with abbreviations (Binance style)
+    return when {
+        // Billions: format as "X.XXB"
+        absQuantity >= 1_000_000_000.0 -> {
+            val billions = absQuantity / 1_000_000_000.0
+            val formatted = formatDoubleToString(billions, maxDecimals = 2)
+            "${formatted}B"
+        }
+        
+        // Millions: format as "X.XXM"
+        absQuantity >= 1_000_000.0 -> {
+            val millions = absQuantity / 1_000_000.0
+            val formatted = formatDoubleToString(millions, maxDecimals = 2)
+            "${formatted}M"
+        }
+        
+        // Thousands: format as "X.XXK"
+        absQuantity >= 1_000.0 -> {
+            val thousands = absQuantity / 1_000.0
+            val formatted = formatDoubleToString(thousands, maxDecimals = 2)
+            "${formatted}K"
+        }
+        
+        // Small quantities: use dynamic precision based on value
+        else -> {
+            val precision = when {
+                absQuantity >= 1.0 -> 5
+                absQuantity >= 0.1 -> 6
+                absQuantity >= 0.01 -> 7
+                absQuantity >= 0.001 -> 8
+                else -> 8
+            }
+            formatDoubleToString(quantity, maxDecimals = precision)
+        }
+    }
 }
 
 /**
@@ -606,7 +692,7 @@ private fun formatDoubleToString(value: Double, maxDecimals: Int): String {
         val rounded = (value * multiplier).roundToLong()
         val result = rounded.toDouble() / multiplier
         
-        var resultStr = result.toString()
+        val resultStr = result.toString()
         
         if (resultStr.contains('e', ignoreCase = true) || resultStr.contains('E', ignoreCase = true)) {
             val integerPart = result.toLong()
@@ -625,7 +711,7 @@ private fun formatDoubleToString(value: Double, maxDecimals: Int): String {
         } else {
             resultStr.trimEnd('0').trimEnd('.')
         }
-    } catch (e: Exception) {
+    } catch (_: Exception) {
         value.toString().let { str ->
             if (str.contains('e', ignoreCase = true) || str.contains('E', ignoreCase = true)) {
                 val parts = str.split('e', 'E', ignoreCase = true)
