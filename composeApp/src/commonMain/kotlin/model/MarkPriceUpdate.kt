@@ -30,6 +30,20 @@ data class Ticker(
     @SerialName("n") val totalNumberOfTrades: Long    // Total number of trades
 )
 
+/** Binance `!miniTicker@arr` / 24hrMiniTicker WebSocket payload (replaces retired `!ticker@arr`). */
+@Serializable
+data class MiniTicker(
+    @SerialName("e") val eventType: String,
+    @SerialName("E") val eventTime: Long,
+    @SerialName("s") val symbol: String,
+    @SerialName("c") val closePrice: String,
+    @SerialName("o") val openPrice: String,
+    @SerialName("h") val highPrice: String,
+    @SerialName("l") val lowPrice: String,
+    @SerialName("v") val totalTradedBaseAssetVolume: String,
+    @SerialName("q") val totalTradedQuoteAssetVolume: String
+)
+
 // REST API 24hr ticker response (different format from WebSocket)
 @Serializable
 data class Ticker24hr(

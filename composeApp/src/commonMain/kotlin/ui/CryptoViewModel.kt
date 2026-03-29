@@ -32,8 +32,8 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import ktx.formatPrice
 import logging.AppLogger
+import model.MiniTicker
 import model.SortParams
-import model.Ticker
 import model.TickerData
 import model.TickerDataInfo
 import model.TradingPair
@@ -41,6 +41,8 @@ import model.UiKline
 import network.HttpClient
 import theme.ThemeManager.store
 import syncSettingsToWidget
+import kotlin.math.abs
+import kotlin.math.round
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
@@ -451,7 +453,7 @@ class CryptoViewModel : ViewModel() {
                         webSocketClient.wss(
                             method = HttpMethod.Get,
                             host = "stream.binance.com",
-                            path = "/ws/!ticker@arr",
+                            path = "/ws/!miniTicker@arr",
                             request = { header(HttpHeaders.ContentType, ContentType.Application.Json) }
                         ) {
                             for (frame in incoming) {
@@ -502,6 +504,14 @@ class CryptoViewModel : ViewModel() {
         }
     }
 
+    private fun priceChangePercentFromOpenClose(openStr: String, closeStr: String): String {
+        val open = openStr.toDoubleOrNull() ?: return "0.00"
+        val close = closeStr.toDoubleOrNull() ?: return "0.00"
+        if (abs(open) < 1e-12) return "0.00"
+        val pct = (close - open) / open * 100.0
+        return (round(pct * 100.0) / 100.0).toString()
+    }
+
     @OptIn(ExperimentalTime::class)
     private fun processTickerMessage(message: String) {
         val now = Clock.System.now().toEpochMilliseconds()
@@ -511,7 +521,7 @@ class CryptoViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.Default) {
             runCatching {
                 // Parse JSON off main thread
-                val tickers = Json.decodeFromString<List<Ticker>>(message)
+                val tickers = Json.decodeFromString<List<MiniTicker>>(message)
                 val currentTradingPairs = tradingPairs.value
                 
                 // Process all data off main thread
@@ -519,12 +529,14 @@ class CryptoViewModel : ViewModel() {
                 val updatedTrades = trades.value.toMutableMap()
                 
                 tickers.forEach { ticker ->
-                    // Format price off main thread
-                    val formattedPrice = ticker.lastPrice.formatPrice(ticker.symbol, currentTradingPairs)
+                    val formattedPrice = ticker.closePrice.formatPrice(ticker.symbol, currentTradingPairs)
                     updatedTickerMap[ticker.symbol] = TickerData(
                         symbol = ticker.symbol,
                         lastPrice = formattedPrice,
-                        priceChangePercent = ticker.priceChangePercent,
+                        priceChangePercent = priceChangePercentFromOpenClose(
+                            ticker.openPrice,
+                            ticker.closePrice
+                        ),
                         volume = ticker.totalTradedQuoteAssetVolume
                     )
                     
@@ -534,9 +546,9 @@ class CryptoViewModel : ViewModel() {
                     val currentTrades = updatedTrades[ticker.symbol] ?: emptyList()
                     updatedTrades[ticker.symbol] = if (currentTrades.size >= maxTradesPerSymbol) {
                         // Use drop + add instead of creating new list to reduce allocations
-                        currentTrades.drop(1) + UiKline(closePrice = ticker.lastPrice)
+                        currentTrades.drop(1) + UiKline(closePrice = ticker.closePrice)
                     } else {
-                        currentTrades + UiKline(closePrice = ticker.lastPrice)
+                        currentTrades + UiKline(closePrice = ticker.closePrice)
                     }
                 }
 
