@@ -18,11 +18,12 @@ fun addHeadLinks() {
     val head = document.head ?: return
 
     // Define the link elements to be added
-    val links = listOf(
-        createLinkElement("icon", "favicon.ico"),
-        createLinkElement("apple-touch-icon", "apple-touch-icon.png"),
-        createLinkElement("manifest", "manifest.json")
-    )
+    val links =
+        listOf(
+            createLinkElement("icon", "favicon.ico"),
+            createLinkElement("apple-touch-icon", "apple-touch-icon.png"),
+            createLinkElement("manifest", "manifest.json"),
+        )
 
     // Remove existing elements and add new ones
     links.forEach { linkElement ->
@@ -35,7 +36,10 @@ fun addHeadLinks() {
 /**
  * Creates an HTMLLinkElement with the specified rel and href attributes.
  */
-fun createLinkElement(rel: String, href: String): HTMLLinkElement {
+fun createLinkElement(
+    rel: String,
+    href: String,
+): HTMLLinkElement {
     return (document.createElement("link") as HTMLLinkElement).apply {
         this.rel = rel
         this.href = href

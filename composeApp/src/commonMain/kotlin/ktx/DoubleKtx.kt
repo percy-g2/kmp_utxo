@@ -8,7 +8,13 @@ fun Double.formatAsCurrency(): String {
     val integerPart = absValue.toLong()
     val fractionalPart = ((absValue - integerPart) * 100).roundToInt()
 
-    val formattedInteger = integerPart.toString().reversed().chunked(3).joinToString(",").reversed()
+    val formattedInteger =
+        integerPart
+            .toString()
+            .reversed()
+            .chunked(3)
+            .joinToString(",")
+            .reversed()
     val formattedFractional = fractionalPart.toString().padStart(2, '0')
 
     return if (this < 0) "-$formattedInteger.$formattedFractional" else "$formattedInteger.$formattedFractional"

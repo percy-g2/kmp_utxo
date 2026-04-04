@@ -2,6 +2,7 @@ package org.androdevlinux.utxo.widget.helper
 
 import android.appwidget.AppWidgetManager
 import android.content.Context
+import android.graphics.Color
 import android.widget.RemoteViews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -9,53 +10,59 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import ktx.toCryptoSymbol
 import org.androdevlinux.utxo.R
 import org.androdevlinux.utxo.widget.FavoritesWidgetProvider
-import org.androdevlinux.utxo.widget.service.FavoritesWidgetService
 import ui.AppTheme
-import android.graphics.Color
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
-import ktx.toCryptoSymbol
 
 object WidgetUpdateHelper {
     private val updateScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    private val json = Json {
-        isLenient = true
-        ignoreUnknownKeys = true
-    }
+    private val json =
+        Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+        }
     private const val MAX_FAVORITES = 4
 
-    fun updateWidget(context: Context, appWidgetId: Int) {
+    fun updateWidget(
+        context: Context,
+        appWidgetId: Int,
+    ) {
         updateScope.launch {
             try {
                 val views = RemoteViews(context.packageName, R.layout.widget_favorites)
-                
+
                 // Set up click intent to open the app
-                val mainIntent = android.content.Intent().apply {
-                    setClassName(context, "org.androdevlinux.utxo.MainActivity")
-                }
-                val pendingIntent = android.app.PendingIntent.getActivity(
-                    context,
-                    0,
-                    mainIntent,
-                    android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE
-                )
+                val mainIntent =
+                    android.content.Intent().apply {
+                        setClassName(context, "org.androdevlinux.utxo.MainActivity")
+                    }
+                val pendingIntent =
+                    android.app.PendingIntent.getActivity(
+                        context,
+                        0,
+                        mainIntent,
+                        android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE,
+                    )
                 views.setOnClickPendingIntent(R.id.widget_container, pendingIntent)
 
                 // Set up refresh button
-                val refreshIntent = android.content.Intent(context, FavoritesWidgetProvider::class.java).apply {
-                    action = FavoritesWidgetProvider.ACTION_REFRESH
-                }
-                val refreshPendingIntent = android.app.PendingIntent.getBroadcast(
-                    context,
-                    0,
-                    refreshIntent,
-                    android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE
-                )
+                val refreshIntent =
+                    android.content.Intent(context, FavoritesWidgetProvider::class.java).apply {
+                        action = FavoritesWidgetProvider.ACTION_REFRESH
+                    }
+                val refreshPendingIntent =
+                    android.app.PendingIntent.getBroadcast(
+                        context,
+                        0,
+                        refreshIntent,
+                        android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE,
+                    )
                 views.setOnClickPendingIntent(R.id.widget_refresh_button, refreshPendingIntent)
-                
+
                 // Update widget content
                 updateWidgetContent(context, appWidgetId, views)
             } catch (e: Exception) {
@@ -64,59 +71,68 @@ object WidgetUpdateHelper {
         }
     }
 
-    private suspend fun updateWidgetContent(context: Context, appWidgetId: Int, views: RemoteViews) {
+    private suspend fun updateWidgetContent(
+        context: Context,
+        appWidgetId: Int,
+        views: RemoteViews,
+    ) {
         try {
             // Read favorites from settings
             val settings = SettingsHelper.readSettings(context)
             android.util.Log.d("WidgetUpdateHelper", "Settings: $settings")
             val favorites = settings?.favPairs?.filter { it.isNotEmpty() && it.isNotBlank() }?.take(MAX_FAVORITES) ?: emptyList()
             android.util.Log.d("WidgetUpdateHelper", "Favorites count: ${favorites.size}, Favorites: $favorites")
-            
+
             // Determine theme
-            val isDarkTheme = when (settings?.appTheme) {
-                AppTheme.Dark -> true
-                AppTheme.Light -> false
-                else -> {
-                    // Check system theme
-                    val nightModeFlags = context.resources.configuration.uiMode and
-                            android.content.res.Configuration.UI_MODE_NIGHT_MASK
-                    nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES
+            val isDarkTheme =
+                when (settings?.appTheme) {
+                    AppTheme.Dark -> true
+                    AppTheme.Light -> false
+                    else -> {
+                        // Check system theme
+                        val nightModeFlags =
+                            context.resources.configuration.uiMode and
+                                android.content.res.Configuration.UI_MODE_NIGHT_MASK
+                        nightModeFlags == android.content.res.Configuration.UI_MODE_NIGHT_YES
+                    }
                 }
-            }
-            
+
             // Apply theme colors
-            val textColor = if (isDarkTheme) {
-                Color.parseColor("#FFFFFF") // White text
-            } else {
-                Color.parseColor("#000000") // Black text
-            }
-            
-            val secondaryTextColor = if (isDarkTheme) {
-                Color.parseColor("#B3B3B3") // Light gray
-            } else {
-                Color.parseColor("#666666") // Dark gray
-            }
-            
+            val textColor =
+                if (isDarkTheme) {
+                    Color.parseColor("#FFFFFF") // White text
+                } else {
+                    Color.parseColor("#000000") // Black text
+                }
+
+            val secondaryTextColor =
+                if (isDarkTheme) {
+                    Color.parseColor("#B3B3B3") // Light gray
+                } else {
+                    Color.parseColor("#666666") // Dark gray
+                }
+
             // Set widget background with rounded corners
-            val backgroundRes = if (isDarkTheme) {
-                R.drawable.widget_background_dark
-            } else {
-                R.drawable.widget_background
-            }
+            val backgroundRes =
+                if (isDarkTheme) {
+                    R.drawable.widget_background_dark
+                } else {
+                    R.drawable.widget_background
+                }
             views.setInt(R.id.widget_container, "setBackgroundResource", backgroundRes)
             views.setTextColor(R.id.widget_title, textColor)
             views.setTextColor(R.id.widget_empty_text, secondaryTextColor)
 
             // Update widget title
             views.setTextViewText(R.id.widget_title, context.getString(R.string.widget_title))
-            
+
             if (favorites.isEmpty()) {
                 // Show empty state
                 android.util.Log.d("WidgetUpdateHelper", "No favorites found, showing empty state")
                 views.setTextViewText(R.id.widget_empty_text, context.getString(R.string.widget_no_favorites))
                 views.setViewVisibility(R.id.widget_empty_text, android.view.View.VISIBLE)
                 views.setViewVisibility(R.id.widget_favorites_container, android.view.View.GONE)
-                
+
                 // Update widget immediately with empty state
                 withContext(Dispatchers.Main) {
                     val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -133,43 +149,47 @@ object WidgetUpdateHelper {
                 android.util.Log.d("WidgetUpdateHelper", "Ticker data fetched: ${tickerDataMap.keys}")
 
                 // Update widget views for each favorite (up to 4)
-                val itemIds = listOf(
-                    R.id.widget_item_1,
-                    R.id.widget_item_2,
-                    R.id.widget_item_3,
-                    R.id.widget_item_4
-                )
+                val itemIds =
+                    listOf(
+                        R.id.widget_item_1,
+                        R.id.widget_item_2,
+                        R.id.widget_item_3,
+                        R.id.widget_item_4,
+                    )
 
                 favorites.forEachIndexed { index, symbol ->
                     if (index < MAX_FAVORITES) {
                         val tickerData = tickerDataMap[symbol]
                         val itemId = itemIds[index]
-                        
+
                         // Set up click intent for this item to open coin detail
                         val (baseSymbol, quoteSymbol) = extractSymbolParts(symbol, settings?.selectedTradingPair ?: "BTC")
                         val displaySymbol = if (quoteSymbol.isNotEmpty()) "$baseSymbol/$quoteSymbol" else symbol
-                        
-                        val coinDetailIntent = android.content.Intent().apply {
-                            setClassName(context, "org.androdevlinux.utxo.MainActivity")
-                            putExtra("coin_symbol", symbol)
-                            putExtra("coin_display_symbol", displaySymbol)
-                            flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        }
-                        val coinDetailPendingIntent = android.app.PendingIntent.getActivity(
-                            context,
-                            index + 100, // Unique request code for each item
-                            coinDetailIntent,
-                            android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE
-                        )
+
+                        val coinDetailIntent =
+                            android.content.Intent().apply {
+                                setClassName(context, "org.androdevlinux.utxo.MainActivity")
+                                putExtra("coin_symbol", symbol)
+                                putExtra("coin_display_symbol", displaySymbol)
+                                flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            }
+                        // Unique request code for each item
+                        val coinDetailPendingIntent =
+                            android.app.PendingIntent.getActivity(
+                                context,
+                                index + 100,
+                                coinDetailIntent,
+                                android.app.PendingIntent.FLAG_UPDATE_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE,
+                            )
                         views.setOnClickPendingIntent(itemId, coinDetailPendingIntent)
-                        
+
                         // Fetch chart data
                         val klines = ChartHelper.fetchChartData(symbol)
-                        
+
                         if (tickerData != null) {
                             // Show the item
                             views.setViewVisibility(itemId, android.view.View.VISIBLE)
-                            
+
                             // Set symbol parts separately to match favorites screen style
                             views.setTextViewText(getSymbolBaseViewId(itemId), baseSymbol)
                             views.setTextColor(getSymbolBaseViewId(itemId), textColor)
@@ -177,48 +197,50 @@ object WidgetUpdateHelper {
                             views.setTextColor(getSymbolSeparatorViewId(itemId), textColor)
                             views.setTextViewText(getSymbolQuoteViewId(itemId), quoteSymbol)
                             views.setTextColor(getSymbolQuoteViewId(itemId), secondaryTextColor)
-                            
+
                             // Set volume (format like favorites screen)
                             val formattedVolume = formatVolume(tickerData.volume)
                             views.setTextViewText(getVolumeViewId(itemId), formattedVolume)
                             views.setTextColor(getVolumeViewId(itemId), secondaryTextColor)
-                            
+
                             // Set price with trading pair symbol
                             views.setTextViewText(
                                 getPriceViewId(itemId),
-                                formatPrice(tickerData.lastPrice, quoteSymbol)
+                                formatPrice(tickerData.lastPrice, quoteSymbol),
                             )
                             views.setTextColor(getPriceViewId(itemId), textColor)
-                            
+
                             // Set change percentage with color
                             val changePercent = tickerData.priceChangePercent.toDoubleOrNull() ?: 0.0
                             val changeText = formatChangePercent(changePercent)
                             views.setTextViewText(
                                 getChangeViewId(itemId),
-                                changeText
+                                changeText,
                             )
-                            
+
                             // Set color based on positive/negative change
-                            val changeColor = if (changePercent >= 0) {
-                                Color.parseColor("#4CAF50") // Green
-                            } else {
-                                Color.parseColor("#F44336") // Red
-                            }
+                            val changeColor =
+                                if (changePercent >= 0) {
+                                    Color.parseColor("#4CAF50") // Green
+                                } else {
+                                    Color.parseColor("#F44336") // Red
+                                }
                             views.setTextColor(
                                 getChangeViewId(itemId),
-                                changeColor
+                                changeColor,
                             )
-                            
+
                             // Create and set chart bitmap
                             if (klines.isNotEmpty()) {
-                                val chartBitmap = ChartHelper.createSparklineBitmap(
-                                    klines = klines,
-                                    width = 80,
-                                    height = 40,
-                                    lineColor = changeColor,
-                                    fillColor = changeColor,
-                                    isPositive = changePercent >= 0
-                                )
+                                val chartBitmap =
+                                    ChartHelper.createSparklineBitmap(
+                                        klines = klines,
+                                        width = 80,
+                                        height = 40,
+                                        lineColor = changeColor,
+                                        fillColor = changeColor,
+                                        isPositive = changePercent >= 0,
+                                    )
                                 views.setImageViewBitmap(getChartViewId(itemId), chartBitmap)
                                 views.setViewVisibility(getChartViewId(itemId), android.view.View.VISIBLE)
                             } else {
@@ -238,12 +260,12 @@ object WidgetUpdateHelper {
                             views.setTextColor(getVolumeViewId(itemId), secondaryTextColor)
                             views.setTextViewText(
                                 getPriceViewId(itemId),
-                                "--"
+                                "--",
                             )
                             views.setTextColor(getPriceViewId(itemId), secondaryTextColor)
                             views.setTextViewText(
                                 getChangeViewId(itemId),
-                                "--"
+                                "--",
                             )
                             views.setTextColor(getChangeViewId(itemId), secondaryTextColor)
                             views.setViewVisibility(getChartViewId(itemId), android.view.View.GONE)
@@ -255,7 +277,7 @@ object WidgetUpdateHelper {
                 for (i in favorites.size until MAX_FAVORITES) {
                     views.setViewVisibility(itemIds[i], android.view.View.GONE)
                 }
-                
+
                 android.util.Log.d("WidgetUpdateHelper", "All items updated, updating widget now")
             }
 
@@ -270,20 +292,22 @@ object WidgetUpdateHelper {
                     throw e
                 }
             }
-            
+
             // Schedule next refresh
             WidgetRefreshHelper.scheduleNextRefresh(context)
-
         } catch (e: Exception) {
             android.util.Log.e("WidgetUpdateHelper", "Error updating widget content", e)
             e.printStackTrace()
         }
     }
 
-    private fun extractSymbolParts(symbol: String, selectedTradingPair: String): Pair<String, String> {
+    private fun extractSymbolParts(
+        symbol: String,
+        selectedTradingPair: String,
+    ): Pair<String, String> {
         // Common quote currencies (sorted by length descending to match longer ones first)
         val quoteCurrencies = listOf("USDT", "USDC", "BUSD", "FDUSD", "BTC", "ETH", "BNB", "DAI", "TUSD", "EUR", "GBP", "JPY")
-        
+
         // First try with selected trading pair
         if (symbol.endsWith(selectedTradingPair, ignoreCase = true) && symbol.length > selectedTradingPair.length) {
             val base = symbol.substring(0, symbol.length - selectedTradingPair.length)
@@ -291,7 +315,7 @@ object WidgetUpdateHelper {
                 return Pair(base, selectedTradingPair)
             }
         }
-        
+
         // Fallback: try to extract from symbol using common quote currencies
         for (quote in quoteCurrencies.sortedByDescending { it.length }) {
             if (symbol.endsWith(quote, ignoreCase = true) && symbol.length > quote.length) {
@@ -301,19 +325,23 @@ object WidgetUpdateHelper {
                 }
             }
         }
-        
+
         // Last resort: return symbol as-is
         return Pair(symbol, "")
     }
 
-    private fun formatPrice(price: String, quoteSymbol: String): String {
+    private fun formatPrice(
+        price: String,
+        quoteSymbol: String,
+    ): String {
         val priceValue = price.toDoubleOrNull() ?: return price
-        val formattedPrice = when {
-            priceValue >= 1000 -> DecimalFormat("#,###", DecimalFormatSymbols(Locale.US)).format(priceValue)
-            priceValue >= 1 -> DecimalFormat("#,##0.00", DecimalFormatSymbols(Locale.US)).format(priceValue)
-            priceValue >= 0.01 -> DecimalFormat("#,##0.0000", DecimalFormatSymbols(Locale.US)).format(priceValue)
-            else -> DecimalFormat("#,##0.00000000", DecimalFormatSymbols(Locale.US)).format(priceValue)
-        }
+        val formattedPrice =
+            when {
+                priceValue >= 1000 -> DecimalFormat("#,###", DecimalFormatSymbols(Locale.US)).format(priceValue)
+                priceValue >= 1 -> DecimalFormat("#,##0.00", DecimalFormatSymbols(Locale.US)).format(priceValue)
+                priceValue >= 0.01 -> DecimalFormat("#,##0.0000", DecimalFormatSymbols(Locale.US)).format(priceValue)
+                else -> DecimalFormat("#,##0.00000000", DecimalFormatSymbols(Locale.US)).format(priceValue)
+            }
         // Append trading pair symbol if available
         return if (quoteSymbol.isNotEmpty()) {
             "$formattedPrice ${quoteSymbol.toCryptoSymbol()}"
@@ -436,4 +464,3 @@ object WidgetUpdateHelper {
         }
     }
 }
-

@@ -139,25 +139,22 @@ val LocalSettings = staticCompositionLocalOf<Settings?> { null }
 @Composable
 fun CryptoList(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String, String) -> Unit = { _, _ -> }
+    onCoinClick: (String, String) -> Unit = { _, _ -> },
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
-    
+
     // Collect state once at top level - hoist to minimize recompositions
     val trades by cryptoViewModel.trades.collectAsState()
-    val tickerDataMap by cryptoViewModel.filteredTickerDataMap.collectAsState()
+    val tickerItems by cryptoViewModel.filteredTickerItems.collectAsState()
     val isLoading by cryptoViewModel.isLoading.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
     val settingsStore by store.updates.collectAsState(initial = null)
-    
-    // Derive stable list of ticker items to avoid recreating list on every recomposition
-    val tickerItems by derivedStateOf { tickerDataMap.values.toList() }
-    
+
     // Derive stable trading pair list
     val tradingPairList by derivedStateOf { tradingPairs.map { it.quote } }
-    
+
     val currentTradingPair by derivedStateOf { settingsStore?.selectedTradingPair ?: "BTC" }
 
     // Optimize visible symbols calculation - use derivedStateOf for automatic recomposition only when needed
@@ -170,15 +167,19 @@ fun CryptoList(
         val prefetchBuffer = 10
         val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
 
-        val startIndex = visibleIndices.minOrNull()
-            ?.minus(prefetchBuffer)
-            ?.coerceAtLeast(0)
-            ?: 0
+        val startIndex =
+            visibleIndices
+                .minOrNull()
+                ?.minus(prefetchBuffer)
+                ?.coerceAtLeast(0)
+                ?: 0
 
-        val endIndex = visibleIndices.maxOrNull()
-            ?.plus(prefetchBuffer)
-            ?.coerceAtMost(tickerItems.lastIndex)
-            ?: tickerItems.lastIndex
+        val endIndex =
+            visibleIndices
+                .maxOrNull()
+                ?.plus(prefetchBuffer)
+                ?.coerceAtMost(tickerItems.lastIndex)
+                ?: tickerItems.lastIndex
 
         (startIndex..endIndex).mapNotNull { index ->
             tickerItems.getOrNull(index)?.symbol
@@ -187,7 +188,7 @@ fun CryptoList(
 
     // Track fetch job for cancellation
     var fetchJob by remember { mutableStateOf<Job?>(null) }
-    
+
     // Lifecycle-aware data fetching with cancellation
     // Only load charts for symbols that don't have them yet (normal behavior)
     LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState) {
@@ -195,48 +196,51 @@ fun CryptoList(
         if (visibleSymbols.isNotEmpty() && isResumed) {
             // Cancel previous job if still running
             fetchJob?.cancel()
-            fetchJob = coroutineScope.launch(Dispatchers.Default) {
-                try {
-                    // Only load charts for symbols that don't have them (no forceRefresh)
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = false)
-                } catch (e: CancellationException) {
-                    throw e
-                } catch (_: Exception) {
-                    // Silently handle errors during cancellation
+            fetchJob =
+                coroutineScope.launch(Dispatchers.Default) {
+                    try {
+                        // Only load charts for symbols that don't have them (no forceRefresh)
+                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = false)
+                    } catch (e: CancellationException) {
+                        throw e
+                    } catch (_: Exception) {
+                        // Silently handle errors during cancellation
+                    }
                 }
-            }
         }
     }
-    
+
     // Lifecycle observer with proper cleanup - cancel all work when view disappears
     DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_RESUME -> {
-                    // Only resume work when view is actually visible
-                    coroutineScope.launch {
-                        cryptoViewModel.reconnect()
-                        if (visibleSymbols.isNotEmpty()) {
-                            fetchJob?.cancel()
-                            fetchJob = launch(Dispatchers.Default) {
-                                try {
-                                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
-                                } catch (e: CancellationException) {
-                                    throw e
-                                } catch (_: Exception) {
-                                    // Handle errors silently
-                                }
+        val observer =
+            LifecycleEventObserver { _, event ->
+                when (event) {
+                    Lifecycle.Event.ON_RESUME -> {
+                        // Only resume work when view is actually visible
+                        coroutineScope.launch {
+                            cryptoViewModel.reconnect()
+                            if (visibleSymbols.isNotEmpty()) {
+                                fetchJob?.cancel()
+                                fetchJob =
+                                    launch(Dispatchers.Default) {
+                                        try {
+                                            cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
+                                        } catch (e: CancellationException) {
+                                            throw e
+                                        } catch (_: Exception) {
+                                            // Handle errors silently
+                                        }
+                                    }
                             }
                         }
                     }
+                    Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
+                        // Cancel all background work when view is not visible
+                        fetchJob?.cancel()
+                    }
+                    else -> {}
                 }
-                Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
-                    // Cancel all background work when view is not visible
-                    fetchJob?.cancel()
-                }
-                else -> {}
             }
-        }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
@@ -244,7 +248,7 @@ fun CryptoList(
             fetchJob?.cancel()
         }
     }
-    
+
     // Expose callback to trigger chart refresh when returning from detail
     Scaffold {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -254,10 +258,11 @@ fun CryptoList(
                 val lazyRowState = rememberLazyListState()
                 LazyRow(
                     state = lazyRowState,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
                 ) {
                     if (tradingPairs.isEmpty()) {
                         items(count = 6, key = { it }) { _ ->
@@ -266,7 +271,7 @@ fun CryptoList(
                     } else {
                         items(
                             items = tradingPairs,
-                            key = { it.quote } // Stable key for efficient recomposition
+                            key = { it.quote }, // Stable key for efficient recomposition
                         ) { symbol ->
                             TradingPairItem(
                                 quote = symbol.quote,
@@ -281,7 +286,7 @@ fun CryptoList(
                                             lazyRowState.animateScrollToItem(selectedIndex)
                                         }
                                     }
-                                }
+                                },
                             )
                         }
                     }
@@ -291,80 +296,89 @@ fun CryptoList(
                     Column(
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         CircularProgressIndicator()
                     }
-                } else if (tickerDataMap.isEmpty()) {
+                } else if (tickerItems.isEmpty()) {
                     Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
                         verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Icon(
                             imageVector = Icons.Default.Search,
                             contentDescription = null,
-                            modifier = Modifier
-                                .size(48.dp)
-                                .padding(bottom = 16.dp),
-                            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
+                            modifier =
+                                Modifier
+                                    .size(48.dp)
+                                    .padding(bottom = 16.dp),
+                            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f),
                         )
                         Text(
-                            text = stringResource(
-                                Res.string.no_trading_pairs_found,
-                                currentTradingPair
-                            ),
+                            text =
+                                stringResource(
+                                    Res.string.no_trading_pairs_found,
+                                    currentTradingPair,
+                                ),
                             style = MaterialTheme.typography.titleMedium,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
                         )
                         val searchQuery by cryptoViewModel.searchQuery.collectAsState()
                         Text(
-                            text = if (searchQuery.isNotEmpty()) {
-                                stringResource(Res.string.try_adjusting_search)
-                            } else {
-                                stringResource(Res.string.please_wait_fetching)
-                            },
+                            text =
+                                if (searchQuery.isNotEmpty()) {
+                                    stringResource(Res.string.try_adjusting_search)
+                                } else {
+                                    stringResource(Res.string.please_wait_fetching)
+                                },
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(top = 8.dp)
+                            modifier = Modifier.padding(top = 8.dp),
                         )
                     }
                 } else {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .pointerInput(tradingPairList, currentTradingPair) {
-                                detectHorizontalDragGestures(
-                                    onDragEnd = { /* No-op */ },
-                                    onDragCancel = { /* No-op */ },
-                                    onHorizontalDrag = { _, dragAmount ->
-                                        val currentIndex = tradingPairList.indexOf(currentTradingPair)
-                                        // We'll use a threshold for a "swipe" action, ignore small moves
-                                        val threshold = 80f // pixels
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .pointerInput(tradingPairList, currentTradingPair) {
+                                    detectHorizontalDragGestures(
+                                        onDragEnd = { /* No-op */ },
+                                        onDragCancel = { /* No-op */ },
+                                        onHorizontalDrag = { _, dragAmount ->
+                                            val currentIndex = tradingPairList.indexOf(currentTradingPair)
+                                            // We'll use a threshold for a "swipe" action, ignore small moves
+                                            val threshold = 80f // pixels
 
-                                        if (abs(dragAmount) < threshold) return@detectHorizontalDragGestures
+                                            if (abs(dragAmount) < threshold) return@detectHorizontalDragGestures
 
-                                        if (currentIndex != -1 && tradingPairList.isNotEmpty()) {
-                                            val nextIndex = when {
-                                                dragAmount > threshold -> (currentIndex - 1).coerceAtLeast(0)
-                                                dragAmount < -threshold -> (currentIndex + 1).coerceAtMost(tradingPairList.lastIndex)
-                                                else -> currentIndex
-                                            }
-                                            if (nextIndex != currentIndex) {
-                                                cryptoViewModel.setSelectedTradingPair(tradingPairList[nextIndex])
-                                                coroutineScope.launch {
-                                                    delay(150) // Match the delay with manual selection
-                                                    listState.animateScrollToItem(0)
-                                                    lazyRowState.animateScrollToItem(nextIndex)
+                                            if (currentIndex != -1 && tradingPairList.isNotEmpty()) {
+                                                val nextIndex =
+                                                    when {
+                                                        dragAmount > threshold -> (currentIndex - 1).coerceAtLeast(0)
+                                                        dragAmount < -threshold ->
+                                                            (currentIndex + 1).coerceAtMost(
+                                                                tradingPairList.lastIndex,
+                                                            )
+                                                        else -> currentIndex
+                                                    }
+                                                if (nextIndex != currentIndex) {
+                                                    cryptoViewModel.setSelectedTradingPair(tradingPairList[nextIndex])
+                                                    coroutineScope.launch {
+                                                        delay(150) // Match the delay with manual selection
+                                                        listState.animateScrollToItem(0)
+                                                        lazyRowState.animateScrollToItem(nextIndex)
+                                                    }
                                                 }
                                             }
-                                        }
-                                    }
-                                )
-                            }
+                                        },
+                                    )
+                                },
                     ) {
                         if (settingsStore != null) {
                             // Provide settings via composition local to avoid prop drilling
@@ -378,18 +392,18 @@ fun CryptoList(
 
                                         slideInHorizontally(
                                             initialOffsetX = { fullWidth -> if (isNext) fullWidth else -fullWidth },
-                                            animationSpec = tween(300)
+                                            animationSpec = tween(300),
                                         ) + fadeIn(animationSpec = tween(300)) togetherWith
-                                                slideOutHorizontally(
-                                                    targetOffsetX = { fullWidth -> if (isNext) -fullWidth else fullWidth },
-                                                    animationSpec = tween(300)
-                                                ) + fadeOut(animationSpec = tween(300))
+                                            slideOutHorizontally(
+                                                targetOffsetX = { fullWidth -> if (isNext) -fullWidth else fullWidth },
+                                                animationSpec = tween(300),
+                                            ) + fadeOut(animationSpec = tween(300))
                                     },
-                                    label = "Trading Pair Content Animation"
+                                    label = "Trading Pair Content Animation",
                                 ) { tradingPair ->
                                     LazyColumn(
                                         state = listState,
-                                        modifier = Modifier.fillMaxSize()
+                                        modifier = Modifier.fillMaxSize(),
                                     ) {
                                         stickyHeader {
                                             TickerCardListHeader(cryptoViewModel)
@@ -400,7 +414,7 @@ fun CryptoList(
                                         }
                                         items(
                                             items = tickerItems,
-                                            key = { it.symbol } // Stable key - critical for performance
+                                            key = { it.symbol }, // Stable key - critical for performance
                                         ) { tickerData ->
                                             TickerCard(
                                                 tickerData = tickerData,
@@ -409,7 +423,7 @@ fun CryptoList(
                                                 priceChangePercent = tickerData.priceChangePercent,
                                                 tradingPairs = tradingPairs,
                                                 cryptoViewModel = cryptoViewModel,
-                                                onClick = onCoinClick
+                                                onClick = onCoinClick,
                                             )
                                         }
                                     }
@@ -421,7 +435,7 @@ fun CryptoList(
                             Column(
                                 modifier = Modifier.fillMaxSize(),
                                 verticalArrangement = Arrangement.Center,
-                                horizontalAlignment = Alignment.CenterHorizontally
+                                horizontalAlignment = Alignment.CenterHorizontally,
                             ) {
                                 CircularProgressIndicator()
                             }
@@ -436,7 +450,7 @@ fun CryptoList(
 @Composable
 fun SearchBar(
     viewModel: CryptoViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val searchQuery by viewModel.searchQuery.collectAsState()
     val focusManager = LocalFocusManager.current
@@ -448,21 +462,22 @@ fun SearchBar(
             viewModel.setSearchQuery(it)
         },
         shape = RoundedCornerShape(24.dp),
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 8.dp),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp, vertical = 8.dp),
         placeholder = {
             Text(
                 stringResource(
                     Res.string.search_placeholder,
-                    settingsStore?.selectedTradingPair ?: "BTC"
-                )
+                    settingsStore?.selectedTradingPair ?: "BTC",
+                ),
             )
         },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = stringResource(Res.string.search)
+                contentDescription = stringResource(Res.string.search),
             )
         },
         trailingIcon = {
@@ -470,66 +485,82 @@ fun SearchBar(
                 IconButton(onClick = { viewModel.setSearchQuery("") }) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = stringResource(Res.string.clear_search)
+                        contentDescription = stringResource(Res.string.clear_search),
                     )
                 }
             }
         },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-        keyboardActions = KeyboardActions(
-            onSearch = {
-                focusManager.clearFocus()
-            }
-        ),
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.surfaceContainer,
-            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.7f),
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            cursorColor = MaterialTheme.colorScheme.primary
-        )
+        keyboardActions =
+            KeyboardActions(
+                onSearch = {
+                    focusManager.clearFocus()
+                },
+            ),
+        colors =
+            TextFieldDefaults.colors(
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainer,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.7f),
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                cursorColor = MaterialTheme.colorScheme.primary,
+            ),
     )
 }
 
 @Composable
-fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Unit) {
+fun TradingPairItem(
+    quote: String,
+    isSelected: Boolean,
+    onClick: (String) -> Unit,
+) {
     val scale by animateFloatAsState(
         targetValue = if (isSelected) 1.1f else 1f,
         animationSpec = tween(200),
-        label = "Trading Pair Scale Animation"
+        label = "Trading Pair Scale Animation",
     )
 
     Box(
-        modifier = Modifier
-            .padding(4.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(
-                if (isSelected) MaterialTheme.colorScheme.primary
-                else MaterialTheme.colorScheme.surfaceVariant
-            )
-            .debouncedClickable { onClick(quote) }
-            .padding(horizontal = 12.dp, vertical = 8.dp)
-            .animateContentSize(animationSpec = tween(200))
-            .let {
-                if (isSelected) it.graphicsLayer(scaleX = scale, scaleY = scale)
-                else it
-            }
+        modifier =
+            Modifier
+                .padding(4.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .background(
+                    if (isSelected) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ).debouncedClickable { onClick(quote) }
+                .padding(horizontal = 12.dp, vertical = 8.dp)
+                .animateContentSize(animationSpec = tween(200))
+                .let {
+                    if (isSelected) {
+                        it.graphicsLayer(scaleX = scale, scaleY = scale)
+                    } else {
+                        it
+                    }
+                },
     ) {
         AnimatedContent(
             targetState = isSelected,
             transitionSpec = {
                 fadeIn(animationSpec = tween(150)) togetherWith fadeOut(animationSpec = tween(150))
             },
-            label = "Trading Pair Text Animation"
+            label = "Trading Pair Text Animation",
         ) { selected ->
             Text(
                 modifier = Modifier.padding(horizontal = 2.dp),
                 text = quote,
-                color = if (selected) MaterialTheme.colorScheme.onPrimary
-                else MaterialTheme.colorScheme.onSurfaceVariant,
+                color =
+                    if (selected) {
+                        MaterialTheme.colorScheme.onPrimary
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    },
                 style = MaterialTheme.typography.titleSmall,
-                fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
+                fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
             )
         }
     }
@@ -538,27 +569,28 @@ fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Uni
 @Composable
 fun ShimmerTradingPairItem() {
     Box(
-        modifier = Modifier
-            .padding(8.dp)
-            .size(width = 60.dp, height = 24.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .shimmerEffect()
+        modifier =
+            Modifier
+                .padding(8.dp)
+                .size(width = 60.dp, height = 24.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .shimmerEffect(),
     )
 }
-
 
 @Composable
 fun RowScope.TradeChart(
     trades: List<UiKline>,
-    priceChangePercent: String
+    priceChangePercent: String,
 ) {
     if (trades.isEmpty()) {
         Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight()
-                .padding(16.dp),
-            contentAlignment = Alignment.Center
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .padding(16.dp),
+            contentAlignment = Alignment.Center,
         ) {
             LinearProgressIndicator()
         }
@@ -568,111 +600,121 @@ fun RowScope.TradeChart(
     // Use composition local for settings to avoid recomposition
     val settingsState = LocalSettings.current
     val isDarkTheme = isDarkTheme(settingsState)
-    
+
     // Get MaterialTheme color outside remember block (composable context required)
     val primaryColor = MaterialTheme.colorScheme.primary
-    
+
     // Parse price change once and cache
-    val priceChangeFloat = remember(priceChangePercent) {
-        priceChangePercent.toFloatOrNull() ?: 0f
-    }
-    
+    val priceChangeFloat =
+        remember(priceChangePercent) {
+            priceChangePercent.toFloatOrNull() ?: 0f
+        }
+
     // Calculate prices off main thread and cache - limit to reduce memory
-    val prices = remember(trades) {
-        val limitedTrades = limitKlinesForChart(trades)
-        // Pre-allocate list to avoid reallocations
-        ArrayList<Float>(limitedTrades.size).apply {
-            limitedTrades.forEach { trade ->
-                add(trade.closePrice.toFloatOrNull() ?: 0f)
+    val prices =
+        remember(trades) {
+            val limitedTrades = limitKlinesForChart(trades)
+            // Pre-allocate list to avoid reallocations
+            ArrayList<Float>(limitedTrades.size).apply {
+                limitedTrades.forEach { trade ->
+                    add(trade.closePrice.toFloatOrNull() ?: 0f)
+                }
             }
         }
-    }
-    
+
     // Calculate price stats once and cache
-    val (minPrice, _, priceRange) = remember(prices) {
-        calculatePriceStats(prices)
-    }
+    val (minPrice, _, priceRange) =
+        remember(prices) {
+            calculatePriceStats(prices)
+        }
 
     // Cache price change color calculation
-    val priceChangeColor = remember(priceChangeFloat, isDarkTheme, primaryColor) {
-        getPriceChangeColor(priceChangeFloat, isDarkTheme, primaryColor)
-    }
-    
+    val priceChangeColor =
+        remember(priceChangeFloat, isDarkTheme, primaryColor) {
+            getPriceChangeColor(priceChangeFloat, isDarkTheme, primaryColor)
+        }
+
     // Cache gradient colors to avoid recreating list every frame
-    val gradientColors = remember(priceChangeColor) {
-        createPriceChangeGradientColors(priceChangeColor)
-    }
+    val gradientColors =
+        remember(priceChangeColor) {
+            createPriceChangeGradientColors(priceChangeColor)
+        }
 
     var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
 
     Box(
-        modifier = Modifier
-            .padding(vertical = 16.dp)
-            .weight(1f)
-            .onSizeChanged { size ->
-                // Only update if size actually changed to minimize recompositions
-                val newSize = Offset(size.width.toFloat(), size.height.toFloat())
-                if (chartSizeInPx != newSize) {
-                    chartSizeInPx = newSize
-                }
-            }
+        modifier =
+            Modifier
+                .padding(vertical = 16.dp)
+                .weight(1f)
+                .onSizeChanged { size ->
+                    // Only update if size actually changed to minimize recompositions
+                    val newSize = Offset(size.width.toFloat(), size.height.toFloat())
+                    if (chartSizeInPx != newSize) {
+                        chartSizeInPx = newSize
+                    }
+                },
     ) {
         // Pre-calculate points off main thread and cache
-        val points = remember(trades, chartSizeInPx, minPrice, priceRange) {
-            if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || trades.isEmpty()) {
-                emptyList()
-            } else {
-                calculateChartPoints(trades, chartSizeInPx, minPrice, priceRange)
+        val points =
+            remember(trades, chartSizeInPx, minPrice, priceRange) {
+                if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || trades.isEmpty()) {
+                    emptyList()
+                } else {
+                    calculateChartPoints(trades, chartSizeInPx, minPrice, priceRange)
+                }
             }
-        }
-        
+
         // Pre-calculate paths efficiently - reuse Path objects when possible
-        val linePath = remember(points) {
-            if (points.isEmpty()) {
-                null
-            } else {
-                // Create path efficiently - avoid intermediate allocations
-                Path().apply {
-                    val firstPoint = points[0]
-                    moveTo(firstPoint.x, firstPoint.y)
-                    // Use for loop instead of forEachIndexed to reduce allocations
-                    for (i in 1 until points.size) {
-                        val point = points[i]
-                        lineTo(point.x, point.y)
+        val linePath =
+            remember(points) {
+                if (points.isEmpty()) {
+                    null
+                } else {
+                    // Create path efficiently - avoid intermediate allocations
+                    Path().apply {
+                        val firstPoint = points[0]
+                        moveTo(firstPoint.x, firstPoint.y)
+                        // Use for loop instead of forEachIndexed to reduce allocations
+                        for (i in 1 until points.size) {
+                            val point = points[i]
+                            lineTo(point.x, point.y)
+                        }
                     }
                 }
             }
-        }
-        
-        val fillPath = remember(points, chartSizeInPx) {
-            if (points.isEmpty() || chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0) {
-                null
-            } else {
-                Path().apply {
-                    moveTo(0f, chartSizeInPx.y)
-                    // Use for loop to reduce allocations
-                    for (point in points) {
-                        lineTo(point.x, point.y)
+
+        val fillPath =
+            remember(points, chartSizeInPx) {
+                if (points.isEmpty() || chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0) {
+                    null
+                } else {
+                    Path().apply {
+                        moveTo(0f, chartSizeInPx.y)
+                        // Use for loop to reduce allocations
+                        for (point in points) {
+                            lineTo(point.x, point.y)
+                        }
+                        lineTo(chartSizeInPx.x, chartSizeInPx.y)
+                        close()
                     }
-                    lineTo(chartSizeInPx.x, chartSizeInPx.y)
-                    close()
                 }
             }
-        }
-        
+
         // Cache brush to avoid recreation every frame
-        val gradientBrush = remember(gradientColors, chartSizeInPx) {
-            if (chartSizeInPx.y > 0) {
-                Brush.verticalGradient(
-                    colors = gradientColors,
-                    startY = 0f,
-                    endY = chartSizeInPx.y
-                )
-            } else {
-                null
+        val gradientBrush =
+            remember(gradientColors, chartSizeInPx) {
+                if (chartSizeInPx.y > 0) {
+                    Brush.verticalGradient(
+                        colors = gradientColors,
+                        startY = 0f,
+                        endY = chartSizeInPx.y,
+                    )
+                } else {
+                    null
+                }
             }
-        }
-        
+
         Canvas(Modifier.fillMaxSize()) {
             if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || linePath == null || fillPath == null || gradientBrush == null) {
                 return@Canvas
@@ -681,19 +723,18 @@ fun RowScope.TradeChart(
             // Draw the gradient fill using cached brush
             drawPath(
                 path = fillPath,
-                brush = gradientBrush
+                brush = gradientBrush,
             )
 
             // Draw the line on top - use cached path
             drawPath(
                 path = linePath,
                 color = priceChangeColor,
-                style = Stroke(width = 3f)
+                style = Stroke(width = 3f),
             )
         }
     }
 }
-
 
 @Composable
 fun TickerCardListHeader(viewModel: CryptoViewModel) {
@@ -701,59 +742,61 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
         Modifier
             .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
+        Row(
+            Modifier.weight(1f),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Row(
-                Modifier.weight(1f), horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
+                Modifier
+                    .debouncedClickable {
+                        viewModel.updateSortKey(SortParams.Pair)
+                    },
             ) {
-                Row(
-                    Modifier
-                        .debouncedClickable {
-                            viewModel.updateSortKey(SortParams.Pair)
-                        },
-                ) {
-                    TickerCardListHeaderItem(
-                        stringResource(
-                            Res.string.header_name
-                        ),
-                        SortParams.Pair, viewModel
-                    )
-                }
-                Text(
-                    text = stringResource(Res.string.header_slash),
-                    color = MaterialTheme.colorScheme.onSecondary,
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.W300,
+                TickerCardListHeaderItem(
+                    stringResource(
+                        Res.string.header_name,
+                    ),
+                    SortParams.Pair,
+                    viewModel,
                 )
-                Row(
-                    Modifier
-                        .debouncedClickable {
-                            viewModel.updateSortKey(SortParams.Vol)
-
-                        },
-                ) {
-                    TickerCardListHeaderItem(
-                        text = stringResource(Res.string.header_vol),
-                        sortKey = SortParams.Vol,
-                        viewModel = viewModel
-                    )
-                }
             }
+            Text(
+                text = stringResource(Res.string.header_slash),
+                color = MaterialTheme.colorScheme.onSecondary,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.W300,
+            )
+            Row(
+                Modifier
+                    .debouncedClickable {
+                        viewModel.updateSortKey(SortParams.Vol)
+                    },
+            ) {
+                TickerCardListHeaderItem(
+                    text = stringResource(Res.string.header_vol),
+                    sortKey = SortParams.Vol,
+                    viewModel = viewModel,
+                )
+            }
+        }
         Row(
             Modifier
                 .debouncedClickable {
                     viewModel.updateSortKey(SortParams.Price)
                 },
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             TickerCardListHeaderItem(
-                text = stringResource(
-                    resource = Res.string.header_last_price
-                ),
+                text =
+                    stringResource(
+                        resource = Res.string.header_last_price,
+                    ),
                 sortKey = SortParams.Price,
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
         Row(
@@ -764,14 +807,15 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
                     viewModel.updateSortKey(SortParams.Change)
                 },
             horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             TickerCardListHeaderItem(
-                text = stringResource(
-                    resource = Res.string.header_24h_chg
-                ),
+                text =
+                    stringResource(
+                        resource = Res.string.header_24h_chg,
+                    ),
                 sortKey = SortParams.Change,
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
     }
@@ -792,32 +836,42 @@ fun TickerCardListHeaderItem(
             fontSize = 12.sp,
             fontWeight = FontWeight.W400,
             color = if (currentSortKey.value == sortKey) MaterialTheme.colorScheme.onBackground else Color.Gray,
-            textAlign = TextAlign.End
+            textAlign = TextAlign.End,
         )
         Box {
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
-                contentDescription = stringResource(
-                    Res.string.sort_change_up,
-                    sortKey.name
-                ),
-                tint = if (currentSortKey.value == sortKey && isSortDesc.value)
-                    MaterialTheme.colorScheme.onBackground
-                else Color.Gray,
-                modifier = Modifier
-                    .padding(bottom = 6.dp)
-                    .size(18.dp)
-                    .rotate(180f)
+                contentDescription =
+                    stringResource(
+                        Res.string.sort_change_up,
+                        sortKey.name,
+                    ),
+                tint =
+                    if (currentSortKey.value == sortKey && isSortDesc.value) {
+                        MaterialTheme.colorScheme.onBackground
+                    } else {
+                        Color.Gray
+                    },
+                modifier =
+                    Modifier
+                        .padding(bottom = 6.dp)
+                        .size(18.dp)
+                        .rotate(180f),
             )
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
-                contentDescription = stringResource(
-                    Res.string.sort_change_down, sortKey.name
-                ),
-                tint = if (viewModel.currentSortKey.value == sortKey && !isSortDesc.value)
-                    MaterialTheme.colorScheme.onBackground
-                else Color.Gray,
-                modifier = Modifier.padding(top = 6.dp).size(18.dp)
+                contentDescription =
+                    stringResource(
+                        Res.string.sort_change_down,
+                        sortKey.name,
+                    ),
+                tint =
+                    if (viewModel.currentSortKey.value == sortKey && !isSortDesc.value) {
+                        MaterialTheme.colorScheme.onBackground
+                    } else {
+                        Color.Gray
+                    },
+                modifier = Modifier.padding(top = 6.dp).size(18.dp),
             )
         }
     }
@@ -831,36 +885,39 @@ fun TickerCard(
     selectedTradingPair: String,
     tradingPairs: List<model.TradingPair>,
     cryptoViewModel: CryptoViewModel,
-    onClick: (String, String) -> Unit = { _, _ -> }
+    onClick: (String, String) -> Unit = { _, _ -> },
 ) {
     // Use composition local for settings to avoid recomposition
     val settingsState = LocalSettings.current
     val isDarkTheme = isDarkTheme(settingsState)
-    
+
     // Calculate actual trading pair once and cache - no state collection needed
-    val actualTradingPair = remember(tickerData.symbol, tradingPairs, selectedTradingPair) {
-        tradingPairs
-            .filter { pair -> tickerData.symbol.endsWith(pair.quote) }
-            .maxByOrNull { it.quote.length }
-            ?.quote ?: selectedTradingPair
-    }
-    
+    val actualTradingPair =
+        remember(tickerData.symbol, tradingPairs, selectedTradingPair) {
+            tradingPairs
+                .filter { pair -> tickerData.symbol.endsWith(pair.quote) }
+                .maxByOrNull { it.quote.length }
+                ?.quote ?: selectedTradingPair
+        }
+
     // Pre-compute symbol display text to avoid string operations during composition
-    val symbolDisplayText = remember(tickerData.symbol, actualTradingPair) {
-        buildAnnotatedString {
-            withStyle(style = SpanStyle(fontSize = 18.sp)) {
-                append(tickerData.symbol.replace(actualTradingPair, ""))
-            }
-            withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
-                append("/$actualTradingPair")
+    val symbolDisplayText =
+        remember(tickerData.symbol, actualTradingPair) {
+            buildAnnotatedString {
+                withStyle(style = SpanStyle(fontSize = 18.sp)) {
+                    append(tickerData.symbol.replace(actualTradingPair, ""))
+                }
+                withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
+                    append("/$actualTradingPair")
+                }
             }
         }
-    }
-    
+
     // Pre-compute formatted volume
-    val formattedVolume = remember(tickerData.volume) {
-        tickerData.volume.formatVolume()
-    }
+    val formattedVolume =
+        remember(tickerData.volume) {
+            tickerData.volume.formatVolume()
+        }
 
     // --- Bounce animation magic on first appearance! ---
     val appeared = remember(tickerData.symbol) { mutableStateOf(false) }
@@ -869,11 +926,12 @@ fun TickerCard(
     }
     val bounceScale by animateFloatAsState(
         targetValue = if (appeared.value) 1f else 0.95f,
-        animationSpec = spring(
-            stiffness = Spring.StiffnessMedium,
-            dampingRatio = 0.42f // subtle bounce
-        ),
-        label = "TickerCardBounceScale"
+        animationSpec =
+            spring(
+                stiffness = Spring.StiffnessMedium,
+                dampingRatio = 0.42f, // subtle bounce
+            ),
+        label = "TickerCardBounceScale",
     )
     // --- End bounce animation ---
 
@@ -889,51 +947,55 @@ fun TickerCard(
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .graphicsLayer(
-                scaleX = bounceScale,
-                scaleY = bounceScale
-            )
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .graphicsLayer(
+                    scaleX = bounceScale,
+                    scaleY = bounceScale,
+                ),
     ) {
         Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .debouncedClickable { onClick(tickerData.symbol, symbolDisplayText.text) },
-            elevation = CardDefaults.cardElevation(8.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .debouncedClickable { onClick(tickerData.symbol, symbolDisplayText.text) },
+            elevation = CardDefaults.cardElevation(8.dp),
         ) {
             Row(
-                modifier = Modifier
-                    .height(IntrinsicSize.Min)
-                    .padding(8.dp),
+                modifier =
+                    Modifier
+                        .height(IntrinsicSize.Min)
+                        .padding(8.dp),
             ) {
                 Column(
-                    modifier = Modifier
-                        .padding(horizontal = 4.dp)
-                        .weight(1f)
+                    modifier =
+                        Modifier
+                            .padding(horizontal = 4.dp)
+                            .weight(1f),
                 ) {
                     if (tickerData.symbol.isNotEmpty()) {
                         Text(
                             text = symbolDisplayText,
-                            modifier = Modifier.padding(bottom = 8.dp)
+                            modifier = Modifier.padding(bottom = 8.dp),
                         )
                     }
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                         AnimatedContent(
                             targetState = formattedVolume,
                             transitionSpec = { fadeIn() togetherWith fadeOut() },
-                            label = "volume Animation"
+                            label = "volume Animation",
                         ) { targetVolume ->
                             Text(
                                 text = targetVolume,
                                 style = MaterialTheme.typography.titleSmall,
                                 color = Color.Gray,
-                                modifier = Modifier.animateContentSize()
+                                modifier = Modifier.animateContentSize(),
                             )
                         }
                         Spacer(modifier = Modifier.width(4.dp))
@@ -941,38 +1003,41 @@ fun TickerCard(
                 }
                 TradeChart(trades = trades, priceChangePercent = priceChangePercent)
                 Column(
-                    modifier = Modifier
-                        .padding(horizontal = 4.dp)
-                        .weight(1f)
+                    modifier =
+                        Modifier
+                            .padding(horizontal = 4.dp)
+                            .weight(1f),
                 ) {
                     Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .align(Alignment.End),
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .align(Alignment.End),
                         horizontalAlignment = Alignment.End,
-                        verticalArrangement = Arrangement.Center
+                        verticalArrangement = Arrangement.Center,
                     ) {
                         AnimatedContent(
                             targetState = priceChangePercent,
                             transitionSpec = { fadeIn() togetherWith fadeOut() },
-                            label = "Price Change Percentage Animation"
+                            label = "Price Change Percentage Animation",
                         ) { targetPriceChangePercent ->
-                            val priceChangeColor = getPriceChangeColor(
-                                targetPriceChangePercent,
-                                isDarkTheme,
-                                MaterialTheme.colorScheme.primary
-                            )
+                            val priceChangeColor =
+                                getPriceChangeColor(
+                                    targetPriceChangePercent,
+                                    isDarkTheme,
+                                    MaterialTheme.colorScheme.primary,
+                                )
                             Text(
                                 modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
                                 text = "$targetPriceChangePercent %",
                                 color = priceChangeColor,
-                                style = MaterialTheme.typography.titleSmall
+                                style = MaterialTheme.typography.titleSmall,
                             )
                         }
                         AnimatedContent(
                             targetState = tickerData.lastPrice,
                             transitionSpec = { fadeIn() togetherWith fadeOut() },
-                            label = "Price Animation"
+                            label = "Price Animation",
                         ) { targetPrice ->
                             Text(
                                 text = targetPrice,
@@ -985,31 +1050,47 @@ fun TickerCard(
             }
         }
 
-        val isFavorite = remember(settingsState, tickerData.symbol) {
-            settingsState?.favPairs?.contains(tickerData.symbol) == true
-        }
+        val isFavorite =
+            remember(settingsState, tickerData.symbol) {
+                settingsState?.favPairs?.contains(tickerData.symbol) == true
+            }
         IconButton(
             onClick = {
-                if (isFavorite) cryptoViewModel.removeFromFavorites(tickerData.symbol)
-                else cryptoViewModel.addToFavorites(tickerData.symbol)
+                if (isFavorite) {
+                    cryptoViewModel.removeFromFavorites(tickerData.symbol)
+                } else {
+                    cryptoViewModel.addToFavorites(tickerData.symbol)
+                }
             },
-            modifier = Modifier
-                .align(Alignment.TopStart)
-                .offset(x = 0.dp, y = (-4).dp)
-                .size(24.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                    shape = CircleShape
-                )
-                .clip(CircleShape)
+            modifier =
+                Modifier
+                    .align(Alignment.TopStart)
+                    .offset(x = 0.dp, y = (-4).dp)
+                    .size(24.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.surfaceVariant,
+                        shape = CircleShape,
+                    ).clip(CircleShape),
         ) {
             Icon(
                 modifier = Modifier.padding(4.dp),
                 imageVector = if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
-                contentDescription = if (isFavorite)
-                    stringResource(Res.string.unfavorite)
-                else stringResource(Res.string.favorite),
-                tint = if (isFavorite) if (isDarkTheme) yellowDark else yellowLight else MaterialTheme.colorScheme.onSurface
+                contentDescription =
+                    if (isFavorite) {
+                        stringResource(Res.string.unfavorite)
+                    } else {
+                        stringResource(Res.string.favorite)
+                    },
+                tint =
+                    if (isFavorite) {
+                        if (isDarkTheme) {
+                            yellowDark
+                        } else {
+                            yellowLight
+                        }
+                    } else {
+                        MaterialTheme.colorScheme.onSurface
+                    },
             )
         }
     }
@@ -1018,24 +1099,21 @@ fun TickerCard(
 @Composable
 fun FavoritesListScreen(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String, String) -> Unit = { _, _ -> }
+    onCoinClick: (String, String) -> Unit = { _, _ -> },
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()
     val trades by cryptoViewModel.trades.collectAsState()
-    val tickerDataMap by cryptoViewModel.favoritesTickerDataMap.collectAsState()
+    val tickerItems by cryptoViewModel.favoritesTickerItems.collectAsState()
     val isLoading by cryptoViewModel.isLoading.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
     val listState = rememberLazyListState()
     val settingsStore by store.updates.collectAsState(initial = null)
-    
-    // Derive stable list to avoid recreating on every recomposition
-    val tickerItems by derivedStateOf { tickerDataMap.values.toList() }
     val currentTradingPair by derivedStateOf { settingsStore?.selectedTradingPair ?: "BTC" }
-    
+
     // Track fetch job for cancellation
     var fetchJob by remember { mutableStateOf<Job?>(null) }
-    
+
     // Calculate visible symbols for lifecycle-aware fetching
     val visibleSymbols by derivedStateOf {
         val layoutInfo = listState.layoutInfo
@@ -1048,78 +1126,82 @@ fun FavoritesListScreen(
         val endIndex = visibleIndices.maxOrNull()?.plus(prefetchBuffer)?.coerceAtMost(tickerItems.lastIndex) ?: tickerItems.lastIndex
         (startIndex..endIndex).mapNotNull { index -> tickerItems.getOrNull(index)?.symbol }
     }
-    
+
     // Lifecycle-aware data fetching with cancellation
     // Also trigger when tickerItems change to ensure charts load even if trades were cleared
     LaunchedEffect(visibleSymbols, lifecycleOwner.lifecycle.currentState, tickerItems.size) {
         val isResumed = lifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
         if (visibleSymbols.isNotEmpty() && isResumed) {
             fetchJob?.cancel()
-            fetchJob = coroutineScope.launch(Dispatchers.Default) {
-                try {
-                    // Force refresh to ensure charts load even if trades were cleared
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
-                } catch (_: CancellationException) {
-                    // Silently handle errors during cancellation
-                } catch (_: Exception) {
-                    // Silently handle errors during cancellation
+            fetchJob =
+                coroutineScope.launch(Dispatchers.Default) {
+                    try {
+                        // Force refresh to ensure charts load even if trades were cleared
+                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(visibleSymbols, forceRefresh = true)
+                    } catch (_: CancellationException) {
+                        // Silently handle errors during cancellation
+                    } catch (_: Exception) {
+                        // Silently handle errors during cancellation
+                    }
                 }
-            }
         } else if (tickerItems.isNotEmpty() && isResumed && visibleSymbols.isEmpty()) {
             // If we have favorites but visibleSymbols is empty (list not laid out yet),
             // fetch data for all favorites to ensure charts load
             fetchJob?.cancel()
-            fetchJob = coroutineScope.launch(Dispatchers.Default) {
-                try {
-                    val allFavoriteSymbols = tickerItems.map { it.symbol }
-                    cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
-                } catch (_: CancellationException) {
-                    // Silently handle errors during cancellation
-                } catch (_: Exception) {
-                    // Silently handle errors during cancellation
-                }
-            }
-        }
-    }
-    
-    // Lifecycle observer with proper cleanup and resume handling
-    DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_RESUME -> {
-                    // When resuming, fetch prices and chart data for all favorites
-                    if (tickerItems.isNotEmpty()) {
+            fetchJob =
+                coroutineScope.launch(Dispatchers.Default) {
+                    try {
                         val allFavoriteSymbols = tickerItems.map { it.symbol }
-                        
-                        // First, fetch current prices for favorites that don't have real data yet
-                        cryptoViewModel.fetchFavoritesPrices(allFavoriteSymbols)
-                        
-                        // Then fetch chart data
-                        fetchJob?.cancel()
-                        fetchJob = coroutineScope.launch(Dispatchers.Default) {
-                            try {
-                                cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
-                            } catch (_: CancellationException) {
-                                // Silently handle errors during cancellation
-                            } catch (_: Exception) {
-                                // Silently handle errors
-                            }
-                        }
+                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
+                    } catch (_: CancellationException) {
+                        // Silently handle errors during cancellation
+                    } catch (_: Exception) {
+                        // Silently handle errors during cancellation
                     }
                 }
-                Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
-                    fetchJob?.cancel()
-                }
-                else -> {}
-            }
         }
+    }
+
+    // Lifecycle observer with proper cleanup and resume handling
+    DisposableEffect(lifecycleOwner) {
+        val observer =
+            LifecycleEventObserver { _, event ->
+                when (event) {
+                    Lifecycle.Event.ON_RESUME -> {
+                        // When resuming, fetch prices and chart data for all favorites
+                        if (tickerItems.isNotEmpty()) {
+                            val allFavoriteSymbols = tickerItems.map { it.symbol }
+
+                            // First, fetch current prices for favorites that don't have real data yet
+                            cryptoViewModel.fetchFavoritesPrices(allFavoriteSymbols)
+
+                            // Then fetch chart data
+                            fetchJob?.cancel()
+                            fetchJob =
+                                coroutineScope.launch(Dispatchers.Default) {
+                                    try {
+                                        cryptoViewModel.fetchUiKlinesForVisibleSymbols(allFavoriteSymbols, forceRefresh = true)
+                                    } catch (_: CancellationException) {
+                                        // Silently handle errors during cancellation
+                                    } catch (_: Exception) {
+                                        // Silently handle errors
+                                    }
+                                }
+                        }
+                    }
+                    Lifecycle.Event.ON_PAUSE, Lifecycle.Event.ON_STOP -> {
+                        fetchJob?.cancel()
+                    }
+                    else -> {}
+                }
+            }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
             fetchJob?.cancel()
         }
     }
-    
+
     // Also fetch prices when favorites list changes (e.g., when navigating to favorites screen)
     LaunchedEffect(tickerItems.size) {
         if (tickerItems.isNotEmpty()) {
@@ -1134,43 +1216,45 @@ fun FavoritesListScreen(
                 Text(
                     text = stringResource(resource = Res.string.favorites_title),
                     style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(16.dp),
                 )
                 if (isLoading) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         CircularProgressIndicator()
                     }
-                } else if (tickerDataMap.isEmpty()) {
+                } else if (tickerItems.isEmpty()) {
                     Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
                         verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Icon(
                             imageVector = Icons.Default.StarBorder,
                             contentDescription = null,
-                            modifier = Modifier
-                                .size(48.dp)
-                                .padding(bottom = 16.dp),
-                            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
+                            modifier =
+                                Modifier
+                                    .size(48.dp)
+                                    .padding(bottom = 16.dp),
+                            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f),
                         )
                         Text(
                             text = stringResource(resource = Res.string.no_favorites_yet),
                             style = MaterialTheme.typography.titleMedium,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
                         )
                         Text(
                             text = stringResource(resource = Res.string.tap_star_to_add),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(top = 8.dp)
+                            modifier = Modifier.padding(top = 8.dp),
                         )
                     }
                 } else {
@@ -1179,7 +1263,7 @@ fun FavoritesListScreen(
                             LazyColumn(state = listState) {
                                 items(
                                     items = tickerItems,
-                                    key = { it.symbol } // Stable key for efficient recomposition
+                                    key = { it.symbol }, // Stable key for efficient recomposition
                                 ) { tickerData ->
                                     if (tickerItems.indexOf(tickerData) == 0) {
                                         Spacer(modifier = Modifier.height(4.dp))
@@ -1191,7 +1275,7 @@ fun FavoritesListScreen(
                                         priceChangePercent = tickerData.priceChangePercent,
                                         tradingPairs = tradingPairs,
                                         cryptoViewModel = cryptoViewModel,
-                                        onClick = onCoinClick
+                                        onClick = onCoinClick,
                                     )
                                 }
                             }

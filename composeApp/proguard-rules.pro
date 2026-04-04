@@ -19,3 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 -dontwarn org.slf4j.impl.StaticLoggerBinder
+
+-keep class domain.model.** { *; }
+-keep class ui.Settings { *; }

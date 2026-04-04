@@ -11,10 +11,12 @@ import co.touchlab.kermit.platformLogWriter
  * Includes a ServerLogWriter for intercepting logs and sending to server for debugging.
  */
 object AppLogger {
-    private val serverLogWriter = ServerLogWriter(
-        maxBufferSize = 1000,
-        enabled = true // Can be configured based on build type or settings
-    )
+    // Can be configured based on build type or settings
+    private val serverLogWriter =
+        ServerLogWriter(
+            maxBufferSize = 1000,
+            enabled = true,
+        )
 
     /**
      * The main logger instance configured with platform logging and server interception.
@@ -24,11 +26,14 @@ object AppLogger {
     init {
         // Configure log writers
         val logWriters = mutableListOf<LogWriter>()
-        logWriters.add(platformLogWriter()) // Platform-specific logging (Logcat on Android, NSLog on iOS, etc.)
-        logWriters.add(serverLogWriter)     // Server interception for debugging
-        
+        // Platform-specific logging (Logcat on Android, NSLog on iOS, etc.)
+        logWriters.add(platformLogWriter())
+        // Server interception for debugging
+        logWriters.add(serverLogWriter)
+
         Logger.setLogWriters(logWriters)
-        Logger.setMinSeverity(Severity.Verbose) // Log everything by default
+        // Log everything by default
+        Logger.setMinSeverity(Severity.Verbose)
     }
 
     /**
@@ -39,7 +44,10 @@ object AppLogger {
     /**
      * Convenience extension function for logging exceptions with a tag.
      */
-    fun Throwable.logError(tag: String, message: String) {
+    fun Throwable.logError(
+        tag: String,
+        message: String,
+    ) {
         logger.e(tag = tag, throwable = this) { message }
     }
 

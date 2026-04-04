@@ -7,13 +7,13 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 
 /**
  * Shared shimmer effect utilities following CMP best practices.
@@ -25,14 +25,15 @@ import androidx.compose.runtime.getValue
  */
 @Composable
 fun Modifier.shimmerEffect(): Modifier {
-    val shimmerColors = listOf(
-        Color.LightGray.copy(alpha = 0.6f),
-        Color.LightGray.copy(alpha = 0.3f),
-        Color.LightGray.copy(alpha = 0.6f)
-    )
+    val shimmerColors =
+        listOf(
+            Color.LightGray.copy(alpha = 0.6f),
+            Color.LightGray.copy(alpha = 0.3f),
+            Color.LightGray.copy(alpha = 0.6f),
+        )
 
     return this.background(
-        brush = Brush.horizontalGradient(shimmerColors)
+        brush = Brush.horizontalGradient(shimmerColors),
     )
 }
 
@@ -46,25 +47,27 @@ fun Modifier.animatedShimmerEffect(): Modifier {
     val shimmerTranslate by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1000f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "shimmer_translate"
+        animationSpec =
+            infiniteRepeatable(
+                animation = tween(1000, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart,
+            ),
+        label = "shimmer_translate",
     )
 
-    val shimmerColors = listOf(
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f),
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
-    )
+    val shimmerColors =
+        listOf(
+            MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
+            MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f),
+            MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
+        )
 
     return this.background(
-        brush = Brush.linearGradient(
-            colors = shimmerColors,
-            start = Offset(shimmerTranslate - 300f, shimmerTranslate - 300f),
-            end = Offset(shimmerTranslate, shimmerTranslate)
-        )
+        brush =
+            Brush.linearGradient(
+                colors = shimmerColors,
+                start = Offset(shimmerTranslate - 300f, shimmerTranslate - 300f),
+                end = Offset(shimmerTranslate, shimmerTranslate),
+            ),
     )
 }
-

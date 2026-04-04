@@ -11,7 +11,7 @@ object TickerDataHelper {
     fun fetchTickers(
         context: Context,
         symbols: List<String>,
-        json: Json
+        json: Json,
     ): Map<String, TickerData> {
         return runBlocking {
             symbols.associateWith { symbol ->
@@ -20,7 +20,10 @@ object TickerDataHelper {
         }
     }
 
-    private suspend fun fetchTicker(symbol: String, json: Json): TickerData? {
+    private suspend fun fetchTicker(
+        symbol: String,
+        json: Json,
+    ): TickerData? {
         return try {
             val url = URL("https://api.binance.com/api/v3/ticker/24hr?symbol=$symbol")
             val connection = url.openConnection() as HttpURLConnection
@@ -31,18 +34,18 @@ object TickerDataHelper {
             val responseCode = connection.responseCode
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 val response = connection.inputStream.bufferedReader().use { it.readText() }
-                
+
                 // Check if response is an error
                 if (response.contains("\"code\"") && response.contains("\"msg\"")) {
                     return null
                 }
-                
+
                 val ticker24hr = json.decodeFromString<Ticker24hr>(response)
                 TickerData(
                     symbol = ticker24hr.symbol,
                     lastPrice = ticker24hr.lastPrice,
                     priceChangePercent = ticker24hr.priceChangePercent,
-                    volume = ticker24hr.quoteVolume
+                    volume = ticker24hr.quoteVolume,
                 )
             } else {
                 null
@@ -57,7 +60,6 @@ object TickerDataHelper {
         val symbol: String,
         val lastPrice: String,
         val priceChangePercent: String,
-        val volume: String
+        val volume: String,
     )
 }
-

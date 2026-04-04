@@ -8,11 +8,14 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -41,6 +44,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.serialization.generateHashCode
 import androidx.navigation.toRoute
+import data.repository.AlertRepositoryImpl
+import domain.AlertEvaluator
+import domain.model.PriceAlert
 import io.github.xxfast.kstore.KStore
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.delay
@@ -50,10 +56,14 @@ import model.CoinDetail
 import model.Favorites
 import model.Market
 import model.NavItem
+import model.PriceAlerts
 import model.Settings
+import network.MarketConnectionState
+import notification.NotificationService
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import theme.UTXOTheme
+import ui.AlertsScreen
 import ui.AppTheme
 import ui.CoinDetailScreen
 import ui.CryptoList
@@ -65,29 +75,39 @@ import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.network_unavailable
 import utxo.composeapp.generated.resources.network_unavailable_message
 
+@Suppress("FunctionName")
 @Composable
-fun App(
-    cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }
-) {
+fun App(cryptoViewModel: CryptoViewModel = viewModel { CryptoViewModel() }) {
     // Initialize logger early to ensure it's ready
     LaunchedEffect(Unit) {
         AppLogger.logger.d { "App initialized" }
     }
-    
+
     val navController: NavHostController = rememberNavController()
     val settingsState by store.updates.collectAsState(initial = ui.Settings(appTheme = AppTheme.System))
     val isDarkTheme = isDarkTheme(settingsState)
-    
+
     // Sync settings to widget (iOS App Group)
     LaunchedEffect(settingsState) {
         settingsState?.let { syncSettingsToWidget(it) }
     }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    var selectedItem by rememberSaveable { mutableIntStateOf(0) }
+    var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }
+    val favoriteCount = settingsState?.favPairs?.count { it.isNotBlank() } ?: 0
+    val showAlertsTab = favoriteCount > 0
+    val navBarItems =
+        remember(showAlertsTab) {
+            buildList {
+                add(NavItem.HomeScreen)
+                add(NavItem.FavoritesScreen)
+                if (showAlertsTab) add(NavItem.AlertsScreen)
+                add(NavItem.SettingsScreen)
+            }
+        }
     val networkObserver = remember { NetworkConnectivityObserver() }
     val networkStatus by networkObserver.observe().collectAsState(initial = null)
     val lifecycleOwner = LocalLifecycleOwner.current
-    
+
     // Helper function to get current CoinDetail route if we're on CoinDetail screen
     fun getCurrentCoinDetailRoute(): CoinDetail? {
         val currentEntry = navBackStackEntry ?: return null
@@ -103,13 +123,16 @@ fun App(
         }
         return null
     }
-    
+
     // Helper function to navigate to CoinDetail, replacing if already on CoinDetail
-    fun navigateToCoinDetail(symbol: String, displaySymbol: String) {
+    fun navigateToCoinDetail(
+        symbol: String,
+        displaySymbol: String,
+    ) {
         val currentCoinDetail = getCurrentCoinDetailRoute()
         val isAlreadyOnCoinDetail = currentCoinDetail != null
         val isDifferentSymbol = currentCoinDetail?.symbol != symbol
-        
+
         if (isAlreadyOnCoinDetail && isDifferentSymbol) {
             // Replace current CoinDetail destination using atomic navigation
             // We already know we're on CoinDetail from getCurrentCoinDetailRoute(), so destination ID exists
@@ -117,8 +140,8 @@ fun App(
             navController.navigate(
                 CoinDetail(
                     symbol = symbol,
-                    displaySymbol = displaySymbol
-                )
+                    displaySymbol = displaySymbol,
+                ),
             ) {
                 // Pop the current CoinDetail destination and replace it atomically
                 currentDestinationId?.let {
@@ -133,19 +156,19 @@ fun App(
             navController.navigate(
                 CoinDetail(
                     symbol = symbol,
-                    displaySymbol = displaySymbol
-                )
+                    displaySymbol = displaySymbol,
+                ),
             )
         }
         // If already on CoinDetail with same symbol, do nothing
     }
-    
+
     // Handle coin detail intent from widget
     // This handles app launch case and updates when already on CoinDetail
     LaunchedEffect(navBackStackEntry?.destination?.id) {
         // Only proceed if NavHost is ready
         val currentDestination = navBackStackEntry?.destination?.id ?: return@LaunchedEffect
-        
+
         // Check for pending coin detail
         val pendingCoinDetail = getPendingCoinDetailFromIntent()
         if (pendingCoinDetail != null) {
@@ -156,11 +179,11 @@ fun App(
             var elapsed = 0L
             val checkInterval = 200L // Check every 200ms
             val maxWaitTime = 2000L // Stop after 2 seconds
-            
+
             while (elapsed < maxWaitTime) {
                 delay(checkInterval)
                 elapsed += checkInterval
-                
+
                 val foundPendingCoinDetail = getPendingCoinDetailFromIntent()
                 if (foundPendingCoinDetail != null) {
                     navigateToCoinDetail(foundPendingCoinDetail.first, foundPendingCoinDetail.second)
@@ -169,46 +192,64 @@ fun App(
             }
         }
     }
-    
+
     // Check for pending coin detail when app resumes (for when widget is clicked while app is already running)
     DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
-                // Check if NavHost is ready
-                val currentDestination = navBackStackEntry?.destination?.id
-                if (currentDestination != null) {
-                    val pendingCoinDetail = getPendingCoinDetailFromIntent()
-                    if (pendingCoinDetail != null) {
-                        navigateToCoinDetail(pendingCoinDetail.first, pendingCoinDetail.second)
+        val observer =
+            LifecycleEventObserver { _, event ->
+                if (event == androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
+                    // Check if NavHost is ready
+                    val currentDestination = navBackStackEntry?.destination?.id
+                    if (currentDestination != null) {
+                        val pendingCoinDetail = getPendingCoinDetailFromIntent()
+                        if (pendingCoinDetail != null) {
+                            navigateToCoinDetail(pendingCoinDetail.first, pendingCoinDetail.second)
+                        }
                     }
                 }
             }
-        }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
         }
     }
 
-    // Simplified navigation state management
-    LaunchedEffect(navBackStackEntry?.destination?.id) {
+    // Sync Android foreground alert polling with enabled alert count
+    val enabledAlertCount by cryptoViewModel.enabledAlertsCount.collectAsState()
+    val enabledAlertsJson by cryptoViewModel.enabledAlertsSnapshotJson.collectAsState()
+    LaunchedEffect(enabledAlertCount, enabledAlertsJson) {
+        PriceAlertPlatformController.onEnabledAlertsChanged(enabledAlertCount, enabledAlertsJson)
+    }
+
+    // In-app alert evaluation (shared mini-ticker map)
+    LaunchedEffect(Unit) {
+        val evaluator = AlertEvaluator(AlertRepositoryImpl(), NotificationService())
+        evaluator.startEvaluating(this, cryptoViewModel.tickerMapShared)
+    }
+
+    // Navigation state: resume market WebSocket on Market/Favorites; pause on Settings/Alerts/Detail (unless alerts keep WS alive via CryptoViewModel.pause)
+    LaunchedEffect(navBackStackEntry?.destination?.id, showAlertsTab) {
         val destinationId = navBackStackEntry?.destination?.id ?: return@LaunchedEffect
-        
+
         when (destinationId) {
             Market.serializer().generateHashCode() -> {
-                selectedItem = 0
+                selectedTabIndex = 0
                 cryptoViewModel.resume()
             }
             Favorites.serializer().generateHashCode() -> {
-                selectedItem = 1
+                selectedTabIndex = 1
                 cryptoViewModel.resume()
             }
+            PriceAlerts.serializer().generateHashCode() -> {
+                selectedTabIndex = if (showAlertsTab) 2 else 0
+                cryptoViewModel.pause()
+            }
             Settings.serializer().generateHashCode() -> {
-                selectedItem = 2
+                selectedTabIndex = if (showAlertsTab) 3 else 2
                 cryptoViewModel.pause()
             }
             CoinDetail.serializer().generateHashCode() -> {
-                selectedItem = 3
+                selectedTabIndex = -1
                 cryptoViewModel.pause()
             }
         }
@@ -218,151 +259,177 @@ fun App(
         NetworkDialog()
     }
 
-    UTXOTheme(isDarkTheme) {
-        Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            bottomBar = {
-                if (selectedItem != 3) {
-                    BottomAppBar(
-                        actions = {
-                            val navItems = listOf(
-                                NavItem.HomeScreen,
-                                NavItem.FavoritesScreen,
-                                NavItem.SettingsScreen
-                            )
+    val marketConn by cryptoViewModel.connectionState.collectAsState()
 
-                            NavigationBar {
-                                navItems.forEachIndexed { index, item ->
-                                    NavigationBarItem(
-                                        alwaysShowLabel = false,
-                                        icon = {
-                                            Icon(
-                                                imageVector = item.icon,
-                                                contentDescription = item.title
-                                            )
-                                        },
-                                        label = { Text(item.title) },
-                                        selected = selectedItem == index,
-                                        onClick = {
-                                            selectedItem = index
-                                            navController.navigate(item.path) {
-                                                popUpTo(navController.graph.startDestinationId) {
-                                                    saveState = true
-                                                }
-                                                launchSingleTop = true
-                                                restoreState = true
-                                            }
-                                        }
-                                    )
-                                }
-                            }
-                        }
-                    )
-                }
+    UTXOTheme(isDarkTheme) {
+        Column(Modifier.fillMaxSize()) {
+            if (marketConn is MarketConnectionState.Connecting) {
+                LinearProgressIndicator(Modifier.fillMaxWidth())
             }
-        ) { innerPadding ->
-            NavHost(
-                navController = navController,
-                startDestination = Market,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-            ) {
-                animatedComposable<Market> {
-                    CryptoList(
-                        cryptoViewModel = cryptoViewModel,
-                        onCoinClick = { symbol, displaySymbol ->
-                            navController.navigate(
-                                CoinDetail(
-                                    symbol = symbol,
-                                    displaySymbol = displaySymbol
-                                )
-                            )
-                        }
-                    )
-                }
-                animatedComposable<Favorites> {
-                    FavoritesListScreen(
-                        cryptoViewModel = cryptoViewModel,
-                        onCoinClick = { symbol, displaySymbol ->
-                            navController.navigate(
-                                CoinDetail(
-                                    symbol = symbol,
-                                    displaySymbol = displaySymbol
-                                )
-                            )
-                        }
-                    )
-                }
-                animatedComposable<Settings> {
-                    SettingsScreen {
-                        navController.popBackStack()
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                bottomBar = {
+                    if (getCurrentCoinDetailRoute() == null) {
+                        BottomAppBar(
+                            actions = {
+                                NavigationBar {
+                                    navBarItems.forEachIndexed { index, item ->
+                                        NavigationBarItem(
+                                            alwaysShowLabel = false,
+                                            icon = {
+                                                Icon(
+                                                    imageVector = item.icon,
+                                                    contentDescription = item.title,
+                                                )
+                                            },
+                                            label = { Text(item.title) },
+                                            selected = index == selectedTabIndex && selectedTabIndex >= 0,
+                                            onClick = {
+                                                selectedTabIndex = index
+                                                navController.navigate(item.path) {
+                                                    popUpTo(navController.graph.startDestinationId) {
+                                                        saveState = true
+                                                    }
+                                                    launchSingleTop = true
+                                                    restoreState = true
+                                                }
+                                            },
+                                        )
+                                    }
+                                }
+                            },
+                        )
                     }
-                }
-                composable<CoinDetail> { backStackEntry ->
-                    val coinDetail = backStackEntry.toRoute<CoinDetail>()
-                    CoinDetailScreen(
-                        symbol = coinDetail.symbol,
-                        displaySymbol = coinDetail.displaySymbol,
-                        cryptoViewModel = cryptoViewModel,
-                        onBackClick = { navController.popBackStack() }
-                    )
+                },
+            ) { innerPadding ->
+                NavHost(
+                    navController = navController,
+                    startDestination = Market,
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding),
+                ) {
+                    animatedComposable<Market> {
+                        CryptoList(
+                            cryptoViewModel = cryptoViewModel,
+                            onCoinClick = { symbol, displaySymbol ->
+                                navController.navigate(
+                                    CoinDetail(
+                                        symbol = symbol,
+                                        displaySymbol = displaySymbol,
+                                    ),
+                                )
+                            },
+                        )
+                    }
+                    animatedComposable<Favorites> {
+                        FavoritesListScreen(
+                            cryptoViewModel = cryptoViewModel,
+                            onCoinClick = { symbol, displaySymbol ->
+                                navController.navigate(
+                                    CoinDetail(
+                                        symbol = symbol,
+                                        displaySymbol = displaySymbol,
+                                    ),
+                                )
+                            },
+                        )
+                    }
+                    animatedComposable<Settings> {
+                        SettingsScreen(
+                            onBackPress = { navController.popBackStack() },
+                            onManageAlerts = { navController.navigate(PriceAlerts) },
+                        )
+                    }
+                    animatedComposable<PriceAlerts> {
+                        AlertsScreen(
+                            showUpNavigation = navController.previousBackStackEntry != null,
+                            onNavigateUp = { navController.popBackStack() },
+                        )
+                    }
+                    composable<CoinDetail> { backStackEntry ->
+                        val coinDetail = backStackEntry.toRoute<CoinDetail>()
+                        CoinDetailScreen(
+                            symbol = coinDetail.symbol,
+                            displaySymbol = coinDetail.displaySymbol,
+                            cryptoViewModel = cryptoViewModel,
+                            onBackClick = { navController.popBackStack() },
+                        )
+                    }
                 }
             }
         }
     }
 }
 
+@Suppress("FunctionName")
 @Composable
 fun NetworkDialog() {
     AlertDialog(
-        onDismissRequest = { /*no op*/ },
-        properties = DialogProperties(
-            dismissOnClickOutside = false,
-            dismissOnBackPress = false
-        ),
+        onDismissRequest = {
+            // no op
+        },
+        properties =
+            DialogProperties(
+                dismissOnClickOutside = false,
+                dismissOnBackPress = false,
+            ),
         title = {
             Text(text = stringResource(Res.string.network_unavailable))
         },
         text = {
             Text(text = stringResource(Res.string.network_unavailable_message))
         },
-        confirmButton = { /*no op*/ }
+        confirmButton = {
+            // no op
+        },
     )
 }
 
 @OptIn(ExperimentalAnimationApi::class)
 inline fun <reified T : Any> NavGraphBuilder.animatedComposable(
-    noinline content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit
+    noinline content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit,
 ) {
     composable<T>(
         enterTransition = { expandFromCenter() },
         exitTransition = { shrinkToCenter() },
-        content = content
+        content = content,
     )
 }
 
 @ExperimentalAnimationApi
-fun expandFromCenter(): EnterTransition {
-    return scaleIn(
+fun expandFromCenter(): EnterTransition =
+    scaleIn(
         animationSpec = tween(300),
         initialScale = 0.8f,
-        transformOrigin = TransformOrigin.Center
+        transformOrigin = TransformOrigin.Center,
     ) + fadeIn(animationSpec = tween(300))
-}
 
 @ExperimentalAnimationApi
-fun shrinkToCenter(): ExitTransition {
-    return scaleOut(
+fun shrinkToCenter(): ExitTransition =
+    scaleOut(
         animationSpec = tween(300),
         targetScale = 0.8f,
-        transformOrigin = TransformOrigin.Center
+        transformOrigin = TransformOrigin.Center,
     ) + fadeOut(animationSpec = tween(300))
-}
 
 expect fun getWebSocketClient(): HttpClient
 
 expect fun getKStore(): KStore<ui.Settings>
+
+expect fun getAlertsKStore(): KStore<List<PriceAlert>>
+
+expect object PriceAlertPlatformController {
+    /**
+     * [enabledAlertsJson] is a kotlinx-serialization JSON array of enabled [PriceAlert] entries
+     * (empty when none). iOS uses it for BGAppRefresh evaluation; other platforms may ignore.
+     */
+    fun onEnabledAlertsChanged(
+        enabledCount: Int,
+        enabledAlertsJson: String,
+    )
+}
 
 expect fun openLink(link: String)
 
@@ -380,5 +447,6 @@ expect class NetworkConnectivityObserver() {
 }
 
 enum class NetworkStatus {
-    Available, Unavailable
+    Available,
+    Unavailable,
 }

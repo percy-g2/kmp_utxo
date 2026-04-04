@@ -20,6 +20,7 @@ import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Policy
 import androidx.compose.material.icons.filled.Web
@@ -63,6 +64,7 @@ import theme.ThemeManager.store
 import ui.utils.debouncedClickable
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
+import utxo.composeapp.generated.resources.alerts_title
 import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.cancel
 import utxo.composeapp.generated.resources.github_icon
@@ -73,6 +75,7 @@ import utxo.composeapp.generated.resources.settings_dark_mode
 import utxo.composeapp.generated.resources.settings_deselect_all
 import utxo.composeapp.generated.resources.settings_done
 import utxo.composeapp.generated.resources.settings_github
+import utxo.composeapp.generated.resources.settings_manage_alerts
 import utxo.composeapp.generated.resources.settings_news_sources
 import utxo.composeapp.generated.resources.settings_no_sources_enabled
 import utxo.composeapp.generated.resources.settings_privacy_policy
@@ -93,7 +96,8 @@ import utxo.composeapp.generated.resources.theme_system
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    onBackPress: () -> Unit
+    onBackPress: () -> Unit,
+    onManageAlerts: () -> Unit = {},
 ) {
     var showThemeDialog by remember { mutableStateOf(false) }
     var showRssProvidersDialog by remember { mutableStateOf(false) }
@@ -106,33 +110,36 @@ fun SettingsScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             CenterAlignedTopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    scrolledContainerColor = MaterialTheme.colorScheme.surface
-                ),
-                modifier = Modifier.shadow(
-                    elevation = 4.dp,
-                    ambientColor = if (isDarkTheme) Color.White else Color.LightGray,
-                    spotColor = if (isDarkTheme) Color.White else Color.LightGray
-                ),
+                colors =
+                    TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        scrolledContainerColor = MaterialTheme.colorScheme.surface,
+                    ),
+                modifier =
+                    Modifier.shadow(
+                        elevation = 4.dp,
+                        ambientColor = if (isDarkTheme) Color.White else Color.LightGray,
+                        spotColor = if (isDarkTheme) Color.White else Color.LightGray,
+                    ),
                 title = { Text(stringResource(Res.string.settings_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBackPress) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(Res.string.back)
+                            contentDescription = stringResource(Res.string.back),
                         )
                     }
                 },
-                windowInsets = WindowInsets(
-                    top = 0.dp,
-                    bottom = 0.dp
-                )
+                windowInsets =
+                    WindowInsets(
+                        top = 0.dp,
+                        bottom = 0.dp,
+                    ),
             )
-        }
+        },
     ) { innerPadding ->
         Box(
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier.padding(innerPadding),
         ) {
             LazyColumn {
                 item {
@@ -141,7 +148,7 @@ fun SettingsScreen(
                         icon = Icons.Default.Palette,
                         title = stringResource(Res.string.settings_theme),
                         subtitle = getThemeDisplayName(settingsState?.appTheme ?: AppTheme.System),
-                        onClick = { showThemeDialog = true }
+                        onClick = { showThemeDialog = true },
                     )
                     SettingsSwitchItem(
                         icon = Icons.Default.DarkMode,
@@ -153,7 +160,17 @@ fun SettingsScreen(
                                 val theme = if (isDark) AppTheme.Dark else AppTheme.Light
                                 ThemeManager.updateTheme(theme)
                             }
-                        }
+                        },
+                    )
+                }
+
+                item {
+                    SettingsHeader(title = stringResource(Res.string.alerts_title))
+                    SettingsItem(
+                        icon = Icons.Default.Notifications,
+                        title = stringResource(Res.string.settings_manage_alerts),
+                        subtitle = "",
+                        onClick = onManageAlerts,
                     )
                 }
 
@@ -162,16 +179,17 @@ fun SettingsScreen(
                     val currentEnabled = settingsState?.enabledRssProviders ?: RssProvider.DEFAULT_ENABLED_PROVIDERS
                     val enabledCount = currentEnabled.size
                     val totalCount = RssProvider.ALL_PROVIDERS.size
-                    val subtitle = when (enabledCount) {
-                        0 -> stringResource(Res.string.settings_no_sources_enabled)
-                        totalCount -> stringResource(Res.string.settings_all_sources_enabled)
-                        else -> stringResource(Res.string.settings_sources_count, enabledCount, totalCount)
-                    }
+                    val subtitle =
+                        when (enabledCount) {
+                            0 -> stringResource(Res.string.settings_no_sources_enabled)
+                            totalCount -> stringResource(Res.string.settings_all_sources_enabled)
+                            else -> stringResource(Res.string.settings_sources_count, enabledCount, totalCount)
+                        }
                     SettingsItem(
                         icon = Icons.AutoMirrored.Filled.Article,
                         title = stringResource(Res.string.settings_news_sources),
                         subtitle = subtitle,
-                        onClick = { showRssProvidersDialog = true }
+                        onClick = { showRssProvidersDialog = true },
                     )
                 }
 
@@ -181,22 +199,22 @@ fun SettingsScreen(
                         icon = Icons.Default.Info,
                         title = stringResource(Res.string.settings_version),
                         subtitle = stringResource(Res.string.settings_version_number),
-                        onClick = null
+                        onClick = null,
                     )
                     SettingsItem(
                         icon = Icons.Default.Policy,
                         title = stringResource(Res.string.settings_privacy_policy),
-                        onClick = { openLink("https://raw.githubusercontent.com/percy-g2/kmp_utxo/refs/heads/main/PrivacyPolicy.md") }
+                        onClick = { openLink("https://raw.githubusercontent.com/percy-g2/kmp_utxo/refs/heads/main/PrivacyPolicy.md") },
                     )
                     SettingsItem(
                         icon = Icons.Default.Web,
                         title = stringResource(Res.string.settings_website),
-                        onClick = { openLink("https://androdevlinux.com/") }
+                        onClick = { openLink("https://androdevlinux.com/") },
                     )
                     SettingsItem(
                         icon = vectorResource(Res.drawable.github_icon),
                         title = stringResource(Res.string.settings_github),
-                        onClick = { openLink("https://github.com/percy-g2/kmp_utxo") }
+                        onClick = { openLink("https://github.com/percy-g2/kmp_utxo") },
                     )
                 }
             }
@@ -209,10 +227,10 @@ fun SettingsScreen(
                             ThemeManager.updateTheme(it)
                         }
                     },
-                    onDismiss = { showThemeDialog = false }
+                    onDismiss = { showThemeDialog = false },
                 )
             }
-            
+
             if (showRssProvidersDialog) {
                 RssProvidersSelectionDialog(
                     enabledProviders = settingsState?.enabledRssProviders ?: RssProvider.DEFAULT_ENABLED_PROVIDERS,
@@ -224,7 +242,7 @@ fun SettingsScreen(
                             }
                         }
                     },
-                    onDismiss = { showRssProvidersDialog = false }
+                    onDismiss = { showRssProvidersDialog = false },
                 )
             }
         }
@@ -237,7 +255,7 @@ private fun SettingsHeader(title: String) {
         text = title,
         style = MaterialTheme.typography.titleMedium,
         color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
     )
 }
 
@@ -246,42 +264,45 @@ private fun SettingsItem(
     icon: ImageVector,
     title: String,
     subtitle: String? = null,
-    onClick: (() -> Unit)? = null
+    onClick: (() -> Unit)? = null,
 ) {
     Surface(
         onClick = { onClick?.invoke() },
         enabled = onClick != null,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier
-                    .size(24.dp)
-                    .clip(CircleShape)
+                modifier =
+                    Modifier
+                        .size(24.dp)
+                        .clip(CircleShape),
             )
 
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(horizontal = 16.dp)
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .padding(horizontal = 16.dp),
             ) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
                 )
                 if (subtitle != null) {
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }
@@ -290,7 +311,7 @@ private fun SettingsItem(
                 Icon(
                     imageVector = Icons.Default.ChevronRight,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -303,59 +324,61 @@ private fun SettingsSwitchItem(
     title: String,
     subtitle: String? = null,
     checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
 ) {
     Surface(
         onClick = { onCheckedChange(!checked) },
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier
-                    .size(24.dp)
-                    .clip(CircleShape)
+                modifier =
+                    Modifier
+                        .size(24.dp)
+                        .clip(CircleShape),
             )
 
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(horizontal = 16.dp)
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .padding(horizontal = 16.dp),
             ) {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
                 )
                 if (subtitle != null) {
                     Text(
                         text = subtitle,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }
 
             Switch(
                 checked = checked,
-                onCheckedChange = onCheckedChange
+                onCheckedChange = onCheckedChange,
             )
         }
     }
 }
 
-
 @Composable
 private fun ThemeSelectionDialog(
     currentTheme: AppTheme,
     onThemeSelected: (AppTheme) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -369,7 +392,7 @@ private fun ThemeSelectionDialog(
                         onClick = {
                             onThemeSelected(theme)
                             onDismiss()
-                        }
+                        },
                     )
                 }
             }
@@ -379,40 +402,40 @@ private fun ThemeSelectionDialog(
             TextButton(onClick = onDismiss) {
                 Text(stringResource(Res.string.cancel))
             }
-        }
+        },
     )
 }
 
 @Composable
-private fun getThemeDisplayName(theme: AppTheme): String {
-    return when (theme) {
+private fun getThemeDisplayName(theme: AppTheme): String =
+    when (theme) {
         AppTheme.System -> stringResource(Res.string.theme_system)
         AppTheme.Light -> stringResource(Res.string.theme_light)
         AppTheme.Dark -> stringResource(Res.string.theme_dark)
     }
-}
 
 @Composable
 private fun RadioButtonItem(
     text: String,
     selected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .debouncedClickable(onClick = onClick)
-            .padding(vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .debouncedClickable(onClick = onClick)
+                .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         RadioButton(
             selected = selected,
-            onClick = onClick
+            onClick = onClick,
         )
         Text(
             text = text,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier.padding(start = 16.dp),
         )
     }
 }
@@ -421,55 +444,60 @@ private fun RadioButtonItem(
 private fun RssProvidersSelectionDialog(
     enabledProviders: Set<String>,
     onProvidersChanged: (Set<String>) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     var localEnabledProviders by remember(enabledProviders) { mutableStateOf(enabledProviders) }
     val allSelected = localEnabledProviders.size == RssProvider.ALL_PROVIDERS.size
-    
+
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { 
+        title = {
             Text(
                 text = stringResource(Res.string.settings_select_news_sources),
-                style = MaterialTheme.typography.titleLarge
-            ) 
+                style = MaterialTheme.typography.titleLarge,
+            )
         },
         text = {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight(),
             ) {
                 // Select All / Deselect All buttons
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     TextButton(
                         onClick = {
-                            localEnabledProviders = if (allSelected) {
-                                emptySet()
-                            } else {
-                                RssProvider.ALL_PROVIDERS.map { it.id }.toSet()
-                            }
-                        }
+                            localEnabledProviders =
+                                if (allSelected) {
+                                    emptySet()
+                                } else {
+                                    RssProvider.ALL_PROVIDERS.map { it.id }.toSet()
+                                }
+                        },
                     ) {
                         Text(
-                            text = if (allSelected) {
-                                stringResource(Res.string.settings_deselect_all)
-                            } else {
-                                stringResource(Res.string.settings_select_all)
-                            }
+                            text =
+                                if (allSelected) {
+                                    stringResource(Res.string.settings_deselect_all)
+                                } else {
+                                    stringResource(Res.string.settings_select_all)
+                                },
                         )
                     }
                 }
-                
+
                 // Providers list
                 Column(
-                    modifier = Modifier
-                        .verticalScroll(rememberScrollState())
+                    modifier =
+                        Modifier
+                            .verticalScroll(rememberScrollState()),
                 ) {
                     RssProvider.ALL_PROVIDERS.forEach { provider ->
                         val isEnabled = localEnabledProviders.contains(provider.id)
@@ -477,12 +505,13 @@ private fun RssProvidersSelectionDialog(
                             text = provider.name,
                             checked = isEnabled,
                             onClick = {
-                                localEnabledProviders = if (isEnabled) {
-                                    localEnabledProviders - provider.id
-                                } else {
-                                    localEnabledProviders + provider.id
-                                }
-                            }
+                                localEnabledProviders =
+                                    if (isEnabled) {
+                                        localEnabledProviders - provider.id
+                                    } else {
+                                        localEnabledProviders + provider.id
+                                    }
+                            },
                         )
                     }
                 }
@@ -493,7 +522,7 @@ private fun RssProvidersSelectionDialog(
                 onClick = {
                     onProvidersChanged(localEnabledProviders)
                     onDismiss()
-                }
+                },
             ) {
                 Text(stringResource(Res.string.settings_done))
             }
@@ -502,7 +531,7 @@ private fun RssProvidersSelectionDialog(
             TextButton(onClick = onDismiss) {
                 Text(stringResource(Res.string.cancel))
             }
-        }
+        },
     )
 }
 
@@ -510,25 +539,27 @@ private fun RssProvidersSelectionDialog(
 private fun CheckboxItem(
     text: String,
     checked: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .debouncedClickable(onClick = onClick)
-            .padding(vertical = 12.dp, horizontal = 4.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .debouncedClickable(onClick = onClick)
+                .padding(vertical = 12.dp, horizontal = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Checkbox(
             checked = checked,
-            onCheckedChange = { onClick() }
+            onCheckedChange = { onClick() },
         )
         Text(
             text = text,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 16.dp)
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .padding(start = 16.dp),
         )
     }
 }
@@ -538,9 +569,11 @@ data class Settings(
     val appTheme: AppTheme = AppTheme.System,
     val favPairs: List<String> = listOf(""),
     val selectedTradingPair: String = "BTC",
-    val enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS
+    val enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS,
 )
 
 enum class AppTheme {
-    System, Light, Dark
+    System,
+    Light,
+    Dark,
 }

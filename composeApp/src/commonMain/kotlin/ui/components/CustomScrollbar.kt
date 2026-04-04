@@ -94,39 +94,41 @@ fun LazyColumnScrollbar(
     selectionMode: ScrollbarSelectionMode = ScrollbarSelectionMode.Thumb,
     selectionActionable: ScrollbarSelectionActionable = ScrollbarSelectionActionable.Always,
     hideDelay: Duration = 2.toDuration(DurationUnit.SECONDS),
-    showItemIndicator: ListIndicatorSettings = EnabledIndividualControl(
-        upperIndicatorHeight = 0.dp,
-        upperIndicatorColor = MaterialTheme.colorScheme.surface,
-        lowerIndicatorHeight = 100.dp,
-        lowerIndicatorColor = MaterialTheme.colorScheme.surface
-    ),
-    indicatorContent: (@Composable (index: Int, isThumbSelected: Boolean) -> Unit)? = null
+    showItemIndicator: ListIndicatorSettings =
+        EnabledIndividualControl(
+            upperIndicatorHeight = 0.dp,
+            upperIndicatorColor = MaterialTheme.colorScheme.surface,
+            lowerIndicatorHeight = 100.dp,
+            lowerIndicatorColor = MaterialTheme.colorScheme.surface,
+        ),
+    indicatorContent: (@Composable (index: Int, isThumbSelected: Boolean) -> Unit)? = null,
 ) {
     Box(modifier = modifier) {
-        val visibilityState = remember {
-            derivedStateOf {
-                calculateVisibilityStates(listState, showItemIndicator)
+        val visibilityState =
+            remember {
+                derivedStateOf {
+                    calculateVisibilityStates(listState, showItemIndicator)
+                }
             }
-        }
 
         // Use animateFloatAsState to smoothly transition the alpha value
         val alphaAbove: Float by animateFloatAsState(
             if (visibilityState.value.first != VisibilityState.CompletelyVisible) 1f else 0f,
-            animationSpec = tween(250)
+            animationSpec = tween(250),
         )
         val alphaBelow: Float by animateFloatAsState(
             if (visibilityState.value.second != VisibilityState.CompletelyVisible) 1f else 0f,
-            animationSpec = tween(250)
+            animationSpec = tween(250),
         )
 
         val heightAbove: Float by animateFloatAsState(
             if (visibilityState.value.first == VisibilityState.NotVisible) .8f else .25f,
-            animationSpec = tween(1000)
+            animationSpec = tween(1000),
         )
 
         val heightBelow: Float by animateFloatAsState(
             if (visibilityState.value.second == VisibilityState.NotVisible) 1f else .25f,
-            animationSpec = tween(1000)
+            animationSpec = tween(1000),
         )
 
         when (showItemIndicator) {
@@ -141,7 +143,7 @@ fun LazyColumnScrollbar(
                     indicatorColor = showItemIndicator.upperIndicatorColor,
                     alpha = alphaAbove,
                     graphicIndicator = showItemIndicator.upperGraphicIndicator,
-                    modifier = Modifier.align(Alignment.TopCenter).focusable(false)
+                    modifier = Modifier.align(Alignment.TopCenter).focusable(false),
                 )
 
                 DisplayIndicator(
@@ -150,7 +152,7 @@ fun LazyColumnScrollbar(
                     indicatorColor = showItemIndicator.lowerIndicatorColor.copy(alpha = alphaBelow),
                     alpha = alphaBelow,
                     graphicIndicator = showItemIndicator.lowerGraphicIndicator,
-                    modifier = Modifier.align(Alignment.BottomCenter).focusable(false)
+                    modifier = Modifier.align(Alignment.BottomCenter).focusable(false),
                 )
             }
 
@@ -161,7 +163,7 @@ fun LazyColumnScrollbar(
                     indicatorColor = showItemIndicator.indicatorColor,
                     alpha = alphaAbove,
                     graphicIndicator = showItemIndicator.graphicIndicator,
-                    modifier = Modifier.align(Alignment.TopCenter).focusable(false)
+                    modifier = Modifier.align(Alignment.TopCenter).focusable(false),
                 )
 
                 DisplayIndicator(
@@ -171,7 +173,7 @@ fun LazyColumnScrollbar(
                     alpha = alphaBelow,
                     graphicIndicator = showItemIndicator.graphicIndicator,
                     modifier = Modifier.align(Alignment.BottomCenter).focusable(false),
-                    graphicModifier = Modifier.rotate(180f)
+                    graphicModifier = Modifier.rotate(180f),
                 )
             }
         }
@@ -233,17 +235,18 @@ private fun InternalLazyColumnScrollbar(
     val isStickyHeaderInAction by remember {
         derivedStateOf {
             val realIndex = realFirstVisibleItem?.index ?: return@derivedStateOf false
-            val firstVisibleIndex = listState.layoutInfo.visibleItemsInfo.firstOrNull()?.index
-                ?: return@derivedStateOf false
+            val firstVisibleIndex =
+                listState.layoutInfo.visibleItemsInfo
+                    .firstOrNull()
+                    ?.index
+                    ?: return@derivedStateOf false
             realIndex != firstVisibleIndex
         }
     }
 
-    fun LazyListItemInfo.fractionHiddenTop(firstItemOffset: Int) =
-        if (size == isEmpty) 0f else firstItemOffset / size.toFloat()
+    fun LazyListItemInfo.fractionHiddenTop(firstItemOffset: Int) = if (size == isEmpty) 0f else firstItemOffset / size.toFloat()
 
-    fun LazyListItemInfo.fractionVisibleBottom(viewportEndOffset: Int) =
-        if (size == isEmpty) 0f else (viewportEndOffset - offset).toFloat() / size.toFloat()
+    fun LazyListItemInfo.fractionVisibleBottom(viewportEndOffset: Int) = if (size == isEmpty) 0f else (viewportEndOffset - offset).toFloat() / size.toFloat()
 
     val normalizedThumbSizeReal by remember {
         derivedStateOf {
@@ -256,9 +259,11 @@ private fun InternalLazyColumnScrollbar(
                 val firstItem = realFirstVisibleItem ?: return@let 0f
                 val firstPartial =
                     firstItem.fractionHiddenTop(listState.firstVisibleItemScrollOffset)
-                val lastPartial = oneHundredPercentDecimal - it.visibleItemsInfo.last().fractionVisibleBottom(
-                    it.viewportEndOffset - it.afterContentPadding
-                )
+                val lastPartial =
+                    oneHundredPercentDecimal -
+                        it.visibleItemsInfo.last().fractionVisibleBottom(
+                            it.viewportEndOffset - it.afterContentPadding,
+                        )
 
                 val realSize = it.visibleItemsInfo.size - if (isStickyHeaderInAction) 1 else isEmpty
                 val realVisibleSize = realSize.toFloat() - firstPartial - lastPartial
@@ -290,8 +295,9 @@ private fun InternalLazyColumnScrollbar(
     }
 
     fun offsetCorrectionInverse(top: Float): Float {
-        if (normalizedThumbSizeReal >= thumbMinHeight)
+        if (normalizedThumbSizeReal >= thumbMinHeight) {
             return top
+        }
         val topRealMax = oneHundredPercentDecimal - normalizedThumbSizeReal
         val topMax = oneHundredPercentDecimal - thumbMinHeight
         return top * topRealMax / topMax
@@ -300,12 +306,14 @@ private fun InternalLazyColumnScrollbar(
     val normalizedOffsetPosition by remember {
         derivedStateOf {
             listState.layoutInfo.let {
-                if (it.totalItemsCount == isEmpty || it.visibleItemsInfo.isEmpty())
+                if (it.totalItemsCount == isEmpty || it.visibleItemsInfo.isEmpty()) {
                     return@let 0f
+                }
 
                 val firstItem = realFirstVisibleItem ?: return@let 0f
-                val top = firstItem
-                    .run { index.toFloat() + fractionHiddenTop(listState.firstVisibleItemScrollOffset) } / it.totalItemsCount.toFloat()
+                val top =
+                    firstItem
+                        .run { index.toFloat() + fractionHiddenTop(listState.firstVisibleItemScrollOffset) } / it.totalItemsCount.toFloat()
                 offsetCorrection(top)
             }
         }
@@ -325,10 +333,11 @@ private fun InternalLazyColumnScrollbar(
 
         coroutineScope.launch {
             listState.scrollToItem(index = index, scrollOffset = isEmpty)
-            val offset = realFirstVisibleItem
-                ?.size
-                ?.let { it.toFloat() * remainder }
-                ?: 0f
+            val offset =
+                realFirstVisibleItem
+                    ?.size
+                    ?.let { it.toFloat() * remainder }
+                    ?: 0f
             listState.scrollBy(offset)
         }
     }
@@ -348,49 +357,54 @@ private fun InternalLazyColumnScrollbar(
 
     val alpha by animateFloatAsState(
         targetValue = if (isInAction) oneHundredPercentDecimal else 0f,
-        animationSpec = tween(
-            durationMillis = if (isInAction) 75 else durationAnimationMillis,
-            delayMillis = if (isInAction) isEmpty else hideDelay.toInt(DurationUnit.MILLISECONDS)
-        ),
-        label = "scrollbar alpha value"
+        animationSpec =
+            tween(
+                durationMillis = if (isInAction) 75 else durationAnimationMillis,
+                delayMillis = if (isInAction) isEmpty else hideDelay.toInt(DurationUnit.MILLISECONDS),
+            ),
+        label = "scrollbar alpha value",
     )
 
     BoxWithConstraints(
-        modifier = modifier
-            .fillMaxWidth()
+        modifier =
+            modifier
+                .fillMaxWidth(),
     ) {
         val maxHeightFloat = constraints.maxHeight.toFloat()
 
         // Aligning items to the top and towards the start/end based on `rightSide`
         Box(
-            modifier = Modifier
-                .align(if (rightSide) Alignment.TopEnd else Alignment.TopStart)
-                .graphicsLayer(
-                    translationY = maxHeightFloat * normalizedOffsetPosition
-                )
+            modifier =
+                Modifier
+                    .align(if (rightSide) Alignment.TopEnd else Alignment.TopStart)
+                    .graphicsLayer(
+                        translationY = maxHeightFloat * normalizedOffsetPosition,
+                    ),
         ) {
             // Using Column for vertical arrangement or Row for horizontal,
             // depending on your layout needs.
-            Column { // or Row, if you need horizontal arrangement
+            Column {
+                // or Row, if you need horizontal arrangement
                 // Thumb Box
                 Box(
-                    modifier = Modifier
-                        .padding(
-                            start = if (rightSide) isEmpty.dp else padding,
-                            end = if (!rightSide) isEmpty.dp else padding,
-                        )
-                        .clip(thumbShape)
-                        .width(thickness)
-                        .fillMaxHeight(normalizedThumbSize)
-                        .alpha(alpha)
-                        .background(if (isSelected) thumbSelectedColor else thumbColor)
+                    modifier =
+                        Modifier
+                            .padding(
+                                start = if (rightSide) isEmpty.dp else padding,
+                                end = if (!rightSide) isEmpty.dp else padding,
+                            ).clip(thumbShape)
+                            .width(thickness)
+                            .fillMaxHeight(normalizedThumbSize)
+                            .alpha(alpha)
+                            .background(if (isSelected) thumbSelectedColor else thumbColor),
                 )
 
                 // Optional indicator content
                 if (indicatorContent != null) {
                     Box(
-                        modifier = Modifier
-                            .alpha(alpha)
+                        modifier =
+                            Modifier
+                                .alpha(alpha),
                         // Additional modifiers to position this Box relative to the thumb Box
                         // might be needed depending on your exact requirements.
                     ) {
@@ -401,71 +415,77 @@ private fun InternalLazyColumnScrollbar(
         }
 
         @Composable
-        fun DraggableBar() = Box(
-            modifier = Modifier
-                .align(if (rightSide) Alignment.TopEnd else Alignment.TopStart)
-                .width(padding * 2 + thickness)
-                .fillMaxHeight()
-                .draggable(
-                    state = rememberDraggableState { delta ->
-                        val displace = if (reverseLayout) -delta else delta // side effect ?
-                        if (isSelected) {
-                            setScrollOffset(dragOffset + displace / maxHeightFloat)
-                        }
-                    },
-                    orientation = Orientation.Vertical,
-                    enabled = selectionMode != ScrollbarSelectionMode.Disabled,
-                    startDragImmediately = true,
-                    onDragStarted = onDragStarted@{ offset ->
-                        if (maxHeightFloat <= 0f) return@onDragStarted
-                        val newOffset = when {
-                            reverseLayout -> (maxHeightFloat - offset.y) / maxHeightFloat
-                            else -> offset.y / maxHeightFloat
-                        }
-                        val currentOffset = when {
-                            reverseLayout -> oneHundredPercentDecimal - normalizedOffsetPosition - normalizedThumbSize
-                            else -> normalizedOffsetPosition
-                        }
+        fun DraggableBar() =
+            Box(
+                modifier =
+                    Modifier
+                        .align(if (rightSide) Alignment.TopEnd else Alignment.TopStart)
+                        .width(padding * 2 + thickness)
+                        .fillMaxHeight()
+                        .draggable(
+                            state =
+                                rememberDraggableState { delta ->
+                                    val displace = if (reverseLayout) -delta else delta // side effect ?
+                                    if (isSelected) {
+                                        setScrollOffset(dragOffset + displace / maxHeightFloat)
+                                    }
+                                },
+                            orientation = Orientation.Vertical,
+                            enabled = selectionMode != ScrollbarSelectionMode.Disabled,
+                            startDragImmediately = true,
+                            onDragStarted = onDragStarted@{ offset ->
+                                if (maxHeightFloat <= 0f) return@onDragStarted
+                                val newOffset =
+                                    when {
+                                        reverseLayout -> (maxHeightFloat - offset.y) / maxHeightFloat
+                                        else -> offset.y / maxHeightFloat
+                                    }
+                                val currentOffset =
+                                    when {
+                                        reverseLayout -> oneHundredPercentDecimal - normalizedOffsetPosition - normalizedThumbSize
+                                        else -> normalizedOffsetPosition
+                                    }
 
-                        when (selectionMode) {
-                            ScrollbarSelectionMode.Full -> {
-                                if (newOffset in currentOffset..(currentOffset + normalizedThumbSize))
-                                    setDragOffset(currentOffset)
-                                else
-                                    setScrollOffset(newOffset)
-                                isSelected = true
-                            }
+                                when (selectionMode) {
+                                    ScrollbarSelectionMode.Full -> {
+                                        if (newOffset in currentOffset..(currentOffset + normalizedThumbSize)) {
+                                            setDragOffset(currentOffset)
+                                        } else {
+                                            setScrollOffset(newOffset)
+                                        }
+                                        isSelected = true
+                                    }
 
-                            ScrollbarSelectionMode.Thumb -> {
-                                if (newOffset in currentOffset..(currentOffset + normalizedThumbSize)) {
-                                    setDragOffset(currentOffset)
-                                    isSelected = true
+                                    ScrollbarSelectionMode.Thumb -> {
+                                        if (newOffset in currentOffset..(currentOffset + normalizedThumbSize)) {
+                                            setDragOffset(currentOffset)
+                                            isSelected = true
+                                        }
+                                    }
+
+                                    ScrollbarSelectionMode.Disabled -> Unit
                                 }
-                            }
+                            },
+                            onDragStopped = {
+                                isSelected = false
+                            },
+                        ),
+            )
 
-                            ScrollbarSelectionMode.Disabled -> Unit
-                        }
-                    },
-                    onDragStopped = {
-                        isSelected = false
-                    }
-                )
-        )
-
-        val show = when (selectionActionable) {
-            ScrollbarSelectionActionable.Always -> true
-            ScrollbarSelectionActionable.WhenVisible -> isInActionSelectable.value
-        }
+        val show =
+            when (selectionActionable) {
+                ScrollbarSelectionActionable.Always -> true
+                ScrollbarSelectionActionable.WhenVisible -> isInActionSelectable.value
+            }
         if (show) {
             DraggableBar()
         }
     }
 }
 
-
 internal fun calculateVisibilityStates(
     listState: LazyListState,
-    showItemIndicator: ListIndicatorSettings
+    showItemIndicator: ListIndicatorSettings,
 ): Pair<VisibilityState, VisibilityState> {
     val layoutInfo = listState.layoutInfo
     val totalItemCount = layoutInfo.totalItemsCount
@@ -483,29 +503,39 @@ internal fun calculateVisibilityStates(
     }
 
     // Calculate visibility for content above
-    val contentAboveState = when {
-        !layoutInfo.reverseLayout -> {
-            if (firstVisibleItemIndex == 0 && firstItemVisibleOffset == 0) VisibilityState.CompletelyVisible
-            else if (visibleItems.none { it.index == 0 }) VisibilityState.NotVisible
-            else VisibilityState.PartiallyVisible
+    val contentAboveState =
+        when {
+            !layoutInfo.reverseLayout -> {
+                if (firstVisibleItemIndex == 0 && firstItemVisibleOffset == 0) {
+                    VisibilityState.CompletelyVisible
+                } else if (visibleItems.none { it.index == 0 }) {
+                    VisibilityState.NotVisible
+                } else {
+                    VisibilityState.PartiallyVisible
+                }
+            }
+            else -> {
+                determineVisibilityState(visibleItems, totalItemCount, viewportSize)
+            }
         }
-        else -> {
-            determineVisibilityState(visibleItems, totalItemCount, viewportSize)
-        }
-    }
 
     // Calculate visibility for content below
-    val contentBelowState = when {
-        !layoutInfo.reverseLayout -> {
-            determineVisibilityState(visibleItems, totalItemCount, viewportSize)
-        }
+    val contentBelowState =
+        when {
+            !layoutInfo.reverseLayout -> {
+                determineVisibilityState(visibleItems, totalItemCount, viewportSize)
+            }
 
-        else -> {
-            if (firstVisibleItemIndex == 0 && firstItemVisibleOffset == 0) VisibilityState.CompletelyVisible
-            else if (visibleItems.none { it.index == 0 }) VisibilityState.NotVisible
-            else VisibilityState.PartiallyVisible
+            else -> {
+                if (firstVisibleItemIndex == 0 && firstItemVisibleOffset == 0) {
+                    VisibilityState.CompletelyVisible
+                } else if (visibleItems.none { it.index == 0 }) {
+                    VisibilityState.NotVisible
+                } else {
+                    VisibilityState.PartiallyVisible
+                }
+            }
         }
-    }
 
     return Pair(contentAboveState, contentBelowState)
 }
@@ -513,13 +543,16 @@ internal fun calculateVisibilityStates(
 private fun determineVisibilityState(
     visibleItems: List<LazyListItemInfo>,
     totalItemCount: Int,
-    viewportSize: Int
+    viewportSize: Int,
 ): VisibilityState {
     val lastItem = visibleItems.lastOrNull()
-    return if (lastItem != null && lastItem.index == totalItemCount - 1 && (lastItem.size + lastItem.offset) <= viewportSize)
+    return if (lastItem != null && lastItem.index == totalItemCount - 1 && (lastItem.size + lastItem.offset) <= viewportSize) {
         VisibilityState.CompletelyVisible
-    else if (visibleItems.none { it.index == totalItemCount - 1 }) VisibilityState.NotVisible
-    else VisibilityState.PartiallyVisible
+    } else if (visibleItems.none { it.index == totalItemCount - 1 }) {
+        VisibilityState.NotVisible
+    } else {
+        VisibilityState.PartiallyVisible
+    }
 }
 
 /**
@@ -535,13 +568,14 @@ internal fun DisplayIndicator(
     alpha: Float,
     graphicIndicator: @Composable (modifier: Modifier, alpha: Float) -> Unit = { _, _ -> },
     modifier: Modifier = Modifier,
-    graphicModifier: Modifier = Modifier
+    graphicModifier: Modifier = Modifier,
 ) {
     val ratio = .5f
     Box(
-        modifier = modifier
-            .fillMaxWidth(1f)
-            .height(IntrinsicSize.Max),
+        modifier =
+            modifier
+                .fillMaxWidth(1f)
+                .height(IntrinsicSize.Max),
         contentAlignment = if (upIndication) Alignment.TopCenter else Alignment.BottomCenter,
     ) {
         Box(
@@ -551,21 +585,21 @@ internal fun DisplayIndicator(
                         listOf(
                             indicatorColor.copy(alpha = alpha),
                             indicatorColor.copy(alpha = alpha * .75f),
-                            Color.Transparent
+                            Color.Transparent,
                         ),
-                        startY = indicatorHeight.value * (ratio)
+                        startY = indicatorHeight.value * (ratio),
                     )
                 } else {
                     Brush.verticalGradient(
                         listOf(
                             Color.Transparent,
                             indicatorColor.copy(alpha = alpha * .75f),
-                            indicatorColor.copy(alpha = alpha)
+                            indicatorColor.copy(alpha = alpha),
                         ),
-                        startY = indicatorHeight.value * ratio
+                        startY = indicatorHeight.value * ratio,
                     )
-                }
-            )
+                },
+            ),
         )
         graphicIndicator.invoke(graphicModifier, alpha)
     }
@@ -581,7 +615,6 @@ internal fun DisplayIndicator(
  * - [EnabledIndividualControl] for when indicators should be displayed, along with their customization options.
  */
 sealed class ListIndicatorSettings {
-
     /**
      * Represents the state where list indicators are not shown.
      */
@@ -597,7 +630,7 @@ sealed class ListIndicatorSettings {
     data class EnabledMirrored(
         val indicatorHeight: Dp,
         val indicatorColor: Color,
-        val graphicIndicator: @Composable (modifier: Modifier, alpha: Float) -> Unit = { _, _ -> }
+        val graphicIndicator: @Composable (modifier: Modifier, alpha: Float) -> Unit = { _, _ -> },
     ) : ListIndicatorSettings()
 
     /**
@@ -616,7 +649,7 @@ sealed class ListIndicatorSettings {
         val upperGraphicIndicator: @Composable (modifier: Modifier, alpha: Float) -> Unit = { _, _ -> },
         val lowerIndicatorHeight: Dp,
         val lowerIndicatorColor: Color,
-        val lowerGraphicIndicator: @Composable (modifier: Modifier, alpha: Float) -> Unit = { _, _ -> }
+        val lowerGraphicIndicator: @Composable (modifier: Modifier, alpha: Float) -> Unit = { _, _ -> },
     ) : ListIndicatorSettings()
 }
 
@@ -658,7 +691,7 @@ enum class ScrollbarSelectionMode {
      * Disables interaction with the scrollbar. The scrollbar may still be visible for
      * informational purposes (indicating the current scroll position), but it cannot be interacted with.
      */
-    Disabled
+    Disabled,
 }
 
 /**
@@ -667,8 +700,10 @@ enum class ScrollbarSelectionMode {
 enum class VisibilityState {
     /** The element is fully visible to the user.*/
     CompletelyVisible,
+
     /** Only a portion of the element is visible to the user.*/
     PartiallyVisible,
+
     /** The element is not visible to the user at all.*/
-    NotVisible
+    NotVisible,
 }

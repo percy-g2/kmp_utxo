@@ -17,21 +17,22 @@ import kotlin.math.roundToInt
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
-fun String.toCryptoSymbol(): String = when(this.uppercase()) {
-    "BTC" -> "₿"
-    "USDT" -> "₮"
-    "USDC" -> "¢"
-    "ETH" -> "Ξ"
-    "DOGE" -> "Ð"
-    "FDUSD" -> "F"
-    "DAI" -> "◈"
-    "SOL" -> "◎"
-    "USD1" -> "$1"
-    else -> this
-}
+fun String.toCryptoSymbol(): String =
+    when (this.uppercase()) {
+        "BTC" -> "₿"
+        "USDT" -> "₮"
+        "USDC" -> "¢"
+        "ETH" -> "Ξ"
+        "DOGE" -> "Ð"
+        "FDUSD" -> "F"
+        "DAI" -> "◈"
+        "SOL" -> "◎"
+        "USD1" -> "$1"
+        else -> this
+    }
 
-fun String.formatVolume(): String {
-    return try {
+fun String.formatVolume(): String =
+    try {
         val value = this.toDouble()
         when {
             value >= 1_000_000_000 -> {
@@ -53,7 +54,9 @@ fun String.formatVolume(): String {
             }
 
             value >= 1_000 -> {
-                value.roundToInt().toString()
+                value
+                    .roundToInt()
+                    .toString()
                     .reversed()
                     .chunked(3)
                     .joinToString(",")
@@ -72,21 +75,30 @@ fun String.formatVolume(): String {
         AppLogger.logger.e(throwable = e) { "Error formatting volume: $this" }
         this
     }
-}
 
-fun String.formatPrice(symbol: String, tradingPairs: List<TradingPair>): String = runCatching {
-    val selectedPair = tradingPairs.find { pair ->
-        symbol.endsWith(pair.quote, ignoreCase = true)
-    }?.quote.orEmpty()
+fun String.formatPrice(
+    symbol: String,
+    tradingPairs: List<TradingPair>,
+): String =
+    runCatching {
+        val selectedPair =
+            tradingPairs
+                .find { pair ->
+                    symbol.endsWith(pair.quote, ignoreCase = true)
+                }?.quote
+                .orEmpty()
 
-    val updatedPrice = if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD" || selectedPair == "USD1") {
-        this.toDouble().formatAsCurrency()
-    } else this
+        val updatedPrice =
+            if (selectedPair == "USDT" || selectedPair == "USDC" || selectedPair == "FDUSD" || selectedPair == "USD1") {
+                this.toDouble().formatAsCurrency()
+            } else {
+                this
+            }
 
-    "$updatedPrice ${selectedPair.toCryptoSymbol()}"
-}.getOrElse {
-    this
-}
+        "$updatedPrice ${selectedPair.toCryptoSymbol()}"
+    }.getOrElse {
+        this
+    }
 
 fun String.buildStyledSymbol(): AnnotatedString {
     val parts = this.split("/")
@@ -126,10 +138,21 @@ fun String.formatNewsDate(): String {
         val localDateTime = instant.toLocalDateTime(systemTimeZone)
 
         // Format: "MMM d, yyyy h:mm a" (e.g., "Jan 1, 2024 12:00 PM")
-        val monthNames = listOf(
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        )
+        val monthNames =
+            listOf(
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            )
 
         val month = monthNames[localDateTime.month.number - 1]
         val day = localDateTime.day
@@ -138,11 +161,12 @@ fun String.formatNewsDate(): String {
         val minute = localDateTime.minute
 
         val amPm = if (hour < 12) "AM" else "PM"
-        val displayHour = when {
-            hour == 0 -> 12
-            hour > 12 -> hour - 12
-            else -> hour
-        }
+        val displayHour =
+            when {
+                hour == 0 -> 12
+                hour > 12 -> hour - 12
+                else -> hour
+            }
 
         val minuteStr = if (minute < 10) "0$minute" else "$minute"
 
@@ -175,29 +199,45 @@ private fun extractDateAndTimeFallback(dateStr: String): String {
         val minute = timeMatch.groupValues[2].toInt()
 
         val amPm = if (hour < 12) "AM" else "PM"
-        val displayHour = when {
-            hour == 0 -> 12
-            hour > 12 -> hour - 12
-            else -> hour
-        }
+        val displayHour =
+            when {
+                hour == 0 -> 12
+                hour > 12 -> hour - 12
+                else -> hour
+            }
 
         val minuteStr = if (minute < 10) "0$minute" else "$minute"
         val timePart = "$displayHour:$minuteStr $amPm"
 
         // Try to extract date part - look for date patterns
         // Common formats: "Wed, 01 Jan 2024" or "2024-01-01" or "Jan 1, 2024"
-        val datePatterns = listOf(
-            Regex("""(\w{3}),\s+(\d{1,2})\s+(\w{3})\s+(\d{4})"""), // "Wed, 01 Jan 2024"
-            Regex("""(\d{4})-(\d{2})-(\d{2})"""), // "2024-01-01"
-            Regex("""(\w{3})\s+(\d{1,2}),?\s+(\d{4})""") // "Jan 1, 2024" or "Jan 1 2024"
-        )
+        // "Wed, 01 Jan 2024"
+        val rfc1123Date = Regex("""(\w{3}),\s+(\d{1,2})\s+(\w{3})\s+(\d{4})""")
+        // "2024-01-01"
+        val isoDate = Regex("""(\d{4})-(\d{2})-(\d{2})""")
+        // "Jan 1, 2024" or "Jan 1 2024"
+        val monthDayYear = Regex("""(\w{3})\s+(\d{1,2}),?\s+(\d{4})""")
+        val datePatterns = listOf(rfc1123Date, isoDate, monthDayYear)
 
         for (pattern in datePatterns) {
             val dateMatch = pattern.find(dateStr)
             if (dateMatch != null) {
                 // Found a date pattern, format it nicely
-                val monthNames = listOf(
-                    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+                val monthNames =
+                    listOf(
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec",
+                    )
 
                 when {
                     // Format: "Wed, 01 Jan 2024"
@@ -248,20 +288,22 @@ internal fun parseRssDate(dateStr: String): Instant {
         // Try ISO 8601 format first (if present)
         // ISO 8601 format: "2024-01-01T12:00:00Z" or "2024-01-01T12:00:00+00:00"
         // Check if it starts with a 4-digit year followed by "-" and contains "T" after the date part
-        val isIso8601 = dateStr.length >= 10 && 
-            dateStr[0].isDigit() && 
-            dateStr[1].isDigit() && 
-            dateStr[2].isDigit() && 
-            dateStr[3].isDigit() &&
-            dateStr[4] == '-' &&
-            dateStr.contains("T")
-        
+        val isIso8601 =
+            dateStr.length >= 10 &&
+                dateStr[0].isDigit() &&
+                dateStr[1].isDigit() &&
+                dateStr[2].isDigit() &&
+                dateStr[3].isDigit() &&
+                dateStr[4] == '-' &&
+                dateStr.contains("T")
+
         if (isIso8601) {
             return Instant.parse(dateStr)
         }
 
         // Parse RFC 822 format: "Thu, 11 Dec 2025 17:15:00 +0000" or "Wed, 01 Jan 2024 12:00:00 GMT"
-        val rfc822Pattern = Regex("""(\w{3}),\s+(\d{1,2})\s+(\w{3})\s+(\d{4})\s+(\d{2}):(\d{2}):(\d{2})\s+([+-]\d{4}|GMT|UTC)""", RegexOption.IGNORE_CASE)
+        val rfc822Pattern =
+            Regex("""(\w{3}),\s+(\d{1,2})\s+(\w{3})\s+(\d{4})\s+(\d{2}):(\d{2}):(\d{2})\s+([+-]\d{4}|GMT|UTC)""", RegexOption.IGNORE_CASE)
         val match = rfc822Pattern.find(dateStr)
 
         if (match != null) {
@@ -273,25 +315,36 @@ internal fun parseRssDate(dateStr: String): Instant {
             val second = match.groupValues.getOrNull(7)?.toIntOrNull() ?: 0
             val timezoneStr = match.groupValues[8]
 
-            val monthMap = mapOf(
-                "Jan" to 1, "Feb" to 2, "Mar" to 3, "Apr" to 4,
-                "May" to 5, "Jun" to 6, "Jul" to 7, "Aug" to 8,
-                "Sep" to 9, "Oct" to 10, "Nov" to 11, "Dec" to 12
-            )
+            val monthMap =
+                mapOf(
+                    "Jan" to 1,
+                    "Feb" to 2,
+                    "Mar" to 3,
+                    "Apr" to 4,
+                    "May" to 5,
+                    "Jun" to 6,
+                    "Jul" to 7,
+                    "Aug" to 8,
+                    "Sep" to 9,
+                    "Oct" to 10,
+                    "Nov" to 11,
+                    "Dec" to 12,
+                )
 
             val month = monthMap[monthStr] ?: throw IllegalArgumentException("Invalid month: $monthStr")
 
             // Parse timezone offset
-            val (offsetSign, offsetHours, offsetMins) = when {
-                timezoneStr == "GMT" || timezoneStr == "UTC" -> Triple("+", 0, 0)
-                timezoneStr.startsWith("+") || timezoneStr.startsWith("-") -> {
-                    val sign = if (timezoneStr.startsWith("+")) "+" else "-"
-                    val hours = timezoneStr.substring(1, 3).toInt()
-                    val mins = timezoneStr.substring(3, 5).toInt()
-                    Triple(sign, hours, mins)
+            val (offsetSign, offsetHours, offsetMins) =
+                when {
+                    timezoneStr == "GMT" || timezoneStr == "UTC" -> Triple("+", 0, 0)
+                    timezoneStr.startsWith("+") || timezoneStr.startsWith("-") -> {
+                        val sign = if (timezoneStr.startsWith("+")) "+" else "-"
+                        val hours = timezoneStr.substring(1, 3).toInt()
+                        val mins = timezoneStr.substring(3, 5).toInt()
+                        Triple(sign, hours, mins)
+                    }
+                    else -> Triple("+", 0, 0)
                 }
-                else -> Triple("+", 0, 0)
-            }
 
             // Create ISO 8601 string with proper timezone offset format
             val yearStr = year.toString().padStart(4, '0')
@@ -303,7 +356,7 @@ internal fun parseRssDate(dateStr: String): Instant {
             val offsetHoursStr = offsetHours.toString().padStart(2, '0')
             val offsetMinsStr = offsetMins.toString().padStart(2, '0')
 
-            val isoString = "${yearStr}-${monthNumStr}-${dayStr}T${hourStr}:${minuteStr}:${secondStr}${offsetSign}${offsetHoursStr}:${offsetMinsStr}"
+            val isoString = "$yearStr-$monthNumStr-${dayStr}T$hourStr:$minuteStr:${secondStr}${offsetSign}$offsetHoursStr:$offsetMinsStr"
 
             return Instant.parse(isoString)
         }
@@ -315,4 +368,3 @@ internal fun parseRssDate(dateStr: String): Instant {
         throw IllegalArgumentException("Unable to parse date: $dateStr", e)
     }
 }
-

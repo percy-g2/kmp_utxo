@@ -1,4 +1,5 @@
 
+import domain.model.PriceAlert
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.storage.storeOf
 import io.ktor.client.HttpClient
@@ -21,29 +22,47 @@ actual fun openLink(link: String) {
 }
 
 actual class NetworkConnectivityObserver {
-    actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
-        val updateStatus = {
-            val status = if (window.navigator.onLine) NetworkStatus.Available else NetworkStatus.Unavailable
-            trySend(status)
+    actual fun observe(): Flow<NetworkStatus?> =
+        callbackFlow {
+            val updateStatus = {
+                val status = if (window.navigator.onLine) NetworkStatus.Available else NetworkStatus.Unavailable
+                trySend(status)
+            }
+
+            window.addEventListener("online") { updateStatus() }
+            window.addEventListener("offline") { updateStatus() }
+
+            updateStatus()
+
+            awaitClose {
+                window.removeEventListener("online") { updateStatus() }
+                window.removeEventListener("offline") { updateStatus() }
+            }
         }
-
-        window.addEventListener("online") { updateStatus() }
-        window.addEventListener("offline") { updateStatus() }
-
-        updateStatus()
-
-        awaitClose {
-            window.removeEventListener("online") { updateStatus() }
-            window.removeEventListener("offline") { updateStatus() }
-        }
-    }
 }
 
 actual fun getKStore(): KStore<Settings> {
     return storeOf<Settings>(
         key = "settings",
-        default = Settings()
+        default = Settings(),
     )
+}
+
+actual fun getAlertsKStore(): KStore<List<PriceAlert>> {
+    return storeOf(
+        key = "price_alerts",
+        default = emptyList(),
+    )
+}
+
+actual object PriceAlertPlatformController {
+    @Suppress("UNUSED_PARAMETER")
+    actual fun onEnabledAlertsChanged(
+        enabledCount: Int,
+        enabledAlertsJson: String,
+    ) {
+        // Web has no reliable background execution; notifications are in-browser only.
+    }
 }
 
 actual fun getWebSocketClient(): HttpClient {

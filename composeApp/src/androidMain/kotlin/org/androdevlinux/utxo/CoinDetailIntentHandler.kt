@@ -3,12 +3,15 @@ package org.androdevlinux.utxo
 object CoinDetailIntentHandler {
     private var pendingSymbol: String? = null
     private var pendingDisplaySymbol: String? = null
-    
-    fun setPendingCoinDetail(symbol: String, displaySymbol: String) {
+
+    fun setPendingCoinDetail(
+        symbol: String,
+        displaySymbol: String,
+    ) {
         pendingSymbol = symbol
         pendingDisplaySymbol = displaySymbol
     }
-    
+
     fun getPendingCoinDetail(): Pair<String, String>? {
         val symbol = pendingSymbol
         val displaySymbol = pendingDisplaySymbol

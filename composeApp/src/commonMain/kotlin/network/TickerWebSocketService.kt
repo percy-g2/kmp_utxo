@@ -9,12 +9,13 @@ import io.ktor.http.HttpMethod
 import io.ktor.websocket.Frame
 import io.ktor.websocket.readText
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -34,21 +35,24 @@ class TickerWebSocketService {
     companion object {
         private const val RECONNECTION_DELAY_MS = 3000L
     }
-    
+
     private val webSocketClient = getWebSocketClient()
-    private val json = Json {
-        ignoreUnknownKeys = true
-        isLenient = true
-    }
-    
+    private val serviceJob = SupervisorJob()
+    private val serviceScope = CoroutineScope(serviceJob + Dispatchers.Default)
+    private val json =
+        Json {
+            ignoreUnknownKeys = true
+            isLenient = true
+        }
+
     private var webSocketJob: Job? = null
     private var isConnected = false
-    
+
     val tickerData: StateFlow<Ticker24hr?>
         field = MutableStateFlow(null)
-    
+
     private var currentSymbol: String? = null
-    
+
     /**
      * Connect to ticker stream for a symbol
      * @param symbol Trading pair symbol (e.g., "BTCUSDT")
@@ -58,113 +62,118 @@ class TickerWebSocketService {
             AppLogger.logger.d { "TickerWebSocket: Already connected to $symbol" }
             return
         }
-        
+
         disconnect()
         currentSymbol = symbol
-        
-        webSocketJob = kotlinx.coroutines.CoroutineScope(Dispatchers.Default).launch {
-            supervisorScope {
-                while (isActive) {
-                    try {
-                        isConnected = true
-                        AppLogger.logger.d { "TickerWebSocket: Connecting to ticker stream for $symbol" }
-                        
-                        // Binance WebSocket Stream format: <symbol>@ticker
-                        val streamName = "${symbol.lowercase()}@ticker"
-                        
-                        webSocketClient.wss(
-                            method = HttpMethod.Get,
-                            host = "stream.binance.com",
-                            path = "/ws/$streamName",
-                            request = { 
-                                header(HttpHeaders.ContentType, ContentType.Application.Json) 
-                            }
-                        ) {
-                            for (frame in incoming) {
-                                if (!isActive) {
-                                    isConnected = false
-                                    break
-                                }
-                                
-                                when (frame) {
-                                    is Frame.Text -> {
-                                        try {
-                                            val message = frame.readText()
-                                            processTickerUpdate(symbol, message)
-                                        } catch (e: Exception) {
-                                            AppLogger.logger.e(throwable = e) { 
-                                                "TickerWebSocket: Error processing ticker update" 
+
+        webSocketJob =
+            serviceScope.launch {
+                supervisorScope {
+                    while (isActive) {
+                        try {
+                            isConnected = true
+                            AppLogger.logger.d { "TickerWebSocket: Connecting to ticker stream for $symbol" }
+
+                            // Binance WebSocket Stream format: <symbol>@ticker
+                            val streamName = "${symbol.lowercase()}@ticker"
+
+                            webSocketClient.wss(
+                                method = HttpMethod.Get,
+                                host = "stream.binance.com",
+                                path = "/ws/$streamName",
+                                request = {
+                                    header(HttpHeaders.ContentType, ContentType.Application.Json)
+                                },
+                            ) {
+                                for (frame in incoming) {
+                                    if (!isActive) {
+                                        isConnected = false
+                                        break
+                                    }
+
+                                    when (frame) {
+                                        is Frame.Text -> {
+                                            try {
+                                                val message = frame.readText()
+                                                processTickerUpdate(symbol, message)
+                                            } catch (e: Exception) {
+                                                AppLogger.logger.e(throwable = e) {
+                                                    "TickerWebSocket: Error processing ticker update"
+                                                }
                                             }
                                         }
+                                        is Frame.Ping -> send(Frame.Pong(frame.data))
+                                        is Frame.Close -> {
+                                            isConnected = false
+                                            throw CancellationException("WebSocket closed")
+                                        }
+                                        else -> {}
                                     }
-                                    is Frame.Ping -> send(Frame.Pong(frame.data))
-                                    is Frame.Close -> {
-                                        isConnected = false
-                                        throw CancellationException("WebSocket closed")
-                                    }
-                                    else -> {}
                                 }
                             }
-                        }
-                        isConnected = false
-                    } catch (e: CancellationException) {
-                        isConnected = false
-                        AppLogger.logger.d(throwable = e) { 
-                            "TickerWebSocket: Connection cancelled for $symbol" 
-                        }
-                        break
-                    } catch (e: Exception) {
-                        isConnected = false
-                        if (isActive) {
-                            AppLogger.logger.e(throwable = e) { 
-                                "TickerWebSocket: Error connecting to $symbol" 
+                            isConnected = false
+                        } catch (e: CancellationException) {
+                            isConnected = false
+                            AppLogger.logger.d(throwable = e) {
+                                "TickerWebSocket: Connection cancelled for $symbol"
                             }
-                            delay(RECONNECTION_DELAY_MS)
+                            break
+                        } catch (e: Exception) {
+                            isConnected = false
+                            if (isActive) {
+                                AppLogger.logger.e(throwable = e) {
+                                    "TickerWebSocket: Error connecting to $symbol"
+                                }
+                                delay(RECONNECTION_DELAY_MS)
+                            }
                         }
                     }
                 }
             }
-        }
     }
-    
+
     /**
      * Process ticker update from WebSocket stream
      * Converts WebSocket Ticker format to Ticker24hr format for UI compatibility
      */
-    private fun processTickerUpdate(symbol: String, message: String) {
+    private fun processTickerUpdate(
+        symbol: String,
+        message: String,
+    ) {
         try {
             val ticker = json.decodeFromString<Ticker>(message)
-            
+
             // Convert WebSocket Ticker format to Ticker24hr format
-            val ticker24hr = Ticker24hr(
-                symbol = ticker.symbol,
-                priceChange = ticker.priceChange,
-                priceChangePercent = ticker.priceChangePercent,
-                weightedAvgPrice = ticker.weightedAvgPrice,
-                prevClosePrice = ticker.firstTradePrice, // First trade price before 24hr window
-                lastPrice = ticker.lastPrice,
-                lastQty = ticker.lastQuantity,
-                bidPrice = ticker.bestBidPrice,
-                bidQty = ticker.bestBidQuantity,
-                askPrice = ticker.bestAskPrice,
-                askQty = ticker.bestAskQuantity,
-                openPrice = ticker.openPrice,
-                highPrice = ticker.highPrice,
-                lowPrice = ticker.lowPrice,
-                volume = ticker.totalTradedBaseAssetVolume,
-                quoteVolume = ticker.totalTradedQuoteAssetVolume,
-                openTime = ticker.statisticsOpenTime,
-                closeTime = ticker.statisticsCloseTime
-            )
-            
+            val ticker24hr =
+                Ticker24hr(
+                    symbol = ticker.symbol,
+                    priceChange = ticker.priceChange,
+                    priceChangePercent = ticker.priceChangePercent,
+                    weightedAvgPrice = ticker.weightedAvgPrice,
+                    prevClosePrice = ticker.firstTradePrice, // First trade price before 24hr window
+                    lastPrice = ticker.lastPrice,
+                    lastQty = ticker.lastQuantity,
+                    bidPrice = ticker.bestBidPrice,
+                    bidQty = ticker.bestBidQuantity,
+                    askPrice = ticker.bestAskPrice,
+                    askQty = ticker.bestAskQuantity,
+                    openPrice = ticker.openPrice,
+                    highPrice = ticker.highPrice,
+                    lowPrice = ticker.lowPrice,
+                    volume = ticker.totalTradedBaseAssetVolume,
+                    quoteVolume = ticker.totalTradedQuoteAssetVolume,
+                    openTime = ticker.statisticsOpenTime,
+                    closeTime = ticker.statisticsCloseTime,
+                )
+
             tickerData.value = ticker24hr
         } catch (e: Exception) {
-            AppLogger.logger.e(throwable = e) { 
-                "TickerWebSocket: Failed to parse ticker update: ${message.take(200)}" 
+            AppLogger.logger.e(throwable = e) {
+                "TickerWebSocket: Failed to parse ticker update: ${message.take(200)}"
             }
         }
     }
-    
+
     /**
      * Disconnect from current stream
      */
@@ -176,12 +185,12 @@ class TickerWebSocketService {
         tickerData.value = null
         AppLogger.logger.d { "TickerWebSocket: Disconnected" }
     }
-    
+
     /**
      * Check if currently connected
      */
     fun isConnected(): Boolean = isConnected
-    
+
     /**
      * Cleanup resources
      */
@@ -189,4 +198,3 @@ class TickerWebSocketService {
         disconnect()
     }
 }
-

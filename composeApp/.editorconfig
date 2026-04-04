@@ -1,0 +1,22 @@
+root = true
+
+# Compose @Composable entry points use PascalCase; legacy UI has long lines / inline docs.
+[src/commonMain/kotlin/**/*.kt]
+ktlint_standard_function-naming = disabled
+ktlint_standard_property-naming = disabled
+ktlint_standard_discouraged-comment-location = disabled
+ktlint_standard_no-consecutive-comments = disabled
+ktlint_standard_max-line-length = disabled
+ktlint_standard_function-expression-body = disabled
+ktlint_standard_chain-method-continuation = disabled
+ktlint_standard_class-signature = disabled
+ktlint_standard_argument-list-wrapping = disabled
+
+[src/iosMain/kotlin/**/*.kt]
+ktlint_standard_function-expression-body = disabled
+ktlint_standard_chain-method-continuation = disabled
+
+# Compose resource codegen under build/generated (not hand-edited).
+[build/**]
+ktlint_standard_indent = disabled
+ktlint_standard_import-ordering = disabled

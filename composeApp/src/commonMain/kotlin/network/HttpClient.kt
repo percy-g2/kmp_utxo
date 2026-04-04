@@ -17,6 +17,7 @@ import kotlinx.atomicfu.atomic
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
@@ -30,16 +31,19 @@ import kotlin.time.Instant
 
 class RateLimiter(
     private val maxRequests: Int,
-    private val windowDurationMillis: Long
+    private val windowDurationMillis: Long,
 ) {
     private val isLocked = atomic(false)
+
     @OptIn(ExperimentalTime::class)
     private val requests = mutableListOf<Instant>()
 
     @OptIn(ExperimentalTime::class)
     suspend fun acquire() {
         while (true) {
-            val now = kotlin.time.Clock.System.now()
+            val now =
+                kotlin.time.Clock.System
+                    .now()
             val windowStart: Instant = now.minus(windowDurationMillis.milliseconds)
 
             while (!isLocked.compareAndSet(expect = false, update = true)) {
@@ -62,38 +66,45 @@ class RateLimiter(
 }
 
 class HttpClient {
-    private val rateLimiter = RateLimiter(
-        maxRequests = 10,
-        windowDurationMillis = 1000 // 1 second
-    )
+    private val rateLimiter =
+        RateLimiter(
+            maxRequests = 10,
+            windowDurationMillis = 1000, // 1 second
+        )
 
-    private val json = Json {
-        isLenient = true
-        ignoreUnknownKeys = true
-    }
+    private val json =
+        Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+        }
 
-    private val client = HttpClient {
-        install(Logging) {
-            logger = Logger.SIMPLE
-            level = LogLevel.NONE
+    private val client =
+        HttpClient {
+            install(Logging) {
+                logger = Logger.SIMPLE
+                level = LogLevel.NONE
+            }
+            install(ContentNegotiation) {
+                json(json)
+            }
         }
-        install(ContentNegotiation) {
-            json(json)
-        }
-    }
-    
+
     fun close() {
         client.close()
     }
 
-    private suspend fun fetchUiKline(symbol: String, maxRetries: Int = 3): List<UiKline> {
+    private suspend fun fetchUiKline(
+        symbol: String,
+        maxRetries: Int = 3,
+    ): List<UiKline> {
         for (attempt in 0 until maxRetries) {
             try {
-                val response: HttpResponse = client.get("https://api.binance.com/api/v3/uiKlines") {
-                    parameter("symbol", symbol)
-                    parameter("interval", "1s")
-                    parameter("limit", 1000)
-                }
+                val response: HttpResponse =
+                    client.get("https://api.binance.com/api/v3/uiKlines") {
+                        parameter("symbol", symbol)
+                        parameter("interval", "1s")
+                        parameter("limit", 1000)
+                    }
 
                 when {
                     response.status == HttpStatusCode.OK -> {
@@ -123,14 +134,19 @@ class HttpClient {
      * @param limit Maximum number of klines to return (default: 500)
      * @return List of UiKline objects
      */
-    suspend fun fetchKlines(symbol: String, interval: String, limit: Int = 500): List<UiKline> {
-        return try {
+    suspend fun fetchKlines(
+        symbol: String,
+        interval: String,
+        limit: Int = 500,
+    ): List<UiKline> =
+        try {
             rateLimiter.acquire()
-            val response: HttpResponse = client.get("https://api.binance.com/api/v3/klines") {
-                parameter("symbol", symbol)
-                parameter("interval", interval)
-                parameter("limit", limit)
-            }
+            val response: HttpResponse =
+                client.get("https://api.binance.com/api/v3/klines") {
+                    parameter("symbol", symbol)
+                    parameter("interval", interval)
+                    parameter("limit", limit)
+                }
 
             when {
                 response.status == HttpStatusCode.OK -> {
@@ -145,111 +161,125 @@ class HttpClient {
             AppLogger.logger.e(throwable = e) { "Error fetching klines for symbol $symbol@$interval" }
             emptyList()
         }
-    }
 
-    suspend fun fetchMarginSymbols(): MarginSymbols? {
-        return try {
-            val response: HttpResponse = client.get("https://www.binance.com/bapi/margin/v1/public/margin/symbols") {
-                headers {
-                    append("Accept-Encoding", "identity")
-                    append("User-Agent", "Mozilla/5.0")
+    suspend fun fetchMarginSymbols(): MarginSymbols? =
+        try {
+            val response: HttpResponse =
+                client.get("https://www.binance.com/bapi/margin/v1/public/margin/symbols") {
+                    headers {
+                        append("Accept-Encoding", "identity")
+                        append("User-Agent", "Mozilla/5.0")
+                    }
                 }
-            }
             if (response.status == HttpStatusCode.OK) {
                 json.decodeFromString<MarginSymbols>(response.bodyAsText())
-            } else null
+            } else {
+                null
+            }
         } catch (e: Exception) {
             AppLogger.logger.e(throwable = e) { "Error fetching margin symbols" }
             null
         }
-    }
 
-    suspend fun fetchUiKlines(symbols: List<String>): Map<String, List<UiKline>> = coroutineScope {
-        val result = mutableMapOf<String, List<UiKline>>()
+    suspend fun fetchUiKlines(symbols: List<String>): Map<String, List<UiKline>> =
+        coroutineScope {
+            val result = mutableMapOf<String, List<UiKline>>()
 
-        // Process in smaller batches
-        symbols.chunked(5).forEach { batch ->
-            val deferreds = batch.map { symbol ->
-                async {
-                    rateLimiter.acquire() // Wait for rate limit
-                    symbol to fetchUiKline(symbol)
+            // Process in smaller batches
+            symbols.chunked(5).forEach { batch ->
+                val deferreds =
+                    batch.map { symbol ->
+                        async {
+                            rateLimiter.acquire() // Wait for rate limit
+                            symbol to fetchUiKline(symbol)
+                        }
+                    }
+
+                deferreds.forEach { deferred ->
+                    val (symbol, klines) = deferred.await()
+                    result[symbol] = klines
                 }
             }
 
-            deferreds.forEach { deferred ->
-                val (symbol, klines) = deferred.await()
-                result[symbol] = klines
-            }
+            result
         }
 
-        result
-    }
-    
-    suspend fun fetchTicker24hr(symbol: String): model.Ticker24hr? {
-        return try {
+    suspend fun fetchTicker24hr(symbol: String): model.Ticker24hr? =
+        try {
             rateLimiter.acquire()
-            val response: HttpResponse = client.get("https://api.binance.com/api/v3/ticker/24hr") {
-                parameter("symbol", symbol)
-            }
-            val responseText = response.bodyAsText()
-            
-            if (response.status == HttpStatusCode.OK) {
-                // Check if response is an error object
-                if (responseText.contains("\"code\"") && responseText.contains("\"msg\"")) {
-                    try {
-                        val error = json.decodeFromString<model.BinanceError>(responseText)
-                        AppLogger.logger.w { "Binance API error for symbol $symbol: Code ${error.code}, Message: ${error.msg}" }
-                    } catch (e: Exception) {
-                        AppLogger.logger.w { "Binance API error for symbol $symbol: $responseText" }
-                    }
-                    return null
+            val response: HttpResponse =
+                client.get("https://api.binance.com/api/v3/ticker/24hr") {
+                    parameter("symbol", symbol)
                 }
-                // Try to deserialize as Ticker24hr (REST API format)
-                try {
-                    json.decodeFromString<model.Ticker24hr>(responseText)
-                } catch (e: kotlinx.serialization.SerializationException) {
-                    AppLogger.logger.e(throwable = e) { 
-                        "Failed to deserialize ticker for symbol $symbol. Response was (first 500 chars): ${responseText.take(500)}" 
+            val responseText = response.bodyAsText()
+
+            when {
+                response.status != HttpStatusCode.OK -> {
+                    AppLogger.logger.w {
+                        "Binance API returned status ${response.status} for symbol $symbol: ${responseText.take(200)}"
                     }
                     null
                 }
-            } else {
-                AppLogger.logger.w { "Binance API returned status ${response.status} for symbol $symbol: ${responseText.take(200)}" }
-                null
+                responseText.contains("\"code\"") && responseText.contains("\"msg\"") -> {
+                    try {
+                        val error = json.decodeFromString<model.BinanceError>(responseText)
+                        AppLogger.logger.w {
+                            "Binance API error for symbol $symbol: Code ${error.code}, Message: ${error.msg}"
+                        }
+                    } catch (e: Exception) {
+                        AppLogger.logger.w { "Binance API error for symbol $symbol: $responseText" }
+                    }
+                    null
+                }
+                else -> {
+                    try {
+                        json.decodeFromString<model.Ticker24hr>(responseText)
+                    } catch (e: SerializationException) {
+                        val preview = responseText.take(500)
+                        AppLogger.logger.e(throwable = e) {
+                            "Failed to deserialize ticker for symbol $symbol. " +
+                                "Response was (first 500 chars): $preview"
+                        }
+                        null
+                    }
+                }
             }
         } catch (e: Exception) {
             AppLogger.logger.e(throwable = e) { "Error fetching ticker for symbol $symbol" }
             null
         }
-    }
-    
-    suspend fun fetchTickers24hr(symbols: List<String>): Map<String, model.Ticker24hr> = coroutineScope {
-        val result = mutableMapOf<String, model.Ticker24hr>()
-        
-        // Process in smaller batches to respect rate limits
-        symbols.chunked(5).forEach { batch ->
-            val deferreds = batch.map { symbol ->
-                async {
-                    fetchTicker24hr(symbol)?.let { symbol to it }
+
+    suspend fun fetchTickers24hr(symbols: List<String>): Map<String, model.Ticker24hr> =
+        coroutineScope {
+            val result = mutableMapOf<String, model.Ticker24hr>()
+
+            // Process in smaller batches to respect rate limits
+            symbols.chunked(5).forEach { batch ->
+                val deferreds =
+                    batch.map { symbol ->
+                        async {
+                            fetchTicker24hr(symbol)?.let { symbol to it }
+                        }
+                    }
+
+                deferreds.forEach { deferred ->
+                    deferred.await()?.let { (symbol, ticker) ->
+                        result[symbol] = ticker
+                    }
                 }
             }
-            
-            deferreds.forEach { deferred ->
-                deferred.await()?.let { (symbol, ticker) ->
-                    result[symbol] = ticker
-                }
-            }
+
+            result
         }
-        
-        result
-    }
 }
 
 object JsonConfig {
-    val json: Json = Json {
-        ignoreUnknownKeys = true
-        serializersModule = SerializersModule {
-            contextual(UiKlineSerializer)
+    val json: Json =
+        Json {
+            ignoreUnknownKeys = true
+            serializersModule =
+                SerializersModule {
+                    contextual(UiKlineSerializer)
+                }
         }
-    }
 }

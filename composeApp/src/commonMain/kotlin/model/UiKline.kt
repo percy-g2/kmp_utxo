@@ -20,12 +20,12 @@ data class UiKline(
     val quoteAssetVolume: String? = null,
     val numberOfTrades: Int? = null,
     val takerBuyBaseAssetVolume: String? = null,
-    val takerBuyQuoteAssetVolume: String? = null
+    val takerBuyQuoteAssetVolume: String? = null,
 )
 
 object UiKlineSerializer : JsonTransformingSerializer<List<UiKline>>(ListSerializer(UiKline.serializer())) {
-    override fun transformDeserialize(element: JsonElement): JsonElement {
-        return buildJsonArray {
+    override fun transformDeserialize(element: JsonElement): JsonElement =
+        buildJsonArray {
             for (jsonElement in element.jsonArray) {
                 val array = jsonElement.jsonArray
                 add(
@@ -41,11 +41,10 @@ object UiKlineSerializer : JsonTransformingSerializer<List<UiKline>>(ListSeriali
                             "quoteAssetVolume" to array[7],
                             "numberOfTrades" to array[8],
                             "takerBuyBaseAssetVolume" to array[9],
-                            "takerBuyQuoteAssetVolume" to array[10]
-                        )
-                    )
+                            "takerBuyQuoteAssetVolume" to array[10],
+                        ),
+                    ),
                 )
             }
         }
-    }
 }

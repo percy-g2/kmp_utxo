@@ -2,6 +2,7 @@ package model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CandlestickChart
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -9,24 +10,34 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class NavItem {
-    open class Item<T>(val path: T, val title: String, val icon: ImageVector) : NavItem()
+    open class Item<T>(
+        val path: T,
+        val title: String,
+        val icon: ImageVector,
+    ) : NavItem()
 
     object HomeScreen : Item<Market>(
         path = Market,
         title = "Market",
-        icon = Icons.Default.CandlestickChart
+        icon = Icons.Default.CandlestickChart,
     )
 
     object SettingsScreen : Item<Settings>(
         path = Settings,
         title = "Settings",
-        icon = Icons.Default.Settings
+        icon = Icons.Default.Settings,
     )
 
     object FavoritesScreen : Item<Favorites>(
         path = Favorites,
         title = "Favorites",
-        icon = Icons.Default.Star
+        icon = Icons.Default.Star,
+    )
+
+    object AlertsScreen : Item<PriceAlerts>(
+        path = PriceAlerts,
+        title = "Alerts",
+        icon = Icons.Default.Notifications,
     )
 }
 
@@ -40,4 +51,10 @@ object Settings
 object Favorites
 
 @Serializable
-data class CoinDetail(val symbol: String, val displaySymbol: String)
+object PriceAlerts
+
+@Serializable
+data class CoinDetail(
+    val symbol: String,
+    val displaySymbol: String,
+)

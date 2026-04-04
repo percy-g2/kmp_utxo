@@ -6,10 +6,11 @@ import ui.Settings
 import java.io.File
 
 object SettingsHelper {
-    private val json = Json {
-        isLenient = true
-        ignoreUnknownKeys = true
-    }
+    private val json =
+        Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+        }
 
     fun readSettings(context: Context): Settings? {
         return try {
@@ -26,4 +27,3 @@ object SettingsHelper {
         }
     }
 }
-

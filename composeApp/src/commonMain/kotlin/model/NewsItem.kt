@@ -8,5 +8,5 @@ data class NewsItem(
     val description: String,
     val link: String,
     val pubDate: String,
-    val source: String
+    val source: String,
 )

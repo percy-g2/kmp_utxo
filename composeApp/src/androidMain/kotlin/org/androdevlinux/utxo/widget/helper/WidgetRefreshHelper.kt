@@ -12,15 +12,17 @@ object WidgetRefreshHelper {
 
     fun startPeriodicRefresh(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, FavoritesWidgetProvider::class.java).apply {
-            action = FavoritesWidgetProvider.ACTION_REFRESH
-        }
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            REQUEST_CODE_REFRESH,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
+        val intent =
+            Intent(context, FavoritesWidgetProvider::class.java).apply {
+                action = FavoritesWidgetProvider.ACTION_REFRESH
+            }
+        val pendingIntent =
+            PendingIntent.getBroadcast(
+                context,
+                REQUEST_CODE_REFRESH,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+            )
 
         // Check if we have permission to set exact alarms (API 31+)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
@@ -28,21 +30,21 @@ object WidgetRefreshHelper {
                 alarmManager.setExactAndAllowWhileIdle(
                     AlarmManager.RTC_WAKEUP,
                     System.currentTimeMillis() + REFRESH_INTERVAL_MS,
-                    pendingIntent
+                    pendingIntent,
                 )
             } else {
                 // Fallback to inexact alarm if exact alarm permission not granted
                 alarmManager.setAndAllowWhileIdle(
                     AlarmManager.RTC_WAKEUP,
                     System.currentTimeMillis() + REFRESH_INTERVAL_MS,
-                    pendingIntent
+                    pendingIntent,
                 )
             }
         } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             alarmManager.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + REFRESH_INTERVAL_MS,
-                pendingIntent
+                pendingIntent,
             )
         } else {
             @Suppress("DEPRECATION")
@@ -50,22 +52,24 @@ object WidgetRefreshHelper {
                 AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis(),
                 REFRESH_INTERVAL_MS,
-                pendingIntent
+                pendingIntent,
             )
         }
     }
 
     fun stopPeriodicRefresh(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, FavoritesWidgetProvider::class.java).apply {
-            action = FavoritesWidgetProvider.ACTION_REFRESH
-        }
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            REQUEST_CODE_REFRESH,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
+        val intent =
+            Intent(context, FavoritesWidgetProvider::class.java).apply {
+                action = FavoritesWidgetProvider.ACTION_REFRESH
+            }
+        val pendingIntent =
+            PendingIntent.getBroadcast(
+                context,
+                REQUEST_CODE_REFRESH,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+            )
         alarmManager.cancel(pendingIntent)
     }
 
@@ -73,4 +77,3 @@ object WidgetRefreshHelper {
         startPeriodicRefresh(context)
     }
 }
-

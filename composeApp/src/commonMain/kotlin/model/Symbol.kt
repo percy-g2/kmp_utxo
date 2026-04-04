@@ -6,16 +6,15 @@ import kotlinx.serialization.Serializable
 data class TickerDataInfo(
     val symbol: String,
     val quoteVolume: String,
-    val quote: String
+    val quote: String,
 )
-
 
 @Serializable
 data class MarginSymbols(
     val code: String,
     val message: String? = null,
     val messageDetail: String? = null,
-    val data: List<TradingPair>
+    val data: List<TradingPair>,
 )
 
 @Serializable
@@ -28,5 +27,5 @@ data class TradingPair(
     val isBuyAllowed: Boolean,
     val isSellAllowed: Boolean,
     val status: String,
-    val delistedTime: String? = null
+    val delistedTime: String? = null,
 )

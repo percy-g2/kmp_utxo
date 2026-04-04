@@ -1,15 +1,19 @@
 import SwiftUI
 import WidgetKit
 
+private let priceAlertBgCoordinator = PriceAlertBgCoordinator()
+
 @main
 struct iOSApp: App {
     @StateObject private var urlHandler = URLHandler()
     private var timer: Timer?
     
     init() {
+        PriceAlertBackground.register()
         // Check UserDefaults flag periodically to reload widget when Kotlin sets it
         // This is simpler than NSNotification which has API issues in Kotlin/Native
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            priceAlertBgCoordinator.tick()
             let userDefaults = UserDefaults.standard
             if userDefaults.object(forKey: "WidgetReloadRequested") != nil {
                 // Clear the flag and reload widget

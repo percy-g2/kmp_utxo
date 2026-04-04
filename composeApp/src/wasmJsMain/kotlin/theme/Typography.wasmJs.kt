@@ -19,34 +19,36 @@ import org.jetbrains.compose.resources.readResourceBytes
 
 @OptIn(InternalResourceApi::class)
 @Composable
-fun NotoSansFontFamily(): FontFamily? {
+private fun notoSansFontFamily(): FontFamily? {
     var fontFamily by remember { mutableStateOf<FontFamily?>(null) }
 
     LaunchedEffect(Unit) {
         try {
             // Load all fonts in parallel using coroutines
-            val (light, normal, medium, semiBold, bold) = coroutineScope {
-                listOf(
-                    async { readResourceBytes("NotoSans-Light.ttf") },
-                    async { readResourceBytes("NotoSans-Regular.ttf") },
-                    async { readResourceBytes("NotoSans-Medium.ttf") },
-                    async { readResourceBytes("NotoSans-SemiBold.ttf") },
-                    async { readResourceBytes("NotoSans-Bold.ttf") }
-                ).awaitAll()
-            }
+            val (light, normal, medium, semiBold, bold) =
+                coroutineScope {
+                    listOf(
+                        async { readResourceBytes("NotoSans-Light.ttf") },
+                        async { readResourceBytes("NotoSans-Regular.ttf") },
+                        async { readResourceBytes("NotoSans-Medium.ttf") },
+                        async { readResourceBytes("NotoSans-SemiBold.ttf") },
+                        async { readResourceBytes("NotoSans-Bold.ttf") },
+                    ).awaitAll()
+                }
 
             // Create FontFamily only when all fonts are loaded
             if (light.isNotEmpty() && normal.isNotEmpty() &&
                 medium.isNotEmpty() && semiBold.isNotEmpty() &&
-                bold.isNotEmpty()) {
-
-                fontFamily = FontFamily(
-                    Font("NotoSans_Light", light, weight = FontWeight.Light),
-                    Font("NotoSans_Normal", normal, weight = FontWeight.Normal),
-                    Font("NotoSans_Medium", medium, weight = FontWeight.Medium),
-                    Font("NotoSans_SemiBold", semiBold, weight = FontWeight.SemiBold),
-                    Font("NotoSans_Bold", bold, weight = FontWeight.Bold)
-                )
+                bold.isNotEmpty()
+            ) {
+                fontFamily =
+                    FontFamily(
+                        Font("NotoSans_Light", light, weight = FontWeight.Light),
+                        Font("NotoSans_Normal", normal, weight = FontWeight.Normal),
+                        Font("NotoSans_Medium", medium, weight = FontWeight.Medium),
+                        Font("NotoSans_SemiBold", semiBold, weight = FontWeight.SemiBold),
+                        Font("NotoSans_Bold", bold, weight = FontWeight.Bold),
+                    )
             }
         } catch (e: Exception) {
             AppLogger.logger.e(throwable = e) { "Error loading NotoSans fonts" }
@@ -57,28 +59,29 @@ fun NotoSansFontFamily(): FontFamily? {
 }
 
 @Composable
-fun WebTypography() = Typography().run {
-    val fontFamily = NotoSansFontFamily()
-    copy(
-        displayLarge = displayLarge.copy(fontFamily = fontFamily),
-        displayMedium = displayMedium.copy(fontFamily = fontFamily),
-        displaySmall = displaySmall.copy(fontFamily = fontFamily),
-        headlineLarge = headlineLarge.copy(fontFamily = fontFamily),
-        headlineMedium = headlineMedium.copy(fontFamily = fontFamily),
-        headlineSmall = headlineSmall.copy(fontFamily = fontFamily),
-        titleLarge = titleLarge.copy(fontFamily = fontFamily),
-        titleMedium = titleMedium.copy(fontFamily = fontFamily),
-        titleSmall = titleSmall.copy(fontFamily = fontFamily),
-        bodyLarge = bodyLarge.copy(fontFamily = fontFamily),
-        bodyMedium = bodyMedium.copy(fontFamily = fontFamily),
-        bodySmall = bodySmall.copy(fontFamily = fontFamily),
-        labelLarge = labelLarge.copy(fontFamily = fontFamily),
-        labelMedium = labelMedium.copy(fontFamily = fontFamily),
-        labelSmall = labelSmall.copy(fontFamily = fontFamily)
-    )
-}
+private fun webTypography() =
+    Typography().run {
+        val fontFamily = notoSansFontFamily()
+        copy(
+            displayLarge = displayLarge.copy(fontFamily = fontFamily),
+            displayMedium = displayMedium.copy(fontFamily = fontFamily),
+            displaySmall = displaySmall.copy(fontFamily = fontFamily),
+            headlineLarge = headlineLarge.copy(fontFamily = fontFamily),
+            headlineMedium = headlineMedium.copy(fontFamily = fontFamily),
+            headlineSmall = headlineSmall.copy(fontFamily = fontFamily),
+            titleLarge = titleLarge.copy(fontFamily = fontFamily),
+            titleMedium = titleMedium.copy(fontFamily = fontFamily),
+            titleSmall = titleSmall.copy(fontFamily = fontFamily),
+            bodyLarge = bodyLarge.copy(fontFamily = fontFamily),
+            bodyMedium = bodyMedium.copy(fontFamily = fontFamily),
+            bodySmall = bodySmall.copy(fontFamily = fontFamily),
+            labelLarge = labelLarge.copy(fontFamily = fontFamily),
+            labelMedium = labelMedium.copy(fontFamily = fontFamily),
+            labelSmall = labelSmall.copy(fontFamily = fontFamily),
+        )
+    }
 
 @Composable
 actual fun platformTypography(): Typography {
-    return WebTypography()
+    return webTypography()
 }

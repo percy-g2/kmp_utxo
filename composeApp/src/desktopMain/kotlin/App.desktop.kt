@@ -1,4 +1,5 @@
 
+import domain.model.PriceAlert
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
@@ -25,21 +26,22 @@ import java.net.Socket
 import java.net.URI
 
 actual class NetworkConnectivityObserver {
-    actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
-        var previousStatus = checkNetworkStatus()
-        trySend(previousStatus)
+    actual fun observe(): Flow<NetworkStatus?> =
+        callbackFlow {
+            var previousStatus = checkNetworkStatus()
+            trySend(previousStatus)
 
-        while (isActive) {
-            delay(5000) // Check every 5 seconds
-            val currentStatus = checkNetworkStatus()
-            if (currentStatus != previousStatus) {
-                trySend(currentStatus)
-                previousStatus = currentStatus
+            while (isActive) {
+                delay(5000) // Check every 5 seconds
+                val currentStatus = checkNetworkStatus()
+                if (currentStatus != previousStatus) {
+                    trySend(currentStatus)
+                    previousStatus = currentStatus
+                }
             }
-        }
 
-        awaitClose()
-    }
+            awaitClose()
+        }
 
     private fun checkNetworkStatus(): NetworkStatus {
         return if (isNetworkAvailable()) NetworkStatus.Available else NetworkStatus.Unavailable
@@ -58,17 +60,40 @@ actual class NetworkConnectivityObserver {
     }
 }
 
-
 actual fun getKStore(): KStore<Settings> {
-    val directory = AppDirsFactory.getInstance()
-        .getUserDataDir("org.androdevlinux.utxo", "1.0.0", "percy-g2")
+    val directory =
+        AppDirsFactory.getInstance()
+            .getUserDataDir("org.androdevlinux.utxo", "1.0.0", "percy-g2")
     if (File(directory).exists().not()) {
         File(directory).mkdirs()
     }
     return storeOf<Settings>(
-        file = Path("${directory}/settings.json"),
-        default = Settings()
+        file = Path("$directory/settings.json"),
+        default = Settings(),
     )
+}
+
+actual fun getAlertsKStore(): KStore<List<PriceAlert>> {
+    val directory =
+        AppDirsFactory.getInstance()
+            .getUserDataDir("org.androdevlinux.utxo", "1.0.0", "percy-g2")
+    if (File(directory).exists().not()) {
+        File(directory).mkdirs()
+    }
+    return storeOf(
+        file = Path("$directory/price_alerts.json"),
+        default = emptyList(),
+    )
+}
+
+actual object PriceAlertPlatformController {
+    @Suppress("UNUSED_PARAMETER")
+    actual fun onEnabledAlertsChanged(
+        enabledCount: Int,
+        enabledAlertsJson: String,
+    ) {
+        // Desktop: alert evaluation runs in-process while the app is open.
+    }
 }
 
 actual fun getWebSocketClient(): HttpClient {
@@ -99,7 +124,7 @@ actual fun wrapRssUrlForPlatform(url: String): String {
 }
 
 actual fun openLink(link: String) {
-    Desktop.getDesktop().browse(URI(link));
+    Desktop.getDesktop().browse(URI(link))
 }
 
 actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {

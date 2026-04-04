@@ -23,4 +23,3 @@ fun isDarkTheme(settings: Settings?): Boolean {
         else -> systemIsDarkTheme // Default to system when settings is null
     }
 }
-

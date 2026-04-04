@@ -12,11 +12,10 @@ import org.androdevlinux.utxo.widget.helper.WidgetRefreshHelper
 import org.androdevlinux.utxo.widget.service.FavoritesWidgetService
 
 class FavoritesWidgetProvider : AppWidgetProvider() {
-
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
-        appWidgetIds: IntArray
+        appWidgetIds: IntArray,
     ) {
         // Update all widgets
         for (appWidgetId in appWidgetIds) {
@@ -34,15 +33,19 @@ class FavoritesWidgetProvider : AppWidgetProvider() {
         FavoritesWidgetService.stopPeriodicUpdates(context)
     }
 
-    override fun onReceive(context: Context, intent: Intent) {
+    override fun onReceive(
+        context: Context,
+        intent: Intent,
+    ) {
         super.onReceive(context, intent)
-        
+
         // Handle manual refresh
         if (intent.action == ACTION_REFRESH) {
             val appWidgetManager = AppWidgetManager.getInstance(context)
-            val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                ComponentName(context, FavoritesWidgetProvider::class.java)
-            )
+            val appWidgetIds =
+                appWidgetManager.getAppWidgetIds(
+                    ComponentName(context, FavoritesWidgetProvider::class.java),
+                )
             for (appWidgetId in appWidgetIds) {
                 updateAppWidget(context, appWidgetManager, appWidgetId)
             }
@@ -58,33 +61,37 @@ class FavoritesWidgetProvider : AppWidgetProvider() {
         fun updateAppWidget(
             context: Context,
             appWidgetManager: AppWidgetManager,
-            appWidgetId: Int
+            appWidgetId: Int,
         ) {
             // Create RemoteViews for the widget
             val views = RemoteViews(context.packageName, R.layout.widget_favorites)
-            
+
             // Set up click intent to open the app
-            val intent = Intent().apply {
-                setClassName(context, "org.androdevlinux.utxo.MainActivity")
-            }
-            val pendingIntent = PendingIntent.getActivity(
-                context,
-                0,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
+            val intent =
+                Intent().apply {
+                    setClassName(context, "org.androdevlinux.utxo.MainActivity")
+                }
+            val pendingIntent =
+                PendingIntent.getActivity(
+                    context,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+                )
             views.setOnClickPendingIntent(R.id.widget_container, pendingIntent)
 
             // Set up refresh button
-            val refreshIntent = Intent(context, FavoritesWidgetProvider::class.java).apply {
-                action = ACTION_REFRESH
-            }
-            val refreshPendingIntent = PendingIntent.getBroadcast(
-                context,
-                0,
-                refreshIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
+            val refreshIntent =
+                Intent(context, FavoritesWidgetProvider::class.java).apply {
+                    action = ACTION_REFRESH
+                }
+            val refreshPendingIntent =
+                PendingIntent.getBroadcast(
+                    context,
+                    0,
+                    refreshIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+                )
             views.setOnClickPendingIntent(R.id.widget_refresh_button, refreshPendingIntent)
 
             // Show initial state
@@ -92,23 +99,23 @@ class FavoritesWidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_empty_text, "Loading...")
             views.setViewVisibility(R.id.widget_empty_text, android.view.View.VISIBLE)
             views.setViewVisibility(R.id.widget_favorites_container, android.view.View.GONE)
-            
+
             // Update the widget immediately with loading state
             appWidgetManager.updateAppWidget(appWidgetId, views)
-            
+
             // Update widget data directly (no service needed on Android 12+)
             org.androdevlinux.utxo.widget.helper.WidgetUpdateHelper.updateWidget(context, appWidgetId)
         }
 
         fun updateAllWidgets(context: Context) {
             val appWidgetManager = AppWidgetManager.getInstance(context)
-            val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                ComponentName(context, FavoritesWidgetProvider::class.java)
-            )
+            val appWidgetIds =
+                appWidgetManager.getAppWidgetIds(
+                    ComponentName(context, FavoritesWidgetProvider::class.java),
+                )
             for (appWidgetId in appWidgetIds) {
                 updateAppWidget(context, appWidgetManager, appWidgetId)
             }
         }
     }
 }
-

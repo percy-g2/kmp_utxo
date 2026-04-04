@@ -4,6 +4,7 @@ import co.touchlab.kermit.LogWriter
 import co.touchlab.kermit.Severity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -16,21 +17,24 @@ import kotlin.time.ExperimentalTime
 @OptIn(ExperimentalTime::class)
 class ServerLogWriter(
     private val maxBufferSize: Int = 1000,
-    private val enabled: Boolean = true
+    private val enabled: Boolean = true,
 ) : LogWriter() {
-
     private val logBuffer = mutableListOf<BufferedLog>()
     private val mutex = Mutex()
+    private val writerScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     data class BufferedLog(
         val timestamp: Long,
         val severity: Severity,
         val tag: String,
         val message: String,
-        val throwable: Throwable? = null
+        val throwable: Throwable? = null,
     )
 
-    override fun isLoggable(tag: String, severity: Severity): Boolean {
+    override fun isLoggable(
+        tag: String,
+        severity: Severity,
+    ): Boolean {
         return enabled && severity >= Severity.Warn // Only buffer warnings and errors by default
     }
 
@@ -38,22 +42,25 @@ class ServerLogWriter(
         severity: Severity,
         message: String,
         tag: String,
-        throwable: Throwable?
+        throwable: Throwable?,
     ) {
         if (!enabled) return
 
         // Add log to buffer (non-blocking, fire-and-forget)
-        CoroutineScope(Dispatchers.Default).launch {
+        writerScope.launch {
             mutex.withLock {
-                val timestamp = kotlin.time.Clock.System.now().toEpochMilliseconds()
+                val timestamp =
+                    kotlin.time.Clock.System
+                        .now()
+                        .toEpochMilliseconds()
                 logBuffer.add(
                     BufferedLog(
                         timestamp = timestamp,
                         severity = severity,
                         tag = tag,
                         message = message,
-                        throwable = throwable
-                    )
+                        throwable = throwable,
+                    ),
                 )
 
                 // Keep buffer size limited
@@ -68,22 +75,20 @@ class ServerLogWriter(
      * Get all buffered logs for sending to server.
      * This clears the buffer after retrieval.
      */
-    suspend fun getAndClearLogs(): List<BufferedLog> {
-        return mutex.withLock {
+    suspend fun getAndClearLogs(): List<BufferedLog> =
+        mutex.withLock {
             val logs = logBuffer.toList()
             logBuffer.clear()
             logs
         }
-    }
 
     /**
      * Get all buffered logs without clearing.
      */
-    suspend fun getLogs(): List<BufferedLog> {
-        return mutex.withLock {
+    suspend fun getLogs(): List<BufferedLog> =
+        mutex.withLock {
             logBuffer.toList()
         }
-    }
 
     /**
      * Clear all buffered logs.
@@ -105,13 +110,12 @@ class ServerLogWriter(
     /**
      * Convert logs to a format suitable for server transmission.
      */
-    fun BufferedLog.toServerFormat(): Map<String, Any?> {
-        return mapOf(
+    fun BufferedLog.toServerFormat(): Map<String, Any?> =
+        mapOf(
             "timestamp" to timestamp,
             "severity" to severity.name,
             "tag" to tag,
             "message" to message,
-            "stackTrace" to throwable?.stackTraceToString()
+            "stackTrace" to throwable?.stackTraceToString(),
         )
-    }
 }

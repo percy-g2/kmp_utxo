@@ -5,7 +5,9 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.os.Build
 import androidx.core.net.toUri
+import domain.model.PriceAlert
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
@@ -25,6 +27,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
 import kotlinx.serialization.json.Json
 import org.androdevlinux.utxo.ContextProvider
+import org.androdevlinux.utxo.PriceAlertService
 import org.androdevlinux.utxo.widget.FavoritesWidgetProvider
 import ui.Settings
 
@@ -32,15 +35,47 @@ actual fun getKStore(): KStore<Settings> {
     val context = ContextProvider.getContext()
     return storeOf<Settings>(
         file = Path("${context.cacheDir?.absolutePath}/settings.json"),
-        default = Settings()
+        default = Settings(),
     )
 }
 
-actual fun getWebSocketClient(): HttpClient {
-    val json = Json {
-        isLenient = true
-        ignoreUnknownKeys = true
+actual fun getAlertsKStore(): KStore<List<PriceAlert>> {
+    val context = ContextProvider.getContext()
+    return storeOf(
+        file = Path("${context.cacheDir?.absolutePath}/price_alerts.json"),
+        default = emptyList(),
+    )
+}
+
+actual object PriceAlertPlatformController {
+    @Suppress("UNUSED_PARAMETER")
+    actual fun onEnabledAlertsChanged(
+        enabledCount: Int,
+        enabledAlertsJson: String,
+    ) {
+        val context = ContextProvider.getContext()
+        if (enabledCount > 0) {
+            val intent =
+                Intent(context, PriceAlertService::class.java).apply {
+                    action = PriceAlertService.ACTION_START
+                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(intent)
+            } else {
+                context.startService(intent)
+            }
+        } else {
+            context.stopService(Intent(context, PriceAlertService::class.java))
+        }
     }
+}
+
+actual fun getWebSocketClient(): HttpClient {
+    val json =
+        Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+        }
     return HttpClient(CIO) {
         install(WebSockets)
         install(Logging) {
@@ -54,10 +89,11 @@ actual fun getWebSocketClient(): HttpClient {
 }
 
 actual fun createNewsHttpClient(): HttpClient {
-    val json = Json {
-        isLenient = true
-        ignoreUnknownKeys = true
-    }
+    val json =
+        Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+        }
     return HttpClient(Android) {
         install(Logging) {
             logger = Logger.SIMPLE
@@ -87,38 +123,42 @@ actual class NetworkConnectivityObserver {
     private val context = ContextProvider.getContext()
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
-        val callback = object : ConnectivityManager.NetworkCallback() {
-            override fun onAvailable(network: Network) {
-                trySend(NetworkStatus.Available)
-            }
+    actual fun observe(): Flow<NetworkStatus?> =
+        callbackFlow {
+            val callback =
+                object : ConnectivityManager.NetworkCallback() {
+                    override fun onAvailable(network: Network) {
+                        trySend(NetworkStatus.Available)
+                    }
 
-            override fun onLost(network: Network) {
-                trySend(NetworkStatus.Unavailable)
-            }
+                    override fun onLost(network: Network) {
+                        trySend(NetworkStatus.Unavailable)
+                    }
 
-            override fun onUnavailable() {
-                trySend(NetworkStatus.Unavailable)
+                    override fun onUnavailable() {
+                        trySend(NetworkStatus.Unavailable)
+                    }
+                }
+
+            val request =
+                NetworkRequest.Builder()
+                    .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                    .build()
+
+            connectivityManager.registerNetworkCallback(request, callback)
+
+            awaitClose {
+                connectivityManager.unregisterNetworkCallback(callback)
             }
         }
-
-        val request = NetworkRequest.Builder()
-            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-            .build()
-
-        connectivityManager.registerNetworkCallback(request, callback)
-
-        awaitClose {
-            connectivityManager.unregisterNetworkCallback(callback)
-        }
-    }
 }
 
 actual fun openLink(link: String) {
     val context = ContextProvider.getContext()
-    val intent = Intent(Intent.ACTION_VIEW, link.toUri()).apply {
-        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    }
+    val intent =
+        Intent(Intent.ACTION_VIEW, link.toUri()).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
     context.startActivity(intent)
 }
 

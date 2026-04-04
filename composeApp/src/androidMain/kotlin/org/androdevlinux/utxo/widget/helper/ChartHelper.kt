@@ -4,8 +4,6 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffXfermode
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import model.UiKline
@@ -15,10 +13,11 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 object ChartHelper {
-    private val json = Json {
-        isLenient = true
-        ignoreUnknownKeys = true
-    }
+    private val json =
+        Json {
+            isLenient = true
+            ignoreUnknownKeys = true
+        }
 
     fun fetchChartData(symbol: String): List<UiKline> {
         return runBlocking {
@@ -49,11 +48,11 @@ object ChartHelper {
         height: Int,
         lineColor: Int,
         fillColor: Int,
-        isPositive: Boolean
+        isPositive: Boolean,
     ): Bitmap {
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
-        
+
         if (klines.isEmpty()) {
             return bitmap
         }
@@ -99,23 +98,24 @@ object ChartHelper {
         fillPath.close()
 
         // Draw fill
-        val fillPaint = Paint().apply {
-            color = fillColor
-            style = Paint.Style.FILL
-            alpha = 50 // Semi-transparent
-        }
+        val fillPaint =
+            Paint().apply {
+                color = fillColor
+                style = Paint.Style.FILL
+                alpha = 50 // Semi-transparent
+            }
         canvas.drawPath(fillPath, fillPaint)
 
         // Draw line
-        val linePaint = Paint().apply {
-            color = lineColor
-            style = Paint.Style.STROKE
-            strokeWidth = 2f
-            isAntiAlias = true
-        }
+        val linePaint =
+            Paint().apply {
+                color = lineColor
+                style = Paint.Style.STROKE
+                strokeWidth = 2f
+                isAntiAlias = true
+            }
         canvas.drawPath(path, linePaint)
 
         return bitmap
     }
 }
-
