@@ -16,6 +16,7 @@ harawata-appdirs = "1.5.0"
 startupRuntime = "1.2.0"
 coroutinesVersion = "1.10.2"
 kermit = "2.1.0"
+coil = "3.4.0"
 
 #cmp
 compose = "1.10.3"
@@ -46,6 +47,8 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutinesVersion" }
 lifecyle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecyleRuntime" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
 
 # cmp
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }

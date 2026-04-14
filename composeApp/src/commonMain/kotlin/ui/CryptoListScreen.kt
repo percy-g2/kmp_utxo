@@ -90,11 +90,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import coil3.compose.AsyncImage
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ktx.cryptoIconUrl
 import ktx.formatVolume
 import model.SortParams
 import model.TickerData
@@ -845,6 +847,12 @@ fun TickerCard(
             ?.quote ?: selectedTradingPair
     }
     
+    // Base asset extracted from the symbol (e.g. "BTCUSDT" → "BTC").
+    // Use removeSuffix to avoid mangling tickers where the quote substring repeats.
+    val baseAsset = remember(tickerData.symbol, actualTradingPair) {
+        tickerData.symbol.removeSuffix(actualTradingPair)
+    }
+
     // Pre-compute symbol display text to avoid string operations during composition
     val symbolDisplayText = remember(tickerData.symbol, actualTradingPair) {
         buildAnnotatedString {
@@ -914,10 +922,17 @@ fun TickerCard(
                         .weight(1f)
                 ) {
                     if (tickerData.symbol.isNotEmpty()) {
-                        Text(
-                            text = symbolDisplayText,
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier.padding(bottom = 8.dp)
-                        )
+                        ) {
+                            CoinIcon(
+                                baseAsset = baseAsset,
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(Modifier.width(6.dp))
+                            Text(text = symbolDisplayText)
+                        }
                     }
 
                     Row(
@@ -1200,6 +1215,36 @@ fun FavoritesListScreen(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun CoinIcon(
+    baseAsset: String,
+    modifier: Modifier = Modifier
+) {
+    val iconUrl = remember(baseAsset) { cryptoIconUrl(baseAsset) }
+    var errored by remember(baseAsset) { mutableStateOf(false) }
+    Box(
+        modifier = modifier
+            .clip(CircleShape)
+            .background(MaterialTheme.colorScheme.surfaceVariant),
+        contentAlignment = Alignment.Center
+    ) {
+        if (errored || baseAsset.isEmpty()) {
+            Text(
+                text = baseAsset.take(1),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        } else {
+            AsyncImage(
+                model = iconUrl,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                onError = { errored = true }
+            )
         }
     }
 }

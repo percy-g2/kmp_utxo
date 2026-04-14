@@ -12,8 +12,8 @@ android {
         applicationId = "org.androdevlinux.utxo"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 37
-        versionName = "0.3.7"
+        versionCode = 40
+        versionName = "0.4.0"
     }
     
     compileOptions {
