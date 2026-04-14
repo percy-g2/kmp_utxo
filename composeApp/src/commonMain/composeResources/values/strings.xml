@@ -25,7 +25,7 @@
     <string name="settings_use_dark_theme">Use dark theme</string>
     <string name="settings_about">About</string>
     <string name="settings_version">Version</string>
-    <string name="settings_version_number">0.3.7</string>
+    <string name="settings_version_number">0.4.0</string>
     <string name="settings_privacy_policy">Privacy Policy</string>
     <string name="settings_website">Website</string>
     <string name="settings_github">Github</string>
@@ -89,4 +89,27 @@
     <!-- Network -->
     <string name="network_unavailable">Network Unavailable</string>
     <string name="network_unavailable_message">It seems you are not connected to the internet. Please check your connection and try again.</string>
+
+    <!-- Price alerts -->
+    <string name="alerts_title">Price Alerts</string>
+    <string name="alerts_empty">No price alerts set. Open a coin you have favorited and add an alert from its detail screen.</string>
+    <string name="alerts_notification_banner_title">Notifications are disabled</string>
+    <string name="alerts_notification_banner_body">Enable them to receive local price alerts.</string>
+    <string name="alerts_enable">Enable</string>
+    <string name="alerts_dismiss">Dismiss</string>
+    <string name="add_alert">Add alert</string>
+    <string name="set_price_alert">Set price alert</string>
+    <string name="current_price_label">Current price: %1$s</string>
+    <string name="condition_price_above">Price goes above</string>
+    <string name="condition_price_below">Price goes below</string>
+    <string name="condition_pct_up">24h %% change up</string>
+    <string name="condition_pct_down">24h %% change down</string>
+    <string name="target_value">Target value</string>
+    <string name="cooldown_minutes">Repeat cooldown (minutes)</string>
+    <string name="set_alert">Set alert</string>
+    <string name="alert_saved">Alert saved</string>
+    <string name="settings_manage_alerts">Manage price alerts</string>
+    <string name="delete">Delete</string>
+    <string name="ws_connecting">Connecting to market data…</string>
+    <string name="ws_disconnected">Market data disconnected</string>
 </resources>

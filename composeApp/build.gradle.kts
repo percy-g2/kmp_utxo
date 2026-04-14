@@ -102,6 +102,9 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
 
             implementation(libs.kermit)
+
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor3)
         }
 
         desktopMain.dependencies {
