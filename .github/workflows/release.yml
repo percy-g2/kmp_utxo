@@ -22,6 +22,11 @@ on:
         required: false
         type: boolean
         default: false
+      build_aab:
+        description: "Also build AAB (Android App Bundle)"
+        required: false
+        type: boolean
+        default: false
       deploy_web:
         description: "Deploy web build to GitHub Pages"
         required: false
@@ -80,6 +85,7 @@ jobs:
           PREV_TAG="${{ steps.version.outputs.prev_tag }}"
           NEW_TAG="${{ steps.version.outputs.new_tag }}"
           REPO="${{ github.repository }}"
+          BUILD_TARGET="${{ inputs.build_target }}"
 
           if [ -z "$PREV_TAG" ]; then
             RANGE="HEAD"
@@ -159,6 +165,34 @@ jobs:
               echo "**Full Changelog**: https://github.com/${REPO}/compare/${PREV_TAG}...${NEW_TAG}"
             fi
 
+            if [ "$BUILD_TARGET" = "android" ] || [ "$BUILD_TARGET" = "both" ]; then
+              echo ""
+              echo "---"
+              echo ""
+              echo "<details>"
+              echo "<summary><strong>Google Play Store Release Notes</strong></summary>"
+              echo ""
+              echo '```'
+              PLAY_NOTES=""
+              if [ -n "$FEATS" ]; then
+                PLAY_NOTES="${PLAY_NOTES}$(echo -e "$FEATS")"
+              fi
+              if [ -n "$FIXES" ]; then
+                PLAY_NOTES="${PLAY_NOTES}$(echo -e "$FIXES")"
+              fi
+              if [ -n "$IMPROVEMENTS" ]; then
+                PLAY_NOTES="${PLAY_NOTES}$(echo -e "$IMPROVEMENTS")"
+              fi
+              if [ -z "$PLAY_NOTES" ]; then
+                PLAY_NOTES="- Bug fixes and performance improvements"
+              fi
+              echo "$PLAY_NOTES" | head -c 500
+              echo ""
+              echo '```'
+              echo ""
+              echo "</details>"
+            fi
+
             echo "CHANGELOG_EOF"
           } >> "$GITHUB_OUTPUT"
 
@@ -192,6 +226,15 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew :androidApp:assembleRelease
 
+      - name: Build release AAB
+        if: inputs.build_aab
+        env:
+          KEYSTORE_FILE: ${{ runner.temp }}/release.jks
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew :androidApp:bundleRelease
+
       - name: Rename APK
         run: |
           TAG="${{ needs.prepare.outputs.new_tag }}"
@@ -203,6 +246,21 @@ jobs:
         with:
           name: android-apk
           path: ${{ runner.temp }}/UTXO-${{ needs.prepare.outputs.new_tag }}.apk
+          retention-days: 30
+
+      - name: Rename AAB
+        if: inputs.build_aab
+        run: |
+          TAG="${{ needs.prepare.outputs.new_tag }}"
+          AAB=$(find androidApp/build/outputs/bundle/release -name "*.aab" | head -1)
+          cp "$AAB" "${RUNNER_TEMP}/UTXO-${TAG}.aab"
+
+      - name: Upload AAB artifact
+        if: inputs.build_aab
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-aab
+          path: ${{ runner.temp }}/UTXO-${{ needs.prepare.outputs.new_tag }}.aab
           retention-days: 30
 
   # ──────────────────────────────────────────────
@@ -265,6 +323,13 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: android-apk
+          path: release-assets/
+
+      - name: Download Android AAB
+        if: needs.build-android.result == 'success' && inputs.build_aab
+        uses: actions/download-artifact@v8
+        with:
+          name: android-aab
           path: release-assets/
 
       - name: Download web distribution
