@@ -26,12 +26,14 @@ android {
     }
 
 
+    val keystorePath = System.getenv("KEYSTORE_FILE")
+        ?: keystoreProps.getProperty("storeFile", "")
+
     signingConfigs {
         create("release") {
-            storeFile = file(
-                System.getenv("KEYSTORE_FILE")
-                    ?: keystoreProps.getProperty("storeFile", "")
-            )
+            if (keystorePath.isNotEmpty()) {
+                storeFile = file(keystorePath)
+            }
             storePassword = System.getenv("KEYSTORE_PASSWORD")
                 ?: keystoreProps.getProperty("storePassword", "")
             keyAlias = System.getenv("KEY_ALIAS")
