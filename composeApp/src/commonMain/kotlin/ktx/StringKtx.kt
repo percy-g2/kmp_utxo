@@ -17,17 +17,33 @@ import kotlin.math.roundToInt
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
-fun String.toCryptoSymbol(): String = when(this.uppercase()) {
-    "BTC" -> "₿"
-    "USDT" -> "₮"
-    "USDC" -> "¢"
-    "ETH" -> "Ξ"
-    "DOGE" -> "Ð"
-    "FDUSD" -> "F"
-    "DAI" -> "◈"
-    "SOL" -> "◎"
-    "USD1" -> "$1"
-    else -> this
+/**
+ * Platform-specific override for crypto symbol glyphs. Returns the substitute
+ * string for [key] (already uppercased), or `null` to use the common default.
+ *
+ * This exists because the wasmJs build's only bundled font is Noto Sans SC,
+ * which does not contain the ₿ (U+20BF), ₮ (U+20AE), or ◈ (U+25C8) glyphs.
+ * Skiko has no per-glyph fallback across sibling Fonts in a FontFamily, so the
+ * cleanest fix is to keep those three codepoints off the render path on web.
+ * Native targets return `null` here and fall through to the pretty Unicode.
+ */
+internal expect fun platformCryptoSymbolOverride(key: String): String?
+
+fun String.toCryptoSymbol(): String {
+    val key = this.uppercase()
+    platformCryptoSymbolOverride(key)?.let { return it }
+    return when (key) {
+        "BTC" -> "₿"
+        "USDT" -> "₮"
+        "USDC" -> "¢"
+        "ETH" -> "Ξ"
+        "DOGE" -> "Ð"
+        "FDUSD" -> "F"
+        "DAI" -> "◈"
+        "SOL" -> "◎"
+        "USD1" -> "$1"
+        else -> this
+    }
 }
 
 fun String.formatVolume(): String {

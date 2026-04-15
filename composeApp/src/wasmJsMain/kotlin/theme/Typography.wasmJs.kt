@@ -24,42 +24,26 @@ fun NotoSansFontFamily(): FontFamily? {
 
     LaunchedEffect(Unit) {
         try {
-            // Load all fonts in parallel using coroutines.
-            // NotoSansSC-VF is a variable font covering Simplified Chinese (and
-            // most common CJK ideographs) — it's the fallback that lets Skiko
-            // render tickers like "币安人生" instead of .notdef boxes.
-            val bytes = coroutineScope {
-                listOf(
-                    async { readResourceBytes("NotoSans-Light.ttf") },
-                    async { readResourceBytes("NotoSans-Regular.ttf") },
-                    async { readResourceBytes("NotoSans-Medium.ttf") },
-                    async { readResourceBytes("NotoSans-SemiBold.ttf") },
-                    async { readResourceBytes("NotoSans-Bold.ttf") },
-                    async { readResourceBytes("NotoSansSC-VF.ttf") }
-                ).awaitAll()
-            }
-            val light = bytes[0]
-            val normal = bytes[1]
-            val medium = bytes[2]
-            val semiBold = bytes[3]
-            val bold = bytes[4]
-            val cjk = bytes[5]
+            // Single patched static font covering Latin + CJK + crypto signs.
+            //
+            // Skiko's FontMatcher picks one Font per (family, weight, style)
+            // request and renders all glyphs through it — there is no per-glyph
+            // fallback across Font siblings, so anything we render must live in
+            // this one typeface. We start from NotoSansSC (30k+ glyphs: basic
+            // Latin, Latin-1, digits, punctuation, CJK ideographs, `¢`, `Ξ`,
+            // `Ð`, `◎`, etc.) and inject `₿` (U+20BF), `₮` (U+20AE), and `◈`
+            // (U+25C8) so tickers like "BTC/USDT" and "DAI" render their
+            // currency signs instead of .notdef boxes. The patched font is
+            // instanced at weight 400, which saves ~7 MB vs. the original
+            // variable font (10 MB vs. 17 MB). Skia synthesises Light/Bold for
+            // the couple of UI slots that want non-Normal weights.
+            val cjk = readResourceBytes("NotoSansSC.ttf")
 
-            // Create FontFamily only when all fonts are loaded
-            if (light.isNotEmpty() && normal.isNotEmpty() &&
-                medium.isNotEmpty() && semiBold.isNotEmpty() &&
-                bold.isNotEmpty() && cjk.isNotEmpty()) {
-
+            if (cjk.isNotEmpty()) {
+                // Register the same bytes at every weight slot so the
+                // FontMatcher always finds an exact weight match; Skia renders
+                // non-Normal requests via faux-bold / faux-light.
                 fontFamily = FontFamily(
-                    // Primary Latin fonts — matched first by weight.
-                    Font("NotoSans_Light", light, weight = FontWeight.Light),
-                    Font("NotoSans_Normal", normal, weight = FontWeight.Normal),
-                    Font("NotoSans_Medium", medium, weight = FontWeight.Medium),
-                    Font("NotoSans_SemiBold", semiBold, weight = FontWeight.SemiBold),
-                    Font("NotoSans_Bold", bold, weight = FontWeight.Bold),
-                    // CJK fallback — same variable-font bytes registered per weight.
-                    // Skiko picks the Latin font for ASCII glyphs and falls back
-                    // to NotoSansSC per-glyph for missing (e.g. CJK) characters.
                     Font("NotoSansSC_Light", cjk, weight = FontWeight.Light),
                     Font("NotoSansSC_Normal", cjk, weight = FontWeight.Normal),
                     Font("NotoSansSC_Medium", cjk, weight = FontWeight.Medium),
@@ -68,7 +52,7 @@ fun NotoSansFontFamily(): FontFamily? {
                 )
             }
         } catch (e: Exception) {
-            AppLogger.logger.e(throwable = e) { "Error loading NotoSans fonts" }
+            AppLogger.logger.e(throwable = e) { "Error loading Noto Sans SC font" }
         }
     }
 
