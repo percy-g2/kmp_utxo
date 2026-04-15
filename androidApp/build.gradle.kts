@@ -1,3 +1,7 @@
+import com.android.build.api.dsl.ApplicationExtension
+import java.io.File
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
@@ -14,6 +18,27 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 40
         versionName = "0.4.0"
+    }
+
+    val keystorePropsFile = rootProject.file("keystore.properties")
+    val keystoreProps = Properties().apply {
+        if (keystorePropsFile.exists()) load(keystorePropsFile.inputStream())
+    }
+
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(
+                System.getenv("KEYSTORE_FILE")
+                    ?: keystoreProps.getProperty("storeFile", "")
+            )
+            storePassword = System.getenv("KEYSTORE_PASSWORD")
+                ?: keystoreProps.getProperty("storePassword", "")
+            keyAlias = System.getenv("KEY_ALIAS")
+                ?: keystoreProps.getProperty("keyAlias", "")
+            keyPassword = System.getenv("KEY_PASSWORD")
+                ?: keystoreProps.getProperty("keyPassword", "")
+        }
     }
     
     compileOptions {
@@ -44,6 +69,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "../composeApp/proguard-rules.pro")
         }
     }
