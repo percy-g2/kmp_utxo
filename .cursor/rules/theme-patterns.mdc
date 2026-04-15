@@ -1,0 +1,34 @@
+---
+description: Theme conventions — color tokens, typography, Material 3 theming
+globs: "**/theme/**/*.kt"
+alwaysApply: false
+---
+
+# Theme Patterns
+
+## Color tokens
+
+- Define all colors as top-level `val` properties in `theme/Color.kt`.
+- Follow the Material 3 naming scheme: `primaryLight`, `primaryDark`, `surfaceContainerLight`, etc.
+- Provide both light and dark variants for every semantic color.
+- Custom semantic colors (green/red for price changes, yellow for favorites) live alongside Material tokens.
+
+## Never hardcode colors
+
+- In composables, always reference `MaterialTheme.colorScheme.*`.
+- For custom colors that vary by theme (e.g., price change green/red), resolve them via a helper that checks `isDarkTheme`.
+
+## UTXOTheme
+
+- `UTXOTheme(isDarkTheme: Boolean)` wraps `MaterialTheme` with the project's light/dark color schemes and typography.
+- All screens must be wrapped in `UTXOTheme` (handled at the `App` level).
+
+## Typography
+
+- Define custom `Typography` in `theme/Typography.kt`.
+- Reference styles via `MaterialTheme.typography.*` — never create ad-hoc `TextStyle` instances.
+
+## Theme persistence
+
+- The current theme preference is stored via `KStore<Settings>` and exposed through `ThemeManager.store`.
+- Read the current theme with `store.updates.collectAsState()` and derive `isDarkTheme` from it.

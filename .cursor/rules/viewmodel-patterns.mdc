@@ -1,0 +1,64 @@
+---
+description: ViewModel conventions — state management, coroutines, lifecycle
+globs: "**/ui/*ViewModel*.kt"
+alwaysApply: false
+---
+
+# ViewModel Patterns
+
+## Structure
+
+```kotlin
+class FeatureViewModel : ViewModel() {
+    val items: StateFlow<List<Item>>
+        field = MutableStateFlow(emptyList())
+
+    val isLoading: StateFlow<Boolean>
+        field = MutableStateFlow(true)
+
+    init {
+        loadData()
+    }
+
+    private fun loadData() {
+        viewModelScope.launch(Dispatchers.Default) {
+            // I/O and processing off main thread
+            val result = repository.fetch()
+            withContext(Dispatchers.Main) {
+                items.value = result
+                isLoading.value = false
+            }
+        }
+    }
+
+    override fun onCleared() {
+        // Cancel jobs, close clients
+        super.onCleared()
+    }
+}
+```
+
+## State exposure
+
+- Expose state as `StateFlow` using the backing-field pattern: `val x: StateFlow<T>  field = MutableStateFlow(initial)`.
+- Use `combine()` + `stateIn()` for derived state that depends on multiple flows.
+- Use `SharingStarted.Eagerly` when the flow must be active immediately.
+
+## Coroutine discipline
+
+- Launch background work on `Dispatchers.Default`.
+- Perform I/O (network, disk) off the main thread.
+- Update `MutableStateFlow.value` on `Dispatchers.Main` via `withContext`.
+- Always rethrow `CancellationException` — never swallow it.
+- Use `supervisorScope` for WebSocket loops so child failures don't cancel the parent.
+
+## Cleanup
+
+- Cancel all running `Job` references in `onCleared()`.
+- Close HTTP clients and WebSocket connections to prevent leaks.
+- Wrap cleanup in try/catch — ignore errors during teardown.
+
+## Throttling
+
+- Throttle high-frequency updates (e.g., WebSocket tickers) with a time-based gate.
+- Debounce user-initiated fetches by cancelling the previous `Job` before launching a new one.

@@ -1,0 +1,38 @@
+---
+description: Git branch naming conventions for consistent version control
+alwaysApply: true
+---
+
+# Branch Naming Conventions
+
+## Format
+
+```
+<type>/<short-description>
+```
+
+## Types
+
+| Prefix | Use case |
+|---|---|
+| `feat/` | New features |
+| `fix/` | Bug fixes |
+| `refactor/` | Code refactoring |
+| `docs/` | Documentation changes |
+| `style/` | Formatting, code style |
+| `test/` | Adding or updating tests |
+| `chore/` | Build tasks, dependency updates |
+| `perf/` | Performance improvements |
+
+## Description rules
+
+- Lowercase letters and hyphens only (kebab-case)
+- 2–4 words, concise but descriptive
+- Examples: `feat/i18n-strings`, `fix/websocket-reconnection`, `refactor/settings-screen`
+
+## Generation process
+
+1. Analyze changed files to determine the primary change type.
+2. Identify the main feature or area affected (scope).
+3. Compose: `<type>/<scope>-<description>`.
+4. Check uniqueness: `git branch -a | grep <branch-name>`.

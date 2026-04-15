@@ -1,0 +1,43 @@
+---
+description: Data model conventions — serialization, naming, structure
+globs: "**/model/**/*.kt"
+alwaysApply: false
+---
+
+# Data Model Patterns
+
+## Structure
+
+```kotlin
+@Serializable
+data class TickerData(
+    val symbol: String,
+    val lastPrice: String,
+    val priceChangePercent: String,
+    val volume: String
+)
+```
+
+## Rules
+
+- Annotate all network/persistence models with `@Serializable`.
+- Use `@SerialName("json_key")` when the JSON field name differs from the Kotlin property.
+- Provide `null` or sensible defaults for optional fields: `val message: String? = null`.
+- Keep models in the `model/` package — one file per logical group.
+- Use `data class` for value types; regular `class` only when identity matters.
+
+## Naming
+
+- Model names match the domain concept: `TradingPair`, `OrderBook`, `NewsItem`.
+- Navigation route models (e.g., `Market`, `CoinDetail`, `Favorites`, `Settings`) are `@Serializable` objects or data classes used with type-safe navigation.
+
+## Navigation routes
+
+```kotlin
+@Serializable data object Market
+@Serializable data object Favorites
+@Serializable data object Settings
+@Serializable data class CoinDetail(val symbol: String, val displaySymbol: String)
+```
+
+These are used directly as `composable<Market> { ... }` destinations in the `NavHost`.

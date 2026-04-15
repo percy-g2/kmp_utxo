@@ -1,0 +1,60 @@
+---
+description: Network and WebSocket conventions — Ktor client, Binance streams, error handling
+globs: "**/network/**/*.kt"
+alwaysApply: false
+---
+
+# Network Patterns
+
+## Ktor HTTP client
+
+- Use a shared `HttpClient` instance per ViewModel or service; close it in `onCleared()`.
+- Configure `kotlinx.serialization` JSON with `ignoreUnknownKeys = true` and `isLenient = true`.
+- Perform all HTTP calls off the main thread (`Dispatchers.Default`).
+
+## WebSocket services
+
+```kotlin
+class SomeWebSocketService {
+    private val client = getWebSocketClient()
+    private var job: Job? = null
+
+    fun connect(symbol: String) {
+        disconnect()
+        job = CoroutineScope(Dispatchers.Default).launch {
+            supervisorScope {
+                while (isActive) {
+                    try {
+                        client.wss(host = "stream.binance.com", path = "/ws/$stream") {
+                            for (frame in incoming) { /* process */ }
+                        }
+                    } catch (e: CancellationException) { break }
+                    catch (e: Exception) { delay(reconnectMs) }
+                }
+            }
+        }
+    }
+
+    fun disconnect() { job?.cancel(); job = null }
+}
+```
+
+## Binance stream conventions
+
+- Mini ticker array: `/ws/!miniTicker@arr`
+- Per-symbol ticker: `/ws/<symbol_lowercase>@ticker`
+- Kline stream: `/ws/<symbol_lowercase>@kline_<interval>`
+- Order book: `/ws/<symbol_lowercase>@depth<levels>@<speed>`
+
+## Error handling
+
+- Classify network errors (unresolved host, timeout, unreachable) and log at `debug` level — they are expected when offline.
+- Log unexpected errors at `error` level.
+- Implement reconnection with a fixed delay (3–5 seconds) inside the `while (isActive)` loop.
+- Always check `isActive` before reconnecting to respect cancellation.
+
+## Serialization
+
+- Use `@Serializable` on all network response models.
+- Use `@SerialName` when the JSON key differs from the Kotlin property name.
+- Provide nullable defaults for optional fields.

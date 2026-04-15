@@ -1,0 +1,61 @@
+---
+description: KMP UTXO project overview — architecture, tech stack, and conventions
+alwaysApply: true
+---
+
+# KMP UTXO — Project Overview
+
+Compose Multiplatform (Kotlin) cryptocurrency app targeting Android, iOS, Desktop, and Web.
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| UI | Compose Multiplatform, Material 3 |
+| Navigation | Jetpack Navigation Compose (type-safe routes) |
+| Networking | Ktor (HTTP + WebSocket) |
+| Serialization | kotlinx.serialization |
+| Image loading | Coil 3 |
+| State persistence | KStore |
+| Logging | Kermit (AppLogger) |
+| ViewModel | AndroidX Lifecycle ViewModel |
+
+## Features
+
+- **Market screen** — real-time crypto prices via Binance `!miniTicker@arr` WebSocket stream
+- **Coin detail** — per-symbol ticker, order book heatmap, kline charts
+- **Favorites** — user-curated watchlist persisted with KStore
+- **Settings** — theme selection, trading pair preference
+- **News feed** — RSS-based crypto news
+
+## Source layout
+
+```
+composeApp/src/commonMain/kotlin/
+  App.kt                  # Root composable, NavHost, expect declarations
+  model/                  # @Serializable data classes
+  network/                # Ktor HTTP client, WebSocket services
+  ui/                     # Screens, ViewModels, composable components
+    utils/                # Chart helpers, shimmer, debounce
+    components/           # Reusable UI components (scrollbar, etc.)
+  theme/                  # Color tokens, Typography, UTXOTheme
+  ktx/                    # Extension functions (formatting, icons)
+  logging/                # AppLogger, ServerLogWriter
+```
+
+## Build commands
+
+- Build: `./gradlew build`
+- Test: `./gradlew test`
+- Lint: `./gradlew ktlintCheck`
+- Android install: `./gradlew :composeApp:installDebug`
+- Desktop run: `./gradlew :composeApp:run`
+
+## Key conventions
+
+- Use `viewModelScope.launch(Dispatchers.Default)` for background work, `withContext(Dispatchers.Main)` for state updates.
+- Expose UI state as `StateFlow` with backing `MutableStateFlow`.
+- Use `derivedStateOf` and `remember` to minimize recompositions.
+- All network models use `@Serializable` with nullable defaults for optional fields.
+- Never hardcode colors — use Material theme tokens from `theme/`.
+- Use string resources (`Res.string.*`) instead of hardcoded strings.
