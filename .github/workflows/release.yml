@@ -1,0 +1,286 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_target:
+        description: "What to build"
+        required: true
+        type: choice
+        options:
+          - both
+          - android
+          - web
+        default: both
+      version_override:
+        description: "Version tag override (leave blank to auto-increment patch, e.g. v0.3.7 -> v0.3.8)"
+        required: false
+        type: string
+        default: ""
+      pre_release:
+        description: "Mark as pre-release"
+        required: false
+        type: boolean
+        default: false
+      deploy_web:
+        description: "Deploy web build to GitHub Pages"
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  # ──────────────────────────────────────────────
+  # Resolve version tag + generate changelog
+  # ──────────────────────────────────────────────
+  prepare:
+    name: Prepare Release
+    runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ steps.version.outputs.new_tag }}
+      prev_tag: ${{ steps.version.outputs.prev_tag }}
+      changelog: ${{ steps.changelog.outputs.changelog }}
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Resolve version
+        id: version
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -n "${{ inputs.version_override }}" ]; then
+            NEW_TAG="${{ inputs.version_override }}"
+          elif [ -z "$PREV_TAG" ]; then
+            NEW_TAG="v0.0.1"
+          else
+            VERSION="${PREV_TAG#v}"
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+            PATCH=$((PATCH + 1))
+            NEW_TAG="v${MAJOR}.${MINOR}.${PATCH}"
+          fi
+
+          if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
+            echo "::error::Tag $NEW_TAG already exists. Use a different version_override or delete the existing tag."
+            exit 1
+          fi
+
+          echo "prev_tag=${PREV_TAG}" >> "$GITHUB_OUTPUT"
+          echo "new_tag=${NEW_TAG}" >> "$GITHUB_OUTPUT"
+          echo "Resolved version: ${PREV_TAG:-<none>} -> ${NEW_TAG}"
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          PREV_TAG="${{ steps.version.outputs.prev_tag }}"
+          NEW_TAG="${{ steps.version.outputs.new_tag }}"
+          REPO="${{ github.repository }}"
+
+          if [ -z "$PREV_TAG" ]; then
+            RANGE="HEAD"
+          else
+            RANGE="${PREV_TAG}..HEAD"
+          fi
+
+          RAW_LOG=$(git log "$RANGE" --pretty=format:"%s" --no-merges 2>/dev/null || echo "")
+
+          FEATS=""
+          FIXES=""
+          IMPROVEMENTS=""
+          OTHERS=""
+
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+
+            # Extract type and clean message: "type(scope): msg" or "type: msg" or plain msg
+            if echo "$line" | grep -qE '^(feat|fix|refactor|perf|docs|style|test|chore)(\(.*\))?:'; then
+              TYPE=$(echo "$line" | sed -E 's/^([a-z]+)(\(.*\))?:.*/\1/')
+              MSG=$(echo "$line" | sed -E 's/^[a-z]+(\(.*\))?: *//')
+            else
+              TYPE="other"
+              MSG="$line"
+            fi
+
+            # Capitalize first letter of message
+            MSG="$(echo "${MSG:0:1}" | tr '[:lower:]' '[:upper:]')${MSG:1}"
+
+            case "$TYPE" in
+              feat)
+                FEATS="${FEATS}- ${MSG}\n"
+                ;;
+              fix)
+                FIXES="${FIXES}- ${MSG}\n"
+                ;;
+              refactor|perf)
+                IMPROVEMENTS="${IMPROVEMENTS}- ${MSG}\n"
+                ;;
+              *)
+                OTHERS="${OTHERS}- ${MSG}\n"
+                ;;
+            esac
+          done <<< "$RAW_LOG"
+
+          {
+            echo "changelog<<CHANGELOG_EOF"
+
+            if [ -n "$PREV_TAG" ]; then
+              echo "## What's Changed ($PREV_TAG -> $NEW_TAG)"
+            else
+              echo "## What's Changed ($NEW_TAG)"
+            fi
+            echo ""
+
+            if [ -n "$FEATS" ]; then
+              echo "### New Features"
+              echo -e "$FEATS"
+            fi
+
+            if [ -n "$FIXES" ]; then
+              echo "### Bug Fixes"
+              echo -e "$FIXES"
+            fi
+
+            if [ -n "$IMPROVEMENTS" ]; then
+              echo "### Improvements"
+              echo -e "$IMPROVEMENTS"
+            fi
+
+            if [ -n "$OTHERS" ]; then
+              echo "### Other Changes"
+              echo -e "$OTHERS"
+            fi
+
+            if [ -n "$PREV_TAG" ]; then
+              echo "**Full Changelog**: https://github.com/${REPO}/compare/${PREV_TAG}...${NEW_TAG}"
+            fi
+
+            echo "CHANGELOG_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+  # ──────────────────────────────────────────────
+  # Build signed Android APK
+  # ──────────────────────────────────────────────
+  build-android:
+    name: Build Android APK
+    needs: prepare
+    if: inputs.build_target == 'android' || inputs.build_target == 'both'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "${RUNNER_TEMP}/release.jks"
+
+      - name: Build release APK
+        env:
+          KEYSTORE_FILE: ${{ runner.temp }}/release.jks
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew :androidApp:assembleRelease
+
+      - name: Rename APK
+        run: |
+          TAG="${{ needs.prepare.outputs.new_tag }}"
+          APK=$(find androidApp/build/outputs/apk/release -name "*.apk" | head -1)
+          cp "$APK" "${RUNNER_TEMP}/UTXO-${TAG}.apk"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: ${{ runner.temp }}/UTXO-${{ needs.prepare.outputs.new_tag }}.apk
+          retention-days: 30
+
+  # ──────────────────────────────────────────────
+  # Build Web (wasmJs) + optional Pages deploy
+  # ──────────────────────────────────────────────
+  build-web:
+    name: Build Web
+    needs: prepare
+    if: inputs.build_target == 'web' || inputs.build_target == 'both'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Build wasmJs distribution
+        run: ./gradlew :composeApp:wasmJsBrowserDistribution
+
+      - name: Deploy to GitHub Pages
+        if: inputs.deploy_web && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
+        with:
+          BRANCH: gh-pages
+          FOLDER: composeApp/build/dist/wasmJs/productionExecutable
+          CLEAN: true
+          TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+
+      - name: Package web distribution
+        run: |
+          TAG="${{ needs.prepare.outputs.new_tag }}"
+          cd composeApp/build/dist/wasmJs/productionExecutable
+          zip -r "${RUNNER_TEMP}/UTXO-web-${TAG}.zip" .
+
+      - name: Upload web artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: ${{ runner.temp }}/UTXO-web-${{ needs.prepare.outputs.new_tag }}.zip
+          retention-days: 30
+
+  # ──────────────────────────────────────────────
+  # Create GitHub Release with artifacts
+  # ──────────────────────────────────────────────
+  release:
+    name: Create Release
+    needs: [prepare, build-android, build-web]
+    if: always() && needs.prepare.result == 'success' && (needs.build-android.result == 'success' || needs.build-android.result == 'skipped') && (needs.build-web.result == 'success' || needs.build-web.result == 'skipped')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Download Android APK
+        if: needs.build-android.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: android-apk
+          path: release-assets/
+
+      - name: Download web distribution
+        if: needs.build-web.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: release-assets/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.prepare.outputs.new_tag }}
+          name: UTXO ${{ needs.prepare.outputs.new_tag }}
+          body: ${{ needs.prepare.outputs.changelog }}
+          prerelease: ${{ inputs.pre_release }}
+          files: release-assets/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
