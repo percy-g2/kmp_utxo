@@ -79,12 +79,10 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
@@ -853,18 +851,11 @@ fun TickerCard(
         tickerData.symbol.removeSuffix(actualTradingPair)
     }
 
-    // Pre-compute symbol display text to avoid string operations during composition
-    val symbolDisplayText = remember(tickerData.symbol, actualTradingPair) {
-        buildAnnotatedString {
-            withStyle(style = SpanStyle(fontSize = 18.sp)) {
-                append(tickerData.symbol.replace(actualTradingPair, ""))
-            }
-            withStyle(style = SpanStyle(fontSize = 14.sp, color = Color.Gray)) {
-                append("/$actualTradingPair")
-            }
-        }
+    // Plain display label used for the onClick callback.
+    val symbolLabel = remember(baseAsset, actualTradingPair) {
+        "$baseAsset/$actualTradingPair"
     }
-    
+
     // Pre-compute formatted volume
     val formattedVolume = remember(tickerData.volume) {
         tickerData.volume.formatVolume()
@@ -907,38 +898,44 @@ fun TickerCard(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
-                .debouncedClickable { onClick(tickerData.symbol, symbolDisplayText.text) },
-            elevation = CardDefaults.cardElevation(8.dp)
+                .padding(horizontal = 12.dp, vertical = 4.dp)
+                .debouncedClickable { onClick(tickerData.symbol, symbolLabel) },
+            elevation = CardDefaults.cardElevation(2.dp)
         ) {
             Row(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
-                    .padding(8.dp),
+                    .padding(horizontal = 10.dp, vertical = 10.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Column(
+                Row(
                     modifier = Modifier
                         .padding(horizontal = 4.dp)
-                        .weight(1f)
+                        .weight(1.25f),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (tickerData.symbol.isNotEmpty()) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(bottom = 8.dp)
-                        ) {
-                            CoinIcon(
-                                baseAsset = baseAsset,
-                                modifier = Modifier.size(24.dp)
-                            )
-                            Spacer(Modifier.width(6.dp))
-                            Text(text = symbolDisplayText)
-                        }
-                    }
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
+                    CoinIcon(
+                        baseAsset = baseAsset,
+                        modifier = Modifier.size(28.dp)
+                    )
+                    Spacer(Modifier.width(10.dp))
+                    Column(modifier = Modifier.weight(1f, fill = false)) {
+                        Text(
+                            text = baseAsset,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Text(
+                            text = actualTradingPair,
+                            fontSize = 12.sp,
+                            color = Color.Gray,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Spacer(Modifier.height(4.dp))
                         AnimatedContent(
                             targetState = formattedVolume,
                             transitionSpec = { fadeIn() togetherWith fadeOut() },
@@ -946,12 +943,13 @@ fun TickerCard(
                         ) { targetVolume ->
                             Text(
                                 text = targetVolume,
-                                style = MaterialTheme.typography.titleSmall,
+                                style = MaterialTheme.typography.labelMedium,
                                 color = Color.Gray,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
                                 modifier = Modifier.animateContentSize()
                             )
                         }
-                        Spacer(modifier = Modifier.width(4.dp))
                     }
                 }
                 TradeChart(trades = trades, priceChangePercent = priceChangePercent)
