@@ -199,7 +199,7 @@ jobs:
           cp "$APK" "${RUNNER_TEMP}/UTXO-${TAG}.apk"
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: android-apk
           path: ${{ runner.temp }}/UTXO-${{ needs.prepare.outputs.new_tag }}.apk
@@ -242,7 +242,7 @@ jobs:
           zip -r "${RUNNER_TEMP}/UTXO-web-${TAG}.zip" .
 
       - name: Upload web artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: web-dist
           path: ${{ runner.temp }}/UTXO-web-${{ needs.prepare.outputs.new_tag }}.zip
@@ -262,14 +262,14 @@ jobs:
 
       - name: Download Android APK
         if: needs.build-android.result == 'success'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: android-apk
           path: release-assets/
 
       - name: Download web distribution
         if: needs.build-web.result == 'success'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: web-dist
           path: release-assets/
