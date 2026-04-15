@@ -831,6 +831,7 @@ fun TickerCard(
     selectedTradingPair: String,
     tradingPairs: List<model.TradingPair>,
     cryptoViewModel: CryptoViewModel,
+    showTradingPair: Boolean = false,
     onClick: (String, String) -> Unit = { _, _ -> }
 ) {
     // Use composition local for settings to avoid recomposition
@@ -928,13 +929,15 @@ fun TickerCard(
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
-                        Text(
-                            text = actualTradingPair,
-                            fontSize = 12.sp,
-                            color = Color.Gray,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
+                        if (showTradingPair) {
+                            Text(
+                                text = actualTradingPair,
+                                fontSize = 12.sp,
+                                color = Color.Gray,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
                         Spacer(Modifier.height(4.dp))
                         AnimatedContent(
                             targetState = formattedVolume,
@@ -1204,6 +1207,7 @@ fun FavoritesListScreen(
                                         priceChangePercent = tickerData.priceChangePercent,
                                         tradingPairs = tradingPairs,
                                         cryptoViewModel = cryptoViewModel,
+                                        showTradingPair = true,
                                         onClick = onCoinClick
                                     )
                                 }
