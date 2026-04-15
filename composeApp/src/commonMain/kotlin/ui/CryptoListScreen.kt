@@ -1232,7 +1232,7 @@ private fun CoinIcon(
             .background(MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center
     ) {
-        if (errored || baseAsset.isEmpty()) {
+        if (errored || iconUrl.isEmpty()) {
             Text(
                 text = baseAsset.take(1),
                 style = MaterialTheme.typography.labelSmall,
