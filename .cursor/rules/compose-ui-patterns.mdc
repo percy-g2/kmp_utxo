@@ -1,0 +1,46 @@
+---
+description: Compose UI screen conventions — composable structure, state collection, performance
+globs: "**/ui/**/*.kt"
+alwaysApply: false
+---
+
+# Compose UI Patterns
+
+## Screen structure
+
+```kotlin
+@Composable
+fun FeatureScreen(viewModel: FeatureViewModel, onNavigate: () -> Unit) {
+    val state by viewModel.someState.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+
+    Scaffold { innerPadding ->
+        // Loading / empty / content states
+    }
+}
+```
+
+## State collection
+
+- Collect `StateFlow` at the top of the composable with `collectAsState()`.
+- Derive stable lists with `derivedStateOf` to avoid unnecessary recompositions.
+- Use `remember(key)` to cache expensive computations (formatted strings, parsed values).
+
+## Performance
+
+- Use stable keys in `LazyColumn` items: `items(items = list, key = { it.id })`.
+- Avoid allocations inside `Canvas` draw lambdas — pre-compute paths and brushes in `remember`.
+- Use `animateContentSize()` and `AnimatedContent` for smooth transitions.
+- Prefer `CompositionLocalProvider` over prop-drilling for cross-cutting concerns (e.g., settings/theme state).
+
+## Lifecycle awareness
+
+- Use `DisposableEffect(lifecycleOwner)` + `LifecycleEventObserver` to pause/resume work.
+- Cancel background jobs in `onDispose`.
+- Gate expensive work behind `lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)`.
+
+## Styling
+
+- Use `MaterialTheme.colorScheme.*` and `MaterialTheme.typography.*` — never hardcode colors or font sizes.
+- Use string resources: `stringResource(Res.string.*)`.
+- Debounce click handlers with the project's `debouncedClickable` modifier.

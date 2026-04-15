@@ -111,15 +111,17 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 
 ## Development Workflow
 
-This project uses Cursor AI agents to automate common development tasks. See the [Cursor Agents Guide](docs/CURSOR_AGENTS_GUIDE.md) for quick reference on using agents with single commands.
+This project uses AI agent skills (Cursor and Claude Code) to automate common git workflows. Say the trigger phrase and the agent handles the rest.
 
-**Quick Commands:**
-- Commit changes: `Use Git Commit & Push Agent to commit my changes`
-- Create PR: `Use GitHub PR Creation Agent to create a pull request`
-- Review PR: `Use GitHub PR Review Agent to review PR #42`
-- Merge PR: `Use GitHub PR Merge Agent to merge PR #42`
+| Skill | Trigger phrases |
+|---|---|
+| **push-code** | "push my code", "commit and push" |
+| **create-pr** | "create a PR", "open pull request" |
+| **review-pr** | "review PR #42", "check this PR" |
+| **merge-pr** | "merge PR #42", "land this branch" |
+| **pcr** | "pcr" — full pipeline: push + create PR + review |
 
-For complete agent specifications, see [`AGENT_RULES.md`](AGENT_RULES.md).
+See the [Cursor Agents Guide](docs/CURSOR_AGENTS_GUIDE.md) for examples and the full reference in [`AGENTS.md`](AGENTS.md).
 
 ## Building the Project
 
