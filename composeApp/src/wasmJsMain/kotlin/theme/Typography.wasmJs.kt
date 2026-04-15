@@ -24,28 +24,47 @@ fun NotoSansFontFamily(): FontFamily? {
 
     LaunchedEffect(Unit) {
         try {
-            // Load all fonts in parallel using coroutines
-            val (light, normal, medium, semiBold, bold) = coroutineScope {
+            // Load all fonts in parallel using coroutines.
+            // NotoSansSC-VF is a variable font covering Simplified Chinese (and
+            // most common CJK ideographs) — it's the fallback that lets Skiko
+            // render tickers like "币安人生" instead of .notdef boxes.
+            val bytes = coroutineScope {
                 listOf(
                     async { readResourceBytes("NotoSans-Light.ttf") },
                     async { readResourceBytes("NotoSans-Regular.ttf") },
                     async { readResourceBytes("NotoSans-Medium.ttf") },
                     async { readResourceBytes("NotoSans-SemiBold.ttf") },
-                    async { readResourceBytes("NotoSans-Bold.ttf") }
+                    async { readResourceBytes("NotoSans-Bold.ttf") },
+                    async { readResourceBytes("NotoSansSC-VF.ttf") }
                 ).awaitAll()
             }
+            val light = bytes[0]
+            val normal = bytes[1]
+            val medium = bytes[2]
+            val semiBold = bytes[3]
+            val bold = bytes[4]
+            val cjk = bytes[5]
 
             // Create FontFamily only when all fonts are loaded
             if (light.isNotEmpty() && normal.isNotEmpty() &&
                 medium.isNotEmpty() && semiBold.isNotEmpty() &&
-                bold.isNotEmpty()) {
+                bold.isNotEmpty() && cjk.isNotEmpty()) {
 
                 fontFamily = FontFamily(
+                    // Primary Latin fonts — matched first by weight.
                     Font("NotoSans_Light", light, weight = FontWeight.Light),
                     Font("NotoSans_Normal", normal, weight = FontWeight.Normal),
                     Font("NotoSans_Medium", medium, weight = FontWeight.Medium),
                     Font("NotoSans_SemiBold", semiBold, weight = FontWeight.SemiBold),
-                    Font("NotoSans_Bold", bold, weight = FontWeight.Bold)
+                    Font("NotoSans_Bold", bold, weight = FontWeight.Bold),
+                    // CJK fallback — same variable-font bytes registered per weight.
+                    // Skiko picks the Latin font for ASCII glyphs and falls back
+                    // to NotoSansSC per-glyph for missing (e.g. CJK) characters.
+                    Font("NotoSansSC_Light", cjk, weight = FontWeight.Light),
+                    Font("NotoSansSC_Normal", cjk, weight = FontWeight.Normal),
+                    Font("NotoSansSC_Medium", cjk, weight = FontWeight.Medium),
+                    Font("NotoSansSC_SemiBold", cjk, weight = FontWeight.SemiBold),
+                    Font("NotoSansSC_Bold", cjk, weight = FontWeight.Bold)
                 )
             }
         } catch (e: Exception) {
