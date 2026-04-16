@@ -39,11 +39,10 @@ fun BoxScope.ScrollToEdgeButton(
     val isNearTop by remember {
         derivedStateOf { listState.firstVisibleItemIndex <= 5 }
     }
-    val visible by remember {
-        derivedStateOf {
-            totalItems > 10 && listState.layoutInfo.visibleItemsInfo.isNotEmpty()
-        }
+    val hasVisibleItems by remember {
+        derivedStateOf { listState.layoutInfo.visibleItemsInfo.isNotEmpty() }
     }
+    val visible = totalItems > 10 && hasVisibleItems
 
     AnimatedVisibility(
         visible = visible,
