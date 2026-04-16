@@ -112,4 +112,8 @@
     <string name="delete">Delete</string>
     <string name="ws_connecting">Connecting to market data…</string>
     <string name="ws_disconnected">Market data disconnected</string>
+
+    <!-- Scroll buttons -->
+    <string name="scroll_to_top">Scroll to top</string>
+    <string name="scroll_to_bottom">Scroll to bottom</string>
 </resources>

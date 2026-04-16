@@ -46,6 +46,11 @@ import kotlin.math.round
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
+private val STABLECOINS = setOf(
+    "USDT", "USDC", "BUSD", "DAI", "TUSD", "FDUSD",
+    "PYUSD", "USDP", "USD1", "USDD", "USTC", "GUSD", "FRAX", "LUSD"
+)
+
 class CryptoViewModel : ViewModel() {
     private val httpClient = HttpClient()
     private val webSocketClient = getWebSocketClient()
@@ -87,14 +92,19 @@ class CryptoViewModel : ViewModel() {
         val selectedPair = settings?.selectedTradingPair ?: "BTC"
         val favorites = settings?.favPairs ?: emptyList()
         val trimmedQuery = query.trim().uppercase()
-        
+        val quoteIsStable = selectedPair in STABLECOINS
+
         // Optimize filtering - avoid creating intermediate collections
         val filtered = if (trimmedQuery.isEmpty()) {
-            allData.filterKeys { it.endsWith(selectedPair) }
+            allData.filterKeys { symbol ->
+                symbol.endsWith(selectedPair) &&
+                    !(quoteIsStable && symbol.removeSuffix(selectedPair) in STABLECOINS)
+            }
         } else {
-            allData.filterKeys {
-                it.endsWith(selectedPair) &&
-                    it.replace(selectedPair, "").contains(trimmedQuery)
+            allData.filterKeys { symbol ->
+                symbol.endsWith(selectedPair) &&
+                    symbol.replace(selectedPair, "").contains(trimmedQuery) &&
+                    !(quoteIsStable && symbol.removeSuffix(selectedPair) in STABLECOINS)
             }
         }
 

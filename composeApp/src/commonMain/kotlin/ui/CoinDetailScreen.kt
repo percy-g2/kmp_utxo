@@ -85,6 +85,7 @@ import openLink
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import ui.components.LazyColumnScrollbar
+import ui.components.ScrollToEdgeButton
 import ui.utils.animatedShimmerEffect
 import ui.utils.calculateChartPoints
 import ui.utils.calculatePriceStats
@@ -449,6 +450,10 @@ fun CoinDetailScreen(
                             }
                         }
                         LazyColumnScrollbar(listState = listState)
+                        ScrollToEdgeButton(
+                            listState = listState,
+                            totalItems = listState.layoutInfo.totalItemsCount
+                        )
                     }
                 }
             }
