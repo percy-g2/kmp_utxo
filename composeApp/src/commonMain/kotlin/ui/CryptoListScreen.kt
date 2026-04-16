@@ -104,6 +104,7 @@ import theme.ThemeManager.store
 import theme.yellowDark
 import theme.yellowLight
 import ui.components.LazyColumnScrollbar
+import ui.components.ScrollToEdgeButton
 import ui.utils.calculateChartPoints
 import ui.utils.calculatePriceStats
 import ui.utils.createPriceChangeGradientColors
@@ -387,34 +388,40 @@ fun CryptoList(
                                     },
                                     label = "Trading Pair Content Animation"
                                 ) { tradingPair ->
-                                    LazyColumn(
-                                        state = listState,
-                                        modifier = Modifier.fillMaxSize()
-                                    ) {
-                                        stickyHeader {
-                                            TickerCardListHeader(cryptoViewModel)
+                                    Box(modifier = Modifier.fillMaxSize()) {
+                                        LazyColumn(
+                                            state = listState,
+                                            modifier = Modifier.fillMaxSize()
+                                        ) {
+                                            stickyHeader {
+                                                TickerCardListHeader(cryptoViewModel)
+                                            }
+                                            // Add spacer only once at the start
+                                            item(key = "spacer_top") {
+                                                Spacer(modifier = Modifier.height(4.dp))
+                                            }
+                                            items(
+                                                items = tickerItems,
+                                                key = { it.symbol } // Stable key - critical for performance
+                                            ) { tickerData ->
+                                                TickerCard(
+                                                    tickerData = tickerData,
+                                                    selectedTradingPair = tradingPair,
+                                                    trades = trades[tickerData.symbol] ?: emptyList(),
+                                                    priceChangePercent = tickerData.priceChangePercent,
+                                                    tradingPairs = tradingPairs,
+                                                    cryptoViewModel = cryptoViewModel,
+                                                    onClick = onCoinClick
+                                                )
+                                            }
                                         }
-                                        // Add spacer only once at the start
-                                        item(key = "spacer_top") {
-                                            Spacer(modifier = Modifier.height(4.dp))
-                                        }
-                                        items(
-                                            items = tickerItems,
-                                            key = { it.symbol } // Stable key - critical for performance
-                                        ) { tickerData ->
-                                            TickerCard(
-                                                tickerData = tickerData,
-                                                selectedTradingPair = tradingPair,
-                                                trades = trades[tickerData.symbol] ?: emptyList(),
-                                                priceChangePercent = tickerData.priceChangePercent,
-                                                tradingPairs = tradingPairs,
-                                                cryptoViewModel = cryptoViewModel,
-                                                onClick = onCoinClick
-                                            )
-                                        }
-                                    }
 
-                                    LazyColumnScrollbar(listState = listState)
+                                        LazyColumnScrollbar(listState = listState)
+                                        ScrollToEdgeButton(
+                                            listState = listState,
+                                            totalItems = tickerItems.size
+                                        )
+                                    }
                                 }
                             }
                         } else {
@@ -1213,6 +1220,10 @@ fun FavoritesListScreen(
                                 }
                             }
                             LazyColumnScrollbar(listState = listState)
+                            ScrollToEdgeButton(
+                                listState = listState,
+                                totalItems = tickerItems.size
+                            )
                         }
                     }
                 }
@@ -1227,6 +1238,7 @@ private fun CoinIcon(
     modifier: Modifier = Modifier
 ) {
     val iconUrl = remember(baseAsset) { cryptoIconUrl(baseAsset) }
+    var loading by remember(baseAsset) { mutableStateOf(true) }
     var errored by remember(baseAsset) { mutableStateOf(false) }
     Box(
         modifier = modifier
@@ -1245,8 +1257,19 @@ private fun CoinIcon(
                 model = iconUrl,
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                onError = { errored = true }
+                onSuccess = { loading = false },
+                onError = {
+                    loading = false
+                    errored = true
+                }
             )
+            if (loading) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(14.dp),
+                    strokeWidth = 1.5.dp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
