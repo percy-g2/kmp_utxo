@@ -16,8 +16,8 @@ android {
         applicationId = "org.androdevlinux.utxo"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 40
-        versionName = "0.4.0"
+        versionCode = 42
+        versionName = "0.4.2"
     }
 
     val keystorePropsFile = rootProject.file("keystore.properties")
