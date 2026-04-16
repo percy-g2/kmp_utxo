@@ -59,6 +59,8 @@ string|please_wait_fetching|UGxlYXNlIHdhaXQgd2hpbGUgd2UgZmV0Y2ggdGhlIGxhdGVzdCBk
 string|price_data_not_available|UHJpY2UgZGF0YSBub3QgYXZhaWxhYmxl
 string|price_information|UHJpY2UgSW5mb3JtYXRpb24=
 string|refresh|UmVmcmVzaA==
+string|scroll_to_bottom|U2Nyb2xsIHRvIGJvdHRvbQ==
+string|scroll_to_top|U2Nyb2xsIHRvIHRvcA==
 string|search_placeholder|U2VhcmNoICUxJHMgcGFpcnPigKY=
 string|search|U2VhcmNo
 string|set_alert|U2V0IGFsZXJ0
