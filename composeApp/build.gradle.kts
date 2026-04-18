@@ -1,7 +1,17 @@
 
+import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+val javafxPlatform: String = run {
+    val os = OperatingSystem.current()
+    when {
+        os.isWindows -> "win"
+        os.isMacOsX -> if (System.getProperty("os.arch") == "aarch64") "mac-aarch64" else "mac"
+        else -> "linux"
+    }
+}
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -62,6 +72,8 @@ kotlin {
             implementation(libs.ktor.client.darwin)
 
             implementation(libs.kstore.file)
+
+            implementation(libs.compose.webview.multiplatform)
         }
 
         androidMain.dependencies {
@@ -72,6 +84,8 @@ kotlin {
             implementation(libs.ktor.client.cio)
 
             implementation(libs.kstore.file)
+
+            implementation(libs.compose.webview.multiplatform)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -113,12 +127,21 @@ kotlin {
             implementation(libs.kstore.file)
             implementation(libs.harawata.appdirs)
             implementation(libs.kotlinx.coroutines.swing)
+            val javafxVersion = libs.versions.javafx.get()
+            implementation("org.openjfx:javafx-base:$javafxVersion:$javafxPlatform")
+            implementation("org.openjfx:javafx-graphics:$javafxVersion:$javafxPlatform")
+            implementation("org.openjfx:javafx-controls:$javafxVersion:$javafxPlatform")
+            implementation("org.openjfx:javafx-web:$javafxVersion:$javafxPlatform")
+            implementation("org.openjfx:javafx-swing:$javafxVersion:$javafxPlatform")
+            implementation("org.openjfx:javafx-media:$javafxVersion:$javafxPlatform")
         }
 
         wasmJsMain.dependencies {
             implementation(libs.kstore.storage)
 
             implementation(libs.ktor.client.js)
+
+            implementation(libs.compose.webview.multiplatform)
         }
     }
 }
@@ -126,6 +149,12 @@ kotlin {
 compose.desktop {
     application {
         mainClass = "MainKt"
+
+        // JavaFX WebView runs on its own JavaFX Application Thread inside a Swing interop panel.
+        jvmArgs += listOf(
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.desktop/sun.awt=ALL-UNNAMED"
+        )
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)

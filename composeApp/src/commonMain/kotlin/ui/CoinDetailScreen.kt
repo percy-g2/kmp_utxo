@@ -1,10 +1,7 @@
 package ui
 
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,7 +12,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -54,23 +50,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.number
 import kotlinx.datetime.toLocalDateTime
 import ktx.buildStyledSymbol
 import ktx.formatNewsDate
@@ -80,20 +67,14 @@ import logging.AppLogger
 import model.NewsItem
 import model.Ticker24hr
 import model.TradingPair
-import model.UiKline
 import openLink
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import ui.components.LazyColumnScrollbar
 import ui.components.ScrollToEdgeButton
-import ui.utils.animatedShimmerEffect
-import ui.utils.calculateChartPoints
-import ui.utils.calculatePriceStats
-import ui.utils.createPriceChangeGradientColors
+import ui.components.TradingViewChart
 import ui.utils.debouncedClickable
-import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
-import ui.utils.limitKlinesForChart
 import ui.utils.shimmerEffect
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.back
@@ -123,7 +104,6 @@ import utxo.composeapp.generated.resources.price_data_not_available
 import utxo.composeapp.generated.resources.price_information
 import utxo.composeapp.generated.resources.refresh
 import utxo.composeapp.generated.resources.unknown_error
-import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
@@ -291,21 +271,21 @@ fun CoinDetailScreen(
                                 )
                             }
                             
-                            // Chart Section - Show shimmer if loading, otherwise show chart
+                            // Chart Section - TradingView widget
                             item {
-                                if (state.isLoadingChart) {
-                                    ShimmerChartPlaceholder()
-                                } else {
-                                    CoinDetailChart(
-                                        klines = state.klines,
-                                        priceChangePercent = state.ticker?.priceChangePercent
-                                            ?: "0",
-                                        isDarkTheme = isDarkTheme,
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                                    elevation = CardDefaults.cardElevation(2.dp)
+                                ) {
+                                    TradingViewChart(
                                         symbol = symbol,
-                                        tradingPairs = tradingPairs,
-                                        onTooltipVisibilityChange = { visible ->
-                                            viewModel.setTooltipVisible(visible)
-                                        }
+                                        interval = selectedTimeframe,
+                                        isDarkTheme = isDarkTheme,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(400.dp)
                                     )
                                 }
                             }
@@ -460,341 +440,6 @@ fun CoinDetailScreen(
         }
     }
 
-}
-
-@OptIn(ExperimentalTime::class)
-@Composable
-fun CoinDetailChart(
-    klines: List<UiKline>,
-    priceChangePercent: String,
-    isDarkTheme: Boolean,
-    symbol: String,
-    tradingPairs: List<TradingPair>,
-    onTooltipVisibilityChange: (Boolean) -> Unit = {}
-) {
-    // If no klines data, show empty state (loading is handled by shimmer placeholder)
-    if (klines.isEmpty()) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-            elevation = CardDefaults.cardElevation(2.dp)
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(250.dp)
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "Chart data not available",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-        }
-        return
-    }
-
-    val priceChangeFloat = remember(priceChangePercent) {
-        priceChangePercent.toFloatOrNull() ?: 0f
-    }
-
-    val prices = remember(klines) {
-        val limitedKlines = limitKlinesForChart(klines)
-        ArrayList<Float>(limitedKlines.size).apply {
-            limitedKlines.forEach { kline ->
-                add(kline.closePrice.toFloatOrNull() ?: 0f)
-            }
-        }
-    }
-
-    val (minPrice, _, priceRange) = remember(prices) {
-        calculatePriceStats(prices)
-    }
-
-    val primaryColor = MaterialTheme.colorScheme.primary
-
-    val priceChangeColor = remember(priceChangeFloat, isDarkTheme, primaryColor) {
-        getPriceChangeColor(priceChangeFloat, isDarkTheme, primaryColor)
-    }
-
-    val gradientColors = remember(priceChangeColor) {
-        createPriceChangeGradientColors(priceChangeColor)
-    }
-
-    var chartSizeInPx by remember { mutableStateOf(Offset.Zero) }
-    var tooltipPosition by remember { mutableStateOf<Offset?>(null) }
-    var chartPointPosition by remember { mutableStateOf<Offset?>(null) }
-    var tooltipPrice by remember { mutableStateOf<String?>(null) }
-    var tooltipTime by remember { mutableStateOf<String?>(null) }
-    var showTooltip by remember { mutableStateOf(false) }
-    var hideTooltipTrigger by remember { mutableStateOf(0L) }
-
-    // Notify ViewModel when tooltip visibility changes
-    LaunchedEffect(showTooltip) {
-        onTooltipVisibilityChange(showTooltip)
-    }
-    
-    // Hide tooltip after 5 seconds
-    LaunchedEffect(showTooltip, hideTooltipTrigger) {
-        if (showTooltip && tooltipPosition != null) {
-            delay(5000)
-            if (showTooltip) {
-                showTooltip = false
-                tooltipPosition = null
-                chartPointPosition = null
-                tooltipPrice = null
-                tooltipTime = null
-            }
-        }
-    }
-
-    // Format timestamp to readable time
-    fun formatTimestamp(timestamp: Long?): String {
-        if (timestamp == null) return ""
-        return try {
-            val instant = Instant.fromEpochMilliseconds(timestamp)
-            val systemTimeZone = TimeZone.currentSystemDefault()
-            val localDateTime = instant.toLocalDateTime(systemTimeZone)
-            
-            val monthNames = listOf(
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            )
-            
-            val month = monthNames[localDateTime.month.number - 1]
-            val day = localDateTime.day
-            val hour = localDateTime.hour
-            val minute = localDateTime.minute
-            
-            val amPm = if (hour < 12) "AM" else "PM"
-            val displayHour = when {
-                hour == 0 -> 12
-                hour > 12 -> hour - 12
-                else -> hour
-            }
-            
-            val minuteStr = if (minute < 10) "0$minute" else "$minute"
-            
-            "$month $day, $displayHour:$minuteStr $amPm"
-        } catch (e: Exception) {
-            AppLogger.logger.e(throwable = e) { "Error formatting timestamp" }
-            ""
-        }
-    }
-
-    // Find the closest kline data point and its chart position for a given x position
-    fun findClosestKlineAndPosition(xPosition: Float): Pair<UiKline?, Offset?> {
-        if (klines.isEmpty() || chartSizeInPx.x <= 0 || priceRange <= 0) return Pair(null, null)
-        
-        val limitedKlines = limitKlinesForChart(klines)
-        
-        val normalizedX = (xPosition / chartSizeInPx.x).coerceIn(0f, 1f)
-        val index = (normalizedX * (limitedKlines.size - 1)).toInt().coerceIn(0, limitedKlines.lastIndex)
-        val kline = limitedKlines[index]
-
-        val price = kline.closePrice.toFloatOrNull() ?: minPrice
-        val x = normalizedX * chartSizeInPx.x
-        val y = chartSizeInPx.y - ((price - minPrice) / priceRange) * chartSizeInPx.y
-        return Pair(kline, Offset(x, y))
-    }
-
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(2.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .padding(top = 64.dp, start = 16.dp, bottom = 16.dp, end = 16.dp)
-                .fillMaxWidth()
-                .height(240.dp)
-                .onSizeChanged { size ->
-                    // Only update if size actually changed to minimize recompositions
-                    val newSize = Offset(size.width.toFloat(), size.height.toFloat())
-                    if (chartSizeInPx != newSize) {
-                        chartSizeInPx = newSize
-                    }
-                }
-                .pointerInput(klines, chartSizeInPx, minPrice, priceRange) {
-                    detectTapGestures { tapOffset ->
-                        val (closestKline, chartPoint) = findClosestKlineAndPosition(tapOffset.x)
-                        if (closestKline != null && chartPoint != null) {
-                            tooltipPosition = tapOffset
-                            chartPointPosition = chartPoint
-                            tooltipPrice = closestKline.closePrice.formatPrice(symbol, tradingPairs)
-                            tooltipTime = formatTimestamp(closestKline.closeTime ?: closestKline.openTime)
-                            showTooltip = true
-                            hideTooltipTrigger = Clock.System.now().toEpochMilliseconds()
-                        }
-                    }
-                }
-                .pointerInput(klines, chartSizeInPx, minPrice, priceRange) {
-                    detectDragGestures(
-                        onDragEnd = {
-                            // Trigger hide tooltip after 5 seconds
-                            hideTooltipTrigger = Clock.System.now().toEpochMilliseconds()
-                        }
-                    ) { change, _ ->
-                        val dragOffset = change.position
-                        val (closestKline, chartPoint) = findClosestKlineAndPosition(dragOffset.x)
-                        if (closestKline != null && chartPoint != null) {
-                            tooltipPosition = dragOffset
-                            chartPointPosition = chartPoint
-                            tooltipPrice = closestKline.closePrice.formatPrice(symbol, tradingPairs)
-                            tooltipTime = formatTimestamp(closestKline.closeTime ?: closestKline.openTime)
-                            showTooltip = true
-                            hideTooltipTrigger = Clock.System.now().toEpochMilliseconds()
-                        }
-                    }
-                }
-        ) {
-            val points = remember(klines, chartSizeInPx, minPrice, priceRange) {
-                if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || klines.isEmpty()) {
-                    emptyList()
-                } else {
-                    calculateChartPoints(klines, chartSizeInPx, minPrice, priceRange)
-                }
-            }
-
-            val linePath = remember(points) {
-                if (points.isEmpty()) {
-                    null
-                } else {
-                    Path().apply {
-                        val firstPoint = points[0]
-                        moveTo(firstPoint.x, firstPoint.y)
-                        for (i in 1 until points.size) {
-                            val point = points[i]
-                            lineTo(point.x, point.y)
-                        }
-                    }
-                }
-            }
-
-            val fillPath = remember(points, chartSizeInPx) {
-                if (points.isEmpty() || chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0) {
-                    null
-                } else {
-                    Path().apply {
-                        moveTo(0f, chartSizeInPx.y)
-                        for (point in points) {
-                            lineTo(point.x, point.y)
-                        }
-                        lineTo(chartSizeInPx.x, chartSizeInPx.y)
-                        close()
-                    }
-                }
-            }
-
-            val gradientBrush = remember(gradientColors, chartSizeInPx) {
-                if (chartSizeInPx.y > 0) {
-                    Brush.verticalGradient(
-                        colors = gradientColors,
-                        startY = 0f,
-                        endY = chartSizeInPx.y
-                    )
-                } else {
-                    null
-                }
-            }
-
-            Canvas(Modifier.fillMaxSize()) {
-                if (chartSizeInPx.x <= 0 || chartSizeInPx.y <= 0 || linePath == null || fillPath == null || gradientBrush == null) {
-                    return@Canvas
-                }
-
-                drawPath(path = fillPath, brush = gradientBrush)
-                drawPath(
-                    path = linePath,
-                    color = priceChangeColor,
-                    style = Stroke(width = 3f)
-                )
-
-                // Draw indicator dot on chart line at touch point
-                chartPointPosition?.let { point ->
-                    // Draw a circle at the touch point on the line
-                    drawCircle(
-                        color = priceChangeColor,
-                        radius = 6.dp.toPx(),
-                        center = point
-                    )
-                    // Draw a white border around the circle
-                    drawCircle(
-                        color = Color.White,
-                        radius = 8.dp.toPx(),
-                        center = point,
-                        style = Stroke(width = 2f)
-                    )
-                }
-            }
-
-            // Tooltip - positioned next to the chart point
-            if (showTooltip) {
-                val density = LocalDensity.current
-                chartPointPosition?.let { chartPoint ->
-                    tooltipPrice?.let { price ->
-                        val paddingPx = with(density) { 16.dp.toPx() }
-                        val estimatedTooltipWidthPx = with(density) { 160.dp.toPx() }
-                        val tooltipHeightPx = with(density) { if (tooltipTime?.isNotEmpty() == true) 56.dp.toPx() else 36.dp.toPx() }
-                        val minMarginPx = with(density) { 8.dp.toPx() }
-                        
-                        // Determine best side: right if point is on left half, left if on right half
-                        val spaceOnRight = chartSizeInPx.x - chartPoint.x
-                        val spaceOnLeft = chartPoint.x
-                        val useRightSide = spaceOnRight >= estimatedTooltipWidthPx + paddingPx || spaceOnRight > spaceOnLeft
-                        
-                        val tooltipXPx = if (useRightSide) {
-                            // Position to the right of the point
-                            (chartPoint.x + paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx - minMarginPx)
-                        } else {
-                            // Position to the left of the point
-                            (chartPoint.x - estimatedTooltipWidthPx - paddingPx).coerceIn(minMarginPx, chartSizeInPx.x - estimatedTooltipWidthPx)
-                        }
-                        
-                        // Position vertically centered with the chart point, but keep within bounds
-                        val tooltipYPx = (chartPoint.y - tooltipHeightPx / 2).coerceIn(minMarginPx, chartSizeInPx.y - tooltipHeightPx - minMarginPx)
-
-                        Box(
-                            modifier = Modifier
-                                .align(Alignment.TopStart)
-                                .offset(x = with(density) { tooltipXPx.toDp() }, y = with(density) { tooltipYPx.toDp() })
-                        ) {
-                            Card(
-                                elevation = CardDefaults.cardElevation(4.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.surfaceVariant
-                                ),
-                                shape = RoundedCornerShape(8.dp)
-                            ) {
-                                Column(
-                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
-                                ) {
-                                    Text(
-                                        text = price,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        fontWeight = FontWeight.Bold,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                    tooltipTime?.takeIf { it.isNotEmpty() }?.let { time ->
-                                        Spacer(modifier = Modifier.height(4.dp))
-                                        Text(
-                                            text = time,
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 
@@ -1083,26 +728,6 @@ fun NewsItemCard(
                 )
             }
         }
-    }
-}
-
-
-@Composable
-fun ShimmerChartPlaceholder() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(2.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp)
-                .padding(16.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .animatedShimmerEffect()
-        )
     }
 }
 

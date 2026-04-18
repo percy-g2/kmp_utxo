@@ -17,6 +17,8 @@ startupRuntime = "1.2.0"
 coroutinesVersion = "1.10.2"
 kermit = "2.1.0"
 coil = "3.4.0"
+composeWebviewMultiplatform = "2.0.1"
+javafx = "21.0.5"
 
 #cmp
 compose = "1.10.3"
@@ -49,6 +51,13 @@ lifecyle-runtime-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycl
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+compose-webview-multiplatform = { module = "io.github.kevinnzou:compose-webview-multiplatform", version.ref = "composeWebviewMultiplatform" }
+javafx-base = { module = "org.openjfx:javafx-base", version.ref = "javafx" }
+javafx-graphics = { module = "org.openjfx:javafx-graphics", version.ref = "javafx" }
+javafx-controls = { module = "org.openjfx:javafx-controls", version.ref = "javafx" }
+javafx-web = { module = "org.openjfx:javafx-web", version.ref = "javafx" }
+javafx-swing = { module = "org.openjfx:javafx-swing", version.ref = "javafx" }
+javafx-media = { module = "org.openjfx:javafx-media", version.ref = "javafx" }
 
 # cmp
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
