@@ -84,8 +84,8 @@ import utxo.composeapp.generated.resources.settings_theme
 import utxo.composeapp.generated.resources.settings_title
 import utxo.composeapp.generated.resources.settings_use_dark_theme
 import utxo.composeapp.generated.resources.settings_version
-import utxo.composeapp.generated.resources.settings_version_number
 import utxo.composeapp.generated.resources.settings_website
+import buildinfo.APP_VERSION_NAME
 import utxo.composeapp.generated.resources.theme_dark
 import utxo.composeapp.generated.resources.theme_light
 import utxo.composeapp.generated.resources.theme_system
@@ -180,7 +180,7 @@ fun SettingsScreen(
                     SettingsItem(
                         icon = Icons.Default.Info,
                         title = stringResource(Res.string.settings_version),
-                        subtitle = stringResource(Res.string.settings_version_number),
+                        subtitle = APP_VERSION_NAME,
                         onClick = null
                     )
                     SettingsItem(
