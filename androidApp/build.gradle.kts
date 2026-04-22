@@ -8,6 +8,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+val versionProps = Properties().apply {
+    rootProject.file("version.properties").inputStream().use { load(it) }
+}
+
 android {
     namespace = "org.androdevlinux.utxo.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -16,8 +20,8 @@ android {
         applicationId = "org.androdevlinux.utxo"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 42
-        versionName = "0.4.2"
+        versionCode = versionProps.getProperty("versionCode").toInt()
+        versionName = versionProps.getProperty("versionName")
     }
 
     val keystorePropsFile = rootProject.file("keystore.properties")
