@@ -3,6 +3,31 @@ import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
+
+val generateAppVersion by tasks.registering {
+    val versionFile = rootProject.file("version.properties")
+    val outputDir = layout.buildDirectory.dir("generated/source/version/commonMain/kotlin")
+    inputs.file(versionFile)
+    outputs.dir(outputDir)
+    doLast {
+        val props = Properties().apply { versionFile.inputStream().use { load(it) } }
+        val name = props.getProperty("versionName")
+        val code = props.getProperty("versionCode").toInt()
+        val out = outputDir.get().file("buildinfo/Version.kt").asFile
+        out.parentFile.mkdirs()
+        out.writeText(
+            """
+            // Auto-generated from version.properties. Do not edit.
+            package buildinfo
+
+            internal const val APP_VERSION_NAME: String = "$name"
+            internal const val APP_VERSION_CODE: Int = $code
+
+            """.trimIndent()
+        )
+    }
+}
 
 val javafxPlatform: String = run {
     val os = OperatingSystem.current()
@@ -67,6 +92,10 @@ kotlin {
         val desktopMain by getting
 
         val wasmJsMain by getting
+
+        commonMain {
+            kotlin.srcDir(generateAppVersion)
+        }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

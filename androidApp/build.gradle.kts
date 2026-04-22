@@ -12,14 +12,6 @@ val versionProps = Properties().apply {
     rootProject.file("version.properties").inputStream().use { load(it) }
 }
 
-val resolvedVersionName: String =
-    (project.findProperty("appVersionName") as? String)?.takeIf { it.isNotBlank() }
-        ?: versionProps.getProperty("versionName")
-
-val resolvedVersionCode: Int =
-    (project.findProperty("appVersionCode") as? String)?.toIntOrNull()
-        ?: versionProps.getProperty("versionCode").toInt()
-
 android {
     namespace = "org.androdevlinux.utxo.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -28,8 +20,8 @@ android {
         applicationId = "org.androdevlinux.utxo"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = resolvedVersionCode
-        versionName = resolvedVersionName
+        versionCode = versionProps.getProperty("versionCode").toInt()
+        versionName = versionProps.getProperty("versionName")
     }
 
     val keystorePropsFile = rootProject.file("keystore.properties")

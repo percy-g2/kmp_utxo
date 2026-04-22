@@ -238,6 +238,9 @@ jobs:
           ref: ${{ needs.prepare.outputs.new_tag }}
           fetch-depth: 1
 
+      - name: Sync version files in workspace
+        run: bash scripts/bump-version.sh "${{ needs.prepare.outputs.new_name }}" "${{ needs.prepare.outputs.new_code }}"
+
       - name: Decode keystore
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "${RUNNER_TEMP}/release.jks"
@@ -248,7 +251,7 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: ./gradlew :androidApp:assembleRelease -PappVersionName=${{ needs.prepare.outputs.new_name }} -PappVersionCode=${{ needs.prepare.outputs.new_code }}
+        run: ./gradlew :androidApp:assembleRelease
 
       - name: Build release AAB
         if: inputs.build_aab
@@ -257,7 +260,7 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: ./gradlew :androidApp:bundleRelease -PappVersionName=${{ needs.prepare.outputs.new_name }} -PappVersionCode=${{ needs.prepare.outputs.new_code }}
+        run: ./gradlew :androidApp:bundleRelease
 
       - name: Rename APK
         run: |
@@ -307,6 +310,9 @@ jobs:
         with:
           ref: ${{ needs.prepare.outputs.new_tag }}
           fetch-depth: 1
+
+      - name: Sync version files in workspace
+        run: bash scripts/bump-version.sh "${{ needs.prepare.outputs.new_name }}" "${{ needs.prepare.outputs.new_code }}"
 
       - name: Build wasmJs distribution
         run: ./gradlew :composeApp:wasmJsBrowserDistribution
