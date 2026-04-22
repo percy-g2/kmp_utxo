@@ -60,27 +60,30 @@ jobs:
         id: version
         run: |
           PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-
+          PREV_VER="${PREV_TAG#v}"
           BASE_NAME=$(grep '^versionName=' version.properties | cut -d= -f2)
-          BASE_CODE=$(grep '^versionCode=' version.properties | cut -d= -f2)
 
           if [ -n "${{ inputs.version_override }}" ]; then
             NEW_TAG="${{ inputs.version_override }}"
             NEW_NAME="${NEW_TAG#v}"
-          elif [ -z "$BASE_NAME" ]; then
-            NEW_TAG="v0.0.1"
-            NEW_NAME="0.0.1"
           else
-            IFS='.' read -r MAJOR MINOR PATCH <<< "$BASE_NAME"
+            # Floor = highest of (version.properties, latest git tag).
+            # Lets the file act as a manual jump (e.g. set to 1.0.0 for major bump)
+            # while normally auto-progressing from the last released tag.
+            HIGHEST=$(printf '%s\n%s\n' "${PREV_VER:-0.0.0}" "${BASE_NAME:-0.0.0}" | sort -V | tail -n1)
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$HIGHEST"
             PATCH=$((PATCH + 1))
             NEW_NAME="${MAJOR}.${MINOR}.${PATCH}"
             NEW_TAG="v${NEW_NAME}"
           fi
 
-          NEW_CODE=$((BASE_CODE + 1))
+          # versionCode is derived from versionName: MAJOR*10000 + MINOR*100 + PATCH.
+          # Deterministic and monotonic as long as MINOR/PATCH stay <100 (more than enough headroom).
+          IFS='.' read -r N_MAJOR N_MINOR N_PATCH <<< "$NEW_NAME"
+          NEW_CODE=$((N_MAJOR * 10000 + N_MINOR * 100 + N_PATCH))
 
           if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
-            echo "::error::Tag $NEW_TAG already exists. Bump version.properties via PR or pass version_override."
+            echo "::error::Tag $NEW_TAG already exists. Pass version_override with a higher version."
             exit 1
           fi
 
@@ -90,7 +93,7 @@ jobs:
             echo "new_name=${NEW_NAME}"
             echo "new_code=${NEW_CODE}"
           } >> "$GITHUB_OUTPUT"
-          echo "Resolved: base=${BASE_NAME}/${BASE_CODE} -> ${NEW_TAG} (code ${NEW_CODE})"
+          echo "Resolved: file=${BASE_NAME:-<none>} tag=${PREV_TAG:-<none>} -> ${NEW_TAG} (code ${NEW_CODE})"
 
       - name: Create and push tag
         run: |
