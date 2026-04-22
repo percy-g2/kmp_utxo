@@ -34,23 +34,42 @@ class Shot:
     gradient: tuple[tuple[int, int, int], tuple[int, int, int]]
 
 
+def _tone(rgb, factor):
+    """Return a subtle lighter/darker variant of a base color."""
+    return tuple(max(0, min(255, int(c * factor))) for c in rgb)
+
+
+# Single base color per shot; background is a subtle same-hue gradient
+# (base *1.08 at top → base *0.88 at bottom) so it reads as a solid fill
+# with a gentle lift rather than two-tone.
+BASES = {
+    1: (226, 80, 80),    # Hero — warm coral red (matches original style)
+    2: (226, 80, 80),    # Live Market — coral red
+    3: (76, 110, 180),   # Pro Charts — denim blue
+    4: (62, 136, 110),   # Depth & Signals — forest teal
+    5: (158, 90, 180),   # Your Watchlist — soft violet
+    6: (200, 148, 70),   # Make it Yours — warm amber
+    7: (86, 104, 156),   # Glanceable — slate blue
+    8: (90, 90, 115),    # Day or Night — neutral slate (under the split)
+}
+
 SHOTS = [
-    Shot(1, "UTXO", "Real-time crypto, beautifully simple.",
-         ((178, 32, 45), (245, 115, 60))),
-    Shot(2, "Live Market", "Real-time prices via Binance WebSocket.",
-         ((150, 28, 55), (210, 55, 110))),
+    Shot(1, "UTXO", "Real Time Insights",
+         (_tone(BASES[1], 1.08), _tone(BASES[1], 0.88))),
+    Shot(2, "Live Market", "Real-time prices, straight from Binance.",
+         (_tone(BASES[2], 1.08), _tone(BASES[2], 0.88))),
     Shot(3, "Pro Charts", "Candlesticks from 1m to 1M.",
-         ((22, 100, 132), (28, 55, 135))),
-    Shot(4, "Depth & Signals", "Binance-style order book + news from 8 sources.",
-         ((18, 120, 90), (12, 60, 50))),
-    Shot(5, "Your Watchlist", "Pin coins, track them live.",
-         ((115, 40, 165), (220, 65, 145))),
+         (_tone(BASES[3], 1.08), _tone(BASES[3], 0.88))),
+    Shot(4, "Depth & Signals", "Order book heatmap + 8 news sources.",
+         (_tone(BASES[4], 1.08), _tone(BASES[4], 0.88))),
+    Shot(5, "Your Watchlist", "Your Favourite, In Single Place",
+         (_tone(BASES[5], 1.08), _tone(BASES[5], 0.88))),
     Shot(6, "Make it Yours", "Theme, sources, widgets — all tunable.",
-         ((205, 140, 30), (130, 80, 30))),
+         (_tone(BASES[6], 1.08), _tone(BASES[6], 0.88))),
     Shot(7, "Glanceable", "Home-screen widget with live sparklines.",
-         ((55, 70, 115), (30, 35, 75))),
+         (_tone(BASES[7], 1.08), _tone(BASES[7], 0.88))),
     Shot(8, "Day or Night", "System, light, and dark themes.",
-         ((245, 145, 60), (18, 25, 55))),
+         (_tone(BASES[8], 1.08), _tone(BASES[8], 0.88))),
 ]
 
 
@@ -365,7 +384,7 @@ def compose_widget(shot: Shot, home_bg: Image.Image) -> Image.Image:
 def compose_comparison(shot: Shot, light: Image.Image,
                        dark: Image.Image) -> Image.Image:
     """Split one device frame vertically: left half light, right half dark."""
-    bg = split_gradient_bg((245, 145, 60), (14, 18, 40)).convert("RGBA")
+    bg = gradient_bg(*shot.gradient).convert("RGBA")
     draw_text_block(bg, shot.title, shot.tagline)
 
     w, h = light.size
