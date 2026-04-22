@@ -13,7 +13,7 @@ on:
           - web
         default: both
       version_override:
-        description: "Version tag override (leave blank to auto-increment patch, e.g. v0.3.7 -> v0.3.8)"
+        description: "Version tag override (leave blank to auto-increment patch from version.properties, e.g. 0.4.2 -> v0.4.3)"
         required: false
         type: string
         default: ""
@@ -46,61 +46,58 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       new_tag: ${{ steps.version.outputs.new_tag }}
+      new_name: ${{ steps.version.outputs.new_name }}
+      new_code: ${{ steps.version.outputs.new_code }}
       prev_tag: ${{ steps.version.outputs.prev_tag }}
-      new_code: ${{ steps.bump.outputs.new_code }}
       changelog: ${{ steps.changelog.outputs.changelog }}
     steps:
       - name: Checkout (full history)
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Resolve version
         id: version
         run: |
           PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
 
+          BASE_NAME=$(grep '^versionName=' version.properties | cut -d= -f2)
+          BASE_CODE=$(grep '^versionCode=' version.properties | cut -d= -f2)
+
           if [ -n "${{ inputs.version_override }}" ]; then
             NEW_TAG="${{ inputs.version_override }}"
-          elif [ -z "$PREV_TAG" ]; then
+            NEW_NAME="${NEW_TAG#v}"
+          elif [ -z "$BASE_NAME" ]; then
             NEW_TAG="v0.0.1"
+            NEW_NAME="0.0.1"
           else
-            VERSION="${PREV_TAG#v}"
-            IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$BASE_NAME"
             PATCH=$((PATCH + 1))
-            NEW_TAG="v${MAJOR}.${MINOR}.${PATCH}"
+            NEW_NAME="${MAJOR}.${MINOR}.${PATCH}"
+            NEW_TAG="v${NEW_NAME}"
           fi
 
+          NEW_CODE=$((BASE_CODE + 1))
+
           if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
-            echo "::error::Tag $NEW_TAG already exists. Use a different version_override or delete the existing tag."
+            echo "::error::Tag $NEW_TAG already exists. Bump version.properties via PR or pass version_override."
             exit 1
           fi
 
-          echo "prev_tag=${PREV_TAG}" >> "$GITHUB_OUTPUT"
-          echo "new_tag=${NEW_TAG}" >> "$GITHUB_OUTPUT"
-          echo "Resolved version: ${PREV_TAG:-<none>} -> ${NEW_TAG}"
+          {
+            echo "prev_tag=${PREV_TAG}"
+            echo "new_tag=${NEW_TAG}"
+            echo "new_name=${NEW_NAME}"
+            echo "new_code=${NEW_CODE}"
+          } >> "$GITHUB_OUTPUT"
+          echo "Resolved: base=${BASE_NAME}/${BASE_CODE} -> ${NEW_TAG} (code ${NEW_CODE})"
 
-      - name: Bump app version files
-        id: bump
-        run: |
-          NEW_TAG="${{ steps.version.outputs.new_tag }}"
-          NEW_NAME="${NEW_TAG#v}"
-          CUR_CODE=$(grep '^versionCode=' version.properties | cut -d= -f2)
-          NEW_CODE=$((CUR_CODE + 1))
-          bash scripts/bump-version.sh "$NEW_NAME" "$NEW_CODE"
-          echo "new_code=$NEW_CODE" >> "$GITHUB_OUTPUT"
-          echo "Bumped to ${NEW_NAME} (${NEW_CODE})"
-
-      - name: Commit bump and create tag
+      - name: Create and push tag
         run: |
           NEW_TAG="${{ steps.version.outputs.new_tag }}"
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add version.properties iosApp/iosApp.xcodeproj/project.pbxproj
-          git commit -m "chore(release): bump version to ${NEW_TAG}"
-          git push origin HEAD:${{ github.ref_name }}
-          git tag "$NEW_TAG"
+          git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
           git push origin "$NEW_TAG"
 
       - name: Generate changelog
@@ -239,6 +236,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: ${{ needs.prepare.outputs.new_tag }}
+          fetch-depth: 1
 
       - name: Decode keystore
         run: |
@@ -250,7 +248,7 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: ./gradlew :androidApp:assembleRelease
+        run: ./gradlew :androidApp:assembleRelease -PappVersionName=${{ needs.prepare.outputs.new_name }} -PappVersionCode=${{ needs.prepare.outputs.new_code }}
 
       - name: Build release AAB
         if: inputs.build_aab
@@ -259,7 +257,7 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: ./gradlew :androidApp:bundleRelease
+        run: ./gradlew :androidApp:bundleRelease -PappVersionName=${{ needs.prepare.outputs.new_name }} -PappVersionCode=${{ needs.prepare.outputs.new_code }}
 
       - name: Rename APK
         run: |
@@ -308,6 +306,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: ${{ needs.prepare.outputs.new_tag }}
+          fetch-depth: 1
 
       - name: Build wasmJs distribution
         run: ./gradlew :composeApp:wasmJsBrowserDistribution
