@@ -368,7 +368,9 @@ expect fun openLink(link: String)
 
 expect fun createNewsHttpClient(): HttpClient
 
-expect fun wrapRssUrlForPlatform(url: String): String
+expect fun wrapRssUrlForPlatform(url: String): List<String>
+
+internal expect val useExchangeInfoForMarginSymbols: Boolean
 
 expect fun getPendingCoinDetailFromIntent(): Pair<String, String>?
 

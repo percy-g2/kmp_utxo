@@ -3,6 +3,7 @@ import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.storage.storeOf
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.js.Js
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -65,6 +66,11 @@ actual fun createNewsHttpClient(): HttpClient {
         install(ContentNegotiation) {
             json()
         }
+        install(HttpTimeout) {
+            connectTimeoutMillis = 10_000
+            requestTimeoutMillis = 20_000
+            socketTimeoutMillis = 20_000
+        }
     }
 }
 
@@ -76,11 +82,14 @@ actual fun syncSettingsToWidget(settings: ui.Settings) {
     // No-op for WASM/web - no widgets
 }
 
-actual fun wrapRssUrlForPlatform(url: String): String {
-    // Use CORS proxy for WASM/web platform to bypass CORS restrictions
-    // Using allorigins.win as a reliable CORS proxy service
-    val encodedUrl = encodeURIComponent(url)
-    return "https://api.allorigins.win/raw?url=$encodedUrl"
+actual fun wrapRssUrlForPlatform(url: String): List<String> {
+    // Browser fetch is subject to CORS, so route RSS feeds through a fallback chain
+    // of public CORS proxies. corsproxy.io first (more reliable), allorigins.win as backup.
+    val encoded = encodeURIComponent(url)
+    return listOf(
+        "https://corsproxy.io/?url=$encoded",
+        "https://api.allorigins.win/raw?url=$encoded"
+    )
 }
 
 @JsName("encodeURIComponent")
