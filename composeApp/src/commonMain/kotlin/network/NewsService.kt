@@ -2,9 +2,11 @@ package network
 
 import createNewsHttpClient
 import io.ktor.client.call.body
+import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -46,27 +48,31 @@ class NewsService {
     }
 
     private suspend fun fetchRSSFeed(url: String, coinSymbol: String): List<NewsItem>? {
-        return try {
-            // Wrap URL with CORS proxy for WASM/web platform, or return as-is for other platforms
-            val wrappedUrl = wrapRssUrlForPlatform(url)
-            val response: HttpResponse = httpClient.get(wrappedUrl)
-            if (response.status == HttpStatusCode.OK) {
-                val xmlContent = withContext(Dispatchers.Default) {
-                    response.body<String>()
+        // wasmJS returns a fallback chain of CORS proxies; native platforms return [url].
+        val candidates = wrapRssUrlForPlatform(url)
+        for ((idx, candidate) in candidates.withIndex()) {
+            try {
+                val response: HttpResponse = httpClient.get(candidate)
+                if (response.status == HttpStatusCode.OK) {
+                    val xmlContent = withContext(Dispatchers.Default) {
+                        response.body<String>()
+                    }
+                    if (url.contains("coindesk", ignoreCase = true)) {
+                        AppLogger.logger.d { "CoinDesk RSS sample (first 500 chars): ${xmlContent.take(500)}" }
+                    }
+                    return parseRSSFeed(xmlContent, coinSymbol)
                 }
-                // Debug: log first 500 chars to see feed structure
-                if (url.contains("coindesk", ignoreCase = true)) {
-                    AppLogger.logger.d { "CoinDesk RSS sample (first 500 chars): ${xmlContent.take(500)}" }
-                }
-                parseRSSFeed(xmlContent, coinSymbol)
-            } else {
-                AppLogger.logger.w { "RSS feed returned status ${response.status} for $url" }
-                null
+                AppLogger.logger.w { "RSS candidate ${idx + 1}/${candidates.size} returned ${response.status} for $url" }
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: HttpRequestTimeoutException) {
+                AppLogger.logger.w(throwable = e) { "RSS candidate ${idx + 1}/${candidates.size} timed out for $url" }
+            } catch (e: Exception) {
+                AppLogger.logger.w(throwable = e) { "RSS candidate ${idx + 1}/${candidates.size} failed for $url" }
             }
-        } catch (e: Exception) {
-            AppLogger.logger.e(throwable = e) { "Error fetching RSS feed $url" }
-            null
         }
+        AppLogger.logger.w { "All ${candidates.size} RSS candidates failed for $url" }
+        return null
     }
 
     private fun parseRSSFeed(xml: String, coinSymbol: String): List<NewsItem> {

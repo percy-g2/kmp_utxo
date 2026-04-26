@@ -137,6 +137,9 @@ Examples: `feat/i18n-strings`, `fix/websocket-reconnection`, `refactor/settings-
 | `review-pr` | "review PR #N", "check this PR" |
 | `merge-pr` | "merge PR #N", "land this branch" |
 | `pcr` | "pcr", "push commit review", "full pipeline" |
+| `deploy-ss` | "make store screenshots", "feature graphic", "App Store assets", "Play Store assets" |
+
+`deploy-ss` is the only non-git skill in the table. It turns raw app UI captures (in `raw-screenshots/`, gitignored — currently sourced from the Android build) into the polished `screenshots/` set used in the README and store listings: 5 phone shots at 1284 × 2778 (App Store + Play Store), 5 tablet shots at 2048 × 2732 (App Store iPad slot only — Play Store tablet listings would need a separate render pass at Google's 7" / 10" dimensions), and 1 Play Store feature graphic at 1024 × 500. Phone shots use an iPhone-styled bezel but ship to both stores; Compose Multiplatform means the underlying UI is identical across Android and iOS. The skill bundles its own Python renderer, Inter fonts, and design references — see `.claude/skills/deploy-ss/SKILL.md`.
 
 ## Build Commands
 

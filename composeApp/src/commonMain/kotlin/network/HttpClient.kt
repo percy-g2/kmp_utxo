@@ -1,5 +1,6 @@
 package network
 
+import useExchangeInfoForMarginSymbols
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
@@ -7,7 +8,6 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.request.get
-import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
@@ -21,9 +21,11 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
 import logging.AppLogger
+import model.ExchangeInfoResponse
 import model.MarginSymbols
 import model.UiKline
 import model.UiKlineSerializer
+import model.toMarginSymbols
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
@@ -118,15 +120,21 @@ class HttpClient {
 
     suspend fun fetchMarginSymbols(): MarginSymbols? {
         return try {
-            val response: HttpResponse = client.get("https://www.binance.com/bapi/margin/v1/public/margin/symbols") {
-                headers {
-                    append("Accept-Encoding", "identity")
-                    append("User-Agent", "Mozilla/5.0")
+            if (useExchangeInfoForMarginSymbols) {
+                // Browser path: Binance's bapi host is blocked by its WAF for browser-origin
+                // requests, so use the documented CORS-enabled public API instead.
+                val response: HttpResponse = client.get("https://api.binance.com/api/v3/exchangeInfo") {
+                    parameter("permissions", "MARGIN")
                 }
+                if (response.status == HttpStatusCode.OK) {
+                    json.decodeFromString<ExchangeInfoResponse>(response.bodyAsText()).toMarginSymbols()
+                } else null
+            } else {
+                val response: HttpResponse = client.get("https://www.binance.com/bapi/margin/v1/public/margin/symbols")
+                if (response.status == HttpStatusCode.OK) {
+                    json.decodeFromString<MarginSymbols>(response.bodyAsText())
+                } else null
             }
-            if (response.status == HttpStatusCode.OK) {
-                json.decodeFromString<MarginSymbols>(response.bodyAsText())
-            } else null
         } catch (e: Exception) {
             AppLogger.logger.e(throwable = e) { "Error fetching margin symbols" }
             null
