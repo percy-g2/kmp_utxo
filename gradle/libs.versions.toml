@@ -18,7 +18,7 @@ coroutinesVersion = "1.10.2"
 kermit = "2.1.0"
 coil = "3.4.0"
 composeWebviewMultiplatform = "2.0.3"
-javafx = "21.0.11"
+javafx = "21.0.5"
 playPublisher = "4.0.0"
 
 #cmp
