@@ -1,0 +1,71 @@
+{
+  "app": {
+    "app_name": "UTXO",
+    "tagline": "Crypto markets in your pocket.",
+    "feature_row": "Live prices  ·  Pro charts  ·  No ads",
+    "feature_pill": "REAL-TIME",
+    "brand_color": "#F27C2F",
+    "feature_graphic_screenshot": "market_list_dark.png",
+    "feature_bg": "#0A0E1A",
+    "accent_letter": {
+      "index": 3,
+      "letter": "O",
+      "glyph": "₿",
+      "glyph_scale": 0.62
+    }
+  },
+  "screens": [
+    {
+      "screenshot": "market_list_dark.png",
+      "tag": "MARKETS",
+      "headline": "Track live\ncrypto markets",
+      "subtitle": "BTC, ETH, SOL and more — updated every second",
+      "theme": "dark",
+      "bg_color": "#0A0E1A",
+      "bezel_color": "#181A20"
+    },
+    {
+      "screenshot": "chart_light.png",
+      "tag": "CHARTS",
+      "headline": "Pro candles,\nin your pocket",
+      "subtitle": "Powered by TradingView. Pinch, scrub, zoom — full control.",
+      "theme": "light",
+      "bg_color": "#F5ECDE",
+      "accent": "#2454C8"
+    },
+    {
+      "screenshot": "price_info_dark.png",
+      "tag": "DEPTH",
+      "headline": "Every detail,\nevery tick",
+      "subtitle": "Order book, 24h stats and trading info in one clean view.",
+      "theme": "dark",
+      "bg_color": "#181224",
+      "bezel_color": "#201A2C",
+      "accent": "#9266E8"
+    },
+    {
+      "screenshot": "news_light.png",
+      "tag": "NEWS",
+      "headline": "Crypto news,\ncurated",
+      "subtitle": "Latest from BeInCrypto, CryptoSlate and trusted sources.",
+      "theme": "light",
+      "bg_color": "#F2E5D5",
+      "accent": "#DA5440"
+    },
+    {
+      "screenshot": "favorites_dark.png",
+      "tag": "FAVORITES",
+      "headline": "Your watchlist,\none tap away",
+      "subtitle": "Star the coins you care about. Find them instantly.",
+      "theme": "dark",
+      "bg_color": "#080A0E",
+      "accent": "#F2A92F",
+      "preprocess": {
+        "type": "collapse_middle",
+        "top_keep": 900,
+        "bottom_keep": 520,
+        "bg_color": "#0A0A0A"
+      }
+    }
+  ]
+}

@@ -137,6 +137,9 @@ Examples: `feat/i18n-strings`, `fix/websocket-reconnection`, `refactor/settings-
 | `review-pr` | "review PR #N", "check this PR" |
 | `merge-pr` | "merge PR #N", "land this branch" |
 | `pcr` | "pcr", "push commit review", "full pipeline" |
+| `deploy-ss` | "make store screenshots", "feature graphic", "App Store assets", "Play Store assets" |
+
+`deploy-ss` is the only non-git skill in the table. It turns raw app UI captures (in `raw-screenshots/`, gitignored) into the polished `screenshots/` set used in the README and store listings: 5 iPhone + 5 iPad + 1 Play Store feature graphic, all at submission-ready dimensions. The skill bundles its own Python renderer, Inter fonts, and design references — see `.claude/skills/deploy-ss/SKILL.md`.
 
 ## Build Commands
 
