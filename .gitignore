@@ -19,3 +19,6 @@ captures
 kotlin-js-store/
 keystore.properties
 *.jks
+play-sa.json
+*.play-sa.json
+androidApp/src/main/play/release-notes/

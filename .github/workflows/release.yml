@@ -32,6 +32,19 @@ on:
         required: false
         type: boolean
         default: true
+      deploy_play_store:
+        description: "Upload AAB to Google Play Store"
+        required: false
+        type: boolean
+        default: false
+      play_track:
+        description: "Play Store track (if deploy_play_store is true)"
+        required: false
+        type: choice
+        options:
+          - internal
+          - production
+        default: internal
 
 permissions:
   contents: write
@@ -50,6 +63,7 @@ jobs:
       new_code: ${{ steps.version.outputs.new_code }}
       prev_tag: ${{ steps.version.outputs.prev_tag }}
       changelog: ${{ steps.changelog.outputs.changelog }}
+      play_release_notes: ${{ steps.changelog.outputs.play_release_notes }}
     steps:
       - name: Checkout (full history)
         uses: actions/checkout@v6
@@ -155,6 +169,28 @@ jobs:
             esac
           done <<< "$RAW_LOG"
 
+          # Compute Play Store release notes up-front (capped at 500 chars, Play's limit)
+          PLAY_NOTES=""
+          if [ -n "$FEATS" ]; then
+            PLAY_NOTES="${PLAY_NOTES}$(echo -e "$FEATS")"
+          fi
+          if [ -n "$FIXES" ]; then
+            PLAY_NOTES="${PLAY_NOTES}$(echo -e "$FIXES")"
+          fi
+          if [ -n "$IMPROVEMENTS" ]; then
+            PLAY_NOTES="${PLAY_NOTES}$(echo -e "$IMPROVEMENTS")"
+          fi
+          if [ -z "$PLAY_NOTES" ]; then
+            PLAY_NOTES="- Bug fixes and performance improvements"
+          fi
+          PLAY_NOTES=$(echo "$PLAY_NOTES" | head -c 500)
+
+          {
+            echo "play_release_notes<<PLAY_NOTES_EOF"
+            echo "$PLAY_NOTES"
+            echo "PLAY_NOTES_EOF"
+          } >> "$GITHUB_OUTPUT"
+
           {
             echo "changelog<<CHANGELOG_EOF"
 
@@ -197,21 +233,7 @@ jobs:
               echo "<summary><strong>Google Play Store Release Notes</strong></summary>"
               echo ""
               echo '```'
-              PLAY_NOTES=""
-              if [ -n "$FEATS" ]; then
-                PLAY_NOTES="${PLAY_NOTES}$(echo -e "$FEATS")"
-              fi
-              if [ -n "$FIXES" ]; then
-                PLAY_NOTES="${PLAY_NOTES}$(echo -e "$FIXES")"
-              fi
-              if [ -n "$IMPROVEMENTS" ]; then
-                PLAY_NOTES="${PLAY_NOTES}$(echo -e "$IMPROVEMENTS")"
-              fi
-              if [ -z "$PLAY_NOTES" ]; then
-                PLAY_NOTES="- Bug fixes and performance improvements"
-              fi
-              echo "$PLAY_NOTES" | head -c 500
-              echo ""
+              echo "$PLAY_NOTES"
               echo '```'
               echo ""
               echo "</details>"
@@ -257,7 +279,7 @@ jobs:
         run: ./gradlew :androidApp:assembleRelease
 
       - name: Build release AAB
-        if: inputs.build_aab
+        if: inputs.build_aab || inputs.deploy_play_store
         env:
           KEYSTORE_FILE: ${{ runner.temp }}/release.jks
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -279,19 +301,45 @@ jobs:
           retention-days: 30
 
       - name: Rename AAB
-        if: inputs.build_aab
+        if: inputs.build_aab || inputs.deploy_play_store
         run: |
           TAG="${{ needs.prepare.outputs.new_tag }}"
           AAB=$(find androidApp/build/outputs/bundle/release -name "*.aab" | head -1)
           cp "$AAB" "${RUNNER_TEMP}/UTXO-${TAG}.aab"
 
       - name: Upload AAB artifact
-        if: inputs.build_aab
+        if: inputs.build_aab || inputs.deploy_play_store
         uses: actions/upload-artifact@v7
         with:
           name: android-aab
           path: ${{ runner.temp }}/UTXO-${{ needs.prepare.outputs.new_tag }}.aab
           retention-days: 30
+
+      - name: Write Play release notes
+        if: inputs.deploy_play_store
+        env:
+          PLAY_NOTES: ${{ needs.prepare.outputs.play_release_notes }}
+        run: |
+          mkdir -p androidApp/src/main/play/release-notes/en-US
+          printf '%s' "$PLAY_NOTES" > androidApp/src/main/play/release-notes/en-US/default.txt
+
+      - name: Decode Play service account
+        if: inputs.deploy_play_store
+        run: |
+          echo "${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}" | base64 -d > "${RUNNER_TEMP}/play-sa.json"
+
+      - name: Publish to Play Store
+        if: inputs.deploy_play_store
+        env:
+          KEYSTORE_FILE: ${{ runner.temp }}/release.jks
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          ANDROID_PUBLISHER_CREDENTIALS: ${{ runner.temp }}/play-sa.json
+        run: |
+          ./gradlew :androidApp:publishReleaseBundle \
+            -Pplay.track=${{ inputs.play_track }} \
+            -Pplay.status=COMPLETED
 
   # ──────────────────────────────────────────────
   # Build Web (wasmJs) + optional Pages deploy
@@ -362,7 +410,7 @@ jobs:
           path: release-assets/
 
       - name: Download Android AAB
-        if: needs.build-android.result == 'success' && inputs.build_aab
+        if: needs.build-android.result == 'success' && (inputs.build_aab || inputs.deploy_play_store)
         uses: actions/download-artifact@v8
         with:
           name: android-aab
