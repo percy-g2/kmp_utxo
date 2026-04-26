@@ -1,4 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.github.triplet.gradle.androidpublisher.ReleaseStatus
+import com.github.triplet.gradle.androidpublisher.ResolutionStrategy
 import java.io.File
 import java.util.Properties
 
@@ -6,6 +8,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.play.publisher)
 }
 
 val versionProps = Properties().apply {
@@ -82,6 +85,17 @@ android {
             }
         }
     }
+}
+
+play {
+    track.set(providers.gradleProperty("play.track").orElse("internal"))
+    releaseStatus.set(
+        providers.gradleProperty("play.status")
+            .map { ReleaseStatus.valueOf(it) }
+            .orElse(ReleaseStatus.COMPLETED)
+    )
+    defaultToAppBundles.set(true)
+    resolutionStrategy.set(ResolutionStrategy.FAIL)
 }
 
 dependencies {
