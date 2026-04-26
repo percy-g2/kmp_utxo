@@ -12,16 +12,31 @@ height="40">](https://apps.apple.com/in/app/utxo/id6746167853)
 
 A modern, cross-platform cryptocurrency tracking application built with Kotlin Multiplatform and Compose Multiplatform.
 
+<p align="center">
+  <img src="screenshots/feature_graphic_1024x500.png" width="100%" alt="UTXO — Crypto markets in your pocket">
+</p>
+
+<p align="center"><sub><b>iPhone</b> · 1284 × 2778 · App Store + Play Store</sub></p>
+
 <table>
   <tr>
-    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/1.png" width="200" alt="1"></td>
-    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/2.png" width="200" alt="2"></td>
-    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/3.png" width="200" alt="3"></td>
+    <td><img src="screenshots/01_markets_dark.png" width="160" alt="Markets"></td>
+    <td><img src="screenshots/02_charts_light.png" width="160" alt="Charts"></td>
+    <td><img src="screenshots/03_depth_dark.png" width="160" alt="Depth"></td>
+    <td><img src="screenshots/04_news_light.png" width="160" alt="News"></td>
+    <td><img src="screenshots/05_favorites_dark.png" width="160" alt="Favorites"></td>
   </tr>
+</table>
+
+<p align="center"><sub><b>iPad</b> · 2048 × 2732 · App Store iPad slot</sub></p>
+
+<table>
   <tr>
-    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/4.png" width="200" alt="4"></td>
-    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/5.png" width="200" alt="5"></td>
-    <td><img src="https://github.com/percy-g2/kmp_utxo/blob/main/screenshots/6.png" width="200" alt="6"></td>
+    <td><img src="screenshots/ipad_01_markets_dark.png" width="160" alt="Markets — iPad"></td>
+    <td><img src="screenshots/ipad_02_charts_light.png" width="160" alt="Charts — iPad"></td>
+    <td><img src="screenshots/ipad_03_depth_dark.png" width="160" alt="Depth — iPad"></td>
+    <td><img src="screenshots/ipad_04_news_light.png" width="160" alt="News — iPad"></td>
+    <td><img src="screenshots/ipad_05_favorites_dark.png" width="160" alt="Favorites — iPad"></td>
   </tr>
 </table>
 
@@ -120,6 +135,9 @@ This project uses AI agent skills (Cursor and Claude Code) to automate common gi
 | **review-pr** | "review PR #42", "check this PR" |
 | **merge-pr** | "merge PR #42", "land this branch" |
 | **pcr** | "pcr" — full pipeline: push + create PR + review |
+| **deploy-ss** | "make store screenshots", "feature graphic", "prepare App Store / Play Store assets" |
+
+> The screenshots above were produced by the **deploy-ss** skill from raw app captures in `raw-screenshots/`. Re-run it whenever the UI changes — see [`.claude/skills/deploy-ss/SKILL.md`](.claude/skills/deploy-ss/SKILL.md) for the workflow and [`references/specs.md`](.claude/skills/deploy-ss/references/specs.md) for App Store / Play Store dimension requirements.
 
 See the [Cursor Agents Guide](docs/CURSOR_AGENTS_GUIDE.md) for examples and the full reference in [`AGENTS.md`](AGENTS.md).
 

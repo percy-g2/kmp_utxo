@@ -67,4 +67,4 @@ composeApp/src/commonMain/kotlin/
 ## Extended References
 
 - `AGENTS.md` — full tech stack, architecture tree, expect/actual table
-- `.claude/skills/` — workflow skills (push-code, create-pr, review-pr, merge-pr, pcr)
+- `.claude/skills/` — workflow skills (push-code, create-pr, review-pr, merge-pr, pcr) and asset skills (deploy-ss — App Store / Play Store screenshots and feature graphic)
