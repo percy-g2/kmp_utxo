@@ -16,7 +16,8 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   <img src="screenshots/feature_graphic_1024x500.png" width="100%" alt="UTXO — Crypto markets in your pocket">
 </p>
 
-<p align="center"><sub><b>iPhone</b> · 1284 × 2778 · App Store + Play Store</sub></p>
+<p align="center"><sub><b>Phone</b> · Android · iOS · 1284 × 2778 · App Store + Play Store</sub></p>
+<p align="center"><sub><i>UI captured from the Android build; the same Compose Multiplatform code runs on iOS.</i></sub></p>
 
 <table>
   <tr>
@@ -28,7 +29,8 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   </tr>
 </table>
 
-<p align="center"><sub><b>iPad</b> · 2048 × 2732 · App Store iPad slot</sub></p>
+<p align="center"><sub><b>Tablet</b> · Android · iOS · 2048 × 2732 · App Store iPad slot</sub></p>
+<p align="center"><sub><i>Sized for Apple's iPad slot. Play Store tablet listings would need a separate render pass at Google's recommended 7" / 10" dimensions.</i></sub></p>
 
 <table>
   <tr>
