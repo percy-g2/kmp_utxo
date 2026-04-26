@@ -22,3 +22,4 @@ keystore.properties
 play-sa.json
 *.play-sa.json
 androidApp/src/main/play/release-notes/
+raw-screenshots/
