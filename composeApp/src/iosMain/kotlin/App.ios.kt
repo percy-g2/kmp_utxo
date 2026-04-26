@@ -122,9 +122,9 @@ actual fun createNewsHttpClient(): HttpClient {
     }
 }
 
-actual fun wrapRssUrlForPlatform(url: String): String {
+actual fun wrapRssUrlForPlatform(url: String): List<String> {
     // No CORS restrictions on iOS, return URL as-is
-    return url
+    return listOf(url)
 }
 
 actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {

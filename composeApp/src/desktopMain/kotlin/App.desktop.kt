@@ -93,9 +93,9 @@ actual fun createNewsHttpClient(): HttpClient {
     }
 }
 
-actual fun wrapRssUrlForPlatform(url: String): String {
+actual fun wrapRssUrlForPlatform(url: String): List<String> {
     // No CORS restrictions on Desktop, return URL as-is
-    return url
+    return listOf(url)
 }
 
 actual fun openLink(link: String) {
