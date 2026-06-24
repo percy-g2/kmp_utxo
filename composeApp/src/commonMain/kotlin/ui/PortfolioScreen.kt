@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -145,7 +146,10 @@ fun PortfolioScreen(
                     IconButton(onClick = { viewModel.refresh() }) {
                         Icon(Icons.Default.Refresh, contentDescription = stringResource(Res.string.refresh))
                     }
-                }
+                },
+                // The root Scaffold already applies the status-bar inset to this screen,
+                // so the nested top bar must not add it again (matches SettingsScreen).
+                windowInsets = WindowInsets(top = 0.dp, bottom = 0.dp),
             )
         }
     ) { innerPadding ->
@@ -459,7 +463,7 @@ private fun LiquidationBar(fraction: Double, liqPx: Double, markPx: Double, isDa
         }
         Spacer(Modifier.height(4.dp))
         Text(
-            text = "${stringResource(Res.string.portfolio_liq)} ${liqPx.let { it.toPriceValue() }}  ·  ${awayPct.toAmount()}% ${stringResource(Res.string.portfolio_away)}",
+            text = "${stringResource(Res.string.portfolio_liq)} ${liqPx.toPriceValue()}  ·  ${awayPct.toPercent(1)}% ${stringResource(Res.string.portfolio_away)}",
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -647,7 +651,16 @@ private fun Double.toSignedUsd(): String {
 
 private fun Double.toSignedPercent(): String {
     val sign = if (this < 0) "-" else "+"
-    return "$sign${abs(this).toAmount()}%"
+    return "$sign${abs(this).toPercent(2)}%"
+}
+
+/** Rounds to [decimals] places and trims trailing zeros (e.g. 18.50 -> "18.5", 18.00 -> "18"). */
+private fun Double.toPercent(decimals: Int): String {
+    val factor = if (decimals == 1) 10.0 else 100.0
+    val rounded = (this * factor).roundToLong() / factor
+    val asLong = rounded.toLong()
+    return if (rounded == asLong.toDouble()) asLong.toString()
+    else rounded.toString().trimEnd('0').trimEnd('.')
 }
 
 private fun Double.toPriceValue(): String =

@@ -145,8 +145,12 @@ class PortfolioViewModel : ViewModel() {
             .orEmpty()
 
         val balances = spot?.balances
-            ?.filter { (it.total.toDoubleOrNull() ?: 0.0) != 0.0 }
             ?.map { it.toRow() }
+            // Drop fully on-hold stablecoins: that USDC is perp collateral already
+            // counted in accountValue (webData2 reports it as 0; the HTTP spot endpoint
+            // returns it on-hold). usdValue is 0 only for a stablecoin with no available
+            // balance; non-stable tokens keep a null usdValue and stay visible.
+            ?.filter { it.total > 0.0 && it.usdValue != 0.0 }
             ?.sortedByDescending { it.usdValue ?: 0.0 }
             .orEmpty()
 
@@ -215,11 +219,14 @@ private fun HlPerpPosition.toRow(): PerpPositionRow {
 private fun HlSpotBalance.toRow(): SpotBalanceRow {
     val totalValue = total.toDoubleOrNull() ?: 0.0
     val holdValue = hold.toDoubleOrNull() ?: 0.0
+    val availableValue = (totalValue - holdValue).coerceAtLeast(0.0)
     return SpotBalanceRow(
         coin = coin,
         total = totalValue,
-        available = (totalValue - holdValue).coerceAtLeast(0.0),
+        available = availableValue,
         hold = holdValue,
-        usdValue = if (coin.uppercase() in STABLECOINS) totalValue else null,
+        // Value stablecoins by their AVAILABLE (free) balance — on-hold USDC is perp
+        // collateral already reflected in accountValue, so counting total double-counts it.
+        usdValue = if (coin.uppercase() in STABLECOINS) availableValue else null,
     )
 }
