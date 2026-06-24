@@ -12,9 +12,15 @@ struct ComposeView: UIViewControllerRepresentable {
 
 struct ContentView: View {
     var body: some View {
-        ComposeView()
+        if #available(iOS 26.0, *) {
+            // Native SwiftUI TabView with Liquid Glass; each tab hosts a Compose screen.
+            LiquidGlassRootView()
+        } else {
+            // Fallback: full Compose UI with its own bottom bar.
+            ComposeView()
                 .ignoresSafeArea(edges: .all)
                 .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
+        }
     }
 }
 

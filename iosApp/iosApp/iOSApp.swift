@@ -32,26 +32,35 @@ struct iOSApp: App {
 }
 
 class URLHandler: ObservableObject {
+    // Observed by the iOS 26 native TabView (LiquidGlassRootView) to drive SwiftUI navigation.
+    // The UserDefaults writes below remain for the <iOS 26 Compose fallback / widget Kotlin path.
+    @Published var pendingCoin: CoinRoute?
+    @Published var selectFavorites = false
+
     func handleURL(_ url: URL) {
         guard url.scheme == "utxo" else { return }
-        
+
         if url.host == "coin" {
             // Extract symbol from path: utxo://coin/BTCUSDT
             let symbol = url.pathComponents.last ?? ""
             let (base, quote) = extractSymbolParts(symbol: symbol, tradingPair: "BTC")
             let displaySymbol = quote.isEmpty ? symbol : "\(base)/\(quote)"
-            
+
             // Store in UserDefaults for Kotlin code to read
             let userDefaults = UserDefaults.standard
             userDefaults.set(symbol, forKey: "pendingCoinSymbol")
             userDefaults.set(displaySymbol, forKey: "pendingCoinDisplaySymbol")
             userDefaults.synchronize()
+
+            pendingCoin = CoinRoute(symbol: symbol, display: displaySymbol)
         } else if url.host == "favorites" {
             // Navigate to favorites - store empty to trigger favorites navigation
             let userDefaults = UserDefaults.standard
             userDefaults.set("", forKey: "pendingCoinSymbol")
             userDefaults.set("", forKey: "pendingCoinDisplaySymbol")
             userDefaults.synchronize()
+
+            selectFavorites = true
         }
     }
     
