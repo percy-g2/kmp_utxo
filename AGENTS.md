@@ -120,6 +120,8 @@ Declared in `App.kt` (commonMain), implemented per platform:
 
 **Types**: `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `perf`
 
+**Attribution**: Never append `Co-Authored-By:` trailers or "Generated with …" lines. The `<footer>` holds only issue refs (e.g. `Closes #12`). Commits are attributed to the human author only — this applies to every AI agent (Claude, Codex, Cursor).
+
 ### Branch Naming
 
 ```
