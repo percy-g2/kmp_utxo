@@ -11,6 +11,8 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		AB10C5EE2E00000000000001 /* ComposeScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10C5EE2E00000000000002 /* ComposeScreens.swift */; };
+		AB10C5EE2E00000000000003 /* LiquidGlassRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10C5EE2E00000000000004 /* LiquidGlassRootView.swift */; };
 		D65EDBB62EF76C8C00267519 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65EDBB52EF76C8C00267519 /* WidgetKit.framework */; };
 		D65EDBB82EF76C8C00267519 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D65EDBB72EF76C8C00267519 /* SwiftUI.framework */; };
 		D65EDBC92EF76C8D00267519 /* UTXOWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D65EDBB42EF76C8C00267519 /* UTXOWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -46,6 +48,8 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* UTXO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTXO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AB10C5EE2E00000000000002 /* ComposeScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeScreens.swift; sourceTree = "<group>"; };
+		AB10C5EE2E00000000000004 /* LiquidGlassRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidGlassRootView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		D65EDBB42EF76C8C00267519 /* UTXOWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = UTXOWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +137,8 @@
 				D65EDBDE2EF7725600267519 /* iosApp.entitlements */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
+				AB10C5EE2E00000000000002 /* ComposeScreens.swift */,
+				AB10C5EE2E00000000000004 /* LiquidGlassRootView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
@@ -282,6 +288,8 @@
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				AB10C5EE2E00000000000001 /* ComposeScreens.swift in Sources */,
+				AB10C5EE2E00000000000003 /* LiquidGlassRootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
