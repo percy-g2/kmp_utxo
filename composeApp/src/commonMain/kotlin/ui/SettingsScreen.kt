@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Palette
@@ -30,6 +31,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -72,10 +74,16 @@ import utxo.composeapp.generated.resources.settings_appearance
 import utxo.composeapp.generated.resources.settings_dark_mode
 import utxo.composeapp.generated.resources.settings_deselect_all
 import utxo.composeapp.generated.resources.settings_done
+import utxo.composeapp.generated.resources.settings_clear
 import utxo.composeapp.generated.resources.settings_github
+import utxo.composeapp.generated.resources.settings_hyperliquid_address
+import utxo.composeapp.generated.resources.settings_hyperliquid_address_hint
+import utxo.composeapp.generated.resources.settings_hyperliquid_invalid
 import utxo.composeapp.generated.resources.settings_news_sources
 import utxo.composeapp.generated.resources.settings_no_sources_enabled
+import utxo.composeapp.generated.resources.settings_portfolio
 import utxo.composeapp.generated.resources.settings_privacy_policy
+import utxo.composeapp.generated.resources.settings_save
 import utxo.composeapp.generated.resources.settings_select_all
 import utxo.composeapp.generated.resources.settings_select_news_sources
 import utxo.composeapp.generated.resources.settings_select_theme
@@ -172,6 +180,29 @@ fun SettingsScreen(
                         title = stringResource(Res.string.settings_news_sources),
                         subtitle = subtitle,
                         onClick = { showRssProvidersDialog = true }
+                    )
+                }
+
+                item {
+                    SettingsHeader(title = stringResource(Res.string.settings_portfolio))
+                    PortfolioAddressItem(
+                        savedAddress = settingsState?.hyperliquidWalletAddress.orEmpty(),
+                        onSave = { newAddress ->
+                            coroutineScope.launch {
+                                store.update { currentSettings ->
+                                    currentSettings?.copy(hyperliquidWalletAddress = newAddress)
+                                        ?: Settings(hyperliquidWalletAddress = newAddress)
+                                }
+                            }
+                        },
+                        onClear = {
+                            coroutineScope.launch {
+                                store.update { currentSettings ->
+                                    currentSettings?.copy(hyperliquidWalletAddress = "")
+                                        ?: Settings()
+                                }
+                            }
+                        }
                     )
                 }
 
@@ -350,6 +381,64 @@ private fun SettingsSwitchItem(
     }
 }
 
+
+@Composable
+private fun PortfolioAddressItem(
+    savedAddress: String,
+    onSave: (String) -> Unit,
+    onClear: () -> Unit
+) {
+    var text by remember(savedAddress) { mutableStateOf(savedAddress) }
+    val isValid = isValidHyperliquidAddress(text)
+    val isEmpty = text.isEmpty()
+    val isDirty = text != savedAddress
+    val showError = text.isNotEmpty() && !isValid
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it.trim() },
+            label = { Text(stringResource(Res.string.settings_hyperliquid_address)) },
+            placeholder = { Text(stringResource(Res.string.settings_hyperliquid_address_hint)) },
+            singleLine = true,
+            isError = showError,
+            trailingIcon = {
+                if (text.isNotEmpty()) {
+                    IconButton(onClick = {
+                        text = ""
+                        onClear()
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = stringResource(Res.string.settings_clear)
+                        )
+                    }
+                }
+            },
+            supportingText = if (showError) {
+                { Text(stringResource(Res.string.settings_hyperliquid_invalid)) }
+            } else {
+                null
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            TextButton(
+                onClick = { onSave(text) },
+                enabled = isDirty && (isValid || isEmpty)
+            ) {
+                Text(stringResource(Res.string.settings_save))
+            }
+        }
+    }
+}
 
 @Composable
 private fun ThemeSelectionDialog(
@@ -538,7 +627,8 @@ data class Settings(
     val appTheme: AppTheme = AppTheme.System,
     val favPairs: List<String> = listOf(""),
     val selectedTradingPair: String = "BTC",
-    val enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS
+    val enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS,
+    val hyperliquidWalletAddress: String = ""
 )
 
 enum class AppTheme {

@@ -1,6 +1,7 @@
 package model
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.CandlestickChart
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
@@ -28,6 +29,12 @@ sealed class NavItem {
         title = "Favorites",
         icon = Icons.Default.Star
     )
+
+    object PortfolioScreen : Item<Portfolio>(
+        path = Portfolio,
+        title = "Portfolio",
+        icon = Icons.Default.AccountBalanceWallet
+    )
 }
 
 @Serializable
@@ -38,6 +45,9 @@ object Settings
 
 @Serializable
 object Favorites
+
+@Serializable
+object Portfolio
 
 @Serializable
 data class CoinDetail(val symbol: String, val displaySymbol: String)
