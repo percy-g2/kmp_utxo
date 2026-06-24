@@ -16,6 +16,7 @@ Real-time prices via Binance WebSocket, RSS news feed, favorites, settings.
 - Types: `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `perf`
 - Always verify branch before push: `git branch --show-current`
 - PRs target `main` via `gh pr create --base main`
+- Never add `Co-Authored-By:` trailers or "Generated with …" lines to commits or PR bodies — commits are attributed solely to the human author
 
 ## Project Structure
 

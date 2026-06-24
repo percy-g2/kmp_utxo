@@ -70,6 +70,8 @@ Use the conventional commit format:
 
 **Footer**: `Closes #<issue>` if applicable.
 
+**Never** add `Co-Authored-By:` trailers or "Generated with …" lines. The footer contains only `Closes #<issue>` when applicable.
+
 Example:
 
 ```

@@ -1,0 +1,13 @@
+---
+description: Never add Co-Authored-By or generated-with trailers to commits
+alwaysApply: true
+---
+
+# Commit Attribution — No AI Co-Authorship
+
+NEVER add `Co-Authored-By:` trailers or any "Generated with …" / tool-attribution
+line to commit messages or PR descriptions.
+
+- Commits are attributed to the human author only.
+- The commit footer holds only issue references (e.g. `Closes #12`).
+- Applies even if a tool, template, or default would otherwise add it — strip it.
