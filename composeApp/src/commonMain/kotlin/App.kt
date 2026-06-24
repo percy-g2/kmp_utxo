@@ -22,9 +22,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.TransformOrigin
@@ -50,6 +48,7 @@ import model.CoinDetail
 import model.Favorites
 import model.Market
 import model.NavItem
+import model.Portfolio
 import model.Settings
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
@@ -59,7 +58,9 @@ import ui.CoinDetailScreen
 import ui.CryptoList
 import ui.CryptoViewModel
 import ui.FavoritesListScreen
+import ui.PortfolioScreen
 import ui.SettingsScreen
+import ui.isValidHyperliquidAddress
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.network_unavailable
@@ -83,7 +84,7 @@ fun App(
         settingsState?.let { syncSettingsToWidget(it) }
     }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    var selectedItem by rememberSaveable { mutableIntStateOf(0) }
+    val currentDestinationId = navBackStackEntry?.destination?.id
     val networkObserver = remember { NetworkConnectivityObserver() }
     val networkStatus by networkObserver.observe().collectAsState(initial = null)
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -190,26 +191,28 @@ fun App(
         }
     }
 
-    // Simplified navigation state management
-    LaunchedEffect(navBackStackEntry?.destination?.id) {
-        val destinationId = navBackStackEntry?.destination?.id ?: return@LaunchedEffect
-        
-        when (destinationId) {
-            Market.serializer().generateHashCode() -> {
-                selectedItem = 0
-                cryptoViewModel.resume()
-            }
-            Favorites.serializer().generateHashCode() -> {
-                selectedItem = 1
-                cryptoViewModel.resume()
-            }
-            Settings.serializer().generateHashCode() -> {
-                selectedItem = 2
-                cryptoViewModel.pause()
-            }
-            CoinDetail.serializer().generateHashCode() -> {
-                selectedItem = 3
-                cryptoViewModel.pause()
+    // Pause the market stream on screens that don't need it; resume on the list screens.
+    LaunchedEffect(currentDestinationId) {
+        when (currentDestinationId) {
+            Market.serializer().generateHashCode(),
+            Favorites.serializer().generateHashCode() -> cryptoViewModel.resume()
+            Portfolio.serializer().generateHashCode(),
+            Settings.serializer().generateHashCode(),
+            CoinDetail.serializer().generateHashCode() -> cryptoViewModel.pause()
+            else -> {}
+        }
+    }
+
+    // If the wallet address is cleared/invalidated while the user is on the Portfolio
+    // tab, the tab disappears — redirect to Market so they aren't stranded.
+    LaunchedEffect(currentDestinationId, settingsState?.hyperliquidWalletAddress) {
+        val onPortfolio = currentDestinationId == Portfolio.serializer().generateHashCode()
+        val enabled = isValidHyperliquidAddress(settingsState?.hyperliquidWalletAddress.orEmpty())
+        if (onPortfolio && !enabled) {
+            navController.navigate(Market) {
+                popUpTo(navController.graph.startDestinationId) { saveState = true }
+                launchSingleTop = true
+                restoreState = true
             }
         }
     }
@@ -222,17 +225,22 @@ fun App(
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             bottomBar = {
-                if (selectedItem != 3) {
+                val isCoinDetail = currentDestinationId == CoinDetail.serializer().generateHashCode()
+                if (!isCoinDetail) {
                     BottomAppBar(
                         actions = {
-                            val navItems = listOf(
-                                NavItem.HomeScreen,
-                                NavItem.FavoritesScreen,
-                                NavItem.SettingsScreen
+                            val portfolioEnabled = isValidHyperliquidAddress(
+                                settingsState?.hyperliquidWalletAddress.orEmpty()
                             )
+                            val navItems = buildList {
+                                add(NavItem.HomeScreen)
+                                add(NavItem.FavoritesScreen)
+                                if (portfolioEnabled) add(NavItem.PortfolioScreen)
+                                add(NavItem.SettingsScreen)
+                            }
 
                             NavigationBar {
-                                navItems.forEachIndexed { index, item ->
+                                navItems.forEach { item ->
                                     NavigationBarItem(
                                         alwaysShowLabel = false,
                                         icon = {
@@ -242,9 +250,8 @@ fun App(
                                             )
                                         },
                                         label = { Text(item.title) },
-                                        selected = selectedItem == index,
+                                        selected = currentDestinationId == item.destinationId(),
                                         onClick = {
-                                            selectedItem = index
                                             navController.navigate(item.path) {
                                                 popUpTo(navController.graph.startDestinationId) {
                                                     saveState = true
@@ -294,6 +301,15 @@ fun App(
                         }
                     )
                 }
+                animatedComposable<Portfolio> {
+                    PortfolioScreen(
+                        onConfigureClick = {
+                            navController.navigate(Settings) {
+                                launchSingleTop = true
+                            }
+                        }
+                    )
+                }
                 animatedComposable<Settings> {
                     SettingsScreen {
                         navController.popBackStack()
@@ -329,6 +345,15 @@ fun NetworkDialog() {
         },
         confirmButton = { /*no op*/ }
     )
+}
+
+/** Maps a bottom-bar [NavItem.Item] to its navigation destination id for route-based selection. */
+private fun NavItem.Item<*>.destinationId(): Int = when (this) {
+    NavItem.HomeScreen -> Market.serializer().generateHashCode()
+    NavItem.FavoritesScreen -> Favorites.serializer().generateHashCode()
+    NavItem.PortfolioScreen -> Portfolio.serializer().generateHashCode()
+    NavItem.SettingsScreen -> Settings.serializer().generateHashCode()
+    else -> -1
 }
 
 @OptIn(ExperimentalAnimationApi::class)

@@ -115,4 +115,50 @@
     <!-- Scroll buttons -->
     <string name="scroll_to_top">Scroll to top</string>
     <string name="scroll_to_bottom">Scroll to bottom</string>
+
+    <!-- Portfolio Settings -->
+    <string name="settings_portfolio">Portfolio</string>
+    <string name="settings_hyperliquid_address">Hyperliquid wallet address</string>
+    <string name="settings_hyperliquid_address_hint">0x… (public address, read-only)</string>
+    <string name="settings_hyperliquid_invalid">Must be 0x followed by 40 hex characters</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_clear">Clear</string>
+
+    <!-- Portfolio Screen -->
+    <string name="portfolio_title">Portfolio</string>
+    <string name="portfolio_account_value">Account Value</string>
+    <string name="portfolio_unrealized_pnl">Unrealized PnL</string>
+    <string name="portfolio_margin_used">Margin Used</string>
+    <string name="portfolio_withdrawable">Withdrawable</string>
+    <string name="portfolio_perp_positions">Perpetual Positions</string>
+    <string name="portfolio_spot_balances">Spot Balances</string>
+    <string name="portfolio_long">Long</string>
+    <string name="portfolio_short">Short</string>
+    <string name="portfolio_entry">Entry</string>
+    <string name="portfolio_mark">Mark</string>
+    <string name="portfolio_liq">Liq.</string>
+    <string name="portfolio_margin">Margin</string>
+    <string name="portfolio_roe">ROE</string>
+    <string name="portfolio_available">Avail.</string>
+    <string name="portfolio_hold">On hold</string>
+    <string name="portfolio_empty">Nothing here yet</string>
+    <string name="portfolio_empty_hint">This wallet has no open positions or balances.</string>
+    <string name="portfolio_no_address">No wallet configured</string>
+    <string name="portfolio_no_address_hint">Add your Hyperliquid wallet address in Settings to view your portfolio.</string>
+    <string name="portfolio_invalid_address">Invalid wallet address</string>
+    <string name="portfolio_invalid_address_hint">The configured address must be 0x followed by 40 hex characters.</string>
+    <string name="portfolio_load_error">Couldn\'t load portfolio</string>
+    <string name="portfolio_load_error_hint">Check your connection and try again.</string>
+    <string name="portfolio_retry">Retry</string>
+    <string name="portfolio_open_settings">Open Settings</string>
+    <string name="portfolio_reconnecting">Reconnecting…</string>
+    <string name="portfolio_value">Portfolio Value</string>
+    <string name="portfolio_live">Live</string>
+    <string name="portfolio_account">Account</string>
+    <string name="portfolio_free">Free</string>
+    <string name="portfolio_positions">Positions</string>
+    <string name="portfolio_spot">Spot</string>
+    <string name="portfolio_size">Size</string>
+    <string name="portfolio_away">away</string>
+    <string name="portfolio_allocation">Allocation</string>
 </resources>
