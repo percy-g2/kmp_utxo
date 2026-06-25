@@ -439,7 +439,7 @@
 				CODE_SIGN_ENTITLEMENTS = iosApp/iosApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 37UYJHD27F;
 				ENABLE_PREVIEWS = YES;
@@ -455,7 +455,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4.6;
+				MARKETING_VERSION = 0.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_ID}${TEAM_ID}";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.androdevlinux.utxo.UTXO;
 				PRODUCT_NAME = "${APP_NAME}";
@@ -473,7 +473,7 @@
 				CODE_SIGN_ENTITLEMENTS = iosApp/iosApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 37UYJHD27F;
 				ENABLE_PREVIEWS = YES;
@@ -489,7 +489,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4.6;
+				MARKETING_VERSION = 0.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_ID}${TEAM_ID}";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.androdevlinux.utxo.UTXO;
 				PRODUCT_NAME = "${APP_NAME}";
