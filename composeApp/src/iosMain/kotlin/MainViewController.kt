@@ -5,9 +5,12 @@ import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import platform.UIKit.UIViewController
 import theme.ThemeManager.store
 import theme.UTXOTheme
@@ -16,6 +19,8 @@ import ui.CoinDetailScreen
 import ui.CryptoList
 import ui.CryptoViewModel
 import ui.FavoritesListScreen
+import ui.PortfolioScreen
+import ui.PortfolioViewModel
 import ui.SettingsScreen
 import ui.utils.isDarkTheme
 
@@ -27,6 +32,9 @@ import ui.utils.isDarkTheme
  */
 object IosShared {
     val cryptoViewModel: CryptoViewModel by lazy { CryptoViewModel() }
+
+    /** Shared so the native TabView can drive pause/resume on tab switches (battery/data). */
+    val portfolioViewModel: PortfolioViewModel by lazy { PortfolioViewModel() }
 
     private val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     val networkStatus: StateFlow<NetworkStatus?> by lazy {
@@ -57,6 +65,12 @@ fun FavoritesViewController(onCoin: (String, String) -> Unit): UIViewController 
 fun SettingsViewController(): UIViewController =
     ComposeUIViewController { IosScreen { SettingsScreen(onBackPress = {}) } }
 
+/** Portfolio screen for the iOS 26 native-TabView path. [onConfigure] should select Settings. */
+fun PortfolioViewController(onConfigure: () -> Unit): UIViewController =
+    ComposeUIViewController {
+        IosScreen { PortfolioScreen(onConfigureClick = onConfigure, viewModel = IosShared.portfolioViewModel) }
+    }
+
 fun CoinDetailViewController(
     symbol: String,
     displaySymbol: String,
@@ -69,3 +83,23 @@ fun CoinDetailViewController(
 fun cryptoResume() = IosShared.cryptoViewModel.resume()
 
 fun cryptoPause() = IosShared.cryptoViewModel.pause()
+
+fun portfolioResume() = IosShared.portfolioViewModel.resume()
+
+fun portfolioPause() = IosShared.portfolioViewModel.pause()
+
+/**
+ * Observe the in-app theme so SwiftUI native chrome (the iOS 26 TabView / status bar) can match
+ * it via `.preferredColorScheme` — without this it follows the device appearance, not the app's
+ * theme toggle. Emits "System" | "Light" | "Dark" (System means "follow the device"). Returns a
+ * cancel function for the caller to invoke on teardown.
+ */
+fun observeAppTheme(onChange: (String) -> Unit): () -> Unit {
+    val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    scope.launch {
+        store.updates
+            .map { (it?.appTheme ?: AppTheme.System).name }
+            .collect { onChange(it) }
+    }
+    return { scope.cancel() }
+}

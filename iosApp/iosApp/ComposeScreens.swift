@@ -33,6 +33,17 @@ struct SettingsComposeView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
+struct PortfolioComposeView: UIViewControllerRepresentable {
+    /// Invoked by the screen's "Open Settings" actions; should switch to the Settings tab.
+    let onConfigure: () -> Void
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        MainViewControllerKt.PortfolioViewController(onConfigure: onConfigure)
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+}
+
 struct CoinDetailComposeView: UIViewControllerRepresentable {
     let symbol: String
     let displaySymbol: String
