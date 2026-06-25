@@ -1,6 +1,7 @@
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +15,8 @@ import kotlinx.coroutines.launch
 import platform.UIKit.UIViewController
 import theme.ThemeManager.store
 import theme.UTXOTheme
+import theme.backgroundDark
+import theme.backgroundLight
 import ui.AppTheme
 import ui.CoinDetailScreen
 import ui.CryptoList
@@ -94,6 +97,13 @@ fun portfolioPause() = IosShared.portfolioViewModel.pause()
  * theme toggle. Emits "System" | "Light" | "Dark" (System means "follow the device"). Returns a
  * cancel function for the caller to invoke on teardown.
  */
+/**
+ * The Compose theme background color (ARGB) so SwiftUI can paint the window / status-bar strip /
+ * tab-bar surround the same shade as the app content (the app uses #141313, not the iOS default
+ * pure black). [dark] selects the dark vs light theme background.
+ */
+fun themeBackgroundArgb(dark: Boolean): Int = (if (dark) backgroundDark else backgroundLight).toArgb()
+
 fun observeAppTheme(onChange: (String) -> Unit): () -> Unit {
     val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     scope.launch {
