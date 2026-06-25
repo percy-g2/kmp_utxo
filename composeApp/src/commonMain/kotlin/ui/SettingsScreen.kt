@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -20,6 +21,8 @@ import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Policy
@@ -52,11 +55,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import model.HyperliquidWallet
+import model.MAX_WALLETS
 import model.RssProvider
+import model.SCOPE_ALL
+import model.displayName
+import model.isValidHyperliquidAddress
+import model.shortenAddress
 import openLink
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
@@ -73,17 +83,23 @@ import utxo.composeapp.generated.resources.settings_all_sources_enabled
 import utxo.composeapp.generated.resources.settings_appearance
 import utxo.composeapp.generated.resources.settings_dark_mode
 import utxo.composeapp.generated.resources.settings_deselect_all
+import utxo.composeapp.generated.resources.settings_add_wallet
+import utxo.composeapp.generated.resources.settings_delete
 import utxo.composeapp.generated.resources.settings_done
-import utxo.composeapp.generated.resources.settings_clear
+import utxo.composeapp.generated.resources.settings_duplicate_address
 import utxo.composeapp.generated.resources.settings_github
-import utxo.composeapp.generated.resources.settings_hyperliquid_address
 import utxo.composeapp.generated.resources.settings_hyperliquid_address_hint
 import utxo.composeapp.generated.resources.settings_hyperliquid_invalid
 import utxo.composeapp.generated.resources.settings_news_sources
 import utxo.composeapp.generated.resources.settings_no_sources_enabled
 import utxo.composeapp.generated.resources.settings_portfolio
 import utxo.composeapp.generated.resources.settings_privacy_policy
+import utxo.composeapp.generated.resources.settings_rename_wallet
 import utxo.composeapp.generated.resources.settings_save
+import utxo.composeapp.generated.resources.settings_wallet_ens_badge
+import utxo.composeapp.generated.resources.settings_wallet_limit
+import utxo.composeapp.generated.resources.settings_wallet_name
+import utxo.composeapp.generated.resources.settings_wallet_name_hint
 import utxo.composeapp.generated.resources.settings_select_all
 import utxo.composeapp.generated.resources.settings_select_news_sources
 import utxo.composeapp.generated.resources.settings_select_theme
@@ -185,24 +201,13 @@ fun SettingsScreen(
 
                 item {
                     SettingsHeader(title = stringResource(Res.string.settings_portfolio))
-                    PortfolioAddressItem(
-                        savedAddress = settingsState?.hyperliquidWalletAddress.orEmpty(),
-                        onSave = { newAddress ->
-                            coroutineScope.launch {
-                                store.update { currentSettings ->
-                                    currentSettings?.copy(hyperliquidWalletAddress = newAddress)
-                                        ?: Settings(hyperliquidWalletAddress = newAddress)
-                                }
-                            }
+                    PortfolioWalletsManager(
+                        wallets = settingsState?.hyperliquidWallets ?: emptyList(),
+                        onAdd = { address -> coroutineScope.launch { addHyperliquidWallet(address) } },
+                        onRename = { address, label ->
+                            coroutineScope.launch { renameHyperliquidWallet(address, label) }
                         },
-                        onClear = {
-                            coroutineScope.launch {
-                                store.update { currentSettings ->
-                                    currentSettings?.copy(hyperliquidWalletAddress = "")
-                                        ?: Settings()
-                                }
-                            }
-                        }
+                        onDelete = { address -> coroutineScope.launch { deleteHyperliquidWallet(address) } },
                     )
                 }
 
@@ -383,61 +388,181 @@ private fun SettingsSwitchItem(
 
 
 @Composable
-private fun PortfolioAddressItem(
-    savedAddress: String,
-    onSave: (String) -> Unit,
-    onClear: () -> Unit
+private fun PortfolioWalletsManager(
+    wallets: List<HyperliquidWallet>,
+    onAdd: (String) -> Unit,
+    onRename: (String, String?) -> Unit,
+    onDelete: (String) -> Unit,
 ) {
-    var text by remember(savedAddress) { mutableStateOf(savedAddress) }
-    val isValid = isValidHyperliquidAddress(text)
-    val isEmpty = text.isEmpty()
-    val isDirty = text != savedAddress
-    val showError = text.isNotEmpty() && !isValid
+    var renameTarget by remember { mutableStateOf<HyperliquidWallet?>(null) }
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+        wallets.forEach { wallet ->
+            WalletRow(
+                wallet = wallet,
+                onRename = { renameTarget = wallet },
+                onDelete = { onDelete(wallet.address) },
+            )
+        }
+        AddWalletField(
+            existing = wallets,
+            atCap = wallets.size >= MAX_WALLETS,
+            onAdd = onAdd,
+        )
+    }
+
+    renameTarget?.let { target ->
+        RenameWalletDialog(
+            wallet = target,
+            onConfirm = { label ->
+                onRename(target.address, label)
+                renameTarget = null
+            },
+            onDismiss = { renameTarget = null },
+        )
+    }
+}
+
+@Composable
+private fun WalletRow(
+    wallet: HyperliquidWallet,
+    onRename: () -> Unit,
+    onDelete: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Text(
+                    text = wallet.displayName(),
+                    style = MaterialTheme.typography.bodyLarge,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                if (wallet.customLabel == null && wallet.ensName != null) {
+                    Surface(
+                        shape = RoundedCornerShape(50),
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.settings_wallet_ens_badge),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp),
+                        )
+                    }
+                }
+            }
+            Text(
+                text = shortenAddress(wallet.address),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        IconButton(onClick = onRename) {
+            Icon(Icons.Default.Edit, contentDescription = stringResource(Res.string.settings_rename_wallet))
+        }
+        IconButton(onClick = onDelete) {
+            Icon(Icons.Default.Delete, contentDescription = stringResource(Res.string.settings_delete))
+        }
+    }
+}
+
+@Composable
+private fun AddWalletField(
+    existing: List<HyperliquidWallet>,
+    atCap: Boolean,
+    onAdd: (String) -> Unit,
+) {
+    var text by remember { mutableStateOf("") }
+    val normalized = text.trim().lowercase()
+    val isValid = isValidHyperliquidAddress(normalized)
+    val isDuplicate = isValid && existing.any { it.address == normalized }
+    val showError = text.isNotEmpty() && (!isValid || isDuplicate)
+    val canAdd = isValid && !isDuplicate && !atCap
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
     ) {
         OutlinedTextField(
             value = text,
             onValueChange = { text = it.trim() },
-            label = { Text(stringResource(Res.string.settings_hyperliquid_address)) },
+            label = { Text(stringResource(Res.string.settings_add_wallet)) },
             placeholder = { Text(stringResource(Res.string.settings_hyperliquid_address_hint)) },
             singleLine = true,
+            enabled = !atCap,
             isError = showError,
-            trailingIcon = {
-                if (text.isNotEmpty()) {
-                    IconButton(onClick = {
-                        text = ""
-                        onClear()
-                    }) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = stringResource(Res.string.settings_clear)
-                        )
-                    }
+            supportingText = when {
+                atCap -> {
+                    { Text(stringResource(Res.string.settings_wallet_limit, MAX_WALLETS)) }
                 }
+                isDuplicate -> {
+                    { Text(stringResource(Res.string.settings_duplicate_address)) }
+                }
+                showError -> {
+                    { Text(stringResource(Res.string.settings_hyperliquid_invalid)) }
+                }
+                else -> null
             },
-            supportingText = if (showError) {
-                { Text(stringResource(Res.string.settings_hyperliquid_invalid)) }
-            } else {
-                null
-            },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.End,
         ) {
             TextButton(
-                onClick = { onSave(text) },
-                enabled = isDirty && (isValid || isEmpty)
+                onClick = {
+                    onAdd(normalized)
+                    text = ""
+                },
+                enabled = canAdd,
             ) {
-                Text(stringResource(Res.string.settings_save))
+                Text(stringResource(Res.string.settings_add_wallet))
             }
         }
     }
+}
+
+@Composable
+private fun RenameWalletDialog(
+    wallet: HyperliquidWallet,
+    onConfirm: (String?) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var text by remember { mutableStateOf(wallet.customLabel.orEmpty()) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(Res.string.settings_rename_wallet)) },
+        text = {
+            OutlinedTextField(
+                value = text,
+                onValueChange = { text = it },
+                label = { Text(stringResource(Res.string.settings_wallet_name)) },
+                placeholder = { Text(stringResource(Res.string.settings_wallet_name_hint)) },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+            )
+        },
+        confirmButton = {
+            TextButton(onClick = { onConfirm(text.trim().takeIf { it.isNotEmpty() }) }) {
+                Text(stringResource(Res.string.settings_save))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(Res.string.cancel))
+            }
+        },
+    )
 }
 
 @Composable
@@ -628,7 +753,11 @@ data class Settings(
     val favPairs: List<String> = listOf(""),
     val selectedTradingPair: String = "BTC",
     val enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS,
-    val hyperliquidWalletAddress: String = ""
+    @Deprecated("Migrated into hyperliquidWallets; kept one release for migration read.")
+    val hyperliquidWalletAddress: String = "",
+    val hyperliquidWallets: List<HyperliquidWallet> = emptyList(),
+    /** [SCOPE_ALL] (aggregate) or a single lowercased wallet address. */
+    val portfolioScope: String = SCOPE_ALL,
 )
 
 enum class AppTheme {
