@@ -60,7 +60,8 @@ import ui.CryptoViewModel
 import ui.FavoritesListScreen
 import ui.PortfolioScreen
 import ui.SettingsScreen
-import ui.isValidHyperliquidAddress
+import ui.hasPortfolioWallets
+import theme.ThemeManager
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.network_unavailable
@@ -73,6 +74,12 @@ fun App(
     // Initialize logger early to ensure it's ready
     LaunchedEffect(Unit) {
         AppLogger.logger.d { "App initialized" }
+    }
+
+    // One-time migration of the legacy single Hyperliquid address into the wallet list.
+    // Runs here (not in the Portfolio VM, whose tab is gated on wallet presence).
+    LaunchedEffect(Unit) {
+        ThemeManager.migrateSettingsIfNeeded()
     }
     
     val navController: NavHostController = rememberNavController()
@@ -203,11 +210,11 @@ fun App(
         }
     }
 
-    // If the wallet address is cleared/invalidated while the user is on the Portfolio
-    // tab, the tab disappears — redirect to Market so they aren't stranded.
-    LaunchedEffect(currentDestinationId, settingsState?.hyperliquidWalletAddress) {
+    // If all tracked wallets are cleared while the user is on the Portfolio tab, the tab
+    // disappears — redirect to Market so they aren't stranded.
+    LaunchedEffect(currentDestinationId, settingsState?.hyperliquidWallets) {
         val onPortfolio = currentDestinationId == Portfolio.serializer().generateHashCode()
-        val enabled = isValidHyperliquidAddress(settingsState?.hyperliquidWalletAddress.orEmpty())
+        val enabled = settingsState?.hasPortfolioWallets() == true
         if (onPortfolio && !enabled) {
             navController.navigate(Market) {
                 popUpTo(navController.graph.startDestinationId) { saveState = true }
@@ -229,9 +236,7 @@ fun App(
                 if (!isCoinDetail) {
                     BottomAppBar(
                         actions = {
-                            val portfolioEnabled = isValidHyperliquidAddress(
-                                settingsState?.hyperliquidWalletAddress.orEmpty()
-                            )
+                            val portfolioEnabled = settingsState?.hasPortfolioWallets() == true
                             val navItems = buildList {
                                 add(NavItem.HomeScreen)
                                 add(NavItem.FavoritesScreen)

@@ -6,6 +6,9 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import getKStore
+import model.HyperliquidWallet
+import model.SCOPE_ALL
+import model.isValidHyperliquidAddress
 import ui.AppTheme
 import ui.Settings
 
@@ -107,5 +110,31 @@ object ThemeManager {
 
     suspend fun updateTheme(newTheme: AppTheme) {
         store.update { it?.copy(appTheme = newTheme) ?: Settings(appTheme = newTheme) }
+    }
+
+    /**
+     * One-time migration of the legacy single [Settings.hyperliquidWalletAddress] into the
+     * [Settings.hyperliquidWallets] list. Idempotent (re-running is a no-op once the list is
+     * seeded / the legacy field is blanked) and safe to call on every launch. Runs from
+     * `App()` rather than the Portfolio ViewModel, whose tab is gated on wallet presence —
+     * a legacy-only user would otherwise never trigger it.
+     */
+    @Suppress("DEPRECATION")
+    suspend fun migrateSettingsIfNeeded() {
+        store.update { current ->
+            val s = current ?: return@update current
+            val legacy = s.hyperliquidWalletAddress.trim()
+            when {
+                s.hyperliquidWallets.isEmpty() && isValidHyperliquidAddress(legacy) ->
+                    s.copy(
+                        hyperliquidWallets = listOf(HyperliquidWallet(address = legacy.lowercase())),
+                        hyperliquidWalletAddress = "",
+                        portfolioScope = SCOPE_ALL,
+                    )
+                legacy.isNotEmpty() && s.hyperliquidWallets.isNotEmpty() ->
+                    s.copy(hyperliquidWalletAddress = "") // already migrated; just clean up
+                else -> current
+            }
+        }
     }
 }

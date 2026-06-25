@@ -21,6 +21,53 @@ import kotlinx.serialization.Serializable
  * never throw — the Json parser is configured with ignoreUnknownKeys = true.
  */
 
+// region --- Multi-wallet config ---
+
+/** Persisted scope sentinel: the aggregate "All wallets" view. Never a valid 0x address. */
+const val SCOPE_ALL = "all"
+
+/** Hard cap on tracked wallets — bounds simultaneous WebSockets and the shared rate limiter. */
+const val MAX_WALLETS = 5
+
+/**
+ * Validates a Hyperliquid (EVM) wallet address: "0x" followed by 40 hex characters.
+ * Lives in [model] so it can be shared downward by network/ui without a layer cycle;
+ * used by the Settings input, the bottom-bar tab gate, [network] ENS lookups, and the
+ * Portfolio ViewModel.
+ */
+fun isValidHyperliquidAddress(address: String): Boolean =
+    address.length == 42 &&
+        address.startsWith("0x") &&
+        address.drop(2).all { it in '0'..'9' || it in 'a'..'f' || it in 'A'..'F' }
+
+/**
+ * A single tracked Hyperliquid wallet. The portfolio is read-only — only the public
+ * [address] is ever used. [address] is stored lowercased so it is the canonical identity
+ * (dedup and scope-matching are plain `==`).
+ */
+@Serializable
+data class HyperliquidWallet(
+    val address: String,
+    /** User-set manual override; wins over [ensName]. */
+    val customLabel: String? = null,
+    /** Cached ENS reverse-resolution (.eth) name; null when none/unresolved. */
+    val ensName: String? = null,
+    /** When ENS was last resolved (epoch millis); null = never attempted. Drives the TTL. */
+    val ensResolvedAtMillis: Long? = null,
+)
+
+/** Display precedence: manual label, then ENS name, then a truncated address. */
+fun HyperliquidWallet.displayName(): String =
+    customLabel?.takeIf { it.isNotBlank() }
+        ?: ensName?.takeIf { it.isNotBlank() }
+        ?: shortenAddress(address)
+
+/** "0x1234…cdef" — first 6 + ellipsis + last 4. Returns the input unchanged if too short. */
+fun shortenAddress(addr: String): String =
+    if (addr.length >= 12) "${addr.take(6)}…${addr.takeLast(4)}" else addr
+
+// endregion
+
 // region --- Raw API DTOs (perps) ---
 
 @Serializable
@@ -114,6 +161,8 @@ data class PerpPositionRow(
     /** Distance from mark to liquidation as a fraction (0 = at liq, 1 = far); null if no liq. */
     val liqDistanceFraction: Double?,
     val marginUsed: Double,
+    /** Owning wallet's display name; non-null only in the aggregate "All" view. */
+    val sourceLabel: String? = null,
 )
 
 data class SpotBalanceRow(
@@ -123,6 +172,8 @@ data class SpotBalanceRow(
     val hold: Double,
     /** USD value when known (stablecoins); null otherwise. */
     val usdValue: Double?,
+    /** Owning wallet's display name; non-null only in the aggregate "All" view. */
+    val sourceLabel: String? = null,
 )
 
 sealed interface PortfolioUiState {
@@ -146,5 +197,29 @@ sealed interface PortfolioUiState {
         val isStale: Boolean = false,
     ) : PortfolioUiState
 }
+
+/**
+ * One wallet's fully-derived portfolio (post spot/stablecoin filtering). Aggregation must
+ * combine these — never raw DTOs — so cross-margin USDC is not double-counted.
+ */
+data class WalletData(
+    val address: String,
+    val summary: PortfolioSummary,
+    val perps: List<PerpPositionRow>,
+    val spot: List<SpotBalanceRow>,
+    /** Cost-basis equity used to blend an aggregate PnL %. */
+    val costBasis: Double,
+    /** True once a snapshot or live frame has produced real data. */
+    val hasData: Boolean,
+    val snapshotError: Boolean,
+    val isStale: Boolean,
+)
+
+/** A chip in the Portfolio scope switcher. [key] is [SCOPE_ALL] or a wallet address. */
+data class WalletTab(
+    val key: String,
+    val label: String,
+    val isStale: Boolean,
+)
 
 // endregion

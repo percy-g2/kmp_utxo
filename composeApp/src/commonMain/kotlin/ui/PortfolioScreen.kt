@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,6 +34,7 @@ import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -62,13 +64,16 @@ import ktx.formatAsCurrency
 import model.PerpPositionRow
 import model.PortfolioSummary
 import model.PortfolioUiState
+import model.SCOPE_ALL
 import model.SpotBalanceRow
+import model.WalletTab
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.portfolio_account
+import utxo.composeapp.generated.resources.portfolio_all
 import utxo.composeapp.generated.resources.portfolio_allocation
 import utxo.composeapp.generated.resources.portfolio_available
 import utxo.composeapp.generated.resources.portfolio_away
@@ -101,15 +106,6 @@ import utxo.composeapp.generated.resources.refresh
 import kotlin.math.abs
 import kotlin.math.roundToLong
 
-/**
- * Validates a Hyperliquid (EVM) wallet address: "0x" followed by 40 hex characters.
- * Shared by the Settings input, the bottom-bar tab gate, and [PortfolioViewModel].
- */
-fun isValidHyperliquidAddress(address: String): Boolean =
-    address.length == 42 &&
-        address.startsWith("0x") &&
-        address.drop(2).all { it in '0'..'9' || it in 'a'..'f' || it in 'A'..'F' }
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PortfolioScreen(
@@ -117,6 +113,8 @@ fun PortfolioScreen(
     viewModel: PortfolioViewModel = viewModel { PortfolioViewModel() },
 ) {
     val state by viewModel.state.collectAsState()
+    val walletTabs by viewModel.walletTabs.collectAsState()
+    val selectedScope by viewModel.selectedScope.collectAsState()
     val settings by store.updates.collectAsState(initial = null)
     val isDark = isDarkTheme(settings)
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -153,9 +151,22 @@ fun PortfolioScreen(
             )
         }
     ) { innerPadding ->
-        Box(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
-            when (val s = state) {
-                PortfolioUiState.Loading -> LoadingSkeleton()
+        Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
+            // The switcher is pinned above the body and stays visible in every state, so the
+            // user can switch away from a wallet that is loading or errored. Only shown with
+            // 2+ wallets (tabs = "All" + one per wallet), so a single wallet keeps the
+            // original switcher-free layout.
+            if (walletTabs.size > 2) {
+                WalletScopeSwitcher(
+                    tabs = walletTabs,
+                    selectedKey = selectedScope,
+                    onSelect = viewModel::selectScope,
+                    isDark = isDark,
+                )
+            }
+            Box(modifier = Modifier.fillMaxWidth().weight(1f)) {
+                when (val s = state) {
+                    PortfolioUiState.Loading -> LoadingSkeleton()
 
                 PortfolioUiState.NoAddress -> InfoState(
                     icon = Icons.Default.AccountBalanceWallet,
@@ -181,8 +192,43 @@ fun PortfolioScreen(
                     onAction = viewModel::refresh,
                 )
 
-                is PortfolioUiState.Data -> PortfolioContent(s, isDark)
+                    is PortfolioUiState.Data -> PortfolioContent(s, isDark)
+                }
             }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun WalletScopeSwitcher(
+    tabs: List<WalletTab>,
+    selectedKey: String,
+    onSelect: (String) -> Unit,
+    isDark: Boolean,
+) {
+    LazyRow(
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        items(items = tabs, key = { it.key }) { tab ->
+            val label = if (tab.key == SCOPE_ALL) stringResource(Res.string.portfolio_all) else tab.label
+            val dot = if (tab.isStale) {
+                MaterialTheme.colorScheme.error
+            } else {
+                getPriceChangeColor(1f, isDark, MaterialTheme.colorScheme.primary)
+            }
+            FilterChip(
+                selected = tab.key == selectedKey,
+                onClick = { onSelect(tab.key) },
+                label = {
+                    Text(label, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                },
+                leadingIcon = {
+                    Box(Modifier.size(8.dp).clip(CircleShape).background(dot))
+                },
+            )
         }
     }
 }
@@ -213,7 +259,7 @@ private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean) {
             item(key = "perp_header") {
                 SectionHeader(stringResource(Res.string.portfolio_positions), data.perpPositions.size)
             }
-            items(items = data.perpPositions, key = { "perp_${it.coin}" }) { row ->
+            items(items = data.perpPositions, key = { "perp_${it.sourceLabel}_${it.coin}" }) { row ->
                 PositionCard(row, palette.colorFor(row.coin), isDark)
             }
         }
@@ -222,7 +268,7 @@ private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean) {
             item(key = "spot_header") {
                 SectionHeader(stringResource(Res.string.portfolio_spot), data.spotBalances.size)
             }
-            items(items = data.spotBalances, key = { "spot_${it.coin}" }) { row ->
+            items(items = data.spotBalances, key = { "spot_${it.sourceLabel}_${it.coin}" }) { row ->
                 SpotCard(row, palette.colorFor(row.coin))
             }
         }
@@ -418,6 +464,7 @@ private fun PositionCard(row: PerpPositionRow, accent: Color, isDark: Boolean) {
                         SidePill(row.isLong, isDark)
                         if (row.leverageText.isNotBlank()) Tag(row.leverageText)
                     }
+                    row.sourceLabel?.let { WalletTagLine(it) }
                     Spacer(Modifier.height(3.dp))
                     Text(
                         text = "${stringResource(Res.string.portfolio_size)} ${row.size.toAmount()}  ·  " +
@@ -493,6 +540,7 @@ private fun SpotCard(row: SpotBalanceRow, accent: Color) {
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
+                row.sourceLabel?.let { WalletTagLine(it) }
             }
             Column(horizontalAlignment = Alignment.End) {
                 Text(row.total.toAmount(), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
@@ -542,6 +590,33 @@ private fun Tag(text: String) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
         )
+    }
+}
+
+/** Small wallet-attribution pill shown on each row in the aggregate "All" view. */
+@Composable
+private fun WalletTagLine(label: String) {
+    Spacer(Modifier.height(3.dp))
+    Surface(shape = RoundedCornerShape(50), color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f)) {
+        Row(
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            Icon(
+                imageVector = Icons.Default.AccountBalanceWallet,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(11.dp),
+            )
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.primary,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
     }
 }
 

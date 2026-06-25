@@ -123,6 +123,14 @@
     <string name="settings_hyperliquid_invalid">Must be 0x followed by 40 hex characters</string>
     <string name="settings_save">Save</string>
     <string name="settings_clear">Clear</string>
+    <string name="settings_add_wallet">Add wallet</string>
+    <string name="settings_wallet_limit">Maximum of %1$d wallets reached</string>
+    <string name="settings_duplicate_address">This wallet is already added</string>
+    <string name="settings_rename_wallet">Rename wallet</string>
+    <string name="settings_wallet_name">Wallet name</string>
+    <string name="settings_wallet_name_hint">Leave blank to use the ENS name or address</string>
+    <string name="settings_wallet_ens_badge">ENS</string>
+    <string name="settings_delete">Delete</string>
 
     <!-- Portfolio Screen -->
     <string name="portfolio_title">Portfolio</string>
@@ -161,4 +169,5 @@
     <string name="portfolio_size">Size</string>
     <string name="portfolio_away">away</string>
     <string name="portfolio_allocation">Allocation</string>
+    <string name="portfolio_all">All</string>
 </resources>
