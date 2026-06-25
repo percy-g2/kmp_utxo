@@ -44,7 +44,12 @@ struct LiquidGlassRootView: View {
                 }
             }
 
-            Tab("Settings", systemImage: "gearshape", value: 2) {
+            Tab("Portfolio", systemImage: "chart.pie.fill", value: 2) {
+                PortfolioComposeView { selection = 3 } // "Open Settings" → Settings tab
+                    .ignoresSafeArea(.keyboard)
+            }
+
+            Tab("Settings", systemImage: "gearshape", value: 3) {
                 SettingsComposeView()
                     .ignoresSafeArea(.keyboard)
             }
@@ -55,10 +60,17 @@ struct LiquidGlassRootView: View {
             consumeDeepLink() // handle a link delivered before observation started
         }
         .onChange(of: selection) { _, newValue in
-            if newValue == 2 {
-                MainViewControllerKt.cryptoPause()
-            } else {
+            // Market(0)/Favorites(1) need the live market stream; Portfolio(2)/Settings(3) don't.
+            if newValue == 0 || newValue == 1 {
                 MainViewControllerKt.cryptoResume()
+            } else {
+                MainViewControllerKt.cryptoPause()
+            }
+            // Only the Portfolio tab needs its (per-wallet) live streams.
+            if newValue == 2 {
+                MainViewControllerKt.portfolioResume()
+            } else {
+                MainViewControllerKt.portfolioPause()
             }
         }
         .onChange(of: urlHandler.pendingCoin) { _, _ in consumeDeepLink() }
@@ -85,6 +97,6 @@ struct LiquidGlassRootView: View {
             .toolbar(.hidden, for: .navigationBar)
             .toolbar(.hidden, for: .tabBar)
             .onAppear { MainViewControllerKt.cryptoPause() }
-            .onDisappear { if selection != 2 { MainViewControllerKt.cryptoResume() } }
+            .onDisappear { if selection == 0 || selection == 1 { MainViewControllerKt.cryptoResume() } }
     }
 }
