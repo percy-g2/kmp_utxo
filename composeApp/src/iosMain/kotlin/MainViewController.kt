@@ -78,9 +78,9 @@ fun FavoritesViewController(onCoin: (String, String) -> Unit): UIViewController 
         IosScreen { FavoritesListScreen(IosShared.cryptoViewModel, onCoin, bottomBarClearance = NativeTabBarClearance) }
     }
 
-fun SettingsViewController(): UIViewController =
+fun SettingsViewController(onBack: () -> Unit): UIViewController =
     ComposeUIViewController {
-        IosScreen { SettingsScreen(onBackPress = {}, bottomBarClearance = NativeTabBarClearance) }
+        IosScreen { SettingsScreen(onBackPress = onBack, bottomBarClearance = NativeTabBarClearance) }
     }
 
 /** Portfolio screen for the iOS 26 native-TabView path. [onConfigure] should select Settings. */

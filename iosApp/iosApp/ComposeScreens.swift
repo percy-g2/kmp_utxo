@@ -26,8 +26,11 @@ struct FavoritesComposeView: UIViewControllerRepresentable {
 }
 
 struct SettingsComposeView: UIViewControllerRepresentable {
+    /// Invoked by the screen's back arrow; should return to the tab Settings was opened from.
+    let onBack: () -> Void
+
     func makeUIViewController(context: Context) -> UIViewController {
-        MainViewControllerKt.SettingsViewController()
+        MainViewControllerKt.SettingsViewController(onBack: onBack)
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}

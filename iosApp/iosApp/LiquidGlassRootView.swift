@@ -13,6 +13,8 @@ struct CoinRoute: Hashable {
 struct LiquidGlassRootView: View {
     @EnvironmentObject private var urlHandler: URLHandler
     @State private var selection = 0
+    /// Tab that Settings was opened from, so its back arrow can return there (tabs have no back stack).
+    @State private var previousSelection = 0
     @State private var marketPath = NavigationPath()
     @State private var favPath = NavigationPath()
 
@@ -55,7 +57,7 @@ struct LiquidGlassRootView: View {
             }
 
             Tab("Settings", systemImage: "gearshape", value: 3) {
-                SettingsComposeView()
+                SettingsComposeView { selection = previousSelection } // back → origin tab
                     .ignoresSafeArea(.keyboard)
                     .ignoresSafeArea(.container, edges: .bottom)
             }
@@ -65,7 +67,9 @@ struct LiquidGlassRootView: View {
             MainViewControllerKt.cryptoResume()
             consumeDeepLink() // handle a link delivered before observation started
         }
-        .onChange(of: selection) { _, newValue in
+        .onChange(of: selection) { oldValue, newValue in
+            // Remember where Settings was entered from so its back arrow can return there.
+            if newValue == 3 { previousSelection = oldValue }
             // Market(0)/Favorites(1) need the live market stream; Portfolio(2)/Settings(3) don't.
             if newValue == 0 || newValue == 1 {
                 MainViewControllerKt.cryptoResume()
