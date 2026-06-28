@@ -32,31 +32,55 @@ fun Settings.effectivePortfolioScope(): String =
         SCOPE_ALL
     }
 
-/** Add a wallet. No-op when invalid, a duplicate, or the [MAX_WALLETS] cap is reached. */
-suspend fun addHyperliquidWallet(rawAddress: String) {
+/**
+ * Add a wallet, optionally with a manual [label] set in the same pass (blank = no override).
+ * No-op when invalid, a duplicate, or the [MAX_WALLETS] cap is reached.
+ */
+suspend fun addHyperliquidWallet(rawAddress: String, label: String? = null) {
     val addr = rawAddress.trim().lowercase()
     if (!isValidHyperliquidAddress(addr)) return
+    val clean = label?.trim()?.takeIf { it.isNotEmpty() }
     store.update { current ->
         val s = current ?: Settings()
         val exists = s.hyperliquidWallets.any { it.address == addr }
         if (exists || s.hyperliquidWallets.size >= MAX_WALLETS) {
             s
         } else {
-            s.copy(hyperliquidWallets = s.hyperliquidWallets + HyperliquidWallet(address = addr))
+            s.copy(
+                hyperliquidWallets = s.hyperliquidWallets + HyperliquidWallet(address = addr, customLabel = clean),
+            )
         }
     }
 }
 
-/** Set or clear a wallet's manual label (a blank label clears the override). */
-suspend fun renameHyperliquidWallet(address: String, label: String?) {
-    val addr = address.lowercase()
+/**
+ * Edit a wallet's address and/or manual label (a blank label clears the override). When the
+ * address changes, the cached ENS name belonged to the old address, so it is reset (the
+ * Portfolio ViewModel re-resolves it), and the selected scope is re-pointed at the new address.
+ * No-op when the new address is invalid or collides with a *different* tracked wallet.
+ */
+suspend fun updateHyperliquidWallet(oldAddress: String, newAddress: String, label: String?) {
+    val old = oldAddress.lowercase()
+    val next = newAddress.trim().lowercase()
+    if (!isValidHyperliquidAddress(next)) return
     val clean = label?.trim()?.takeIf { it.isNotEmpty() }
     store.update { current ->
         val s = current ?: return@update current
+        if (next != old && s.hyperliquidWallets.any { it.address == next }) return@update s
         s.copy(
-            hyperliquidWallets = s.hyperliquidWallets.map {
-                if (it.address == addr) it.copy(customLabel = clean) else it
+            hyperliquidWallets = s.hyperliquidWallets.map { w ->
+                when {
+                    w.address != old -> w
+                    next == old -> w.copy(customLabel = clean)
+                    else -> w.copy(
+                        address = next,
+                        customLabel = clean,
+                        ensName = null,
+                        ensResolvedAtMillis = null,
+                    )
+                }
             },
+            portfolioScope = if (s.portfolioScope == old) next else s.portfolioScope,
         )
     }
 }

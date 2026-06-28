@@ -16,6 +16,9 @@ import logging.AppLogger
 import model.HlPerpState
 import model.HlSpotState
 
+/** Result of [HyperliquidService.verifyAccount]: a real account, a reachable-but-empty one, or no reply. */
+enum class HlAccountCheck { Active, Empty, Unreachable }
+
 /**
  * Read-only HTTP client for the Hyperliquid info endpoint.
  *
@@ -61,6 +64,25 @@ class HyperliquidService {
                 .onFailure { AppLogger.logger.e(throwable = it) { "Hyperliquid: failed to parse spotClearinghouseState" } }
                 .getOrNull()
         }
+
+    /**
+     * Check whether [user] is a real Hyperliquid account before tracking it. The info endpoint
+     * returns an empty/default body for any syntactically valid address, so we require an actual
+     * footprint — a perp position, a spot balance, or non-zero account value/withdrawable.
+     * [HlAccountCheck.Unreachable] (both calls failed) is distinct from [HlAccountCheck.Empty]
+     * (reachable, but no Hyperliquid activity) so the caller can offer a retry vs. reject.
+     */
+    suspend fun verifyAccount(user: String): HlAccountCheck {
+        val perp = fetchPerpState(user)
+        val spot = fetchSpotState(user)
+        if (perp == null && spot == null) return HlAccountCheck.Unreachable
+        val hasFootprint =
+            perp?.assetPositions?.isNotEmpty() == true ||
+                (perp?.marginSummary?.accountValue?.toDoubleOrNull() ?: 0.0) > 0.0 ||
+                (perp?.withdrawable?.toDoubleOrNull() ?: 0.0) > 0.0 ||
+                spot?.balances?.isNotEmpty() == true
+        return if (hasFootprint) HlAccountCheck.Active else HlAccountCheck.Empty
+    }
 
     /**
      * POST {"type":<type>,"user":<user>} to the info endpoint and return the raw body,
