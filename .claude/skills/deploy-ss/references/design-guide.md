@@ -29,6 +29,7 @@ Two lines, hand-broken with `\n`. Inter Black at 140 px (iPhone) or 168 px (iPad
 | Weak | Strong |
 |---|---|
 | Cryptocurrency tracking made easy | Track live\ncrypto markets |
+| Track all your wallets in one place | Your portfolio,\nin real time |
 | Get realtime stock prices | Real-time stocks,\npocket-sized |
 | Manage your finances | Every dollar,\naccounted for |
 | Find the best workout for you | Workouts that\nfit your week |
@@ -46,6 +47,7 @@ One sentence, ≤14 words, sits below the headline at 52 px (iPhone) or 64 px (i
 - **Named features:** "Powered by TradingView. Pinch, scrub, zoom — full control."
 - **Named integrations:** "Latest from BeInCrypto, CryptoSlate and trusted sources."
 - **Concrete scope:** "BTC, ETH, SOL and 200+ coins — updated every second."
+- **Stacked capabilities:** "Multi-wallet balances, live P&L and liquidation alerts in one view."
 - **What's notably absent:** "No ads. No accounts. Just data."
 
 ### Anti-patterns
@@ -58,7 +60,9 @@ One sentence, ≤14 words, sits below the headline at 52 px (iPhone) or 64 px (i
 
 Match the screenshot's actual background. A dark-mode app screenshot on a cream canvas creates an awkward contrast frame that draws the eye to the seam, not the content.
 
-If the user's app supports both modes and they uploaded both, alternate themes for visual rhythm: dark-light-dark-light-dark across the 5 screens. If they only uploaded one mode, all 5 should match.
+If the user's app supports both modes and they uploaded both, alternate themes for visual rhythm: dark-light-dark-light across the set. If they only uploaded one mode, all should match.
+
+**Two dark screens in a row?** Sometimes the lineup forces it — e.g. Markets and Portfolio both read best in dark. When that happens, give the second screen a distinctly different `bg_color` hue and `accent` so the pair doesn't blur together. The UTXO set uses midnight blue (`#0A0E1A`) for Markets and deep green (`#07140F`, green `#1FB87A` accent) for Portfolio.
 
 ### Default palettes by theme
 
@@ -79,6 +83,7 @@ The generator picks these unless overridden. They're tuned so the headline reads
 For visual variety across the set, vary the dark backgrounds slightly screen-to-screen:
 
 - Markets/list screen: `#0A0E1A` (midnight blue)
+- Portfolio/wallet screen: `#07140F` (deep green, pair with a green accent)
 - Chart/depth screen: `#181224` (deep purple)
 - Profile/favorites screen: `#080A0E` (near-black)
 - News/content screen: `#0E1014` (charcoal)
@@ -125,11 +130,23 @@ In the config:
 - `bottom_keep`: pixels from the bottom to keep (typically the tab bar)
 - `bg_color`: the screen's background — used for the seam, must match or the seam will be visible
 
+These are **source-pixel** counts, so they depend on the raw capture's resolution. A value tuned for a 1206 × 2622 iPhone capture won't land the same on a 1280 × 2856 Android one — when you generate per-platform from differently-sized raws, use a separate config per platform with `top_keep`/`bottom_keep` retuned (the UTXO set uses ~1180/300 for iOS and ~1230/230 for Android). Eyeball the output and nudge.
+
 ### iPad — don't collapse
 
 The iPad layout centers the phone in the right column. A collapsed phone there reads as a stubby card and looks inconsistent with the other phones in the set. Leave the iPad version using the original screenshot — the empty middle is visible but not jarring because the canvas around the phone gives breathing room.
 
 If you really want to collapse on iPad too (rare), use the `preprocess_ipad` field instead — it overrides the iPad rendering specifically.
+
+## Demo data for the raw captures
+
+A screenshot is only as good as the data on screen. Empty lists, zero balances, and flat charts make a capable app look dead. Before capturing, seed the app with rich, believable demo state.
+
+For the **Portfolio / wallet** screen specifically, source the demo wallets from the **Hyperliquid public leaderboard** (https://app.hyperliquid.xyz/leaderboard, backed by the `stats-data.hyperliquid.xyz/Mainnet/leaderboard` JSON):
+
+- Pick **2–3** top accounts with healthy, mostly-green P&L and several open positions — query each candidate's `clearinghouseState` from `api.hyperliquid.xyz/info` to confirm it has live positions with positive unrealized P&L (the screen shows *unrealized* P&L, not the leaderboard's realized figure).
+- Adding 2–3 (not one) makes the multi-wallet scope switcher ("All" + per-wallet chips) and the aggregate hero value visible — that breadth is the feature.
+- Seed them directly into the persisted store rather than typing addresses through the UI: the app keeps a bare `Settings` JSON at `<caches>/settings.json` (iOS `NSCachesDirectory`, Android `cacheDir`). Write the `hyperliquidWallets` list (lowercase `0x…` addresses + optional `customLabel`) while the app is force-stopped, then relaunch — no on-add verification runs for persisted wallets. The same file's `appTheme` field drives a two-pass dark/light capture without touching the UI.
 
 ## The feature graphic
 

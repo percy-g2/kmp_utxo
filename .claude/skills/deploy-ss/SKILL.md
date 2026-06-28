@@ -13,11 +13,13 @@ Three deliverables per run, all in the user's chosen output directory:
 
 | Deliverable | Dimensions | Purpose | Count |
 |---|---|---|---|
-| iPhone screenshots | 1284 × 2778 | App Store iPhone 6.5"/6.7" Display slot; also accepted by Play Store | 5 |
-| iPad screenshots | 2048 × 2732 | App Store iPad 12.9"/13" Display slot | 5 |
+| iPhone screenshots | 1284 × 2778 | App Store iPhone 6.5"/6.7" Display slot; also accepted by Play Store | one per screen entry |
+| iPad screenshots | 2048 × 2732 | App Store iPad 12.9"/13" Display slot | one per screen entry |
 | Feature graphic | 1024 × 500 | Play Store hero banner | 1 |
 
 Files are named `phone_NN_<slug>.png`, `ipad_NN_<slug>.png`, and `feature_graphic_1024x500.png` — stable and self-describing so the user can re-run and replace cleanly.
+
+For UTXO this currently means a **6-screen** lineup — Markets · **Portfolio** · Charts · Depth · News · Favorites — captured **per platform**: feed iOS-simulator raws to produce the App Store `screenshots/` set (phone + iPad + feature graphic), and run again over Android-emulator raws with `--skip-ipad --skip-feature` to produce the framed `play-store/` set. Both use the same iPhone-styled bezel; each carries its own platform's status bar.
 
 ## When to use this skill
 
@@ -37,9 +39,9 @@ Follow these steps in order. Don't skip the inventory step — picking the right
 
 List the uploaded files. View each image with the `view` tool to see what feature it shows. Categorize each one — typical buckets: home/list, detail/chart, settings, profile, onboarding, empty state. Do NOT ask the user "what does this screenshot show" — figure it out by looking.
 
-### 2. Propose a 5-screen plan
+### 2. Propose a 5–6 screen plan
 
-Pick the 5 most distinctive screenshots. For each, decide:
+Pick the most distinctive screenshots (5–6 works well; App Store allows up to 10). Lead with the screen that best sells the app, and put a flagship/new feature early — for UTXO, **Portfolio sits at slot 2**, right after Markets. For each, decide:
 
 - **slot tag** — short ALL-CAPS label (4–10 chars): MARKETS, CHARTS, INBOX, SETTINGS, etc. This is the pill above the headline.
 - **headline** — 2 lines, hand-broken with `\n`. Inter Black, very large. Punchy: "Track live\ncrypto markets" not "A complete real-time market tracking solution".
@@ -90,7 +92,13 @@ Show the user the produced files. Give them the file paths and a short summary o
 
 Offer to regenerate any individual screen with different copy — re-running the generator with a tweaked config is fast.
 
+### 7. Refresh the README (always)
+
+After the assets land in `screenshots/` and `play-store/`, update `README.md` so the showcase matches the regenerated set — the phone table, the iPad table, the feature-graphic reference, and any per-platform caption. Keep the column order identical to the screen lineup (Markets · Portfolio · Charts · Depth · News · Favorites). This is a standing step, not an optional one: every deploy-ss run leaves the README in sync. Also bump the screenshot counts in `AGENTS.md` if the lineup size changed.
+
 ## Special cases
+
+**Capturing fresh raws + seeding demo data.** When there are no good raws to start from (or the UI changed), capture them yourself: drive the iOS simulator (`xcrun simctl io <udid> screenshot`, navigate via computer-use) and the Android emulator (`adb exec-out screencap`, navigate via `adb shell input`). Capture in two passes — set `appTheme` in the persisted `settings.json` to `Dark`, capture the dark screens, then `Light` for the light ones. For data-driven screens, seed believable state into that same `settings.json` before launching (force-stop → write file → relaunch). For the **Portfolio** screen, seed wallets from the Hyperliquid public leaderboard — see `references/design-guide.md` § "Demo data for the raw captures".
 
 **Empty-looking screens.** If a screenshot has lots of empty space (e.g. a Favorites screen with one item), the iPhone version can use a `collapse_middle` preprocess to glue the top content to the bottom navbar. See `references/design-guide.md` § "Handling sparse screens". The iPad version should use the original screenshot — collapsing makes the centered phone look stubby.
 
