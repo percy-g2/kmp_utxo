@@ -2,6 +2,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -59,19 +60,39 @@ private fun IosScreen(content: @Composable () -> Unit) {
 /** Full-Compose UI used as the fallback on iOS < 26 (keeps its own Compose bottom bar). */
 fun MainViewController(): UIViewController = ComposeUIViewController { App() }
 
+/**
+ * Footprint of the iOS 26 Liquid Glass tab bar (bar height + the home-indicator gap below it).
+ * Each tab's Compose view extends edge-to-edge under the floating bar (see
+ * LiquidGlassRootView.swift), so its scrolling content reserves this as bottom contentPadding to
+ * keep the last item scrollable clear of the bar while still flowing under the glass.
+ */
+private val NativeTabBarClearance = 90.dp
+
 fun MarketViewController(onCoin: (String, String) -> Unit): UIViewController =
-    ComposeUIViewController { IosScreen { CryptoList(IosShared.cryptoViewModel, onCoin) } }
+    ComposeUIViewController {
+        IosScreen { CryptoList(IosShared.cryptoViewModel, onCoin, bottomBarClearance = NativeTabBarClearance) }
+    }
 
 fun FavoritesViewController(onCoin: (String, String) -> Unit): UIViewController =
-    ComposeUIViewController { IosScreen { FavoritesListScreen(IosShared.cryptoViewModel, onCoin) } }
+    ComposeUIViewController {
+        IosScreen { FavoritesListScreen(IosShared.cryptoViewModel, onCoin, bottomBarClearance = NativeTabBarClearance) }
+    }
 
 fun SettingsViewController(): UIViewController =
-    ComposeUIViewController { IosScreen { SettingsScreen(onBackPress = {}) } }
+    ComposeUIViewController {
+        IosScreen { SettingsScreen(onBackPress = {}, bottomBarClearance = NativeTabBarClearance) }
+    }
 
 /** Portfolio screen for the iOS 26 native-TabView path. [onConfigure] should select Settings. */
 fun PortfolioViewController(onConfigure: () -> Unit): UIViewController =
     ComposeUIViewController {
-        IosScreen { PortfolioScreen(onConfigureClick = onConfigure, viewModel = IosShared.portfolioViewModel) }
+        IosScreen {
+            PortfolioScreen(
+                onConfigureClick = onConfigure,
+                viewModel = IosShared.portfolioViewModel,
+                bottomBarClearance = NativeTabBarClearance,
+            )
+        }
     }
 
 fun CoinDetailViewController(

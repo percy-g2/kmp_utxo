@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
@@ -32,7 +33,10 @@ import utxo.composeapp.generated.resources.scroll_to_top
 fun BoxScope.ScrollToEdgeButton(
     listState: LazyListState,
     totalItems: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    // Extra bottom offset so the FAB floats above the iOS 26 glass tab bar (the host Box extends
+    // under it). 0.dp on every other path; see ui.utils.bottomBarClearancePadding.
+    bottomBarClearance: Dp = 0.dp,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -48,7 +52,7 @@ fun BoxScope.ScrollToEdgeButton(
         visible = visible,
         modifier = modifier
             .align(Alignment.BottomEnd)
-            .padding(end = 24.dp, bottom = 16.dp),
+            .padding(end = 24.dp, bottom = 16.dp + bottomBarClearance),
         enter = fadeIn() + scaleIn(),
         exit = fadeOut() + scaleOut()
     ) {
