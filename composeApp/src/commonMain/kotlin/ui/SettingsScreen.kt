@@ -1,5 +1,7 @@
 package ui
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +21,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Article
+import androidx.compose.material.icons.filled.AccountBalanceWallet
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DarkMode
@@ -31,6 +36,7 @@ import androidx.compose.material.icons.filled.Web
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -44,8 +50,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -56,11 +64,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import model.HyperliquidWallet
 import model.MAX_WALLETS
@@ -69,7 +82,10 @@ import model.SCOPE_ALL
 import model.displayName
 import model.isValidHyperliquidAddress
 import model.shortenAddress
+import network.HlAccountCheck
+import network.HyperliquidService
 import openLink
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import theme.ThemeManager
@@ -84,25 +100,50 @@ import utxo.composeapp.generated.resources.github_icon
 import utxo.composeapp.generated.resources.settings_about
 import utxo.composeapp.generated.resources.settings_all_sources_enabled
 import utxo.composeapp.generated.resources.settings_appearance
+import utxo.composeapp.generated.resources.settings_clear
 import utxo.composeapp.generated.resources.settings_dark_mode
 import utxo.composeapp.generated.resources.settings_deselect_all
+import utxo.composeapp.generated.resources.settings_add_all
+import utxo.composeapp.generated.resources.settings_add_to_list
 import utxo.composeapp.generated.resources.settings_add_wallet
+import utxo.composeapp.generated.resources.settings_add_wallets_title
+import utxo.composeapp.generated.resources.settings_bulk_done
+import utxo.composeapp.generated.resources.settings_bulk_hint
+import utxo.composeapp.generated.resources.settings_bulk_paste_label
+import utxo.composeapp.generated.resources.settings_bulk_result
+import utxo.composeapp.generated.resources.settings_bulk_status_added
+import utxo.composeapp.generated.resources.settings_bulk_status_failed
+import utxo.composeapp.generated.resources.settings_bulk_status_no_activity
+import utxo.composeapp.generated.resources.settings_bulk_verify_add
+import utxo.composeapp.generated.resources.settings_cart_empty
+import utxo.composeapp.generated.resources.settings_cart_title
+import utxo.composeapp.generated.resources.settings_paste_several
+import utxo.composeapp.generated.resources.settings_remove
+import utxo.composeapp.generated.resources.settings_wallets_count
+import utxo.composeapp.generated.resources.settings_wallets_empty_body
+import utxo.composeapp.generated.resources.settings_wallets_empty_title
 import utxo.composeapp.generated.resources.settings_delete
 import utxo.composeapp.generated.resources.settings_done
 import utxo.composeapp.generated.resources.settings_duplicate_address
+import utxo.composeapp.generated.resources.settings_edit_wallet
 import utxo.composeapp.generated.resources.settings_github
+import utxo.composeapp.generated.resources.settings_hyperliquid_address
 import utxo.composeapp.generated.resources.settings_hyperliquid_address_hint
 import utxo.composeapp.generated.resources.settings_hyperliquid_invalid
 import utxo.composeapp.generated.resources.settings_news_sources
 import utxo.composeapp.generated.resources.settings_no_sources_enabled
 import utxo.composeapp.generated.resources.settings_portfolio
 import utxo.composeapp.generated.resources.settings_privacy_policy
-import utxo.composeapp.generated.resources.settings_rename_wallet
 import utxo.composeapp.generated.resources.settings_save
 import utxo.composeapp.generated.resources.settings_wallet_ens_badge
 import utxo.composeapp.generated.resources.settings_wallet_limit
+import utxo.composeapp.generated.resources.settings_wallet_label_hint
+import utxo.composeapp.generated.resources.settings_wallet_label_optional
 import utxo.composeapp.generated.resources.settings_wallet_name
 import utxo.composeapp.generated.resources.settings_wallet_name_hint
+import utxo.composeapp.generated.resources.settings_wallet_not_found
+import utxo.composeapp.generated.resources.settings_wallet_verify_failed
+import utxo.composeapp.generated.resources.settings_wallet_verifying
 import utxo.composeapp.generated.resources.settings_select_all
 import utxo.composeapp.generated.resources.settings_select_news_sources
 import utxo.composeapp.generated.resources.settings_select_theme
@@ -221,11 +262,6 @@ fun SettingsScreen(
                     SettingsHeader(title = stringResource(Res.string.settings_portfolio))
                     PortfolioWalletsManager(
                         wallets = settingsState?.hyperliquidWallets ?: emptyList(),
-                        onAdd = { address -> coroutineScope.launch { addHyperliquidWallet(address) } },
-                        onRename = { address, label ->
-                            coroutineScope.launch { renameHyperliquidWallet(address, label) }
-                        },
-                        onDelete = { address -> coroutineScope.launch { deleteHyperliquidWallet(address) } },
                     )
                 }
 
@@ -408,179 +444,711 @@ private fun SettingsSwitchItem(
 @Composable
 private fun PortfolioWalletsManager(
     wallets: List<HyperliquidWallet>,
-    onAdd: (String) -> Unit,
-    onRename: (String, String?) -> Unit,
-    onDelete: (String) -> Unit,
 ) {
-    var renameTarget by remember { mutableStateOf<HyperliquidWallet?>(null) }
-
-    Column(modifier = Modifier.fillMaxWidth()) {
-        wallets.forEach { wallet ->
-            WalletRow(
-                wallet = wallet,
-                onRename = { renameTarget = wallet },
-                onDelete = { onDelete(wallet.address) },
-            )
-        }
-        AddWalletField(
-            existing = wallets,
-            atCap = wallets.size >= MAX_WALLETS,
-            onAdd = onAdd,
-        )
+    val scope = rememberCoroutineScope()
+    val service = remember { HyperliquidService() }
+    DisposableEffect(Unit) {
+        onDispose { service.close() }
     }
 
-    renameTarget?.let { target ->
-        RenameWalletDialog(
-            wallet = target,
-            onConfirm = { label ->
-                onRename(target.address, label)
-                renameTarget = null
-            },
-            onDismiss = { renameTarget = null },
-        )
-    }
-}
+    var editTarget by remember { mutableStateOf<HyperliquidWallet?>(null) }
+    var showAdd by remember { mutableStateOf(false) }
 
-@Composable
-private fun WalletRow(
-    wallet: HyperliquidWallet,
-    onRename: () -> Unit,
-    onDelete: () -> Unit,
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
+    // Verify the address on Hyperliquid (only when new or actually changed), then persist.
+    // Progress, a localized error, and completion are reported back to the calling surface.
+    fun submit(
+        old: String?,
+        rawAddr: String,
+        label: String?,
+        setVerifying: (Boolean) -> Unit,
+        onError: (StringResource) -> Unit,
+        onDone: () -> Unit,
     ) {
-        Column(modifier = Modifier.weight(1f)) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
-            ) {
-                Text(
-                    text = wallet.displayName(),
-                    style = MaterialTheme.typography.bodyLarge,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-                if (wallet.customLabel == null && wallet.ensName != null) {
-                    Surface(
-                        shape = RoundedCornerShape(50),
-                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
-                    ) {
-                        Text(
-                            text = stringResource(Res.string.settings_wallet_ens_badge),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp),
-                        )
-                    }
-                }
+        scope.launch {
+            setVerifying(true)
+            val addr = rawAddr.trim().lowercase()
+            val check = if (old == null || addr != old) {
+                withContext(Dispatchers.Default) { service.verifyAccount(addr) }
+            } else {
+                HlAccountCheck.Active
             }
-            Text(
-                text = shortenAddress(wallet.address),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-        IconButton(onClick = onRename) {
-            Icon(Icons.Default.Edit, contentDescription = stringResource(Res.string.settings_rename_wallet))
-        }
-        IconButton(onClick = onDelete) {
-            Icon(Icons.Default.Delete, contentDescription = stringResource(Res.string.settings_delete))
+            setVerifying(false)
+            when (check) {
+                HlAccountCheck.Active -> {
+                    if (old == null) addHyperliquidWallet(addr, label) else updateHyperliquidWallet(old, addr, label)
+                    onDone()
+                }
+                HlAccountCheck.Empty -> onError(Res.string.settings_wallet_not_found)
+                HlAccountCheck.Unreachable -> onError(Res.string.settings_wallet_verify_failed)
+            }
         }
     }
-}
 
-@Composable
-private fun AddWalletField(
-    existing: List<HyperliquidWallet>,
-    atCap: Boolean,
-    onAdd: (String) -> Unit,
-) {
-    var text by remember { mutableStateOf("") }
-    val normalized = text.trim().lowercase()
-    val isValid = isValidHyperliquidAddress(normalized)
-    val isDuplicate = isValid && existing.any { it.address == normalized }
-    val showError = text.isNotEmpty() && (!isValid || isDuplicate)
-    val canAdd = isValid && !isDuplicate && !atCap
+    val atCap = wallets.size >= MAX_WALLETS
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        OutlinedTextField(
-            value = text,
-            onValueChange = { text = it.trim() },
-            label = { Text(stringResource(Res.string.settings_add_wallet)) },
-            placeholder = { Text(stringResource(Res.string.settings_hyperliquid_address_hint)) },
-            singleLine = true,
-            enabled = !atCap,
-            isError = showError,
-            supportingText = when {
-                atCap -> {
-                    { Text(stringResource(Res.string.settings_wallet_limit, MAX_WALLETS)) }
-                }
-                isDuplicate -> {
-                    { Text(stringResource(Res.string.settings_duplicate_address)) }
-                }
-                showError -> {
-                    { Text(stringResource(Res.string.settings_hyperliquid_invalid)) }
-                }
-                else -> null
+        if (wallets.isEmpty()) {
+            WalletsEmptyState(onAdd = { showAdd = true })
+        } else {
+            Text(
+                text = stringResource(Res.string.settings_wallets_count, wallets.size, MAX_WALLETS),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            wallets.forEach { wallet ->
+                WalletCard(
+                    wallet = wallet,
+                    onEdit = { editTarget = wallet },
+                    onDelete = { scope.launch { deleteHyperliquidWallet(wallet.address) } },
+                )
+            }
+            AddWalletButton(atCap = atCap, onClick = { showAdd = true })
+        }
+    }
+
+    editTarget?.let { target ->
+        EditWalletDialog(
+            wallet = target,
+            existing = wallets,
+            onSave = { addr, label, setVerifying, onError, onDone ->
+                submit(target.address, addr, label, setVerifying, onError, onDone)
             },
-            modifier = Modifier.fillMaxWidth(),
+            onDismiss = { editTarget = null },
         )
+    }
+
+    if (showAdd) {
+        AddWalletsDialog(
+            existing = wallets,
+            service = service,
+            scope = scope,
+            onDismiss = { showAdd = false },
+        )
+    }
+}
+
+@Composable
+private fun WalletCard(
+    wallet: HyperliquidWallet,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit,
+) {
+    // The display name is the address itself when there is no label/ENS — so only show the
+    // address as a subtitle when it adds new information (i.e. there is a name above it).
+    val hasName = wallet.customLabel?.isNotBlank() == true || wallet.ensName?.isNotBlank() == true
+
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            TextButton(
-                onClick = {
-                    onAdd(normalized)
-                    text = ""
-                },
-                enabled = canAdd,
-            ) {
-                Text(stringResource(Res.string.settings_add_wallet))
+            WalletAvatar(wallet.address)
+            Column(modifier = Modifier.weight(1f)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Text(
+                        text = wallet.displayName(),
+                        style = MaterialTheme.typography.bodyLarge,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    if (wallet.customLabel == null && wallet.ensName != null) {
+                        Surface(
+                            shape = RoundedCornerShape(50),
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
+                        ) {
+                            Text(
+                                text = stringResource(Res.string.settings_wallet_ens_badge),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp),
+                            )
+                        }
+                    }
+                }
+                if (hasName) {
+                    Text(
+                        text = shortenAddress(wallet.address),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+            IconButton(onClick = onEdit) {
+                Icon(Icons.Default.Edit, contentDescription = stringResource(Res.string.settings_edit_wallet))
+            }
+            IconButton(onClick = onDelete) {
+                Icon(Icons.Default.Delete, contentDescription = stringResource(Res.string.settings_delete))
             }
         }
     }
 }
 
 @Composable
-private fun RenameWalletDialog(
+private fun WalletsEmptyState(onAdd: () -> Unit) {
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 20.dp, horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Icon(
+                Icons.Default.AccountBalanceWallet,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(32.dp),
+            )
+            Text(
+                text = stringResource(Res.string.settings_wallets_empty_title),
+                style = MaterialTheme.typography.titleSmall,
+            )
+            Text(
+                text = stringResource(Res.string.settings_wallets_empty_body),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+            )
+            AddWalletButton(atCap = false, onClick = onAdd)
+        }
+    }
+}
+
+@Composable
+private fun AddWalletButton(atCap: Boolean, onClick: () -> Unit) {
+    if (atCap) {
+        Text(
+            text = stringResource(Res.string.settings_wallet_limit, MAX_WALLETS),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(vertical = 8.dp),
+        )
+    } else {
+        Surface(
+            onClick = onClick,
+            shape = RoundedCornerShape(12.dp),
+            color = Color.Transparent,
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Row(
+                modifier = Modifier.padding(vertical = 12.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    Icons.Default.Add,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(20.dp),
+                )
+                Text(
+                    text = stringResource(Res.string.settings_add_wallet),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(start = 8.dp),
+                )
+            }
+        }
+    }
+}
+
+/**
+ * A 36dp circular monogram (first two hex nibbles) tinted with a colour derived from the
+ * address, so each tracked wallet has a stable visual identity — especially in the aggregate view.
+ */
+@Composable
+private fun WalletAvatar(address: String) {
+    val hue = (((address.hashCode() % 360) + 360) % 360).toFloat()
+    val background = Color.hsv(hue, 0.5f, 0.6f)
+    Box(
+        modifier = Modifier
+            .size(36.dp)
+            .clip(CircleShape)
+            .background(background),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = address.removePrefix("0x").take(2).uppercase(),
+            style = MaterialTheme.typography.labelLarge,
+            color = Color.White,
+        )
+    }
+}
+
+@Composable
+private fun EditWalletDialog(
     wallet: HyperliquidWallet,
-    onConfirm: (String?) -> Unit,
+    existing: List<HyperliquidWallet>,
+    onSave: (String, String?, (Boolean) -> Unit, (StringResource) -> Unit, () -> Unit) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var text by remember { mutableStateOf(wallet.customLabel.orEmpty()) }
+    var address by remember { mutableStateOf(wallet.address) }
+    var name by remember { mutableStateOf(wallet.customLabel.orEmpty()) }
+    var verifying by remember { mutableStateOf(false) }
+    var verifyError by remember { mutableStateOf<StringResource?>(null) }
+
+    val normalized = address.trim().lowercase()
+    val isValid = isValidHyperliquidAddress(normalized)
+    // A collision only counts against a *different* tracked wallet (keeping the same address is fine).
+    val isDuplicate = isValid && normalized != wallet.address && existing.any { it.address == normalized }
+    val showFormatError = address.isNotEmpty() && (!isValid || isDuplicate)
+    val canSave = isValid && !isDuplicate && !verifying
+
     AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(stringResource(Res.string.settings_rename_wallet)) },
+        onDismissRequest = { if (!verifying) onDismiss() },
+        title = { Text(stringResource(Res.string.settings_edit_wallet)) },
         text = {
-            OutlinedTextField(
-                value = text,
-                onValueChange = { text = it },
-                label = { Text(stringResource(Res.string.settings_wallet_name)) },
-                placeholder = { Text(stringResource(Res.string.settings_wallet_name_hint)) },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth(),
-            )
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(
+                    value = address,
+                    onValueChange = {
+                        address = it.trim()
+                        verifyError = null
+                    },
+                    label = { Text(stringResource(Res.string.settings_hyperliquid_address)) },
+                    placeholder = { Text(stringResource(Res.string.settings_hyperliquid_address_hint)) },
+                    singleLine = true,
+                    enabled = !verifying,
+                    isError = showFormatError || verifyError != null,
+                    trailingIcon = if (address.isNotEmpty() && !verifying) {
+                        {
+                            IconButton(onClick = {
+                                address = ""
+                                verifyError = null
+                            }) {
+                                Icon(Icons.Default.Close, contentDescription = stringResource(Res.string.settings_clear))
+                            }
+                        }
+                    } else {
+                        null
+                    },
+                    supportingText = when {
+                        verifying -> {
+                            { Text(stringResource(Res.string.settings_wallet_verifying)) }
+                        }
+                        isDuplicate -> {
+                            { Text(stringResource(Res.string.settings_duplicate_address)) }
+                        }
+                        showFormatError -> {
+                            { Text(stringResource(Res.string.settings_hyperliquid_invalid)) }
+                        }
+                        verifyError != null -> {
+                            { Text(stringResource(verifyError!!)) }
+                        }
+                        else -> null
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text(stringResource(Res.string.settings_wallet_name)) },
+                    placeholder = { Text(stringResource(Res.string.settings_wallet_name_hint)) },
+                    singleLine = true,
+                    enabled = !verifying,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
         },
         confirmButton = {
-            TextButton(onClick = { onConfirm(text.trim().takeIf { it.isNotEmpty() }) }) {
-                Text(stringResource(Res.string.settings_save))
+            if (verifying) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(20.dp),
+                    strokeWidth = 2.dp,
+                )
+            } else {
+                TextButton(
+                    onClick = {
+                        verifyError = null
+                        onSave(
+                            normalized,
+                            name.trim().takeIf { it.isNotEmpty() },
+                            { verifying = it },
+                            { verifyError = it },
+                            { onDismiss() },
+                        )
+                    },
+                    enabled = canSave,
+                ) {
+                    Text(stringResource(Res.string.settings_save))
+                }
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
+            TextButton(onClick = onDismiss, enabled = !verifying) {
                 Text(stringResource(Res.string.cancel))
             }
         },
     )
+}
+
+private val HEX_ADDRESS_REGEX = Regex("0x[0-9a-fA-F]{40}")
+
+private enum class BulkStatus { Queued, Verifying, Added, NotFound, Unreachable, Duplicate, OverLimit }
+
+private data class BulkEntry(val address: String, val label: String?, val status: BulkStatus)
+
+/**
+ * Parse a free-form paste into wallets, line by line. A line may carry an optional label after the
+ * address ("0x… Main" or "0x…, Main"); a line with several addresses contributes each with no label.
+ * A tracked duplicate or a within-paste repeat is [BulkStatus.Duplicate], anything beyond the
+ * remaining capacity is [BulkStatus.OverLimit], the rest are [BulkStatus.Queued] for verification.
+ */
+private fun parseBulkAddresses(
+    raw: String,
+    existingAddresses: Set<String>,
+    remainingSlots: Int,
+): List<BulkEntry> {
+    val seen = mutableSetOf<String>()
+    var slots = remainingSlots
+
+    fun classify(address: String, label: String?): BulkEntry {
+        val status = when {
+            address in existingAddresses || !seen.add(address) -> BulkStatus.Duplicate
+            slots <= 0 -> BulkStatus.OverLimit
+            else -> {
+                slots--
+                BulkStatus.Queued
+            }
+        }
+        return BulkEntry(address, label, status)
+    }
+
+    val result = mutableListOf<BulkEntry>()
+    raw.lineSequence().forEach { line ->
+        val matches = HEX_ADDRESS_REGEX.findAll(line).toList()
+        when (matches.size) {
+            0 -> Unit
+            1 -> {
+                val match = matches.first()
+                val label = line.removeRange(match.range.first, match.range.last + 1)
+                    .trim().trim(',', ';', '|', '"', '\'').trim()
+                    .takeIf { it.isNotEmpty() }
+                result.add(classify(match.value.lowercase(), label))
+            }
+            else -> matches.forEach { result.add(classify(it.value.lowercase(), null)) }
+        }
+    }
+    return result
+}
+
+/**
+ * Add one or many wallets in a single sitting. Build a cart (type an address + optional label and
+ * "Add to list", or paste several at once), then "Verify & add" checks each on Hyperliquid in
+ * parallel and commits the ones with real activity.
+ */
+@Composable
+private fun AddWalletsDialog(
+    existing: List<HyperliquidWallet>,
+    service: HyperliquidService,
+    scope: CoroutineScope,
+    onDismiss: () -> Unit,
+) {
+    val cart = remember { mutableStateListOf<BulkEntry>() }
+    var addr by remember { mutableStateOf("") }
+    var label by remember { mutableStateOf("") }
+    var showPaste by remember { mutableStateOf(false) }
+    var paste by remember { mutableStateOf("") }
+    var committing by remember { mutableStateOf(false) }
+    var finished by remember { mutableStateOf(false) }
+
+    val existingAddrs = remember(existing) { existing.map { it.address }.toSet() }
+    val cartAddrs = cart.map { it.address }.toSet()
+    val used = existing.size + cart.size
+    val full = used >= MAX_WALLETS
+
+    val normalized = addr.trim().lowercase()
+    val isValid = isValidHyperliquidAddress(normalized)
+    val isDuplicate = isValid && (normalized in existingAddrs || normalized in cartAddrs)
+    val showFormatError = addr.isNotEmpty() && (!isValid || isDuplicate)
+    val canStage = isValid && !isDuplicate && !full
+
+    val pasteToAdd = if (showPaste && paste.isNotBlank()) {
+        parseBulkAddresses(paste, existingAddrs + cartAddrs, MAX_WALLETS - used)
+            .count { it.status == BulkStatus.Queued }
+    } else {
+        0
+    }
+
+    fun stage() {
+        cart.add(BulkEntry(normalized, label.trim().takeIf { it.isNotEmpty() }, BulkStatus.Queued))
+        addr = ""
+        label = ""
+    }
+
+    fun stagePaste() {
+        val parsed = parseBulkAddresses(paste, existingAddrs + cartAddrs, MAX_WALLETS - used)
+        cart.addAll(parsed.filter { it.status == BulkStatus.Queued })
+        paste = ""
+        showPaste = false
+    }
+
+    fun commit() {
+        committing = true
+        scope.launch {
+            coroutineScope {
+                cart.indices.forEach { i ->
+                    launch {
+                        cart[i] = cart[i].copy(status = BulkStatus.Verifying)
+                        val check = withContext(Dispatchers.Default) { service.verifyAccount(cart[i].address) }
+                        when (check) {
+                            HlAccountCheck.Active -> {
+                                addHyperliquidWallet(cart[i].address, cart[i].label)
+                                cart[i] = cart[i].copy(status = BulkStatus.Added)
+                            }
+                            HlAccountCheck.Empty -> cart[i] = cart[i].copy(status = BulkStatus.NotFound)
+                            HlAccountCheck.Unreachable -> cart[i] = cart[i].copy(status = BulkStatus.Unreachable)
+                        }
+                    }
+                }
+            }
+            finished = true
+        }
+    }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(Res.string.settings_add_wallets_title)) },
+        text = {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                if (!committing) {
+                    Text(
+                        text = stringResource(Res.string.settings_wallets_count, used, MAX_WALLETS),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    OutlinedTextField(
+                        value = addr,
+                        onValueChange = { addr = it.trim() },
+                        label = { Text(stringResource(Res.string.settings_hyperliquid_address)) },
+                        placeholder = { Text(stringResource(Res.string.settings_hyperliquid_address_hint)) },
+                        singleLine = true,
+                        enabled = !full,
+                        isError = showFormatError,
+                        trailingIcon = if (addr.isNotEmpty()) {
+                            {
+                                IconButton(onClick = { addr = "" }) {
+                                    Icon(Icons.Default.Close, contentDescription = stringResource(Res.string.settings_clear))
+                                }
+                            }
+                        } else {
+                            null
+                        },
+                        supportingText = when {
+                            full -> {
+                                { Text(stringResource(Res.string.settings_wallet_limit, MAX_WALLETS)) }
+                            }
+                            isDuplicate -> {
+                                { Text(stringResource(Res.string.settings_duplicate_address)) }
+                            }
+                            showFormatError -> {
+                                { Text(stringResource(Res.string.settings_hyperliquid_invalid)) }
+                            }
+                            else -> null
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    OutlinedTextField(
+                        value = label,
+                        onValueChange = { label = it },
+                        label = { Text(stringResource(Res.string.settings_wallet_label_optional)) },
+                        placeholder = { Text(stringResource(Res.string.settings_wallet_label_hint)) },
+                        singleLine = true,
+                        enabled = !full,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        TextButton(onClick = { showPaste = !showPaste }, enabled = !full) {
+                            Text(stringResource(Res.string.settings_paste_several))
+                        }
+                        TextButton(onClick = { stage() }, enabled = canStage) {
+                            Icon(
+                                Icons.Default.Add,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp),
+                            )
+                            Text(
+                                text = stringResource(Res.string.settings_add_to_list),
+                                modifier = Modifier.padding(start = 6.dp),
+                            )
+                        }
+                    }
+                    if (showPaste) {
+                        OutlinedTextField(
+                            value = paste,
+                            onValueChange = { paste = it },
+                            label = { Text(stringResource(Res.string.settings_bulk_paste_label)) },
+                            placeholder = { Text(stringResource(Res.string.settings_bulk_hint)) },
+                            minLines = 2,
+                            maxLines = 5,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.End,
+                        ) {
+                            TextButton(onClick = { stagePaste() }, enabled = pasteToAdd > 0) {
+                                Text(stringResource(Res.string.settings_add_all, pasteToAdd))
+                            }
+                        }
+                    }
+                    if (cart.isEmpty()) {
+                        Text(
+                            text = stringResource(Res.string.settings_cart_empty),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    } else {
+                        Text(
+                            text = stringResource(Res.string.settings_cart_title, cart.size),
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                        cart.forEachIndexed { index, entry ->
+                            CartRow(entry = entry, committing = false, onRemove = { cart.removeAt(index) })
+                        }
+                    }
+                } else {
+                    cart.forEach { entry -> CartRow(entry = entry, committing = true, onRemove = {}) }
+                    if (finished) {
+                        Text(
+                            text = stringResource(
+                                Res.string.settings_bulk_result,
+                                cart.count { it.status == BulkStatus.Added },
+                                cart.size,
+                            ),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(top = 4.dp),
+                        )
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            if (!committing) {
+                TextButton(enabled = cart.isNotEmpty(), onClick = { commit() }) {
+                    Text(stringResource(Res.string.settings_bulk_verify_add, cart.size))
+                }
+            } else {
+                TextButton(enabled = finished, onClick = onDismiss) {
+                    Text(stringResource(Res.string.settings_bulk_done))
+                }
+            }
+        },
+        dismissButton = {
+            if (!finished) {
+                TextButton(onClick = onDismiss) {
+                    Text(stringResource(Res.string.cancel))
+                }
+            }
+        },
+    )
+}
+
+@Composable
+private fun CartRow(
+    entry: BulkEntry,
+    committing: Boolean,
+    onRemove: () -> Unit,
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        WalletAvatar(entry.address)
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = entry.label ?: shortenAddress(entry.address),
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            if (entry.label != null) {
+                Text(
+                    text = shortenAddress(entry.address),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+        }
+        if (committing) {
+            BulkStatusIndicator(entry.status)
+        } else {
+            IconButton(onClick = onRemove) {
+                Icon(Icons.Default.Close, contentDescription = stringResource(Res.string.settings_remove))
+            }
+        }
+    }
+}
+
+@Composable
+private fun BulkStatusIndicator(status: BulkStatus) {
+    when (status) {
+        BulkStatus.Verifying -> {
+            CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
+        }
+        BulkStatus.Added -> {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Icon(
+                    Icons.Default.Check,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(16.dp),
+                )
+                Text(
+                    text = stringResource(Res.string.settings_bulk_status_added),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+        }
+        BulkStatus.NotFound -> {
+            Text(
+                text = stringResource(Res.string.settings_bulk_status_no_activity),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        BulkStatus.Unreachable -> {
+            Text(
+                text = stringResource(Res.string.settings_bulk_status_failed),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.error,
+            )
+        }
+        else -> Unit
+    }
 }
 
 @Composable
