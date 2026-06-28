@@ -13,19 +13,20 @@ height="40">](https://apps.apple.com/in/app/utxo/id6746167853)
 A modern, cross-platform cryptocurrency tracking application built with Kotlin Multiplatform and Compose Multiplatform.
 
 <p align="center">
-  <img src="screenshots/feature_graphic_1024x500.png" width="100%" alt="UTXO — Crypto markets in your pocket">
+  <img src="screenshots/feature_graphic_1024x500.png" width="100%" alt="UTXO — Markets and portfolio in your pocket">
 </p>
 
 <p align="center"><sub><b>Phone</b> · Android · iOS · 1284 × 2778 · App Store + Play Store</sub></p>
-<p align="center"><sub><i>UI captured from the Android build; the same Compose Multiplatform code runs on iOS.</i></sub></p>
+<p align="center"><sub><i>App Store set captured on iOS; the Play Store set is captured on Android — the same Compose Multiplatform UI runs on both.</i></sub></p>
 
 <table>
   <tr>
     <td><img src="screenshots/01_markets_dark.png" width="160" alt="Markets"></td>
-    <td><img src="screenshots/02_charts_light.png" width="160" alt="Charts"></td>
-    <td><img src="screenshots/03_depth_dark.png" width="160" alt="Depth"></td>
-    <td><img src="screenshots/04_news_light.png" width="160" alt="News"></td>
-    <td><img src="screenshots/05_favorites_dark.png" width="160" alt="Favorites"></td>
+    <td><img src="screenshots/02_portfolio_dark.png" width="160" alt="Portfolio"></td>
+    <td><img src="screenshots/03_charts_light.png" width="160" alt="Charts"></td>
+    <td><img src="screenshots/04_depth_dark.png" width="160" alt="Depth"></td>
+    <td><img src="screenshots/05_news_light.png" width="160" alt="News"></td>
+    <td><img src="screenshots/06_favorites_dark.png" width="160" alt="Favorites"></td>
   </tr>
 </table>
 
@@ -35,10 +36,11 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 <table>
   <tr>
     <td><img src="screenshots/ipad_01_markets_dark.png" width="160" alt="Markets — iPad"></td>
-    <td><img src="screenshots/ipad_02_charts_light.png" width="160" alt="Charts — iPad"></td>
-    <td><img src="screenshots/ipad_03_depth_dark.png" width="160" alt="Depth — iPad"></td>
-    <td><img src="screenshots/ipad_04_news_light.png" width="160" alt="News — iPad"></td>
-    <td><img src="screenshots/ipad_05_favorites_dark.png" width="160" alt="Favorites — iPad"></td>
+    <td><img src="screenshots/ipad_02_portfolio_dark.png" width="160" alt="Portfolio — iPad"></td>
+    <td><img src="screenshots/ipad_03_charts_light.png" width="160" alt="Charts — iPad"></td>
+    <td><img src="screenshots/ipad_04_depth_dark.png" width="160" alt="Depth — iPad"></td>
+    <td><img src="screenshots/ipad_05_news_light.png" width="160" alt="News — iPad"></td>
+    <td><img src="screenshots/ipad_06_favorites_dark.png" width="160" alt="Favorites — iPad"></td>
   </tr>
 </table>
 

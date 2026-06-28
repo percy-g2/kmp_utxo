@@ -1,11 +1,11 @@
 {
   "app": {
     "app_name": "UTXO",
-    "tagline": "Crypto markets in your pocket.",
-    "feature_row": "Live prices  ·  Pro charts  ·  No ads",
+    "tagline": "Markets and portfolio, in your pocket.",
+    "feature_row": "Live prices  ·  Portfolio P&L  ·  Pro charts",
     "feature_pill": "REAL-TIME",
     "brand_color": "#F27C2F",
-    "feature_graphic_screenshot": "market_list_dark.png",
+    "feature_graphic_screenshot": "portfolio_dark.png",
     "feature_bg": "#0A0E1A",
     "accent_letter": {
       "index": 3,
@@ -16,13 +16,23 @@
   },
   "screens": [
     {
-      "screenshot": "market_list_dark.png",
+      "screenshot": "markets_dark.png",
       "tag": "MARKETS",
       "headline": "Track live\ncrypto markets",
       "subtitle": "BTC, ETH, SOL and more — updated every second",
       "theme": "dark",
       "bg_color": "#0A0E1A",
       "bezel_color": "#181A20"
+    },
+    {
+      "screenshot": "portfolio_dark.png",
+      "tag": "PORTFOLIO",
+      "headline": "Your portfolio,\nin real time",
+      "subtitle": "Multi-wallet balances, live P&L and liquidation alerts in one view.",
+      "theme": "dark",
+      "bg_color": "#07140F",
+      "bezel_color": "#10201A",
+      "accent": "#1FB87A"
     },
     {
       "screenshot": "chart_light.png",
@@ -62,9 +72,9 @@
       "accent": "#F2A92F",
       "preprocess": {
         "type": "collapse_middle",
-        "top_keep": 900,
-        "bottom_keep": 520,
-        "bg_color": "#0A0A0A"
+        "top_keep": 1180,
+        "bottom_keep": 300,
+        "bg_color": "#000000"
       }
     }
   ]
