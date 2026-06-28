@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -56,6 +57,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -72,6 +74,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import theme.ThemeManager
 import theme.ThemeManager.store
+import ui.utils.bottomBarClearancePadding
 import ui.utils.debouncedClickable
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
@@ -117,7 +120,10 @@ import utxo.composeapp.generated.resources.theme_system
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    onBackPress: () -> Unit
+    onBackPress: () -> Unit,
+    // Bottom clearance for the iOS 26 native glass tab bar; 0.dp (no-op) on every other path. See
+    // ui.utils.bottomBarClearancePadding.
+    bottomBarClearance: Dp = 0.dp,
 ) {
     var showThemeDialog by remember { mutableStateOf(false) }
     var showRssProvidersDialog by remember { mutableStateOf(false) }
@@ -155,10 +161,22 @@ fun SettingsScreen(
             )
         }
     ) { innerPadding ->
+        // On the iOS 26 path apply only the top inset so the list reaches the screen bottom and flows
+        // UNDER the glass bar (the LazyColumn's bottom contentPadding keeps the last row scrollable
+        // clear); off that path reserve the whole innerPadding exactly as before.
+        val boxModifier = if (bottomBarClearance > 0.dp) {
+            Modifier.padding(top = innerPadding.calculateTopPadding())
+        } else {
+            Modifier.padding(innerPadding)
+        }
         Box(
-            modifier = Modifier.padding(innerPadding)
+            modifier = boxModifier
         ) {
-            LazyColumn {
+            LazyColumn(
+                contentPadding = PaddingValues(
+                    bottom = bottomBarClearancePadding(bottomBarClearance),
+                ),
+            ) {
                 item {
                     SettingsHeader(title = stringResource(Res.string.settings_appearance))
                     SettingsItem(

@@ -316,9 +316,9 @@ fun App(
                     )
                 }
                 animatedComposable<Settings> {
-                    SettingsScreen {
+                    SettingsScreen(onBackPress = {
                         navController.popBackStack()
-                    }
+                    })
                 }
                 composable<CoinDetail> { backStackEntry ->
                     val coinDetail = backStackEntry.toRoute<CoinDetail>()

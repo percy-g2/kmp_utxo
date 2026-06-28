@@ -24,6 +24,9 @@ struct LiquidGlassRootView: View {
                         marketPath.append(CoinRoute(symbol: symbol, display: display))
                     }
                     .ignoresSafeArea(.keyboard)
+                    // Extend Compose under the floating glass tab bar so the list frosts through it
+                    // (Contacts-style). Bottom only — the top status-bar inset must be preserved.
+                    .ignoresSafeArea(.container, edges: .bottom)
                     .toolbar(.hidden, for: .navigationBar)
                     .navigationDestination(for: CoinRoute.self) { route in
                         detail(route) { marketPath.removeLast() }
@@ -37,6 +40,7 @@ struct LiquidGlassRootView: View {
                         favPath.append(CoinRoute(symbol: symbol, display: display))
                     }
                     .ignoresSafeArea(.keyboard)
+                    .ignoresSafeArea(.container, edges: .bottom)
                     .toolbar(.hidden, for: .navigationBar)
                     .navigationDestination(for: CoinRoute.self) { route in
                         detail(route) { favPath.removeLast() }
@@ -47,11 +51,13 @@ struct LiquidGlassRootView: View {
             Tab("Portfolio", systemImage: "chart.pie.fill", value: 2) {
                 PortfolioComposeView { selection = 3 } // "Open Settings" → Settings tab
                     .ignoresSafeArea(.keyboard)
+                    .ignoresSafeArea(.container, edges: .bottom)
             }
 
             Tab("Settings", systemImage: "gearshape", value: 3) {
                 SettingsComposeView()
                     .ignoresSafeArea(.keyboard)
+                    .ignoresSafeArea(.container, edges: .bottom)
             }
         }
         .tabBarMinimizeBehavior(.onScrollDown)

@@ -55,6 +55,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -69,6 +70,7 @@ import model.SpotBalanceRow
 import model.WalletTab
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
+import ui.utils.bottomBarClearancePadding
 import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
@@ -111,6 +113,11 @@ import kotlin.math.roundToLong
 fun PortfolioScreen(
     onConfigureClick: () -> Unit,
     viewModel: PortfolioViewModel = viewModel { PortfolioViewModel() },
+    // Bottom clearance for the iOS 26 native Liquid Glass tab bar. On that path the screen applies
+    // only the top window inset to its body so the list flows UNDER the bar (frosting through it),
+    // then reserves this footprint as the list's bottom contentPadding so the last card still scrolls
+    // clear. Defaults to 0.dp on every other path (App() reserves its own bottom bar) → no change.
+    bottomBarClearance: Dp = 0.dp,
 ) {
     val state by viewModel.state.collectAsState()
     val walletTabs by viewModel.walletTabs.collectAsState()
@@ -151,7 +158,19 @@ fun PortfolioScreen(
             )
         }
     ) { innerPadding ->
-        Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
+        // The list flows under the iOS 26 glass tab bar; reserve the bar's footprint as bottom
+        // contentPadding so the last card still scrolls clear of it. No-op off the iOS 26 path
+        // (bottomBarClearance is 0). See ui.utils.bottomBarClearancePadding.
+        val extraBottom = bottomBarClearancePadding(bottomBarClearance)
+        // On the iOS 26 path apply only the top inset so the body reaches the screen bottom and the
+        // list flows UNDER the glass bar (extraBottom keeps the last card scrollable clear); off that
+        // path reserve the whole innerPadding exactly as before.
+        val bodyModifier = if (bottomBarClearance > 0.dp) {
+            Modifier.fillMaxSize().padding(top = innerPadding.calculateTopPadding())
+        } else {
+            Modifier.fillMaxSize().padding(innerPadding)
+        }
+        Column(modifier = bodyModifier) {
             // The switcher is pinned above the body and stays visible in every state, so the
             // user can switch away from a wallet that is loading or errored. Only shown with
             // 2+ wallets (tabs = "All" + one per wallet), so a single wallet keeps the
@@ -192,7 +211,7 @@ fun PortfolioScreen(
                     onAction = viewModel::refresh,
                 )
 
-                    is PortfolioUiState.Data -> PortfolioContent(s, isDark)
+                    is PortfolioUiState.Data -> PortfolioContent(s, isDark, extraBottom)
                 }
             }
         }
@@ -234,7 +253,7 @@ private fun WalletScopeSwitcher(
 }
 
 @Composable
-private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean) {
+private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean, extraBottomPadding: Dp) {
     val palette = coinPalette()
     val showPerpStats = data.perpPositions.isNotEmpty() || data.summary.accountValue > 0.0
 
@@ -246,7 +265,7 @@ private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean) {
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp),
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp + extraBottomPadding),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         item(key = "hero") { HeroCard(data.summary, data.isStale, showPerpStats, isDark) }

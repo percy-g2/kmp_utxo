@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -83,6 +84,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
@@ -105,6 +107,7 @@ import theme.yellowDark
 import theme.yellowLight
 import ui.components.LazyColumnScrollbar
 import ui.components.ScrollToEdgeButton
+import ui.utils.bottomBarClearancePadding
 import ui.utils.calculateChartPoints
 import ui.utils.calculatePriceStats
 import ui.utils.createPriceChangeGradientColors
@@ -140,7 +143,10 @@ val LocalSettings = staticCompositionLocalOf<Settings?> { null }
 @Composable
 fun CryptoList(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String, String) -> Unit = { _, _ -> }
+    onCoinClick: (String, String) -> Unit = { _, _ -> },
+    // Bottom clearance for the iOS 26 native glass tab bar; 0.dp (no-op) on every other path. See
+    // ui.utils.bottomBarClearancePadding.
+    bottomBarClearance: Dp = 0.dp,
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val listState = rememberLazyListState()
@@ -391,7 +397,10 @@ fun CryptoList(
                                     Box(modifier = Modifier.fillMaxSize()) {
                                         LazyColumn(
                                             state = listState,
-                                            modifier = Modifier.fillMaxSize()
+                                            modifier = Modifier.fillMaxSize(),
+                                            contentPadding = PaddingValues(
+                                                bottom = bottomBarClearancePadding(bottomBarClearance),
+                                            ),
                                         ) {
                                             stickyHeader {
                                                 TickerCardListHeader(cryptoViewModel)
@@ -419,7 +428,8 @@ fun CryptoList(
                                         LazyColumnScrollbar(listState = listState)
                                         ScrollToEdgeButton(
                                             listState = listState,
-                                            totalItems = tickerItems.size
+                                            totalItems = tickerItems.size,
+                                            bottomBarClearance = bottomBarClearancePadding(bottomBarClearance),
                                         )
                                     }
                                 }
@@ -1041,7 +1051,10 @@ fun TickerCard(
 @Composable
 fun FavoritesListScreen(
     cryptoViewModel: CryptoViewModel,
-    onCoinClick: (String, String) -> Unit = { _, _ -> }
+    onCoinClick: (String, String) -> Unit = { _, _ -> },
+    // Bottom clearance for the iOS 26 native glass tab bar; 0.dp (no-op) on every other path. See
+    // ui.utils.bottomBarClearancePadding.
+    bottomBarClearance: Dp = 0.dp,
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()
@@ -1199,7 +1212,12 @@ fun FavoritesListScreen(
                 } else {
                     CompositionLocalProvider(LocalSettings provides settingsStore) {
                         Box(modifier = Modifier.fillMaxSize()) {
-                            LazyColumn(state = listState) {
+                            LazyColumn(
+                                state = listState,
+                                contentPadding = PaddingValues(
+                                    bottom = bottomBarClearancePadding(bottomBarClearance),
+                                ),
+                            ) {
                                 items(
                                     items = tickerItems,
                                     key = { it.symbol } // Stable key for efficient recomposition
@@ -1222,7 +1240,8 @@ fun FavoritesListScreen(
                             LazyColumnScrollbar(listState = listState)
                             ScrollToEdgeButton(
                                 listState = listState,
-                                totalItems = tickerItems.size
+                                totalItems = tickerItems.size,
+                                bottomBarClearance = bottomBarClearancePadding(bottomBarClearance),
                             )
                         }
                     }
