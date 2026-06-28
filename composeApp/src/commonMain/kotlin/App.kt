@@ -8,10 +8,10 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -234,42 +234,38 @@ fun App(
             bottomBar = {
                 val isCoinDetail = currentDestinationId == CoinDetail.serializer().generateHashCode()
                 if (!isCoinDetail) {
-                    BottomAppBar(
-                        actions = {
-                            val portfolioEnabled = settingsState?.hasPortfolioWallets() == true
-                            val navItems = buildList {
-                                add(NavItem.HomeScreen)
-                                add(NavItem.FavoritesScreen)
-                                if (portfolioEnabled) add(NavItem.PortfolioScreen)
-                                add(NavItem.SettingsScreen)
-                            }
+                    val portfolioEnabled = settingsState?.hasPortfolioWallets() == true
+                    val navItems = buildList {
+                        add(NavItem.HomeScreen)
+                        add(NavItem.FavoritesScreen)
+                        if (portfolioEnabled) add(NavItem.PortfolioScreen)
+                        add(NavItem.SettingsScreen)
+                    }
 
-                            NavigationBar {
-                                navItems.forEach { item ->
-                                    NavigationBarItem(
-                                        alwaysShowLabel = false,
-                                        icon = {
-                                            Icon(
-                                                imageVector = item.icon,
-                                                contentDescription = item.title
-                                            )
-                                        },
-                                        label = { Text(item.title) },
-                                        selected = currentDestinationId == item.destinationId(),
-                                        onClick = {
-                                            navController.navigate(item.path) {
-                                                popUpTo(navController.graph.startDestinationId) {
-                                                    saveState = true
-                                                }
-                                                launchSingleTop = true
-                                                restoreState = true
-                                            }
-                                        }
+                    NavigationBar {
+                        navItems.forEach { item ->
+                            NavigationBarItem(
+                                alwaysShowLabel = false,
+                                icon = {
+                                    Icon(
+                                        imageVector = item.icon,
+                                        contentDescription = item.title
                                     )
+                                },
+                                label = { Text(item.title) },
+                                selected = currentDestinationId == item.destinationId(),
+                                onClick = {
+                                    navController.navigate(item.path) {
+                                        popUpTo(navController.graph.startDestinationId) {
+                                            saveState = true
+                                        }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
                                 }
-                            }
+                            )
                         }
-                    )
+                    }
                 }
             }
         ) { innerPadding ->
@@ -279,6 +275,10 @@ fun App(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
+                    // The root Scaffold reserves the bottom nav-bar / system-bar inset here. Mark it
+                    // consumed so nested per-screen Scaffolds (Portfolio, Settings) don't re-apply the
+                    // same bottom inset and open a surface-colored strip above the bottom bar.
+                    .consumeWindowInsets(innerPadding)
             ) {
                 animatedComposable<Market> {
                     CryptoList(
