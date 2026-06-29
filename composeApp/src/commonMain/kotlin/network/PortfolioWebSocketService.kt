@@ -29,9 +29,16 @@ import model.HlSpotState
 /**
  * Real-time Hyperliquid portfolio stream for a public wallet address.
  *
- * Connects once to wss://api.hyperliquid.xyz/ws and subscribes to:
- *   - webData3 -> perps clearinghouse state (nested under data.clearinghouseState)
- *   - spotState -> spot balances
+ * Connects once to wss://api.hyperliquid.xyz/ws and subscribes to a single `webData2` channel —
+ * one atomic snapshot carrying BOTH:
+ *   - data.clearinghouseState -> perps clearinghouse state. NOTE: MAIN perp dex only; positions on
+ *     HIP-3 builder-deployed dexes are not included here (nor in the HTTP clearinghouseState call).
+ *   - data.spotState.balances  -> spot balances, already reconciled by Hyperliquid: USDC pledged as
+ *     perp collateral is reported as ~0, so it is NOT double-counted on top of accountValue.
+ *
+ * webData2 is the source of truth for live state; the HTTP snapshot in [HyperliquidService] is only
+ * a bootstrap / offline fallback (see WalletStream in PortfolioViewModel). Using one channel also
+ * avoids two streams racing to overwrite each other.
  *
  * Hyperliquid closes idle connections after 60s, so we send an application-level
  * {"method":"ping"} text frame every [PING_INTERVAL_MS]. This is distinct from the

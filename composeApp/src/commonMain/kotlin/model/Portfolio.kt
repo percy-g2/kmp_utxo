@@ -112,6 +112,17 @@ data class HlPerpState(
     @SerialName("time") val time: Long = 0,
 )
 
+/**
+ * One builder-deployed (HIP-3) perp dex from the `perpDexs` info response. That response is a JSON
+ * array whose first element is `null` (the main dex) and whose remaining elements are objects; only
+ * [name] is needed — it is passed as the `dex` parameter to query that dex's `clearinghouseState`.
+ * Alt-dex asset coins are namespaced (e.g. "xyz:TSLA"), so positions are self-identifying.
+ */
+@Serializable
+data class HlPerpDex(
+    @SerialName("name") val name: String = "",
+)
+
 // endregion
 
 // region --- Raw API DTOs (spot) ---
