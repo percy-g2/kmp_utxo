@@ -573,12 +573,14 @@ private fun SpotCard(row: SpotBalanceRow, accent: Color) {
 
 @Composable
 private fun CoinMonogram(coin: String, accent: Color) {
+    // Alt-dex coins are namespaced ("xyz:TSLA"); use the symbol after the prefix for the monogram.
+    val symbol = coin.substringAfterLast(':')
     Box(
         modifier = Modifier.size(40.dp).clip(CircleShape).background(accent.copy(alpha = 0.18f)),
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = coin.take(if (coin.length >= 2) 2 else 1).uppercase(),
+            text = symbol.take(if (symbol.length >= 2) 2 else 1).uppercase(),
             style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.Bold,
             color = accent,

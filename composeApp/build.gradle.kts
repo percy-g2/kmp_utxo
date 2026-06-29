@@ -149,6 +149,10 @@ kotlin {
             implementation(libs.coil.network.ktor3)
         }
 
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
+
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.ktor.client.cio)

@@ -10,9 +10,15 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.json.Json
 import logging.AppLogger
+import model.HlPerpDex
 import model.HlPerpState
 import model.HlSpotState
 
@@ -39,6 +45,10 @@ class HyperliquidService {
 
     private val rateLimiter = RateLimiter(maxRequests = 10, windowDurationMillis = 1000)
 
+    // Builder-deployed (HIP-3) perp dex names, fetched once and cached — the set changes rarely.
+    private val dexNamesMutex = Mutex()
+    private var cachedDexNames: List<String>? = null
+
     private val client = HttpClient {
         install(HttpTimeout) {
             connectTimeoutMillis = 15_000
@@ -51,12 +61,53 @@ class HyperliquidService {
         client.close()
     }
 
-    suspend fun fetchPerpState(user: String): HlPerpState? =
-        infoPost("clearinghouseState", user)?.let { body ->
+    /** Perp clearinghouse state for [user] on the main dex, or a builder-deployed [dex] when given. */
+    suspend fun fetchPerpState(user: String, dex: String? = null): HlPerpState? =
+        infoPost("clearinghouseState", user, dex)?.let { body ->
             runCatching { json.decodeFromString<HlPerpState>(body) }
                 .onFailure { AppLogger.logger.e(throwable = it) { "Hyperliquid: failed to parse clearinghouseState" } }
                 .getOrNull()
         }
+
+    /**
+     * Builder-deployed (HIP-3) perp dex names, fetched once and cached. The `perpDexs` array starts
+     * with `null` (the main dex) followed by per-dex objects; we keep the non-null names.
+     */
+    suspend fun perpDexNames(): List<String> {
+        cachedDexNames?.let { return it }
+        return dexNamesMutex.withLock {
+            cachedDexNames?.let { return@withLock it }
+            val body = post("""{"type":"perpDexs"}""", label = "perpDexs") ?: return@withLock emptyList()
+            val names = runCatching {
+                json.decodeFromString<List<HlPerpDex?>>(body)
+                    .filterNotNull()
+                    .map { it.name }
+                    .filter { it.isNotEmpty() }
+            }.getOrElse {
+                AppLogger.logger.e(throwable = it) { "Hyperliquid: failed to parse perpDexs" }
+                emptyList()
+            }
+            // Cache only on success so a transient failure is retried on the next call.
+            if (names.isNotEmpty()) cachedDexNames = names
+            names
+        }
+    }
+
+    /**
+     * Perp state on every builder-deployed (HIP-3) alt dex where [user] has equity or a position.
+     * webData2 and the main `clearinghouseState` cover only the main dex, so alt dexes must be
+     * fetched separately. Collateral is isolated per dex, so each returned state's accountValue is
+     * additive with the main dex (no shared pool to double-count). Empty dex accounts are dropped.
+     */
+    suspend fun fetchAltPerpStates(user: String): List<HlPerpState> {
+        val names = perpDexNames()
+        if (names.isEmpty()) return emptyList()
+        return coroutineScope {
+            names.map { dex -> async { fetchPerpState(user, dex) } }.awaitAll()
+        }.filterNotNull().filter {
+            it.assetPositions.isNotEmpty() || (it.marginSummary.accountValue.toDoubleOrNull() ?: 0.0) > 0.0
+        }
+    }
 
     suspend fun fetchSpotState(user: String): HlSpotState? =
         infoPost("spotClearinghouseState", user)?.let { body ->
@@ -85,12 +136,21 @@ class HyperliquidService {
     }
 
     /**
-     * POST {"type":<type>,"user":<user>} to the info endpoint and return the raw body,
+     * POST {"type":<type>,"user":<user>[,"dex":<dex>]} to the info endpoint and return the raw body,
      * or null on failure. The request body is built directly to avoid coupling to
      * ContentNegotiation request serialization.
      */
-    private suspend fun infoPost(type: String, user: String): String? {
-        val requestBody = """{"type":"$type","user":"$user"}"""
+    private suspend fun infoPost(type: String, user: String, dex: String? = null): String? {
+        val requestBody = if (dex.isNullOrEmpty()) {
+            """{"type":"$type","user":"$user"}"""
+        } else {
+            """{"type":"$type","user":"$user","dex":"$dex"}"""
+        }
+        return post(requestBody, label = type)
+    }
+
+    /** POST a raw JSON body to the info endpoint with retry/backoff; null on failure. */
+    private suspend fun post(requestBody: String, label: String): String? {
         for (attempt in 0 until MAX_RETRIES) {
             try {
                 rateLimiter.acquire()
@@ -103,7 +163,7 @@ class HyperliquidService {
                     response.status.value == 429 -> delay(1000L * (attempt + 1))      // rate limited
                     response.status.value in 500..599 -> delay(500L * (attempt + 1))  // server error, back off
                     else -> {
-                        AppLogger.logger.w { "Hyperliquid info ($type) returned ${response.status}" }
+                        AppLogger.logger.w { "Hyperliquid info ($label) returned ${response.status}" }
                         return null
                     }
                 }
@@ -111,7 +171,7 @@ class HyperliquidService {
                 throw e
             } catch (e: Exception) {
                 if (attempt == MAX_RETRIES - 1) {
-                    AppLogger.logger.e(throwable = e) { "Hyperliquid info ($type) request failed" }
+                    AppLogger.logger.e(throwable = e) { "Hyperliquid info ($label) request failed" }
                     return null
                 }
                 delay(500L * (attempt + 1))
