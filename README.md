@@ -16,22 +16,36 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   <img src="screenshots/feature_graphic_1024x500.png" width="100%" alt="UTXO — Markets and portfolio in your pocket">
 </p>
 
-<p align="center"><sub><b>Phone</b> · Android · iOS · 1284 × 2778 · App Store + Play Store</sub></p>
-<p align="center"><sub><i>App Store set captured on iOS; the Play Store set is captured on Android — the same Compose Multiplatform UI runs on both.</i></sub></p>
+<p align="center"><sub><b>Phone</b> · iOS · 1284 × 2778 · App Store</sub></p>
+<p align="center"><sub><i>App Store set captured on the iOS simulator. The Portfolio screen is seeded from live Hyperliquid leaderboard wallets.</i></sub></p>
 
 <table>
   <tr>
-    <td><img src="screenshots/01_markets_dark.png" width="160" alt="Markets"></td>
-    <td><img src="screenshots/02_portfolio_dark.png" width="160" alt="Portfolio"></td>
-    <td><img src="screenshots/03_charts_light.png" width="160" alt="Charts"></td>
-    <td><img src="screenshots/04_depth_dark.png" width="160" alt="Depth"></td>
-    <td><img src="screenshots/05_news_light.png" width="160" alt="News"></td>
-    <td><img src="screenshots/06_favorites_dark.png" width="160" alt="Favorites"></td>
+    <td><img src="screenshots/01_markets_dark.png" width="160" alt="Markets — iOS"></td>
+    <td><img src="screenshots/02_portfolio_dark.png" width="160" alt="Portfolio — iOS"></td>
+    <td><img src="screenshots/03_charts_light.png" width="160" alt="Charts — iOS"></td>
+    <td><img src="screenshots/04_depth_dark.png" width="160" alt="Depth — iOS"></td>
+    <td><img src="screenshots/05_news_light.png" width="160" alt="News — iOS"></td>
+    <td><img src="screenshots/06_favorites_dark.png" width="160" alt="Favorites — iOS"></td>
   </tr>
 </table>
 
-<p align="center"><sub><b>Tablet</b> · Android · iOS · 2048 × 2732 · App Store iPad slot</sub></p>
-<p align="center"><sub><i>Sized for Apple's iPad slot. Play Store tablet listings would need a separate render pass at Google's recommended 7" / 10" dimensions.</i></sub></p>
+<p align="center"><sub><b>Phone</b> · Android · 1284 × 2778 · Play Store</sub></p>
+<p align="center"><sub><i>Play Store set captured on the Android emulator — the same Compose Multiplatform UI runs on both.</i></sub></p>
+
+<table>
+  <tr>
+    <td><img src="play-store/01_markets_dark.png" width="160" alt="Markets — Android"></td>
+    <td><img src="play-store/02_portfolio_dark.png" width="160" alt="Portfolio — Android"></td>
+    <td><img src="play-store/03_charts_light.png" width="160" alt="Charts — Android"></td>
+    <td><img src="play-store/04_depth_dark.png" width="160" alt="Depth — Android"></td>
+    <td><img src="play-store/05_news_light.png" width="160" alt="News — Android"></td>
+    <td><img src="play-store/06_favorites_dark.png" width="160" alt="Favorites — Android"></td>
+  </tr>
+</table>
+
+<p align="center"><sub><b>Tablet</b> · iOS · 2048 × 2732 · App Store iPad slot — marketing frames</sub></p>
+<p align="center"><sub><i>Sized for Apple's iPad slot (iPhone captures in a tablet canvas). Play Store tablet listings would need a separate render pass at Google's recommended 7" / 10" dimensions.</i></sub></p>
 
 <table>
   <tr>
@@ -41,6 +55,22 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
     <td><img src="screenshots/ipad_04_depth_dark.png" width="160" alt="Depth — iPad"></td>
     <td><img src="screenshots/ipad_05_news_light.png" width="160" alt="News — iPad"></td>
     <td><img src="screenshots/ipad_06_favorites_dark.png" width="160" alt="Favorites — iPad"></td>
+  </tr>
+</table>
+
+<p align="center"><sub><b>Tablet</b> · iOS · 2048 × 2732 · native iPad UI</sub></p>
+<p align="center"><sub><i>Captured on the iPad simulator — the app's adaptive iPad layout with a top tab bar and full-width rows.</i></sub></p>
+
+<table>
+  <tr>
+    <td><img src="screenshots/ipad_native_01_markets_dark.png" width="200" alt="Markets — native iPad"></td>
+    <td><img src="screenshots/ipad_native_02_portfolio_dark.png" width="200" alt="Portfolio — native iPad"></td>
+    <td><img src="screenshots/ipad_native_03_charts_light.png" width="200" alt="Charts — native iPad"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/ipad_native_04_depth_dark.png" width="200" alt="Depth — native iPad"></td>
+    <td><img src="screenshots/ipad_native_05_news_light.png" width="200" alt="News — native iPad"></td>
+    <td><img src="screenshots/ipad_native_06_favorites_dark.png" width="200" alt="Favorites — native iPad"></td>
   </tr>
 </table>
 
