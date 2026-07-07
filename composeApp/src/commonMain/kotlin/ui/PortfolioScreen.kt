@@ -6,8 +6,10 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,7 +37,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.CloudOff
+import androidx.compose.material.icons.filled.DonutLarge
 import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -60,9 +64,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -88,6 +97,8 @@ import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.portfolio_account
 import utxo.composeapp.generated.resources.portfolio_all
+import utxo.composeapp.generated.resources.portfolio_alloc_bar
+import utxo.composeapp.generated.resources.portfolio_alloc_donut
 import utxo.composeapp.generated.resources.portfolio_allocation
 import utxo.composeapp.generated.resources.portfolio_available
 import utxo.composeapp.generated.resources.portfolio_away
@@ -115,10 +126,14 @@ import utxo.composeapp.generated.resources.portfolio_short
 import utxo.composeapp.generated.resources.portfolio_size
 import utxo.composeapp.generated.resources.portfolio_spot
 import utxo.composeapp.generated.resources.portfolio_title
+import utxo.composeapp.generated.resources.portfolio_total
 import utxo.composeapp.generated.resources.portfolio_value
 import utxo.composeapp.generated.resources.refresh
+import kotlin.math.PI
 import kotlin.math.abs
+import kotlin.math.atan2
 import kotlin.math.roundToLong
+import kotlin.math.sqrt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -458,59 +473,45 @@ private data class AllocSlice(
     val fraction: Float,
 )
 
+private enum class AllocView { Bar, Donut }
+
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun AllocationSection(slices: List<AllocSlice>) {
-    // Selected coin — tap a slice or a legend chip to select, tap again to clear. Self-contained:
-    // it only drives the highlight + caption below, with no coupling to the list's scroll position.
+    // Selected slice id — tap a slice/legend chip to select, tap again to clear. Self-contained: it
+    // only drives the highlight + caption, with no coupling to the list's scroll position. [view] is
+    // the bar/donut toggle; both views share this selection.
     var selected by remember { mutableStateOf<String?>(null) }
+    var view by remember { mutableStateOf(AllocView.Bar) }
     // The list updates live; ignore a stale selection whose slice is no longer present (e.g. a closed
-    // position) so the bar doesn't dim every slice with nothing highlighted.
+    // position) so nothing dims with no slice highlighted.
     val active = selected?.takeIf { sel -> slices.any { it.id == sel } }
+    val onSelect: (String) -> Unit = { id -> selected = if (selected == id) null else id }
 
     Column(modifier = Modifier.fillMaxWidth().padding(top = 4.dp)) {
-        Text(
-            text = stringResource(Res.string.portfolio_allocation),
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Spacer(Modifier.height(8.dp))
-
-        // Bar: the 28dp-tall Row gives each slice a real touch target; the visible fill is 12dp
-        // (16dp when selected). Non-selected slices dim while a selection is active.
         Row(
-            modifier = Modifier.fillMaxWidth().height(28.dp),
-            horizontalArrangement = Arrangement.spacedBy(2.dp),
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            slices.forEach { slice ->
-                val isSel = active == slice.id
-                val dimmed = active != null && !isSel
-                Box(
-                    modifier = Modifier
-                        .weight(slice.fraction.coerceAtLeast(0.03f))
-                        .fillMaxHeight()
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null,
-                        ) { selected = if (isSel) null else slice.id },
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Box(
-                        Modifier
-                            .fillMaxWidth()
-                            .height(if (isSel) 16.dp else 12.dp)
-                            .clip(RoundedCornerShape(4.dp))
-                            .background(slice.color.copy(alpha = if (dimmed) 0.35f else 1f)),
-                    )
-                }
-            }
+            Text(
+                text = stringResource(Res.string.portfolio_allocation),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            AllocViewToggle(view, onChange = { view = it })
+        }
+        Spacer(Modifier.height(10.dp))
+
+        when (view) {
+            AllocView.Bar -> AllocationBar(slices, active, onSelect)
+            AllocView.Donut -> AllocationDonut(slices, active, onSelect)
         }
 
         // Caption: shown only while a slice is selected — an addition on tap, never a hidden default.
         active?.let { id ->
             slices.firstOrNull { it.id == id }?.let { slice ->
-                Spacer(Modifier.height(6.dp))
+                Spacer(Modifier.height(8.dp))
                 val walletPart = slice.sourceLabel?.let { "  ·  $it" }.orEmpty()
                 Text(
                     text = "${slice.coin.substringAfterLast(':')}$walletPart  ·  ${(slice.fraction * 100.0).toPercent(1)}%  ·  ${slice.usd.toUsd()}",
@@ -528,9 +529,166 @@ private fun AllocationSection(slices: List<AllocSlice>) {
             verticalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             slices.forEach { slice ->
-                LegendChip(slice, active == slice.id) {
-                    selected = if (selected == slice.id) null else slice.id
-                }
+                LegendChip(slice, active == slice.id) { onSelect(slice.id) }
+            }
+        }
+    }
+}
+
+/** Compact segmented control switching the allocation between the bar and the donut view. */
+@Composable
+private fun AllocViewToggle(view: AllocView, onChange: (AllocView) -> Unit) {
+    Surface(shape = RoundedCornerShape(50), color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)) {
+        Row(modifier = Modifier.padding(2.dp), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+            AllocViewToggleButton(
+                icon = Icons.Default.BarChart,
+                description = stringResource(Res.string.portfolio_alloc_bar),
+                selected = view == AllocView.Bar,
+            ) { onChange(AllocView.Bar) }
+            AllocViewToggleButton(
+                icon = Icons.Default.DonutLarge,
+                description = stringResource(Res.string.portfolio_alloc_donut),
+                selected = view == AllocView.Donut,
+            ) { onChange(AllocView.Donut) }
+        }
+    }
+}
+
+@Composable
+private fun AllocViewToggleButton(icon: ImageVector, description: String, selected: Boolean, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .clip(CircleShape)
+            .background(if (selected) MaterialTheme.colorScheme.primary.copy(alpha = 0.18f) else Color.Transparent)
+            .clickable(onClick = onClick)
+            .padding(6.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = description,
+            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(16.dp),
+        )
+    }
+}
+
+@Composable
+private fun AllocationBar(slices: List<AllocSlice>, activeId: String?, onSelect: (String) -> Unit) {
+    // The 28dp-tall Row gives each slice a real touch target; the visible fill is 12dp (16dp when
+    // selected). Non-selected slices dim while a selection is active.
+    Row(
+        modifier = Modifier.fillMaxWidth().height(28.dp),
+        horizontalArrangement = Arrangement.spacedBy(2.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        slices.forEach { slice ->
+            val isSel = activeId == slice.id
+            val dimmed = activeId != null && !isSel
+            Box(
+                modifier = Modifier
+                    .weight(slice.fraction.coerceAtLeast(0.03f))
+                    .fillMaxHeight()
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    ) { onSelect(slice.id) },
+                contentAlignment = Alignment.Center,
+            ) {
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(if (isSel) 16.dp else 12.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .background(slice.color.copy(alpha = if (dimmed) 0.35f else 1f)),
+                )
+            }
+        }
+    }
+}
+
+/**
+ * Donut rendering of the same slices, tappable by arc. Taps are hit-tested by angle+radius against the
+ * slice ranges (arcs run clockwise from 12 o'clock), so a tap on the ring selects its slice. The center
+ * shows the total, or the selected slice's coin + share when one is chosen.
+ */
+@Composable
+private fun AllocationDonut(slices: List<AllocSlice>, activeId: String?, onSelect: (String) -> Unit) {
+    val total = slices.sumOf { it.usd }
+    val selected = activeId?.let { id -> slices.firstOrNull { it.id == id } }
+    val gapDeg = 2f
+
+    Box(modifier = Modifier.fillMaxWidth().height(196.dp), contentAlignment = Alignment.Center) {
+        Canvas(
+            modifier = Modifier
+                .size(184.dp)
+                .pointerInput(slices) {
+                    detectTapGestures { tap ->
+                        val dx = tap.x - size.width / 2f
+                        val dy = tap.y - size.height / 2f
+                        val dist = sqrt(dx * dx + dy * dy)
+                        val outer = minOf(size.width, size.height) / 2f
+                        // React only to taps roughly on the ring; ignore the center label and far corners.
+                        if (dist < outer * 0.5f || dist > outer) return@detectTapGestures
+                        var ang = atan2(dy, dx) * (180f / PI.toFloat()) // 0 = 3 o'clock, clockwise
+                        if (ang < -90f) ang += 360f                     // arcs run [-90, 270)
+                        var start = -90f
+                        for (s in slices) {
+                            val sweep = s.fraction * 360f
+                            if (ang >= start && ang < start + sweep) {
+                                onSelect(s.id)
+                                break
+                            }
+                            start += sweep
+                        }
+                    }
+                },
+        ) {
+            val stroke = 26.dp.toPx()
+            val d = size.minDimension - stroke
+            val topLeft = Offset((size.width - d) / 2f, (size.height - d) / 2f)
+            val arcSize = Size(d, d)
+            var start = -90f
+            slices.forEach { slice ->
+                val sweep = slice.fraction * 360f
+                val dim = activeId != null && activeId != slice.id
+                drawArc(
+                    color = slice.color.copy(alpha = if (dim) 0.3f else 1f),
+                    startAngle = start + gapDeg / 2f,
+                    sweepAngle = (sweep - gapDeg).coerceAtLeast(0.5f),
+                    useCenter = false,
+                    topLeft = topLeft,
+                    size = arcSize,
+                    style = Stroke(width = stroke, cap = StrokeCap.Butt),
+                )
+                start += sweep
+            }
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            if (selected != null) {
+                Text(
+                    text = selected.coin.substringAfterLast(':'),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                )
+                Text(
+                    text = "${(selected.fraction * 100.0).toPercent(1)}%",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            } else {
+                Text(
+                    text = stringResource(Res.string.portfolio_total),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    text = total.toUsd(),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                )
             }
         }
     }

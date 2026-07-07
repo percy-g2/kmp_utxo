@@ -193,4 +193,7 @@
     <string name="portfolio_away">away</string>
     <string name="portfolio_allocation">Allocation</string>
     <string name="portfolio_all">All</string>
+    <string name="portfolio_alloc_bar">Bar chart</string>
+    <string name="portfolio_alloc_donut">Donut chart</string>
+    <string name="portfolio_total">Total</string>
 </resources>
