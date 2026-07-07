@@ -1,0 +1,40 @@
+{
+  "app": {
+    "name": "UTXO",
+    "discIndex": 3,
+    "discGlyph": "₿",
+    "kicker": "Real-time crypto tracker",
+    "tagline": "Markets and portfolio, in your pocket.",
+    "brand": "#f27c2f",
+    "bg": "#080b12",
+    "bg2": "#0a0e17",
+    "screenAspect": "1206/2622"
+  },
+  "timing": { "intro": 2600, "hold": 3400, "outroHold": 6000 },
+  "ticker": [
+    ["BTC", "63,784.02", "u", "▲2.83%"], ["ETH", "1,790.13", "u", "▲2.33%"],
+    ["SOL", "81.81", "u", "▲1.84%"], ["BNB", "581.87", "u", "▲1.11%"],
+    ["ZEC", "457.82", "u", "▲264%"], ["HYPE", "71.33", "u", "▲"],
+    ["XRP", "1.13", "d", "▼1.5%"], ["AAVE", "92.05", "u", "▲78%"],
+    ["XPL", "0.1060", "u", "▲"], ["NEAR", "2.01", "d", "▼"], ["XMR", "318.4", "d", "▼"]
+  ],
+  "scenes": [
+    { "tag": "MARKETS", "accent": "#f27c2f", "img": "markets_dark.png",
+      "headline": ["Track live", "crypto markets"], "subtitle": "BTC, ETH, SOL and 200+ pairs — updated every second." },
+    { "tag": "PORTFOLIO", "accent": "#1fb87a", "img": "portfolio_dark.png",
+      "headline": ["Your portfolio,", "in real time"], "subtitle": "Multi-wallet balances, live P&L and liquidation alerts in one view." },
+    { "tag": "ALLOCATION", "accent": "#22b8a8", "img": "allocation_dark.png",
+      "headline": ["See your mix,", "at a glance"], "subtitle": "Bar or donut — every position sized to scale, live." },
+    { "tag": "CHARTS", "accent": "#3b6fe0", "img": "charts_light.png",
+      "headline": ["Pro candles,", "in your pocket"], "subtitle": "Powered by TradingView. Pinch, scrub, zoom — full control." },
+    { "tag": "DEPTH", "accent": "#9266e8", "img": "depth_dark.png",
+      "headline": ["Every detail,", "every tick"], "subtitle": "Order book, 24h stats and trading info in one clean view." },
+    { "tag": "NEWS", "accent": "#e5604a", "img": "news_light.png",
+      "headline": ["Crypto news,", "curated"], "subtitle": "Latest from CoinDesk, CoinTelegraph and trusted sources." },
+    { "tag": "FAVORITES", "accent": "#f2a92f", "img": "favorites_dark.png",
+      "headline": ["Your watchlist,", "one tap away"], "subtitle": "Star the coins you care about. Find them instantly." }
+  ],
+  "outro": {
+    "lede": "Track live markets, your portfolio, and the news — free."
+  }
+}
