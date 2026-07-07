@@ -23,6 +23,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   <tr>
     <td><img src="screenshots/01_markets_dark.png" width="160" alt="Markets — iOS"></td>
     <td><img src="screenshots/02_portfolio_dark.png" width="160" alt="Portfolio — iOS"></td>
+    <td><img src="screenshots/07_allocation_dark.png" width="160" alt="Allocation — iOS"></td>
     <td><img src="screenshots/03_charts_light.png" width="160" alt="Charts — iOS"></td>
     <td><img src="screenshots/04_depth_dark.png" width="160" alt="Depth — iOS"></td>
     <td><img src="screenshots/05_news_light.png" width="160" alt="News — iOS"></td>
@@ -37,6 +38,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   <tr>
     <td><img src="play-store/01_markets_dark.png" width="160" alt="Markets — Android"></td>
     <td><img src="play-store/02_portfolio_dark.png" width="160" alt="Portfolio — Android"></td>
+    <td><img src="play-store/07_allocation_dark.png" width="160" alt="Allocation — Android"></td>
     <td><img src="play-store/03_charts_light.png" width="160" alt="Charts — Android"></td>
     <td><img src="play-store/04_depth_dark.png" width="160" alt="Depth — Android"></td>
     <td><img src="play-store/05_news_light.png" width="160" alt="News — Android"></td>
@@ -51,6 +53,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   <tr>
     <td><img src="screenshots/ipad_01_markets_dark.png" width="160" alt="Markets — iPad"></td>
     <td><img src="screenshots/ipad_02_portfolio_dark.png" width="160" alt="Portfolio — iPad"></td>
+    <td><img src="screenshots/ipad_07_allocation_dark.png" width="160" alt="Allocation — iPad"></td>
     <td><img src="screenshots/ipad_03_charts_light.png" width="160" alt="Charts — iPad"></td>
     <td><img src="screenshots/ipad_04_depth_dark.png" width="160" alt="Depth — iPad"></td>
     <td><img src="screenshots/ipad_05_news_light.png" width="160" alt="News — iPad"></td>
@@ -65,6 +68,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   <tr>
     <td><img src="screenshots/ipad_native_01_markets_dark.png" width="200" alt="Markets — native iPad"></td>
     <td><img src="screenshots/ipad_native_02_portfolio_dark.png" width="200" alt="Portfolio — native iPad"></td>
+    <td><img src="screenshots/ipad_native_07_allocation_dark.png" width="200" alt="Allocation — native iPad"></td>
     <td><img src="screenshots/ipad_native_03_charts_light.png" width="200" alt="Charts — native iPad"></td>
   </tr>
   <tr>
