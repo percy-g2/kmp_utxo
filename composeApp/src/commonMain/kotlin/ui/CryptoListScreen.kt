@@ -90,13 +90,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import coil3.compose.AsyncImage
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import ktx.cryptoIconUrl
 import ktx.formatVolume
 import model.SortParams
 import model.TickerData
@@ -105,6 +103,7 @@ import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import theme.yellowDark
 import theme.yellowLight
+import ui.components.CoinIcon
 import ui.components.LazyColumnScrollbar
 import ui.components.ScrollToEdgeButton
 import ui.utils.bottomBarClearancePadding
@@ -1246,48 +1245,6 @@ fun FavoritesListScreen(
                         }
                     }
                 }
-            }
-        }
-    }
-}
-
-@Composable
-private fun CoinIcon(
-    baseAsset: String,
-    modifier: Modifier = Modifier
-) {
-    val iconUrl = remember(baseAsset) { cryptoIconUrl(baseAsset) }
-    var loading by remember(baseAsset) { mutableStateOf(true) }
-    var errored by remember(baseAsset) { mutableStateOf(false) }
-    Box(
-        modifier = modifier
-            .clip(CircleShape)
-            .background(MaterialTheme.colorScheme.surfaceVariant),
-        contentAlignment = Alignment.Center
-    ) {
-        if (errored || iconUrl.isEmpty()) {
-            Text(
-                text = baseAsset.take(1),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        } else {
-            AsyncImage(
-                model = iconUrl,
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                onSuccess = { loading = false },
-                onError = {
-                    loading = false
-                    errored = true
-                }
-            )
-            if (loading) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(14.dp),
-                    strokeWidth = 1.5.dp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
             }
         }
     }

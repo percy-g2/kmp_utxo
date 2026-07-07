@@ -1,14 +1,21 @@
 package ui
 
+import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +24,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -29,7 +37,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.CloudOff
+import androidx.compose.material.icons.filled.DonutLarge
 import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -44,14 +54,24 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -70,12 +90,15 @@ import model.SpotBalanceRow
 import model.WalletTab
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
+import ui.components.CoinIcon
 import ui.utils.bottomBarClearancePadding
 import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.portfolio_account
 import utxo.composeapp.generated.resources.portfolio_all
+import utxo.composeapp.generated.resources.portfolio_alloc_bar
+import utxo.composeapp.generated.resources.portfolio_alloc_donut
 import utxo.composeapp.generated.resources.portfolio_allocation
 import utxo.composeapp.generated.resources.portfolio_available
 import utxo.composeapp.generated.resources.portfolio_away
@@ -103,10 +126,14 @@ import utxo.composeapp.generated.resources.portfolio_short
 import utxo.composeapp.generated.resources.portfolio_size
 import utxo.composeapp.generated.resources.portfolio_spot
 import utxo.composeapp.generated.resources.portfolio_title
+import utxo.composeapp.generated.resources.portfolio_total
 import utxo.composeapp.generated.resources.portfolio_value
 import utxo.composeapp.generated.resources.refresh
+import kotlin.math.PI
 import kotlin.math.abs
+import kotlin.math.atan2
 import kotlin.math.roundToLong
+import kotlin.math.sqrt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -257,11 +284,32 @@ private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean, extra
     val palette = coinPalette()
     val showPerpStats = data.perpPositions.isNotEmpty() || data.summary.accountValue > 0.0
 
-    // Allocation segments across USD-valued holdings (perp notionals + stable spot).
-    val allocation = buildList {
-        data.perpPositions.forEach { add(Triple(it.coin, it.notionalUsd, palette.colorFor(it.coin))) }
-        data.spotBalances.forEach { b -> b.usdValue?.let { add(Triple(b.coin, it, palette.colorFor(b.coin))) } }
-    }.filter { it.second > 0.0 }
+    // Allocation slices across USD-valued holdings (perp notionals + stable spot), largest first.
+    // Colors are assigned by index (not by coin hash) so the biggest slices always get the most
+    // distinct palette entries and the legend never shows two coins in one color (for <= 5 slices).
+    // Each slice keeps a stable id (instrument+coin+wallet) so the same coin held across several
+    // wallets stays independently selectable in the aggregate "All" view. Color/fraction are filled
+    // after sorting, so the seeds are built with placeholders.
+    val slices = run {
+        val seeds = buildList {
+            data.perpPositions.forEach {
+                if (it.notionalUsd > 0.0) {
+                    add(AllocSlice("perp|${it.coin}|${it.sourceLabel.orEmpty()}", it.coin, it.sourceLabel, it.notionalUsd, Color.Transparent, 0f))
+                }
+            }
+            data.spotBalances.forEach { b ->
+                b.usdValue?.let {
+                    if (it > 0.0) {
+                        add(AllocSlice("spot|${b.coin}|${b.sourceLabel.orEmpty()}", b.coin, b.sourceLabel, it, Color.Transparent, 0f))
+                    }
+                }
+            }
+        }.sortedByDescending { it.usd }
+        val total = seeds.sumOf { it.usd }
+        seeds.mapIndexed { i, s ->
+            s.copy(color = palette.colorAt(i), fraction = if (total > 0.0) (s.usd / total).toFloat() else 0f)
+        }
+    }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -270,8 +318,8 @@ private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean, extra
     ) {
         item(key = "hero") { HeroCard(data.summary, data.isStale, showPerpStats, isDark) }
 
-        if (allocation.size >= 2) {
-            item(key = "allocation") { AllocationStrip(allocation) }
+        if (slices.size >= 2) {
+            item(key = "allocation") { AllocationSection(slices) }
         }
 
         if (data.perpPositions.isNotEmpty()) {
@@ -411,33 +459,278 @@ private fun HeroStat(label: String, value: String, onHero: Color, modifier: Modi
 
 // region --- Allocation ---
 
+/**
+ * One allocation slice. [id] is a stable per-holding identity (instrument+coin+wallet) so that, in the
+ * aggregate "All" view, the same coin held in several wallets yields independently selectable slices.
+ * [sourceLabel] is the owning wallet's name (non-null only in the "All" view).
+ */
+private data class AllocSlice(
+    val id: String,
+    val coin: String,
+    val sourceLabel: String?,
+    val usd: Double,
+    val color: Color,
+    val fraction: Float,
+)
+
+private enum class AllocView { Bar, Donut }
+
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun AllocationStrip(items: List<Triple<String, Double, Color>>) {
-    val total = items.sumOf { it.second }
-    if (total <= 0.0) return
+private fun AllocationSection(slices: List<AllocSlice>) {
+    // Selected slice id — tap a slice/legend chip to select, tap again to clear. Self-contained: it
+    // only drives the highlight + caption, with no coupling to the list's scroll position. [view] is
+    // the bar/donut toggle; both views share this selection.
+    var selected by remember { mutableStateOf<String?>(null) }
+    var view by remember { mutableStateOf(AllocView.Bar) }
+    // The list updates live; ignore a stale selection whose slice is no longer present (e.g. a closed
+    // position) so nothing dims with no slice highlighted.
+    val active = selected?.takeIf { sel -> slices.any { it.id == sel } }
+    val onSelect: (String) -> Unit = { id -> selected = if (selected == id) null else id }
+
     Column(modifier = Modifier.fillMaxWidth().padding(top = 4.dp)) {
-        Text(
-            text = stringResource(Res.string.portfolio_allocation),
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Spacer(Modifier.height(8.dp))
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(12.dp)
-                .clip(RoundedCornerShape(6.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant),
-            horizontalArrangement = Arrangement.spacedBy(2.dp),
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            items.forEach { (_, value, color) ->
-                Box(
-                    Modifier
-                        .weight((value / total).toFloat().coerceAtLeast(0.001f))
-                        .fillMaxHeight()
-                        .background(color),
+            Text(
+                text = stringResource(Res.string.portfolio_allocation),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            AllocViewToggle(view, onChange = { view = it })
+        }
+        Spacer(Modifier.height(10.dp))
+
+        when (view) {
+            AllocView.Bar -> AllocationBar(slices, active, onSelect)
+            AllocView.Donut -> AllocationDonut(slices, active, onSelect)
+        }
+
+        // Caption: shown only while a slice is selected — an addition on tap, never a hidden default.
+        active?.let { id ->
+            slices.firstOrNull { it.id == id }?.let { slice ->
+                Spacer(Modifier.height(8.dp))
+                val walletPart = slice.sourceLabel?.let { "  ·  $it" }.orEmpty()
+                Text(
+                    text = "${slice.coin.substringAfterLast(':')}$walletPart  ·  ${(slice.fraction * 100.0).toPercent(1)}%  ·  ${slice.usd.toUsd()}",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
             }
+        }
+
+        // Legend: always visible (color dot · coin · %). The chip is the reliable accessible tap target.
+        Spacer(Modifier.height(10.dp))
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            slices.forEach { slice ->
+                LegendChip(slice, active == slice.id) { onSelect(slice.id) }
+            }
+        }
+    }
+}
+
+/** Compact segmented control switching the allocation between the bar and the donut view. */
+@Composable
+private fun AllocViewToggle(view: AllocView, onChange: (AllocView) -> Unit) {
+    Surface(shape = RoundedCornerShape(50), color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)) {
+        Row(modifier = Modifier.padding(2.dp), horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+            AllocViewToggleButton(
+                icon = Icons.Default.BarChart,
+                description = stringResource(Res.string.portfolio_alloc_bar),
+                selected = view == AllocView.Bar,
+            ) { onChange(AllocView.Bar) }
+            AllocViewToggleButton(
+                icon = Icons.Default.DonutLarge,
+                description = stringResource(Res.string.portfolio_alloc_donut),
+                selected = view == AllocView.Donut,
+            ) { onChange(AllocView.Donut) }
+        }
+    }
+}
+
+@Composable
+private fun AllocViewToggleButton(icon: ImageVector, description: String, selected: Boolean, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .clip(CircleShape)
+            .background(if (selected) MaterialTheme.colorScheme.primary.copy(alpha = 0.18f) else Color.Transparent)
+            .clickable(onClick = onClick)
+            .padding(6.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = description,
+            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(16.dp),
+        )
+    }
+}
+
+@Composable
+private fun AllocationBar(slices: List<AllocSlice>, activeId: String?, onSelect: (String) -> Unit) {
+    // The 28dp-tall Row gives each slice a real touch target; the visible fill is 12dp (16dp when
+    // selected). Non-selected slices dim while a selection is active.
+    Row(
+        modifier = Modifier.fillMaxWidth().height(28.dp),
+        horizontalArrangement = Arrangement.spacedBy(2.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        slices.forEach { slice ->
+            val isSel = activeId == slice.id
+            val dimmed = activeId != null && !isSel
+            Box(
+                modifier = Modifier
+                    .weight(slice.fraction.coerceAtLeast(0.03f))
+                    .fillMaxHeight()
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    ) { onSelect(slice.id) },
+                contentAlignment = Alignment.Center,
+            ) {
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(if (isSel) 16.dp else 12.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .background(slice.color.copy(alpha = if (dimmed) 0.35f else 1f)),
+                )
+            }
+        }
+    }
+}
+
+/**
+ * Donut rendering of the same slices, tappable by arc. Taps are hit-tested by angle+radius against the
+ * slice ranges (arcs run clockwise from 12 o'clock), so a tap on the ring selects its slice. The center
+ * shows the total, or the selected slice's coin + share when one is chosen.
+ */
+@Composable
+private fun AllocationDonut(slices: List<AllocSlice>, activeId: String?, onSelect: (String) -> Unit) {
+    val total = slices.sumOf { it.usd }
+    val selected = activeId?.let { id -> slices.firstOrNull { it.id == id } }
+    val gapDeg = 2f
+
+    Box(modifier = Modifier.fillMaxWidth().height(196.dp), contentAlignment = Alignment.Center) {
+        Canvas(
+            modifier = Modifier
+                .size(184.dp)
+                .pointerInput(slices) {
+                    detectTapGestures { tap ->
+                        val dx = tap.x - size.width / 2f
+                        val dy = tap.y - size.height / 2f
+                        val dist = sqrt(dx * dx + dy * dy)
+                        val outer = minOf(size.width, size.height) / 2f
+                        // React only to taps roughly on the ring; ignore the center label and far corners.
+                        if (dist < outer * 0.5f || dist > outer) return@detectTapGestures
+                        var ang = atan2(dy, dx) * (180f / PI.toFloat()) // 0 = 3 o'clock, clockwise
+                        if (ang < -90f) ang += 360f                     // arcs run [-90, 270)
+                        var start = -90f
+                        for (s in slices) {
+                            val sweep = s.fraction * 360f
+                            if (ang >= start && ang < start + sweep) {
+                                onSelect(s.id)
+                                break
+                            }
+                            start += sweep
+                        }
+                    }
+                },
+        ) {
+            val stroke = 26.dp.toPx()
+            val d = size.minDimension - stroke
+            val topLeft = Offset((size.width - d) / 2f, (size.height - d) / 2f)
+            val arcSize = Size(d, d)
+            var start = -90f
+            slices.forEach { slice ->
+                val sweep = slice.fraction * 360f
+                val dim = activeId != null && activeId != slice.id
+                drawArc(
+                    color = slice.color.copy(alpha = if (dim) 0.3f else 1f),
+                    startAngle = start + gapDeg / 2f,
+                    sweepAngle = (sweep - gapDeg).coerceAtLeast(0.5f),
+                    useCenter = false,
+                    topLeft = topLeft,
+                    size = arcSize,
+                    style = Stroke(width = stroke, cap = StrokeCap.Butt),
+                )
+                start += sweep
+            }
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            if (selected != null) {
+                Text(
+                    text = selected.coin.substringAfterLast(':'),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                )
+                Text(
+                    text = "${(selected.fraction * 100.0).toPercent(1)}%",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            } else {
+                Text(
+                    text = stringResource(Res.string.portfolio_total),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    text = total.toUsd(),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun LegendChip(slice: AllocSlice, selected: Boolean, onClick: () -> Unit) {
+    Surface(
+        shape = RoundedCornerShape(50),
+        color = if (selected) {
+            slice.color.copy(alpha = 0.18f)
+        } else {
+            MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+        },
+        modifier = Modifier.clip(RoundedCornerShape(50)).clickable(onClick = onClick),
+    ) {
+        Row(
+            modifier = Modifier.heightIn(min = 32.dp).padding(horizontal = 10.dp, vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            Box(Modifier.size(8.dp).clip(CircleShape).background(slice.color))
+            Text(
+                text = slice.coin.substringAfterLast(':'),
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.SemiBold,
+            )
+            // Wallet name disambiguates same-coin slices in the aggregate "All" view (null otherwise).
+            slice.sourceLabel?.let {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
+            Text(
+                text = "${(slice.fraction * 100.0).toPercent(1)}%",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }
@@ -475,7 +768,11 @@ private fun PositionCard(row: PerpPositionRow, accent: Color, isDark: Boolean) {
     ) {
         Column(modifier = Modifier.padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                CoinMonogram(row.coin, accent)
+                CoinIcon(
+                    baseAsset = row.coin.substringAfterLast(':'),
+                    modifier = Modifier.size(40.dp),
+                    fallback = { CoinMonogramFallback(row.coin, accent) },
+                )
                 Spacer(Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -484,11 +781,14 @@ private fun PositionCard(row: PerpPositionRow, accent: Color, isDark: Boolean) {
                         if (row.leverageText.isNotBlank()) Tag(row.leverageText)
                     }
                     row.sourceLabel?.let { WalletTagLine(it) }
-                    Spacer(Modifier.height(3.dp))
+                    // Prominent live mark price (flashes green/red on each Hyperliquid tick), then the
+                    // secondary Size · Entry detail — mark used to be buried in that gray line.
+                    Spacer(Modifier.height(4.dp))
+                    LiveMarkPrice(row.markPx, isDark)
+                    Spacer(Modifier.height(2.dp))
                     Text(
                         text = "${stringResource(Res.string.portfolio_size)} ${row.size.toAmount()}  ·  " +
-                            "${stringResource(Res.string.portfolio_entry)} ${row.entryPx.toPriceOrDash()}  ·  " +
-                            "${stringResource(Res.string.portfolio_mark)} ${row.markPx.toPriceOrDash()}",
+                            "${stringResource(Res.string.portfolio_entry)} ${row.entryPx.toPriceOrDash()}",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -503,6 +803,64 @@ private fun PositionCard(row: PerpPositionRow, accent: Color, isDark: Boolean) {
                 LiquidationBar(row.liqDistanceFraction, row.liquidationPx, row.markPx, isDark)
             }
         }
+    }
+}
+
+/**
+ * The position's live mark price, prominent. Flashes green (up) / red (down) for one beat on each
+ * change, then decays back to the resting color. Source is the existing [PerpPositionRow.markPx],
+ * which Hyperliquid refreshes on every webData2 frame — this is presentation only, no new data.
+ */
+@Composable
+private fun LiveMarkPrice(markPx: Double?, isDark: Boolean, modifier: Modifier = Modifier) {
+    val resting = MaterialTheme.colorScheme.onSurface
+    val color = remember { Animatable(resting) }
+    var caret by remember { mutableIntStateOf(0) }         // -1 down, 0 none, +1 up
+    var prev by remember { mutableStateOf<Double?>(null) } // null => first composition, don't flash
+
+    LaunchedEffect(markPx) {
+        val cur = markPx
+        val old = prev
+        prev = cur
+        // No flash on the first value (old == null), on a missing price, or on an unchanged tick.
+        if (cur == null || old == null || cur == old) return@LaunchedEffect
+        val delta = (cur - old).toFloat()
+        caret = if (delta > 0f) 1 else -1
+        color.snapTo(getPriceChangeColor(delta, isDark, resting)) // instant pop to the tick color
+        color.animateTo(resting, tween(700))                       // then decay back to rest
+        caret = 0                                                  // clear the arrow once the pulse settles
+        // Note: a faster-than-700ms tick cancels this coroutine before the two lines above finish, so
+        // the arrow keeps showing direction during a burst and only clears once ticks pause.
+    }
+    // Heal the resting color after a theme switch that lands while no tick is animating.
+    LaunchedEffect(resting) {
+        if (!color.isRunning) color.snapTo(resting)
+    }
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        Text(
+            text = stringResource(Res.string.portfolio_mark),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        if (caret != 0) {
+            Icon(
+                imageVector = if (caret > 0) Icons.Default.ArrowUpward else Icons.Default.ArrowDownward,
+                contentDescription = null,
+                tint = color.value,
+                modifier = Modifier.size(14.dp),
+            )
+        }
+        Text(
+            text = markPx.toPriceOrDash(),
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.SemiBold,
+            color = color.value,
+        )
     }
 }
 
@@ -547,7 +905,11 @@ private fun SpotCard(row: SpotBalanceRow, accent: Color) {
             modifier = Modifier.padding(14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            CoinMonogram(row.coin, accent)
+            CoinIcon(
+                baseAsset = row.coin.substringAfterLast(':'),
+                modifier = Modifier.size(40.dp),
+                fallback = { CoinMonogramFallback(row.coin, accent) },
+            )
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(row.coin, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
@@ -571,12 +933,13 @@ private fun SpotCard(row: SpotBalanceRow, accent: Color) {
     }
 }
 
+/** Accent-tinted 2-letter monogram used as the [CoinIcon] fallback (network image failed / unknown symbol). */
 @Composable
-private fun CoinMonogram(coin: String, accent: Color) {
+private fun CoinMonogramFallback(coin: String, accent: Color) {
     // Alt-dex coins are namespaced ("xyz:TSLA"); use the symbol after the prefix for the monogram.
     val symbol = coin.substringAfterLast(':')
     Box(
-        modifier = Modifier.size(40.dp).clip(CircleShape).background(accent.copy(alpha = 0.18f)),
+        modifier = Modifier.fillMaxSize().clip(CircleShape).background(accent.copy(alpha = 0.18f)),
         contentAlignment = Alignment.Center,
     ) {
         Text(
@@ -722,6 +1085,9 @@ private fun LoadingSkeleton() {
 
 private class CoinPalette(private val colors: List<Color>) {
     fun colorFor(coin: String): Color = colors[(abs(coin.hashCode()) % colors.size)]
+
+    /** Index-based color for allocation slices, so distinct slices get distinct colors (for index < size). */
+    fun colorAt(index: Int): Color = colors[index % colors.size]
 }
 
 @Composable
