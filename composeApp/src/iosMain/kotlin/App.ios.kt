@@ -18,7 +18,9 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
+import platform.Foundation.NSApplicationSupportDirectory
 import platform.Foundation.NSCachesDirectory
+import platform.Foundation.NSFileManager
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
@@ -81,12 +83,45 @@ actual class NetworkConnectivityObserver {
     }
 }
 
+@OptIn(ExperimentalForeignApi::class)
 actual fun getKStore(): KStore<Settings> {
-    val paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, true)
-    return storeOf<Settings>(
-        file = Path("${paths.firstOrNull() as? String}/settings.json"),
-        default = Settings()
-    )
+    val fileManager = NSFileManager.defaultManager
+
+    val appSupportDir = NSSearchPathForDirectoriesInDomains(
+        NSApplicationSupportDirectory, NSUserDomainMask, true
+    ).firstOrNull() as? String
+
+    val cachesDir = NSSearchPathForDirectoriesInDomains(
+        NSCachesDirectory, NSUserDomainMask, true
+    ).firstOrNull() as? String
+
+    // Fall back to Caches only if Application Support can't be resolved (should not happen on iOS).
+    val baseDir = appSupportDir ?: cachesDir
+        ?: return storeOf(file = Path("settings.json"), default = Settings())
+
+    // Application Support often doesn't exist yet on iOS; create it. Best-effort.
+    if (appSupportDir != null && !fileManager.fileExistsAtPath(appSupportDir)) {
+        fileManager.createDirectoryAtPath(
+            path = appSupportDir,
+            withIntermediateDirectories = true,
+            attributes = null,
+            error = null
+        )
+    }
+
+    val newPath = "$baseDir/settings.json"
+
+    // One-time, idempotent, best-effort migration from the old (purgeable) Caches location.
+    if (appSupportDir != null && cachesDir != null) {
+        val oldPath = "$cachesDir/settings.json"
+        if (!fileManager.fileExistsAtPath(newPath) && fileManager.fileExistsAtPath(oldPath)) {
+            runCatching {
+                fileManager.copyItemAtPath(oldPath, toPath = newPath, error = null)
+            }
+        }
+    }
+
+    return storeOf(file = Path(newPath), default = Settings())
 }
 
 // Singleton WebSocket client to prevent memory leaks from multiple instances
