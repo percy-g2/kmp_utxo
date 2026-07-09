@@ -12,9 +12,13 @@ import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.atomicfu.locks.SynchronizedObject
 import kotlinx.atomicfu.locks.synchronized
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.io.files.Path
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
@@ -57,6 +61,7 @@ actual fun openLink(link: String) {
 
 
 actual class NetworkConnectivityObserver {
+    @OptIn(ExperimentalCoroutinesApi::class)
     actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
         val monitor = nw_path_monitor_create()
         val queue = dispatch_queue_create(
@@ -81,6 +86,16 @@ actual class NetworkConnectivityObserver {
             nw_path_monitor_cancel(monitor)
         }
     }
+        .distinctUntilChanged()
+        // Debounce a transient offline flap: launching off a *locked* device (e.g. a lockscreen
+        // widget deep-link) can make NWPathMonitor briefly report `.unsatisfied` before it settles
+        // to `.satisfied`. mapLatest cancels the pending delay the instant a newer status arrives,
+        // so `Available` still propagates immediately and only a sustained (>1.5s) offline reaches
+        // the UI — no false "Network Unavailable" dialog on cold start.
+        .mapLatest { status ->
+            if (status == NetworkStatus.Unavailable) delay(1500)
+            status
+        }
 }
 
 @OptIn(ExperimentalForeignApi::class)

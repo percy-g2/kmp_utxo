@@ -224,7 +224,10 @@ fun App(
         }
     }
 
-    if (networkStatus != NetworkStatus.Available) {
+    // Only block on a *confirmed* offline status. `null` is the not-yet-determined seed emitted
+    // before the connectivity observer's first callback; treating it as offline flashed a false
+    // "Network Unavailable" dialog on cold start (worst on the iOS widget deep-link path).
+    if (networkStatus == NetworkStatus.Unavailable) {
         NetworkDialog()
     }
 

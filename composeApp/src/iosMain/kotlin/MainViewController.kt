@@ -53,7 +53,10 @@ private fun IosScreen(content: @Composable () -> Unit) {
     val status by IosShared.networkStatus.collectAsState()
     UTXOTheme(isDarkTheme(settings)) {
         content()
-        if (status != NetworkStatus.Available) NetworkDialog()
+        // Only block on a *confirmed* offline status. `null` is the not-yet-determined seed
+        // (cold start before the monitor's first callback) — treating it as offline flashed a
+        // false "Network Unavailable" dialog when deep-linking from the widget. See App.ios.kt.
+        if (status == NetworkStatus.Unavailable) NetworkDialog()
     }
 }
 
