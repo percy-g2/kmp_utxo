@@ -74,6 +74,7 @@ import ui.components.LazyColumnScrollbar
 import ui.components.ScrollToEdgeButton
 import ui.components.TradingViewChart
 import ui.utils.debouncedClickable
+import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
 import ui.utils.shimmerEffect
 import utxo.composeapp.generated.resources.Res
@@ -298,6 +299,7 @@ fun CoinDetailScreen(
                                     PriceInfoSection(
                                         symbol = symbol,
                                         ticker = state.ticker,
+                                        isDarkTheme = isDarkTheme,
                                         tradingPairs = tradingPairs
                                     )
                                 }
@@ -447,6 +449,7 @@ fun CoinDetailScreen(
 fun PriceInfoSection(
     symbol: String,
     ticker: Ticker24hr?,
+    isDarkTheme: Boolean,
     tradingPairs: List<TradingPair> = emptyList()
 ) {
     var isExpanded by remember { mutableStateOf(false) }
@@ -495,11 +498,11 @@ fun PriceInfoSection(
                     Spacer(modifier = Modifier.height(4.dp))
 
                     val priceChangePercent = ticker.priceChangePercent.toDoubleOrNull() ?: 0.0
-                    val priceChangeColor = when {
-                        priceChangePercent > 0 -> Color(0xFF4CAF50) // Green
-                        priceChangePercent < 0 -> Color(0xFFF44336) // Red
-                        else -> MaterialTheme.colorScheme.onSurface
-                    }
+                    val priceChangeColor = getPriceChangeColor(
+                        ticker.priceChangePercent,
+                        isDarkTheme,
+                        MaterialTheme.colorScheme.onSurface
+                    )
 
                     PriceRow(
                         stringResource(Res.string.label_24h_change),

@@ -1,9 +1,7 @@
 package ui.utils
 
 import androidx.compose.ui.graphics.Color
-import theme.greenDark
-import theme.greenLight
-import theme.redDark
+import theme.PriceChangeColors
 
 /**
  * Shared utilities for price-related calculations and color determination.
@@ -29,8 +27,8 @@ fun getPriceChangeColor(priceChangePercent: String, isDarkTheme: Boolean, primar
  */
 fun getPriceChangeColor(priceChangeFloat: Float, isDarkTheme: Boolean, primaryColor: Color): Color {
     return when {
-        priceChangeFloat > 0f -> if (isDarkTheme) greenDark else greenLight
-        priceChangeFloat < 0f -> redDark
+        priceChangeFloat > 0f -> PriceChangeColors.gain(isDarkTheme)
+        priceChangeFloat < 0f -> PriceChangeColors.loss(isDarkTheme)
         else -> primaryColor
     }
 }
