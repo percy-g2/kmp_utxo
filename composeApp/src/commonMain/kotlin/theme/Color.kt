@@ -74,7 +74,7 @@ val surfaceContainerDark = Color(0xFF201F1F)
 val surfaceContainerHighDark = Color(0xFF2A2A29)
 val surfaceContainerHighestDark = Color(0xFF353534)
 
-val greenDark = Color(0xFF38761D)
+val greenDark = Color(0xFF66BB6A) // dark-theme gain green — kept bright for contrast on dark surfaces
 val greenLight = Color(0xFF4CAF50)
 val redDark = Color(0xFFF44336)
 val yellowDark = Color(0xFFFFEB3B)
