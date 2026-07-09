@@ -299,8 +299,8 @@ fun CoinDetailScreen(
                                     PriceInfoSection(
                                         symbol = symbol,
                                         ticker = state.ticker,
-                                        tradingPairs = tradingPairs,
-                                        isDarkTheme = isDarkTheme
+                                        isDarkTheme = isDarkTheme,
+                                        tradingPairs = tradingPairs
                                     )
                                 }
                             }
@@ -449,8 +449,8 @@ fun CoinDetailScreen(
 fun PriceInfoSection(
     symbol: String,
     ticker: Ticker24hr?,
-    tradingPairs: List<TradingPair> = emptyList(),
-    isDarkTheme: Boolean
+    isDarkTheme: Boolean,
+    tradingPairs: List<TradingPair> = emptyList()
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
