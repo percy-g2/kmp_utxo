@@ -31,6 +31,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -91,6 +92,8 @@ import model.WalletTab
 import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import ui.components.CoinIcon
+import ui.components.LazyColumnScrollbar
+import ui.components.ScrollToEdgeButton
 import ui.utils.bottomBarClearancePadding
 import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
@@ -282,6 +285,7 @@ private fun WalletScopeSwitcher(
 @Composable
 private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean, extraBottomPadding: Dp) {
     val palette = coinPalette()
+    val listState = rememberLazyListState()
     val showPerpStats = data.perpPositions.isNotEmpty() || data.summary.accountValue > 0.0
 
     // Allocation slices across USD-valued holdings (perp notionals + stable spot), largest first.
@@ -311,38 +315,48 @@ private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean, extra
         }
     }
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp + extraBottomPadding),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        item(key = "hero") { HeroCard(data.summary, data.isStale, showPerpStats, isDark) }
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp + extraBottomPadding),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            item(key = "hero") { HeroCard(data.summary, data.isStale, showPerpStats, isDark) }
 
-        if (slices.size >= 2) {
-            item(key = "allocation") { AllocationSection(slices) }
+            if (slices.size >= 2) {
+                item(key = "allocation") { AllocationSection(slices) }
+            }
+
+            if (data.perpPositions.isNotEmpty()) {
+                item(key = "perp_header") {
+                    SectionHeader(stringResource(Res.string.portfolio_positions), data.perpPositions.size)
+                }
+                items(items = data.perpPositions, key = { "perp_${it.sourceLabel}_${it.coin}" }) { row ->
+                    PositionCard(row, palette.colorFor(row.coin), isDark)
+                }
+            }
+
+            if (data.spotBalances.isNotEmpty()) {
+                item(key = "spot_header") {
+                    SectionHeader(stringResource(Res.string.portfolio_spot), data.spotBalances.size)
+                }
+                items(items = data.spotBalances, key = { "spot_${it.sourceLabel}_${it.coin}" }) { row ->
+                    SpotCard(row, palette.colorFor(row.coin))
+                }
+            }
+
+            if (data.perpPositions.isEmpty() && data.spotBalances.isEmpty()) {
+                item(key = "empty") { EmptyHoldings() }
+            }
         }
 
-        if (data.perpPositions.isNotEmpty()) {
-            item(key = "perp_header") {
-                SectionHeader(stringResource(Res.string.portfolio_positions), data.perpPositions.size)
-            }
-            items(items = data.perpPositions, key = { "perp_${it.sourceLabel}_${it.coin}" }) { row ->
-                PositionCard(row, palette.colorFor(row.coin), isDark)
-            }
-        }
-
-        if (data.spotBalances.isNotEmpty()) {
-            item(key = "spot_header") {
-                SectionHeader(stringResource(Res.string.portfolio_spot), data.spotBalances.size)
-            }
-            items(items = data.spotBalances, key = { "spot_${it.sourceLabel}_${it.coin}" }) { row ->
-                SpotCard(row, palette.colorFor(row.coin))
-            }
-        }
-
-        if (data.perpPositions.isEmpty() && data.spotBalances.isEmpty()) {
-            item(key = "empty") { EmptyHoldings() }
-        }
+        LazyColumnScrollbar(listState = listState)
+        ScrollToEdgeButton(
+            listState = listState,
+            totalItems = listState.layoutInfo.totalItemsCount,
+            bottomBarClearance = extraBottomPadding,
+        )
     }
 }
 
