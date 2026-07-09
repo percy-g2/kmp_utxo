@@ -74,8 +74,19 @@ val surfaceContainerDark = Color(0xFF201F1F)
 val surfaceContainerHighDark = Color(0xFF2A2A29)
 val surfaceContainerHighestDark = Color(0xFF353534)
 
-val greenDark = Color(0xFF66BB6A) // dark-theme gain green — kept bright for contrast on dark surfaces
-val greenLight = Color(0xFF4CAF50)
-val redDark = Color(0xFFF44336)
 val yellowDark = Color(0xFFFFEB3B)
 val yellowLight = Color(0xFFF57F17) // Darker yellow for light mode
+
+/** Semantic gain/loss colors for price changes, resolved per theme. */
+object PriceChangeColors {
+    /** Positive change. Brighter green on dark surfaces; standard green on light. */
+    fun gain(isDarkTheme: Boolean): Color = if (isDarkTheme) gainOnDark else gainOnLight
+
+    /** Negative change. Bright red on dark surfaces; darker AA-compliant red on light. */
+    fun loss(isDarkTheme: Boolean): Color = if (isDarkTheme) lossOnDark else lossOnLight
+
+    private val gainOnDark = Color(0xFF66BB6A)  // brighter green, kept legible on dark surfaces
+    private val gainOnLight = Color(0xFF4CAF50)
+    private val lossOnDark = Color(0xFFF44336)   // bright red, legible on dark surfaces
+    private val lossOnLight = Color(0xFFD32F2F)  // Material Red 700 — meets WCAG AA on light surfaces
+}
