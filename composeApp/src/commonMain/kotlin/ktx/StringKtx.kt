@@ -68,13 +68,7 @@ fun String.formatVolume(): String {
                 }
             }
 
-            value >= 1_000 -> {
-                value.roundToInt().toString()
-                    .reversed()
-                    .chunked(3)
-                    .joinToString(",")
-                    .reversed()
-            }
+            value >= 1_000 -> groupThousands(value.roundToInt().toLong())
 
             value >= 1 -> {
                 "${(value * 100).roundToInt() / 100.0}"

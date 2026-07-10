@@ -47,15 +47,6 @@ plugins {
 }
 
 kotlin {
-    compilerOptions {
-        freeCompilerArgs.addAll(
-            listOf(
-                "-XXLanguage:+ExplicitBackingFields",
-                "-Xexplicit-backing-fields"
-            )
-        )
-    }
-
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()

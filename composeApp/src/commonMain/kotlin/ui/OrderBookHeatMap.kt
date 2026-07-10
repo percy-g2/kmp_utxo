@@ -25,7 +25,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,6 +32,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -408,10 +409,8 @@ private fun OrderBookList(
                 ) {
                     if (index < groupedBids.size) {
                         val level = groupedBids[index]
-                        val depthRatio by remember(level.quantity, maxQty) {
-                            derivedStateOf {
-                                if (maxQty > 0) (level.quantity / maxQty).coerceIn(0.0, 1.0) else 0.0
-                            }
+                        val depthRatio = remember(level.quantity, maxQty) {
+                            if (maxQty > 0) (level.quantity / maxQty).coerceIn(0.0, 1.0) else 0.0
                         }
                         
                         OrderBookRow(
@@ -435,10 +434,8 @@ private fun OrderBookList(
                 ) {
                     if (index < groupedAsks.size) {
                         val level = groupedAsks[index]
-                        val depthRatio by remember(level.quantity, maxQty) {
-                            derivedStateOf {
-                                if (maxQty > 0) (level.quantity / maxQty).coerceIn(0.0, 1.0) else 0.0
-                            }
+                        val depthRatio = remember(level.quantity, maxQty) {
+                            if (maxQty > 0) (level.quantity / maxQty).coerceIn(0.0, 1.0) else 0.0
                         }
                         
                         OrderBookRow(
@@ -499,16 +496,22 @@ private fun OrderBookRow(
         modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
-        // Depth bar: grows OUTWARD from center
+        // Depth bar: grows OUTWARD from center.
+        // Animate the width in the draw phase (scaleX) rather than the layout phase
+        // (fillMaxWidth(fraction)), so the spring never remeasures/relayouts the row. The
+        // transformOrigin anchors growth to the outer edge (buy = right, sell = left).
         Box(
             modifier = Modifier
                 .fillMaxHeight()
-                .fillMaxWidth(animatedBarWidth)
+                .fillMaxWidth()
+                .graphicsLayer {
+                    scaleX = animatedBarWidth
+                    transformOrigin = TransformOrigin(if (isBuy) 1f else 0f, 0.5f)
+                }
                 .background(
                     if (isBuy) buyColor.copy(alpha = barAlpha)
                     else sellColor.copy(alpha = barAlpha)
                 )
-                .align(if (isBuy) Alignment.CenterEnd else Alignment.CenterStart)
         )
         
         // Text layer

@@ -42,6 +42,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -369,8 +370,10 @@ fun CoinDetailScreen(
                                     }
                                 }
                             } else {
-                                // Show news items as they arrive
-                                items(state.news) { newsItem ->
+                                // Show news items as they arrive. Stable key (link) so Compose moves
+                                // existing cards across the re-sort on each provider append instead of
+                                // rebuilding every NewsItemCard (re-parsing dates, re-laying-out text).
+                                items(state.news, key = { it.link }) { newsItem ->
                                     NewsItemCard(
                                         newsItem = newsItem,
                                         isDarkTheme = isDarkTheme
@@ -432,9 +435,14 @@ fun CoinDetailScreen(
                             }
                         }
                         LazyColumnScrollbar(listState = listState)
+                        // Gate the totalItemsCount read behind derivedStateOf so scrolling only
+                        // re-triggers this button when the item COUNT changes, not every scroll frame.
+                        val scrollTotal by remember(listState) {
+                            derivedStateOf { listState.layoutInfo.totalItemsCount }
+                        }
                         ScrollToEdgeButton(
                             listState = listState,
-                            totalItems = listState.layoutInfo.totalItemsCount
+                            totalItems = scrollTotal
                         )
                     }
                 }
