@@ -145,10 +145,11 @@ class OrderBookWebSocketService {
                             continue // Continue loop to reconnect
                         }
                     } catch (e: CancellationException) {
+                        // Expected on disconnect/teardown — breadcrumb only, no JobCancellationException dump.
                         isConnected = false
                         needsReconnect = false
-                        AppLogger.logger.d(throwable = e) { 
-                            "OrderBookWebSocket: Connection cancelled for $symbol" 
+                        AppLogger.logger.d {
+                            "OrderBookWebSocket: Connection cancelled for $symbol"
                         }
                         break
                     } catch (e: Exception) {

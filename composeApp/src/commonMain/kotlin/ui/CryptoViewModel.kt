@@ -438,7 +438,7 @@ class CryptoViewModel : ViewModel() {
                     }
                 }
             } catch (e: CancellationException) {
-                AppLogger.logger.d(throwable = e) { "Cancelled fetching favorites prices" }
+                AppLogger.logger.d { "Cancelled fetching favorites prices" }
             } catch (e: Exception) {
                 AppLogger.logger.e(throwable = e) { "Error fetching favorites prices" }
             }
@@ -491,8 +491,10 @@ class CryptoViewModel : ViewModel() {
                         }
                         isWebSocketConnected = false
                     } catch (e: CancellationException) {
+                        // Expected on reconnect/pause/teardown — log a breadcrumb without the
+                        // JobCancellationException stacktrace ("StandaloneCoroutine was cancelled").
                         isWebSocketConnected = false
-                        AppLogger.logger.d(throwable = e) { "WebSocket connection cancelled" }
+                        AppLogger.logger.d { "WebSocket connection cancelled" }
                     } catch (e: Exception) {
                         isWebSocketConnected = false
                         if (isActive) {
@@ -581,6 +583,10 @@ class CryptoViewModel : ViewModel() {
                 updateDisplayedPairs()
             }
         }.onFailure {
+            // Cancellation is normal on teardown/reconnect — propagate it instead of logging it
+            // as an error (runCatching would otherwise swallow it and ship a spurious
+            // "StandaloneCoroutine was cancelled" trace via ServerLogWriter).
+            if (it is CancellationException) throw it
             AppLogger.logger.e(throwable = it) { "Error processing ticker message" }
         }
     }

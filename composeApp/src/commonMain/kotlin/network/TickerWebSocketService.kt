@@ -108,10 +108,9 @@ class TickerWebSocketService {
                         }
                         isConnected = false
                     } catch (e: CancellationException) {
+                        // Expected on disconnect/teardown — breadcrumb only, no JobCancellationException dump.
                         isConnected = false
-                        AppLogger.logger.d(throwable = e) { 
-                            "TickerWebSocket: Connection cancelled for $symbol" 
-                        }
+                        AppLogger.logger.d { "TickerWebSocket: Connection cancelled for $symbol" }
                         break
                     } catch (e: Exception) {
                         isConnected = false
