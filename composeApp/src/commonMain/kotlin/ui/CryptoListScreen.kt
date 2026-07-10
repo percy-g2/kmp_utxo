@@ -1,6 +1,7 @@
 package ui
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -158,36 +159,40 @@ fun CryptoList(
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
     val settingsStore by store.updates.collectAsState(initial = null)
     
-    // Derive stable list of ticker items to avoid recreating list on every recomposition
-    val tickerItems by derivedStateOf { tickerDataMap.values.toList() }
-    
+    // Derive stable list of ticker items to avoid recreating list on every recomposition.
+    // remember { derivedStateOf { } } so the derived state is created once and only recomputes
+    // (and notifies readers) when its snapshot inputs actually change.
+    val tickerItems by remember { derivedStateOf { tickerDataMap.values.toList() } }
+
     // Derive stable trading pair list
-    val tradingPairList by derivedStateOf { tradingPairs.map { it.quote } }
-    
-    val currentTradingPair by derivedStateOf { settingsStore?.selectedTradingPair ?: "BTC" }
+    val tradingPairList by remember { derivedStateOf { tradingPairs.map { it.quote } } }
+
+    val currentTradingPair by remember { derivedStateOf { settingsStore?.selectedTradingPair ?: "BTC" } }
 
     // Optimize visible symbols calculation - use derivedStateOf for automatic recomposition only when needed
-    val visibleSymbols by derivedStateOf {
-        val layoutInfo = listState.layoutInfo
-        if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
-            return@derivedStateOf emptyList()
-        }
+    val visibleSymbols by remember {
+        derivedStateOf {
+            val layoutInfo = listState.layoutInfo
+            if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
+                return@derivedStateOf emptyList()
+            }
 
-        val prefetchBuffer = 10
-        val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
+            val prefetchBuffer = 10
+            val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
 
-        val startIndex = visibleIndices.minOrNull()
-            ?.minus(prefetchBuffer)
-            ?.coerceAtLeast(0)
-            ?: 0
+            val startIndex = visibleIndices.minOrNull()
+                ?.minus(prefetchBuffer)
+                ?.coerceAtLeast(0)
+                ?: 0
 
-        val endIndex = visibleIndices.maxOrNull()
-            ?.plus(prefetchBuffer)
-            ?.coerceAtMost(tickerItems.lastIndex)
-            ?: tickerItems.lastIndex
+            val endIndex = visibleIndices.maxOrNull()
+                ?.plus(prefetchBuffer)
+                ?.coerceAtMost(tickerItems.lastIndex)
+                ?: tickerItems.lastIndex
 
-        (startIndex..endIndex).mapNotNull { index ->
-            tickerItems.getOrNull(index)?.symbol
+            (startIndex..endIndex).mapNotNull { index ->
+                tickerItems.getOrNull(index)?.symbol
+            }
         }
     }
 
@@ -955,20 +960,14 @@ fun TickerCard(
                             )
                         }
                         Spacer(Modifier.height(4.dp))
-                        AnimatedContent(
-                            targetState = formattedVolume,
-                            transitionSpec = { fadeIn() togetherWith fadeOut() },
-                            label = "volume Animation"
-                        ) { targetVolume ->
-                            Text(
-                                text = targetVolume,
-                                style = MaterialTheme.typography.labelMedium,
-                                color = Color.Gray,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                modifier = Modifier.animateContentSize()
-                            )
-                        }
+                        // Plain Text (no per-tick crossfade/relayout); volume is informational.
+                        Text(
+                            text = formattedVolume,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = Color.Gray,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                     }
                 }
                 TradeChart(trades = trades, priceChangePercent = priceChangePercent)
@@ -984,34 +983,38 @@ fun TickerCard(
                         horizontalAlignment = Alignment.End,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        AnimatedContent(
-                            targetState = priceChangePercent,
-                            transitionSpec = { fadeIn() togetherWith fadeOut() },
-                            label = "Price Change Percentage Animation"
-                        ) { targetPriceChangePercent ->
-                            val priceChangeColor = getPriceChangeColor(
-                                targetPriceChangePercent,
-                                isDarkTheme,
-                                MaterialTheme.colorScheme.primary
-                            )
-                            Text(
-                                modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
-                                text = "$targetPriceChangePercent %",
-                                color = priceChangeColor,
-                                style = MaterialTheme.typography.titleSmall
-                            )
+                        // %-change: plain Text; the green/red sign color is the persistent affordance.
+                        val priceChangeColor = getPriceChangeColor(
+                            priceChangePercent,
+                            isDarkTheme,
+                            MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            modifier = Modifier.padding(bottom = 8.dp),
+                            text = "$priceChangePercent %",
+                            color = priceChangeColor,
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                        // Brief color flash on each price change preserves the "value updated"
+                        // feedback the old crossfade gave — a draw-phase color animation with no relayout.
+                        val defaultPriceColor = MaterialTheme.colorScheme.onSurface
+                        var priceFlashing by remember { mutableStateOf(false) }
+                        LaunchedEffect(tickerData.lastPrice) {
+                            priceFlashing = true
+                            delay(220)
+                            priceFlashing = false
                         }
-                        AnimatedContent(
-                            targetState = tickerData.lastPrice,
-                            transitionSpec = { fadeIn() togetherWith fadeOut() },
-                            label = "Price Animation"
-                        ) { targetPrice ->
-                            Text(
-                                text = targetPrice,
-                                style = MaterialTheme.typography.titleSmall,
-                                modifier = Modifier.animateContentSize().padding(bottom = 8.dp),
-                            )
-                        }
+                        val priceColor by animateColorAsState(
+                            targetValue = if (priceFlashing) priceChangeColor else defaultPriceColor,
+                            animationSpec = tween(220),
+                            label = "TickerCardPriceFlash"
+                        )
+                        Text(
+                            text = tickerData.lastPrice,
+                            color = priceColor,
+                            style = MaterialTheme.typography.titleSmall,
+                            modifier = Modifier.padding(bottom = 8.dp),
+                        )
                     }
                 }
             }
@@ -1064,24 +1067,27 @@ fun FavoritesListScreen(
     val listState = rememberLazyListState()
     val settingsStore by store.updates.collectAsState(initial = null)
     
-    // Derive stable list to avoid recreating on every recomposition
-    val tickerItems by derivedStateOf { tickerDataMap.values.toList() }
-    val currentTradingPair by derivedStateOf { settingsStore?.selectedTradingPair ?: "BTC" }
-    
+    // Derive stable list to avoid recreating on every recomposition.
+    // remember { derivedStateOf { } } so the derived state caches and only recomputes on real input changes.
+    val tickerItems by remember { derivedStateOf { tickerDataMap.values.toList() } }
+    val currentTradingPair by remember { derivedStateOf { settingsStore?.selectedTradingPair ?: "BTC" } }
+
     // Track fetch job for cancellation
     var fetchJob by remember { mutableStateOf<Job?>(null) }
-    
+
     // Calculate visible symbols for lifecycle-aware fetching
-    val visibleSymbols by derivedStateOf {
-        val layoutInfo = listState.layoutInfo
-        if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
-            return@derivedStateOf emptyList()
+    val visibleSymbols by remember {
+        derivedStateOf {
+            val layoutInfo = listState.layoutInfo
+            if (tickerItems.isEmpty() || layoutInfo.visibleItemsInfo.isEmpty()) {
+                return@derivedStateOf emptyList()
+            }
+            val prefetchBuffer = 10
+            val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
+            val startIndex = visibleIndices.minOrNull()?.minus(prefetchBuffer)?.coerceAtLeast(0) ?: 0
+            val endIndex = visibleIndices.maxOrNull()?.plus(prefetchBuffer)?.coerceAtMost(tickerItems.lastIndex) ?: tickerItems.lastIndex
+            (startIndex..endIndex).mapNotNull { index -> tickerItems.getOrNull(index)?.symbol }
         }
-        val prefetchBuffer = 10
-        val visibleIndices = layoutInfo.visibleItemsInfo.map { it.index }
-        val startIndex = visibleIndices.minOrNull()?.minus(prefetchBuffer)?.coerceAtLeast(0) ?: 0
-        val endIndex = visibleIndices.maxOrNull()?.plus(prefetchBuffer)?.coerceAtMost(tickerItems.lastIndex) ?: tickerItems.lastIndex
-        (startIndex..endIndex).mapNotNull { index -> tickerItems.getOrNull(index)?.symbol }
     }
     
     // Lifecycle-aware data fetching with cancellation
@@ -1217,13 +1223,15 @@ fun FavoritesListScreen(
                                     bottom = bottomBarClearancePadding(bottomBarClearance),
                                 ),
                             ) {
+                                // Leading spacer as its own item (matches the Market list) instead of
+                                // an O(n) indexOf inside every row body — that was O(n^2) per update.
+                                item(key = "spacer_top") {
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                }
                                 items(
                                     items = tickerItems,
                                     key = { it.symbol } // Stable key for efficient recomposition
                                 ) { tickerData ->
-                                    if (tickerItems.indexOf(tickerData) == 0) {
-                                        Spacer(modifier = Modifier.height(4.dp))
-                                    }
                                     TickerCard(
                                         tickerData = tickerData,
                                         selectedTradingPair = currentTradingPair,

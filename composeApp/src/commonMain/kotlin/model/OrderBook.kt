@@ -59,5 +59,21 @@ data class OrderBookData(
         val ask = bestAsk?.priceDouble ?: return null
         return (bid + ask) / 2.0
     }
+
+    // Equality intentionally ignores lastUpdateId/timestamp (which change on every emission even when
+    // the visible book is unchanged). This lets the backing StateFlow conflate no-op updates so the
+    // order book UI doesn't recompose ~1x/sec for an identical book. Neither field is read by the UI.
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is OrderBookData) return false
+        return symbol == other.symbol && bids == other.bids && asks == other.asks
+    }
+
+    override fun hashCode(): Int {
+        var result = symbol.hashCode()
+        result = 31 * result + bids.hashCode()
+        result = 31 * result + asks.hashCode()
+        return result
+    }
 }
 

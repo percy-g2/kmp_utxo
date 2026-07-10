@@ -57,6 +57,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -294,7 +295,9 @@ private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean, extra
     // Each slice keeps a stable id (instrument+coin+wallet) so the same coin held across several
     // wallets stays independently selectable in the aggregate "All" view. Color/fraction are filled
     // after sorting, so the seeds are built with placeholders.
-    val slices = run {
+    // remember keyed on the only inputs that affect the breakdown, so it is NOT rebuilt+sorted
+    // inside composition on every unrelated recomposition (scroll frames) or no-op price tick.
+    val slices = remember(data.perpPositions, data.spotBalances, palette) {
         val seeds = buildList {
             data.perpPositions.forEach {
                 if (it.notionalUsd > 0.0) {
@@ -352,9 +355,14 @@ private fun PortfolioContent(data: PortfolioUiState.Data, isDark: Boolean, extra
         }
 
         LazyColumnScrollbar(listState = listState)
+        // Gate the totalItemsCount read behind derivedStateOf so scrolling (which changes
+        // layoutInfo every frame) only re-triggers this button when the item COUNT actually changes.
+        val scrollTotal by remember(listState) {
+            derivedStateOf { listState.layoutInfo.totalItemsCount }
+        }
         ScrollToEdgeButton(
             listState = listState,
-            totalItems = listState.layoutInfo.totalItemsCount,
+            totalItems = scrollTotal,
             bottomBarClearance = extraBottomPadding,
         )
     }

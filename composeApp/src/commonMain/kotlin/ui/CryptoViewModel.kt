@@ -17,6 +17,7 @@ import io.ktor.websocket.readText
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,6 +25,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -43,8 +45,6 @@ import theme.ThemeManager.store
 import syncSettingsToWidget
 import kotlin.math.abs
 import kotlin.math.round
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
 
 private val STABLECOINS = setOf(
     "USDT", "USDC", "BUSD", "DAI", "TUSD", "FDUSD",
@@ -75,8 +75,11 @@ class CryptoViewModel : ViewModel() {
         field = MutableStateFlow("")
 
     private var webSocketJob: Job? = null
-    private var lastUpdateTime = 0L
-    private val updateThrottleMs = 250L
+    // Single conflated inbox for raw ticker frames. The socket read loop only trySend()s here;
+    // one long-lived consumer drains it (see startTickerProcessor). Conflation coalesces bursts to
+    // the latest frame, replacing the old per-frame coroutine launch + manual time throttle.
+    private val tickerMessages = Channel<String>(Channel.CONFLATED)
+    private val maxTradesPerSymbol = 200
     private val settings = store.updates
 
     val currentSortKey = mutableStateOf(SortParams.Vol)
@@ -163,7 +166,7 @@ class CryptoViewModel : ViewModel() {
         val finalList = sortedFavorites + sortedNonFavorites
         
         finalList.associateBy { it.symbol }
-    }.stateIn(
+    }.flowOn(Dispatchers.Default).stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
         emptyMap()
@@ -198,7 +201,7 @@ class CryptoViewModel : ViewModel() {
         }
         
         sortedFavorites.associateBy { it.symbol }
-    }.stateIn(
+    }.flowOn(Dispatchers.Default).stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
         emptyMap()
@@ -239,6 +242,7 @@ class CryptoViewModel : ViewModel() {
     }
 
     init {
+        startTickerProcessor()
         initializeData()
         observeNetworkChanges()
     }
@@ -473,8 +477,8 @@ class CryptoViewModel : ViewModel() {
                                 }
                                 when (frame) {
                                     is Frame.Text -> {
-                                        // Process message off main thread
-                                        processTickerMessage(frame.readText())
+                                        // Non-blocking hand-off to the single conflated processor.
+                                        tickerMessages.trySend(frame.readText())
                                     }
                                     is Frame.Ping -> send(Frame.Pong(frame.data))
                                     is Frame.Close -> {
@@ -522,56 +526,62 @@ class CryptoViewModel : ViewModel() {
         return (round(pct * 100.0) / 100.0).toString()
     }
 
-    @OptIn(ExperimentalTime::class)
-    private fun processTickerMessage(message: String) {
-        val now = Clock.System.now().toEpochMilliseconds()
-        if (now - lastUpdateTime < updateThrottleMs) return
-        lastUpdateTime = now
-
+    private fun startTickerProcessor() {
+        // One long-lived consumer draining the conflated inbox. Replaces launching a coroutine per
+        // frame (which raced on read-modify-write of allTickerDataMap/trades, losing writes) and the
+        // manual 250ms time throttle (conflation provides backpressure instead).
         viewModelScope.launch(Dispatchers.Default) {
-            runCatching {
-                // Parse JSON off main thread
-                val tickers = Json.decodeFromString<List<MiniTicker>>(message)
-                val currentTradingPairs = tradingPairs.value
-                
-                // Process all data off main thread
-                val updatedTickerMap = allTickerDataMap.value.toMutableMap()
-                val updatedTrades = trades.value.toMutableMap()
-                
-                tickers.forEach { ticker ->
-                    val formattedPrice = ticker.closePrice.formatPrice(ticker.symbol, currentTradingPairs)
-                    updatedTickerMap[ticker.symbol] = TickerData(
-                        symbol = ticker.symbol,
-                        lastPrice = formattedPrice,
-                        priceChangePercent = priceChangePercentFromOpenClose(
-                            ticker.openPrice,
-                            ticker.closePrice
-                        ),
-                        volume = ticker.totalTradedQuoteAssetVolume
-                    )
-                    
-                    // Update trades efficiently - limit to reduce memory pressure on iOS
-                    // Keep only last 200 points (enough for smooth charts, reduces memory)
-                    val maxTradesPerSymbol = 200
-                    val currentTrades = updatedTrades[ticker.symbol] ?: emptyList()
+            for (message in tickerMessages) {
+                processTickerMessageInternal(message)
+            }
+        }
+    }
+
+    private suspend fun processTickerMessageInternal(message: String) {
+        runCatching {
+            // Parse JSON off the main thread
+            val tickers = Json.decodeFromString<List<MiniTicker>>(message)
+            val currentTradingPairs = tradingPairs.value
+
+            // Process all data off main thread
+            val updatedTickerMap = allTickerDataMap.value.toMutableMap()
+            val updatedTrades = trades.value.toMutableMap()
+
+            tickers.forEach { ticker ->
+                val formattedPrice = ticker.closePrice.formatPrice(ticker.symbol, currentTradingPairs)
+                updatedTickerMap[ticker.symbol] = TickerData(
+                    symbol = ticker.symbol,
+                    lastPrice = formattedPrice,
+                    priceChangePercent = priceChangePercentFromOpenClose(
+                        ticker.openPrice,
+                        ticker.closePrice
+                    ),
+                    volume = ticker.totalTradedQuoteAssetVolume
+                )
+
+                // Only extend sparkline history for symbols the UI is ALREADY charting (seeded via
+                // REST when they became visible). Previously this grew a fresh up-to-200-element list
+                // for the whole ~1400-symbol universe every tick — the dominant allocation source.
+                val currentTrades = updatedTrades[ticker.symbol]
+                if (currentTrades != null) {
                     updatedTrades[ticker.symbol] = if (currentTrades.size >= maxTradesPerSymbol) {
-                        // Use drop + add instead of creating new list to reduce allocations
                         currentTrades.drop(1) + UiKline(closePrice = ticker.closePrice)
                     } else {
                         currentTrades + UiKline(closePrice = ticker.closePrice)
                     }
                 }
-
-                // Update state on main thread - limit trades to visible symbols only to reduce memory
-                withContext(Dispatchers.Main) {
-                    allTickerDataMap.value = updatedTickerMap
-                    // Only keep trades with enough data points, and limit to reduce memory pressure
-                    trades.value = updatedTrades.filterValues { it.size > 50 }
-                    updateDisplayedPairs()
-                }
-            }.onFailure {
-                AppLogger.logger.e(throwable = it) { "Error processing ticker message" }
             }
+
+            // Prune off the main thread; only the state assignment happens on Main.
+            val prunedTrades = updatedTrades.filterValues { it.size > 50 }
+
+            withContext(Dispatchers.Main) {
+                allTickerDataMap.value = updatedTickerMap
+                trades.value = prunedTrades
+                updateDisplayedPairs()
+            }
+        }.onFailure {
+            AppLogger.logger.e(throwable = it) { "Error processing ticker message" }
         }
     }
 
@@ -579,6 +589,7 @@ class CryptoViewModel : ViewModel() {
         // Cancel all background jobs to prevent memory leaks
         webSocketJob?.cancel()
         fetchJob?.cancel()
+        tickerMessages.close()
 
         // Close HTTP client (this is per-ViewModel instance)
         try {
