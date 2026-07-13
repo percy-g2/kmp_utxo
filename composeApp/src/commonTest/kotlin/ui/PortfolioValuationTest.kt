@@ -81,6 +81,8 @@ class PortfolioValuationTest {
                 bal(coin = "USDE", total = "0.0", token = 235),
             ),
             altPerps = emptyList(),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
@@ -101,6 +103,8 @@ class PortfolioValuationTest {
             perp = perpState(accountValue = "535.78125", marginUsed = "519.395656", withdrawable = "16.385594"),
             spot = spotState(bal(coin = "USDC", total = "535.78125052", hold = "519.395656")),
             altPerps = emptyList(),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
@@ -116,6 +120,8 @@ class PortfolioValuationTest {
             perp = null, // no perp account
             spot = spotState(bal(coin = "USDC", total = "100.0", hold = "0.0")),
             altPerps = emptyList(),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
@@ -134,6 +140,8 @@ class PortfolioValuationTest {
                 bal(coin = "USDT", total = "50.0", hold = "0.0", token = 268), // genuine holding -> counted
             ),
             altPerps = emptyList(),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )

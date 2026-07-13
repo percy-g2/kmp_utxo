@@ -16,14 +16,29 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonArray
 import logging.AppLogger
 import model.HlPerpDex
 import model.HlPerpState
+import model.HlSpotAssetCtx
+import model.HlSpotMeta
 import model.HlSpotState
+import model.buildSpotTokenPairMap
 
 /** Result of [HyperliquidService.verifyAccount]: a real account, a reachable-but-empty one, or no reply. */
 enum class HlAccountCheck { Active, Empty, Unreachable }
+
+/**
+ * Static spot metadata joined with an initial price snapshot, from one `spotMetaAndAssetCtxs` call.
+ * [tokenIndexToPair] maps a spot token index to its USDC market name (the `allMids` key);
+ * [seedPrices] maps that market name to its bootstrap mid price (live `allMids` supersedes it).
+ */
+data class SpotMetaInfo(
+    val tokenIndexToPair: Map<Int, String>,
+    val seedPrices: Map<String, Double>,
+)
 
 /**
  * Read-only HTTP client for the Hyperliquid info endpoint.
@@ -48,6 +63,10 @@ class HyperliquidService {
     // Builder-deployed (HIP-3) perp dex names, fetched once and cached — the set changes rarely.
     private val dexNamesMutex = Mutex()
     private var cachedDexNames: List<String>? = null
+
+    // Spot token->market mapping + bootstrap prices, fetched once and cached — the set changes rarely.
+    private val spotMetaMutex = Mutex()
+    private var cachedSpotMeta: SpotMetaInfo? = null
 
     private val client = HttpClient {
         install(HttpTimeout) {
@@ -106,6 +125,38 @@ class HyperliquidService {
             names.map { dex -> async { fetchPerpState(user, dex) } }.awaitAll()
         }.filterNotNull().filter {
             it.assetPositions.isNotEmpty() || (it.marginSummary.accountValue.toDoubleOrNull() ?: 0.0) > 0.0
+        }
+    }
+
+    /**
+     * Static spot metadata + a bootstrap price snapshot, fetched once and cached (the token/market
+     * set changes rarely). One `spotMetaAndAssetCtxs` call returns a 2-tuple JSON array
+     * `[ HlSpotMeta, [HlSpotAssetCtx...] ]`: the first element builds the `tokenIndex -> market`
+     * map; the second seeds initial mid prices so spot holdings are valued immediately, before the
+     * live `allMids` socket connects. Cached only on a non-empty parse so a transient failure is
+     * retried on the next call.
+     */
+    suspend fun spotMeta(): SpotMetaInfo? {
+        cachedSpotMeta?.let { return it }
+        return spotMetaMutex.withLock {
+            cachedSpotMeta?.let { return@withLock it }
+            val body = post("""{"type":"spotMetaAndAssetCtxs"}""", label = "spotMetaAndAssetCtxs")
+                ?: return@withLock null
+            val info = runCatching {
+                val arr = json.parseToJsonElement(body).jsonArray
+                val meta = json.decodeFromJsonElement(HlSpotMeta.serializer(), arr[0])
+                val ctxs = json.decodeFromJsonElement(ListSerializer(HlSpotAssetCtx.serializer()), arr[1])
+                val pairs = buildSpotTokenPairMap(meta.universe)
+                val seed = ctxs.mapNotNull { c ->
+                    c.midPx?.toDoubleOrNull()?.takeIf { it.isFinite() && it > 0.0 }?.let { c.coin to it }
+                }.toMap()
+                SpotMetaInfo(pairs, seed)
+            }.getOrElse {
+                AppLogger.logger.e(throwable = it) { "Hyperliquid: failed to parse spotMetaAndAssetCtxs" }
+                null
+            }
+            if (info != null && info.tokenIndexToPair.isNotEmpty()) cachedSpotMeta = info
+            info
         }
     }
 

@@ -60,6 +60,8 @@ class PortfolioMultiDexTest {
                     positions = listOf(position("xyz:TSLA", "10", "5000.0", pnl = "5.0")),
                 ),
             ),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
@@ -85,6 +87,8 @@ class PortfolioMultiDexTest {
             perp = perpState(accountValue = "500.0", positions = listOf(position("BTC", "-0.04", "2600.0"))),
             spot = spotState(HlSpotBalance(coin = "USDC", token = 0, total = "500.0", hold = "0.0")),
             altPerps = listOf(perpState(accountValue = "200.0")), // collateral, no positions
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
@@ -100,6 +104,8 @@ class PortfolioMultiDexTest {
             perp = perpState(accountValue = "535.78125", marginUsed = "519.395656", withdrawable = "16.385594"),
             spot = spotState(HlSpotBalance(coin = "USDC", token = 0, total = "535.78125052", hold = "519.395656")),
             altPerps = emptyList(),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
@@ -115,6 +121,8 @@ class PortfolioMultiDexTest {
             perp = null,
             spot = null,
             altPerps = listOf(perpState(accountValue = "100.0", positions = listOf(position("flx:GOLD", "1", "1000.0")))),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
