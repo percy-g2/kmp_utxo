@@ -13,17 +13,12 @@ on:
           - web
         default: both
       version_override:
-        description: "Version tag override (leave blank to auto-increment patch from version.properties, e.g. 0.4.2 -> v0.4.3)"
+        description: "Version tag override (leave blank to auto-increment patch from gradle.properties, e.g. 0.4.2 -> v0.4.3)"
         required: false
         type: string
         default: ""
       pre_release:
         description: "Mark as pre-release"
-        required: false
-        type: boolean
-        default: false
-      build_aab:
-        description: "Also build AAB (Android App Bundle)"
         required: false
         type: boolean
         default: false
@@ -75,13 +70,13 @@ jobs:
         run: |
           PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
           PREV_VER="${PREV_TAG#v}"
-          BASE_NAME=$(grep '^versionName=' version.properties | cut -d= -f2)
+          BASE_NAME=$(grep '^app\.versionName=' gradle.properties | cut -d= -f2)
 
           if [ -n "${{ inputs.version_override }}" ]; then
             NEW_TAG="${{ inputs.version_override }}"
             NEW_NAME="${NEW_TAG#v}"
           else
-            # Floor = highest of (version.properties, latest git tag).
+            # Floor = highest of (gradle.properties, latest git tag).
             # Lets the file act as a manual jump (e.g. set to 1.0.0 for major bump)
             # while normally auto-progressing from the last released tag.
             HIGHEST=$(printf '%s\n%s\n' "${PREV_VER:-0.0.0}" "${BASE_NAME:-0.0.0}" | sort -V | tail -n1)
@@ -109,11 +104,25 @@ jobs:
           } >> "$GITHUB_OUTPUT"
           echo "Resolved: file=${BASE_NAME:-<none>} tag=${PREV_TAG:-<none>} -> ${NEW_TAG} (code ${NEW_CODE})"
 
-      - name: Create and push tag
+      - name: Bump versions, commit to main, then tag
         run: |
+          NEW_NAME="${{ steps.version.outputs.new_name }}"
+          NEW_CODE="${{ steps.version.outputs.new_code }}"
           NEW_TAG="${{ steps.version.outputs.new_tag }}"
+
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Write the resolved version into the two materialized sources:
+          # gradle.properties (Android/Web/Desktop) and the iOS pbxproj (main app + widget).
+          bash scripts/bump-version.sh "$NEW_NAME" "$NEW_CODE"
+
+          git add gradle.properties iosApp/iosApp.xcodeproj/project.pbxproj
+          git commit -m "chore(release): bump version to $NEW_NAME ($NEW_CODE) [skip ci]"
+          # Push the bump to main so the iOS project is ready for a manual App Store release.
+          git push origin HEAD:main
+
+          # Tag the bump commit so every downstream checkout carries the unified version.
           git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
           git push origin "$NEW_TAG"
 
@@ -131,7 +140,8 @@ jobs:
             RANGE="${PREV_TAG}..HEAD"
           fi
 
-          RAW_LOG=$(git log "$RANGE" --pretty=format:"%s" --no-merges 2>/dev/null || echo "")
+          # Exclude the release-bump commit this workflow just made from its own changelog.
+          RAW_LOG=$(git log "$RANGE" --pretty=format:"%s" --no-merges 2>/dev/null | grep -vE '^chore\(release\):' || echo "")
 
           FEATS=""
           FIXES=""
@@ -263,9 +273,6 @@ jobs:
           ref: ${{ needs.prepare.outputs.new_tag }}
           fetch-depth: 1
 
-      - name: Sync version files in workspace
-        run: bash scripts/bump-version.sh "${{ needs.prepare.outputs.new_name }}" "${{ needs.prepare.outputs.new_code }}"
-
       - name: Decode keystore
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "${RUNNER_TEMP}/release.jks"
@@ -279,7 +286,6 @@ jobs:
         run: ./gradlew :androidApp:assembleRelease
 
       - name: Build release AAB
-        if: inputs.build_aab || inputs.deploy_play_store
         env:
           KEYSTORE_FILE: ${{ runner.temp }}/release.jks
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -301,14 +307,12 @@ jobs:
           retention-days: 30
 
       - name: Rename AAB
-        if: inputs.build_aab || inputs.deploy_play_store
         run: |
           TAG="${{ needs.prepare.outputs.new_tag }}"
           AAB=$(find androidApp/build/outputs/bundle/release -name "*.aab" | head -1)
           cp "$AAB" "${RUNNER_TEMP}/UTXO-${TAG}.aab"
 
       - name: Upload AAB artifact
-        if: inputs.build_aab || inputs.deploy_play_store
         uses: actions/upload-artifact@v7
         with:
           name: android-aab
@@ -362,9 +366,6 @@ jobs:
           ref: ${{ needs.prepare.outputs.new_tag }}
           fetch-depth: 1
 
-      - name: Sync version files in workspace
-        run: bash scripts/bump-version.sh "${{ needs.prepare.outputs.new_name }}" "${{ needs.prepare.outputs.new_code }}"
-
       - name: Build wasmJs distribution
         run: ./gradlew :composeApp:wasmJsBrowserDistribution
 
@@ -410,7 +411,7 @@ jobs:
           path: release-assets/
 
       - name: Download Android AAB
-        if: needs.build-android.result == 'success' && (inputs.build_aab || inputs.deploy_play_store)
+        if: needs.build-android.result == 'success'
         uses: actions/download-artifact@v8
         with:
           name: android-aab

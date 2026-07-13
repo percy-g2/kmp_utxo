@@ -3,26 +3,23 @@ import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.util.Properties
+
+val appVersionNameProvider = providers.gradleProperty("app.versionName")
 
 val generateAppVersion by tasks.registering {
-    val versionFile = rootProject.file("version.properties")
     val outputDir = layout.buildDirectory.dir("generated/source/version/commonMain/kotlin")
-    inputs.file(versionFile)
+    inputs.property("versionName", appVersionNameProvider)
     outputs.dir(outputDir)
     doLast {
-        val props = Properties().apply { versionFile.inputStream().use { load(it) } }
-        val name = props.getProperty("versionName")
-        val code = props.getProperty("versionCode").toInt()
+        val name = appVersionNameProvider.get()
         val out = outputDir.get().file("buildinfo/Version.kt").asFile
         out.parentFile.mkdirs()
         out.writeText(
             """
-            // Auto-generated from version.properties. Do not edit.
+            // Auto-generated from gradle.properties (app.versionName). Do not edit.
             package buildinfo
 
             internal const val APP_VERSION_NAME: String = "$name"
-            internal const val APP_VERSION_CODE: Int = $code
 
             """.trimIndent()
         )
@@ -182,6 +179,9 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "UTXO"
+            // Pinned intentionally — NOT the app version. jpackage rejects a major of 0 on macOS
+            // (packageDmg would fail on 0.4.x), and desktop native distribution isn't part of the
+            // release pipeline. Keep at a valid >=1.0.0 placeholder.
             packageVersion = "1.0.0"
             macOS {
                 iconFile.set(project.file("src/macosMain/resources/AppIcon.icns"))
