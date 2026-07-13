@@ -126,6 +126,7 @@ string|settings_clear|Q2xlYXI=
 string|settings_dark_mode|RGFyayBNb2Rl
 string|settings_delete|RGVsZXRl
 string|settings_deselect_all|RGVzZWxlY3QgQWxs
+string|settings_device|RGV2aWNl
 string|settings_done|RG9uZQ==
 string|settings_duplicate_address|VGhpcyB3YWxsZXQgaXMgYWxyZWFkeSBhZGRlZA==
 string|settings_edit_wallet|RWRpdCB3YWxsZXQ=
@@ -136,6 +137,7 @@ string|settings_hyperliquid_invalid|TXVzdCBiZSAweCBmb2xsb3dlZCBieSA0MCBoZXggY2hh
 string|settings_manage_alerts|TWFuYWdlIHByaWNlIGFsZXJ0cw==
 string|settings_news_sources|TmV3cyBTb3VyY2Vz
 string|settings_no_sources_enabled|Tm8gc291cmNlcyBlbmFibGVk
+string|settings_os_version|T1M=
 string|settings_paste_several|UGFzdGUgc2V2ZXJhbA==
 string|settings_portfolio|UG9ydGZvbGlv
 string|settings_privacy_policy|UHJpdmFjeSBQb2xpY3k=
