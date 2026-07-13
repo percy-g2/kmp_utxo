@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,7 +18,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.sample
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import model.HlPerpPosition
@@ -35,8 +39,10 @@ import model.WalletTab
 import model.displayName
 import model.isValidHyperliquidAddress
 import model.shortenAddress
+import model.spotTokenPrices
 import network.EnsResult
 import network.EnsService
+import network.HyperliquidMidsService
 import network.HyperliquidService
 import network.PortfolioWebSocketService
 import theme.ThemeManager
@@ -60,6 +66,16 @@ class PortfolioViewModel : ViewModel() {
     private val ensService = EnsService()
     private val store = ThemeManager.store
 
+    /** One shared, wallet-independent live mid-price feed used to value spot holdings. */
+    private val midsService = HyperliquidMidsService()
+
+    /** Static `tokenIndex -> USDC-market-name` map + bootstrap prices (from [HyperliquidService.spotMeta]). */
+    private val spotTokenPairs = MutableStateFlow<Map<Int, String>>(emptyMap())
+    private val spotSeedPrices = MutableStateFlow<Map<String, Double>>(emptyMap())
+
+    /** Guards the one-shot spot-metadata fetch; reset only on failure so a later resume retries. */
+    private var spotMetaLoaded = false
+
     /** Single-writer map of live streams (mutated only from the Main settings collector). */
     private val streams = mutableMapOf<String, WalletStream>()
 
@@ -79,6 +95,30 @@ class PortfolioViewModel : ViewModel() {
     private val attemptedEnsAddresses = mutableSetOf<String>()
 
     val selectedScope: StateFlow<String> = selectedScopeState
+
+    /**
+     * The shared live-price inputs for valuation, both fed by the one [midsService] `allMids` feed:
+     *  - [spotByToken]: `tokenIndex -> USD` for spot holdings (static token->market map joined with
+     *    live mids, seeded by the HTTP snapshot).
+     *  - [marksByCoin]: `coin -> mid`, the live perp mark used to tick position value/PnL/ROE between
+     *    the (infrequent) clearinghouseState account frames.
+     */
+    private data class LivePrices(
+        val spotByToken: Map<Int, Double>,
+        val marksByCoin: Map<String, Double>,
+    )
+
+    /**
+     * `sample`d to bound per-tick main-thread work under a high-rate mids feed; [StateFlow] then
+     * dedups no-op emissions so identical ticks don't recompute wallet valuations.
+     */
+    @OptIn(FlowPreview::class)
+    private val livePrices: StateFlow<LivePrices> =
+        combine(spotTokenPairs, spotSeedPrices, midsService.mids) { pairs, seed, mids ->
+            LivePrices(spotByToken = spotTokenPrices(pairs, mids, seed), marksByCoin = mids)
+        }
+            .sample(PRICE_SAMPLE_MS)
+            .stateIn(viewModelScope, SharingStarted.Eagerly, LivePrices(emptyMap(), emptyMap()))
 
     val state: StateFlow<PortfolioUiState> =
         combine(walletOrder, selectedScopeState, walletsMeta, settingsLoaded) { order, scope, meta, loaded ->
@@ -146,10 +186,26 @@ class PortfolioViewModel : ViewModel() {
         walletOrder.value = desired // emit only after the map is populated (avoids a flatMapLatest race)
     }
 
+    /** Per-wallet raw inputs, bundled so the shared [livePrices] can join via a second combine. */
+    private data class WalletRaw(
+        val perp: HlPerpState?,
+        val spot: HlSpotState?,
+        val altPerp: List<HlPerpState>,
+        val snapErr: Boolean,
+        val wsErr: String?,
+    )
+
     private fun walletDataFlow(address: String): Flow<WalletData> {
         val s = streams[address] ?: return flowOf(emptyWalletData(address))
-        return combine(s.rawPerp, s.rawSpot, s.rawAltPerp, s.snapshotError, s.connectionError) { perp, spot, altPerp, snapErr, wsErr ->
-            buildWalletData(address, perp, spot, altPerp, snapErr, isStale = wsErr != null)
+        val raw = combine(s.rawPerp, s.rawSpot, s.rawAltPerp, s.snapshotError, s.connectionError) {
+                perp, spot, altPerp, snapErr, wsErr ->
+            WalletRaw(perp, spot, altPerp, snapErr, wsErr)
+        }
+        return combine(raw, livePrices) { r, lp ->
+            buildWalletData(
+                address, r.perp, r.spot, r.altPerp,
+                lp.spotByToken, lp.marksByCoin, r.snapErr, isStale = r.wsErr != null,
+            )
         }
     }
 
@@ -166,16 +222,40 @@ class PortfolioViewModel : ViewModel() {
         viewModelScope.launch { selectPortfolioScope(scope) }
     }
 
-    /** Screen became visible — (re)open every wallet's live connection. */
+    /** Screen became visible — (re)open every wallet's live connection + the shared price feed. */
     fun resume() {
         isActive = true
+        loadSpotMetaOnce()
+        midsService.connect()
         streams.values.forEach { it.resume() }
     }
 
-    /** Screen hidden — drop sockets to save battery/data; last-known data is kept. */
+    /** Screen hidden — drop sockets to save battery/data; last-known data (and mids) is kept. */
     fun pause() {
         isActive = false
+        midsService.disconnect()
         streams.values.forEach { it.pause() }
+    }
+
+    /**
+     * Fetch the static spot token->market map + bootstrap prices once. Runs off-Main; on failure the
+     * guard is reset so the next [resume] retries. Spot valuation degrades gracefully to unpriced
+     * (as before) until this lands, then the shared [livePrices] flow starts resolving USD values.
+     */
+    private fun loadSpotMetaOnce() {
+        if (spotMetaLoaded) return
+        spotMetaLoaded = true // read + written only on Main (single-writer), like wsDelivered/streams
+        viewModelScope.launch(Dispatchers.Default) {
+            val meta = httpService.spotMeta()
+            withContext(Dispatchers.Main) {
+                if (meta == null) {
+                    spotMetaLoaded = false // allow the next resume() to retry
+                } else {
+                    spotTokenPairs.value = meta.tokenIndexToPair
+                    spotSeedPrices.value = meta.seedPrices
+                }
+            }
+        }
     }
 
     private fun assembleState(data: List<WalletData>, scope: String, meta: List<HyperliquidWallet>): PortfolioUiState {
@@ -249,6 +329,7 @@ class PortfolioViewModel : ViewModel() {
         super.onCleared()
         streams.values.forEach { it.close() }
         streams.clear()
+        midsService.close()
         ensService.close()
         httpService.close()
     }
@@ -262,6 +343,9 @@ class PortfolioViewModel : ViewModel() {
 
     companion object {
         private const val ENS_TTL_MILLIS = 7L * 24 * 60 * 60 * 1000
+
+        /** Coalesce high-rate mid-price ticks so spot revaluation doesn't churn the main thread. */
+        private const val PRICE_SAMPLE_MS = 500L
     }
 }
 
@@ -282,17 +366,18 @@ private class WalletStream(
     val rawSpot = MutableStateFlow<HlSpotState?>(null)
 
     /**
-     * Perp state on builder-deployed (HIP-3) alt dexes. HTTP-only: webData2 carries the main dex
-     * only, so these are fetched separately and are never touched by the WS collectors.
+     * Perp state on builder-deployed (HIP-3) alt dexes. HTTP-only: the live clearinghouseState WS
+     * carries the main dex only, so these are fetched separately and never touched by the WS collector.
      */
     val rawAltPerp = MutableStateFlow<List<HlPerpState>>(emptyList())
     val snapshotError = MutableStateFlow(false)
     val connectionError: StateFlow<String?> get() = ws.connectionError
 
     private var snapshotJob: Job? = null
+    private var httpRefreshJob: Job? = null
 
     // Source-of-truth bookkeeping (single-writer: mutated only on Main).
-    // webData2 is authoritative for live state; the HTTP snapshot is bootstrap/offline-only.
+    // The live clearinghouseState WS is authoritative for perp; the HTTP snapshot is bootstrap-only.
     private var wsDelivered = false
     private var perpFromWs = false
     private var spotFromWs = false
@@ -301,17 +386,15 @@ private class WalletStream(
     private var altFetched = false
 
     init {
-        // Feed live WS updates into the raw flows (ignore the null resets a disconnect emits).
-        // A non-null frame means webData2 is delivering, so it owns the state from here on.
+        // Feed live WS perp frames into rawPerp (ignore the null resets a disconnect emits).
+        // A non-null clearinghouseState frame means the WS is delivering, so it owns perp state.
+        // Spot has no live WS channel, so it is sourced entirely over HTTP (see loadSnapshot).
         scope.launch {
             ws.perpState.collect { if (it != null) { wsDelivered = true; applyPerp(it, fromWs = true) } }
         }
-        scope.launch {
-            ws.spotState.collect { if (it != null) { wsDelivered = true; applySpot(it, fromWs = true) } }
-        }
     }
 
-    /** True while webData2 is connected and has delivered — it then owns [rawPerp]/[rawSpot]. */
+    /** True while the perp WS is connected and has delivered — it then owns [rawPerp]. */
     private fun wsOwnsState(): Boolean = wsDelivered && ws.connectionError.value == null
 
     /** Apply a perp frame under source-priority + monotonic-time + partial-frame arbitration. */
@@ -335,23 +418,22 @@ private class WalletStream(
             val perp = httpService.fetchPerpState(address)
             val spot = httpService.fetchSpotState(address)
             withContext(Dispatchers.Main) {
-                // webData2 is the source of truth once live; the HTTP snapshot only bootstraps
-                // before the first live frame. Committing it while WS owns the state is what made
-                // the value flip — the HTTP path counts free spot USDC that accountValue
-                // (cross-collateral) already includes. After WS has delivered, shouldApply* keeps
-                // its reconciled frame even across reconnects (the stale banner signals an outage),
-                // so a mid-session HTTP refresh can't re-introduce the inflated value.
+                // Perp: the live clearinghouseState WS is authoritative once delivered; the HTTP
+                // snapshot only bootstraps before the first frame and must not clobber a fresher WS
+                // frame (shouldApplyPerp enforces WS-over-HTTP + monotonic time across reconnects).
                 if (!wsOwnsState()) {
                     if (perp == null && spot == null) {
                         snapshotError.value = true
                     } else {
                         snapshotError.value = false
                         perp?.let { applyPerp(it, fromWs = false) }
-                        spot?.let { applySpot(it, fromWs = false) }
                     }
                 }
+                // Spot has no live WS channel, so HTTP is its sole source — always apply it (the
+                // monotonic-time guard in shouldApplySpot still drops out-of-order frames).
+                spot?.let { applySpot(it, fromWs = false) }
             }
-            // Alt (HIP-3) dexes are HTTP-only and secondary — webData2 never carries them. Fetch
+            // Alt (HIP-3) dexes are HTTP-only and secondary — the live WS never carries them. Fetch
             // them AFTER the main snapshot so the per-dex fan-out never delays the main data, and
             // commit regardless of wsOwnsState (the WS path doesn't own this flow).
             if (includeAlt) {
@@ -366,30 +448,62 @@ private class WalletStream(
 
     fun refresh() = loadSnapshot(force = true)
 
+    /**
+     * Keep the HTTP-only data fresh while the screen is open. Neither spot balances nor alt-dex
+     * (HIP-3) perps have a live WS channel, so they are re-fetched on an interval — unlike main perps,
+     * which stream live via [ws]. Spot balances change only on trades/transfers (their USD value
+     * ticks live via the separate mids feed), and each poll fans out one request per alt dex; all go
+     * through the shared [HyperliquidService] rate limiter, so the cost stays bounded across wallets.
+     * Empty alt results (position closed / no HIP-3 footprint) legitimately clear [rawAltPerp].
+     */
+    private fun startHttpRefresh() {
+        httpRefreshJob?.cancel()
+        httpRefreshJob = scope.launch(Dispatchers.Default) {
+            while (isActive) {
+                delay(HTTP_REFRESH_MS)
+                val spot = httpService.fetchSpotState(address)
+                val alt = httpService.fetchAltPerpStates(address)
+                withContext(Dispatchers.Main) {
+                    spot?.let { applySpot(it, fromWs = false) }
+                    altFetched = true
+                    rawAltPerp.value = alt
+                }
+            }
+        }
+    }
+
     fun resume() {
         loadSnapshot()
         ws.connect(address)
+        startHttpRefresh()
     }
 
     fun pause() {
         // Drop the "delivered" latch so the next resume can bootstrap from HTTP again if the
-        // socket is slow; the last (WS-sourced) values are retained until a fresh frame replaces
-        // them, so HTTP can't re-introduce the inflated value on resume.
+        // socket is slow; the last (WS-sourced) perp values are retained until a fresh frame
+        // replaces them.
         wsDelivered = false
         ws.disconnect()
+        httpRefreshJob?.cancel()
     }
 
     fun close() {
         snapshotJob?.cancel()
+        httpRefreshJob?.cancel()
         ws.close()
         scope.cancel()
+    }
+
+    private companion object {
+        /** Cadence for re-fetching the HTTP-only data (spot balances + HIP-3 alt dexes) while visible. */
+        const val HTTP_REFRESH_MS = 20_000L
     }
 }
 
 // region --- Frame arbitration (pure, unit-tested) ---
 
 /**
- * A partial/half-formed perp payload: it carries margin/equity but no positions. webData2 can
+ * A partial/half-formed perp payload: it carries margin/equity but no positions. The live WS can
  * briefly emit such a frame; accepting it would blank out a real open position. Rejecting it keeps
  * the last good perp state until a consistent frame arrives.
  */
@@ -399,9 +513,9 @@ internal fun isPartialPerp(state: HlPerpState): Boolean =
             (state.marginSummary.accountValue.toDoubleOrNull() ?: 0.0) > 0.0)
 
 /**
- * Decide whether [incoming] perp frame should replace [current]. webData2 (WS) is the source of
- * truth: a WS frame always supersedes an HTTP-sourced one, and an HTTP frame never displaces a WS
- * one. Within the same source, a strictly-older `time` is dropped (`time == 0` ⇒ unknown ⇒ accept).
+ * Decide whether [incoming] perp frame should replace [current]. The live WS (clearinghouseState) is
+ * the source of truth: a WS frame always supersedes an HTTP-sourced one, and an HTTP frame never
+ * displaces a WS one. Within the same source, a strictly-older `time` is dropped (0 ⇒ unknown ⇒ accept).
  * Partial frames are always rejected.
  */
 internal fun shouldApplyPerp(
@@ -435,22 +549,12 @@ internal fun shouldApplySpot(
 
 // endregion
 
-/** Spot coins treated as $1 USD for best-effort valuation (no price feed needed). */
-private val STABLECOINS = setOf("USDC", "USDT", "USDT0", "USDE", "USDH", "USD1", "DAI", "USDB", "FDUSD")
-
-/** Hyperliquid's perp settlement / cross-collateral currency. */
-internal const val PERP_COLLATERAL_COIN = "USDC"
-
 /**
- * True when a spot balance is perp cross-collateral already represented in perp `accountValue`, so
- * it must NOT be re-added to the portfolio total (doing so double-counts the equity). In
- * Hyperliquid's unified model the whole spot USDC balance backs the perp account — verified against
- * the API: `portfolio` accountValue == perp accountValue == spot USDC `total`, and the free part ==
- * perp `withdrawable`. Scoped to [PERP_COLLATERAL_COIN] only, and only when a perp account exists
- * (`accountValue > 0`); a pure-spot wallet's USDC is a genuine holding and is counted.
+ * Stablecoins valued at $1 by their AVAILABLE (free) balance. For USDC in a unified account the free
+ * part is the balance NOT pledged as perp collateral (the pledged `hold` is already in accountValue),
+ * so this basis lets `accountValue + availableUSDC` count the collateral exactly once.
  */
-internal fun isPerpCollateral(coin: String, accountValue: Double): Boolean =
-    accountValue > 0.0 && coin.uppercase() == PERP_COLLATERAL_COIN
+private val STABLECOINS = setOf("USDC", "USDT", "USDT0", "USDE", "USDH", "USD1", "DAI", "USDB", "FDUSD")
 
 private fun emptyWalletData(address: String): WalletData =
     WalletData(
@@ -469,43 +573,51 @@ internal fun buildWalletData(
     perp: HlPerpState?,
     spot: HlSpotState?,
     altPerps: List<HlPerpState>,
+    spotPrices: Map<Int, Double>,
+    perpMarks: Map<String, Double>,
     snapErr: Boolean,
     isStale: Boolean,
 ): WalletData {
     // Positions across the main dex AND every builder-deployed (HIP-3) alt dex. Alt-dex coins are
     // namespaced (e.g. "xyz:TSLA"), so they are self-identifying and never collide with main coins.
     val perpStates = listOfNotNull(perp) + altPerps
-    val positions = perpStates
+    val rawPositions = perpStates
         .flatMap { it.assetPositions }
         .map { it.position }
         .filter { it.coin.isNotBlank() && (it.szi.toDoubleOrNull() ?: 0.0) != 0.0 }
-        .map { it.toRow() }
+    val positions = rawPositions
+        .map { it.toRow(perpMarks) }
         .sortedByDescending { it.notionalUsd }
 
     // Collateral is isolated per dex, so per-dex accountValue/margin are additive across dexes (no
-    // shared pool to double-count). The spot-USDC netting is gated on the MAIN account only, since
-    // spot USDC backs the main dex (alt-dex collateral is transferred into each alt dex separately).
-    val mainAccountValue = perp?.marginSummary?.accountValue?.toDoubleOrNull() ?: 0.0
-    val accountValue = perpStates.sumOf { it.marginSummary.accountValue.toDoubleOrNull() ?: 0.0 }
+    // shared pool to double-count).
+    // Equity moves 1:1 with unrealized PnL between account frames. `perpMarks` refreshes each
+    // position's live PnL faster than clearinghouseState pushes a new accountValue, so carry that
+    // delta onto the frame's equity — the hero total then ticks with the position cards and
+    // re-converges to the exchange's accountValue when the next frame lands (delta -> 0 when no live mark).
+    val framePnl = rawPositions.sumOf { it.unrealizedPnl.toDoubleOrNull() ?: 0.0 }
+    val livePnl = positions.sumOf { it.unrealizedPnl }
+    val accountValue = perpStates.sumOf { it.marginSummary.accountValue.toDoubleOrNull() ?: 0.0 } +
+        (livePnl - framePnl)
     val totalMarginUsed = perpStates.sumOf { it.marginSummary.totalMarginUsed.toDoubleOrNull() ?: 0.0 }
     val withdrawable = perpStates.sumOf { it.withdrawable.toDoubleOrNull() ?: 0.0 }
 
+    // Hyperliquid is a unified account: spot USDC is the perp collateral. The portion pledged to a
+    // position is reported as spot `hold` (== perp marginUsed) and is already inside `accountValue`;
+    // the free portion is spot `available`. Valuing USDC at its AVAILABLE balance (see toRow) and
+    // adding it to accountValue therefore counts the collateral exactly once — `accountValue +
+    // availableUSDC` == total spot equity + perp PnL. Previously the ENTIRE USDC balance was dropped
+    // whenever a position existed, which erased the free portion from the total ("the rest").
     val balances = spot?.balances
-        ?.map { it.toRow() }
-        // USDC is perp cross-collateral: when a perp account exists, the ENTIRE spot USDC balance is
-        // the same money already in accountValue (its free part == perp `withdrawable`), so it is
-        // neither a separate spot holding nor an addition to the total — it would double-count the
-        // equity. It stays visible in the summary as Account / Margin Used / Free. The HTTP snapshot
-        // reports this USDC in full while webData2 reports it as ~0; excluding it here makes both
-        // sources agree on the correct total. Genuine holdings (non-USDC, or USDC on a pure-spot
-        // wallet) are kept.
-        ?.filterNot { isPerpCollateral(it.coin, mainAccountValue) }
+        ?.map { it.toRow(spotPrices) }
         ?.filter { it.total > 0.0 && it.usdValue != 0.0 }
         ?.sortedByDescending { it.usdValue ?: 0.0 }
         .orEmpty()
 
-    val totalPnl = positions.sumOf { it.unrealizedPnl }
+    val totalPnl = livePnl
     val spotUsd = balances.sumOf { it.usdValue ?: 0.0 }
+    // costBasis == frame accountValue - frame PnL (the live delta cancels), so it stays stable and
+    // the blended PnL% is computed against the true cost basis, not the ticking equity.
     val costBasis = accountValue - totalPnl
     val summary = PortfolioSummary(
         totalValue = accountValue + spotUsd,
@@ -527,14 +639,37 @@ internal fun buildWalletData(
     )
 }
 
-private fun HlPerpPosition.toRow(): PerpPositionRow {
+private fun HlPerpPosition.toRow(perpMarks: Map<String, Double>): PerpPositionRow {
     val sziValue = szi.toDoubleOrNull() ?: 0.0
     val sizeAbs = abs(sziValue)
     val posValue = positionValue.toDoubleOrNull() ?: 0.0
-    val mark = if (sizeAbs != 0.0) posValue / sizeAbs else null
     val entry = entryPx?.toDoubleOrNull()
     val liq = liquidationPx?.toDoubleOrNull()
-    val roe = (returnOnEquity.toDoubleOrNull() ?: 0.0) * 100.0
+
+    // clearinghouseState gives an implied mark (positionValue / size) only as fresh as the last frame.
+    // The live allMids mid ticks continuously between frames, so prefer it — then derive value / PnL
+    // / ROE from that mark. These are exact functions of the mark, verified against the API:
+    //   unrealizedPnl == szi * (mark - entry);  returnOnEquity == unrealizedPnl / (|szi| * entry / leverage).
+    // Using a fresher mark makes them tick live; on the next frame the implied mark catches up, so the
+    // live figures re-converge to the exchange's. Alt-dex coins ("xyz:TSLA") aren't in the main-dex
+    // allMids, so `liveMark` is null there and the authoritative frame values are used unchanged.
+    val frameMark = if (sizeAbs != 0.0) posValue / sizeAbs else null
+    val liveMark = perpMarks[coin]?.takeIf { it.isFinite() && it > 0.0 }
+    val mark = liveMark ?: frameMark
+
+    val notionalUsd = if (mark != null) sizeAbs * mark else abs(posValue)
+    val uPnl = if (liveMark != null && entry != null) {
+        sziValue * (liveMark - entry)
+    } else {
+        unrealizedPnl.toDoubleOrNull() ?: 0.0
+    }
+    val roe = if (liveMark != null && entry != null && leverage.value > 0 && sizeAbs != 0.0) {
+        val initialMargin = sizeAbs * entry / leverage.value
+        if (initialMargin > 0.0) uPnl / initialMargin * 100.0 else (returnOnEquity.toDoubleOrNull() ?: 0.0) * 100.0
+    } else {
+        (returnOnEquity.toDoubleOrNull() ?: 0.0) * 100.0
+    }
+
     // Health: how far mark is from liquidation, normalized against the entry→liq span.
     val liqDistance = if (liq != null && mark != null && entry != null && entry != liq) {
         ((mark - liq) / (entry - liq)).coerceIn(0.0, 1.0)
@@ -547,8 +682,8 @@ private fun HlPerpPosition.toRow(): PerpPositionRow {
         size = sizeAbs,
         entryPx = entry,
         markPx = mark,
-        notionalUsd = abs(posValue),
-        unrealizedPnl = unrealizedPnl.toDoubleOrNull() ?: 0.0,
+        notionalUsd = notionalUsd,
+        unrealizedPnl = uPnl,
         roePercent = roe,
         leverageText = if (leverage.value > 0) "${leverage.value}x ${leverage.type}".trim() else leverage.type,
         liquidationPx = liq,
@@ -557,18 +692,24 @@ private fun HlPerpPosition.toRow(): PerpPositionRow {
     )
 }
 
-private fun HlSpotBalance.toRow(): SpotBalanceRow {
+private fun HlSpotBalance.toRow(spotPrices: Map<Int, Double>): SpotBalanceRow {
     val totalValue = total.toDoubleOrNull() ?: 0.0
     val holdValue = hold.toDoubleOrNull() ?: 0.0
     val availableValue = (totalValue - holdValue).coerceAtLeast(0.0)
+    val usd = when {
+        // Value stablecoins by their AVAILABLE (free) balance. Collateral USDC is excluded entirely
+        // upstream in buildWalletData (it is perp equity, not a spot holding), so this AVAILABLE
+        // basis only applies to genuine spot stablecoins (non-USDC, or USDC on a pure-spot wallet).
+        coin.uppercase() in STABLECOINS -> availableValue
+        // Priced altcoin: value the FULL holding (incl. the `hold` locked in open spot orders — it is
+        // still owned and never perp collateral). Absent price -> null: shown but out of the total.
+        else -> spotPrices[token]?.let { totalValue * it }
+    }
     return SpotBalanceRow(
         coin = coin,
         total = totalValue,
         available = availableValue,
         hold = holdValue,
-        // Value stablecoins by their AVAILABLE (free) balance. Collateral USDC is excluded entirely
-        // upstream in buildWalletData (it is perp equity, not a spot holding), so this AVAILABLE
-        // basis only applies to genuine spot stablecoins (non-USDC, or USDC on a pure-spot wallet).
-        usdValue = if (coin.uppercase() in STABLECOINS) availableValue else null,
+        usdValue = usd,
     )
 }

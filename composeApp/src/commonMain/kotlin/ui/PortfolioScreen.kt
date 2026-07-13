@@ -831,7 +831,7 @@ private fun PositionCard(row: PerpPositionRow, accent: Color, isDark: Boolean) {
 /**
  * The position's live mark price, prominent. Flashes green (up) / red (down) for one beat on each
  * change, then decays back to the resting color. Source is the existing [PerpPositionRow.markPx],
- * which Hyperliquid refreshes on every webData2 frame — this is presentation only, no new data.
+ * which now ticks live from the allMids mid between account frames — presentation only, no new data.
  */
 @Composable
 private fun LiveMarkPrice(markPx: Double?, isDark: Boolean, modifier: Modifier = Modifier) {

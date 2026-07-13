@@ -60,6 +60,8 @@ class PortfolioMultiDexTest {
                     positions = listOf(position("xyz:TSLA", "10", "5000.0", pnl = "5.0")),
                 ),
             ),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
@@ -68,8 +70,9 @@ class PortfolioMultiDexTest {
         assertEquals(600.0, data.summary.accountValue, eps)
         assertEquals(120.0, data.summary.totalMarginUsed, eps)
         assertEquals(480.0, data.summary.withdrawable, eps)
-        // Collateral USDC excluded (main account exists) -> total == summed equity, no double-count.
-        assertEquals(600.0, data.summary.totalValue, eps)
+        // Unified account: pledged USDC (hold 100 == marginUsed) is already in accountValue; the free
+        // USDC (500 - 100 = 400) is added on top -> summed equity 600 + 400.
+        assertEquals(1000.0, data.summary.totalValue, eps)
         assertEquals(15.0, data.summary.totalUnrealizedPnl, eps) // 10 (BTC) + 5 (xyz:TSLA)
         // Both positions present; the larger alt-dex notional sorts first.
         assertEquals(2, data.perps.size)
@@ -85,11 +88,14 @@ class PortfolioMultiDexTest {
             perp = perpState(accountValue = "500.0", positions = listOf(position("BTC", "-0.04", "2600.0"))),
             spot = spotState(HlSpotBalance(coin = "USDC", token = 0, total = "500.0", hold = "0.0")),
             altPerps = listOf(perpState(accountValue = "200.0")), // collateral, no positions
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
         assertEquals(700.0, data.summary.accountValue, eps)
-        assertEquals(700.0, data.summary.totalValue, eps)
+        // Summed equity 700 + free USDC 500 (hold 0) = 1200.
+        assertEquals(1200.0, data.summary.totalValue, eps)
         assertEquals(1, data.perps.size) // only the main-dex BTC position
     }
 
@@ -100,10 +106,13 @@ class PortfolioMultiDexTest {
             perp = perpState(accountValue = "535.78125", marginUsed = "519.395656", withdrawable = "16.385594"),
             spot = spotState(HlSpotBalance(coin = "USDC", token = 0, total = "535.78125052", hold = "519.395656")),
             altPerps = emptyList(),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )
-        assertEquals(535.78125, data.summary.totalValue, eps)
+        // accountValue 535.78125 + free USDC (535.78125052 - 519.395656 = 16.385595) = 552.166845.
+        assertEquals(552.166845, data.summary.totalValue, 1e-4)
         assertEquals(535.78125, data.summary.accountValue, eps)
     }
 
@@ -115,6 +124,8 @@ class PortfolioMultiDexTest {
             perp = null,
             spot = null,
             altPerps = listOf(perpState(accountValue = "100.0", positions = listOf(position("flx:GOLD", "1", "1000.0")))),
+            spotPrices = emptyMap(),
+            perpMarks = emptyMap(),
             snapErr = false,
             isStale = false,
         )

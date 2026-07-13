@@ -14,11 +14,13 @@ import kotlinx.serialization.Serializable
  *   - {"type":"spotClearinghouseState","user":"0x…"}  -> [HlSpotState]
  *
  * WebSocket: wss://api.hyperliquid.xyz/ws
- *   - subscribe {"type":"webData3","user":"0x…"}  -> perps clearinghouseState (live)
- *   - subscribe {"type":"spotState","user":"0x…"} -> spot balances (live)
+ *   - subscribe {"type":"clearinghouseState","user":"0x…"} -> live perps state (data.clearinghouseState)
+ *   - subscribe {"type":"allMids"}                          -> live mid prices for spot + perp valuation
+ * (The legacy {"type":"webData2",…} channel is no longer accepted; spot balances have no live channel
+ * and are HTTP-polled while their USD value ticks via allMids.)
  *
- * Every field has a default so partial/empty responses (and webData3 schema drift)
- * never throw — the Json parser is configured with ignoreUnknownKeys = true.
+ * Every field has a default so partial/empty responses (and schema drift) never throw —
+ * the Json parser is configured with ignoreUnknownKeys = true.
  */
 
 // region --- Multi-wallet config ---
@@ -140,6 +142,49 @@ data class HlSpotBalance(
 data class HlSpotState(
     @SerialName("balances") val balances: List<HlSpotBalance> = emptyList(),
     @SerialName("time") val time: Long = 0,
+)
+
+// endregion
+
+// region --- Spot metadata + pricing DTOs ---
+
+/**
+ * One token from spotMeta.tokens. [index] is the canonical token id referenced by
+ * [HlSpotBalance.token] and by [HlSpotPair.tokens].
+ */
+@Serializable
+data class HlSpotToken(
+    @SerialName("name") val name: String = "",
+    @SerialName("index") val index: Int = 0,
+)
+
+/**
+ * One spot market from spotMeta.universe. [tokens] is `[baseTokenIndex, quoteTokenIndex]`
+ * (quote index 0 == USDC). [name] is the market id used as the `allMids` KEY — "@N" for
+ * non-canonical markets, or a canonical name like "PURR/USDC". Join on [name] directly; do NOT
+ * reconstruct "@${index}" (the canonical pair breaks that assumption).
+ */
+@Serializable
+data class HlSpotPair(
+    @SerialName("tokens") val tokens: List<Int> = emptyList(),
+    @SerialName("name") val name: String = "",
+    @SerialName("index") val index: Int = 0,
+    @SerialName("isCanonical") val isCanonical: Boolean = false,
+)
+
+@Serializable
+data class HlSpotMeta(
+    @SerialName("universe") val universe: List<HlSpotPair> = emptyList(),
+    @SerialName("tokens") val tokens: List<HlSpotToken> = emptyList(),
+)
+
+/** One entry of the 2nd array from spotMetaAndAssetCtxs; index-aligned with [HlSpotMeta.universe]. */
+@Serializable
+data class HlSpotAssetCtx(
+    @SerialName("coin") val coin: String = "",   // market id: "@N" / "PURR/USDC"
+    @SerialName("midPx") val midPx: String? = null,
+    @SerialName("markPx") val markPx: String? = null,
+    @SerialName("prevDayPx") val prevDayPx: String? = null,
 )
 
 // endregion
