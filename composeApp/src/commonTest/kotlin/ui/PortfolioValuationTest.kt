@@ -8,18 +8,22 @@ import model.HlSpotBalance
 import model.HlSpotState
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Unit tests for the spot-USDC cross-collateral netting in [buildWalletData].
+ * Unit tests for unified-account valuation in [buildWalletData].
  *
- * Ground truth from the live Hyperliquid API for 0x5277d597151bad688f442949ff4bf7e06075ebfb:
- *   portfolio.accountValue == perp accountValue == spot USDC total == 535.78125,
- *   spot USDC hold == perp totalMarginUsed == 519.395656,
- *   spot USDC available == perp withdrawable == 16.385594.
- * The whole spot USDC is the perp equity, so the correct Portfolio Value is 535.78 — NOT
- * 535.78 + 16.39 = 552.17 (the old double-count).
+ * Hyperliquid is a UNIFIED account: spot USDC is the perp collateral. The portion pledged to a
+ * position is reported as spot `hold` (== perp `marginUsed`) and is already inside perp
+ * `accountValue`; the free portion is spot `available`. So the correct total is
+ * `accountValue + availableUSDC` (+ other spot) — the collateral is counted exactly once.
+ *
+ * Ground truth from the live API for 0x5277d597151bad688f442949ff4bf7e06075ebfb:
+ *   perp accountValue = 320.68554, marginUsed = 318.502716, withdrawable = 2.182824;
+ *   spot USDC total = 639.03148752, hold = 318.502716 (== marginUsed) -> available = 320.528771;
+ *   Hyperliquid's reported total ≈ 641.2 (= accountValue + free USDC), NOT 320.69 (perp only).
+ * The previous code dropped the ENTIRE spot USDC whenever a position existed, erasing the ~320 of
+ * free USDC from the total ("the rest is not shown").
  */
 class PortfolioValuationTest {
 
@@ -42,6 +46,17 @@ class PortfolioValuationTest {
     private fun bal(coin: String, total: String, hold: String = "0", token: Int = 0) =
         HlSpotBalance(coin = coin, token = token, total = total, hold = hold)
 
+    private fun build(perp: HlPerpState?, spot: HlSpotState?) = buildWalletData(
+        address = "0xtest",
+        perp = perp,
+        spot = spot,
+        altPerps = emptyList(),
+        spotPrices = emptyMap(),
+        perpMarks = emptyMap(),
+        snapErr = false,
+        isStale = false,
+    )
+
     private val btcShort = HlAssetPosition(
         type = "oneWay",
         position = HlPerpPosition(
@@ -50,80 +65,48 @@ class PortfolioValuationTest {
             entryPx = "60188.0",
             positionValue = "2596.97828",
             unrealizedPnl = "14.57904",
-            marginUsed = "519.395656",
+            marginUsed = "318.502716",
         ),
     )
 
-    // --- isPerpCollateral ---
-
     @Test
-    fun usdc_is_collateral_only_when_a_perp_account_exists() {
-        assertTrue(isPerpCollateral("USDC", 535.78125))
-        assertTrue(isPerpCollateral("usdc", 535.78125)) // case-insensitive
-        assertFalse(isPerpCollateral("USDC", 0.0)) // pure-spot wallet
-        assertFalse(isPerpCollateral("USDT", 535.78125)) // only the settlement currency
-    }
-
-    // --- buildWalletData: the real bug ---
-
-    @Test
-    fun unified_account_excludes_collateral_usdc_from_total() {
-        val data = buildWalletData(
-            address = "0x5277",
+    fun unified_account_counts_free_spot_usdc_on_top_of_perp_equity() {
+        val data = build(
             perp = perpState(
-                accountValue = "535.78125",
-                marginUsed = "519.395656",
-                withdrawable = "16.385594",
+                accountValue = "320.68554",
+                marginUsed = "318.502716",
+                withdrawable = "2.182824",
                 positions = listOf(btcShort),
             ),
-            spot = spotState(
-                bal(coin = "USDC", total = "535.78125052", hold = "519.395656"),
-                bal(coin = "USDE", total = "0.0", token = 235),
-            ),
-            altPerps = emptyList(),
-            spotPrices = emptyMap(),
-            perpMarks = emptyMap(),
-            snapErr = false,
-            isStale = false,
+            // 639.03 total USDC, of which 318.50 is pledged as this position's collateral.
+            spot = spotState(bal(coin = "USDC", total = "639.03148752", hold = "318.502716")),
         )
-        // Correct equity — the free USDC (16.39 == withdrawable) is NOT added on top.
-        assertEquals(535.78125, data.summary.totalValue, eps)
-        assertEquals(data.summary.accountValue, data.summary.totalValue, eps)
-        assertEquals(16.385594, data.summary.withdrawable, eps)
-        // Collateral USDC is not shown as a spot holding; the BTC short still renders.
-        assertTrue(data.spot.none { it.coin == "USDC" })
+        // Perp equity (which already contains the pledged collateral) + the FREE USDC (320.53).
+        assertEquals(320.68554 + 320.528771, data.summary.totalValue, 1e-4)
+        assertEquals(320.68554, data.summary.accountValue, eps)
+        assertEquals(2.182824, data.summary.withdrawable, eps)
+        // The free USDC is now visible as a holding (it used to be erased); the BTC short still shows.
+        assertEquals(320.528771, data.spot.single { it.coin == "USDC" }.usdValue!!, 1e-4)
         assertEquals(1, data.perps.size)
         assertEquals("BTC", data.perps.first().coin)
     }
 
     @Test
-    fun old_double_counted_value_is_not_produced() {
-        val data = buildWalletData(
-            address = "0x5277",
-            perp = perpState(accountValue = "535.78125", marginUsed = "519.395656", withdrawable = "16.385594"),
-            spot = spotState(bal(coin = "USDC", total = "535.78125052", hold = "519.395656")),
-            altPerps = emptyList(),
-            spotPrices = emptyMap(),
-            perpMarks = emptyMap(),
-            snapErr = false,
-            isStale = false,
+    fun fully_pledged_usdc_adds_nothing_and_is_hidden() {
+        // Every USDC held as collateral (available == 0) -> total is just the perp equity, no USDC row.
+        val data = build(
+            perp = perpState(accountValue = "500.0", marginUsed = "500.0", withdrawable = "0.0"),
+            spot = spotState(bal(coin = "USDC", total = "500.0", hold = "500.0")),
         )
-        assertFalse(data.summary.totalValue > 552.0) // would be 552.17 with the old `+ available` bug
+        assertEquals(500.0, data.summary.totalValue, eps)
+        assertTrue(data.spot.none { it.coin == "USDC" })
     }
-
-    // --- buildWalletData: cases that must still count spot value ---
 
     @Test
     fun pure_spot_wallet_counts_its_usdc() {
-        val data = buildWalletData(
-            address = "0xspot",
+        val data = build(
             perp = null, // no perp account
             spot = spotState(bal(coin = "USDC", total = "100.0", hold = "0.0")),
-            altPerps = emptyList(),
-            spotPrices = emptyMap(),
-            perpMarks = emptyMap(),
-            snapErr = false,
-            isStale = false,
         )
         assertEquals(0.0, data.summary.accountValue, eps)
         assertEquals(100.0, data.summary.totalValue, eps)
@@ -131,22 +114,17 @@ class PortfolioValuationTest {
     }
 
     @Test
-    fun non_usdc_spot_stablecoin_is_still_counted_alongside_perp() {
-        val data = buildWalletData(
-            address = "0xmix",
+    fun non_usdc_spot_stablecoin_is_counted_alongside_perp() {
+        val data = build(
             perp = perpState(accountValue = "500.0", marginUsed = "0.0", withdrawable = "500.0"),
             spot = spotState(
-                bal(coin = "USDC", total = "500.0", hold = "0.0"), // collateral -> excluded
-                bal(coin = "USDT", total = "50.0", hold = "0.0", token = 268), // genuine holding -> counted
+                bal(coin = "USDC", total = "500.0", hold = "0.0"),
+                bal(coin = "USDT", total = "50.0", hold = "0.0", token = 268),
             ),
-            altPerps = emptyList(),
-            spotPrices = emptyMap(),
-            perpMarks = emptyMap(),
-            snapErr = false,
-            isStale = false,
         )
-        assertEquals(550.0, data.summary.totalValue, eps)
-        assertTrue(data.spot.none { it.coin == "USDC" })
+        // accountValue 500 + free USDC 500 + USDT 50.
+        assertEquals(1050.0, data.summary.totalValue, eps)
+        assertTrue(data.spot.any { it.coin == "USDC" })
         assertTrue(data.spot.any { it.coin == "USDT" })
     }
 }

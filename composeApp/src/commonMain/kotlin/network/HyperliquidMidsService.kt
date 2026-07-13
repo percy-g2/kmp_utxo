@@ -29,8 +29,9 @@ import logging.AppLogger
  * Subscribes once to the GLOBAL, user-independent `allMids` channel on
  * wss://api.hyperliquid.xyz/ws. Each frame is `{ channel:"allMids", data:{ mids:{ "@1":"13.9",
  * "PURR/USDC":"0.079", "BTC":"..." } } }` — a market-id -> mid-price map covering perps and spot.
- * The portfolio uses it to value non-stablecoin SPOT holdings live (perp equity/positions already
- * arrive via each wallet's [PortfolioWebSocketService] `webData2` stream).
+ * The portfolio uses it to value non-stablecoin SPOT holdings live and to tick perp position
+ * marks/PnL between account frames (perp equity/positions arrive via each wallet's
+ * [PortfolioWebSocketService] `clearinghouseState` stream).
  *
  * One instance serves the whole screen — allMids is wallet-independent, so per-wallet sockets would
  * be pure duplication. Mirrors the reconnect/heartbeat pattern of [PortfolioWebSocketService] (a

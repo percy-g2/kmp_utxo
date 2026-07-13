@@ -19,26 +19,27 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import logging.AppLogger
 import model.HlPerpState
-import model.HlSpotState
 
 /**
- * Real-time Hyperliquid portfolio stream for a public wallet address.
+ * Real-time Hyperliquid PERP stream for a public wallet address.
  *
- * Connects once to wss://api.hyperliquid.xyz/ws and subscribes to a single `webData2` channel —
- * one atomic snapshot carrying BOTH:
- *   - data.clearinghouseState -> perps clearinghouse state. NOTE: MAIN perp dex only; positions on
- *     HIP-3 builder-deployed dexes are not included here (nor in the HTTP clearinghouseState call).
- *   - data.spotState.balances  -> spot balances, already reconciled by Hyperliquid: USDC pledged as
- *     perp collateral is reported as ~0, so it is NOT double-counted on top of accountValue.
+ * Connects once to wss://api.hyperliquid.xyz/ws and subscribes to the `clearinghouseState` channel,
+ * whose frames carry `data.clearinghouseState` — the MAIN perp dex clearinghouse state (margin
+ * summary + positions). It pushes a fresh frame every few seconds with an updated accountValue, so
+ * perp equity and positions update live. (Positions on HIP-3 builder-deployed dexes are NOT included
+ * here — those are HTTP-polled in WalletStream.)
  *
- * webData2 is the source of truth for live state; the HTTP snapshot in [HyperliquidService] is only
- * a bootstrap / offline fallback (see WalletStream in PortfolioViewModel). Using one channel also
- * avoids two streams racing to overwrite each other.
+ * NOTE: the legacy `webData2` channel (which also bundled spot balances) is no longer accepted by
+ * the API — it returns a parse error and never delivers, which is why the portfolio appeared static.
+ * Spot balances are therefore sourced over HTTP (they change only on trades/transfers; their USD
+ * value ticks live via the separate allMids feed).
+ *
+ * The HTTP snapshot in [HyperliquidService] bootstraps before the first live frame; once a frame
+ * arrives the WS owns perp state (see WalletStream in PortfolioViewModel).
  *
  * Hyperliquid closes idle connections after 60s, so we send an application-level
  * {"method":"ping"} text frame every [PING_INTERVAL_MS]. This is distinct from the
@@ -63,9 +64,6 @@ class PortfolioWebSocketService {
     }
 
     val perpState: StateFlow<HlPerpState?>
-        field = MutableStateFlow(null)
-
-    val spotState: StateFlow<HlSpotState?>
         field = MutableStateFlow(null)
 
     /** Non-null while the connection is down (drives a "reconnecting" / stale banner). */
@@ -101,12 +99,10 @@ class PortfolioWebSocketService {
                             isConnected = true
                             connectionError.value = null
 
-                            // webData2 is a single atomic snapshot carrying BOTH the perps
-                            // clearinghouseState and spot balances (data.spotState.balances).
-                            // Using one source avoids two channels racing to overwrite each
-                            // other (which previously flickered the screen empty). webData3
-                            // buries perp data in a multi-dex array and isn't worth parsing.
-                            send(Frame.Text(subscribeFrame("webData2", user)))
+                            // Live main-dex perp clearinghouse state. Frames arrive every few
+                            // seconds with an updated accountValue/positions (the legacy webData2
+                            // channel is rejected by the API and never delivers).
+                            send(Frame.Text(subscribeFrame("clearinghouseState", user)))
 
                             // Application-level heartbeat to defeat the 60s idle close.
                             val pingJob = launch {
@@ -159,27 +155,18 @@ class PortfolioWebSocketService {
             val root = json.parseToJsonElement(text).jsonObject
             when (root["channel"]?.jsonPrimitive?.content) {
                 "pong" -> return // heartbeat ack
-                "webData2" -> {
+                "clearinghouseState" -> {
+                    // Frame shape: { channel, data: { dex, user, clearinghouseState: {...} } }.
+                    // The main-dex perp state is nested under data.clearinghouseState.
                     val data = root["data"]?.jsonObject ?: return
-                    // Perps clearinghouse state is nested under data.clearinghouseState; the
-                    // full spot snapshot under data.spotState ({ balances: [...] }).
                     data["clearinghouseState"]?.let {
                         perpState.value = json.decodeFromJsonElement(HlPerpState.serializer(), it)
                     }
-                    data["spotState"]?.let { decodeSpot(it) }
                 }
                 else -> {} // subscriptionResponse, error, etc. — ignore
             }
         } catch (e: Exception) {
             AppLogger.logger.e(throwable = e) { "PortfolioWebSocket: parse failed: ${text.take(200)}" }
-        }
-    }
-
-    private fun decodeSpot(element: JsonElement) {
-        runCatching {
-            spotState.value = json.decodeFromJsonElement(HlSpotState.serializer(), element)
-        }.onFailure {
-            AppLogger.logger.e(throwable = it) { "PortfolioWebSocket: failed to decode spot state" }
         }
     }
 
@@ -189,7 +176,6 @@ class PortfolioWebSocketService {
         isConnected = false
         currentUser = null
         perpState.value = null
-        spotState.value = null
         connectionError.value = null
         AppLogger.logger.d { "PortfolioWebSocket: disconnected" }
     }

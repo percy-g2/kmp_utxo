@@ -70,8 +70,9 @@ class PortfolioMultiDexTest {
         assertEquals(600.0, data.summary.accountValue, eps)
         assertEquals(120.0, data.summary.totalMarginUsed, eps)
         assertEquals(480.0, data.summary.withdrawable, eps)
-        // Collateral USDC excluded (main account exists) -> total == summed equity, no double-count.
-        assertEquals(600.0, data.summary.totalValue, eps)
+        // Unified account: pledged USDC (hold 100 == marginUsed) is already in accountValue; the free
+        // USDC (500 - 100 = 400) is added on top -> summed equity 600 + 400.
+        assertEquals(1000.0, data.summary.totalValue, eps)
         assertEquals(15.0, data.summary.totalUnrealizedPnl, eps) // 10 (BTC) + 5 (xyz:TSLA)
         // Both positions present; the larger alt-dex notional sorts first.
         assertEquals(2, data.perps.size)
@@ -93,7 +94,8 @@ class PortfolioMultiDexTest {
             isStale = false,
         )
         assertEquals(700.0, data.summary.accountValue, eps)
-        assertEquals(700.0, data.summary.totalValue, eps)
+        // Summed equity 700 + free USDC 500 (hold 0) = 1200.
+        assertEquals(1200.0, data.summary.totalValue, eps)
         assertEquals(1, data.perps.size) // only the main-dex BTC position
     }
 
@@ -109,7 +111,8 @@ class PortfolioMultiDexTest {
             snapErr = false,
             isStale = false,
         )
-        assertEquals(535.78125, data.summary.totalValue, eps)
+        // accountValue 535.78125 + free USDC (535.78125052 - 519.395656 = 16.385595) = 552.166845.
+        assertEquals(552.166845, data.summary.totalValue, 1e-4)
         assertEquals(535.78125, data.summary.accountValue, eps)
     }
 

@@ -114,7 +114,7 @@ class HyperliquidService {
 
     /**
      * Perp state on every builder-deployed (HIP-3) alt dex where [user] has equity or a position.
-     * webData2 and the main `clearinghouseState` cover only the main dex, so alt dexes must be
+     * The live WS and the main `clearinghouseState` cover only the main dex, so alt dexes must be
      * fetched separately. Collateral is isolated per dex, so each returned state's accountValue is
      * additive with the main dex (no shared pool to double-count). Empty dex accounts are dropped.
      */

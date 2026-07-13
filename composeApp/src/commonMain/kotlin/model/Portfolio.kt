@@ -14,11 +14,13 @@ import kotlinx.serialization.Serializable
  *   - {"type":"spotClearinghouseState","user":"0x…"}  -> [HlSpotState]
  *
  * WebSocket: wss://api.hyperliquid.xyz/ws
- *   - subscribe {"type":"webData3","user":"0x…"}  -> perps clearinghouseState (live)
- *   - subscribe {"type":"spotState","user":"0x…"} -> spot balances (live)
+ *   - subscribe {"type":"clearinghouseState","user":"0x…"} -> live perps state (data.clearinghouseState)
+ *   - subscribe {"type":"allMids"}                          -> live mid prices for spot + perp valuation
+ * (The legacy {"type":"webData2",…} channel is no longer accepted; spot balances have no live channel
+ * and are HTTP-polled while their USD value ticks via allMids.)
  *
- * Every field has a default so partial/empty responses (and webData3 schema drift)
- * never throw — the Json parser is configured with ignoreUnknownKeys = true.
+ * Every field has a default so partial/empty responses (and schema drift) never throw —
+ * the Json parser is configured with ignoreUnknownKeys = true.
  */
 
 // region --- Multi-wallet config ---
