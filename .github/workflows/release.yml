@@ -63,6 +63,9 @@ jobs:
       - name: Checkout (full history)
         uses: actions/checkout@v7
         with:
+          # Always release from main regardless of the branch the workflow is dispatched from,
+          # so the bump commit + tag land on main (never on the dispatch branch's tip).
+          ref: main
           fetch-depth: 0
 
       - name: Resolve version
@@ -118,11 +121,17 @@ jobs:
           bash scripts/bump-version.sh "$NEW_NAME" "$NEW_CODE"
 
           git add gradle.properties iosApp/iosApp.xcodeproj/project.pbxproj
-          git commit -m "chore(release): bump version to $NEW_NAME ($NEW_CODE) [skip ci]"
-          # Push the bump to main so the iOS project is ready for a manual App Store release.
-          git push origin HEAD:main
+          # Skip the commit if the version is already set (e.g. a re-run after a partial
+          # prior run), so an idempotent bump doesn't abort the release under `set -e`.
+          if git diff --cached --quiet; then
+            echo "Version already at $NEW_NAME ($NEW_CODE); nothing to commit."
+          else
+            git commit -m "chore(release): bump version to $NEW_NAME ($NEW_CODE) [skip ci]"
+            # Push the bump to main so the iOS project is ready for a manual App Store release.
+            git push origin HEAD:main
+          fi
 
-          # Tag the bump commit so every downstream checkout carries the unified version.
+          # Tag the current main HEAD so every downstream checkout carries the unified version.
           git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
           git push origin "$NEW_TAG"
 
