@@ -30,7 +30,9 @@ import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.Smartphone
 import androidx.compose.material.icons.filled.Policy
 import androidx.compose.material.icons.filled.Web
 import androidx.compose.material3.AlertDialog
@@ -84,6 +86,7 @@ import model.isValidHyperliquidAddress
 import model.shortenAddress
 import network.HlAccountCheck
 import network.HyperliquidService
+import DeviceInfo
 import openLink
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -153,7 +156,8 @@ import utxo.composeapp.generated.resources.settings_title
 import utxo.composeapp.generated.resources.settings_use_dark_theme
 import utxo.composeapp.generated.resources.settings_version
 import utxo.composeapp.generated.resources.settings_website
-import buildinfo.APP_VERSION_NAME
+import utxo.composeapp.generated.resources.settings_device
+import utxo.composeapp.generated.resources.settings_os_version
 import utxo.composeapp.generated.resources.theme_dark
 import utxo.composeapp.generated.resources.theme_light
 import utxo.composeapp.generated.resources.theme_system
@@ -168,6 +172,7 @@ fun SettingsScreen(
 ) {
     var showThemeDialog by remember { mutableStateOf(false) }
     var showRssProvidersDialog by remember { mutableStateOf(false) }
+    val deviceInfo = remember { DeviceInfo() }
     val coroutineScope = rememberCoroutineScope()
     val settings: Flow<Settings?> = store.updates
     val settingsState by settings.collectAsState(initial = Settings(appTheme = AppTheme.System))
@@ -270,7 +275,19 @@ fun SettingsScreen(
                     SettingsItem(
                         icon = Icons.Default.Info,
                         title = stringResource(Res.string.settings_version),
-                        subtitle = APP_VERSION_NAME,
+                        subtitle = deviceInfo.getAppVersion(),
+                        onClick = null
+                    )
+                    SettingsItem(
+                        icon = Icons.Default.Smartphone,
+                        title = stringResource(Res.string.settings_device),
+                        subtitle = deviceInfo.getDeviceModel(),
+                        onClick = null
+                    )
+                    SettingsItem(
+                        icon = Icons.Default.Memory,
+                        title = stringResource(Res.string.settings_os_version),
+                        subtitle = deviceInfo.getOsVersion(),
                         onClick = null
                     )
                     SettingsItem(

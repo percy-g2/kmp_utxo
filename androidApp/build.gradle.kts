@@ -11,10 +11,6 @@ plugins {
     alias(libs.plugins.play.publisher)
 }
 
-val versionProps = Properties().apply {
-    rootProject.file("version.properties").inputStream().use { load(it) }
-}
-
 android {
     namespace = "org.androdevlinux.utxo.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -23,8 +19,8 @@ android {
         applicationId = "org.androdevlinux.utxo"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = versionProps.getProperty("versionCode").toInt()
-        versionName = versionProps.getProperty("versionName")
+        versionCode = providers.gradleProperty("app.versionCode").get().toInt()
+        versionName = providers.gradleProperty("app.versionName").get()
     }
 
     val keystorePropsFile = rootProject.file("keystore.properties")

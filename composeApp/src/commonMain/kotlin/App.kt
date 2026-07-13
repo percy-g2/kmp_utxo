@@ -417,3 +417,19 @@ expect class NetworkConnectivityObserver() {
 enum class NetworkStatus {
     Available, Unavailable
 }
+
+/**
+ * Per-device runtime info, resolved by each platform. `getAppVersion()` returns the
+ * OS-reported installed version on Android/iOS and the build-time [buildinfo.APP_VERSION_NAME]
+ * constant on Desktop/Web.
+ */
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+expect class DeviceInfo() {
+    fun getDeviceType(): String
+    fun getDeviceName(): String
+    fun getDeviceModel(): String
+    fun getOsVersion(): String
+    fun getDeviceId(): String
+    fun getAppVersion(): String
+    fun getTimezone(): String
+}

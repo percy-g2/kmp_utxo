@@ -60,6 +60,8 @@ actual class NetworkConnectivityObserver {
 
 
 actual fun getKStore(): KStore<Settings> {
+    // "1.0.0" is a fixed path anchor for the data dir, NOT the app version — changing it would
+    // relocate settings.json and wipe favorites/portfolio. Keep it constant across releases.
     val directory = AppDirsFactory.getInstance()
         .getUserDataDir("org.androdevlinux.utxo", "1.0.0", "percy-g2")
     if (File(directory).exists().not()) {
