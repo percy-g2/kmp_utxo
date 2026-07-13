@@ -186,7 +186,7 @@ class PortfolioViewModel : ViewModel() {
         walletOrder.value = desired // emit only after the map is populated (avoids a flatMapLatest race)
     }
 
-    /** Per-wallet raw inputs, bundled so the shared [spotPrices] can join via a second combine. */
+    /** Per-wallet raw inputs, bundled so the shared [livePrices] can join via a second combine. */
     private data class WalletRaw(
         val perp: HlPerpState?,
         val spot: HlSpotState?,
@@ -240,7 +240,7 @@ class PortfolioViewModel : ViewModel() {
     /**
      * Fetch the static spot token->market map + bootstrap prices once. Runs off-Main; on failure the
      * guard is reset so the next [resume] retries. Spot valuation degrades gracefully to unpriced
-     * (as before) until this lands, then the shared [spotPrices] flow starts resolving USD values.
+     * (as before) until this lands, then the shared [livePrices] flow starts resolving USD values.
      */
     private fun loadSpotMetaOnce() {
         if (spotMetaLoaded) return
