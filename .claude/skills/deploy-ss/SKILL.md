@@ -19,7 +19,7 @@ Three deliverables per run, all in the user's chosen output directory:
 
 Files are named `phone_NN_<slug>.png`, `ipad_NN_<slug>.png`, and `feature_graphic_1024x500.png` — stable and self-describing so the user can re-run and replace cleanly.
 
-For UTXO this currently means a **6-screen** lineup — Markets · **Portfolio** · Charts · Depth · News · Favorites — captured **per platform**: feed iOS-simulator raws to produce the App Store `screenshots/` set (phone + iPad + feature graphic), and run again over Android-emulator raws with `--skip-ipad --skip-feature` to produce the framed `play-store/` set. Both use the same iPhone-styled bezel; each carries its own platform's status bar.
+For UTXO this currently means an **8-screen** lineup — Markets · **Portfolio** · **AI Insights** · Allocation · Charts · Depth · News · Favorites — captured **per platform**: feed iOS-simulator raws to produce the App Store `screenshots/` set (phone + iPad + feature graphic), and run again over Android-emulator raws with `--skip-ipad --skip-feature` to produce the framed `play-store/` set. Both use the same iPhone-styled bezel; each carries its own platform's status bar.
 
 ## When to use this skill
 
@@ -103,6 +103,8 @@ After the assets land in `screenshots/` and `play-store/`, update `README.md` so
 **Empty-looking screens.** If a screenshot has lots of empty space (e.g. a Favorites screen with one item), the iPhone version can use a `collapse_middle` preprocess to glue the top content to the bottom navbar. See `references/design-guide.md` § "Handling sparse screens". The iPad version should use the original screenshot — collapsing makes the centered phone look stubby.
 
 **App name with a logomark letter.** The feature graphic supports an `accent_letter` treatment — one letter of the app name is rendered on top of an accent-colored disc (e.g. UTXO with the "O" on a Bitcoin-orange disc). Use this when the app name has a short, distinctive letter that can carry brand weight. Skip it for long or generic names.
+
+**Dual-hero feature graphic.** `generate.py` puts a single phone in the feature graphic. For a richer Play Store banner — two hero phones (e.g. AI Insights + Portfolio) over a faded collage of the remaining screens — use `scripts/feature_graphic_hero.py` instead: `python3 scripts/feature_graphic_hero.py <out.png>`. It reads the raws from `raw-screenshots/ios/` and writes a 1024 × 500 PNG; tune the hero positions, collage `spots`, and copy in the script. This is what the current UTXO `screenshots/feature_graphic_1024x500.png` uses.
 
 **Non-standard screenshot sizes.** The script accepts any aspect ratio — it just resizes proportionally. If the user uploads Android screenshots (e.g. 1080 × 2400), they'll work fine.
 
