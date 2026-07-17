@@ -26,7 +26,7 @@ If App Store Connect specifically rejects with "should be 1242 × 2688": change 
 | 12.9" | 2048 × 2732 | iPad Pro 12.9" (3rd–6th gen) |
 | 11" | 1668 × 2388 | iPad Pro 11", iPad Air |
 
-**The skill outputs 2048 × 2732** (12.9"). This is accepted in the 12.9"/13" Display slot.
+**The skill outputs 2048 × 2732** (12.9") by default; pass `--ipad-size 2064x2752` to `generate.py` for the 13" iPad Pro (M4) slot, which App Store Connect now surfaces as the primary iPad Display slot. Both are accepted. The UTXO set uses **2064 × 2752** in `screenshots/ipad/`.
 
 ## App Store — counts and limits
 

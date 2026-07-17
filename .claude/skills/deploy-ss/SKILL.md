@@ -14,12 +14,12 @@ Three deliverables per run, all in the user's chosen output directory:
 | Deliverable | Dimensions | Purpose | Count |
 |---|---|---|---|
 | iPhone screenshots | 1284 × 2778 | App Store iPhone 6.5"/6.7" Display slot; also accepted by Play Store | one per screen entry |
-| iPad screenshots | 2048 × 2732 | App Store iPad 12.9"/13" Display slot | one per screen entry |
+| iPad screenshots | 2048 × 2732 (or `--ipad-size 2064x2752` for 13") | App Store iPad 12.9"/13" Display slot | one per screen entry |
 | Feature graphic | 1024 × 500 | Play Store hero banner | 1 |
 
-Files are named `phone_NN_<slug>.png`, `ipad_NN_<slug>.png`, and `feature_graphic_1024x500.png` — stable and self-describing so the user can re-run and replace cleanly.
+The generator writes `phone_NN_<slug>.png`, `ipad_NN_<slug>.png`, and `feature_graphic_1024x500.png` into its `--output` dir. In the UTXO repo these are then placed as: phone → `screenshots/NN_<slug>.png` (strip the `phone_` prefix), **iPad → `screenshots/ipad/NN_<slug>.png`** (strip the `ipad_` prefix; its own subdirectory), and the feature graphic → `screenshots/feature_graphic_1024x500.png`. Names are stable so a re-run replaces cleanly.
 
-For UTXO this currently means an **8-screen** lineup — Markets · **Portfolio** · **AI Insights** · Allocation · Charts · Depth · News · Favorites — captured **per platform**: feed iOS-simulator raws to produce the App Store `screenshots/` set (phone + iPad + feature graphic), and run again over Android-emulator raws with `--skip-ipad --skip-feature` to produce the framed `play-store/` set. Both use the same iPhone-styled bezel; each carries its own platform's status bar.
+For UTXO this currently means an **8-screen** lineup — Markets · **Portfolio** · **AI Insights** · Allocation · Charts · Depth · News · Favorites — captured **per platform**: feed iOS-simulator raws to produce the App Store `screenshots/` set (phone at the top level, **iPad rendered at 2064 × 2752 with `--ipad-size 2064x2752` and placed in `screenshots/ipad/`**, plus the feature graphic), and run again over Android-emulator raws with `--skip-ipad --skip-feature` to produce the framed `play-store/` set. Both use the same iPhone-styled bezel; each carries its own platform's status bar.
 
 ## When to use this skill
 
@@ -75,14 +75,29 @@ Pick the ONE screenshot that most clearly says "this is what the app does" at a 
 
 Write the config JSON to a temp file (e.g. `/tmp/deploy-ss-config.json`). See `references/config-schema.md` for the full schema, or copy and modify `examples/config.example.json`.
 
-Run from the skill's `scripts/` directory:
+Run from the skill's `scripts/` directory. Render the iOS App Store set with the 13" iPad size, then the Android set as phone-only:
 
 ```bash
+# iOS App Store set — phone + iPad (13" iPad Pro) + feature graphic
 python3 <skill-path>/scripts/generate.py \
-  --config /tmp/deploy-ss-config.json \
-  --uploads <path-to-user-uploads> \
-  --output <path-to-output>
+  --config /tmp/config_ios.json \
+  --uploads <ios-raws> --output <tmp-out-ios> \
+  --ipad-size 2064x2752
+
+# Android Play Store set — phone only
+python3 <skill-path>/scripts/generate.py \
+  --config /tmp/config_android.json \
+  --uploads <android-raws> --output <tmp-out-android> \
+  --skip-ipad --skip-feature
 ```
+
+Then place the outputs into the repo, stripping the generator prefixes:
+- `phone_NN_<slug>.png` → `screenshots/NN_<slug>.png`
+- **`ipad_NN_<slug>.png` → `screenshots/ipad/NN_<slug>.png`** (its own subdirectory)
+- `feature_graphic_1024x500.png` → `screenshots/`
+- Android `phone_NN_<slug>.png` → `play-store/NN_<slug>.png`
+
+For a richer Play Store feature graphic, use `scripts/feature_graphic_hero.py` instead of the generator's single-phone one (see the dual-hero special case below).
 
 The script needs `Pillow`. Install with `pip install --break-system-packages pillow` if it's missing.
 
@@ -94,7 +109,7 @@ Offer to regenerate any individual screen with different copy — re-running the
 
 ### 7. Refresh the README (always)
 
-After the assets land in `screenshots/` and `play-store/`, update `README.md` so the showcase matches the regenerated set — the phone table, the iPad table, the feature-graphic reference, and any per-platform caption. Keep the column order identical to the screen lineup (Markets · Portfolio · Charts · Depth · News · Favorites). This is a standing step, not an optional one: every deploy-ss run leaves the README in sync. Also bump the screenshot counts in `AGENTS.md` if the lineup size changed.
+After the assets land in `screenshots/` (phones at the top level, iPad frames in `screenshots/ipad/`) and `play-store/`, update `README.md` so the showcase matches the regenerated set — the phone table, the iPad table (pointing at `screenshots/ipad/`), the feature-graphic reference, and any per-platform caption. Keep the column order identical to the screen lineup (Markets · Portfolio · AI Insights · Allocation · Charts · Depth · News · Favorites). This is a standing step, not an optional one: every deploy-ss run leaves the README in sync. Also bump the screenshot counts in `AGENTS.md` if the lineup size changed.
 
 ## Special cases
 

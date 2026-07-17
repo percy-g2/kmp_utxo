@@ -525,7 +525,16 @@ def main():
     p.add_argument("--skip-phone", action="store_true")
     p.add_argument("--skip-ipad", action="store_true")
     p.add_argument("--skip-feature", action="store_true")
+    p.add_argument("--ipad-size",
+                   help="Override iPad canvas as WxH, e.g. 2064x2752 "
+                        "(13\" iPad Pro M4). Default 2048x2732 (12.9\" iPad Pro). "
+                        "Both are accepted App Store iPad Display sizes.")
     args = p.parse_args()
+
+    if args.ipad_size:
+        global IPAD_W, IPAD_H
+        _w, _h = args.ipad_size.lower().split("x")
+        IPAD_W, IPAD_H = int(_w), int(_h)
 
     config_path = Path(args.config)
     uploads_dir = Path(args.uploads)
