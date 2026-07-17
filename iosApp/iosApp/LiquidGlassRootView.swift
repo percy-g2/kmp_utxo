@@ -93,7 +93,10 @@ struct LiquidGlassRootView: View {
         if let coin = urlHandler.pendingCoin {
             urlHandler.pendingCoin = nil
             selection = 0
-            marketPath.append(coin)
+            // Replace any existing coin detail rather than appending, so repeated widget taps
+            // never stack multiple detail screens on the Market tab's NavigationStack. Setting an
+            // equal single-element path is a no-op, so re-tapping the same coin doesn't reload it.
+            marketPath = NavigationPath([coin])
         }
         if urlHandler.selectFavorites {
             urlHandler.selectFavorites = false
