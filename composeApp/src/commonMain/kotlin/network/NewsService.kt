@@ -6,6 +6,7 @@ import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
+import ktx.decodeHtmlEntities
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
@@ -236,25 +237,18 @@ class NewsService {
 
     private fun cleanHtml(html: String): String {
         if (html.isEmpty()) return ""
-        
+
         return html
             // Remove CDATA tags first if present
             .replace(Regex("(?s)<!\\[CDATA\\[(.*?)\\]\\]>"), "$1")
             // Remove HTML tags
             .replace(Regex("<[^>]+>"), "")
-            // Decode HTML entities
-            .replace("&lt;", "<")
-            .replace("&gt;", ">")
-            .replace("&amp;", "&")
-            .replace("&quot;", "\"")
-            .replace("&#39;", "'")
-            .replace("&apos;", "'")
-            .replace("&nbsp;", " ")
-            .replace("&mdash;", "—")
-            .replace("&ndash;", "–")
-            .replace("&hellip;", "...")
-            // Clean up extra whitespace
-            .replace(Regex("\\s+"), " ")
+            // Decode HTML entities — numeric (&#8217;, &#x2019;) and named
+            // (&amp; &rsquo; &mdash; …). Replaces the old hand-rolled subset that
+            // left &#8217; and friends rendering literally.
+            .decodeHtmlEntities()
+            // Clean up extra whitespace (including any decoded &nbsp;)
+            .replace(Regex("[\\s\\u00A0]+"), " ")
             .trim()
     }
 
