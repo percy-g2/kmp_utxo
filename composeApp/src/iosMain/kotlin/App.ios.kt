@@ -3,6 +3,7 @@ import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -40,6 +41,7 @@ import platform.darwin.DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL
 import platform.darwin.dispatch_queue_create
 import kotlinx.cinterop.ExperimentalForeignApi
 import logging.AppLogger
+import network.newsClientJson
 import ui.Settings
 
 actual fun openLink(link: String) {
@@ -167,7 +169,12 @@ actual fun createNewsHttpClient(): HttpClient {
             level = LogLevel.NONE
         }
         install(ContentNegotiation) {
-            json()
+            json(newsClientJson)
+        }
+        install(HttpTimeout) {
+            connectTimeoutMillis = 15_000
+            socketTimeoutMillis = 30_000
+            requestTimeoutMillis = 45_000
         }
     }
 }
