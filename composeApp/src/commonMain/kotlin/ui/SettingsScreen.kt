@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,6 +26,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Close
@@ -34,6 +38,8 @@ import androidx.compose.material.icons.filled.Memory
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Smartphone
 import androidx.compose.material.icons.filled.Policy
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.filled.Web
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -66,6 +72,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -97,10 +106,17 @@ import ui.utils.bottomBarClearancePadding
 import ui.utils.debouncedClickable
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
+import utxo.composeapp.generated.resources.ai_hide_key
+import utxo.composeapp.generated.resources.ai_show_key
 import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.cancel
 import utxo.composeapp.generated.resources.github_icon
 import utxo.composeapp.generated.resources.settings_about
+import utxo.composeapp.generated.resources.settings_ai
+import utxo.composeapp.generated.resources.settings_ai_api_key_hint
+import utxo.composeapp.generated.resources.settings_ai_api_key_label
+import utxo.composeapp.generated.resources.settings_ai_desc
+import utxo.composeapp.generated.resources.settings_ai_get_key
 import utxo.composeapp.generated.resources.settings_all_sources_enabled
 import utxo.composeapp.generated.resources.settings_appearance
 import utxo.composeapp.generated.resources.settings_clear
@@ -264,6 +280,21 @@ fun SettingsScreen(
                 }
 
                 item {
+                    SettingsHeader(title = stringResource(Res.string.settings_ai))
+                    AiInsightsSettings(
+                        apiKey = settingsState?.aiApiKey ?: "",
+                        onApiKeyChange = { newKey ->
+                            coroutineScope.launch {
+                                store.update { current ->
+                                    current?.copy(aiApiKey = newKey) ?: Settings(aiApiKey = newKey)
+                                }
+                            }
+                        },
+                        onGetKey = { openLink("https://enter.pollinations.ai") }
+                    )
+                }
+
+                item {
                     SettingsHeader(title = stringResource(Res.string.settings_portfolio))
                     PortfolioWalletsManager(
                         wallets = settingsState?.hyperliquidWallets ?: emptyList(),
@@ -346,6 +377,73 @@ private fun SettingsHeader(title: String) {
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
     )
+}
+
+@Composable
+private fun AiInsightsSettings(
+    apiKey: String,
+    onApiKeyChange: (String) -> Unit,
+    onGetKey: () -> Unit
+) {
+    // Seed once; this screen is the only editor, so external re-emissions won't clobber typing.
+    var keyText by remember { mutableStateOf(apiKey) }
+    var keyVisible by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 4.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                imageVector = Icons.Default.AutoAwesome,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.size(24.dp)
+            )
+            Text(
+                text = stringResource(Res.string.settings_ai_desc),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 16.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = keyText,
+            onValueChange = {
+                keyText = it.trim()
+                onApiKeyChange(keyText)
+            },
+            label = { Text(stringResource(Res.string.settings_ai_api_key_label)) },
+            placeholder = { Text(stringResource(Res.string.settings_ai_api_key_hint)) },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            visualTransformation = if (keyVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                IconButton(onClick = { keyVisible = !keyVisible }) {
+                    Icon(
+                        imageVector = if (keyVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                        contentDescription = stringResource(
+                            if (keyVisible) Res.string.ai_hide_key else Res.string.ai_show_key
+                        )
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        TextButton(
+            onClick = onGetKey,
+            modifier = Modifier.padding(top = 4.dp)
+        ) {
+            Text(stringResource(Res.string.settings_ai_get_key))
+        }
+    }
 }
 
 @Composable
@@ -1361,6 +1459,8 @@ data class Settings(
     val hyperliquidWallets: List<HyperliquidWallet> = emptyList(),
     /** [SCOPE_ALL] (aggregate) or a single lowercased wallet address. */
     val portfolioScope: String = SCOPE_ALL,
+    /** User-supplied free Pollinations API key that powers AI Insights. Empty = disabled. */
+    val aiApiKey: String = "",
 )
 
 enum class AppTheme {

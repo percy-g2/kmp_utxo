@@ -198,4 +198,19 @@
     <string name="portfolio_alloc_bar">Bar chart</string>
     <string name="portfolio_alloc_donut">Donut chart</string>
     <string name="portfolio_total">Total</string>
+
+    <!-- AI Insights -->
+    <string name="ai_insights">AI Insights</string>
+    <string name="ai_insights_loading">Analyzing market data and news…</string>
+    <string name="ai_insights_disclaimer">AI-generated overview from 24h data and news — not financial advice.</string>
+    <string name="ai_insights_error">Couldn\'t generate insights right now.</string>
+    <string name="ai_insights_retry">Retry</string>
+    <string name="ai_insights_no_key">Add a free Pollinations API key in Settings to enable AI insights.</string>
+    <string name="ai_show_key">Show key</string>
+    <string name="ai_hide_key">Hide key</string>
+    <string name="settings_ai">AI Insights</string>
+    <string name="settings_ai_desc">Generate a short market overview for each coin using a free, open-source AI (Pollinations).</string>
+    <string name="settings_ai_api_key_label">Pollinations API key</string>
+    <string name="settings_ai_api_key_hint">Paste your free key</string>
+    <string name="settings_ai_get_key">Get a free API key</string>
 </resources>
