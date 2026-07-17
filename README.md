@@ -48,19 +48,19 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   </tr>
 </table>
 
-<p align="center"><sub><b>Tablet</b> · iOS · 2048 × 2732 · App Store iPad slot — marketing frames</sub></p>
-<p align="center"><sub><i>Sized for Apple's iPad slot (iPhone captures in a tablet canvas). Play Store tablet listings would need a separate render pass at Google's recommended 7" / 10" dimensions.</i></sub></p>
+<p align="center"><sub><b>Tablet</b> · iOS · 2064 × 2752 · App Store 13" iPad Pro slot — marketing frames</sub></p>
+<p align="center"><sub><i>Sized for Apple's 13" iPad Pro (M4) Display slot (iPhone captures in a tablet canvas), in <code>screenshots/ipad/</code>. Play Store tablet listings would need a separate render pass at Google's recommended 7" / 10" dimensions.</i></sub></p>
 
 <table>
   <tr>
-    <td><img src="screenshots/ipad_01_markets_dark.png" width="150" alt="Markets — iPad"></td>
-    <td><img src="screenshots/ipad_02_portfolio_dark.png" width="150" alt="Portfolio — iPad"></td>
-    <td><img src="screenshots/ipad_03_ai_insights_dark.png" width="150" alt="AI Insights — iPad"></td>
-    <td><img src="screenshots/ipad_04_allocation_dark.png" width="150" alt="Allocation — iPad"></td>
-    <td><img src="screenshots/ipad_05_charts_light.png" width="150" alt="Charts — iPad"></td>
-    <td><img src="screenshots/ipad_06_depth_dark.png" width="150" alt="Depth — iPad"></td>
-    <td><img src="screenshots/ipad_07_news_light.png" width="150" alt="News — iPad"></td>
-    <td><img src="screenshots/ipad_08_favorites_dark.png" width="150" alt="Favorites — iPad"></td>
+    <td><img src="screenshots/ipad/01_markets_dark.png" width="150" alt="Markets — iPad"></td>
+    <td><img src="screenshots/ipad/02_portfolio_dark.png" width="150" alt="Portfolio — iPad"></td>
+    <td><img src="screenshots/ipad/03_ai_insights_dark.png" width="150" alt="AI Insights — iPad"></td>
+    <td><img src="screenshots/ipad/04_allocation_dark.png" width="150" alt="Allocation — iPad"></td>
+    <td><img src="screenshots/ipad/05_charts_light.png" width="150" alt="Charts — iPad"></td>
+    <td><img src="screenshots/ipad/06_depth_dark.png" width="150" alt="Depth — iPad"></td>
+    <td><img src="screenshots/ipad/07_news_light.png" width="150" alt="News — iPad"></td>
+    <td><img src="screenshots/ipad/08_favorites_dark.png" width="150" alt="Favorites — iPad"></td>
   </tr>
 </table>
 
