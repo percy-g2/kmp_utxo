@@ -96,56 +96,36 @@ fun App(
     val networkStatus by networkObserver.observe().collectAsState(initial = null)
     val lifecycleOwner = LocalLifecycleOwner.current
     
-    // Helper function to get current CoinDetail route if we're on CoinDetail screen
-    fun getCurrentCoinDetailRoute(): CoinDetail? {
-        val currentEntry = navBackStackEntry ?: return null
-        val currentDestination = currentEntry.destination.id
-        if (currentDestination == CoinDetail.serializer().generateHashCode()) {
-            return try {
-                currentEntry.toRoute<CoinDetail>()
-            } catch (e: Exception) {
-                // Defensive handling: toRoute may throw various exceptions during deserialization
-                // Return null to gracefully handle any route parsing errors
-                null
-            }
-        }
-        return null
-    }
-    
-    // Helper function to navigate to CoinDetail, replacing if already on CoinDetail
+    // Navigate to CoinDetail from a widget deep-link, idempotently: a repeated or rapid tap must
+    // never stack a second CoinDetail on the back stack.
     fun navigateToCoinDetail(symbol: String, displaySymbol: String) {
-        val currentCoinDetail = getCurrentCoinDetailRoute()
-        val isAlreadyOnCoinDetail = currentCoinDetail != null
-        val isDifferentSymbol = currentCoinDetail?.symbol != symbol
-        
-        if (isAlreadyOnCoinDetail && isDifferentSymbol) {
-            // Replace current CoinDetail destination using atomic navigation
-            // We already know we're on CoinDetail from getCurrentCoinDetailRoute(), so destination ID exists
-            val currentDestinationId = navBackStackEntry?.destination?.id
-            navController.navigate(
-                CoinDetail(
-                    symbol = symbol,
-                    displaySymbol = displaySymbol
-                )
-            ) {
-                // Pop the current CoinDetail destination and replace it atomically
-                currentDestinationId?.let {
-                    popUpTo(it) { inclusive = true }
-                } ?: run {
-                    // Fallback: pop backstack if destination ID unavailable (shouldn't happen)
-                    popUpTo(navController.graph.startDestinationId) { saveState = false }
-                }
-            }
-        } else if (!isAlreadyOnCoinDetail) {
-            // Normal navigation when not on CoinDetail screen
-            navController.navigate(
-                CoinDetail(
-                    symbol = symbol,
-                    displaySymbol = displaySymbol
-                )
+        // Decide against the LIVE back stack (navController.currentBackStackEntry), not the lagging
+        // currentBackStackEntryAsState() `navBackStackEntry`. The latter updates a frame or more
+        // after navigate(), so during a transition / second tap it still reports the previous
+        // screen — which is exactly what let duplicate CoinDetail entries slip through before.
+        val liveEntry = navController.currentBackStackEntry
+        val onCoinDetail = liveEntry?.destination?.id == CoinDetail.serializer().generateHashCode()
+        // onCoinDetail == true smart-casts liveEntry to non-null. runCatching guards toRoute()
+        // against any deserialization failure (matching the previous defensive handling); a null
+        // result simply falls through to a fresh navigate below.
+        val currentSymbol =
+            if (onCoinDetail) runCatching { liveEntry.toRoute<CoinDetail>().symbol }.getOrNull()
+            else null
+
+        // Already showing this exact coin — nothing to do (avoids a needless screen reload).
+        if (onCoinDetail && currentSymbol == symbol) return
+
+        // Pop any existing CoinDetail first so deep-links can never pile up, then push exactly one.
+        // popUpTo is a no-op when no CoinDetail is on the stack.
+        navController.navigate(
+            CoinDetail(
+                symbol = symbol,
+                displaySymbol = displaySymbol
             )
+        ) {
+            popUpTo(CoinDetail.serializer().generateHashCode()) { inclusive = true }
+            launchSingleTop = true
         }
-        // If already on CoinDetail with same symbol, do nothing
     }
     
     // Handle coin detail intent from widget

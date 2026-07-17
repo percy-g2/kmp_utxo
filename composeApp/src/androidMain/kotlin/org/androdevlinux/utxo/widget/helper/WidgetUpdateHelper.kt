@@ -153,7 +153,12 @@ object WidgetUpdateHelper {
                             setClassName(context, "org.androdevlinux.utxo.MainActivity")
                             putExtra("coin_symbol", symbol)
                             putExtra("coin_display_symbol", displaySymbol)
-                            flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            // SINGLE_TOP pairs with MainActivity's singleTop launchMode so the tap is
+                            // delivered to the existing instance via onNewIntent instead of recreating it,
+                            // preserving the in-app back stack.
+                            flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or
+                                android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                                android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
                         }
                         val coinDetailPendingIntent = android.app.PendingIntent.getActivity(
                             context,

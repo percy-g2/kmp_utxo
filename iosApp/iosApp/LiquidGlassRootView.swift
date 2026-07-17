@@ -31,7 +31,13 @@ struct LiquidGlassRootView: View {
                     .ignoresSafeArea(.container, edges: .bottom)
                     .toolbar(.hidden, for: .navigationBar)
                     .navigationDestination(for: CoinRoute.self) { route in
+                        // Tie the destination's identity to the coin so a widget deep-link that
+                        // REPLACES the path (e.g. BTC -> ETH) recreates the Compose host instead of
+                        // reusing the previous one. CoinDetailComposeView.updateUIViewController is a
+                        // no-op, so without a per-coin id the hosted ComposeUIViewController would
+                        // keep showing the old coin.
                         detail(route) { marketPath.removeLast() }
+                            .id(route)
                     }
                 }
             }
@@ -45,7 +51,9 @@ struct LiquidGlassRootView: View {
                     .ignoresSafeArea(.container, edges: .bottom)
                     .toolbar(.hidden, for: .navigationBar)
                     .navigationDestination(for: CoinRoute.self) { route in
+                        // Per-coin identity, mirroring the Market stack (see note above).
                         detail(route) { favPath.removeLast() }
+                            .id(route)
                     }
                 }
             }
@@ -93,7 +101,10 @@ struct LiquidGlassRootView: View {
         if let coin = urlHandler.pendingCoin {
             urlHandler.pendingCoin = nil
             selection = 0
-            marketPath.append(coin)
+            // Replace any existing coin detail rather than appending, so repeated widget taps
+            // never stack multiple detail screens on the Market tab's NavigationStack. Setting an
+            // equal single-element path is a no-op, so re-tapping the same coin doesn't reload it.
+            marketPath = NavigationPath([coin])
         }
         if urlHandler.selectFavorites {
             urlHandler.selectFavorites = false
