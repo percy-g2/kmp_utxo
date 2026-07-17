@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
 import kotlinx.serialization.json.Json
+import network.newsClientJson
 import org.androdevlinux.utxo.ContextProvider
 import org.androdevlinux.utxo.widget.FavoritesWidgetProvider
 import ui.Settings
@@ -54,17 +55,13 @@ actual fun getWebSocketClient(): HttpClient {
 }
 
 actual fun createNewsHttpClient(): HttpClient {
-    val json = Json {
-        isLenient = true
-        ignoreUnknownKeys = true
-    }
     return HttpClient(Android) {
         install(Logging) {
             logger = Logger.SIMPLE
             level = LogLevel.NONE
         }
         install(ContentNegotiation) {
-            json(json)
+            json(newsClientJson)
         }
         install(HttpTimeout) {
             connectTimeoutMillis = 15_000 // 15 seconds

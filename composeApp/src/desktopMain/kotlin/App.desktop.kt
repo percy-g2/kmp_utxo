@@ -3,6 +3,7 @@ import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.isActive
 import kotlinx.io.files.Path
 import net.harawata.appdirs.AppDirsFactory
+import network.newsClientJson
 import ui.Settings
 import java.awt.Desktop
 import java.io.File
@@ -90,7 +92,12 @@ actual fun createNewsHttpClient(): HttpClient {
             level = LogLevel.NONE
         }
         install(ContentNegotiation) {
-            json()
+            json(newsClientJson)
+        }
+        install(HttpTimeout) {
+            connectTimeoutMillis = 15_000
+            socketTimeoutMillis = 30_000
+            requestTimeoutMillis = 45_000
         }
     }
 }

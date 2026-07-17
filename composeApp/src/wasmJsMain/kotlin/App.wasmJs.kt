@@ -15,6 +15,7 @@ import kotlinx.browser.window
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import network.newsClientJson
 import ui.Settings
 
 actual fun openLink(link: String) {
@@ -64,7 +65,7 @@ actual fun createNewsHttpClient(): HttpClient {
             level = LogLevel.NONE
         }
         install(ContentNegotiation) {
-            json()
+            json(newsClientJson)
         }
         install(HttpTimeout) {
             connectTimeoutMillis = 10_000
