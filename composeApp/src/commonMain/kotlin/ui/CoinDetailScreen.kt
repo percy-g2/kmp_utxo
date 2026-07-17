@@ -24,11 +24,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.automirrored.filled.ShowChart
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -36,6 +38,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -79,6 +82,12 @@ import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
 import ui.utils.shimmerEffect
 import utxo.composeapp.generated.resources.Res
+import utxo.composeapp.generated.resources.ai_insights
+import utxo.composeapp.generated.resources.ai_insights_disclaimer
+import utxo.composeapp.generated.resources.ai_insights_error
+import utxo.composeapp.generated.resources.ai_insights_loading
+import utxo.composeapp.generated.resources.ai_insights_no_key
+import utxo.composeapp.generated.resources.ai_insights_retry
 import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.error
 import utxo.composeapp.generated.resources.label_24h_change
@@ -105,6 +114,7 @@ import utxo.composeapp.generated.resources.no_news_providers_selected_hint
 import utxo.composeapp.generated.resources.price_data_not_available
 import utxo.composeapp.generated.resources.price_information
 import utxo.composeapp.generated.resources.refresh
+import utxo.composeapp.generated.resources.settings_ai_get_key
 import utxo.composeapp.generated.resources.unknown_error
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
@@ -152,6 +162,10 @@ fun CoinDetailScreen(
     // Get enabled providers from settings - allow empty set (no providers selected)
     // If settings don't have enabledRssProviders field (old settings), default to all enabled
     val enabledProviders = settingsState?.enabledRssProviders ?: model.RssProvider.DEFAULT_ENABLED_PROVIDERS
+
+    // Free Pollinations key that powers AI Insights (empty = anonymous attempt / disabled).
+    val aiApiKey = settingsState?.aiApiKey ?: ""
+    val aiKeyPresent = aiApiKey.isNotBlank()
     
     // Convert Set to a stable, sorted string key for LaunchedEffect dependency
     // Use "empty" as key when no providers are selected
@@ -165,8 +179,8 @@ fun CoinDetailScreen(
     val listState = rememberLazyListState()
     val selectedTimeframe = state.selectedTimeframe
 
-    // Reload when symbol or enabled providers change
-    LaunchedEffect(symbol, enabledProvidersKey) {
+    // Reload when symbol, enabled providers, or the presence of an AI key changes
+    LaunchedEffect(symbol, enabledProvidersKey, aiKeyPresent) {
         AppLogger.logger.d { "CoinDetailScreen: LaunchedEffect triggered - symbol: $symbol, providers: $enabledProviders, key: $enabledProvidersKey" }
         // Always clear cache first to ensure we fetch fresh data with correct providers
         coroutineScope.launch {
@@ -175,7 +189,7 @@ fun CoinDetailScreen(
         // Use a local copy to ensure we're using the correct providers
         val providersToUse = enabledProviders.toSet()
         AppLogger.logger.d { "CoinDetailScreen: About to call loadCoinData with providers: $providersToUse" }
-        viewModel.loadCoinData(symbol, providersToUse)
+        viewModel.loadCoinData(symbol, providersToUse, aiApiKey)
     }
     
     // Clean up WebSocket when screen leaves composition
@@ -215,7 +229,7 @@ fun CoinDetailScreen(
                 actions = {
                     IconButton(onClick = {
                         AppLogger.logger.d { "CoinDetailScreen: Manual refresh for $symbol with providers: $enabledProviders" }
-                        viewModel.refresh(symbol, enabledProviders)
+                        viewModel.refresh(symbol, enabledProviders, aiApiKey)
                     }) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
@@ -304,6 +318,19 @@ fun CoinDetailScreen(
                                         tradingPairs = tradingPairs
                                     )
                                 }
+                            }
+
+                            // AI Insights Section - market overview generated from 24h ticker data
+                            item {
+                                AiInsightCard(
+                                    insight = state.aiInsight,
+                                    isLoading = state.isLoadingInsight,
+                                    needsKey = state.insightNeedsKey,
+                                    error = state.insightError,
+                                    hasTicker = state.ticker != null,
+                                    onRetry = { viewModel.regenerateInsight() },
+                                    onGetKey = { openLink("https://enter.pollinations.ai") }
+                                )
                             }
 
                             // Order Book Heat Map Section
@@ -452,6 +479,125 @@ fun CoinDetailScreen(
 
 }
 
+
+@Composable
+fun AiInsightCard(
+    insight: String?,
+    isLoading: Boolean,
+    needsKey: Boolean,
+    error: String?,
+    hasTicker: Boolean,
+    onRetry: () -> Unit,
+    onGetKey: () -> Unit
+) {
+    // Treat the pre-ticker window as loading so the card never shows an empty body.
+    val showLoading = isLoading || (!hasTicker && error == null && !needsKey && insight == null)
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        elevation = CardDefaults.cardElevation(2.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .animateContentSize()
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Default.AutoAwesome,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = stringResource(Res.string.ai_insights),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                if (!showLoading && (insight != null || error != null)) {
+                    IconButton(onClick = onRetry, modifier = Modifier.size(32.dp)) {
+                        Icon(
+                            imageVector = Icons.Default.Refresh,
+                            contentDescription = stringResource(Res.string.ai_insights_retry),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            when {
+                needsKey -> {
+                    Text(
+                        text = stringResource(Res.string.ai_insights_no_key),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    TextButton(
+                        onClick = onGetKey,
+                        modifier = Modifier.padding(top = 4.dp)
+                    ) {
+                        Text(stringResource(Res.string.settings_ai_get_key))
+                    }
+                }
+
+                showLoading -> {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(18.dp),
+                            strokeWidth = 2.dp
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = stringResource(Res.string.ai_insights_loading),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+
+                error != null -> {
+                    Text(
+                        text = stringResource(Res.string.ai_insights_error),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                    TextButton(
+                        onClick = onRetry,
+                        modifier = Modifier.padding(top = 4.dp)
+                    ) {
+                        Text(stringResource(Res.string.ai_insights_retry))
+                    }
+                }
+
+                insight != null -> {
+                    Text(
+                        text = insight,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        text = stringResource(Res.string.ai_insights_disclaimer),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
+                    )
+                }
+            }
+        }
+    }
+}
 
 @Composable
 fun PriceInfoSection(
