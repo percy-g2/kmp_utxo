@@ -104,6 +104,8 @@ After the assets land in `screenshots/` and `play-store/`, update `README.md` so
 
 **App name with a logomark letter.** The feature graphic supports an `accent_letter` treatment — one letter of the app name is rendered on top of an accent-colored disc (e.g. UTXO with the "O" on a Bitcoin-orange disc). Use this when the app name has a short, distinctive letter that can carry brand weight. Skip it for long or generic names.
 
+**Dual-hero feature graphic.** `generate.py` puts a single phone in the feature graphic. For a richer Play Store banner — two hero phones (e.g. AI Insights + Portfolio) over a faded collage of the remaining screens — use `scripts/feature_graphic_hero.py` instead: `python3 scripts/feature_graphic_hero.py <out.png>`. It reads the raws from `raw-screenshots/ios/` and writes a 1024 × 500 PNG; tune the hero positions, collage `spots`, and copy in the script. This is what the current UTXO `screenshots/feature_graphic_1024x500.png` uses.
+
 **Non-standard screenshot sizes.** The script accepts any aspect ratio — it just resizes proportionally. If the user uploads Android screenshots (e.g. 1080 × 2400), they'll work fine.
 
 **Fewer than 5 screenshots.** Generate as many as the user has. App Store accepts 3 minimum; Play Store accepts 2.
