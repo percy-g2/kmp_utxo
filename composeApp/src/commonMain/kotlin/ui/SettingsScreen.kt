@@ -115,6 +115,7 @@ import utxo.composeapp.generated.resources.settings_about
 import utxo.composeapp.generated.resources.settings_ai
 import utxo.composeapp.generated.resources.settings_ai_api_key_hint
 import utxo.composeapp.generated.resources.settings_ai_api_key_label
+import utxo.composeapp.generated.resources.settings_ai_clear_key
 import utxo.composeapp.generated.resources.settings_ai_desc
 import utxo.composeapp.generated.resources.settings_ai_get_key
 import utxo.composeapp.generated.resources.settings_all_sources_enabled
@@ -388,6 +389,7 @@ private fun AiInsightsSettings(
     // Seed once; this screen is the only editor, so external re-emissions won't clobber typing.
     var keyText by remember { mutableStateOf(apiKey) }
     var keyVisible by remember { mutableStateOf(false) }
+    val hasKey = keyText.isNotBlank()
 
     Column(
         modifier = Modifier
@@ -424,16 +426,33 @@ private fun AiInsightsSettings(
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = if (keyVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            trailingIcon = {
-                IconButton(onClick = { keyVisible = !keyVisible }) {
-                    Icon(
-                        imageVector = if (keyVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
-                        contentDescription = stringResource(
-                            if (keyVisible) Res.string.ai_hide_key else Res.string.ai_show_key
-                        )
-                    )
+            trailingIcon = if (hasKey) {
+                {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        IconButton(onClick = { keyVisible = !keyVisible }) {
+                            Icon(
+                                imageVector = if (keyVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                                contentDescription = stringResource(
+                                    if (keyVisible) Res.string.ai_hide_key else Res.string.ai_show_key
+                                )
+                            )
+                        }
+                        IconButton(onClick = {
+                            keyText = ""
+                            onApiKeyChange("")
+                            keyVisible = false
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = stringResource(Res.string.settings_ai_clear_key)
+                            )
+                        }
+                    }
                 }
+            } else {
+                null
             },
+            shape = RoundedCornerShape(12.dp),
             modifier = Modifier.fillMaxWidth()
         )
 

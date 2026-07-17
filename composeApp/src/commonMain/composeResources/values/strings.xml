@@ -213,4 +213,5 @@
     <string name="settings_ai_api_key_label">Pollinations API key</string>
     <string name="settings_ai_api_key_hint">Paste your free key</string>
     <string name="settings_ai_get_key">Get a free API key</string>
+    <string name="settings_ai_clear_key">Clear key</string>
 </resources>
