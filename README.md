@@ -13,21 +13,22 @@ height="40">](https://apps.apple.com/in/app/utxo/id6746167853)
 A modern, cross-platform cryptocurrency tracking application built with Kotlin Multiplatform and Compose Multiplatform.
 
 <p align="center">
-  <img src="screenshots/feature_graphic_1024x500.png" width="100%" alt="UTXO — Markets and portfolio in your pocket">
+  <img src="screenshots/feature_graphic_1024x500.png" width="100%" alt="UTXO — Markets, portfolio and AI insights in your pocket">
 </p>
 
 <p align="center"><sub><b>Phone</b> · iOS · 1284 × 2778 · App Store</sub></p>
-<p align="center"><sub><i>App Store set captured on the iOS simulator. The Portfolio screen is seeded from live Hyperliquid leaderboard wallets.</i></sub></p>
+<p align="center"><sub><i>App Store set captured on the iOS simulator. Portfolio is seeded from live Hyperliquid leaderboard wallets; AI Insights is generated on-device from 24h market data and news.</i></sub></p>
 
 <table>
   <tr>
-    <td><img src="screenshots/01_markets_dark.png" width="160" alt="Markets — iOS"></td>
-    <td><img src="screenshots/02_portfolio_dark.png" width="160" alt="Portfolio — iOS"></td>
-    <td><img src="screenshots/07_allocation_dark.png" width="160" alt="Allocation — iOS"></td>
-    <td><img src="screenshots/03_charts_light.png" width="160" alt="Charts — iOS"></td>
-    <td><img src="screenshots/04_depth_dark.png" width="160" alt="Depth — iOS"></td>
-    <td><img src="screenshots/05_news_light.png" width="160" alt="News — iOS"></td>
-    <td><img src="screenshots/06_favorites_dark.png" width="160" alt="Favorites — iOS"></td>
+    <td><img src="screenshots/01_markets_dark.png" width="150" alt="Markets — iOS"></td>
+    <td><img src="screenshots/02_portfolio_dark.png" width="150" alt="Portfolio — iOS"></td>
+    <td><img src="screenshots/03_ai_insights_dark.png" width="150" alt="AI Insights — iOS"></td>
+    <td><img src="screenshots/04_allocation_dark.png" width="150" alt="Allocation — iOS"></td>
+    <td><img src="screenshots/05_charts_light.png" width="150" alt="Charts — iOS"></td>
+    <td><img src="screenshots/06_depth_dark.png" width="150" alt="Depth — iOS"></td>
+    <td><img src="screenshots/07_news_light.png" width="150" alt="News — iOS"></td>
+    <td><img src="screenshots/08_favorites_dark.png" width="150" alt="Favorites — iOS"></td>
   </tr>
 </table>
 
@@ -36,13 +37,14 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 
 <table>
   <tr>
-    <td><img src="play-store/01_markets_dark.png" width="160" alt="Markets — Android"></td>
-    <td><img src="play-store/02_portfolio_dark.png" width="160" alt="Portfolio — Android"></td>
-    <td><img src="play-store/07_allocation_dark.png" width="160" alt="Allocation — Android"></td>
-    <td><img src="play-store/03_charts_light.png" width="160" alt="Charts — Android"></td>
-    <td><img src="play-store/04_depth_dark.png" width="160" alt="Depth — Android"></td>
-    <td><img src="play-store/05_news_light.png" width="160" alt="News — Android"></td>
-    <td><img src="play-store/06_favorites_dark.png" width="160" alt="Favorites — Android"></td>
+    <td><img src="play-store/01_markets_dark.png" width="150" alt="Markets — Android"></td>
+    <td><img src="play-store/02_portfolio_dark.png" width="150" alt="Portfolio — Android"></td>
+    <td><img src="play-store/03_ai_insights_dark.png" width="150" alt="AI Insights — Android"></td>
+    <td><img src="play-store/04_allocation_dark.png" width="150" alt="Allocation — Android"></td>
+    <td><img src="play-store/05_charts_light.png" width="150" alt="Charts — Android"></td>
+    <td><img src="play-store/06_depth_dark.png" width="150" alt="Depth — Android"></td>
+    <td><img src="play-store/07_news_light.png" width="150" alt="News — Android"></td>
+    <td><img src="play-store/08_favorites_dark.png" width="150" alt="Favorites — Android"></td>
   </tr>
 </table>
 
@@ -51,30 +53,14 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 
 <table>
   <tr>
-    <td><img src="screenshots/ipad_01_markets_dark.png" width="160" alt="Markets — iPad"></td>
-    <td><img src="screenshots/ipad_02_portfolio_dark.png" width="160" alt="Portfolio — iPad"></td>
-    <td><img src="screenshots/ipad_07_allocation_dark.png" width="160" alt="Allocation — iPad"></td>
-    <td><img src="screenshots/ipad_03_charts_light.png" width="160" alt="Charts — iPad"></td>
-    <td><img src="screenshots/ipad_04_depth_dark.png" width="160" alt="Depth — iPad"></td>
-    <td><img src="screenshots/ipad_05_news_light.png" width="160" alt="News — iPad"></td>
-    <td><img src="screenshots/ipad_06_favorites_dark.png" width="160" alt="Favorites — iPad"></td>
-  </tr>
-</table>
-
-<p align="center"><sub><b>Tablet</b> · iOS · 2048 × 2732 · native iPad UI</sub></p>
-<p align="center"><sub><i>Captured on the iPad simulator — the app's adaptive iPad layout with a top tab bar and full-width rows.</i></sub></p>
-
-<table>
-  <tr>
-    <td><img src="screenshots/ipad_native_01_markets_dark.png" width="200" alt="Markets — native iPad"></td>
-    <td><img src="screenshots/ipad_native_02_portfolio_dark.png" width="200" alt="Portfolio — native iPad"></td>
-    <td><img src="screenshots/ipad_native_07_allocation_dark.png" width="200" alt="Allocation — native iPad"></td>
-    <td><img src="screenshots/ipad_native_03_charts_light.png" width="200" alt="Charts — native iPad"></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/ipad_native_04_depth_dark.png" width="200" alt="Depth — native iPad"></td>
-    <td><img src="screenshots/ipad_native_05_news_light.png" width="200" alt="News — native iPad"></td>
-    <td><img src="screenshots/ipad_native_06_favorites_dark.png" width="200" alt="Favorites — native iPad"></td>
+    <td><img src="screenshots/ipad_01_markets_dark.png" width="150" alt="Markets — iPad"></td>
+    <td><img src="screenshots/ipad_02_portfolio_dark.png" width="150" alt="Portfolio — iPad"></td>
+    <td><img src="screenshots/ipad_03_ai_insights_dark.png" width="150" alt="AI Insights — iPad"></td>
+    <td><img src="screenshots/ipad_04_allocation_dark.png" width="150" alt="Allocation — iPad"></td>
+    <td><img src="screenshots/ipad_05_charts_light.png" width="150" alt="Charts — iPad"></td>
+    <td><img src="screenshots/ipad_06_depth_dark.png" width="150" alt="Depth — iPad"></td>
+    <td><img src="screenshots/ipad_07_news_light.png" width="150" alt="News — iPad"></td>
+    <td><img src="screenshots/ipad_08_favorites_dark.png" width="150" alt="Favorites — iPad"></td>
   </tr>
 </table>
 
@@ -138,12 +124,25 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 - **News filtering** by coin symbol with intelligent matching
 - **Real-time price updates** displayed in the header
 
+### 🤖 AI Insights
+- **Plain-English market overview** generated on the coin detail screen
+- **Grounded in live data** — combines 24h ticker momentum, volume and volatility with the day's news themes
+- **Powered by Pollinations** — add a free API key in Settings to enable
+- **Not financial advice** — clearly labelled as an AI-generated overview
+
+### 💼 Portfolio
+- **Multi-wallet tracking** via the Hyperliquid API with a per-wallet scope switcher
+- **Live portfolio value** with aggregate unrealized P&L, account, margin and free balance
+- **Allocation breakdown** as a bar or donut chart, every position sized to scale
+- **Spot holdings and open positions** with live pricing
+
 ### ⚙️ Settings
 - **Theme customization**:
   - System default (follows device theme)
   - Light mode
   - Dark mode
 - **News source selection** - Enable/disable RSS providers
+- **AI Insights** - Add a free Pollinations API key to enable market overviews
 - **About section** with:
   - App version information
   - Privacy Policy link

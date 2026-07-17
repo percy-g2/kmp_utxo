@@ -19,7 +19,7 @@ Three deliverables per run, all in the user's chosen output directory:
 
 Files are named `phone_NN_<slug>.png`, `ipad_NN_<slug>.png`, and `feature_graphic_1024x500.png` — stable and self-describing so the user can re-run and replace cleanly.
 
-For UTXO this currently means a **6-screen** lineup — Markets · **Portfolio** · Charts · Depth · News · Favorites — captured **per platform**: feed iOS-simulator raws to produce the App Store `screenshots/` set (phone + iPad + feature graphic), and run again over Android-emulator raws with `--skip-ipad --skip-feature` to produce the framed `play-store/` set. Both use the same iPhone-styled bezel; each carries its own platform's status bar.
+For UTXO this currently means an **8-screen** lineup — Markets · **Portfolio** · **AI Insights** · Allocation · Charts · Depth · News · Favorites — captured **per platform**: feed iOS-simulator raws to produce the App Store `screenshots/` set (phone + iPad + feature graphic), and run again over Android-emulator raws with `--skip-ipad --skip-feature` to produce the framed `play-store/` set. Both use the same iPhone-styled bezel; each carries its own platform's status bar.
 
 ## When to use this skill
 

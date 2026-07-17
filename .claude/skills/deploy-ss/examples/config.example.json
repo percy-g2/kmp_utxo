@@ -2,7 +2,7 @@
   "app": {
     "app_name": "UTXO",
     "tagline": "Markets and portfolio, in your pocket.",
-    "feature_row": "Live prices  ·  Portfolio P&L  ·  Pro charts",
+    "feature_row": "Live prices  ·  Portfolio P&L  ·  AI insights",
     "feature_pill": "REAL-TIME",
     "brand_color": "#F27C2F",
     "feature_graphic_screenshot": "portfolio_dark.png",
@@ -17,15 +17,17 @@
   "screens": [
     {
       "screenshot": "markets_dark.png",
+      "slug": "markets_dark",
       "tag": "MARKETS",
       "headline": "Track live\ncrypto markets",
-      "subtitle": "BTC, ETH, SOL and more — updated every second",
+      "subtitle": "BTC, ETH, SOL and more — updated every second.",
       "theme": "dark",
       "bg_color": "#0A0E1A",
       "bezel_color": "#181A20"
     },
     {
       "screenshot": "portfolio_dark.png",
+      "slug": "portfolio_dark",
       "tag": "PORTFOLIO",
       "headline": "Your portfolio,\nin real time",
       "subtitle": "Multi-wallet balances, live P&L and liquidation alerts in one view.",
@@ -35,7 +37,29 @@
       "accent": "#1FB87A"
     },
     {
-      "screenshot": "chart_light.png",
+      "screenshot": "ai_insights_dark.png",
+      "slug": "ai_insights_dark",
+      "tag": "AI INSIGHTS",
+      "headline": "The market,\nread by AI",
+      "subtitle": "A plain-English overview from live 24h data and the day's headlines.",
+      "theme": "dark",
+      "bg_color": "#100E24",
+      "bezel_color": "#1A1730",
+      "accent": "#7C5CFF"
+    },
+    {
+      "screenshot": "allocation_dark.png",
+      "slug": "allocation_dark",
+      "tag": "ALLOCATION",
+      "headline": "See your mix,\nat a glance",
+      "subtitle": "Bar or donut — every position sized to scale, live.",
+      "theme": "dark",
+      "bg_color": "#08161C",
+      "accent": "#22B8A8"
+    },
+    {
+      "screenshot": "charts_light.png",
+      "slug": "charts_light",
       "tag": "CHARTS",
       "headline": "Pro candles,\nin your pocket",
       "subtitle": "Powered by TradingView. Pinch, scrub, zoom — full control.",
@@ -44,10 +68,11 @@
       "accent": "#2454C8"
     },
     {
-      "screenshot": "price_info_dark.png",
+      "screenshot": "depth_dark.png",
+      "slug": "depth_dark",
       "tag": "DEPTH",
       "headline": "Every detail,\nevery tick",
-      "subtitle": "Order book, 24h stats and trading info in one clean view.",
+      "subtitle": "Order book heat map, 24h stats and trading info in one view.",
       "theme": "dark",
       "bg_color": "#181224",
       "bezel_color": "#201A2C",
@@ -55,15 +80,17 @@
     },
     {
       "screenshot": "news_light.png",
+      "slug": "news_light",
       "tag": "NEWS",
       "headline": "Crypto news,\ncurated",
-      "subtitle": "Latest from BeInCrypto, CryptoSlate and trusted sources.",
+      "subtitle": "Latest from CoinDesk, CoinTelegraph and trusted sources.",
       "theme": "light",
       "bg_color": "#F2E5D5",
       "accent": "#DA5440"
     },
     {
       "screenshot": "favorites_dark.png",
+      "slug": "favorites_dark",
       "tag": "FAVORITES",
       "headline": "Your watchlist,\none tap away",
       "subtitle": "Star the coins you care about. Find them instantly.",
@@ -72,8 +99,8 @@
       "accent": "#F2A92F",
       "preprocess": {
         "type": "collapse_middle",
-        "top_keep": 1180,
-        "bottom_keep": 300,
+        "top_keep": 1320,
+        "bottom_keep": 330,
         "bg_color": "#000000"
       }
     }
