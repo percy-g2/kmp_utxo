@@ -206,6 +206,7 @@
     <string name="ai_insights_error">Couldn\'t generate insights right now.</string>
     <string name="ai_insights_retry">Retry</string>
     <string name="ai_insights_rate_limited">Rate limit reached. Try again shortly, or add a free llm7.io token in Settings for higher limits.</string>
+    <string name="ai_insights_rate_limited_stale">Rate limit reached — showing the previous overview.</string>
     <string name="ai_show_key">Show token</string>
     <string name="ai_hide_key">Hide token</string>
     <string name="settings_ai">AI Insights</string>

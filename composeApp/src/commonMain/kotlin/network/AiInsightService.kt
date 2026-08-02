@@ -47,8 +47,16 @@ class AiInsightService {
     private val httpClient = createNewsHttpClient()
 
     object AiConfig {
-        /** OpenAI-compatible chat-completions endpoint. */
-        const val ENDPOINT = "https://api.llm7.io/v1/chat/completions"
+        /**
+         * OpenAI-compatible API root. Swapping to another gateway is a one-line change here, since
+         * [CHAT_COMPLETIONS_PATH] is fixed by the OpenAI contract rather than by the provider.
+         */
+        const val BASE_URL = "https://api.llm7.io/v1"
+
+        /** Standard OpenAI chat-completions path, appended to [BASE_URL]. */
+        const val CHAT_COMPLETIONS_PATH = "/chat/completions"
+
+        val ENDPOINT: String get() = "$BASE_URL$CHAT_COMPLETIONS_PATH"
 
         /** Open-weights model id served by the gateway. */
         const val MODEL = "gpt-oss:20b"

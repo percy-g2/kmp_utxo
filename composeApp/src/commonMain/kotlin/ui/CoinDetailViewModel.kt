@@ -308,8 +308,11 @@ class CoinDetailViewModel : ViewModel() {
                     )
                 }
 
+                // Keep any insight already on screen: unlike an auth failure this is routine at the
+                // anonymous tier (10 requests/min), so a Retry that gets throttled must not wipe a
+                // perfectly good overview the user was reading. The card shows the limit alongside.
                 is AiInsightService.InsightResult.RateLimited -> state.update {
-                    it.copy(isLoadingInsight = false, insightRateLimited = true, aiInsight = null)
+                    it.copy(isLoadingInsight = false, insightRateLimited = true)
                 }
 
                 is AiInsightService.InsightResult.Failure -> state.update {

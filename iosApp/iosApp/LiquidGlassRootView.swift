@@ -113,7 +113,14 @@ struct LiquidGlassRootView: View {
     }
 
     private func detail(_ route: CoinRoute, onBack: @escaping () -> Void) -> some View {
-        CoinDetailComposeView(symbol: route.symbol, displaySymbol: route.display, onBack: onBack)
+        // The tab bar is hidden here, so the AI card's "Open Settings" needs an explicit route out
+        // — same hop the Portfolio tab uses. The detail stays on its stack and is still there on return.
+        CoinDetailComposeView(
+            symbol: route.symbol,
+            displaySymbol: route.display,
+            onBack: onBack,
+            onOpenSettings: { selection = 3 }
+        )
             .ignoresSafeArea(.keyboard)
             .toolbar(.hidden, for: .navigationBar)
             .toolbar(.hidden, for: .tabBar)

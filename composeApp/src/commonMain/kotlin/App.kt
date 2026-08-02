@@ -309,7 +309,8 @@ fun App(
                         symbol = coinDetail.symbol,
                         displaySymbol = coinDetail.displaySymbol,
                         cryptoViewModel = cryptoViewModel,
-                        onBackClick = { navController.popBackStack() }
+                        onBackClick = { navController.popBackStack() },
+                        onOpenSettings = { navController.navigate(Settings) }
                     )
                 }
             }

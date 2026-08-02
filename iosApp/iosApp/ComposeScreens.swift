@@ -51,12 +51,14 @@ struct CoinDetailComposeView: UIViewControllerRepresentable {
     let symbol: String
     let displaySymbol: String
     let onBack: () -> Void
+    let onOpenSettings: () -> Void
 
     func makeUIViewController(context: Context) -> UIViewController {
         MainViewControllerKt.CoinDetailViewController(
             symbol: symbol,
             displaySymbol: displaySymbol,
-            onBack: onBack
+            onBack: onBack,
+            onOpenSettings: onOpenSettings
         )
     }
 

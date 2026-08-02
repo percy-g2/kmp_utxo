@@ -84,7 +84,9 @@ import utxo.composeapp.generated.resources.ai_insights_disclaimer
 import utxo.composeapp.generated.resources.ai_insights_error
 import utxo.composeapp.generated.resources.ai_insights_loading
 import utxo.composeapp.generated.resources.ai_insights_rate_limited
+import utxo.composeapp.generated.resources.ai_insights_rate_limited_stale
 import utxo.composeapp.generated.resources.ai_insights_retry
+import utxo.composeapp.generated.resources.portfolio_open_settings
 import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.error
 import utxo.composeapp.generated.resources.label_24h_change
@@ -148,7 +150,9 @@ fun CoinDetailScreen(
     displaySymbol: String,
     onBackClick: () -> Unit,
     cryptoViewModel: CryptoViewModel,
-    viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() }
+    viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() },
+    /** Navigates to Settings so a rate-limited user can add an llm7.io token without hunting for it. */
+    onOpenSettings: (() -> Unit)? = null
 ) {
     val settingsState by SettingsStore.settings.collectAsState()
     val isDarkTheme = isDarkTheme(settingsState)
@@ -332,7 +336,8 @@ fun CoinDetailScreen(
                                     rateLimited = state.insightRateLimited,
                                     error = state.insightError,
                                     hasTicker = state.ticker != null,
-                                    onRetry = { viewModel.regenerateInsight() }
+                                    onRetry = { viewModel.regenerateInsight() },
+                                    onOpenSettings = onOpenSettings
                                 )
                             }
 
@@ -490,7 +495,9 @@ fun AiInsightCard(
     rateLimited: Boolean,
     error: String?,
     hasTicker: Boolean,
-    onRetry: () -> Unit
+    onRetry: () -> Unit,
+    /** null where this screen can't reach Settings, which hides the shortcut rather than dead-ending. */
+    onOpenSettings: (() -> Unit)? = null
 ) {
     // Treat the pre-ticker window as loading so the card never shows an empty body.
     val showLoading = isLoading ||
@@ -541,20 +548,6 @@ fun AiInsightCard(
             Spacer(modifier = Modifier.height(12.dp))
 
             when {
-                rateLimited -> {
-                    Text(
-                        text = stringResource(Res.string.ai_insights_rate_limited),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    TextButton(
-                        onClick = onRetry,
-                        modifier = Modifier.padding(top = 4.dp)
-                    ) {
-                        Text(stringResource(Res.string.ai_insights_retry))
-                    }
-                }
-
                 showLoading -> {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         CircularProgressIndicator(
@@ -584,18 +577,54 @@ fun AiInsightCard(
                     }
                 }
 
+                // Ahead of [rateLimited] on purpose: an overview already on screen is worth more
+                // than the limit notice, so a throttled Retry demotes the limit to a footnote
+                // rather than replacing what the user was reading.
                 insight != null -> {
                     Text(
                         text = insight,
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface
                     )
+                    if (rateLimited) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = stringResource(Res.string.ai_insights_rate_limited_stale),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = stringResource(Res.string.ai_insights_disclaimer),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
                     )
+                }
+
+                rateLimited -> {
+                    Text(
+                        text = stringResource(Res.string.ai_insights_rate_limited),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        TextButton(
+                            onClick = onRetry,
+                            modifier = Modifier.padding(top = 4.dp)
+                        ) {
+                            Text(stringResource(Res.string.ai_insights_retry))
+                        }
+                        // Only offered where Settings is reachable from here (see AiInsightCard).
+                        if (onOpenSettings != null) {
+                            TextButton(
+                                onClick = onOpenSettings,
+                                modifier = Modifier.padding(top = 4.dp)
+                            ) {
+                                Text(stringResource(Res.string.portfolio_open_settings))
+                            }
+                        }
+                    }
                 }
             }
         }
