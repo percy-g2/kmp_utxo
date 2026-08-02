@@ -127,7 +127,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 ### 🤖 AI Insights
 - **Plain-English market overview** generated on the coin detail screen
 - **Grounded in live data** — combines 24h ticker momentum, volume and volatility with the day's news themes
-- **Powered by Pollinations** — add a free API key in Settings to enable
+- **Zero setup** — powered by the open-weights `gpt-oss:20b` model via llm7.io, no API key or signup
 - **Not financial advice** — clearly labelled as an AI-generated overview
 
 ### 💼 Portfolio
@@ -142,7 +142,6 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
   - Light mode
   - Dark mode
 - **News source selection** - Enable/disable RSS providers
-- **AI Insights** - Add a free Pollinations API key to enable market overviews
 - **About section** with:
   - App version information
   - Privacy Policy link

@@ -49,7 +49,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,7 +59,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import ktx.buildStyledSymbol
@@ -73,7 +71,6 @@ import model.Ticker24hr
 import model.TradingPair
 import openLink
 import org.jetbrains.compose.resources.stringResource
-import theme.ThemeManager.store
 import ui.components.LazyColumnScrollbar
 import ui.components.ScrollToEdgeButton
 import ui.components.TradingViewChart
@@ -86,7 +83,7 @@ import utxo.composeapp.generated.resources.ai_insights
 import utxo.composeapp.generated.resources.ai_insights_disclaimer
 import utxo.composeapp.generated.resources.ai_insights_error
 import utxo.composeapp.generated.resources.ai_insights_loading
-import utxo.composeapp.generated.resources.ai_insights_no_key
+import utxo.composeapp.generated.resources.ai_insights_rate_limited
 import utxo.composeapp.generated.resources.ai_insights_retry
 import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.error
@@ -114,7 +111,6 @@ import utxo.composeapp.generated.resources.no_news_providers_selected_hint
 import utxo.composeapp.generated.resources.price_data_not_available
 import utxo.composeapp.generated.resources.price_information
 import utxo.composeapp.generated.resources.refresh
-import utxo.composeapp.generated.resources.settings_ai_get_key
 import utxo.composeapp.generated.resources.unknown_error
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
@@ -154,7 +150,7 @@ fun CoinDetailScreen(
     cryptoViewModel: CryptoViewModel,
     viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() }
 ) {
-    val settingsState by store.updates.collectAsState(initial = Settings(appTheme = AppTheme.System))
+    val settingsState by SettingsStore.settings.collectAsState()
     val isDarkTheme = isDarkTheme(settingsState)
     val state by viewModel.state.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
@@ -163,10 +159,14 @@ fun CoinDetailScreen(
     // If settings don't have enabledRssProviders field (old settings), default to all enabled
     val enabledProviders = settingsState?.enabledRssProviders ?: model.RssProvider.DEFAULT_ENABLED_PROVIDERS
 
-    // Free Pollinations key that powers AI Insights (empty = anonymous attempt / disabled).
-    val aiApiKey = settingsState?.aiApiKey ?: ""
-    val aiKeyPresent = aiApiKey.isNotBlank()
-    
+    // Optional llm7.io token that raises the AI rate limits; blank = anonymous, which still works.
+    val aiApiToken = settingsState?.aiApiToken ?: ""
+
+    // null settings means "not read from disk yet" (see SettingsStore), NOT "defaults". Loading on
+    // that placeholder made every coin fetch its ticker and news twice: once against the placeholder
+    // providers and again when the real settings landed.
+    val settingsLoaded = settingsState != null
+
     // Convert Set to a stable, sorted string key for LaunchedEffect dependency
     // Use "empty" as key when no providers are selected
     val enabledProvidersKey = if (enabledProviders.isEmpty()) {
@@ -175,23 +175,27 @@ fun CoinDetailScreen(
         enabledProviders.sorted().joinToString(",")
     }
     
-    val coroutineScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
     val selectedTimeframe = state.selectedTimeframe
 
-    // Reload when symbol, enabled providers, or the presence of an AI key changes
-    LaunchedEffect(symbol, enabledProvidersKey, aiKeyPresent) {
+    // Reload when the symbol or the enabled providers change — but never before settings are read.
+    LaunchedEffect(symbol, enabledProvidersKey, settingsLoaded) {
+        if (!settingsLoaded) return@LaunchedEffect
         AppLogger.logger.d { "CoinDetailScreen: LaunchedEffect triggered - symbol: $symbol, providers: $enabledProviders, key: $enabledProvidersKey" }
         // Always clear cache first to ensure we fetch fresh data with correct providers
-        coroutineScope.launch {
-            viewModel.clearCache()
-        }
+        viewModel.clearCache()
         // Use a local copy to ensure we're using the correct providers
         val providersToUse = enabledProviders.toSet()
         AppLogger.logger.d { "CoinDetailScreen: About to call loadCoinData with providers: $providersToUse" }
-        viewModel.loadCoinData(symbol, providersToUse, aiApiKey)
+        viewModel.loadCoinData(symbol, providersToUse, aiApiToken)
     }
-    
+
+    // The token can change while this screen is alive — on the iOS 26 native tab bar this screen is
+    // never torn down while Settings is edited. Regenerate the insight, don't reload everything.
+    LaunchedEffect(aiApiToken, settingsLoaded) {
+        if (settingsLoaded) viewModel.updateApiToken(aiApiToken)
+    }
+
     // Clean up WebSocket when screen leaves composition
     DisposableEffect(symbol) {
         onDispose {
@@ -229,7 +233,7 @@ fun CoinDetailScreen(
                 actions = {
                     IconButton(onClick = {
                         AppLogger.logger.d { "CoinDetailScreen: Manual refresh for $symbol with providers: $enabledProviders" }
-                        viewModel.refresh(symbol, enabledProviders, aiApiKey)
+                        viewModel.refresh(symbol, enabledProviders, aiApiToken)
                     }) {
                         Icon(
                             imageVector = Icons.Default.Refresh,
@@ -325,11 +329,10 @@ fun CoinDetailScreen(
                                 AiInsightCard(
                                     insight = state.aiInsight,
                                     isLoading = state.isLoadingInsight,
-                                    needsKey = state.insightNeedsKey,
+                                    rateLimited = state.insightRateLimited,
                                     error = state.insightError,
                                     hasTicker = state.ticker != null,
-                                    onRetry = { viewModel.regenerateInsight() },
-                                    onGetKey = { openLink("https://enter.pollinations.ai") }
+                                    onRetry = { viewModel.regenerateInsight() }
                                 )
                             }
 
@@ -484,14 +487,14 @@ fun CoinDetailScreen(
 fun AiInsightCard(
     insight: String?,
     isLoading: Boolean,
-    needsKey: Boolean,
+    rateLimited: Boolean,
     error: String?,
     hasTicker: Boolean,
-    onRetry: () -> Unit,
-    onGetKey: () -> Unit
+    onRetry: () -> Unit
 ) {
     // Treat the pre-ticker window as loading so the card never shows an empty body.
-    val showLoading = isLoading || (!hasTicker && error == null && !needsKey && insight == null)
+    val showLoading = isLoading ||
+        (!hasTicker && error == null && !rateLimited && insight == null)
 
     Card(
         modifier = Modifier
@@ -538,17 +541,17 @@ fun AiInsightCard(
             Spacer(modifier = Modifier.height(12.dp))
 
             when {
-                needsKey -> {
+                rateLimited -> {
                     Text(
-                        text = stringResource(Res.string.ai_insights_no_key),
+                        text = stringResource(Res.string.ai_insights_rate_limited),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     TextButton(
-                        onClick = onGetKey,
+                        onClick = onRetry,
                         modifier = Modifier.padding(top = 4.dp)
                     ) {
-                        Text(stringResource(Res.string.settings_ai_get_key))
+                        Text(stringResource(Res.string.ai_insights_retry))
                     }
                 }
 

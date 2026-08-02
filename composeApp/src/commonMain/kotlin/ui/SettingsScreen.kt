@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,8 +24,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.filled.AccountBalanceWallet
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Close
@@ -82,7 +81,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
@@ -100,24 +98,23 @@ import openLink
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import theme.ThemeManager
-import theme.ThemeManager.store
 import ui.utils.bottomBarClearancePadding
 import ui.utils.debouncedClickable
 import ui.utils.isDarkTheme
 import utxo.composeapp.generated.resources.Res
-import utxo.composeapp.generated.resources.ai_hide_key
-import utxo.composeapp.generated.resources.ai_show_key
 import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.cancel
 import utxo.composeapp.generated.resources.github_icon
-import utxo.composeapp.generated.resources.settings_about
+import utxo.composeapp.generated.resources.ai_hide_key
+import utxo.composeapp.generated.resources.ai_show_key
 import utxo.composeapp.generated.resources.settings_ai
 import utxo.composeapp.generated.resources.settings_ai_api_key_hint
 import utxo.composeapp.generated.resources.settings_ai_api_key_label
 import utxo.composeapp.generated.resources.settings_ai_clear_key
 import utxo.composeapp.generated.resources.settings_ai_desc
 import utxo.composeapp.generated.resources.settings_ai_get_key
+import utxo.composeapp.generated.resources.settings_ai_token_none
+import utxo.composeapp.generated.resources.settings_about
 import utxo.composeapp.generated.resources.settings_all_sources_enabled
 import utxo.composeapp.generated.resources.settings_appearance
 import utxo.composeapp.generated.resources.settings_clear
@@ -189,10 +186,10 @@ fun SettingsScreen(
 ) {
     var showThemeDialog by remember { mutableStateOf(false) }
     var showRssProvidersDialog by remember { mutableStateOf(false) }
+    var showAiTokenDialog by remember { mutableStateOf(false) }
     val deviceInfo = remember { DeviceInfo() }
-    val coroutineScope = rememberCoroutineScope()
-    val settings: Flow<Settings?> = store.updates
-    val settingsState by settings.collectAsState(initial = Settings(appTheme = AppTheme.System))
+    // null until the first disk read lands; isDarkTheme(null) already falls back to the system theme.
+    val settingsState by SettingsStore.settings.collectAsState()
     val isDarkTheme = isDarkTheme(settingsState)
 
     Scaffold(
@@ -254,10 +251,7 @@ fun SettingsScreen(
                         subtitle = stringResource(Res.string.settings_use_dark_theme),
                         checked = isDarkTheme,
                         onCheckedChange = { isDark ->
-                            coroutineScope.launch {
-                                val theme = if (isDark) AppTheme.Dark else AppTheme.Light
-                                ThemeManager.updateTheme(theme)
-                            }
+                            SettingsStore.setTheme(if (isDark) AppTheme.Dark else AppTheme.Light)
                         }
                     )
                 }
@@ -282,16 +276,16 @@ fun SettingsScreen(
 
                 item {
                     SettingsHeader(title = stringResource(Res.string.settings_ai))
-                    AiInsightsSettings(
-                        apiKey = settingsState?.aiApiKey ?: "",
-                        onApiKeyChange = { newKey ->
-                            coroutineScope.launch {
-                                store.update { current ->
-                                    current?.copy(aiApiKey = newKey) ?: Settings(aiApiKey = newKey)
-                                }
-                            }
+                    val aiToken = settingsState?.aiApiToken.orEmpty()
+                    SettingsItem(
+                        icon = Icons.Default.AutoAwesome,
+                        title = stringResource(Res.string.settings_ai_api_key_label),
+                        subtitle = if (aiToken.isNotBlank()) {
+                            maskToken(aiToken)
+                        } else {
+                            stringResource(Res.string.settings_ai_token_none)
                         },
-                        onGetKey = { openLink("https://enter.pollinations.ai") }
+                        onClick = { showAiTokenDialog = true }
                     )
                 }
 
@@ -343,11 +337,7 @@ fun SettingsScreen(
             if (showThemeDialog) {
                 ThemeSelectionDialog(
                     currentTheme = settingsState?.appTheme ?: AppTheme.System,
-                    onThemeSelected = {
-                        coroutineScope.launch {
-                            ThemeManager.updateTheme(it)
-                        }
-                    },
+                    onThemeSelected = { SettingsStore.setTheme(it) },
                     onDismiss = { showThemeDialog = false }
                 )
             }
@@ -356,19 +346,30 @@ fun SettingsScreen(
                 RssProvidersSelectionDialog(
                     enabledProviders = settingsState?.enabledRssProviders ?: RssProvider.DEFAULT_ENABLED_PROVIDERS,
                     onProvidersChanged = { newProviders ->
-                        coroutineScope.launch {
-                            store.update { currentSettings ->
-                                currentSettings?.copy(enabledRssProviders = newProviders)
-                                    ?: Settings(enabledRssProviders = newProviders)
-                            }
-                        }
+                        SettingsStore.setEnabledRssProviders(newProviders)
                     },
                     onDismiss = { showRssProvidersDialog = false }
+                )
+            }
+
+            if (showAiTokenDialog) {
+                AiTokenDialog(
+                    currentToken = settingsState?.aiApiToken.orEmpty(),
+                    onSave = { SettingsStore.setAiApiToken(it) },
+                    onGetToken = { openLink("https://dash.llm7.io") },
+                    onDismiss = { showAiTokenDialog = false }
                 )
             }
         }
     }
 }
+
+/**
+ * Middle-elides a saved token for the Settings row. Enough of the head stays visible to tell two
+ * tokens apart without putting the whole secret on screen in a list.
+ */
+private fun maskToken(token: String): String =
+    if (token.length >= 12) "${token.take(6)}…${token.takeLast(4)}" else "•".repeat(token.length)
 
 @Composable
 private fun SettingsHeader(title: String) {
@@ -381,88 +382,92 @@ private fun SettingsHeader(title: String) {
 }
 
 @Composable
-private fun AiInsightsSettings(
-    apiKey: String,
-    onApiKeyChange: (String) -> Unit,
-    onGetKey: () -> Unit
+private fun AiTokenDialog(
+    currentToken: String,
+    onSave: (String) -> Unit,
+    onGetToken: () -> Unit,
+    onDismiss: () -> Unit
 ) {
-    // Seed once; this screen is the only editor, so external re-emissions won't clobber typing.
-    var keyText by remember { mutableStateOf(apiKey) }
-    var keyVisible by remember { mutableStateOf(false) }
-    val hasKey = keyText.isNotBlank()
+    // Seeded from the store value the dialog opened with. Unlike the old inline field this is safe:
+    // the dialog can only be opened once settings have been read, so there is no placeholder to
+    // capture, and nothing outside this dialog edits the token while it is open.
+    var token by remember { mutableStateOf(currentToken) }
+    var tokenVisible by remember { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 4.dp)
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(
-                imageVector = Icons.Default.AutoAwesome,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.size(24.dp)
-            )
-            Text(
-                text = stringResource(Res.string.settings_ai_desc),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 16.dp)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        OutlinedTextField(
-            value = keyText,
-            onValueChange = {
-                keyText = it.trim()
-                onApiKeyChange(keyText)
-            },
-            label = { Text(stringResource(Res.string.settings_ai_api_key_label)) },
-            placeholder = { Text(stringResource(Res.string.settings_ai_api_key_hint)) },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            visualTransformation = if (keyVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            trailingIcon = if (hasKey) {
-                {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(onClick = { keyVisible = !keyVisible }) {
-                            Icon(
-                                imageVector = if (keyVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
-                                contentDescription = stringResource(
-                                    if (keyVisible) Res.string.ai_hide_key else Res.string.ai_show_key
-                                )
-                            )
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(Res.string.settings_ai_api_key_label)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    text = stringResource(Res.string.settings_ai_desc),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                OutlinedTextField(
+                    value = token,
+                    onValueChange = { token = it.trim() },
+                    placeholder = { Text(stringResource(Res.string.settings_ai_api_key_hint)) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    visualTransformation = if (tokenVisible) {
+                        VisualTransformation.None
+                    } else {
+                        PasswordVisualTransformation()
+                    },
+                    trailingIcon = if (token.isNotEmpty()) {
+                        {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                IconButton(onClick = { tokenVisible = !tokenVisible }) {
+                                    Icon(
+                                        imageVector = if (tokenVisible) {
+                                            Icons.Default.VisibilityOff
+                                        } else {
+                                            Icons.Default.Visibility
+                                        },
+                                        contentDescription = stringResource(
+                                            if (tokenVisible) Res.string.ai_hide_key else Res.string.ai_show_key
+                                        )
+                                    )
+                                }
+                                IconButton(onClick = {
+                                    token = ""
+                                    tokenVisible = false
+                                }) {
+                                    Icon(
+                                        imageVector = Icons.Default.Close,
+                                        contentDescription = stringResource(Res.string.settings_ai_clear_key)
+                                    )
+                                }
+                            }
                         }
-                        IconButton(onClick = {
-                            keyText = ""
-                            onApiKeyChange("")
-                            keyVisible = false
-                        }) {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = stringResource(Res.string.settings_ai_clear_key)
-                            )
-                        }
-                    }
+                    } else {
+                        null
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                )
+                TextButton(onClick = onGetToken) {
+                    Text(stringResource(Res.string.settings_ai_get_key))
                 }
-            } else {
-                null
-            },
-            shape = RoundedCornerShape(12.dp),
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        TextButton(
-            onClick = onGetKey,
-            modifier = Modifier.padding(top = 4.dp)
-        ) {
-            Text(stringResource(Res.string.settings_ai_get_key))
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onSave(token.trim())
+                    onDismiss()
+                },
+                enabled = token.trim() != currentToken
+            ) {
+                Text(stringResource(Res.string.settings_save))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(Res.string.cancel))
+            }
         }
-    }
+    )
 }
 
 @Composable
@@ -1478,8 +1483,16 @@ data class Settings(
     val hyperliquidWallets: List<HyperliquidWallet> = emptyList(),
     /** [SCOPE_ALL] (aggregate) or a single lowercased wallet address. */
     val portfolioScope: String = SCOPE_ALL,
-    /** User-supplied free Pollinations API key that powers AI Insights. Empty = disabled. */
-    val aiApiKey: String = "",
+    /**
+     * Optional llm7.io token that raises the AI Insights rate limits. Empty = anonymous, which
+     * still works — it just has a lower quota.
+     *
+     * Deliberately a *new* field rather than reusing the old `aiApiKey`: that held a Pollinations
+     * key, which is meaningless to llm7.io, and silently forwarding it would be wrong. Old
+     * settings.json files still carry `aiApiKey`; kstore decodes with `ignoreUnknownKeys`, so they
+     * load fine and the dead key is dropped on the next write.
+     */
+    val aiApiToken: String = "",
 )
 
 enum class AppTheme {

@@ -108,10 +108,6 @@ fun UTXOTheme(
 object ThemeManager {
     val store = getKStore()
 
-    suspend fun updateTheme(newTheme: AppTheme) {
-        store.update { it?.copy(appTheme = newTheme) ?: Settings(appTheme = newTheme) }
-    }
-
     /**
      * One-time migration of the legacy single [Settings.hyperliquidWalletAddress] into the
      * [Settings.hyperliquidWallets] list. Idempotent (re-running is a no-op once the list is
