@@ -4,7 +4,6 @@ import createNewsHttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.request.header
-import io.ktor.client.request.parameter
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
@@ -25,34 +24,53 @@ import model.Ticker24hr
  * combining its 24-hour ticker with recent public news headlines about the
  * coin, using a free, OpenAI-compatible text model.
  *
- * Backend: **Pollinations AI** (https://pollinations.ai) — an open-source (MIT),
- * self-hostable generative-AI gateway listed under zebbern/no-cost-ai. The
- * request/response contract is the standard OpenAI chat-completions shape, so
- * swapping the provider (a self-hosted Pollinations instance, llm7.io, or any
- * other OpenAI-compatible endpoint) only requires editing [AiConfig].
+ * Backend: **llm7.io** serving `gpt-oss:20b` (OpenAI's open-weights model). It works anonymously,
+ * so AI Insights needs no setup. A user can optionally paste a free token from
+ * https://dash.llm7.io in Settings to raise the limits (anonymous: 10 requests/min, 60/hour,
+ * 500K tokens/day; free token: 40/min, 100/hour, 1M tokens/day — see https://docs.llm7.io/limits).
+ * The request/response contract is the standard OpenAI chat-completions shape, so swapping the
+ * provider (any other OpenAI-compatible endpoint) only requires editing [AiConfig].
  *
- * Privacy: only public data (price/24h stats and public news headlines) is ever
- * sent — never wallet addresses, holdings or any personal data. Requests are tagged
- * `private=true` so prompts stay out of Pollinations' public feed. Note that,
- * as with any free hosted endpoint, the operator can still log requests; this
- * is why the API key is user-supplied (Settings) rather than embedded.
+ * Previously this used Pollinations, which *required* a user-supplied key and still answered
+ * HTTP 402 to essentially every real request from this app — a valid key made no difference —
+ * so the insight card permanently told users to add a key they already had.
+ *
+ * Note that `gpt-oss:20b` is a *reasoning* model: it spends completion tokens thinking before it
+ * answers. Capping `max_tokens` makes it burn the whole budget on reasoning and return an empty
+ * `content`, so the request deliberately sends no cap — see [model.ChatCompletionRequest].
+ *
+ * Privacy: only public data (price/24h stats and public news headlines) is ever sent — never
+ * wallet addresses, holdings or any personal data. As with any free hosted endpoint, the operator
+ * can still log requests.
  */
 class AiInsightService {
     private val httpClient = createNewsHttpClient()
 
     object AiConfig {
-        /** OpenAI-compatible chat-completions endpoint. */
-        const val ENDPOINT = "https://text.pollinations.ai/openai"
+        /**
+         * OpenAI-compatible API root. Swapping to another gateway is a one-line change here, since
+         * [CHAT_COMPLETIONS_PATH] is fixed by the OpenAI contract rather than by the provider.
+         */
+        const val BASE_URL = "https://api.llm7.io/v1"
 
-        /** Model id understood by the gateway ("openai" maps to a GPT-class model on Pollinations). */
-        const val MODEL = "openai"
+        /** Standard OpenAI chat-completions path, appended to [BASE_URL]. */
+        const val CHAT_COMPLETIONS_PATH = "/chat/completions"
+
+        val ENDPOINT: String get() = "$BASE_URL$CHAT_COMPLETIONS_PATH"
+
+        /** Open-weights model id served by the gateway. */
+        const val MODEL = "gpt-oss:20b"
     }
 
     sealed interface InsightResult {
         data class Success(val text: String) : InsightResult
 
-        /** The endpoint requires a (free) API key or the account's budget is exhausted. */
-        data object AuthRequired : InsightResult
+        /**
+         * The gateway is throttling or refusing us for capacity reasons (402/429). Transient and
+         * worth a Retry — distinct from [Failure] so the card can say so rather than showing a
+         * generic error.
+         */
+        data object RateLimited : InsightResult
 
         data class Failure(val message: String) : InsightResult
     }
@@ -62,15 +80,15 @@ class AiInsightService {
         baseAsset: String,
         ticker: Ticker24hr,
         news: List<NewsItem>,
-        apiKey: String
+        apiToken: String
     ): InsightResult {
         return try {
             val response: HttpResponse = httpClient.post(AiConfig.ENDPOINT) {
-                // Keep prompts out of Pollinations' public feed (ignored by other gateways).
-                parameter("private", "true")
                 contentType(ContentType.Application.Json)
-                if (apiKey.isNotBlank()) {
-                    header("Authorization", "Bearer $apiKey")
+                // Optional: raises the rate limits. Omitted entirely when blank, which llm7.io
+                // serves anonymously rather than rejecting.
+                if (apiToken.isNotBlank()) {
+                    header("Authorization", "Bearer $apiToken")
                 }
                 setBody(
                     ChatCompletionRequest(
@@ -95,11 +113,11 @@ class AiInsightService {
                     }
                 }
 
-                HttpStatusCode.Unauthorized,
+                // Capacity/quota pushback rather than a real failure — the card offers a Retry.
                 HttpStatusCode.PaymentRequired,
-                HttpStatusCode.Forbidden -> {
-                    AppLogger.logger.w { "AiInsightService: auth/budget required (${response.status}) for $symbol" }
-                    InsightResult.AuthRequired
+                HttpStatusCode.TooManyRequests -> {
+                    AppLogger.logger.w { "AiInsightService: rate limited (${response.status}) for $symbol" }
+                    InsightResult.RateLimited
                 }
 
                 else -> {

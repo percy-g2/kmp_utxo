@@ -26,13 +26,15 @@ import kotlinx.io.files.Path
 import kotlinx.serialization.json.Json
 import network.newsClientJson
 import org.androdevlinux.utxo.ContextProvider
+import org.androdevlinux.utxo.storage.SettingsFile
 import org.androdevlinux.utxo.widget.FavoritesWidgetProvider
 import ui.Settings
 
 actual fun getKStore(): KStore<Settings> {
     val context = ContextProvider.getContext()
+    // Durable, backup-excluded, and migrated off the old purgeable cacheDir. See SettingsFile.
     return storeOf<Settings>(
-        file = Path("${context.cacheDir?.absolutePath}/settings.json"),
+        file = Path(SettingsFile.resolveForStore(context).absolutePath),
         default = Settings()
     )
 }

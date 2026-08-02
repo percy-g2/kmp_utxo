@@ -98,13 +98,23 @@ fun PortfolioViewController(onConfigure: () -> Unit): UIViewController =
         }
     }
 
+/** [onOpenSettings] should select the Settings tab — the tab bar is hidden on this screen. */
 fun CoinDetailViewController(
     symbol: String,
     displaySymbol: String,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onOpenSettings: () -> Unit
 ): UIViewController =
     ComposeUIViewController {
-        IosScreen { CoinDetailScreen(symbol, displaySymbol, onBack, IosShared.cryptoViewModel) }
+        IosScreen {
+            CoinDetailScreen(
+                symbol = symbol,
+                displaySymbol = displaySymbol,
+                onBackClick = onBack,
+                cryptoViewModel = IosShared.cryptoViewModel,
+                onOpenSettings = onOpenSettings,
+            )
+        }
     }
 
 fun cryptoResume() = IosShared.cryptoViewModel.resume()

@@ -9,10 +9,11 @@ import model.ChatCompletionResponse
  * Regression tests for deserializing the OpenAI-compatible AI response through [newsClientJson] —
  * the exact JSON config the news/AI HTTP client uses on every platform.
  *
- * Pollinations returns extra top-level keys (`id`, `object`, `created`, `model`, `usage`, …) that
- * our slim [ChatCompletionResponse] DTO does not model. Before the fix the iOS/Desktop/WasmJS
- * clients used the bare `json()` default and threw `unknown key 'id'`; these lock in that the shared
- * config tolerates those keys and still extracts the message content.
+ * The gateway returns extra keys (`id`, `object`, `created`, `model`, `usage`, and — for the
+ * reasoning model we use — `reasoning` inside the message) that our slim [ChatCompletionResponse]
+ * DTO does not model. Before the fix the iOS/Desktop/WasmJS clients used the bare `json()` default
+ * and threw `unknown key 'id'`; these lock in that the shared config tolerates those keys and still
+ * extracts the message content.
  */
 class AiInsightResponseTest {
 
@@ -41,5 +42,20 @@ class AiInsightResponseTest {
         val parsed = newsClientJson.decodeFromString<ChatCompletionResponse>(sample)
 
         assertEquals("Volatility is elevated.", parsed.choices.firstOrNull()?.message?.content)
+    }
+
+    @Test
+    fun reasoning_model_response_keeps_only_the_answer() {
+        // gpt-oss:20b is a reasoning model: it returns its chain of thought in a `reasoning` field
+        // alongside the answer. That key must be ignored rather than shown to the user.
+        val sample = """
+            {"id":"chatcmpl_1","model":"gpt-oss:20b","choices":[{"index":0,"finish_reason":"stop",
+               "message":{"role":"assistant","content":"BTC is flat on the day.",
+                          "reasoning":"We need 4-5 sentences, under 120 words, no advice."}}]}
+        """.trimIndent()
+
+        val parsed = newsClientJson.decodeFromString<ChatCompletionResponse>(sample)
+
+        assertEquals("BTC is flat on the day.", parsed.choices.firstOrNull()?.message?.content)
     }
 }

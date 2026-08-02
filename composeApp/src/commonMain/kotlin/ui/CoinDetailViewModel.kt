@@ -39,7 +39,7 @@ data class CoinDetailState(
     val isLoadingInsight: Boolean = false,
     val aiInsight: String? = null,
     val insightError: String? = null,
-    val insightNeedsKey: Boolean = false
+    val insightRateLimited: Boolean = false
 )
 
 @OptIn(ExperimentalTime::class)
@@ -57,7 +57,9 @@ class CoinDetailViewModel : ViewModel() {
     private var timeframeChangeJob: Job? = null
     private var insightJob: Job? = null
     private var currentSymbol: String? = null
-    private var currentApiKey: String = ""
+
+    /** Optional llm7.io token; "" means anonymous, which still works. */
+    private var currentApiToken: String = ""
 
     private val newsUpdateMutex = Mutex()
 
@@ -97,13 +99,13 @@ class CoinDetailViewModel : ViewModel() {
     fun loadCoinData(
         symbol: String,
         enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS,
-        aiApiKey: String = ""
+        aiApiToken: String = ""
     ) {
         currentLoadJob?.cancel()
         insightJob?.cancel()
 
         currentSymbol = symbol
-        currentApiKey = aiApiKey
+        currentApiToken = aiApiToken
         val timeframe = state.value.selectedTimeframe
 
         orderBookService.connect(symbol, levels = 20)
@@ -136,7 +138,7 @@ class CoinDetailViewModel : ViewModel() {
             val news = newsDeferred.await()
 
             if (ticker != null) {
-                generateInsightFor(symbol, ticker, news, currentApiKey)
+                generateInsightFor(symbol, ticker, news)
             } else {
                 state.update { it.copy(isLoadingInsight = false) }
             }
@@ -246,11 +248,11 @@ class CoinDetailViewModel : ViewModel() {
     fun refresh(
         symbol: String,
         enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS,
-        aiApiKey: String = currentApiKey
+        aiApiToken: String = currentApiToken
     ) {
         viewModelScope.launch {
             newsService.clearCache()
-            loadCoinData(symbol, enabledRssProviders, aiApiKey)
+            loadCoinData(symbol, enabledRssProviders, aiApiToken)
         }
     }
 
@@ -261,28 +263,56 @@ class CoinDetailViewModel : ViewModel() {
     fun regenerateInsight() {
         val symbol = currentSymbol ?: return
         val ticker = state.value.ticker ?: return
-        generateInsightFor(symbol, ticker, state.value.news, currentApiKey)
+        generateInsightFor(symbol, ticker, state.value.news)
     }
 
-    private fun generateInsightFor(symbol: String, ticker: Ticker24hr, news: List<NewsItem>, apiKey: String) {
+    /**
+     * Adopts a newly saved llm7.io token without re-fetching the ticker or news.
+     *
+     * On the iOS 26 native tab bar this screen stays composed while Settings is edited, so the token
+     * can change under a live screen. Without this the cached [currentApiToken] would keep the old
+     * value and [regenerateInsight] (the card's Retry button) would keep sending it.
+     *
+     * Only regenerates when a ticker is already on screen; an in-flight [loadCoinData] needs no help
+     * because [generateInsightFor] reads [currentApiToken] at send time.
+     */
+    fun updateApiToken(aiApiToken: String) {
+        if (aiApiToken == currentApiToken) return
+        currentApiToken = aiApiToken
+        val symbol = currentSymbol ?: return
+        val ticker = state.value.ticker ?: return
+        generateInsightFor(symbol, ticker, state.value.news)
+    }
+
+    private fun generateInsightFor(symbol: String, ticker: Ticker24hr, news: List<NewsItem>) {
         insightJob?.cancel()
         insightJob = viewModelScope.launch {
             state.update {
-                it.copy(isLoadingInsight = true, insightError = null, insightNeedsKey = false)
+                it.copy(
+                    isLoadingInsight = true,
+                    insightError = null,
+                    insightRateLimited = false
+                )
             }
             val baseAsset = extractBaseAsset(symbol)
-            when (val result = aiInsightService.generateInsight(symbol, baseAsset, ticker, news, apiKey)) {
+            when (
+                val result =
+                    aiInsightService.generateInsight(symbol, baseAsset, ticker, news, currentApiToken)
+            ) {
                 is AiInsightService.InsightResult.Success -> state.update {
                     it.copy(
                         aiInsight = result.text,
                         isLoadingInsight = false,
                         insightError = null,
-                        insightNeedsKey = false
+                        insightRateLimited = false
                     )
                 }
 
-                is AiInsightService.InsightResult.AuthRequired -> state.update {
-                    it.copy(isLoadingInsight = false, insightNeedsKey = true, aiInsight = null)
+                // Keep any insight already on screen: unlike an auth failure this is routine at the
+                // anonymous tier (10 requests/min), so a Retry that gets throttled must not wipe a
+                // perfectly good overview the user was reading. The card shows the limit alongside.
+                is AiInsightService.InsightResult.RateLimited -> state.update {
+                    it.copy(isLoadingInsight = false, insightRateLimited = true)
                 }
 
                 is AiInsightService.InsightResult.Failure -> state.update {
