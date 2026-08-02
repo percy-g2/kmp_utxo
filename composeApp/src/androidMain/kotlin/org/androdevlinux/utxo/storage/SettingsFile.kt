@@ -10,7 +10,7 @@ import java.io.File
  * *Settings → Storage → Clear cache* wipes outright — taking favourites, tracked wallets and the
  * theme with it. iOS already moved off its equivalent (Caches → Application Support);
  * this is the Android counterpart, targeting [Context.getNoBackupFilesDir] so the data is durable
- * without the API key and wallet addresses entering Google auto-backup / device transfer.
+ * without the AI token and wallet addresses entering Google auto-backup / device transfer.
  */
 object SettingsFile {
     private const val NAME = "settings.json"
@@ -33,11 +33,11 @@ object SettingsFile {
      */
     fun resolveForStore(context: Context): File {
         val target = current(context)
-        val legacy = legacy(context)
-        if (!target.exists() && legacy.exists()) {
+        val legacyFile = legacy(context)
+        if (!target.exists() && legacyFile.exists()) {
             runCatching {
                 val temp = File(context.noBackupFilesDir, "$NAME.migrating")
-                legacy.copyTo(temp, overwrite = true)
+                legacyFile.copyTo(temp, overwrite = true)
                 // Same-directory rename is atomic; drop the temp file if it didn't take.
                 if (!temp.renameTo(target)) temp.delete()
             }
