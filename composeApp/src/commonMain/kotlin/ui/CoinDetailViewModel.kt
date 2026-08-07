@@ -98,10 +98,17 @@ class CoinDetailViewModel : ViewModel() {
         }
     }
 
+    /**
+     * @param forceInsight regenerates the overview instead of reusing a cached one. Set by
+     *   [refresh] — a pull/tap to refresh is a deliberate "give me current data" gesture, and the
+     *   AI card must not be the one element on the screen that ignores it. The screen's own
+     *   `LaunchedEffect` leaves this false so that merely revisiting a coin costs no request.
+     */
     fun loadCoinData(
         symbol: String,
         enabledRssProviders: Set<String> = RssProvider.DEFAULT_ENABLED_PROVIDERS,
-        aiApiToken: String = ""
+        aiApiToken: String = "",
+        forceInsight: Boolean = false
     ) {
         currentLoadJob?.cancel()
         insightJob?.cancel()
@@ -140,7 +147,7 @@ class CoinDetailViewModel : ViewModel() {
             val news = newsDeferred.await()
 
             if (ticker != null) {
-                generateInsightFor(symbol, ticker, news)
+                generateInsightFor(symbol, ticker, news, forceRefresh = forceInsight)
             } else {
                 state.update { it.copy(isLoadingInsight = false) }
             }
@@ -262,7 +269,7 @@ class CoinDetailViewModel : ViewModel() {
     ) {
         viewModelScope.launch {
             newsService.clearCache()
-            loadCoinData(symbol, enabledRssProviders, aiApiToken)
+            loadCoinData(symbol, enabledRssProviders, aiApiToken, forceInsight = true)
         }
     }
 
@@ -298,9 +305,9 @@ class CoinDetailViewModel : ViewModel() {
     }
 
     /**
-     * @param forceRefresh skips [AiInsightCache] on the way in. Set for deliberate user actions;
-     *   the automatic path from [loadCoinData] leaves it false so that revisiting a coin within the
-     *   cache TTL costs no llm7.io request.
+     * @param forceRefresh skips [AiInsightCache] on the way in. Set for every deliberate user
+     *   action — Retry, Refresh, saving a token. Only the screen's own load-on-open leaves it
+     *   false, so that revisiting a coin within the cache TTL costs no llm7.io request.
      */
     private fun generateInsightFor(
         symbol: String,

@@ -4,6 +4,7 @@ import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 import kotlinx.coroutines.test.runTest
 import model.NewsItem
@@ -104,8 +105,11 @@ class AiInsightCacheTest {
         val a = listOf(newsItem("https://example.com/1"), newsItem("https://example.com/2"))
         val b = listOf(newsItem("https://example.com/1"), newsItem("https://example.com/3"))
 
-        assertEquals(AiInsightService.newsFingerprint(a), AiInsightService.newsFingerprint(a))
-        assertEquals(false, AiInsightService.newsFingerprint(a) == AiInsightService.newsFingerprint(b))
+        assertEquals(
+            "https://example.com/1\nhttps://example.com/2",
+            AiInsightService.newsFingerprint(a)
+        )
+        assertNotEquals(AiInsightService.newsFingerprint(a), AiInsightService.newsFingerprint(b))
     }
 
     /**
@@ -142,14 +146,16 @@ class AiInsightCacheTest {
         val a = listOf(newsItem(link = "", title = "MARA sells reserves"))
         val b = listOf(newsItem(link = "", title = "Saylor on the Clarity Act"))
 
-        assertEquals(false, AiInsightService.newsFingerprint(a) == AiInsightService.newsFingerprint(b))
+        assertNotEquals(AiInsightService.newsFingerprint(a), AiInsightService.newsFingerprint(b))
     }
 
+    /** No news is a legitimate state — it must key distinctly, not collide with a real headline. */
     @Test
-    fun emptyNewsIsAStableFingerprint() {
-        assertEquals(
+    fun emptyNewsIsItsOwnFingerprint() {
+        assertEquals("", AiInsightService.newsFingerprint(emptyList()))
+        assertNotEquals(
             AiInsightService.newsFingerprint(emptyList()),
-            AiInsightService.newsFingerprint(emptyList())
+            AiInsightService.newsFingerprint(listOf(newsItem("https://example.com/1")))
         )
     }
 }

@@ -15,7 +15,8 @@ import kotlinx.coroutines.sync.withLock
  * change what it says, and [AiInsightService.buildUserPrompt] embeds `lastPrice` at full precision —
  * keying on it would mean never hitting the cache on a liquid pair.
  *
- * Deliberate user actions — the card's Retry, or saving an API token — bypass this entirely.
+ * Deliberate user actions bypass this entirely: the card's Retry, the screen's Refresh, and saving
+ * an API token. Only revisiting a coin is served from here.
  *
  * Lives outside the ViewModel because both it and [AiInsightService] are constructed per screen.
  */
