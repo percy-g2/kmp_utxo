@@ -380,6 +380,16 @@ expect fun getKStore(): KStore<ui.Settings>
 
 expect fun openLink(link: String)
 
+/**
+ * Puts [text] on the system clipboard.
+ *
+ * `LocalClipboard` is common in CMP 1.11.1, but the only helper that builds a plain-text
+ * `ClipEntry` — `ClipEntry.Companion.withPlainText` — ships in the wasm-js source set alone, so
+ * common code can't construct one. That leaves the deprecated `LocalClipboardManager` or this:
+ * each platform's own clipboard, reached the same way [openLink] reaches each platform's browser.
+ */
+expect fun copyToClipboard(text: String)
+
 expect fun createNewsHttpClient(): HttpClient
 
 expect fun wrapRssUrlForPlatform(url: String): List<String>
