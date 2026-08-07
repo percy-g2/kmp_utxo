@@ -21,6 +21,8 @@ import net.harawata.appdirs.AppDirsFactory
 import network.newsClientJson
 import ui.Settings
 import java.awt.Desktop
+import java.awt.Toolkit
+import java.awt.datatransfer.StringSelection
 import java.io.File
 import java.net.InetSocketAddress
 import java.net.Socket
@@ -109,6 +111,10 @@ actual fun wrapRssUrlForPlatform(url: String): List<String> {
 
 actual fun openLink(link: String) {
     Desktop.getDesktop().browse(URI(link));
+}
+
+actual fun copyToClipboard(text: String) {
+    Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(text), null)
 }
 
 actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {

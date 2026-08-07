@@ -380,6 +380,14 @@ expect fun getKStore(): KStore<ui.Settings>
 
 expect fun openLink(link: String)
 
+/**
+ * Puts [text] on the system clipboard.
+ *
+ * Compose's common `Clipboard` API can't build a plain-text `ClipEntry` off wasm yet, so this goes
+ * through each platform's own clipboard instead of the deprecated `LocalClipboardManager`.
+ */
+expect fun copyToClipboard(text: String)
+
 expect fun createNewsHttpClient(): HttpClient
 
 expect fun wrapRssUrlForPlatform(url: String): List<String>

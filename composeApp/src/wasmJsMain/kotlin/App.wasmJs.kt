@@ -15,12 +15,39 @@ import kotlinx.browser.window
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlin.js.ExperimentalWasmJsInterop
 import network.newsClientJson
 import ui.Settings
 
 actual fun openLink(link: String) {
     window.open(link)
 }
+
+actual fun copyToClipboard(text: String) {
+    writeClipboardText(text)
+}
+
+/**
+ * `navigator.clipboard` only exists in secure contexts, so plain-http builds fall back to the
+ * legacy hidden-textarea + `execCommand` path.
+ */
+@OptIn(ExperimentalWasmJsInterop::class)
+private fun writeClipboardText(text: String): Unit = js(
+    """{
+        if (window.isSecureContext && navigator.clipboard) {
+            navigator.clipboard.writeText(text).catch(function () {});
+        } else {
+            var area = document.createElement('textarea');
+            area.value = text;
+            area.style.position = 'fixed';
+            area.style.opacity = '0';
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand('copy');
+            document.body.removeChild(area);
+        }
+    }"""
+)
 
 actual class NetworkConnectivityObserver {
     actual fun observe(): Flow<NetworkStatus?> = callbackFlow {
