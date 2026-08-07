@@ -20,11 +20,14 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Refresh
@@ -54,11 +57,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import copyToClipboard
+import kotlinx.coroutines.delay
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import ktx.buildStyledSymbol
@@ -80,6 +88,8 @@ import ui.utils.isDarkTheme
 import ui.utils.shimmerEffect
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.ai_insights
+import utxo.composeapp.generated.resources.ai_insights_copied
+import utxo.composeapp.generated.resources.ai_insights_copy
 import utxo.composeapp.generated.resources.ai_insights_disclaimer
 import utxo.composeapp.generated.resources.ai_insights_error
 import utxo.composeapp.generated.resources.ai_insights_loading
@@ -503,6 +513,18 @@ fun AiInsightCard(
     val showLoading = isLoading ||
         (!hasTicker && error == null && !rateLimited && insight == null)
 
+    // Keyed on the text so a regenerated overview always starts from the un-copied state. A tick
+    // counter rather than a Boolean, because writing `true` over `true` is a structural-equality
+    // no-op — the effect would keep its old key and a repeat tap wouldn't restart the window.
+    var copyTick by remember(insight) { mutableStateOf(0) }
+    val copied = copyTick > 0
+    LaunchedEffect(copyTick) {
+        if (copyTick > 0) {
+            delay(2000)
+            copyTick = 0
+        }
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -534,13 +556,51 @@ fun AiInsightCard(
                         fontWeight = FontWeight.Bold
                     )
                 }
-                if (!showLoading && (insight != null || error != null)) {
-                    IconButton(onClick = onRetry, modifier = Modifier.size(32.dp)) {
-                        Icon(
-                            imageVector = Icons.Default.Refresh,
-                            contentDescription = stringResource(Res.string.ai_insights_retry),
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // Status lives in a live region rather than in the button's accessible name:
+                    // a label swap on an already-focused control isn't announced, and the name
+                    // should keep describing the action, not report a past event.
+                    if (copied) {
+                        Text(
+                            text = stringResource(Res.string.ai_insights_copied),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
                         )
+                    }
+                    // Mirrors the `when` branch below that renders the text: an error takes over the
+                    // body even while a previous overview is retained, and copying what isn't on
+                    // screen would be a lie.
+                    if (!showLoading && error == null && insight != null) {
+                        IconButton(
+                            onClick = {
+                                copyToClipboard(insight)
+                                copyTick++
+                            },
+                            modifier = Modifier.size(32.dp)
+                        ) {
+                            Icon(
+                                imageVector = if (copied) Icons.Default.Check else Icons.Default.ContentCopy,
+                                contentDescription = stringResource(Res.string.ai_insights_copy),
+                                tint = if (copied) {
+                                    MaterialTheme.colorScheme.primary
+                                } else {
+                                    MaterialTheme.colorScheme.onSurfaceVariant
+                                }
+                            )
+                        }
+                    }
+                    if (!showLoading && (insight != null || error != null)) {
+                        IconButton(onClick = onRetry, modifier = Modifier.size(32.dp)) {
+                            Icon(
+                                imageVector = Icons.Default.Refresh,
+                                contentDescription = stringResource(Res.string.ai_insights_retry),
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
                     }
                 }
             }
@@ -581,11 +641,14 @@ fun AiInsightCard(
                 // than the limit notice, so a throttled Retry demotes the limit to a footnote
                 // rather than replacing what the user was reading.
                 insight != null -> {
-                    Text(
-                        text = insight,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
+                    // Selectable so users can lift a single line out instead of the whole overview.
+                    SelectionContainer {
+                        Text(
+                            text = insight,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
                     if (rateLimited) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(

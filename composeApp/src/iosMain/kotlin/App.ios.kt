@@ -37,6 +37,7 @@ import platform.Network.nw_path_monitor_set_update_handler
 import platform.Network.nw_path_monitor_start
 import platform.Network.nw_path_status_satisfied
 import platform.UIKit.UIApplication
+import platform.UIKit.UIPasteboard
 import platform.darwin.DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL
 import platform.darwin.dispatch_queue_create
 import kotlinx.cinterop.ExperimentalForeignApi
@@ -59,6 +60,10 @@ actual fun openLink(link: String) {
     }.getOrElse {
         AppLogger.logger.e(throwable = it) { "Failed to open URL: $link" }
     }
+}
+
+actual fun copyToClipboard(text: String) {
+    UIPasteboard.generalPasteboard.string = text
 }
 
 
