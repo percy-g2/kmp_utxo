@@ -131,7 +131,7 @@
     <string name="settings_edit_wallet">Edit wallet</string>
     <string name="settings_wallet_verifying">Verifying on Hyperliquid…</string>
     <string name="settings_wallet_not_found">This address has no Hyperliquid activity</string>
-    <string name="settings_wallet_verify_failed">Couldn\'t verify — check your connection and try again</string>
+    <string name="settings_wallet_verify_failed">Couldn’t verify — check your connection and try again</string>
     <string name="settings_wallet_name">Wallet name</string>
     <string name="settings_wallet_name_hint">Leave blank to use the ENS name or address</string>
     <string name="settings_wallet_label_optional">Label (optional)</string>
@@ -153,7 +153,7 @@
     <string name="settings_bulk_result">Added %1$d of %2$d</string>
     <string name="settings_bulk_status_added">Added</string>
     <string name="settings_bulk_status_no_activity">No activity</string>
-    <string name="settings_bulk_status_failed">Couldn\'t verify</string>
+    <string name="settings_bulk_status_failed">Couldn’t verify</string>
     <string name="settings_wallet_ens_badge">ENS</string>
     <string name="settings_delete">Delete</string>
 
@@ -180,7 +180,7 @@
     <string name="portfolio_no_address_hint">Add your Hyperliquid wallet address in Settings to view your portfolio.</string>
     <string name="portfolio_invalid_address">Invalid wallet address</string>
     <string name="portfolio_invalid_address_hint">The configured address must be 0x followed by 40 hex characters.</string>
-    <string name="portfolio_load_error">Couldn\'t load portfolio</string>
+    <string name="portfolio_load_error">Couldn’t load portfolio</string>
     <string name="portfolio_load_error_hint">Check your connection and try again.</string>
     <string name="portfolio_retry">Retry</string>
     <string name="portfolio_open_settings">Open Settings</string>
@@ -203,7 +203,7 @@
     <string name="ai_insights">AI Insights</string>
     <string name="ai_insights_loading">Analyzing market data and news…</string>
     <string name="ai_insights_disclaimer">AI-generated overview from 24h data and news — not financial advice.</string>
-    <string name="ai_insights_error">Couldn\'t generate insights right now.</string>
+    <string name="ai_insights_error">Couldn’t generate insights right now.</string>
     <string name="ai_insights_retry">Retry</string>
     <string name="ai_insights_copy">Copy insights</string>
     <string name="ai_insights_copied">Copied</string>
