@@ -207,7 +207,14 @@ fun CoinChatScreen(
                     .fillMaxWidth()
                     .weight(1f),
                 contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                // A conversation stacks up from the composer, as every chat does — top-aligning it
+                // stranded a short exchange at the top with a void above the input. The catalogue
+                // on an empty thread is a list to read from the beginning, so it stays top-aligned.
+                verticalArrangement = if (state.messages.isEmpty()) {
+                    Arrangement.spacedBy(12.dp)
+                } else {
+                    Arrangement.spacedBy(12.dp, Alignment.Bottom)
+                }
             ) {
                 if (state.messages.isEmpty()) {
                     item("greeting") { GreetingBubble(baseAsset) }

@@ -109,7 +109,24 @@ class CoinChatViewModel : ViewModel() {
 
         contextJob = viewModelScope.launch {
             val restored = CoinChatStore.get(symbol)
-            state.update { it.copy(messages = restored) }
+
+            // Offer the questions that need no context straight away. Resolving the coin's market
+            // data and headlines can take tens of seconds on a cache miss — a whole RSS sweep — and
+            // waiting for it left the screen as a greeting above an empty void for the whole time.
+            // The market and news questions join the list below once there is something to answer
+            // them from.
+            state.update {
+                it.copy(
+                    messages = restored,
+                    suggestions = suggestions(restored),
+                    catalog = suggestionCatalog(
+                        baseAsset = baseAsset,
+                        ticker = null,
+                        hasNews = false,
+                        hasOverview = false
+                    )
+                )
+            }
 
             resolveContext(symbol, enabledRssProviders)
 
