@@ -199,6 +199,24 @@ class AiInsightService {
             }
         }
 
+        /**
+         * Identity of the headlines that would reach the model — the part of the input that
+         * actually changes what the overview says. Takes the same [MAX_NEWS_ITEMS] slice as
+         * [buildUserPrompt] so the cache key and the prompt can't drift apart.
+         *
+         * Sorted, so this describes the *set* of headlines rather than their order: an overview
+         * built from the same stories is worth reusing however they were arranged. That also keeps
+         * the key stable against any residual ordering jitter between two loads.
+         *
+         * Falls back to the title where a feed gives no link, so two different headlines never
+         * collapse into the same fingerprint.
+         */
+        internal fun newsFingerprint(news: List<NewsItem>): String =
+            news.take(MAX_NEWS_ITEMS)
+                .map { it.link.ifBlank { it.title } }
+                .sorted()
+                .joinToString("\n")
+
         private fun String.collapseWhitespace(): String =
             replace(Regex("\\s+"), " ").trim()
 

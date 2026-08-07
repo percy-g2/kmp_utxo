@@ -16,12 +16,14 @@ import model.NewsItem
 import model.OrderBookData
 import model.RssProvider
 import model.Ticker24hr
+import network.AiInsightCache
 import network.AiInsightService
 import network.NewsService
 import network.OrderBookWebSocketService
 import network.TickerWebSocketService
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import network.HttpClient as NetworkClient
 
@@ -189,13 +191,21 @@ class CoinDetailViewModel : ViewModel() {
                                     val updatedNews = if (news.isNotEmpty()) {
                                         (currentState.news + news)
                                             .distinctBy { it.link }
-                                            .sortedByDescending { item ->
-                                                try {
-                                                    ktx.parseRssDate(item.pubDate)
-                                                } catch (_: Exception) {
-                                                    kotlin.time.Instant.fromEpochMilliseconds(0)
-                                                }
-                                            }
+                                            // Tie-break on the link: sortedBy* is stable, so items
+                                            // sharing a pubDate (and every item with an unparseable
+                                            // one, which all collapse to epoch 0) would otherwise
+                                            // keep whichever order their provider happened to
+                                            // return in. That made both the AI prompt and
+                                            // [AiInsightCache]'s key non-reproducible run to run.
+                                            .sortedWith(
+                                                compareByDescending<NewsItem> { item ->
+                                                    try {
+                                                        ktx.parseRssDate(item.pubDate)
+                                                    } catch (_: Exception) {
+                                                        kotlin.time.Instant.fromEpochMilliseconds(0)
+                                                    }
+                                                }.thenBy { it.link }
+                                            )
                                             .take(50)
                                     } else {
                                         currentState.news
@@ -263,7 +273,8 @@ class CoinDetailViewModel : ViewModel() {
     fun regenerateInsight() {
         val symbol = currentSymbol ?: return
         val ticker = state.value.ticker ?: return
-        generateInsightFor(symbol, ticker, state.value.news)
+        // The user explicitly asked for a new overview, so don't hand back the cached one.
+        generateInsightFor(symbol, ticker, state.value.news, forceRefresh = true)
     }
 
     /**
@@ -281,12 +292,46 @@ class CoinDetailViewModel : ViewModel() {
         currentApiToken = aiApiToken
         val symbol = currentSymbol ?: return
         val ticker = state.value.ticker ?: return
-        generateInsightFor(symbol, ticker, state.value.news)
+        // Saving a token is usually a response to being throttled, so give them a real attempt
+        // rather than the overview the anonymous tier already produced.
+        generateInsightFor(symbol, ticker, state.value.news, forceRefresh = true)
     }
 
-    private fun generateInsightFor(symbol: String, ticker: Ticker24hr, news: List<NewsItem>) {
+    /**
+     * @param forceRefresh skips [AiInsightCache] on the way in. Set for deliberate user actions;
+     *   the automatic path from [loadCoinData] leaves it false so that revisiting a coin within the
+     *   cache TTL costs no llm7.io request.
+     */
+    private fun generateInsightFor(
+        symbol: String,
+        ticker: Ticker24hr,
+        news: List<NewsItem>,
+        forceRefresh: Boolean = false
+    ) {
         insightJob?.cancel()
         insightJob = viewModelScope.launch {
+            val newsFingerprint = AiInsightService.newsFingerprint(news)
+
+            if (!forceRefresh) {
+                val cached = AiInsightCache.get(
+                    symbol = symbol,
+                    newsFingerprint = newsFingerprint,
+                    nowMillis = Clock.System.now().toEpochMilliseconds()
+                )
+                if (cached != null) {
+                    AppLogger.logger.d { "CoinDetailViewModel: reusing cached insight for $symbol" }
+                    state.update {
+                        it.copy(
+                            aiInsight = cached,
+                            isLoadingInsight = false,
+                            insightError = null,
+                            insightRateLimited = false
+                        )
+                    }
+                    return@launch
+                }
+            }
+
             state.update {
                 it.copy(
                     isLoadingInsight = true,
@@ -299,13 +344,21 @@ class CoinDetailViewModel : ViewModel() {
                 val result =
                     aiInsightService.generateInsight(symbol, baseAsset, ticker, news, currentApiToken)
             ) {
-                is AiInsightService.InsightResult.Success -> state.update {
-                    it.copy(
-                        aiInsight = result.text,
-                        isLoadingInsight = false,
-                        insightError = null,
-                        insightRateLimited = false
+                is AiInsightService.InsightResult.Success -> {
+                    AiInsightCache.put(
+                        symbol = symbol,
+                        newsFingerprint = newsFingerprint,
+                        text = result.text,
+                        nowMillis = Clock.System.now().toEpochMilliseconds()
                     )
+                    state.update {
+                        it.copy(
+                            aiInsight = result.text,
+                            isLoadingInsight = false,
+                            insightError = null,
+                            insightRateLimited = false
+                        )
+                    }
                 }
 
                 // Keep any insight already on screen: unlike an auth failure this is routine at the
