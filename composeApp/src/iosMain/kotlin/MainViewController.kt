@@ -19,6 +19,7 @@ import theme.UTXOTheme
 import theme.backgroundDark
 import theme.backgroundLight
 import ui.AppTheme
+import ui.CoinChatScreen
 import ui.CoinDetailScreen
 import ui.CryptoList
 import ui.CryptoViewModel
@@ -98,12 +99,17 @@ fun PortfolioViewController(onConfigure: () -> Unit): UIViewController =
         }
     }
 
-/** [onOpenSettings] should select the Settings tab — the tab bar is hidden on this screen. */
+/**
+ * [onOpenSettings] should select the Settings tab — the tab bar is hidden on this screen.
+ * [onAskAi] should push the chat onto the same NavigationStack, carrying the tapped question
+ * (null when the user chose "Ask anything").
+ */
 fun CoinDetailViewController(
     symbol: String,
     displaySymbol: String,
     onBack: () -> Unit,
-    onOpenSettings: () -> Unit
+    onOpenSettings: () -> Unit,
+    onAskAi: (String?) -> Unit
 ): UIViewController =
     ComposeUIViewController {
         IosScreen {
@@ -112,6 +118,34 @@ fun CoinDetailViewController(
                 displaySymbol = displaySymbol,
                 onBackClick = onBack,
                 cryptoViewModel = IosShared.cryptoViewModel,
+                onOpenSettings = onOpenSettings,
+                onAskAi = onAskAi,
+            )
+        }
+    }
+
+/**
+ * Per-coin AI chat. [onOpenSettings] should select the Settings tab — as on coin detail, the tab
+ * bar is hidden on this screen.
+ *
+ * The SwiftUI host keeps `.ignoresSafeArea(.keyboard)`, so Compose owns the keyboard inset itself
+ * and the composer lifts via its own window insets. Letting SwiftUI resize the host instead would
+ * apply the inset twice.
+ */
+fun CoinChatViewController(
+    symbol: String,
+    displaySymbol: String,
+    initialQuestion: String?,
+    onBack: () -> Unit,
+    onOpenSettings: () -> Unit
+): UIViewController =
+    ComposeUIViewController {
+        IosScreen {
+            CoinChatScreen(
+                symbol = symbol,
+                displaySymbol = displaySymbol,
+                initialQuestion = initialQuestion,
+                onBackClick = onBack,
                 onOpenSettings = onOpenSettings,
             )
         }

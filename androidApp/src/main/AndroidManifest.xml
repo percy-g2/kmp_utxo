@@ -20,6 +20,7 @@
             android:launchMode="singleTop"
             android:name="org.androdevlinux.utxo.MainActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

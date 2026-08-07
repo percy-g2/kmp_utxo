@@ -218,4 +218,165 @@
     <string name="settings_ai_token_none">Not set — using the free anonymous tier</string>
     <string name="settings_ai_get_key">Get a free token</string>
     <string name="settings_ai_clear_key">Clear token</string>
+
+    <!-- AI Chat -->
+    <string name="chat_title">Ask AI</string>
+    <string name="chat_open">Ask AI about %1$s</string>
+    <string name="chat_ask_anything">Ask anything</string>
+    <string name="chat_greeting">Ask me anything about %1$s. I can see its live 24-hour stats and the latest news.</string>
+    <string name="chat_input_hint">Ask about %1$s…</string>
+    <string name="chat_send">Send</string>
+    <string name="chat_clear">Clear conversation</string>
+    <string name="chat_thinking">Thinking…</string>
+    <string name="chat_copy">Copy answer</string>
+    <string name="chat_copied">Copied</string>
+    <string name="chat_error">Couldn’t answer that right now.</string>
+    <string name="chat_retry">Retry</string>
+    <string name="chat_rate_limited">Rate limit reached. Try again shortly, or add a free llm7.io token in Settings for higher limits.</string>
+    <string name="chat_disclaimer">AI-generated — answers can be wrong and are not financial advice.</string>
+    <string name="chat_suggestions_title">Try asking</string>
+    <string name="chat_show_suggestions">Show suggested questions</string>
+    <string name="chat_hide_suggestions">Back to the conversation</string>
+
+    <!-- AI Chat suggestion categories -->
+    <string name="chat_cat_todays_move">Today’s move</string>
+    <string name="chat_cat_volume">Volume &amp; liquidity</string>
+    <string name="chat_cat_volatility">Volatility &amp; range</string>
+    <string name="chat_cat_news">News &amp; catalysts</string>
+    <string name="chat_cat_fundamentals">Fundamentals</string>
+    <string name="chat_cat_tokenomics">Supply &amp; tokenomics</string>
+    <string name="chat_cat_risks">Risks &amp; safety</string>
+    <string name="chat_cat_trading">Trading &amp; charts</string>
+    <string name="chat_cat_ecosystem">Ecosystem</string>
+    <string name="chat_cat_learning">Learn more</string>
+
+    <!-- AI Chat suggestion chips. Every question takes the base asset as %1$s.
+         A literal percent sign is written bare, not doubled: Compose Resources substitutes
+         %N$s placeholders but does not unescape printf's %%, so "%%" would render as "%%". -->
+
+    <!-- Today's move -->
+    <string name="chat_sug_why_up">Why is %1$s up %2$s% today?</string>
+    <string name="chat_sug_why_down">Why is %1$s down %2$s% today?</string>
+    <string name="chat_sug_vs_market">Is %1$s moving with the wider crypto market today?</string>
+    <string name="chat_sug_vs_open">How does %1$s compare to where it opened?</string>
+    <string name="chat_sug_vs_prev_close">How does %1$s compare to yesterday’s close?</string>
+    <string name="chat_sug_trend">Has %1$s been trending up or down over the last 24 hours?</string>
+    <string name="chat_sug_momentum">Does %1$s have momentum right now?</string>
+    <string name="chat_sug_vs_avg">Is %1$s trading above or below its 24h average price?</string>
+    <string name="chat_sug_pullback">Has %1$s pulled back from its 24h high?</string>
+    <string name="chat_sug_recovery">Has %1$s recovered from its 24h low?</string>
+    <string name="chat_sug_action_meaning">What does today’s price action say about %1$s?</string>
+
+    <!-- Volume &amp; liquidity -->
+    <string name="chat_sug_volume">What does today’s volume say about %1$s?</string>
+    <string name="chat_sug_volume_level">Is %1$s volume high or low today?</string>
+    <string name="chat_sug_volume_quote">How much %1$s changed hands in the last 24 hours?</string>
+    <string name="chat_sug_liquidity">How liquid is %1$s right now?</string>
+    <string name="chat_sug_spread">What is the bid-ask spread on %1$s telling me?</string>
+    <string name="chat_sug_depth">How deep is the order book for %1$s?</string>
+    <string name="chat_sug_slippage">Would a large order move the price of %1$s?</string>
+    <string name="chat_sug_volume_confirm">Is %1$s volume confirming the price move?</string>
+    <string name="chat_sug_thin_market">What are the risks of trading %1$s in a thin market?</string>
+    <string name="chat_sug_active_hours">When is %1$s usually most actively traded?</string>
+
+    <!-- Volatility &amp; range -->
+    <string name="chat_sug_volatility">How volatile has %1$s been today?</string>
+    <string name="chat_sug_range">Where is %1$s in its 24h range?</string>
+    <string name="chat_sug_range_width">How wide is the 24h range for %1$s?</string>
+    <string name="chat_sug_range_high">What was the 24h high for %1$s?</string>
+    <string name="chat_sug_range_low">What was the 24h low for %1$s?</string>
+    <string name="chat_sug_vol_unusual">Is today’s %1$s volatility unusual?</string>
+    <string name="chat_sug_vol_meaning">What does volatility mean for %1$s holders?</string>
+    <string name="chat_sug_vol_risk">How should I think about volatility risk with %1$s?</string>
+    <string name="chat_sug_vol_vs_btc">Is %1$s more volatile than Bitcoin?</string>
+    <string name="chat_sug_choppy">Has %1$s been steady or choppy today?</string>
+
+    <!-- News &amp; catalysts -->
+    <string name="chat_sug_news">Summarise the latest %1$s news</string>
+    <string name="chat_sug_news_sentiment">What is the sentiment in recent %1$s news?</string>
+    <string name="chat_sug_news_biggest">What is the biggest %1$s story right now?</string>
+    <string name="chat_sug_news_regulatory">Is there regulatory news affecting %1$s?</string>
+    <string name="chat_sug_news_institutional">Is there institutional news about %1$s?</string>
+    <string name="chat_sug_news_security">Have there been security incidents involving %1$s?</string>
+    <string name="chat_sug_news_adoption">Is there adoption or partnership news for %1$s?</string>
+    <string name="chat_sug_news_impact">Which %1$s headlines matter most for the price?</string>
+    <string name="chat_sug_news_background">Give me background on the current %1$s story</string>
+    <string name="chat_sug_overview">Explain the %1$s overview above</string>
+
+    <!-- Fundamentals -->
+    <string name="chat_sug_what_is">What is %1$s?</string>
+    <string name="chat_sug_how_works">How does %1$s work?</string>
+    <string name="chat_sug_who_built">Who created %1$s?</string>
+    <string name="chat_sug_problem">What problem does %1$s solve?</string>
+    <string name="chat_sug_consensus">What consensus mechanism does %1$s use?</string>
+    <string name="chat_sug_use_cases">What is %1$s actually used for?</string>
+    <string name="chat_sug_tech">What technology is %1$s built on?</string>
+    <string name="chat_sug_roadmap">What is on the %1$s roadmap?</string>
+    <string name="chat_sug_governance">How is %1$s governed?</string>
+    <string name="chat_sug_differentiator">What makes %1$s different from other crypto?</string>
+
+    <!-- Supply &amp; tokenomics -->
+    <string name="chat_sug_supply">What is the supply of %1$s?</string>
+    <string name="chat_sug_max_supply">Does %1$s have a maximum supply?</string>
+    <string name="chat_sug_inflation">Is %1$s inflationary or deflationary?</string>
+    <string name="chat_sug_issuance">How are new %1$s created?</string>
+    <string name="chat_sug_distribution">How is %1$s distributed?</string>
+    <string name="chat_sug_burn">Does %1$s have a token burn mechanism?</string>
+    <string name="chat_sug_staking">Can %1$s be staked?</string>
+    <string name="chat_sug_yield">Does %1$s generate any yield?</string>
+    <string name="chat_sug_unlocks">Are there %1$s token unlocks to be aware of?</string>
+    <string name="chat_sug_market_cap">How is the market cap of %1$s calculated?</string>
+
+    <!-- Risks &amp; safety -->
+    <string name="chat_sug_risks">What are the main risks of holding %1$s?</string>
+    <string name="chat_sug_custody">How should I think about custody for %1$s?</string>
+    <string name="chat_sug_scams">What scams target %1$s holders?</string>
+    <string name="chat_sug_regulatory_risk">What regulatory risks does %1$s face?</string>
+    <string name="chat_sug_centralization">How centralized is %1$s?</string>
+    <string name="chat_sug_contract_risk">Does %1$s carry smart contract risk?</string>
+    <string name="chat_sug_liquidity_risk">What liquidity risks come with %1$s?</string>
+    <string name="chat_sug_counterparty">What counterparty risks apply to %1$s?</string>
+    <string name="chat_sug_failure">How could %1$s fail?</string>
+    <string name="chat_sug_red_flags">What red flags should I watch for with %1$s?</string>
+
+    <!-- Trading &amp; charts -->
+    <string name="chat_sug_orderbook">How do I read the order book for %1$s?</string>
+    <string name="chat_sug_order_types">What is the difference between a limit and a market order for %1$s?</string>
+    <string name="chat_sug_pair_meaning">What does this %1$s trading pair actually mean?</string>
+    <string name="chat_sug_quote_currency">Why is %1$s quoted against this currency?</string>
+    <string name="chat_sug_fees">What fees apply when trading %1$s?</string>
+    <string name="chat_sug_candles">How do I read the %1$s candlestick chart?</string>
+    <string name="chat_sug_timeframe">Which chart timeframe should I use for %1$s?</string>
+    <string name="chat_sug_indicators">What do common indicators measure on %1$s?</string>
+    <string name="chat_sug_spread_meaning">What does the spread on %1$s mean?</string>
+    <string name="chat_sug_stats">Explain the 24h statistics shown for %1$s</string>
+
+    <!-- Ecosystem -->
+    <string name="chat_sug_vs_btc">How is %1$s different from Bitcoin?</string>
+    <string name="chat_sug_competitors">Who are the main competitors to %1$s?</string>
+    <string name="chat_sug_category">What category of crypto does %1$s belong to?</string>
+    <string name="chat_sug_correlation">Does %1$s tend to move with Bitcoin?</string>
+    <string name="chat_sug_adoption">How widely adopted is %1$s?</string>
+    <string name="chat_sug_developers">How active is %1$s development?</string>
+    <string name="chat_sug_community">What is the %1$s community like?</string>
+    <string name="chat_sug_where_traded">Where can %1$s be traded?</string>
+    <string name="chat_sug_layer">Is %1$s a layer 1 or a layer 2?</string>
+    <string name="chat_sug_interop">Does %1$s work with other blockchains?</string>
+
+    <!-- Learn more -->
+    <string name="chat_sug_drivers">What usually drives the price of %1$s?</string>
+    <string name="chat_sug_beginner">Explain %1$s like I’m new to crypto</string>
+    <string name="chat_sug_jargon">What jargon should I know to follow %1$s?</string>
+    <string name="chat_sug_wallet">How do I store %1$s safely?</string>
+    <string name="chat_sug_onchain">What does on-chain activity show for %1$s?</string>
+    <string name="chat_sug_history">What is the price history of %1$s?</string>
+    <string name="chat_sug_cycles">Does %1$s follow any market cycle?</string>
+    <string name="chat_sug_metrics">Which metrics matter most for %1$s?</string>
+    <string name="chat_sug_research">How should I research %1$s further?</string>
+    <string name="chat_sug_misconceptions">What do people get wrong about %1$s?</string>
+
+    <!-- Follow-ups, offered once there is an answer to react to -->
+    <string name="chat_sug_simpler">Explain that more simply</string>
+    <string name="chat_sug_deeper">Go deeper on that</string>
+    <string name="chat_sug_one_line">Summarise that in one line</string>
 </resources>

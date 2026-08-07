@@ -7,6 +7,16 @@ struct CoinRoute: Hashable {
     let display: String
 }
 
+/// Route pushed on top of a coin's detail to show its AI chat.
+/// `question` is the suggestion chip the user tapped, or nil for "Ask anything" — it is part of the
+/// identity so tapping two different chips for the same coin pushes two distinct destinations
+/// rather than reusing the first one's Compose host.
+struct ChatRoute: Hashable {
+    let symbol: String
+    let display: String
+    let question: String?
+}
+
 /// iOS 26+ root: a native SwiftUI TabView (automatic Liquid Glass) hosting each
 /// screen as its own Compose view. Replaces the Compose bottom bar on iOS 26.
 @available(iOS 26.0, *)
@@ -36,7 +46,19 @@ struct LiquidGlassRootView: View {
                         // reusing the previous one. CoinDetailComposeView.updateUIViewController is a
                         // no-op, so without a per-coin id the hosted ComposeUIViewController would
                         // keep showing the old coin.
-                        detail(route) { marketPath.removeLast() }
+                        detail(
+                            route,
+                            onBack: { marketPath.removeLast() },
+                            onAskAi: { question in
+                                marketPath.append(
+                                    ChatRoute(symbol: route.symbol, display: route.display, question: question)
+                                )
+                            }
+                        )
+                        .id(route)
+                    }
+                    .navigationDestination(for: ChatRoute.self) { route in
+                        chat(route) { marketPath.removeLast() }
                             .id(route)
                     }
                 }
@@ -52,7 +74,19 @@ struct LiquidGlassRootView: View {
                     .toolbar(.hidden, for: .navigationBar)
                     .navigationDestination(for: CoinRoute.self) { route in
                         // Per-coin identity, mirroring the Market stack (see note above).
-                        detail(route) { favPath.removeLast() }
+                        detail(
+                            route,
+                            onBack: { favPath.removeLast() },
+                            onAskAi: { question in
+                                favPath.append(
+                                    ChatRoute(symbol: route.symbol, display: route.display, question: question)
+                                )
+                            }
+                        )
+                        .id(route)
+                    }
+                    .navigationDestination(for: ChatRoute.self) { route in
+                        chat(route) { favPath.removeLast() }
                             .id(route)
                     }
                 }
@@ -112,19 +146,39 @@ struct LiquidGlassRootView: View {
         }
     }
 
-    private func detail(_ route: CoinRoute, onBack: @escaping () -> Void) -> some View {
+    private func detail(
+        _ route: CoinRoute,
+        onBack: @escaping () -> Void,
+        onAskAi: @escaping (String?) -> Void
+    ) -> some View {
         // The tab bar is hidden here, so the AI card's "Open Settings" needs an explicit route out
         // — same hop the Portfolio tab uses. The detail stays on its stack and is still there on return.
         CoinDetailComposeView(
             symbol: route.symbol,
             displaySymbol: route.display,
             onBack: onBack,
-            onOpenSettings: { selection = 3 }
+            onOpenSettings: { selection = 3 },
+            onAskAi: onAskAi
         )
             .ignoresSafeArea(.keyboard)
             .toolbar(.hidden, for: .navigationBar)
             .toolbar(.hidden, for: .tabBar)
             .onAppear { MainViewControllerKt.cryptoPause() }
             .onDisappear { if selection == 0 || selection == 1 { MainViewControllerKt.cryptoResume() } }
+    }
+
+    private func chat(_ route: ChatRoute, onBack: @escaping () -> Void) -> some View {
+        CoinChatComposeView(
+            symbol: route.symbol,
+            displaySymbol: route.display,
+            initialQuestion: route.question,
+            onBack: onBack,
+            onOpenSettings: { selection = 3 }
+        )
+            // Compose owns the keyboard inset on this screen: its composer lifts itself via window
+            // insets, so letting SwiftUI resize the host as well would push the input up twice.
+            .ignoresSafeArea(.keyboard)
+            .toolbar(.hidden, for: .navigationBar)
+            .toolbar(.hidden, for: .tabBar)
     }
 }
