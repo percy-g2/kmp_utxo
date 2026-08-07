@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.isActive
 import kotlinx.io.files.Path
+import logging.AppLogger
 import net.harawata.appdirs.AppDirsFactory
 import network.newsClientJson
 import ui.Settings
@@ -114,7 +115,20 @@ actual fun openLink(link: String) {
 }
 
 actual fun copyToClipboard(text: String) {
-    Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(text), null)
+    // Win32 hands out an exclusive clipboard lock, so setContents throws IllegalStateException
+    // whenever a clipboard manager or an RDP session happens to hold it. Retry once, then give up
+    // quietly — this runs straight off an onClick, and an escaped throw kills pointer dispatch.
+    repeat(2) { attempt ->
+        val result = runCatching {
+            Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(text), null)
+        }
+        if (result.isSuccess) return
+        if (attempt == 1) {
+            AppLogger.logger.e(throwable = result.exceptionOrNull()) { "Failed to copy to clipboard" }
+        } else {
+            Thread.sleep(50)
+        }
+    }
 }
 
 actual fun getPendingCoinDetailFromIntent(): Pair<String, String>? {

@@ -383,8 +383,10 @@ expect fun openLink(link: String)
 /**
  * Puts [text] on the system clipboard.
  *
- * Compose's common `Clipboard` API can't build a plain-text `ClipEntry` off wasm yet, so this goes
- * through each platform's own clipboard instead of the deprecated `LocalClipboardManager`.
+ * `LocalClipboard` is common in CMP 1.11.1, but the only helper that builds a plain-text
+ * `ClipEntry` — `ClipEntry.Companion.withPlainText` — ships in the wasm-js source set alone, so
+ * common code can't construct one. That leaves the deprecated `LocalClipboardManager` or this:
+ * each platform's own clipboard, reached the same way [openLink] reaches each platform's browser.
  */
 expect fun copyToClipboard(text: String)
 

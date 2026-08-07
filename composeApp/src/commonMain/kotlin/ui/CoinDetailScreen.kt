@@ -57,6 +57,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -510,12 +513,15 @@ fun AiInsightCard(
     val showLoading = isLoading ||
         (!hasTicker && error == null && !rateLimited && insight == null)
 
-    // Keyed on the text so a regenerated overview always starts from the un-copied icon.
-    var copied by remember(insight) { mutableStateOf(false) }
-    LaunchedEffect(copied) {
-        if (copied) {
+    // Keyed on the text so a regenerated overview always starts from the un-copied state. A tick
+    // counter rather than a Boolean, because writing `true` over `true` is a structural-equality
+    // no-op — the effect would keep its old key and a repeat tap wouldn't restart the window.
+    var copyTick by remember(insight) { mutableStateOf(0) }
+    val copied = copyTick > 0
+    LaunchedEffect(copyTick) {
+        if (copyTick > 0) {
             delay(2000)
-            copied = false
+            copyTick = 0
         }
     }
 
@@ -554,19 +560,31 @@ fun AiInsightCard(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (!showLoading && insight != null) {
+                    // Status lives in a live region rather than in the button's accessible name:
+                    // a label swap on an already-focused control isn't announced, and the name
+                    // should keep describing the action, not report a past event.
+                    if (copied) {
+                        Text(
+                            text = stringResource(Res.string.ai_insights_copied),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
+                        )
+                    }
+                    // Mirrors the `when` branch below that renders the text: an error takes over the
+                    // body even while a previous overview is retained, and copying what isn't on
+                    // screen would be a lie.
+                    if (!showLoading && error == null && insight != null) {
                         IconButton(
                             onClick = {
                                 copyToClipboard(insight)
-                                copied = true
+                                copyTick++
                             },
                             modifier = Modifier.size(32.dp)
                         ) {
                             Icon(
                                 imageVector = if (copied) Icons.Default.Check else Icons.Default.ContentCopy,
-                                contentDescription = stringResource(
-                                    if (copied) Res.string.ai_insights_copied else Res.string.ai_insights_copy
-                                ),
+                                contentDescription = stringResource(Res.string.ai_insights_copy),
                                 tint = if (copied) {
                                     MaterialTheme.colorScheme.primary
                                 } else {
