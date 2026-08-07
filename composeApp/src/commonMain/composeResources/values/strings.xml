@@ -235,6 +235,8 @@
     <string name="chat_rate_limited">Rate limit reached. Try again shortly, or add a free llm7.io token in Settings for higher limits.</string>
     <string name="chat_disclaimer">AI-generated — answers can be wrong and are not financial advice.</string>
     <string name="chat_suggestions_title">Try asking</string>
+    <string name="chat_show_suggestions">Show suggested questions</string>
+    <string name="chat_hide_suggestions">Back to the conversation</string>
 
     <!-- AI Chat suggestion categories -->
     <string name="chat_cat_todays_move">Today’s move</string>

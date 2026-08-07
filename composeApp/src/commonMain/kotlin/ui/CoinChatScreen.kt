@@ -38,11 +38,13 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.DeleteSweep
+import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -97,7 +99,9 @@ import utxo.composeapp.generated.resources.chat_greeting
 import utxo.composeapp.generated.resources.chat_input_hint
 import utxo.composeapp.generated.resources.chat_rate_limited
 import utxo.composeapp.generated.resources.chat_retry
+import utxo.composeapp.generated.resources.chat_hide_suggestions
 import utxo.composeapp.generated.resources.chat_send
+import utxo.composeapp.generated.resources.chat_show_suggestions
 import utxo.composeapp.generated.resources.chat_sug_why_down
 import utxo.composeapp.generated.resources.chat_sug_why_up
 import utxo.composeapp.generated.resources.chat_suggestions_title
@@ -145,12 +149,18 @@ fun CoinChatScreen(
 
     val listState = rememberLazyListState()
 
+    // Once a conversation exists the transcript takes the screen, so the hundred questions need a
+    // way back — otherwise asking anything at all, including tapping a chip on the coin screen,
+    // permanently costs the user every suggestion but the three follow-ups.
+    var browsingCatalog by remember { mutableStateOf(false) }
+    val showingCatalog = state.messages.isEmpty() || browsingCatalog
+
     // Follow the conversation as it grows, as the thinking bubble appears and is replaced, and as a
     // failure notice takes its place.
-    LaunchedEffect(state.messages.size, state.isAwaitingReply, state.error, state.rateLimited) {
-        // An empty thread is the browsable catalogue, which must stay at the top where the greeting
-        // and the first category are — scrolling it to the end would bury both.
-        if (state.messages.isEmpty()) return@LaunchedEffect
+    LaunchedEffect(state.messages.size, state.isAwaitingReply, state.error, state.rateLimited, showingCatalog) {
+        // The catalogue reads from the top, where the first category is — scrolling it to the end
+        // would bury the lot.
+        if (showingCatalog) return@LaunchedEffect
         // Wait out the frame this change composed in. `layoutInfo` reports the *last* measure pass,
         // so reading it here without waiting would scroll to where the list ended a bubble ago.
         withFrameNanos { }
@@ -184,6 +194,27 @@ fun CoinChatScreen(
                 },
                 actions = {
                     if (state.messages.isNotEmpty()) {
+                        IconButton(onClick = { browsingCatalog = !browsingCatalog }) {
+                            Icon(
+                                imageVector = if (browsingCatalog) {
+                                    Icons.AutoMirrored.Filled.Chat
+                                } else {
+                                    Icons.Default.Lightbulb
+                                },
+                                contentDescription = stringResource(
+                                    if (browsingCatalog) {
+                                        Res.string.chat_hide_suggestions
+                                    } else {
+                                        Res.string.chat_show_suggestions
+                                    }
+                                ),
+                                tint = if (browsingCatalog) {
+                                    MaterialTheme.colorScheme.primary
+                                } else {
+                                    MaterialTheme.colorScheme.onSurfaceVariant
+                                }
+                            )
+                        }
                         IconButton(onClick = { viewModel.clearConversation() }) {
                             Icon(
                                 imageVector = Icons.Default.DeleteSweep,
@@ -209,19 +240,20 @@ fun CoinChatScreen(
                 contentPadding = PaddingValues(16.dp),
                 // A conversation stacks up from the composer, as every chat does — top-aligning it
                 // stranded a short exchange at the top with a void above the input. The catalogue
-                // on an empty thread is a list to read from the beginning, so it stays top-aligned.
-                verticalArrangement = if (state.messages.isEmpty()) {
+                // is a list to read from the beginning, so it stays top-aligned.
+                verticalArrangement = if (showingCatalog) {
                     Arrangement.spacedBy(12.dp)
                 } else {
                     Arrangement.spacedBy(12.dp, Alignment.Bottom)
                 }
             ) {
-                if (state.messages.isEmpty()) {
-                    item("greeting") { GreetingBubble(baseAsset) }
+                if (showingCatalog) {
+                    if (state.messages.isEmpty()) {
+                        item("greeting") { GreetingBubble(baseAsset) }
+                    }
 
-                    // The full catalogue lives here rather than above the input: there are a
-                    // hundred questions and only room for a handful in the composer, and on an
-                    // empty thread this area is blank anyway.
+                    // The catalogue lives here rather than above the input: there are a hundred
+                    // questions and only room for a handful in the composer.
                     if (state.catalog.isNotEmpty()) {
                         item("suggestions-title") {
                             Text(
@@ -237,39 +269,44 @@ fun CoinChatScreen(
                                     group = group,
                                     baseAsset = baseAsset,
                                     ticker = state.ticker,
-                                    onClick = viewModel::send
+                                    // Tapping a question is the way back to the conversation it
+                                    // is about to join.
+                                    onClick = { question ->
+                                        browsingCatalog = false
+                                        viewModel.send(question)
+                                    }
                                 )
                             }
                         }
                     }
-                }
-
-                items(items = state.messages, key = { it.id }) { message ->
-                    ChatBubble(message)
-                }
-
-                if (state.isAwaitingReply) {
-                    item("thinking") { ThinkingBubble() }
-                }
-
-                if (state.error != null) {
-                    item("error") {
-                        ChatNotice(
-                            text = stringResource(Res.string.chat_error),
-                            isError = true,
-                            onRetry = { viewModel.retryLast() }
-                        )
+                } else {
+                    items(items = state.messages, key = { it.id }) { message ->
+                        ChatBubble(message)
                     }
-                }
 
-                if (state.rateLimited) {
-                    item("rate-limited") {
-                        ChatNotice(
-                            text = stringResource(Res.string.chat_rate_limited),
-                            isError = false,
-                            onRetry = { viewModel.retryLast() },
-                            onOpenSettings = onOpenSettings
-                        )
+                    if (state.isAwaitingReply) {
+                        item("thinking") { ThinkingBubble() }
+                    }
+
+                    if (state.error != null) {
+                        item("error") {
+                            ChatNotice(
+                                text = stringResource(Res.string.chat_error),
+                                isError = true,
+                                onRetry = { viewModel.retryLast() }
+                            )
+                        }
+                    }
+
+                    if (state.rateLimited) {
+                        item("rate-limited") {
+                            ChatNotice(
+                                text = stringResource(Res.string.chat_rate_limited),
+                                isError = false,
+                                onRetry = { viewModel.retryLast() },
+                                onOpenSettings = onOpenSettings
+                            )
+                        }
                     }
                 }
             }
@@ -278,9 +315,9 @@ fun CoinChatScreen(
                 input = state.input,
                 baseAsset = baseAsset,
                 ticker = state.ticker,
-                // On an empty thread the catalogue above already offers everything, so the composer
-                // carries chips only once there is an answer to react to.
-                suggestions = if (state.messages.isEmpty()) emptyList() else state.suggestions,
+                // The catalogue above already offers everything, so the composer carries chips only
+                // when the transcript is on screen and there is an answer to react to.
+                suggestions = if (showingCatalog) emptyList() else state.suggestions,
                 sendEnabled = !state.isAwaitingReply,
                 onInputChange = viewModel::updateInput,
                 onSend = { viewModel.send(state.input) },
