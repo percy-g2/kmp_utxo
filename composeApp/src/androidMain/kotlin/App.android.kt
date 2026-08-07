@@ -1,4 +1,6 @@
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -119,6 +121,12 @@ actual fun openLink(link: String) {
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
     context.startActivity(intent)
+}
+
+actual fun copyToClipboard(text: String) {
+    val context = ContextProvider.getContext()
+    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    clipboard.setPrimaryClip(ClipData.newPlainText(null, text))
 }
 
 actual fun syncSettingsToWidget(settings: Settings) {
