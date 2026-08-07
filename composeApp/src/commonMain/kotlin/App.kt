@@ -44,6 +44,7 @@ import io.ktor.client.HttpClient
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import logging.AppLogger
+import model.CoinChat
 import model.CoinDetail
 import model.Favorites
 import model.Market
@@ -54,6 +55,7 @@ import org.jetbrains.compose.resources.stringResource
 import theme.ThemeManager.store
 import theme.UTXOTheme
 import ui.AppTheme
+import ui.CoinChatScreen
 import ui.CoinDetailScreen
 import ui.CryptoList
 import ui.CryptoViewModel
@@ -185,7 +187,8 @@ fun App(
             Favorites.serializer().generateHashCode() -> cryptoViewModel.resume()
             Portfolio.serializer().generateHashCode(),
             Settings.serializer().generateHashCode(),
-            CoinDetail.serializer().generateHashCode() -> cryptoViewModel.pause()
+            CoinDetail.serializer().generateHashCode(),
+            CoinChat.serializer().generateHashCode() -> cryptoViewModel.pause()
             else -> {}
         }
     }
@@ -215,8 +218,11 @@ fun App(
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             bottomBar = {
-                val isCoinDetail = currentDestinationId == CoinDetail.serializer().generateHashCode()
-                if (!isCoinDetail) {
+                // Both coin screens are full-bleed pushes off the tab bar; the chat additionally
+                // needs the room for its input bar.
+                val hidesBottomBar = currentDestinationId == CoinDetail.serializer().generateHashCode() ||
+                    currentDestinationId == CoinChat.serializer().generateHashCode()
+                if (!hidesBottomBar) {
                     val portfolioEnabled = settingsState?.hasPortfolioWallets() == true
                     val navItems = buildList {
                         add(NavItem.HomeScreen)
@@ -309,6 +315,25 @@ fun App(
                         symbol = coinDetail.symbol,
                         displaySymbol = coinDetail.displaySymbol,
                         cryptoViewModel = cryptoViewModel,
+                        onBackClick = { navController.popBackStack() },
+                        onOpenSettings = { navController.navigate(Settings) },
+                        onAskAi = { question ->
+                            navController.navigate(
+                                CoinChat(
+                                    symbol = coinDetail.symbol,
+                                    displaySymbol = coinDetail.displaySymbol,
+                                    initialQuestion = question
+                                )
+                            )
+                        }
+                    )
+                }
+                composable<CoinChat> { backStackEntry ->
+                    val coinChat = backStackEntry.toRoute<CoinChat>()
+                    CoinChatScreen(
+                        symbol = coinChat.symbol,
+                        displaySymbol = coinChat.displaySymbol,
+                        initialQuestion = coinChat.initialQuestion,
                         onBackClick = { navController.popBackStack() },
                         onOpenSettings = { navController.navigate(Settings) }
                     )

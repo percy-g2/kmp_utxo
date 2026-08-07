@@ -4,6 +4,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -36,10 +37,14 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -77,6 +82,7 @@ import logging.AppLogger
 import model.NewsItem
 import model.Ticker24hr
 import model.TradingPair
+import network.AiInsightService
 import openLink
 import org.jetbrains.compose.resources.stringResource
 import ui.components.LazyColumnScrollbar
@@ -98,6 +104,8 @@ import utxo.composeapp.generated.resources.ai_insights_rate_limited_stale
 import utxo.composeapp.generated.resources.ai_insights_retry
 import utxo.composeapp.generated.resources.portfolio_open_settings
 import utxo.composeapp.generated.resources.back
+import utxo.composeapp.generated.resources.chat_ask_anything
+import utxo.composeapp.generated.resources.chat_open
 import utxo.composeapp.generated.resources.error
 import utxo.composeapp.generated.resources.label_24h_change
 import utxo.composeapp.generated.resources.label_24h_high
@@ -162,12 +170,18 @@ fun CoinDetailScreen(
     cryptoViewModel: CryptoViewModel,
     viewModel: CoinDetailViewModel = viewModel { CoinDetailViewModel() },
     /** Navigates to Settings so a rate-limited user can add an llm7.io token without hunting for it. */
-    onOpenSettings: (() -> Unit)? = null
+    onOpenSettings: (() -> Unit)? = null,
+    /**
+     * Opens the per-coin AI chat, optionally with a question the user picked from a chip. Null
+     * where this screen can't reach the chat, which hides the whole section rather than dead-ending.
+     */
+    onAskAi: ((String?) -> Unit)? = null
 ) {
     val settingsState by SettingsStore.settings.collectAsState()
     val isDarkTheme = isDarkTheme(settingsState)
     val state by viewModel.state.collectAsState()
     val tradingPairs by cryptoViewModel.tradingPairs.collectAsState()
+    val baseAsset = remember(symbol) { AiInsightService.extractBaseAsset(symbol) }
     
     // Get enabled providers from settings - allow empty set (no providers selected)
     // If settings don't have enabledRssProviders field (old settings), default to all enabled
@@ -345,9 +359,12 @@ fun CoinDetailScreen(
                                     isLoading = state.isLoadingInsight,
                                     rateLimited = state.insightRateLimited,
                                     error = state.insightError,
-                                    hasTicker = state.ticker != null,
+                                    ticker = state.ticker,
+                                    baseAsset = baseAsset,
+                                    hasNews = state.news.isNotEmpty(),
                                     onRetry = { viewModel.regenerateInsight() },
-                                    onOpenSettings = onOpenSettings
+                                    onOpenSettings = onOpenSettings,
+                                    onAskAi = onAskAi
                                 )
                             }
 
@@ -489,6 +506,13 @@ fun CoinDetailScreen(
                             listState = listState,
                             totalItems = scrollTotal
                         )
+
+                        if (onAskAi != null) {
+                            AskAiFab(
+                                baseAsset = baseAsset,
+                                onClick = { onAskAi(null) }
+                            )
+                        }
                     }
                 }
             }
@@ -498,17 +522,61 @@ fun CoinDetailScreen(
 }
 
 
+/** How many chips the card offers before handing over to the chat screen's fuller set. */
+private const val CARD_SUGGESTION_COUNT = 3
+
+/**
+ * Clears [ScrollToEdgeButton]'s slot: that is a 40dp small FAB pinned 16dp from the bottom of the
+ * same Box, so this sits one row above it.
+ */
+private val AskAiFabBottomInset = 68.dp
+
+/**
+ * Always-available way into the chat.
+ *
+ * The AI card's chips are the richer entry — they arrive with a question already chosen — but they
+ * scroll away, and this screen is long. Somebody reading the order book or the news shouldn't have
+ * to scroll back up to ask something.
+ */
+@Composable
+private fun BoxScope.AskAiFab(baseAsset: String, onClick: () -> Unit) {
+    FloatingActionButton(
+        onClick = onClick,
+        modifier = Modifier
+            .align(Alignment.BottomEnd)
+            .padding(end = 24.dp, bottom = AskAiFabBottomInset),
+        // `primary`, not `primaryContainer`: this palette is a muted monochrome where the container
+        // tone (#33342E in dark) is within a hair of the background, which left the FAB reading as
+        // a second scroll button. This also matches the chat's own send button.
+        containerColor = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onPrimary
+    ) {
+        Icon(
+            imageVector = Icons.Default.AutoAwesome,
+            // The sparkle is this app's AI mark (it heads the insights card), so the label is what
+            // carries the meaning for anyone who can't see the icon.
+            contentDescription = stringResource(Res.string.chat_open, baseAsset)
+        )
+    }
+}
+
 @Composable
 fun AiInsightCard(
     insight: String?,
     isLoading: Boolean,
     rateLimited: Boolean,
     error: String?,
-    hasTicker: Boolean,
+    ticker: Ticker24hr?,
+    baseAsset: String,
+    hasNews: Boolean,
     onRetry: () -> Unit,
     /** null where this screen can't reach Settings, which hides the shortcut rather than dead-ending. */
-    onOpenSettings: (() -> Unit)? = null
+    onOpenSettings: (() -> Unit)? = null,
+    /** null where this screen can't reach the chat, which hides the section rather than dead-ending. */
+    onAskAi: ((String?) -> Unit)? = null
 ) {
+    val hasTicker = ticker != null
+
     // Treat the pre-ticker window as loading so the card never shows an empty body.
     val showLoading = isLoading ||
         (!hasTicker && error == null && !rateLimited && insight == null)
@@ -690,6 +758,98 @@ fun AiInsightCard(
                     }
                 }
             }
+
+            // Deliberately outside the `when` above: the chat is useful whatever the overview did.
+            // Hiding it while the overview loads or after it was throttled would take the feature
+            // away exactly when the user most wants to ask something.
+            if (onAskAi != null) {
+                AskAiSection(
+                    baseAsset = baseAsset,
+                    ticker = ticker,
+                    hasNews = hasNews,
+                    hasOverview = insight != null,
+                    onAskAi = onAskAi
+                )
+            }
+        }
+    }
+}
+
+/**
+ * Entry point into the per-coin chat: a few of the same chips the chat screen would show, so a
+ * question is one tap away, plus a route in for anything else.
+ *
+ * Chips carry their own label as the question, so what the user tapped is exactly what lands in
+ * their transcript.
+ */
+@Composable
+private fun AskAiSection(
+    baseAsset: String,
+    ticker: Ticker24hr?,
+    hasNews: Boolean,
+    hasOverview: Boolean,
+    onAskAi: (String?) -> Unit
+) {
+    // The ticker here is fed by a WebSocket, so it changes several times a second. Deriving the
+    // chips from the live value would re-rank the row — and re-word a chip that quotes the day's
+    // move — continuously under the user's thumb. Snapshot it, refreshed only when the move
+    // crosses a tenth of a percent.
+    val moveKey = changeMagnitudeLabel(ticker)
+    val isDown = (ticker?.priceChangePercent?.toDoubleOrNull() ?: 0.0) < 0
+    val stableTicker = remember(moveKey, isDown, ticker != null) { ticker }
+
+    val suggestions = remember(baseAsset, stableTicker, hasNews, hasOverview) {
+        suggestionsFor(
+            baseAsset = baseAsset,
+            ticker = stableTicker,
+            hasNews = hasNews,
+            hasOverview = hasOverview,
+            isFirstTurn = true,
+            max = CARD_SUGGESTION_COUNT
+        )
+    }
+
+    Spacer(modifier = Modifier.height(12.dp))
+    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
+    Spacer(modifier = Modifier.height(4.dp))
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = stringResource(Res.string.chat_open, baseAsset),
+            style = MaterialTheme.typography.labelLarge,
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+        TextButton(onClick = { onAskAi(null) }) {
+            Text(
+                text = stringResource(Res.string.chat_ask_anything),
+                style = MaterialTheme.typography.labelMedium
+            )
+        }
+    }
+
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(items = suggestions, key = { it.name }) { suggestion ->
+            val label = suggestionText(suggestion, baseAsset, stableTicker)
+            SuggestionChip(
+                onClick = { onAskAi(label) },
+                label = {
+                    Text(
+                        text = label,
+                        style = MaterialTheme.typography.labelMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                shape = RoundedCornerShape(16.dp),
+                colors = SuggestionChipDefaults.suggestionChipColors(
+                    labelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            )
         }
     }
 }

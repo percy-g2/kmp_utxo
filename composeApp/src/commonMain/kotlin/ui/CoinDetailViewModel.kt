@@ -18,6 +18,7 @@ import model.RssProvider
 import model.Ticker24hr
 import network.AiInsightCache
 import network.AiInsightService
+import network.CoinContextCache
 import network.NewsService
 import network.OrderBookWebSocketService
 import network.TickerWebSocketService
@@ -145,6 +146,16 @@ class CoinDetailViewModel : ViewModel() {
 
             val ticker = tickerDeferred.await()
             val news = newsDeferred.await()
+
+            // Hand the gathered context to the chat screen, which can't reach this ViewModel (on
+            // iOS 26 it is a separate ComposeUIViewController) and would otherwise re-hit every RSS
+            // feed before it could answer the first question. Published even when the ticker is
+            // null, so the news alone is still reusable.
+            CoinContextCache.put(
+                symbol = symbol,
+                context = CoinContextCache.CoinContext(ticker = ticker, news = news, overview = null),
+                nowMillis = Clock.System.now().toEpochMilliseconds()
+            )
 
             if (ticker != null) {
                 generateInsightFor(symbol, ticker, news, forceRefresh = forceInsight)
@@ -346,7 +357,7 @@ class CoinDetailViewModel : ViewModel() {
                     insightRateLimited = false
                 )
             }
-            val baseAsset = extractBaseAsset(symbol)
+            val baseAsset = AiInsightService.extractBaseAsset(symbol)
             when (
                 val result =
                     aiInsightService.generateInsight(symbol, baseAsset, ticker, news, currentApiToken)
@@ -358,6 +369,9 @@ class CoinDetailViewModel : ViewModel() {
                         text = result.text,
                         nowMillis = Clock.System.now().toEpochMilliseconds()
                     )
+                    // The chat opens with the overview already in its context, so "explain that"
+                    // refers to the same paragraph the user is reading on the card.
+                    CoinContextCache.putOverview(symbol, result.text)
                     state.update {
                         it.copy(
                             aiInsight = result.text,
@@ -380,21 +394,6 @@ class CoinDetailViewModel : ViewModel() {
                 }
             }
         }
-    }
-
-    /** Strips a common quote-currency suffix so "BTCUSDT" -> "BTC" for the prompt. */
-    private fun extractBaseAsset(symbol: String): String {
-        val quoteCurrencies = listOf(
-            "FDUSD", "BUSD", "TUSD", "USDT", "USDC", "USD1", "DAI",
-            "BTC", "ETH", "BNB", "EUR", "GBP", "JPY"
-        ).sortedByDescending { it.length }
-        val upper = symbol.uppercase()
-        for (quote in quoteCurrencies) {
-            if (upper.endsWith(quote) && upper.length > quote.length) {
-                return upper.removeSuffix(quote)
-            }
-        }
-        return upper
     }
 
     fun clearCache() {

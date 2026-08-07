@@ -52,11 +52,35 @@ struct CoinDetailComposeView: UIViewControllerRepresentable {
     let displaySymbol: String
     let onBack: () -> Void
     let onOpenSettings: () -> Void
+    /// Pushes the per-coin AI chat; the argument is the tapped suggestion, or nil for "Ask anything".
+    let onAskAi: (String?) -> Void
 
     func makeUIViewController(context: Context) -> UIViewController {
         MainViewControllerKt.CoinDetailViewController(
             symbol: symbol,
             displaySymbol: displaySymbol,
+            onBack: onBack,
+            onOpenSettings: onOpenSettings,
+            onAskAi: onAskAi
+        )
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+}
+
+struct CoinChatComposeView: UIViewControllerRepresentable {
+    let symbol: String
+    let displaySymbol: String
+    /// Sent as the first question when the chat was opened from a suggestion chip.
+    let initialQuestion: String?
+    let onBack: () -> Void
+    let onOpenSettings: () -> Void
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        MainViewControllerKt.CoinChatViewController(
+            symbol: symbol,
+            displaySymbol: displaySymbol,
+            initialQuestion: initialQuestion,
             onBack: onBack,
             onOpenSettings: onOpenSettings
         )

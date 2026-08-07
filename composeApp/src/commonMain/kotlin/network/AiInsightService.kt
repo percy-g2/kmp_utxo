@@ -159,12 +159,6 @@ class AiInsightService {
             ticker: Ticker24hr,
             news: List<NewsItem>
         ): String {
-            val changePct = ticker.priceChangePercent.toDoubleOrNull() ?: 0.0
-            val direction = when {
-                changePct > 0 -> "up"
-                changePct < 0 -> "down"
-                else -> "flat"
-            }
             val recentNews = news.take(MAX_NEWS_ITEMS)
             return buildString {
                 if (recentNews.isEmpty()) {
@@ -173,6 +167,30 @@ class AiInsightService {
                     appendLine("Give a brief overview for the $baseAsset pair $symbol by combining the 24h market data and the recent news headlines below.")
                 }
                 appendLine()
+                append(marketDataBlock(baseAsset, ticker))
+
+                if (recentNews.isNotEmpty()) {
+                    appendLine()
+                    append(newsBlock(recentNews))
+                }
+            }
+        }
+
+        /**
+         * The 24h ticker rendered for a prompt, header line included and newline-terminated.
+         *
+         * Shared with [CoinChatService] so the overview and the chat describe a coin to the model
+         * in exactly the same words — a chat answer that contradicted the card above it because the
+         * two prompts formatted the same number differently would be a confusing bug to chase.
+         */
+        internal fun marketDataBlock(baseAsset: String, ticker: Ticker24hr): String {
+            val changePct = ticker.priceChangePercent.toDoubleOrNull() ?: 0.0
+            val direction = when {
+                changePct > 0 -> "up"
+                changePct < 0 -> "down"
+                else -> "flat"
+            }
+            return buildString {
                 appendLine("24h MARKET DATA")
                 appendLine("Last price: ${ticker.lastPrice}")
                 appendLine("24h change: ${ticker.priceChangePercent}% ($direction)")
@@ -182,21 +200,51 @@ class AiInsightService {
                 appendLine("24h base volume: ${ticker.volume} $baseAsset")
                 appendLine("24h quote volume: ${ticker.quoteVolume}")
                 appendLine("Weighted average price: ${ticker.weightedAvgPrice}")
+            }
+        }
 
-                if (recentNews.isNotEmpty()) {
-                    appendLine()
-                    appendLine("RECENT NEWS (newest first)")
-                    recentNews.forEach { item ->
-                        val headline = item.title.collapseWhitespace()
-                        val snippet = item.description.collapseWhitespace().take(MAX_SNIPPET_CHARS)
-                        append("- [${item.source}] $headline")
-                        if (snippet.isNotBlank()) {
-                            append(" — $snippet")
-                        }
-                        appendLine()
+        /**
+         * Headlines rendered for a prompt, header line included and newline-terminated. Returns an
+         * empty string for an empty list so callers can append unconditionally.
+         *
+         * Caps the list at [MAX_NEWS_ITEMS] itself, so a caller that forgets to slice can't blow
+         * the prompt budget. Shared with [CoinChatService].
+         */
+        internal fun newsBlock(news: List<NewsItem>): String {
+            val recentNews = news.take(MAX_NEWS_ITEMS)
+            if (recentNews.isEmpty()) return ""
+            return buildString {
+                appendLine("RECENT NEWS (newest first)")
+                recentNews.forEach { item ->
+                    val headline = item.title.collapseWhitespace()
+                    val snippet = item.description.collapseWhitespace().take(MAX_SNIPPET_CHARS)
+                    append("- [${item.source}] $headline")
+                    if (snippet.isNotBlank()) {
+                        append(" — $snippet")
                     }
+                    appendLine()
                 }
             }
+        }
+
+        /**
+         * Strips a common quote-currency suffix so "BTCUSDT" -> "BTC" for a prompt.
+         *
+         * Longest-first, otherwise "BTCUSDT" would match the "BTC" quote entry and reduce to
+         * "BTCUSD". The length guard keeps a pair that *is* a quote currency (e.g. "BTC") intact.
+         */
+        internal fun extractBaseAsset(symbol: String): String {
+            val quoteCurrencies = listOf(
+                "FDUSD", "BUSD", "TUSD", "USDT", "USDC", "USD1", "DAI",
+                "BTC", "ETH", "BNB", "EUR", "GBP", "JPY"
+            ).sortedByDescending { it.length }
+            val upper = symbol.uppercase()
+            for (quote in quoteCurrencies) {
+                if (upper.endsWith(quote) && upper.length > quote.length) {
+                    return upper.removeSuffix(quote)
+                }
+            }
+            return upper
         }
 
         /**
