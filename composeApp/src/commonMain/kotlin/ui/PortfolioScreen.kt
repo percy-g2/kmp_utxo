@@ -83,6 +83,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import ktx.formatAsAssetAmount
 import ktx.formatAsCurrency
 import model.PerpPositionRow
 import model.PortfolioSummary
@@ -809,7 +810,7 @@ private fun PositionCard(row: PerpPositionRow, accent: Color, isDark: Boolean) {
                     LiveMarkPrice(row.markPx, isDark)
                     Spacer(Modifier.height(2.dp))
                     Text(
-                        text = "${stringResource(Res.string.portfolio_size)} ${row.size.toAmount()}  ·  " +
+                        text = "${stringResource(Res.string.portfolio_size)} ${row.size.formatAsAssetAmount()}  ·  " +
                             "${stringResource(Res.string.portfolio_entry)} ${row.entryPx.toPriceOrDash()}",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -916,6 +917,7 @@ private fun LiquidationBar(fraction: Double, liqPx: Double, markPx: Double, isDa
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun SpotCard(row: SpotBalanceRow, accent: Color) {
     Surface(
@@ -934,23 +936,75 @@ private fun SpotCard(row: SpotBalanceRow, accent: Color) {
             )
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(row.coin, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                // Weighted columns prevent either side from consuming the other's space. Amounts
+                // intentionally remain soft-wrappable: a compact screen or large font may make the
+                // card taller, but it must never hide a financial value behind an ellipsis.
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    SpotCoinLabel(row.coin, Modifier.weight(1f))
+                    Spacer(Modifier.width(8.dp))
+                    SpotValueBlock(row, Modifier.weight(2f))
+                }
                 if (row.hold > 0.0) {
-                    Text(
-                        text = "${stringResource(Res.string.portfolio_available)} ${row.available.toAmount()}  ·  " +
-                            "${stringResource(Res.string.portfolio_hold)} ${row.hold.toAmount()}",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
+                    Spacer(Modifier.height(4.dp))
+                    FlowRow(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        verticalArrangement = Arrangement.spacedBy(2.dp),
+                    ) {
+                        Text(
+                            text = "${stringResource(Res.string.portfolio_available)} ${row.available.formatAsAssetAmount()}",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        Text(
+                            text = "${stringResource(Res.string.portfolio_hold)} ${row.hold.formatAsAssetAmount()}",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                 }
                 row.sourceLabel?.let { WalletTagLine(it) }
             }
-            Column(horizontalAlignment = Alignment.End) {
-                Text(row.total.toAmount(), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
-                row.usdValue?.let {
-                    Text(it.toUsd(), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-            }
+        }
+    }
+}
+
+@Composable
+private fun SpotCoinLabel(coin: String, modifier: Modifier = Modifier) {
+    Text(
+        text = coin,
+        style = MaterialTheme.typography.titleMedium,
+        fontWeight = FontWeight.SemiBold,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = modifier,
+    )
+}
+
+@Composable
+private fun SpotValueBlock(row: SpotBalanceRow, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.End,
+    ) {
+        Text(
+            text = row.total.formatAsAssetAmount(),
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.End,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        row.usdValue?.let {
+            Text(
+                text = it.toUsd(),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.End,
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }
@@ -1148,20 +1202,12 @@ private fun Double.toPercent(decimals: Int): String {
 }
 
 private fun Double.toPriceValue(): String =
-    if (abs(this) >= 1.0) "$" + this.formatAsCurrency() else "$" + this.toAmount()
+    if (abs(this) >= 1.0) "$" + this.formatAsCurrency() else "$" + this.formatAsAssetAmount()
 
 private fun Double?.toPriceOrDash(): String {
     val v = this ?: return "—"
     if (v == 0.0) return "—"
     return v.toPriceValue()
-}
-
-private fun Double.toAmount(): String {
-    if (this == 0.0) return "0"
-    val rounded = (this * 1_000_000).roundToLong() / 1_000_000.0
-    val asLong = rounded.toLong()
-    return if (rounded == asLong.toDouble()) asLong.toString()
-    else rounded.toString().trimEnd('0').trimEnd('.')
 }
 
 // endregion
