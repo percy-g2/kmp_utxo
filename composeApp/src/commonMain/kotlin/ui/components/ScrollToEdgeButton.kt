@@ -59,8 +59,11 @@ fun BoxScope.ScrollToEdgeButton(
         SmallFloatingActionButton(
             onClick = {
                 scope.launch {
+                    val lastItemIndex = listState.layoutInfo.totalItemsCount - 1
+                    if (lastItemIndex < 0) return@launch
+
                     if (isNearTop) {
-                        listState.animateScrollToItem((totalItems - 1).coerceAtLeast(0))
+                        listState.animateScrollToItem(lastItemIndex)
                     } else {
                         listState.animateScrollToItem(0)
                     }
