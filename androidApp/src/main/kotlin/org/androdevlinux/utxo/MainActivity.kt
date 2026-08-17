@@ -173,6 +173,7 @@ class MainActivity : ComponentActivity() {
 class AppInitializer : Initializer<Unit> {
     override fun create(context: Context) {
         ContextProvider.setContext(context.applicationContext)
+        configureAndroidImageLoader()
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> = emptyList()
