@@ -15,6 +15,62 @@ fun Double.formatAsCurrency(): String {
 }
 
 /**
+ * Formats an asset quantity as grouped fixed-point text without ever exposing scientific notation.
+ * Large token balances need fewer fractional digits to stay readable, while smaller balances retain
+ * enough precision to remain useful:
+ *
+ * - 1,000,000 and above: up to 2 fractional digits
+ * - 1,000 and above: up to 4 fractional digits
+ * - below 1,000: up to 6 fractional digits
+ *
+ * The whole and fractional parts are rounded separately so a large value is never multiplied by the
+ * decimal scale (which would overflow the old formatter above roughly 9.22 trillion).
+ */
+internal fun Double.formatAsAssetAmount(): String {
+    if (!isFinite()) return "—"
+
+    val magnitude = absoluteValue
+    // The formatter stores the grouped whole part in a Long. Values at this boundary have already
+    // exceeded useful integer precision in a Double; fail closed instead of letting toLong() saturate
+    // and a rounding carry wrap Long.MAX_VALUE into a negative amount.
+    if (magnitude >= Long.MAX_VALUE.toDouble()) return "—"
+
+    val decimalPlaces = when {
+        magnitude >= 1_000_000.0 -> 2
+        magnitude >= 1_000.0 -> 4
+        else -> 6
+    }
+    val scale = when (decimalPlaces) {
+        2 -> 100L
+        4 -> 10_000L
+        else -> 1_000_000L
+    }
+
+    var whole = magnitude.toLong()
+    var fraction = ((magnitude - whole.toDouble()) * scale).roundToInt().toLong()
+    if (fraction >= scale) {
+        whole += 1
+        fraction -= scale
+    }
+
+    val isRoundedZero = whole == 0L && fraction == 0L
+    val sign = if (this < 0.0 && !isRoundedZero) "-" else ""
+    val fractionText = fraction
+        .toString()
+        .padStart(decimalPlaces, '0')
+        .trimEnd('0')
+
+    return buildString {
+        append(sign)
+        append(groupThousands(whole))
+        if (fractionText.isNotEmpty()) {
+            append('.')
+            append(fractionText)
+        }
+    }
+}
+
+/**
  * Inserts thousands separators in a single pass. Replaces the
  * `toString().reversed().chunked(3).joinToString(",").reversed()` idiom (which allocated several
  * intermediate strings + a list per call) — this runs while formatting prices for the whole
