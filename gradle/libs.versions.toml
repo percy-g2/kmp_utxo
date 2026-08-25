@@ -22,7 +22,7 @@ javafx = "21.0.11"
 playPublisher = "4.1.1"
 
 #cmp
-compose = "1.11.1"
+compose = "1.12.0"
 compose-material3 = "1.9.0"
 compose-material-icons-extended = "1.7.3"
 
