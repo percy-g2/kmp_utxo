@@ -3,17 +3,10 @@ package network
 import createNewsHttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpRequestTimeoutException
-import io.ktor.client.request.header
-import io.ktor.client.request.post
-import io.ktor.client.request.setBody
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
-import io.ktor.http.contentType
 import kotlinx.coroutines.CancellationException
 import logging.AppLogger
-import model.ChatCompletionRequest
 import model.ChatCompletionResponse
 import model.ChatMessage
 import model.ChatRole
@@ -34,7 +27,7 @@ import model.Ticker24hr
  * Context in the system message, refreshed on every call: the caller passes a live ticker, so each
  * answer quotes the current price without the transcript accumulating stale copies of the 24h stats.
  *
- * Non-streaming, like the rest of this app's AI path. `gpt-oss:20b` reasons before it answers, so a
+ * Non-streaming, like the rest of this app's AI path. `gpt-oss` reasons before it answers, so a
  * reply can take a good few seconds — the screen shows a thinking indicator rather than partial
  * text. Streaming would need an SSE-capable client on all four engines, which this project has not
  * validated.
@@ -69,20 +62,11 @@ class CoinChatService {
         apiToken: String
     ): ChatResult {
         return try {
-            val response: HttpResponse = httpClient.post(AiInsightService.AiConfig.ENDPOINT) {
-                contentType(ContentType.Application.Json)
-                // Optional: raises the rate limits. Omitted entirely when blank, which llm7.io
-                // serves anonymously rather than rejecting.
-                if (apiToken.isNotBlank()) {
-                    header("Authorization", "Bearer $apiToken")
-                }
-                setBody(
-                    ChatCompletionRequest(
-                        model = AiInsightService.AiConfig.MODEL,
-                        messages = buildMessages(symbol, baseAsset, ticker, news, overview, history, question)
-                    )
-                )
-            }
+            val result = httpClient.postAiCompletion(
+                messages = buildMessages(symbol, baseAsset, ticker, news, overview, history, question),
+                apiToken = apiToken
+            )
+            val response = result.response
 
             when (response.status) {
                 HttpStatusCode.OK -> {
@@ -104,8 +88,9 @@ class CoinChatService {
                 }
 
                 else -> {
+                    val errorBody = result.errorBody ?: response.bodyAsText()
                     AppLogger.logger.w {
-                        "CoinChatService: ${response.status} for $symbol: ${response.bodyAsText().take(200)}"
+                        "CoinChatService: ${response.status} for $symbol: ${errorBody.take(200)}"
                     }
                     ChatResult.Failure("HTTP ${response.status.value}")
                 }

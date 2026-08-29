@@ -46,10 +46,10 @@ class AiInsightResponseTest {
 
     @Test
     fun reasoning_model_response_keeps_only_the_answer() {
-        // gpt-oss:20b is a reasoning model: it returns its chain of thought in a `reasoning` field
+        // gpt-oss is a reasoning model: it returns its chain of thought in a `reasoning` field
         // alongside the answer. That key must be ignored rather than shown to the user.
         val sample = """
-            {"id":"chatcmpl_1","model":"gpt-oss:20b","choices":[{"index":0,"finish_reason":"stop",
+            {"id":"chatcmpl_1","model":"gpt-oss-20b","choices":[{"index":0,"finish_reason":"stop",
                "message":{"role":"assistant","content":"BTC is flat on the day.",
                           "reasoning":"We need 4-5 sentences, under 120 words, no advice."}}]}
         """.trimIndent()
