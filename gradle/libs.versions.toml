@@ -1,5 +1,5 @@
 [versions]
-agp = "9.3.1"
+agp = "9.3.2"
 android-compileSdk = "37"
 android-minSdk = "24"
 android-targetSdk = "37"
@@ -16,13 +16,13 @@ harawata-appdirs = "1.5.0"
 startupRuntime = "1.2.0"
 coroutinesVersion = "1.11.0"
 kermit = "2.1.0"
-coil = "3.5.0"
+coil = "3.6.0"
 composeWebviewMultiplatform = "2.0.3"
 javafx = "21.0.11"
 playPublisher = "4.1.1"
 
 #cmp
-compose = "1.11.1"
+compose = "1.12.0"
 compose-material3 = "1.9.0"
 compose-material-icons-extended = "1.7.3"
 
