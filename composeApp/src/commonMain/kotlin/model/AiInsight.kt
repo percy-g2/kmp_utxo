@@ -23,7 +23,7 @@ data class ChatCompletionRequest(
     @SerialName("messages") val messages: List<ChatMessage>,
     @SerialName("temperature") val temperature: Double = 0.4,
     @SerialName("stream") val stream: Boolean = false
-    // Deliberately no `max_tokens`: gpt-oss:20b is a reasoning model that spends completion tokens
+    // Deliberately no `max_tokens`: gpt-oss is a reasoning model that spends completion tokens
     // thinking before it answers. Capping the budget makes it exhaust the cap on reasoning and
     // return `finish_reason: length` with an EMPTY content, which the UI would show as an error.
     // Length is controlled by the system prompt ("under 120 words") instead.

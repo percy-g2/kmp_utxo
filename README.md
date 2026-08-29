@@ -127,7 +127,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 ### 🤖 AI Insights
 - **Plain-English market overview** generated on the coin detail screen
 - **Grounded in live data** — combines 24h ticker momentum, volume and volatility with the day's news themes
-- **Zero setup** — powered by the open-weights `gpt-oss:20b` model via llm7.io, no API key or signup
+- **Zero setup** — primarily uses open-weights `gpt-oss` via llm7.io, with an automatic availability fallback and no API key or signup
 - **Not financial advice** — clearly labelled as an AI-generated overview
 
 ### 💼 Portfolio

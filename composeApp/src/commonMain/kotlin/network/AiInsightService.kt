@@ -3,17 +3,10 @@ package network
 import createNewsHttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpRequestTimeoutException
-import io.ktor.client.request.header
-import io.ktor.client.request.post
-import io.ktor.client.request.setBody
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
-import io.ktor.http.contentType
 import kotlinx.coroutines.CancellationException
 import logging.AppLogger
-import model.ChatCompletionRequest
 import model.ChatCompletionResponse
 import model.ChatMessage
 import model.NewsItem
@@ -24,7 +17,7 @@ import model.Ticker24hr
  * combining its 24-hour ticker with recent public news headlines about the
  * coin, using a free, OpenAI-compatible text model.
  *
- * Backend: **llm7.io** serving `gpt-oss:20b` (OpenAI's open-weights model). It works anonymously,
+ * Backend: **llm7.io** serving `gpt-oss` (OpenAI's open-weights model). It works anonymously,
  * so AI Insights needs no setup. A user can optionally paste a free token from
  * https://dash.llm7.io in Settings to raise the limits (anonymous: 10 requests/min, 60/hour,
  * 500K tokens/day; free token: 40/min, 100/hour, 1M tokens/day — see https://docs.llm7.io/limits).
@@ -35,7 +28,7 @@ import model.Ticker24hr
  * HTTP 402 to essentially every real request from this app — a valid key made no difference —
  * so the insight card permanently told users to add a key they already had.
  *
- * Note that `gpt-oss:20b` is a *reasoning* model: it spends completion tokens thinking before it
+ * Note that `gpt-oss` is a *reasoning* model: it spends completion tokens thinking before it
  * answers. Capping `max_tokens` makes it burn the whole budget on reasoning and return an empty
  * `content`, so the request deliberately sends no cap — see [model.ChatCompletionRequest].
  *
@@ -58,8 +51,11 @@ class AiInsightService {
 
         val ENDPOINT: String get() = "$BASE_URL$CHAT_COMPLETIONS_PATH"
 
-        /** Open-weights model id served by the gateway. */
-        const val MODEL = "gpt-oss:20b"
+        /** Stable gateway alias for the currently available GPT-OSS deployment. */
+        const val MODEL = "gpt-oss"
+
+        /** Provider-managed selector used only when [MODEL] returns `model_unavailable`. */
+        const val FALLBACK_MODEL = "default"
     }
 
     sealed interface InsightResult {
@@ -83,23 +79,14 @@ class AiInsightService {
         apiToken: String
     ): InsightResult {
         return try {
-            val response: HttpResponse = httpClient.post(AiConfig.ENDPOINT) {
-                contentType(ContentType.Application.Json)
-                // Optional: raises the rate limits. Omitted entirely when blank, which llm7.io
-                // serves anonymously rather than rejecting.
-                if (apiToken.isNotBlank()) {
-                    header("Authorization", "Bearer $apiToken")
-                }
-                setBody(
-                    ChatCompletionRequest(
-                        model = AiConfig.MODEL,
-                        messages = listOf(
-                            ChatMessage(role = "system", content = SYSTEM_PROMPT),
-                            ChatMessage(role = "user", content = buildUserPrompt(symbol, baseAsset, ticker, news))
-                        )
-                    )
-                )
-            }
+            val result = httpClient.postAiCompletion(
+                messages = listOf(
+                    ChatMessage(role = "system", content = SYSTEM_PROMPT),
+                    ChatMessage(role = "user", content = buildUserPrompt(symbol, baseAsset, ticker, news))
+                ),
+                apiToken = apiToken
+            )
+            val response = result.response
 
             when (response.status) {
                 HttpStatusCode.OK -> {
@@ -121,8 +108,9 @@ class AiInsightService {
                 }
 
                 else -> {
+                    val errorBody = result.errorBody ?: response.bodyAsText()
                     AppLogger.logger.w {
-                        "AiInsightService: ${response.status} for $symbol: ${response.bodyAsText().take(200)}"
+                        "AiInsightService: ${response.status} for $symbol: ${errorBody.take(200)}"
                     }
                     InsightResult.Failure("HTTP ${response.status.value}")
                 }
