@@ -1,5 +1,6 @@
 package network
 
+import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -15,6 +16,11 @@ import kotlin.test.assertTrue
 class NewsServiceTest {
 
     private val service = NewsService()
+
+    // NewsService builds a real Ktor client in its constructor; release it so the suite does not
+    // leak one engine per test method.
+    @AfterTest
+    fun tearDown() = service.close()
 
     private fun item(
         title: String,

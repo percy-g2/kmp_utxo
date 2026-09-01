@@ -456,8 +456,15 @@ fun CoinDetailScreen(
                                 val newsSettled =
                                     state.loadingNewsProviders.isEmpty() && !state.isLoadingNews
                                 val failedCount = state.failedNewsProviders.size
+                                // Only claim everything failed when everything actually did. One
+                                // dead feed alongside seven that were read fine and simply had
+                                // nothing about this coin is an empty result, not an outage, and
+                                // telling the user to check their connection would send them after
+                                // a problem they do not have.
+                                val allFailed =
+                                    failedCount > 0 && failedCount >= enabledProviders.size
 
-                                if (newsSettled && state.news.isEmpty() && failedCount > 0) {
+                                if (newsSettled && allFailed) {
                                     // Every source we asked was unreachable. That is a broken
                                     // transport, not a quiet news day, and the two used to render
                                     // identically — which is exactly how a total CORS outage on the
@@ -556,9 +563,12 @@ fun CoinDetailScreen(
                                             }
                                         }
                                     }
-                                } else if (newsSettled && failedCount > 0) {
-                                    // Some feeds landed and some did not: the list above is real but
-                                    // incomplete, so note it rather than passing it off as the lot.
+                                }
+
+                                // Some sources dropped out while others reported. Whether that left
+                                // a partial list or nothing at all, what is on screen is real but
+                                // incomplete, so say so rather than passing it off as the lot.
+                                if (newsSettled && !allFailed && failedCount > 0) {
                                     item {
                                         Text(
                                             text = stringResource(
