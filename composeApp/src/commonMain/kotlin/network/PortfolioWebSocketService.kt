@@ -110,7 +110,12 @@ class PortfolioWebSocketService {
                                     delay(PING_INTERVAL_MS)
                                     try {
                                         send(Frame.Text(PING_MESSAGE))
-                                    } catch (e: Exception) {
+                                    } catch (e: CancellationException) {
+                                        throw e
+                                    } catch (e: Throwable) {
+                                        // Throwable, not Exception — a failed socket write on the
+                                        // JS/Wasm engine surfaces as kotlin.Error, which is not an
+                                        // Exception. See NewsService.fetchRSSFeed.
                                         break
                                     }
                                 }
@@ -134,7 +139,11 @@ class PortfolioWebSocketService {
                     } catch (e: CancellationException) {
                         isConnected = false
                         break
-                    } catch (e: Exception) {
+                    } catch (e: Throwable) {
+                        // Throwable, not Exception: Ktor's JS/Wasm engine reports a failed
+                        // connection as kotlin.Error, which is a Throwable but not an Exception.
+                        // Letting it escape would kill this reconnect loop for good, so the socket
+                        // would never come back. See NewsService.fetchRSSFeed.
                         isConnected = false
                         if (isActive) {
                             connectionError.value = e.message ?: "Connection lost"

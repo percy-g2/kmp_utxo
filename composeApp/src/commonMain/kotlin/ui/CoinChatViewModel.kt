@@ -21,6 +21,7 @@ import network.AiInsightService
 import network.CoinChatService
 import network.CoinChatStore
 import network.CoinContextCache
+import network.NewsFetchResult
 import network.NewsService
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -370,10 +371,15 @@ class CoinChatViewModel : ViewModel() {
                     .map { provider ->
                         async {
                             try {
-                                newsService.fetchNewsFromProvider(provider, symbol)
+                                // News is background context for the chat rather than the
+                                // deliverable, so an unreachable provider degrades quietly: the
+                                // model still answers from the ticker and the feeds that did land.
+                                val result = newsService.fetchNewsFromProvider(provider, symbol)
+                                (result as? NewsFetchResult.Success)?.items.orEmpty()
                             } catch (e: CancellationException) {
                                 throw e
-                            } catch (e: Exception) {
+                            } catch (e: Throwable) {
+                                // Throwable, not Exception — see NewsService.fetchRSSFeed.
                                 AppLogger.logger.w(throwable = e) {
                                     "CoinChatViewModel: news fetch failed for ${provider.name}"
                                 }
@@ -399,7 +405,7 @@ class CoinChatViewModel : ViewModel() {
             }
         } catch (e: CancellationException) {
             throw e
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             AppLogger.logger.e(throwable = e) { "CoinChatViewModel: news fetch failed for $symbol" }
             emptyList()
         }

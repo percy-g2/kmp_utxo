@@ -120,7 +120,9 @@ class AiInsightService {
         } catch (e: HttpRequestTimeoutException) {
             AppLogger.logger.w(throwable = e) { "AiInsightService: timeout for $symbol" }
             InsightResult.Failure("Request timed out")
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
+            // Throwable, not Exception — Ktor's JS/Wasm engine throws kotlin.Error on a failed
+            // request. See NewsService.fetchRSSFeed.
             AppLogger.logger.e(throwable = e) { "AiInsightService: error generating insight for $symbol" }
             InsightResult.Failure(e.message ?: "Unknown error")
         }

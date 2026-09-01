@@ -6,20 +6,29 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 val appVersionNameProvider = providers.gradleProperty("app.versionName")
 
+// Where the browser build reads the mirrored RSS feeds from (see .github/workflows/mirror-rss.yml).
+// Optional: when it is blank the wasmJs build falls back to requesting the feeds directly.
+val rssMirrorBaseProvider = providers.gradleProperty("web.rssMirrorBase").orElse("")
+
 val generateAppVersion by tasks.registering {
     val outputDir = layout.buildDirectory.dir("generated/source/version/commonMain/kotlin")
     inputs.property("versionName", appVersionNameProvider)
+    inputs.property("rssMirrorBase", rssMirrorBaseProvider)
     outputs.dir(outputDir)
     doLast {
         val name = appVersionNameProvider.get()
+        val rssMirrorBase = rssMirrorBaseProvider.get().trim().trimEnd('/')
         val out = outputDir.get().file("buildinfo/Version.kt").asFile
         out.parentFile.mkdirs()
         out.writeText(
             """
-            // Auto-generated from gradle.properties (app.versionName). Do not edit.
+            // Auto-generated from gradle.properties. Do not edit.
             package buildinfo
 
             internal const val APP_VERSION_NAME: String = "$name"
+
+            /** Base URL of the mirrored RSS feeds the wasmJs build reads; blank when not configured. */
+            internal const val RSS_MIRROR_BASE: String = "$rssMirrorBase"
 
             """.trimIndent()
         )

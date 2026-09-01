@@ -100,7 +100,9 @@ class CoinChatService {
         } catch (e: HttpRequestTimeoutException) {
             AppLogger.logger.w(throwable = e) { "CoinChatService: timeout for $symbol" }
             ChatResult.Failure("Request timed out")
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
+            // Throwable, not Exception — Ktor's JS/Wasm engine throws kotlin.Error on a failed
+            // request. See NewsService.fetchRSSFeed.
             AppLogger.logger.e(throwable = e) { "CoinChatService: error answering question for $symbol" }
             ChatResult.Failure(e.message ?: "Unknown error")
         }

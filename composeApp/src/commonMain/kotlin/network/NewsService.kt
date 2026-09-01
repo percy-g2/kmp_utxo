@@ -9,42 +9,49 @@ import io.ktor.http.HttpStatusCode
 import ktx.decodeHtmlEntities
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import logging.AppLogger
 import model.NewsItem
 import wrapRssUrlForPlatform
 import kotlin.time.ExperimentalTime
 
+/**
+ * Outcome of reading one provider's feed.
+ *
+ * The two cases have to stay distinguishable. [Success] with an empty list means the feed was read
+ * fine and simply carries nothing about this coin; [Failed] means the transport is broken. Folding
+ * both into an empty list is what let a total CORS outage on the web build masquerade as the
+ * ordinary "no news available" state.
+ */
+sealed interface NewsFetchResult {
+    data class Success(val items: List<NewsItem>) : NewsFetchResult
+    data object Failed : NewsFetchResult
+}
+
 class NewsService {
     private val httpClient = createNewsHttpClient()
-    private val cache = mutableMapOf<String, CachedNews>()
-    private val cacheMutex = Mutex()
-
-    private data class CachedNews(
-        val news: List<NewsItem>,
-        val timestamp: Long
-    )
 
     @OptIn(ExperimentalTime::class)
     suspend fun fetchNewsFromProvider(
         provider: model.RssProvider,
         coinSymbol: String
-    ): List<NewsItem> {
+    ): NewsFetchResult {
         return try {
             AppLogger.logger.d { "NewsService: Fetching from ${provider.name} (${provider.id}) for $coinSymbol" }
             val news = fetchRSSFeed(provider.url, coinSymbol)
             if (news != null) {
                 AppLogger.logger.d { "NewsService: Found ${news.size} news items from ${provider.name} for $coinSymbol" }
-                news
+                NewsFetchResult.Success(news)
             } else {
                 AppLogger.logger.w { "NewsService: Failed to fetch or parse ${provider.name} RSS for $coinSymbol" }
-                emptyList()
+                NewsFetchResult.Failed
             }
-        } catch (e: Exception) {
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Throwable) {
+            // See fetchRSSFeed: browser fetch failures arrive as kotlin.Error, not Exception.
             AppLogger.logger.e(throwable = e) { "NewsService: Error fetching from ${provider.name}" }
-            emptyList()
+            NewsFetchResult.Failed
         }
     }
 
@@ -68,7 +75,12 @@ class NewsService {
                 throw e
             } catch (e: HttpRequestTimeoutException) {
                 AppLogger.logger.w(throwable = e) { "RSS candidate ${idx + 1}/${candidates.size} timed out for $url" }
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
+                // Throwable, not Exception: on the JS/Wasm engine Ktor reports a failed fetch as
+                // `kotlin.Error("Fail to fetch")` (io.ktor.client.engine.js.compatibility.commonFetch),
+                // and kotlin.Error is a Throwable that is NOT an Exception. Catching Exception here
+                // let every browser-side network failure escape the news pipeline uncaught, which
+                // killed the whole load job and left the shimmer placeholders spinning forever.
                 AppLogger.logger.w(throwable = e) { "RSS candidate ${idx + 1}/${candidates.size} failed for $url" }
             }
         }
@@ -76,7 +88,7 @@ class NewsService {
         return null
     }
 
-    private fun parseRSSFeed(xml: String, coinSymbol: String): List<NewsItem> {
+    internal fun parseRSSFeed(xml: String, coinSymbol: String): List<NewsItem> {
         val newsItems = mutableListOf<NewsItem>()
         
         // Extract base coin symbol (e.g., "BTC" from "BTCUSDT")
@@ -250,13 +262,6 @@ class NewsService {
             // Clean up extra whitespace (including any decoded &nbsp;)
             .replace(Regex("[\\s\\u00A0]+"), " ")
             .trim()
-    }
-
-    suspend fun clearCache() {
-        cacheMutex.withLock {
-            AppLogger.logger.d { "NewsService: Clearing all cache entries (${cache.size} entries)" }
-            cache.clear()
-        }
     }
 
     fun close() {

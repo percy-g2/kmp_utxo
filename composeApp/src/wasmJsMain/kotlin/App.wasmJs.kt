@@ -16,6 +16,8 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlin.js.ExperimentalWasmJsInterop
+import buildinfo.RSS_MIRROR_BASE
+import model.RssProvider
 import network.newsClientJson
 import ui.Settings
 
@@ -111,14 +113,20 @@ actual fun syncSettingsToWidget(settings: ui.Settings) {
 }
 
 actual fun wrapRssUrlForPlatform(url: String): List<String> {
-    // Browser fetch is subject to CORS, so route RSS feeds through a fallback chain
-    // of public CORS proxies. corsproxy.io first (more reliable), allorigins.win as backup.
-    val encoded = encodeURIComponent(url)
-    return listOf(
-        "https://corsproxy.io/?url=$encoded",
-        "https://api.allorigins.win/raw?url=$encoded"
-    )
+    // None of the publishers send Access-Control-Allow-Origin, so a browser can never read their
+    // feeds directly. Something has to fetch them outside the browser.
+    //
+    // That something is .github/workflows/mirror-rss.yml, which fetches every feed on a schedule
+    // and publishes the raw XML alongside the app, so the browser reads it same-origin. The
+    // alternative -- borrowing a public CORS proxy -- is what broke web news three times over
+    // (corsproxy.io went commercial and answers 401; allorigins answers 522 with no CORS header),
+    // and it put every reader's RSS traffic through a stranger's server. This depends on nothing
+    // but the site itself.
+    val id = RssProvider.ALL_PROVIDERS.firstOrNull { it.url == url }?.id
+    if (id != null && RSS_MIRROR_BASE.isNotBlank()) {
+        return listOf("$RSS_MIRROR_BASE/$id.xml")
+    }
+    // No mirror configured, or a feed that predates one. The direct request will fail CORS, but
+    // failing visibly beats quietly reporting an empty feed.
+    return listOf(url)
 }
-
-@JsName("encodeURIComponent")
-private external fun encodeURIComponent(str: String): String
