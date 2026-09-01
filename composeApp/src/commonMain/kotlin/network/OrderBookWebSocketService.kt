@@ -152,7 +152,11 @@ class OrderBookWebSocketService {
                             "OrderBookWebSocket: Connection cancelled for $symbol"
                         }
                         break
-                    } catch (e: Exception) {
+                    } catch (e: Throwable) {
+                        // Throwable, not Exception: Ktor's JS/Wasm engine reports a failed
+                        // connection as kotlin.Error, which is a Throwable but not an Exception.
+                        // Letting it escape would kill this reconnect loop for good, so the socket
+                        // would never come back. See NewsService.fetchRSSFeed.
                         isConnected = false
                         needsReconnect = false
                         if (isActive) {

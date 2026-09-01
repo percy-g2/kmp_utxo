@@ -220,7 +220,9 @@ class HyperliquidService {
                 }
             } catch (e: CancellationException) {
                 throw e
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
+                // Throwable, not Exception — Ktor's JS/Wasm engine throws kotlin.Error on a failed
+                // request. See NewsService.fetchRSSFeed.
                 if (attempt == MAX_RETRIES - 1) {
                     AppLogger.logger.e(throwable = e) { "Hyperliquid info ($label) request failed" }
                     return null

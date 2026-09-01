@@ -112,7 +112,11 @@ class TickerWebSocketService {
                         isConnected = false
                         AppLogger.logger.d { "TickerWebSocket: Connection cancelled for $symbol" }
                         break
-                    } catch (e: Exception) {
+                    } catch (e: Throwable) {
+                        // Throwable, not Exception: Ktor's JS/Wasm engine reports a failed
+                        // connection as kotlin.Error, which is a Throwable but not an Exception.
+                        // Letting it escape would kill this reconnect loop for good, so the socket
+                        // would never come back. See NewsService.fetchRSSFeed.
                         isConnected = false
                         if (isActive) {
                             AppLogger.logger.e(throwable = e) { 

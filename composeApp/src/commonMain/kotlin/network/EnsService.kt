@@ -69,7 +69,9 @@ class EnsService {
             }
         } catch (e: CancellationException) {
             throw e
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
+            // Throwable, not Exception — Ktor's JS/Wasm engine throws kotlin.Error on a failed
+            // request. See NewsService.fetchRSSFeed.
             AppLogger.logger.e(throwable = e) { "ENS: resolve failed for $address" }
             EnsResult.Failed
         }

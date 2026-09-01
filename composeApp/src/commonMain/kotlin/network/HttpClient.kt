@@ -14,6 +14,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.atomicfu.atomic
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -107,7 +108,12 @@ class HttpClient {
                     }
                     else -> return emptyList()
                 }
-            } catch (e: Exception) {
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Throwable) {
+                // Throwable, not Exception: Ktor's JS/Wasm engine reports a failed request as
+                // `kotlin.Error("Fail to fetch")`, and kotlin.Error is a Throwable that is NOT an
+                // Exception. See NewsService.fetchRSSFeed for the full explanation.
                 if (attempt == maxRetries - 1) {
                     AppLogger.logger.e(throwable = e) { "Failed to fetch UI klines for symbol $symbol after $maxRetries attempts" }
                     return emptyList()
@@ -135,7 +141,9 @@ class HttpClient {
                     json.decodeFromString<MarginSymbols>(response.bodyAsText())
                 } else null
             }
-        } catch (e: Exception) {
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Throwable) {
             AppLogger.logger.e(throwable = e) { "Error fetching margin symbols" }
             null
         }
@@ -194,7 +202,9 @@ class HttpClient {
                 AppLogger.logger.w { "Binance API returned status ${response.status} for symbol $symbol: ${responseText.take(200)}" }
                 null
             }
-        } catch (e: Exception) {
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Throwable) {
             AppLogger.logger.e(throwable = e) { "Error fetching ticker for symbol $symbol" }
             null
         }
