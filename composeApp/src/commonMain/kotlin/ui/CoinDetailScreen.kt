@@ -28,6 +28,7 @@ import androidx.compose.material.icons.automirrored.filled.Article
 import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -124,6 +125,10 @@ import utxo.composeapp.generated.resources.label_trading_information
 import utxo.composeapp.generated.resources.label_volume
 import utxo.composeapp.generated.resources.label_weighted_avg
 import utxo.composeapp.generated.resources.latest_news
+import utxo.composeapp.generated.resources.news_partial_failure
+import utxo.composeapp.generated.resources.news_retry
+import utxo.composeapp.generated.resources.news_unavailable
+import utxo.composeapp.generated.resources.news_unavailable_hint
 import utxo.composeapp.generated.resources.no_news_available
 import utxo.composeapp.generated.resources.no_news_available_hint
 import utxo.composeapp.generated.resources.no_news_providers_selected
@@ -210,8 +215,6 @@ fun CoinDetailScreen(
     LaunchedEffect(symbol, enabledProvidersKey, settingsLoaded) {
         if (!settingsLoaded) return@LaunchedEffect
         AppLogger.logger.d { "CoinDetailScreen: LaunchedEffect triggered - symbol: $symbol, providers: $enabledProviders, key: $enabledProvidersKey" }
-        // Always clear cache first to ensure we fetch fresh data with correct providers
-        viewModel.clearCache()
         // Use a local copy to ensure we're using the correct providers
         val providersToUse = enabledProviders.toSet()
         AppLogger.logger.d { "CoinDetailScreen: About to call loadCoinData with providers: $providersToUse" }
@@ -449,11 +452,71 @@ fun CoinDetailScreen(
                                     }
                                 }
 
-                                // Show empty state only if no news and no providers loading
-                                if (state.news.isEmpty()
-                                    && state.loadingNewsProviders.isEmpty()
-                                    && !state.isLoadingNews
-                                ) {
+                                // Nothing conclusive to show until every provider has reported.
+                                val newsSettled =
+                                    state.loadingNewsProviders.isEmpty() && !state.isLoadingNews
+                                val failedCount = state.failedNewsProviders.size
+
+                                if (newsSettled && state.news.isEmpty() && failedCount > 0) {
+                                    // Every source we asked was unreachable. That is a broken
+                                    // transport, not a quiet news day, and the two used to render
+                                    // identically — which is exactly how a total CORS outage on the
+                                    // web build stayed invisible. Say so, and offer a way out.
+                                    item {
+                                        Box(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(32.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Column(
+                                                horizontalAlignment = Alignment.CenterHorizontally,
+                                                verticalArrangement = Arrangement.Center
+                                            ) {
+                                                Icon(
+                                                    imageVector = Icons.Default.CloudOff,
+                                                    contentDescription = null,
+                                                    modifier = Modifier
+                                                        .size(64.dp)
+                                                        .padding(bottom = 16.dp),
+                                                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                        alpha = 0.6f
+                                                    )
+                                                )
+                                                Text(
+                                                    text = stringResource(Res.string.news_unavailable),
+                                                    style = MaterialTheme.typography.titleMedium,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                    textAlign = TextAlign.Center
+                                                )
+                                                Text(
+                                                    text = stringResource(Res.string.news_unavailable_hint),
+                                                    style = MaterialTheme.typography.bodyMedium,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                        alpha = 0.7f
+                                                    ),
+                                                    modifier = Modifier.padding(top = 8.dp),
+                                                    textAlign = TextAlign.Center
+                                                )
+                                                TextButton(
+                                                    onClick = {
+                                                        viewModel.refresh(symbol, enabledProviders, aiApiToken)
+                                                    },
+                                                    modifier = Modifier.padding(top = 8.dp)
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Refresh,
+                                                        contentDescription = null,
+                                                        modifier = Modifier.size(18.dp)
+                                                    )
+                                                    Spacer(modifier = Modifier.width(8.dp))
+                                                    Text(text = stringResource(Res.string.news_retry))
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else if (newsSettled && state.news.isEmpty()) {
+                                    // Every feed was read fine; none of them mentioned this coin.
                                     item {
                                         Box(
                                             modifier = Modifier
@@ -492,6 +555,26 @@ fun CoinDetailScreen(
                                                 )
                                             }
                                         }
+                                    }
+                                } else if (newsSettled && failedCount > 0) {
+                                    // Some feeds landed and some did not: the list above is real but
+                                    // incomplete, so note it rather than passing it off as the lot.
+                                    item {
+                                        Text(
+                                            text = stringResource(
+                                                Res.string.news_partial_failure,
+                                                failedCount,
+                                                enabledProviders.size
+                                            ),
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                alpha = 0.7f
+                                            ),
+                                            textAlign = TextAlign.Center,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(horizontal = 16.dp, vertical = 12.dp)
+                                        )
                                     }
                                 }
                             }

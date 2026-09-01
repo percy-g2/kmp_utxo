@@ -19,6 +19,7 @@ import model.Ticker24hr
 import network.AiInsightCache
 import network.AiInsightService
 import network.CoinContextCache
+import network.NewsFetchResult
 import network.NewsService
 import network.OrderBookWebSocketService
 import network.TickerWebSocketService
@@ -33,6 +34,9 @@ data class CoinDetailState(
     val isLoadingTicker: Boolean = false,
     val isLoadingNews: Boolean = false,
     val loadingNewsProviders: Set<String> = emptySet(),
+    /** Providers whose feed could not be reached at all, as opposed to ones that simply had
+     *  nothing about this coin. Drives the news error state in CoinDetailScreen. */
+    val failedNewsProviders: Set<String> = emptySet(),
     val news: List<NewsItem> = emptyList(),
     val ticker: Ticker24hr? = null,
     val orderBookData: OrderBookData? = null,
@@ -201,9 +205,9 @@ class CoinDetailViewModel : ViewModel() {
                     .map { provider ->
                         async {
                             try {
-                                val news = newsService.fetchNewsFromProvider(provider, symbol)
-
-                                val isFailure = news.isEmpty()
+                                val result = newsService.fetchNewsFromProvider(provider, symbol)
+                                val news = (result as? NewsFetchResult.Success)?.items.orEmpty()
+                                val failed = result is NewsFetchResult.Failed
 
                                 updateNewsState { currentState ->
                                     val updatedNews = if (news.isNotEmpty()) {
@@ -231,20 +235,33 @@ class CoinDetailViewModel : ViewModel() {
 
                                     currentState.copy(
                                         news = updatedNews,
-                                        loadingNewsProviders = currentState.loadingNewsProviders - provider.id
+                                        loadingNewsProviders = currentState.loadingNewsProviders - provider.id,
+                                        failedNewsProviders = if (failed) {
+                                            currentState.failedNewsProviders + provider.id
+                                        } else {
+                                            currentState.failedNewsProviders
+                                        }
                                     )
                                 }
 
-                                if (isFailure) {
-                                    AppLogger.logger.w { "CoinDetailViewModel: Provider ${provider.name} returned no news items" }
+                                if (failed) {
+                                    AppLogger.logger.w { "CoinDetailViewModel: Provider ${provider.name} could not be reached" }
+                                } else if (news.isEmpty()) {
+                                    AppLogger.logger.d { "CoinDetailViewModel: Provider ${provider.name} had nothing matching $symbol" }
                                 }
 
                                 news
-                            } catch (e: Exception) {
+                            } catch (e: kotlinx.coroutines.CancellationException) {
+                                throw e
+                            } catch (e: Throwable) {
+                                // Throwable, not Exception — Ktor's JS/Wasm engine reports a failed
+                                // fetch as kotlin.Error, which would otherwise tear down this whole
+                                // load job and leave the shimmers spinning forever.
                                 AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading news from ${provider.name}" }
                                 updateNewsState { currentState ->
                                     currentState.copy(
-                                        loadingNewsProviders = currentState.loadingNewsProviders - provider.id
+                                        loadingNewsProviders = currentState.loadingNewsProviders - provider.id,
+                                        failedNewsProviders = currentState.failedNewsProviders + provider.id
                                     )
                                 }
                                 emptyList()
@@ -261,7 +278,7 @@ class CoinDetailViewModel : ViewModel() {
             state.value.news
         } catch (e: kotlinx.coroutines.CancellationException) {
             throw e
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             AppLogger.logger.e(throwable = e) { "CoinDetailViewModel: Error loading news for $symbol" }
             state.update {
                 it.copy(
@@ -279,7 +296,6 @@ class CoinDetailViewModel : ViewModel() {
         aiApiToken: String = currentApiToken
     ) {
         viewModelScope.launch {
-            newsService.clearCache()
             loadCoinData(symbol, enabledRssProviders, aiApiToken, forceInsight = true)
         }
     }
@@ -393,12 +409,6 @@ class CoinDetailViewModel : ViewModel() {
                     it.copy(isLoadingInsight = false, insightError = result.message)
                 }
             }
-        }
-    }
-
-    fun clearCache() {
-        viewModelScope.launch {
-            newsService.clearCache()
         }
     }
 

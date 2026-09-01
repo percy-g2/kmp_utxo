@@ -67,6 +67,10 @@
     <string name="no_news_available_hint">Try refreshing or check back later</string>
     <string name="no_news_providers_selected">No news sources selected</string>
     <string name="no_news_providers_selected_hint">Enable news sources in Settings to see news</string>
+    <string name="news_unavailable">Couldn't load news</string>
+    <string name="news_unavailable_hint">All selected news sources failed to respond. Check your connection and try again.</string>
+    <string name="news_retry">Retry</string>
+    <string name="news_partial_failure">%1$d of %2$d news sources unavailable</string>
     <string name="price_information">Price Information</string>
     <string name="current_price">Current Price</string>
     <string name="label_last_price">Last Price</string>

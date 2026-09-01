@@ -1,0 +1,101 @@
+# Mirrors the app's RSS feeds into the published site.
+#
+# The web build runs in a browser, and none of the publishers send an
+# Access-Control-Allow-Origin header, so the browser is not allowed to read their feeds directly.
+# Something has to fetch them outside the browser. This workflow is that something: it pulls every
+# feed on a schedule and commits the raw XML to gh-pages under rss/, so the app can read
+# rss/<provider-id>.xml same-origin -- no CORS proxy, no third-party service, nothing to sign up for.
+#
+# The feed list is read straight out of RssProvider.kt so it cannot drift from the app.
+name: Mirror RSS feeds
+
+on:
+  schedule:
+    # Every 15 minutes. GitHub runs cron on a best-effort basis and delays it under load, so treat
+    # this as "roughly every 15-40 minutes" rather than a guarantee.
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+# Never let two mirror runs push to gh-pages at once.
+concurrency:
+  group: mirror-rss
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    name: Fetch and publish feeds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Fetch feeds
+        run: |
+          set -uo pipefail
+          mkdir -p rss-out
+
+          # id + url pairs, parsed from the app's own provider list.
+          PROVIDERS=$(grep -oE 'RssProvider\("[^"]+", "[^"]+", "[^"]+"\)' \
+            composeApp/src/commonMain/kotlin/model/RssProvider.kt \
+            | sed -E 's/RssProvider\("([^"]+)", "[^"]+", "([^"]+)"\)/\1 \2/')
+
+          if [ -z "$PROVIDERS" ]; then
+            echo "::error::Could not parse any providers out of RssProvider.kt"
+            exit 1
+          fi
+
+          TOTAL=0
+          OK=0
+          while read -r ID URL; do
+            [ -z "$ID" ] && continue
+            TOTAL=$((TOTAL + 1))
+            echo "--- $ID <- $URL"
+
+            if ! curl -fsSL --max-time 45 --retry 2 --retry-delay 3 \
+                 -A 'UTXO-RSS-Mirror/1.0 (+https://github.com/${{ github.repository }})' \
+                 -H 'Accept: application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.8' \
+                 -o "rss-out/$ID.xml.tmp" "$URL"; then
+              echo "::warning::$ID: fetch failed, keeping the previously mirrored copy"
+              rm -f "rss-out/$ID.xml.tmp"
+              continue
+            fi
+
+            # Only publish something that actually looks like a feed. A challenge page or an error
+            # body would otherwise overwrite a good mirror with junk that parses to zero items.
+            if ! grep -qE '<item[ >]|<entry[ >]' "rss-out/$ID.xml.tmp"; then
+              echo "::warning::$ID: response has no <item>/<entry>, keeping the previously mirrored copy"
+              rm -f "rss-out/$ID.xml.tmp"
+              continue
+            fi
+
+            mv "rss-out/$ID.xml.tmp" "rss-out/$ID.xml"
+            OK=$((OK + 1))
+            echo "    ok ($(grep -c '<item[ >]' "rss-out/$ID.xml" || true) items, $(wc -c < "rss-out/$ID.xml") bytes)"
+          done <<< "$PROVIDERS"
+
+          echo "Mirrored $OK/$TOTAL feeds."
+          # One flaky publisher must not fail the run -- the previous copy stays live. All of them
+          # failing means something systemic (parsing broke, runner has no egress) and should be loud.
+          if [ "$OK" -eq 0 ]; then
+            echo "::error::Every feed failed to mirror"
+            exit 1
+          fi
+
+      - name: Publish to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
+        with:
+          branch: gh-pages
+          folder: rss-out
+          target-folder: rss
+          # clean:false so a feed we skipped this run keeps its last good copy, and so nothing
+          # outside rss/ is touched. single-commit keeps this branch from growing an entry every
+          # 15 minutes forever.
+          clean: false
+          single-commit: true
+          commit-message: 'chore(rss): refresh mirrored feeds'
+          token: ${{ secrets.ACTIONS_DEPLOY_KEY || secrets.GITHUB_TOKEN }}

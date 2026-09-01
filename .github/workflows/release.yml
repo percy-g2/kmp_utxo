@@ -385,6 +385,11 @@ jobs:
           BRANCH: gh-pages
           FOLDER: composeApp/build/dist/wasmJs/productionExecutable
           CLEAN: true
+          # rss/ is published by mirror-rss.yml, not by this build, so CLEAN must not sweep it away.
+          # Note the hyphen: this action's input is `clean-exclude`, and `CLEAN_EXCLUDE` silently
+          # would not bind.
+          clean-exclude: |
+            rss/**
           TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
 
       - name: Package web distribution
