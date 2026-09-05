@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    >
+
+<channel>
+    <title>The Block</title>
+    <link>https://www.theblock.co</link>
+    <atom:link href="https://www.theblock.co/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.theblock.co/rss.xml?paged=2" rel="next" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+    <description>The Block features breaking Crypto news about Bitcoin, Blockchain, Web3, and DeFi from the web&#039;s most reliable source.</description>
+    <lastBuildDate>Sat, 05 Sep 2026 20:14:33 +0000</lastBuildDate>
+    <language>en-US</language>
+    <copyright>© 2026 THE BLOCK</copyright>
+    <generator>TheBlock</generator>
+    <ttl>5</ttl>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+        <url>https://www.tbstat.com/wp/uploads/2024/03/the-block-logo-wordmark-black.png</url>
+        <title>The Block</title>
+        <link>https://www.theblock.co</link>
+    </image>
+        <item>
+        <title><![CDATA[UBS, Jane Street among firms with combined $75 million in Hyperliquid ETF holdings: Bloomberg]]></title>
+        <link>https://www.theblock.co/news/defi/2026-09-05-ubs-jane-street-among-firms-with-combined-75-million-in-hyperliquid-etf-holdings-bloomberg-413616</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2026/04/20260410_Hyperliquid_News-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">5f2fa51b-690c-509a-97ba-5bfd8f699198</guid>
+        <pubDate>Sat, 05 Sep 2026 20:02:08 +0000</pubDate>
+            <description><![CDATA[Brazil's Wealth High Governance Asset Management held about $24 million worth of 21Shares' HYPE fund as of the end of June, the top HYPE ETF holder.]]></description>            <dc:creator><![CDATA[Zack Abrams]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/defi"><![CDATA[DeFi]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[LeBron James teases Polymarket partnership in new social media video]]></title>
+        <link>https://www.theblock.co/news/deals/2026-09-05-lebron-james-teases-polymarket-partnership-in-new-social-media-video-413608</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2024/11/20241111_Polymarket_News_2-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">f654a696-5a94-5503-9bd6-5a30b4e4d630</guid>
+        <pubDate>Sat, 05 Sep 2026 14:01:40 +0000</pubDate>
+            <description><![CDATA[The announcement comes after James' free agency decision generated $273 million in prediction market volume across platforms.]]></description>            <dc:creator><![CDATA[Zack Abrams]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/deals"><![CDATA[Deals]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[President Trump says he wants Hyperliquid to enter the US — here’s how it could happen]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-04-trump-wants-hyperliquid-enter-us-how-it-could-happen-413594</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/06/20250602_Trump_News_4-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">72535f1d-d6bd-5099-807f-56ce1844cd45</guid>
+        <pubDate>Fri, 04 Sep 2026 18:35:21 +0000</pubDate>
+            <description><![CDATA[President Trump says his administration is working to bring Hyperliquid into the U.S., raising a deceptively simple question: How?]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/policy-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="tag"><![CDATA[CFTC]]></category>
+		<category domain="tag"><![CDATA[Donald Trump]]></category>
+		<category domain="tag"><![CDATA[SEC]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Zcash tops $1,000 as ETF inflows ramp up and miners pile in]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-04-zcash-tops-1000-etf-inflows-ramp-up-miners-pile-in-413580</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/12/20251202_ZCash_News_2-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">cc2dda2d-a089-528a-9c30-51d2d1d6e249</guid>
+        <pubDate>Fri, 04 Sep 2026 16:59:34 +0000</pubDate>
+            <description><![CDATA[Grayscale's ZCSH inflows climb as surging network competition cuts into miners’ gains from the ZEC token's rally.]]></description>            <dc:creator><![CDATA[Kyle Baird]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/infrastructure"><![CDATA[Infrastructure]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="tag"><![CDATA[Mining]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Ripple expands college sports push with XRP partnership at Florida]]></title>
+        <link>https://www.theblock.co/news/business/2026-09-04-ripple-college-sports-push-xrp-partnership-florida-gators-413576</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2026/01/20260108_XRP_News-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">d311124e-88f5-592f-b982-ed9c5470bf08</guid>
+        <pubDate>Fri, 04 Sep 2026 15:37:17 +0000</pubDate>
+            <description><![CDATA[The XRP logo will be featured on the field at Ben Hill Griffin Stadium, as well as across Florida Athletics’ digital properties and events.]]></description>            <dc:creator><![CDATA[Jason Shubnell]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/deals"><![CDATA[Deals]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[XRP]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Trezor says ShipMonk breach affected another 67,000 customers]]></title>
+        <link>https://www.theblock.co/news/business/2026-09-04-trezor-says-shipmonk-breach-affected-another-67000-customers-413540</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2023/02/20230222_Trezor-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">c3dabf5c-e3fa-5de6-ba56-0ee170603205</guid>
+        <pubDate>Fri, 04 Sep 2026 12:03:16 +0000</pubDate>
+            <description><![CDATA[The newly identified records date from 2019 to 2021 and include names, emails, phone numbers, shipping addresses, and order numbers.]]></description>            <dc:creator><![CDATA[James Hunt]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/tech"><![CDATA[Tech]]></category>
+		<category domain="tag"><![CDATA[Hardware]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[El Salvador has not used public funds to accumulate bitcoin since June 2025, IMF says]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-04-el-salvador-has-not-used-public-funds-to-accumulate-bitcoin-since-june-2025-imf-says-413535</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2022/02/20220214_El-Salvador_Bitcoin-1200x675.png" type="image/*" medium="image"/>        <guid isPermaLink="false">7f690b92-cf4e-5d68-acfa-4b9b4cc80a29</guid>
+        <pubDate>Fri, 04 Sep 2026 11:28:46 +0000</pubDate>
+            <description><![CDATA[IMF says El Salvador used no public funds for bitcoin accumulation since June 2025, with purchases coming from private donations.]]></description>            <dc:creator><![CDATA[Brian Danga]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Crypto firms urge SEC to speed ETF reviews and allow confidential draft filings]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-04-crypto-firms-urge-sec-to-speed-etf-reviews-and-allow-confidential-draft-filings-413532</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/04/20250414_SEC_News-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">0c101622-30c9-59e2-9656-086135289a71</guid>
+        <pubDate>Fri, 04 Sep 2026 11:21:09 +0000</pubDate>
+            <description><![CDATA[In contrast, Jane Street and Charles Schwab raised concerns over rushed ETF launches and confidential filings limiting market scrutiny.]]></description>            <dc:creator><![CDATA[James Hunt]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="tag"><![CDATA[SEC]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Andreessen Horowitz-backed OpenReserve secures preliminary OCC approval for national bank charter]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-04-andreessen-horowitz-backed-openreserve-secures-preliminary-occ-approval-for-national-bank-charter-413528</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2021/01/occ-scaled-e1772072708836-1198x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">865a5223-2843-5a15-8895-62dc335cf27b</guid>
+        <pubDate>Fri, 04 Sep 2026 10:18:40 +0000</pubDate>
+            <description><![CDATA[OpenReserve Holdings received preliminary OCC approval for a national bank focused on onchain settlement, following a $25 million seed round.]]></description>            <dc:creator><![CDATA[Brian Danga]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/deals"><![CDATA[Deals]]></category>
+		<category domain="https://www.theblock.co/category/finance-firms"><![CDATA[Finance firms]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="tag"><![CDATA[Crypto Banks and Lenders]]></category>
+		<category domain="tag"><![CDATA[OCC]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[South Korea to start tokenizing ‘all types’ of securities in three stages from 2027]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-04-south-korea-to-start-tokenizing-all-types-of-securities-in-three-stages-from-2027-413523</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2024/02/20240220_SouthKorea_News-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">70050b58-2417-5cab-a51a-0fd90a6d5986</guid>
+        <pubDate>Fri, 04 Sep 2026 09:46:06 +0000</pubDate>
+            <description><![CDATA[South Korea ultimately aims to allow participants to settle tokenized securities onchain with stablecoins, as part of a three-stage plan.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[US bitcoin ETFs report the largest inflow day since January, worth $731 million]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-04-us-bitcoin-etfs-largest-inflow-day-since-january-413515</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2023/10/20231019_NewBitcoinCity_News4-1200x675.png" type="image/*" medium="image"/>        <guid isPermaLink="false">1ffa6d06-3cf5-5319-94b0-dbb04e3f3184</guid>
+        <pubDate>Fri, 04 Sep 2026 08:47:05 +0000</pubDate>
+            <description><![CDATA[Analysts attributed Fed Governor Christopher Waller’s dovish comments to the significant inflow of capital into bitcoin products.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/funds"><![CDATA[Funds]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="tag"><![CDATA[Bitcoin ETF]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[AMC stock jumps 21% overnight as CEO slams Robinhood over ‘outrageous’ tokenized shares]]></title>
+        <link>https://www.theblock.co/news/business/2026-09-04-amc-ceo-slams-robinhood-413513</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/12/20251208_Robinhood_News-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">652598fb-4972-5d88-b776-4de30e23848c</guid>
+        <pubDate>Fri, 04 Sep 2026 07:59:34 +0000</pubDate>
+            <description><![CDATA[OpenAI had previously made a similar criticism of Robinhood’s tokenized equities, saying it did not approve the transfer of its shares.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/exchanges"><![CDATA[Exchanges]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/companies-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/public-equities"><![CDATA[Public Equities]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[Robinhood]]></category>
+		<category domain="tag"><![CDATA[Vlad Tenev]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Coinbase seeks SEC greenlight to list equity perpetuals]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-03-coinbase-seeks-sec-greenlight-to-list-24-7-equity-perpetuals-413487</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2026/06/20260612_Coinbase_News_2-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">07580ac5-4cc6-5ec6-9962-4459eb14ce10</guid>
+        <pubDate>Thu, 03 Sep 2026 20:46:52 +0000</pubDate>
+            <description><![CDATA[Coinbase, the largest U.S. based crypto exchange, is seeking to list equity products as perpetual gain momentum.]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/exchanges"><![CDATA[Exchanges]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/public-equities"><![CDATA[Public Equities]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="tag"><![CDATA[Coinbase]]></category>
+		<category domain="tag"><![CDATA[SEC]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Crypto market cap surges to $2.82 trillion as Zcash leads rally alongside stocks]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-03-crypto-market-cap-surges-2-82-trillion-zcash-leads-rally-alongside-stocks-413478</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2023/10/20231011_cryptocurrency_news2-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">77615529-5d94-53a2-9eef-ad2f6d1d5c44</guid>
+        <pubDate>Thu, 03 Sep 2026 20:09:25 +0000</pubDate>
+            <description><![CDATA[Crypto and related stocks like Strategy rallied as bitcoin topped $80,000 and Fed rate expectations remained split.]]></description>            <dc:creator><![CDATA[Kyle Baird]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/central-bank"><![CDATA[Central Banks]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/equities"><![CDATA[Equities]]></category>
+		<category domain="https://www.theblock.co/category/market-updates"><![CDATA[Market Updates]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/public-equities"><![CDATA[Public Equities]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[Cardano]]></category>
+		<category domain="tag"><![CDATA[Crypto]]></category>
+		<category domain="tag"><![CDATA[Equity Movers]]></category>
+		<category domain="tag"><![CDATA[Federal Reserve]]></category>
+		<category domain="tag"><![CDATA[Strategy]]></category>
+		<category domain="tag"><![CDATA[XRP]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Revolut takes ‘important’ step toward becoming a US bank with conditional OCC approval]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-03-revolut-takes-important-step-toward-becoming-a-us-bank-with-conditional-occ-approval-413474</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2022/11/20221118_Revolut-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">c4b258c9-0ec6-50ac-b590-d06376515321</guid>
+        <pubDate>Thu, 03 Sep 2026 18:23:44 +0000</pubDate>
+            <description><![CDATA[Revolut says it has received preliminary approval from a key U.S. banking regulator as it seeks to become a bank in the country.]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="tag"><![CDATA[OCC]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Strive CEO says company could end 2026 as second-largest public bitcoin holder as ASST climbs]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-03-strive-ceo-company-could-end-2026-second-largest-bitcoin-holder-asst-413455</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2024/05/20240513_Bitcoin_News_10-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">e3a1f14f-f182-5fb1-9898-87526e496661</guid>
+        <pubDate>Thu, 03 Sep 2026 16:27:35 +0000</pubDate>
+            <description><![CDATA[Strive shares climbed to a year-to-date high of $26.84 on Thursday, placing the stock less than 1% below the warrants’ exercise price.]]></description>            <dc:creator><![CDATA[Kyle Baird]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Stablecoin payments infrastructure startup Diameter Pay raises $10 million]]></title>
+        <link>https://www.theblock.co/news/deals/2026-09-03-diameter-pay-funding-stablecoin-payments-infrastructure-413454</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/04/20250411_Funding_News_3-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">b7fc8a4f-0267-526f-95b6-7d8eaad5fdea</guid>
+        <pubDate>Thu, 03 Sep 2026 16:00:03 +0000</pubDate>
+            <description><![CDATA[Diameter Pay has raised $10 million in a Series A funding round co-led by CMT Digital and Lightspeed Faction.]]></description>            <dc:creator><![CDATA[Yogita Khatri]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/deals"><![CDATA[Deals]]></category>
+		<category domain="https://www.theblock.co/category/finance-firms"><![CDATA[Finance firms]]></category>
+		<category domain="https://www.theblock.co/category/venture-capital"><![CDATA[Venture Capital]]></category>
+		<category domain="tag"><![CDATA[exclusive]]></category>
+		<category domain="tag"><![CDATA[Payments]]></category>
+		<category domain="tag"><![CDATA[Series A]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[SoFi, Payward agree to link banking network with Kraken infrastructure]]></title>
+        <link>https://www.theblock.co/news/business/2026-09-03-sofi-payward-agree-to-link-banking-network-with-kraken-infrastructure-413432</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2019/06/sofi-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">ad7e01f1-ccae-5f09-94bd-92054a84d3b4</guid>
+        <pubDate>Thu, 03 Sep 2026 12:52:54 +0000</pubDate>
+            <description><![CDATA[SoFi Technologies partnered with Payward to connect its banking settlement network with Kraken's digital-asset infrastructure.]]></description>            <dc:creator><![CDATA[Brian Danga]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/deals"><![CDATA[Deals]]></category>
+		<category domain="https://www.theblock.co/category/exchanges"><![CDATA[Exchanges]]></category>
+		<category domain="https://www.theblock.co/category/finance-firms"><![CDATA[Finance firms]]></category>
+		<category domain="tag"><![CDATA[Crypto Banks and Lenders]]></category>
+		<category domain="tag"><![CDATA[Kraken]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Bitcoin-gold correlation hits six-year high, but analysts question whether equity decoupling will last]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-03-bitcoin-gold-correlation-hits-six-year-high-but-analysts-question-whether-equity-decoupling-will-last-413437</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2019/10/shutterstock_703031917-1-e1769511163397-1198x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">2d7deb34-2547-5da2-a5e5-1a650f4640bd</guid>
+        <pubDate>Thu, 03 Sep 2026 11:01:46 +0000</pubDate>
+            <description><![CDATA[Glassnode is less convinced by bitcoin's recent divergence from U.S. equities, saying similar moves have previously been short-lived.]]></description>            <dc:creator><![CDATA[James Hunt]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/equities"><![CDATA[Equities]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[Analyst Reports]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Michigan court orders Kalshi to keep blocking sports prediction markets]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-03-michigan-court-orders-kalshi-sports-prediction-markets-413422</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/09/20250917_Kalshi_News-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">e0836009-0ec8-5236-8366-16b134725cad</guid>
+        <pubDate>Thu, 03 Sep 2026 04:30:32 +0000</pubDate>
+            <description><![CDATA[The injunction converts a temporary restraining order issued in June, and violations would result in a fine of $500,000 per day.]]></description>            <dc:creator><![CDATA[Timmy Shen]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+    </channel>
+</rss>

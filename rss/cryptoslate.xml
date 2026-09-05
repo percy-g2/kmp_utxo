@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Sat, 05 Sep 2026 15:11:02 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Users exposed by Trezor breach grows sixfold after supposedly deleted shipping logs are found</title>
+		<link>https://cryptoslate.com/users-exposed-by-trezor-breach-grows-sixfold-after-supposedly-deleted-shipping-logs-are-found/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 19:00:02 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Hacks]]></category>
+		<category><![CDATA[Privacy]]></category>
+		<category><![CDATA[Wallets]]></category>
+		<category><![CDATA[Trezor]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=560573</guid>
+
+					<description><![CDATA[<p>The larger disclosure implies roughly 80,689 affected customers, though no combined total or row-level overlap check is public.</p>
+<p>The post <a href="https://cryptoslate.com/users-exposed-by-trezor-breach-grows-sixfold-after-supposedly-deleted-shipping-logs-are-found/">Users exposed by Trezor breach grows sixfold after supposedly deleted shipping logs are found</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Hardware wallet maker Trezor says a breach at logistics provider ShipMonk exposed contact and order data for another approximately 67,000 U.S. customers after years-old records remained in the vendor's systems despite written deletion assurances.</p>
+<p>The <a href="https://trezor.io/blog/news/recent-customer-data-exposed-in-shipping-provider-incident">Sept. 4 update</a> expands an incident Trezor initially said affected 13,689 people. The two disclosed groups imply a total of roughly 80,689, although Trezor has not issued a single combined figure or published underlying data showing whether the groups overlap. Its use of &#8220;another&#8221; indicates that it considers the new records additional to the original cohort.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-ae131bcf-f8ec-44d0-beb8-ffd383b04dcd.png" target="_blank" rel="noopener"><img fetchpriority="high" decoding="async" class="aligncenter wp-image-560577" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-ae131bcf-f8ec-44d0-beb8-ffd383b04dcd.png" alt="Infographic showing Trezor's Aug. 13 disclosure of 13,689 affected customers, another approximately 67,000 disclosed on Sept. 4, the retained 2019 to 2021 order period, exposed contact and shipping fields, and systems and wallet secrets not compromised." width="720" height="900" /></a></p>
+<p>The newly disclosed records cover U.S. orders from November 2019 through August 2021 and include names, email addresses, phone numbers, shipping addresses and order numbers. The data can connect an identifiable person and physical location with a hardware-wallet purchase, creating risks beyond a conventional email leak.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/with-violent-crypto-home-invasions-surging-a-data-breach-exposing-over-10000-trezor-owners-puts-physical-safety-on-the-line/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">With violent crypto home invasions surging, a data breach exposing over 10,000 Trezor owners puts physical safety on the line</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Old data outlived a 90-day policy</h2>
+<p>When Trezor first disclosed the breach on Aug. 13, it counted 11,742 customers with full exposure and 1,947 with partial exposure. Trezor's Aug. 13 account said older order data had already been deleted. An Aug. 14 clarification acknowledged that some partially exposed records included older orders.</p>
+<p>The Sept. 4 update reverses that understanding. Trezor said it repeatedly requested and received written assurances that ShipMonk had deleted the data, yet records from 2019 to 2021 remained. Trezor's <a href="https://trezor.io/support/logistics/orders-payments/privacy-policy-at-trezor">published delivery-data policy</a> says customer details should be deleted from both its own and its fulfillment partner's systems after 90 days, with exceptions for ongoing order issues. The assurance letters and their dates have not been made public.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/hardware-wallet-users-rattled-by-rise-in-phishing-emails-pointing-to-fake-tezor-website/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Hardware wallet users rattled by rise in phishing emails pointing to fake Tezor website</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p><a href="https://www.bleepingcomputer.com/news/security/trezor-discloses-data-breach-affecting-nearly-14-000-customers/">BleepingComputer reported</a> that a ShipMonk notification attributed the original unauthorized access to a vulnerability in analytics platform Metabase. <a href="https://www.metabase.com/blog/vulnerability-what-happened">Metabase said</a> the August zero-day could create a session tied to an administrator account and allow bulk table downloads. Once the provider incident was reassessed, the retained historical data expanded the number of Trezor customers known to be exposed.</p>
+<p>The breach did not reach Trezor's wallet systems. The company said its systems, products and services were not compromised and its devices remained secure. The listed exposed fields were contact and order data, not recovery seeds, private keys or wallet funds.</p>
+<p>The risk instead sits around the wallet. Trezor warned that the information could support convincing scam emails, fraudulent calls or letters and potential physical targeting. Its Sept. 4 update did not identify a confirmed downstream attack caused by this dataset, so those outcomes remain risks rather than documented consequences.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/new-ledger-breach-didnt-steal-your-crypto-but-it-exposed-the-one-thing-that-leads-criminals-to-your-door/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Ledger customer data breached including info that leads violent criminals to your door</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Trezor said it emailed every newly affected customer directly and that anyone who did not receive its incident notice was not affected. It urged customers never to share a wallet backup or enter it on a website.</p>
+<p>For hardware-wallet owners, the episode shows that protecting keys does not erase the purchase trail created by fulfillment. A deletion policy offers little protection if a vendor's compliance is not verified.</p>
+<p>The post <a href="https://cryptoslate.com/users-exposed-by-trezor-breach-grows-sixfold-after-supposedly-deleted-shipping-logs-are-found/">Users exposed by Trezor breach grows sixfold after supposedly deleted shipping logs are found</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/trezor-shipping-breach.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/trezor-shipping-breach.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>DAOs are forcing crypto protocols to choose between code and emergency brakes</title>
+		<link>https://cryptoslate.com/daos-are-forcing-crypto-protocols-to-choose-between-code-and-emergency-brakes/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 17:00:09 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[DAOs]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Governance]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=559510</guid>
+
+					<description><![CDATA[<p>Compound is a crypto lending protocol governed by holders who delegate their COMP tokens, a setup known as a decentralized autonomous organization, or DAO. It works like an online republic, with token holders debating proposals, voting, and letting software carry out the result. In July 2024, that republic nearly sent a fortune to a small [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/daos-are-forcing-crypto-protocols-to-choose-between-code-and-emergency-brakes/">DAOs are forcing crypto protocols to choose between code and emergency brakes</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Compound is a crypto lending protocol governed by holders who delegate their COMP tokens, a setup known as a decentralized autonomous organization, or DAO. It works like an online republic, with token holders debating proposals, voting, and letting software carry out the result.</p>
+<p>In July 2024, that republic nearly sent a fortune to a small group of voters. <a href="https://compound.finance/governance/proposals/289">Proposal 289</a> asked Compound to transfer 499,000 COMP, then worth about $24 million, into a yield-bearing vehicle they controlled. Two earlier versions had failed, and the third seemed headed the same way.</p>
+<p>Then, during the final 34 minutes, supporting addresses cast 563,591 votes, equal to 82% of all support for the proposal. The last big block landed eight minutes before the deadline, and <a href="https://cryptoslate.com/compound-finance-faces-scrutiny-over-24million-treasury-allocation/">the measure passed</a> by 682,191 votes to 633,636.</p>
+<p>While this was extremely controversial and remains highly contested, there was no issue with the code, as it worked exactly as intended.</p>
+<p>But that was the problem: the wallets had gathered enough COMP and delegated their voting power before the period closed, but Compound lacked an emergency authority that could pause the software. Several reasonable rules had combined into a convenient path for a treasury raid.</p>
+<p>Compound reached a <a href="https://cryptoslate.com/compound-introduces-new-staking-product-after-controversial-24m-token-allocation/">settlement that canceled the allocation</a> and later added a veto role, placing a brake in the system built around automatic token-holder rule.</p>
+<p>That captures the central DAO dilemma, because most defenses against rushed or hostile votes give somebody more control over participation or the final result.</p>
+<p>Two 2026 studies from the Max Planck Institute for Software Systems and Vrije Universiteit Amsterdam traced a similar problem across 48 large Ethereum DAOs. One examined how <a href="https://arxiv.org/html/2604.25959v1">registration, staking, and delegation concentrate voting power</a>, while the other mapped <a href="https://arxiv.org/html/2607.26204v1">attacks that use valid governance rules</a>.</p>
+<h2>The ballot has a velvet rope</h2>
+<p>Calling a governance token a vote isn't really correct. Depending on the DAO, a holder may need to register a wallet, lock tokens, delegate them, maintain a minimum balance, or pay for an on-chain transaction before they can actually cast that vote.</p>
+<p>Proposals face obstacles of their own, because someone needs enough tokens or delegated support to introduce them in the first place, and the idea may pass through a forum and informal poll before a binding vote on the blockchain or through an off-chain service such as Snapshot.</p>
+<p>Once the tally clears the quorum and approval formula, a smart contract, multisignature wallet, or named person carries the result into effect.</p>
+<p>While each of these gates solves a real problem, it also favors a particular participant or type of participant.</p>
+<p>Proposal thresholds discourage spam and malicious code, but they inadvertently reserve authorship for wealthy holders and established delegates. On-chain voting makes those results enforceable, but transaction fees favor people with enough money and conviction to use it. Free off-chain polls draw a wider crowd, then depend on a smaller group for execution.</p>
+<p>The researchers found an even split: 24 DAOs used on-chain voting and 24 used off-chain systems.</p>
+<p>Uniswap showed how different electorates can form inside the same organization: more wallets joined its free off-chain polls, while much larger blocks of voting power appeared during the paid on-chain phase that could make a proposal binding.</p>
+<p>Turnout is only one small part of this, because a protocol may have thousands of token holders while a few addresses control proposals, votes, and execution. By the time the public tally appears, the rules have already picked the electorate.</p>
+<h2>The security rules pick the ruling class</h2>
+<p>DAOs often keep tokens in treasury contracts, and founding teams or investors may hold allocations that have yet to vest, so registration separates circulating tokens from balances that currently carry voting rights.</p>
+<p>Among the 48 DAOs, 36 required some form of registration, and only four had registered more than half of their outstanding supply. Across those 36 organizations, the average registered share was 21%, meaning the practical electorate usually covered a small fraction of all tokens.</p>
+<p>Much of the missing supply belonged to users whose coins were held by exchanges or deposited into DeFi protocols. Centralized exchanges held more than 10% of outstanding tokens on average across the sample, and DeFi contracts held another 3.5%.</p>
+<p>In 14 registration-based DAOs, those intermediary wallets controlled more tokens than the entire registered electorate.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/compound-introduces-new-staking-product-after-controversial-24m-token-allocation/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Compound introduces new staking product after controversial $24M token allocation</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>That creates a very strange and rather unique custody problem, because an exchange wallet can represent thousands of customers even though the blockchain sees one address with one giant balance.</p>
+<p>Letting the exchange vote turns a custodian into a political heavyweight, while excluding it strips customers of governance rights attached to tokens they paid for. Most DAOs also let one wallet send all its power to a single delegate, which makes splitting votes among the underlying owners difficult.</p>
+<p>Staking tackles a different vulnerability by making voting power expensive to build and slow to unwind. A would-be attacker can buy or borrow a large position, approve a favorable proposal, and sell once the vote ends, while a lock keeps that voter financially exposed to the result for longer.</p>
+<p>Fifteen DAOs required staking, with a median of 27.4% of tokens locked. Some imposed a one- or two-week withdrawal wait, while Curve, Angle, and Frax offered stronger voting power for locks lasting up to four years. The system rewards patience and turns liquid wealth into a prerequisite for political influence.</p>
+<p>Crypto soon produced middlemen for people who wanted influence and the freedom to trade. These services maintain long locks, issue tradable substitutes, and keep the original voting rights. The arrangement concentrated enormous voting blocs inside a few services, according to the researchers’ measurements:</p>
+<div class="group TyagGW_tableContainer TyagGW_tableContainerWithTableOfContents">
+<div class="TyagGW_tableWrapper flex flex-col-reverse w-fit" tabindex="-1">
+<table class="w-fit min-w-(--thread-content-width)" data-start="3151" data-end="3397">
+<thead data-start="3151" data-end="3236">
+<tr data-start="3151" data-end="3236">
+<th class="last:pe-10" data-start="3151" data-end="3157" data-col-size="sm">DAO</th>
+<th class="last:pe-10" data-start="3157" data-end="3189" data-col-size="sm">Service controlling the votes</th>
+<th class="last:pe-10" data-start="3189" data-end="3213" data-col-size="sm">Share of voting power</th>
+<th class="last:pe-10" data-start="3213" data-end="3236" data-col-size="sm">Maximum native lock</th>
+</tr>
+</thead>
+<tbody data-start="3257" data-end="3397">
+<tr data-start="3257" data-end="3291">
+<td data-start="3257" data-end="3265" data-col-size="sm">Curve</td>
+<td data-start="3265" data-end="3274" data-col-size="sm">Convex</td>
+<td data-start="3274" data-end="3280" data-col-size="sm">53%</td>
+<td data-start="3280" data-end="3291" data-col-size="sm">4 years</td>
+</tr>
+<tr data-start="3292" data-end="3325">
+<td data-start="3292" data-end="3299" data-col-size="sm">Frax</td>
+<td data-start="3299" data-end="3308" data-col-size="sm">Convex</td>
+<td data-start="3308" data-end="3314" data-col-size="sm">46%</td>
+<td data-start="3314" data-end="3325" data-col-size="sm">4 years</td>
+</tr>
+<tr data-start="3326" data-end="3362">
+<td data-start="3326" data-end="3334" data-col-size="sm">Angle</td>
+<td data-start="3334" data-end="3345" data-col-size="sm">StakeDAO</td>
+<td data-start="3345" data-end="3351" data-col-size="sm">57%</td>
+<td data-start="3351" data-end="3362" data-col-size="sm">4 years</td>
+</tr>
+<tr data-start="3363" data-end="3397">
+<td data-start="3363" data-end="3374" data-col-size="sm">Balancer</td>
+<td data-start="3374" data-end="3381" data-col-size="sm">Aura</td>
+<td data-start="3381" data-end="3387" data-col-size="sm">65%</td>
+<td data-start="3387" data-end="3397" data-col-size="sm">1 year</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Delegation works the same because most holders have limited appetite for forum arguments about collateral ratios. Handing votes to a professional participant makes sense, and repeated delegation builds durable political blocs.</p>
+<p>The ten largest holders controlled more than half of voting power in 39 of the 48 DAOs, while delegated voting was usually more concentrated than direct voting.</p>
+<p>Registration protects treasury balances, staking makes a quick attack costlier, and delegation gives passive holders a voice through someone who pays attention. Put them together, and the people with the most capital, time, technical fluency, or control over customer assets tend to run the place.</p>
+<h2>A legal DAO vote can still be a raid</h2>
+<p>The second paper defines a governance attack as an actor using the authorized process to win an outcome that harms the wider organization.</p>
+<p>Among 28 DAO incidents, researchers classified 16 as attacks that a different mechanism could have prevented. Six involved contract bugs, while ten depended on buying or borrowing enough tokens to influence a vote.</p>
+<p>Compound is the best example because the wallets associated with Proposal 289 gathered more than 680,000 COMP over four months.</p>
+<p>Researchers traced 563,790 tokens through four centralized exchanges and another 118,089 borrowed through Compound itself, even though those addresses had held <a href="https://cryptoslate.com/guides/what-is-compound-crypto/">only 853 COMP</a> before the buildup and had little history in the protocol's politics.</p>
+<figure id="attachment_560083" aria-describedby="caption-attachment-560083" style="width: 1294px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-560083 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-03-at-09.40.09.png" alt="compound COMP DAO voting" width="1294" height="596" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-03-at-09.40.09.png 1294w, https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-03-at-09.40.09-300x138.png 300w, https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-03-at-09.40.09-1024x472.png 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-03-at-09.40.09-768x354.png 768w" sizes="(max-width: 1294px) 100vw, 1294px" /><figcaption id="caption-attachment-560083" class="wp-caption-text">Wallets associated with the Proposal 289 campaign built a position of more than 682,000 COMP over four months as three treasury proposals moved through Compound governance. Source: <a href="https://arxiv.org/pdf/2607.26204#page=11">Pahari et al</a></figcaption></figure>
+<p>The late burst took advantage of a community that expected the third proposal to fail. Compound could have extended the vote when a large bloc appeared near the deadline, required longer staking, or allowed a trusted council to pause execution.</p>
+<p>Every option would have moved power toward reactive voters, committed holders, locking services, or a small emergency body.</p>
+<p>But Compound chose the emergency brake, and in the 2024 configurations researchers reviewed, seven other DAOs shared its exposure to readily available voting power and late vote accumulation: Uniswap, Radicle, Gitcoin, Silo, Ampleforth, Hop, and Cryptex.</p>
+<p>Those systems can evolve through governance, so the list records a moment in 2024, while a current security rating would require a fresh review.</p>
+<p>Decentralization needs a richer accounting than token distribution alone. A good governance report would show how much supply can vote, how much power the largest delegates control, which intermediaries hold staked tokens, and who can introduce, execute, or veto proposals.</p>
+<p>Smart contract audits already ask whether governance code follows its specification, while a constitutional audit would ask where that specification sends authority.</p>
+<p>DAOs can spread ownership across thousands of wallets and still funnel practical control toward a few dozen professionals, custodians, and large holders, with software that performs flawlessly all the way through.</p>
+<p>The post <a href="https://cryptoslate.com/daos-are-forcing-crypto-protocols-to-choose-between-code-and-emergency-brakes/">DAOs are forcing crypto protocols to choose between code and emergency brakes</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/dao-delegate-throne.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/dao-delegate-throne.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Fed stablecoin research exposes how the same dollar could count twice in M1 or M2</title>
+		<link>https://cryptoslate.com/fed-economists-stablecoin-research-exposes-how-the-same-dollar-could-count-twice-in-m1-or-m2/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 16:45:23 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[federal reserve]]></category>
+		<category><![CDATA[PYUSD]]></category>
+		<category><![CDATA[Tether]]></category>
+		<category><![CDATA[USDC]]></category>
+		<category><![CDATA[USDT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=560536</guid>
+
+					<description><![CDATA[<p>Their staff note makes classification possible in theory, while reserve overlap and offshore circulation block a clean liquidity measure.</p>
+<p>The post <a href="https://cryptoslate.com/fed-economists-stablecoin-research-exposes-how-the-same-dollar-could-count-twice-in-m1-or-m2/">Fed stablecoin research exposes how the same dollar could count twice in M1 or M2</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>A Federal Reserve staff note published Sept. 4 sketches a route for regulated payment stablecoins to enter M1 or the broader M2 money supply. Its accounting framework requires adjustments before gross circulation could enter either measure.</p>
+<p>Payment stablecoins are excluded from the US monetary aggregates today. The new note makes future treatment depend on economic use, alongside adjustments for reserve assets already counted elsewhere and the separation of US circulation from global activity. Otherwise, a larger money-supply figure could partly reflect a new wrapper around dollars the system already measured.</p>
+<p>The distinction matters for anyone using M1 or M2 to judge dollar liquidity. A statistical increase driven by reclassification says little about newly created purchasing power.</p>
+<p>The <a href="https://www.federalreserve.gov/econres/notes/feds-notes/new-forms-of-money-and-the-u-s-monetary-aggregates-20260904.html">note is independent staff research</a>, reflects only its authors' views, and is not part of a Federal Reserve policy deliberation. Existing definitions remain unchanged, and the analysis presents conditional possibilities.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/stablecoins-are-quickly-becoming-the-kevin-warshs-feds-next-policy-problem/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Stablecoins are quickly becoming the Kevin Warsh's Fed's next policy problem</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>How stablecoins could fit, and what could be counted twice</h2>
+<p>M1 is the narrowest official US money measure. It contains currency and highly liquid balances that households and businesses can use for transactions. M2 includes M1 plus less liquid savings-type assets, including small-denomination time deposits and retail money market funds.</p>
+<p>The Fed authors apply that functional split to payment stablecoins. If the coins are used predominantly as a stable store of value or as liquidity for crypto trading, non-M1 M2 may be the better fit. If they become a common medium of exchange for household and business payments, their immediate transferability could support an M1 classification.</p>
+<p>The framework remains conditional. The <a href="https://www.congress.gov/bill/119th-congress/senate-bill/1582/text">GENIUS Act</a> requires permitted issuers to maintain at least 1:1 identifiable reserves and publish monthly reserve information, and leaves M1 or M2 assignment to a separate statistical decision. The Fed says standardized circulation data and a reporting chain suitable for monetary-statistics compilation would still be required.</p>
+<p>The central stock-measurement problem sits on the reserve side. Under GENIUS, permitted reserves can include bank deposits, Treasury instruments, and government money funds. The Fed note says some bank deposits and money-fund net assets are already captured in M1 or M2.</p>
+<p>If an issuer receives dollars, places part of them in a bank deposit or money fund, and issues stablecoins against that reserve, counting the tokens at face value could add a new line to the aggregate while part of the backing remains in another counted component. That is the same-dollar problem.</p>
+<p>Only reserve assets already represented in M1 or M2 create overlap. The overlap depends on the backing composition and the statistical treatment of each reserve asset. The Fed note says the extent must be assessed before any adjustment is chosen.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>What it determines</th>
+<th>Evidence needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Function</td>
+<td>Whether the balance belongs with transaction money in M1 or savings-type money in non-M1 M2</td>
+<td>Reliable evidence on predominant economic use</td>
+</tr>
+<tr>
+<td>Reserve overlap</td>
+<td>How much gross issuance is already represented in counted components</td>
+<td>Issuer-level reserve composition matched to M1 and M2 definitions</td>
+</tr>
+<tr>
+<td>Geography</td>
+<td>How much circulation belongs inside a US measure</td>
+<td>Reporting that can separate US activity from global circulation</td>
+</tr>
+<tr>
+<td>Transaction activity</td>
+<td>Whether observed transfers resemble standalone payments or complex financial operations</td>
+<td>Transaction-level classification rather than raw event counts</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-91e8cb06-dda8-4023-84f7-022b367c35be.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-560539" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-91e8cb06-dda8-4023-84f7-022b367c35be.png" alt="Infographic showing four tests for counting payment stablecoins in M1 or M2: function, reserve overlap, geography, and transaction activity, plus BIS transaction data and July 2026 M2 scale." width="720" height="900" /></a></p>
+<p>USDC shows that a single headline number answers only part of the reserve question. <a href="https://www.circle.com/transparency">Circle says</a> most of its reserve is held in the Circle Reserve Fund, an SEC-registered government money market fund that can hold cash, short-dated US Treasuries, and overnight US Treasury repurchase agreements. Its July assurance also lists Treasury securities outside the fund, alongside cash held at regulated financial institutions.</p>
+<p>Circle's latest active monthly assurance on the transparency page covered July 31. It reported 71.826 billion USDC in circulation and reserve assets with a fair value of $71.904 billion. Those figures document backing at a point in time. A net addition to M1 or M2 requires a separate consolidation calculation.</p>
+<p>A defensible net estimate would have to match the reported reserve categories against the exact money-stock components already counted, remove only genuine overlaps, and preserve backing assets outside the aggregates. The current sources leave that increment unquantified.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/us-treasury-relies-on-stablecoins-to-fund-short-term-debt-but-they-cant-fix-its-28b-long-bond-problem/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">US treasury relies on stablecoins to fund short-term debt, but they can’t fix its $28B long-bond problem</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>The data gaps behind a national money measure</h2>
+<p>Geography is a separate problem from reserve overlap. A dollar stablecoin issued by a US-regulated company can move globally on a public blockchain, while transaction records generally lack enough geographic information to identify the portion that belongs inside a US measure.</p>
+<p>The Fed note says GENIUS applies to US-regulated issuers without distinguishing domestic from international circulation. Additional reporting may therefore be needed to isolate US circulation from global activity. An issuer's total outstanding tokens map imperfectly onto US-held money.</p>
+<p>Economic use requires a separate dataset. The Fed's functional test asks whether stablecoins behave more like transaction money or savings. Raw blockchain transfer counts are insufficient because a single smart-contract transaction can emit several transfer events.</p>
+<p>A <a href="https://www.bis.org/publications/working-paper-1359-anatomy-stablecoin-transactions">Bank for International Settlements working paper</a> published in June analyzed more than 593 million event logs from 141 million Ethereum transactions executed in 2025 involving USDT, USDC, and PayPal USD. Roughly one third of the transactions generated multiple steps or event logs, while nearly 60% of transfer events occurred inside complex transactions.</p>
+<p>Those bundles can combine trading, lending, arbitrage, liquidity provision, and settlement. Treating every emitted event as a standalone payment can exaggerate both activity counts and the apparent payment role of stablecoins.</p>
+<p>The 60% statistic describes event structure alone. Functional classification under the Fed staff framework requires separate evidence about economic use.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/circle-processed-32-trillion-in-usdc-transfers-yet-95-of-its-revenue-relies-entirely-on-interest-rates/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Circle processed $32 trillion in USDC transfers, yet 95% of its revenue relies entirely on interest rates</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The scale makes these distinctions consequential. CryptoSlate's Sept. 4 <a href="https://cryptoslate.com/coins/">market snapshot</a> listed the global stablecoin category at $292.1 billion across 73 assets. Its <a href="https://cryptoslate.com/coins/usd-coin/">USDC market page</a> showed about $74.5 billion of market capitalization and 74.51 billion tokens in supply.</p>
+<p>Those global market figures say nothing about US-resident ownership or usage. They also differ in date and purpose from Circle's July 31 assurance, so the values should not be treated as interchangeable observations.</p>
+<p>For comparison, <a href="https://fred.stlouisfed.org/series/M2SL">FRED reported seasonally adjusted US M2</a> at $23.218 trillion for July 2026, updated Aug. 25. That establishes the scale of the official aggregate while leaving the required stablecoin net-addition adjustment unresolved.</p>
+<p>The Fed staff framework therefore points to three different accounting jobs before any classification change: determine how the tokens function, consolidate reserve assets already represented in the aggregates, and isolate the circulation relevant to the United States. Transaction-level analysis informs the first job; reserve and residency data remain essential for the other two.</p>
+<p>Stablecoins could eventually make M1 or M2 more complete. Skipping those adjustments would blur already-counted balances with genuinely new dollar liquidity.</p>
+<p>The post <a href="https://cryptoslate.com/fed-economists-stablecoin-research-exposes-how-the-same-dollar-could-count-twice-in-m1-or-m2/">Fed stablecoin research exposes how the same dollar could count twice in M1 or M2</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/fed-stablecoin-money-pipes.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/fed-stablecoin-money-pipes.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Solana’s plan to cut account deposits by 90% could weaken a reason to hold SOL</title>
+		<link>https://cryptoslate.com/solanas-plan-to-cut-account-deposits-by-90-could-weaken-a-reason-to-hold-sol/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 15:30:17 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[payments]]></category>
+		<category><![CDATA[regulation]]></category>
+		<category><![CDATA[Solana]]></category>
+		<category><![CDATA[Solana foundation]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=560593</guid>
+
+					<description><![CDATA[<p>Only the first cut is live; the full plan would require tenfold persistent account state to preserve the old minimum SOL reserves.</p>
+<p>The post <a href="https://cryptoslate.com/solanas-plan-to-cut-account-deposits-by-90-could-weaken-a-reason-to-hold-sol/">Solana’s plan to cut account deposits by 90% could weaken a reason to hold SOL</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Eligible Solana token-account owners can reclaim excess SOL previously needed to keep their token accounts open after the network's first rent reduction went live Sept. 3. For businesses funding new accounts, the same change lowers the upfront capital required to create them.</p>
+<p>The full plan would change how account growth translates into SOL held against storage. If Solana completes its proposed 90% reduction, total persistent account state, including each account's storage overhead, would have to grow tenfold to require the same minimum SOL reserves as before the rollout. Adoption could expand substantially while the minimum SOL needed for this reserve channel falls.</p>
+<p>The <a href="https://solana.com/upgrades/reduced-rent">Solana Foundation's tracker</a> confirms that only the first reduction, approximately 9%, is live on mainnet. The tenfold comparison applies to the conditional final target, while the initial cut already lowers reserve requirements.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/agave-4-2-activation-target-unconfirmed/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Solana’s Agave 4.2 activation target arrives with mainnet feature gates still pending</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Solana rent reduction and the 10× hurdle</h2>
+<p>Solana's “rent” is a balance held against account storage. It is generally recoverable when an account closes, rather than an ongoing bill paid to validators. Reducing the required balance lets new accounts begin with less SOL and can leave existing accounts holding more than their minimum.</p>
+<p>At epoch 1028 on Sept. 3, Solana lowered the reserve parameter from 6,960 to 6,333 lamports per byte. The five-stage plan's final target is 696.</p>
+<p>Under <a href="https://github.com/solana-foundation/solana-improvement-documents/blob/main/proposals/0437-incremental-rent-reduction.md">SIMD-0437, the rent-reduction specification</a>, that minimum equals the account's data size plus 128 bytes of overhead, multiplied by the current lamports-per-byte parameter. A standard token account has 165 data bytes, making its effective size 293 bytes.</p>
+<p>Applying that formula to one million identical standard token accounts gives the following illustration:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Lamports per byte</th>
+<th>Required reserve</th>
+<th>Reduction versus original</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Before the rollout</td>
+<td>6,960</td>
+<td>2,039.28 SOL</td>
+<td>Baseline</td>
+</tr>
+<tr>
+<td>First step, live Sept. 3</td>
+<td>6,333</td>
+<td>1,855.569 SOL</td>
+<td>183.711 SOL</td>
+</tr>
+<tr>
+<td>Final target, conditional</td>
+<td>696</td>
+<td>203.928 SOL</td>
+<td>1,835.352 SOL</td>
+</tr>
+</tbody>
+</table>
+<p>These are calculated minimum requirements for a fixed account population, not measured withdrawals. The final row assumes all five reductions activate. Different account sizes would produce different totals.</p>
+<p>The million-account example illustrates operating capital, but it cannot establish a network-wide supply effect. Its conditional final reduction of 1,835.352 SOL represents about 0.000314% of the approximately 585.36 million circulating SOL shown in <a href="https://cryptoslate.com/coins/solana/">CryptoSlate's Sept. 5 market data</a>. The actual aggregate reserve channel requires a broader account inventory, with account sizes, balances and reclaimability taken into account.</p>
+<p>The tenfold threshold follows from the same relationship. At one-tenth the original reserve rate, ten times as many rent-bearing bytes would be needed to keep the aggregate minimum unchanged. It measures the total stock of persistent state, including per-account overhead. User counts, transaction counts and SOL prices are separate measures; the tenfold comparison describes storage requirements.</p>
+<p>The live first step sets a smaller hurdle: about 9.9% more rent-bearing state would preserve the original minimum requirement at 6,333 lamports per byte. Both comparisons concern required reserves. Actual account balances can remain above those floors.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-22e76541-da1e-4000-9d53-f75b1e613b94.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-560597" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-22e76541-da1e-4000-9d53-f75b1e613b94.png" alt="Solana rent-reserve comparison as of Sept. 5, 2026: the original 6,960 lamports per byte requires baseline state; the live 6,333 rate requires about 1.099 times that state, and the conditional 696 target requires ten times that state to preserve the pre-cut minimum SOL reserve." width="720" height="900" /></a></p>
+<p>For payments, this reserve demand arises mainly when accounts are opened. The Foundation's <a href="https://solana.com/news/rent-reduction-deep-dive">July account-state study</a> explains that an associated token account normally serves a particular wallet and token mint. Once it exists, later payments in the same token do not require another account-creation deposit. More payments through existing accounts therefore need not produce a proportional increase in storage reserves.</p>
+<h2>Withdrawal authority decides who gets the capital</h2>
+<p>The immediate benefit is access to capital already on-chain. The Foundation's <a href="https://solana.com/news/how-to-reclaim-excess-sol-after-rent-reduction">Sept. 3 reclamation guide</a> describes an instruction called WithdrawExcessLamports that moves SOL above the current minimum without closing a token account or changing its token balance. The Token-2022 program offers the same instruction.</p>
+<p>For a token account, its owner must authorize the withdrawal. For a mint, authorization comes from the mint authority, or from the mint account itself signing if that authority has been revoked. Accounts owned by custom programs need the owning program to provide withdrawal logic and check the relevant authority.</p>
+<p>That makes control of the account economically significant. A payments provider that funded a customer's token account cannot assume that paying the original deposit gives it the right to reclaim the excess. The party entitled to authorize the withdrawal may be different from the party that supplied the SOL.</p>
+<p>Moving a surplus balance requires an authorized transaction that leaves the minimum intact. It transfers existing SOL between accounts while conserving the total; it does not issue new tokens. The guide provides no aggregate measure of completed withdrawals or subsequent sales.</p>
+<p>For future onboarding, the benefit is more direct: whoever funds an account needs less SOL upfront. Providers can potentially support more customer accounts with the same capital, even when customers themselves do not purchase SOL. Whether existing surplus can be redeployed depends on the authority and program arrangements above.</p>
+<p>How long those accounts survive will determine the continuing reserve requirement. Gross account creation can give a very different impression from state that remains on-chain.</p>
+<p>In his July 20 analysis, Solana Foundation researcher Umberto Natale found that 75.5% of account-creation events in the analyzed cohort closed within the same transaction. The observations were not deduplicated by address: repeated creation and closure could count as separate events.</p>
+<p>Those workflows can generate activity while leaving little persistent account storage behind. The finding does not predict how users will respond to September's reduction. The study also cautions that its weak, unstable correlations between SOL prices and account activity are descriptive, rather than a causal estimate of how cheaper rent changes demand.</p>
+<p>A useful test of the policy will therefore track persistent account bytes and their associated minimum reserves alongside activity. Counting new accounts alone cannot establish whether the network has absorbed the lower reserve rate.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/solana-processed-5-2-billion-transactions-after-revenue-collapsed-87-heres-what-changed/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Solana processed 5.2 billion transactions after revenue collapsed 87% &#8211; here’s what changed</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>SOL demand extends beyond account reserves</h2>
+<p>Other uses of SOL also continue. Under <a href="https://solana.com/docs/core/fees">Solana's fee rules</a>, transactions require SOL: half the base fee is burned and half goes to the validator, while the entire priority fee goes to the validator. Fee payments are a separate demand channel from refundable account reserves. More activity could increase fee use, but throughput alone does not establish the amount users pay or the balances they retain.</p>
+<p>SOL holders can also <a href="https://solana.com/staking">delegate stake to validators</a> to help secure the network and become eligible for rewards. Reclaimed capital could be staked or used to fund more accounts. The cited material does not establish either outcome as a result of the cut, so these possibilities provide no quantified offset to lower reserve requirements.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/what-solanas-failed-fee-vote-reveals-about-anatoly-yakovenkos-power/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">What Solana’s failed fee vote reveals about Anatoly Yakovenko’s power</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>CryptoSlate's <a href="https://cryptoslate.com/solana-processed-5-2-billion-transactions-after-revenue-collapsed-87-heres-what-changed/">recent analysis of activity and fee economics</a> examined a related distinction: network usage and token economics can move differently. Rent reduction adds a specific reason why growth can require less SOL per unit of persistent state.</p>
+<p>As of Sept. 5, the second reduction, to 5,080 lamports per byte, is on testnet, with mainnet expected in mid-September. The last three steps are expected with Agave 4.4 in November. Each activation remains subject to review of state growth, and a fallback can restore the original parameter.</p>
+<p>The next gates will determine how far the capital saving goes. Persistent state growth and actual reclamation will then show how much of that saving becomes new account capacity, reusable working capital or reduced SOL held against storage.</p>
+<p>The post <a href="https://cryptoslate.com/solanas-plan-to-cut-account-deposits-by-90-could-weaken-a-reason-to-hold-sol/">Solana’s plan to cut account deposits by 90% could weaken a reason to hold SOL</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/solana-rent-growth-hurdle.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/solana-rent-growth-hurdle.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Zcash breaks $1,000 as its spot ETF crosses $400 million in assets</title>
+		<link>https://cryptoslate.com/zcash-breaks-1000-as-its-spot-etf-crosses-400-million-in-assets/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 14:00:05 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Price Watch]]></category>
+		<category><![CDATA[Privacy]]></category>
+		<category><![CDATA[Trading]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=558002</guid>
+
+					<description><![CDATA[<p>Zcash broke above $1,000 on Sept. 4, pushing the asset value of Grayscale’s recently listed ZCSH ETF past $400 million less than two weeks after its debut. ZEC registered an intraday high of $1,050.70, up roughly 20% over 24 hours and nearly 100% over the past month. The move lifted ZCSH’s assets to $414.7 million [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/zcash-breaks-1000-as-its-spot-etf-crosses-400-million-in-assets/">Zcash breaks $1,000 as its spot ETF crosses $400 million in assets</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Zcash broke above $1,000 on Sept. 4, pushing the asset value of <a href="https://cryptoslate.com/grayscales-zcash-etf-filing-proposes-a-2-5-fee-and-a-potential-34-dcg-stake/">Grayscale’s recently listed ZCSH ETF</a> past $400 million less than two weeks after its debut.</p>
+<p>ZEC registered an intraday high of $1,050.70, up roughly 20% over 24 hours and nearly 100% over the past month.</p>
+<p>The move lifted ZCSH’s assets to $414.7 million as of Sept. 3, compared with about $304.6 million when the fund began trading on NYSE Arca on Aug. 25.</p>
+<p>ZCSH <a href="https://www.thezcashetf.com/?private#performance">inherited assets</a> from the Grayscale Zcash Trust, and the sharp appreciation in ZEC accounts for much of the increase.</p>
+<p>Still, the fund’s ZEC holdings rose from 387,849 at launch to 428,613 by Sept. 3, while shares outstanding increased to 5.35 million.</p>
+<p>The Sept. 4 breakout came as <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin surpassed $82,000</a> and <a href="https://cryptoslate.com/coins/ethereum/">ETH reclaimed $2,500</a>, but Zcash’s move was considerably larger. Roughly $40 million of ZEC shorts were liquidated in 24 hours, adding fuel to a <a href="https://cryptoslate.com/zcash-surges-62-to-880-as-holders-prepare-to-vote-on-changing-how-zec-is-issued/">rally that had already gathered momentum</a> before the latest market-wide advance.</p>
+<p>Leverage has expanded with the price. CoinGlass <a href="https://www.coinglass.com/currencies/ZEC">data</a> showed that Zcash futures open interest crossed $2 billion for the first time, while 24-hour futures volume climbed above $6 billion for the first time since mid-August.</p>
+<figure id="attachment_560514" aria-describedby="caption-attachment-560514" style="width: 1864px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-560514 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-04-190143.jpg" alt="Zcash Open Interest" width="1864" height="694" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-04-190143.jpg 1864w, https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-04-190143-300x112.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-04-190143-1024x381.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-04-190143-768x286.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/09/Screenshot-2026-09-04-190143-1536x572.jpg 1536w" sizes="(max-width: 1864px) 100vw, 1864px" /><figcaption id="caption-attachment-560514" class="wp-caption-text">Chart shows Zcash open interest surging above $2 billion as ZEC’s price approaches $900 in early September. Source: CoinGlass</figcaption></figure>
+<p>The combination suggests traders are committing substantially more capital to ZEC derivatives as the token tests levels it has not sustained in years.</p>
+<p>The scale of the repricing is particularly stark over a longer horizon. ZEC was trading around $40 a year ago and has now returned to the top 10 largest cryptos by market cap for the first time since 2018.</p>
+<p>That ascent has also brought increasingly aggressive forecasts. Cryptographer Arjun Khemani said characterizing the token's rally solely as a privacy-coin <a href="https://cryptoslate.com/how-zcash-reclaimed-the-privacy-crown-from-monero/">understates the case being made for Zcash</a>.</p>
+<p>He pointed to its fixed 21 million supply, Bitcoin-like emissions schedule, decade of distribution, work on quantum recoverability, plans for substantially higher transaction throughput and efforts to formally verify its shielded pool against undetectable inflation bugs.</p>
+<p>Khemani said that “privacy is just one property of Zcash,” arguing that the larger bet is whether ZEC can develop into a form of sovereign money.</p>
+<h2>Grayscale sees AI opening a crack in Bitcoin’s dominance</h2>
+<p>The price move has revived a broader question around Zcash: whether its latest gains can translate into a lasting challenge to <a href="https://cryptoslate.com/bitcoin-dominance-hits-one-month-low-as-altcoin-winners-start-breaking-away/">Bitcoin’s dominance</a> of the digital-currency market.</p>
+<p>Bitcoin accounts for about 93% of the market capitalization of Grayscale’s Currencies Crypto Sector, a level of dominance that alternatives such as Litecoin have failed to seriously disrupt. Zcash remains worth less than 1% of Bitcoin even after rising roughly 19-fold over the period covered by <a href="https://www.grayscale.com/the-stack/zcash-can-challenge-bitcoin-s-network-effects">Grayscale’s latest research</a>.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/zcash-surges-62-to-880-as-holders-prepare-to-vote-on-changing-how-zec-is-issued/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Zcash surges 62% to $880 as holders prepare to vote on changing how ZEC is issued</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p><a href="https://cryptoslate.com/companies/grayscale-investments/">Grayscale</a> argues Zcash has a better chance than previous challengers because it combines Bitcoin-like monetary properties with features that have become more relevant as the crypto market has matured.</p>
+<p>Privacy is central to that thesis.</p>
+<p>Bitcoin transactions are permanently recorded on a public ledger. Once an address is linked to an offchain identity, its balances and transaction history can potentially be reconstructed.</p>
+<p>Grayscale argues advances in artificial intelligence could make that process faster, cheaper, and more widely accessible by improving address labeling and blockchain activity analysis.</p>
+<p>The asset manager sees that technological shift as the beginning of a third major wave of concern over financial privacy, following the computerization of financial records in the 1970s and the growth of the internet in the 1990s.</p>
+<p>Zcash approaches the problem differently. Its shielded transactions use zero-knowledge cryptography to conceal sending and receiving addresses and transaction amounts, allowing users to retain <a href="https://cryptoslate.com/bitcoin-and-gold-are-converging-in-a-way-markets-havent-seen-since-2020/">Bitcoin-like scarcity</a> without making every transfer permanently visible.</p>
+<p>Grayscale <a href="https://www.grayscale.com/the-stack/zcash-and-the-privacy-imperative">argued</a> that distinction could become more valuable as AI makes surveillance of transparent blockchains increasingly sophisticated.</p>
+<p>Its case extends beyond privacy. Grayscale describes Zcash as having several “second mover” advantages, including active development against emerging cybersecurity risks and cross-chain connectivity through intent-based technology that could allow wallets or <a href="https://cryptoslate.com/agentic-payments-could-put-a-price-on-every-step-of-ai-reasoning/">AI agents</a> to move value across networks while using Zcash as a private settlement layer.</p>
+<p>Those features underpin the asset manager’s argument that Zcash could capture market share from Bitcoin even without reproducing Bitcoin’s merchant adoption or liquidity.</p>
+<p>The same privacy architecture also presents one of Zcash’s largest obstacles. Shielded transactions can complicate sanctions screening, anti-money laundering controls, and efforts to trace illicit funds, creating regulatory and compliance concerns that have historically weighed more heavily on privacy-focused cryptocurrencies than on Bitcoin.</p>
+<p>Bitcoin also retains advantages that are difficult to replicate. Its liquidity, infrastructure, brand recognition, and more than 15 years of network growth continue to reinforce its position at the center of the digital-currency market.</p>
+<p>That leaves Zcash with a considerable gap to close.</p>
+<p>Nevertheless, the move above $1,000 has made Grayscale’s thesis more consequential, as it puts greater weight on whether privacy and technological differentiation can produce durable market-share gains once the momentum behind the current rally cools.</p>
+<p>The post <a href="https://cryptoslate.com/zcash-breaks-1000-as-its-spot-etf-crosses-400-million-in-assets/">Zcash breaks $1,000 as its spot ETF crosses $400 million in assets</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/zcash-1000-zcsh-etf-privacy-rally.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/zcash-1000-zcsh-etf-privacy-rally.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>How the &#8220;buy, borrow, die&#8221; tax trade is quietly loading DeFi pools with hidden credit risk</title>
+		<link>https://cryptoslate.com/how-the-buy-borrow-die-tax-trade-is-quietly-loading-defi-pools-with-hidden-credit-risk/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 12:00:05 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Taxes]]></category>
+		<category><![CDATA[Trading]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=559511</guid>
+
+					<description><![CDATA[<p>Imagine someone who bought ETH for $1,000, watched it climb to $4,000, and now wants to cash out $1,000. Selling one-quarter of the ETH would provide the cash, but it would also realize a $750 gain under US tax treatment of digital assets held for investment. However, DeFi offers another way. The owner can deposit [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/how-the-buy-borrow-die-tax-trade-is-quietly-loading-defi-pools-with-hidden-credit-risk/">How the &#8220;buy, borrow, die&#8221; tax trade is quietly loading DeFi pools with hidden credit risk</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Imagine someone who bought ETH for $1,000, watched it climb to $4,000, and now wants to cash out $1,000. Selling one-quarter of the ETH would provide the cash, but it would also realize a $750 gain under US tax treatment of digital assets held for investment.</p>
+<p>However, DeFi offers another way. The owner can deposit the full ETH into a lending protocol, use it as collateral, and borrow $1,000 in a stablecoin designed to track the dollar.</p>
+<p>The loan doesn't count as taxable income, the ETH keeps its exposure to any future price increase, and the owner now has something they can spend or convert into dollars without selling the original asset.</p>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th align="right">Cash received</th>
+<th align="right">Tax impact</th>
+<th align="right">ETH exposure</th>
+<th>New risk created</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sell 25% of ETH</td>
+<td align="right">$1,000</td>
+<td align="right">$750 realized gain</td>
+<td align="right">Reduced by 25%</td>
+<td>No liquidation risk</td>
+</tr>
+<tr>
+<td>Borrow stablecoin against ETH</td>
+<td align="right">$1,000</td>
+<td align="right">No immediate taxable sale</td>
+<td align="right">Full ETH exposure retained</td>
+<td>Debt, interest, liquidation risk</td>
+</tr>
+</tbody>
+</table>
+<p>While it saves the owner a lot of money in taxes, it also creates a fragile math problem. The $1,000 debt begins at 25% of collateral worth $4,000, but a fall in ETH to $2,000 doubles that loan-to-value ratio to 50%, and interest accumulating on the debt pushes it higher.</p>
+<p>If the ratio crosses the protocol's limit, the code opens the collateral to liquidation, allowing an outside trader to repay part of the loan and claim some of the <a href="https://cryptoslate.com/coins/ethereum/">ETH at a discount</a>.</p>
+<p>The borrower might have deferred a taxable sale, but the lending pool has taken on the risk created by the collateral price, the size of the debt, and the borrower's willingness to act before liquidation.</p>
+<p>One person's tax decision essentially became part of a shared credit market funded by other users, most of whom know the wallet only as a string of letters and numbers.</p>
+<p>Lisa De Simone of the University of Texas at Austin, Peiyi Jin of the National University of Singapore, and Daniel Rabetti of NUS examined that connection in a <a href="https://afajof.org/management/viewp.php?n=190876">working paper on tax planning and DeFi credit risk</a>.</p>
+<p>They studied Venus, a <a href="https://cryptoslate.com/guides/what-is-defi-decentralized-finance/">DeFi lending protocol</a> on BNB Smart Chain that allowed users to pledge crypto and borrow other tokens through rules enforced by smart contracts.</p>
+<p>Their sample runs from Nov. 12, 2020, through July 31, 2022, and covers the 15 largest tokens on Venus. Roughly 13 million transactions became 1.36 million daily borrower observations, which means the same wallet can appear once on every active day, and about 3% of traders experienced what the paper defines as a default.</p>
+<p>That definition needs some translation because a DeFi default looks different from a missed mortgage payment.</p>
+<p>The paper classified a borrower as defaulted when the loan remained above Venus's 60% loan-to-value limit for at least seven days without later borrowing or depositing, and its $133.34 million total adds outstanding defaulted debt across each day it persisted.</p>
+<p>A single troubled loan can therefore contribute to several dates, making the total a measure of accumulated daily exposure rather than unique principal lost in one event.</p>
+<table>
+<thead>
+<tr>
+<th align="right">ETH collateral value</th>
+<th align="right">Stablecoin debt</th>
+<th align="right">Loan-to-value ratio</th>
+<th>Borrower position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">$4,000</td>
+<td align="right">$1,000</td>
+<td align="right">25%</td>
+<td>Comfortable cushion</td>
+</tr>
+<tr>
+<td align="right">$3,000</td>
+<td align="right">$1,000</td>
+<td align="right">33%</td>
+<td>Risk rising</td>
+</tr>
+<tr>
+<td align="right">$2,000</td>
+<td align="right">$1,000</td>
+<td align="right">50%</td>
+<td>Close to danger</td>
+</tr>
+<tr>
+<td align="right">$1,667</td>
+<td align="right">$1,000</td>
+<td align="right">60%</td>
+<td>Liquidation threshold</td>
+</tr>
+<tr>
+<td align="right">Below $1,667</td>
+<td align="right">$1,000+ interest</td>
+<td align="right">Above 60%</td>
+<td>Liquidation risk active</td>
+</tr>
+</tbody>
+</table>
+<h2>The billionaire trade gets a wallet</h2>
+<p>The traditional version of this strategy is <a href="https://cryptoslate.com/guides/buy-borrow-die-high-ltv-crypto-loans/">known as &#8220;buy, borrow, die.&#8221;</a> Investors buy an asset, let it appreciate, and borrow against it to live without realizing the gain through a sale.</p>
+<p>Continued borrowing can defer capital-gains tax for years, and US estate rules may reset the asset's tax basis when heirs inherit it, reducing the gain accumulated during the original owner's lifetime.</p>
+<p>This has usually been <a href="https://cryptoslate.com/guides/why-long-term-crypto-holders-borrow-against-assets-instead-of-selling/">a rich person's trade</a> because a private bank wants a client with valuable collateral and enough wealth to survive a downturn. The bank can examine the client's broader finances, decide how much it will lend, and negotiate terms for the relationship, giving both sides room to deal with trouble before collateral has to be sold.</p>
+<p>DeFi compresses that very human-centric relationship into code. Software doesn't need any of its elements because it just looks at the assets inside a wallet and applies the same collateral rules to everyone.</p>
+<p>Access to this kind of service then widens, and the price of that openness is a system built around overcollateralization, where a borrower must pledge more value than the loan is worth from the start.</p>
+<p>Under the Venus configuration described in the paper, approved collateral worth $10,000 could support up to $6,000 of debt. Borrowing the full amount left almost no room for a fall, while someone borrowing $2,000 had a much thicker cushion, and both accounts were monitored continuously by code using market prices supplied to the protocol.</p>
+<p>When collateral weakened enough to break the limit, a liquidator could repay part of the debt and take collateral at a discount, earning a reward for restoring the account. This process is meant to protect the pool before the collateral falls below the debt, even though a fast selloff or thin market can make the sale less effective, and blockchain congestion can prevent liquidators from acting soon enough.</p>
+<p>The tax incentive complicates the borrower's side of this system because reducing risk requires trading, repaying debt, or selling part of an appreciated holding.</p>
+<p>Borrowers who took out the loan to defer a taxable sale will likely wait longer to unwind it, especially when the token has produced a large paper gain or the account has moved most of the way toward the lower long-term capital-gains rate.</p>
+<p>What makes this trade especially attractive are stablecoins. Dollar-pegged coins turn otherwise volatile collateral into dollar spending power. So traders can keep ETH or another token pledged, borrow USDT or USDC, and use them elsewhere.</p>
+<p>Large holders are <a href="https://cryptoslate.com/ethereum-foundation-embraces-defi-borrowing-2m-in-stablecoins-on-aave-using-eth-collateral/">borrowing stablecoins against crypto collateral</a> to fund activity while preserving exposure to the underlying asset.</p>
+<p>The protocol sees a healthy collateral ratio when the loan opens. But it can't see that the borrower bought ETH for a fraction of its current price, has a large gain waiting behind a sale, or sees another few months of holding as financially valuable, even though all of those facts can affect how the borrower behaves once the loan becomes dangerous.</p>
+<h2>The IRS turns Venus into an experiment</h2>
+<p>The researchers needed a way to separate tax-motivated behavior from the normal chaos of crypto markets, and they found one in the Infrastructure Investment and Jobs Act enacted on Nov. 15, 2021.</p>
+<p>Section 80603 of the <a href="https://www.govinfo.gov/content/pkg/PLAW-117publ58/html/PLAW-117publ58.htm">2021 infrastructure law</a> expanded information-reporting requirements for brokers handling digital assets, giving traders reason to expect that more of their activity would eventually <a href="https://www.irs.gov/filing/digital-assets">be reported to the IRS</a>.</p>
+<p>The law changed the level of third-party reporting traders expected, giving the authors an external event that could affect the behavior of likely US taxpayers while international users saw no changes.</p>
+<p>The reporting system took a long time to build. Custodial brokers began reporting gross proceeds from covered sales and exchanges completed from Jan. 1, 2025, on Form 1099-DA, and <a href="https://www.irs.gov/newsroom/final-regulations-and-related-irs-guidance-for-reporting-by-brokers-on-sales-and-exchanges-of-digital-assets">IRS broker rules</a> added basis reporting for certain transactions completed from Jan. 1, 2026.</p>
+<p>Those regulations cover firms that take possession of customers' assets, while noncustodial DeFi services fall outside their current scope.</p>
+<p>For the paper, the research value comes from what people believed in November 2021, when the new law made future reporting feel more concrete.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/ethereum-foundation-embraces-defi-borrowing-2m-in-stablecoins-on-aave-using-eth-collateral/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Ethereum Foundation embraces DeFi borrowing $2M in stablecoins on Aave using ETH collateral</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The authors compare behavior around that enactment date, years before the final rules took effect, allowing the study to capture a reaction to expected visibility instead of an automatic response to a tax form already being issued.</p>
+<p>Because the blockchain doesn't reveal anyone's nationality or tax residence, the researchers had to infer which wallets might belong to US users. They looked for activity concentrated during US business hours and unusual behavior on holidays observed only in the US, then added holdings of dollar stablecoins under US oversight as another clue.</p>
+<p>Each measure can misclassify people, so the paper reports several versions and a stricter definition that combines them.</p>
+<p>The basic comparison is like watching two groups use the same financial machine on either side of one legal event. Both groups faced the same token prices and the same Venus rules, while the probable US group had a stronger reason to care about the reporting provision, helping the authors isolate the tax channel from a broad market move.</p>
+<p>Across their main designs, the authors report that US-linked borrowers became 24.5% less likely to trade assets relative to international users once the law was enacted.</p>
+<p>Borrowers using stablecoin debt recorded an additional 23% decline, which fits the paper's argument because stablecoins offered immediate spending power while appreciated collateral stayed pledged.</p>
+<p>The paper uses &#8220;liquidity&#8221; in a narrow, wallet-level sense: the daily probability that a borrower traded any asset. While most people associate the word with exchange depth, bid-ask spreads, or the cost of selling a large holding, this study is measuring how active the borrower's portfolio was and whether appreciated assets stayed locked in place.</p>
+<p>The same pattern became stronger among borrowers with larger gains and higher loan-to-value ratios. Activity fell during December, especially in its final week, when investors often defer gains into a new tax year, then increased once holdings passed the one-year point associated with lower US long-term capital-gains rates.</p>
+<p>Those behavioral checks give the tax interpretation support beyond the November 2021 comparison.</p>
+<p>The authors estimate that US borrowers in the sample deferred an average of $3,357.42 in capital-gains tax per year, equal to about 17% of their trading portfolios during the period.</p>
+<p>That estimate assumes the inferred wallets belong to US taxpayers, reconstructs their portfolios from blockchain activity, and applies the relevant tax brackets, so it is best read as a rough estimate of scale across the sample.</p>
+<h2>The bill comes due inside the pool</h2>
+<p>The final part of the paper follows the reduced trading into loan performance. Borrowers who rarely trade may leave a risky account open longer, miss chances to repay debt, or fail to add enough collateral before the ratio breaks its limit, allowing a tax preference that began outside Venus to influence the amount of unresolved debt inside it.</p>
+<p>From that angle, it's obvious it's a major problem because causality can run the other way too: a default may cause someone to abandon a wallet and stop trading.</p>
+<p>The researchers use the law-induced reduction in activity among US-linked borrowers to isolate a drop in trading that came from outside the protocol, a statistical method known as an instrumental-variable design.</p>
+<p>Using that design, they estimate that a 1% increase in tax-induced illiquidity was associated with an 11.2% increase in defaulted accounts and a 39.6% increase in defaulted loan value. A one-standard-deviation increase corresponded to roughly $350 more defaulted debt per borrower, equal to 2.7 times the baseline value in the model.</p>
+<p>Those percentages sound enormous because they describe the borrowers whose activity reacted to the reporting event, a group economists call compliers. Their proper scope is the tax-sensitive portion of the Venus sample, and the estimates help explain how behavior can affect credit outcomes rather than serving as a universal multiplier for every DeFi loan.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Borrower incentive</th>
+<th>Protocol sees</th>
+<th>Hidden risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asset appreciates</td>
+<td>Avoid selling and realizing gain</td>
+<td>Healthy collateral value</td>
+<td>Tax lock-in begins</td>
+</tr>
+<tr>
+<td>Stablecoin loan opens</td>
+<td>Access cash without sale</td>
+<td>Acceptable LTV</td>
+<td>Borrower may resist de-risking</td>
+</tr>
+<tr>
+<td>Collateral falls</td>
+<td>Delay repayment or sale</td>
+<td>LTV deteriorates</td>
+<td>Trading inactivity rises</td>
+</tr>
+<tr>
+<td>Threshold breached</td>
+<td>Preserve appreciated asset or abandon wallet</td>
+<td>Liquidation condition triggered</td>
+<td>Liquidators must act quickly</td>
+</tr>
+<tr>
+<td>Liquidation fails or lags</td>
+<td>Borrower loss becomes pool risk</td>
+<td>Bad debt/defaulted exposure</td>
+<td>Losses may hit reserves, token holders, or suppliers</td>
+</tr>
+</tbody>
+</table>
+<p>It exposes a blind spot in automated lending. Smart contracts know the collateral price, debt balance, interest owed, and liquidation threshold, but the borrower's purchase price and tax incentive never enter its calculation.</p>
+<p>Two wallets with identical ETH collateral and identical loans can therefore look the same to Venus, even when one owner is comfortable selling, and the other is working hard to avoid it.</p>
+<p>That difference is what becomes a borrower-selection problem. Overcollateralization protects the pool against ordinary price moves, but borrowers most attached to appreciated assets may keep debt open longer and trade less as their cushion narrows, concentrating risk among people whose motives the protocol cannot measure.</p>
+<p>When liquidation works, an outside participant repays debt and removes collateral before lenders suffer a shortfall. When it fails, the cost can pass through protocol reserves, token holders, or the users who supplied assets to the pool, depending on how losses are allocated, which turns what was a personal tax preference into a financial outcome the entire pool shares.</p>
+<p>The paper also found a much wider set of risks associated with this tax channel.</p>
+<p>It studied one protocol during the boom and crash of 2020 through 2022, inferred US residence from behavior, and used a specialized definition of default based on unresolved high-LTV accounts. The researchers separately found that volatile collateral and liquidation flaws contributed to troubled Venus loans, giving tax sensitivity one role in a system that could fail for several reasons.</p>
+<p>Another protocol with deeper liquidity or different collateral limits could produce a different result, and a later market with more professional liquidators may behave differently from Venus during the sample.</p>
+<p>Nonetheless, the paper still offers something traditional lending data rarely provides: a public view of collateral, debt, borrower activity, liquidation, and abandonment at the individual-wallet level.</p>
+<p>DeFi brought a private-bank borrowing strategy onto a public blockchain and opened it to people far outside private banking. In doing so, it also showed that automating the loan officer doesn't remove the human motives behind a loan, because tax bills, attachment to appreciated assets, and reluctance to sell continue through the code and eventually reach everyone funding the pool.</p>
+<p>The post <a href="https://cryptoslate.com/how-the-buy-borrow-die-tax-trade-is-quietly-loading-defi-pools-with-hidden-credit-risk/">How the &#8220;buy, borrow, die&#8221; tax trade is quietly loading DeFi pools with hidden credit risk</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/ethereum-liquidation-seesaw.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/ethereum-liquidation-seesaw.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Robinhood rejects AMC CEO&#8217;s demand to halt AMC tokenized &#8216;meme stock&#8217; which offers no shareholder rights</title>
+		<link>https://cryptoslate.com/robinhood-rejects-amc-ceos-demand-to-halt-amc-tokenized-stock-offering-holders-no-shareholder-rights/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 10:00:50 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Tokenization]]></category>
+		<category><![CDATA[ETF]]></category>
+		<category><![CDATA[regulation]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=560523</guid>
+
+					<description><![CDATA[<p>Adam Aron threatened legal and SEC scrutiny; Robinhood's legal chief said the Jersey-issued debt product will remain.</p>
+<p>The post <a href="https://cryptoslate.com/robinhood-rejects-amc-ceos-demand-to-halt-amc-tokenized-stock-offering-holders-no-shareholder-rights/">Robinhood rejects AMC CEO&#8217;s demand to halt AMC tokenized &#8216;meme stock&#8217; which offers no shareholder rights</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Social media crypto drama is heating up again. The latest spat is between Robinhood and the once &#8216;Prince of Meme Stocks' AMC.</p>
+<p>Robinhood's top legal officer rejected AMC Entertainment CEO Adam Aron's demand to stop trading an AMC-linked Stock Token, and Robinhood CEO Vlad Tenev said the company stands behind the product.</p>
+<p>The dispute centers on a basic distinction. Robinhood's instrument follows the economics of AMC shares, while its holders own debt issued by a Robinhood affiliate and receive no ownership rights in AMC.</p>
+<p><a href="https://x.com/DanGallagherDC/status/2095878611852984451">Dan Gallagher</a>, Robinhood's chief legal, compliance, and corporate affairs officer, said the company would not &#8220;DECIST,&#8221; echoing the misspelling in Aron's demand, and told AMC to send its lawyers. Tenev <a href="https://x.com/vladtenev/status/2095878993245598134">followed</a> by saying, &#8220;We stand behind Stock Tokens.&#8221;</p>
+<p>Aron <a href="https://x.com/CEOAdam/status/2095622531524784212">first said</a> AMC had no connection to the token and that the cinema operator's outside securities counsel would examine it. After Tenev <a href="https://x.com/vladtenev/status/2095711439810159027">asked</a>, &#8220;What's the concern?&#8221; Aron <a href="https://x.com/CEOAdam/status/2095761359388520460">listed</a> several objections. He argued that the product could blur the line between economic exposure and share ownership, separate trading activity from AMC's capital-raising process, and deny token holders the rights attached to AMC shares. He also said AMC would take the matter to the Securities and Exchange Commission.</p>
+<p>Aron's statements are, at this point, allegations from AMC. Robinhood's documents clarify the product distinction at issue in the fight.</p>
+<h2>What the AMC-linked token represents</h2>
+<p><a href="https://docs.robinhood.com/chain/stock-tokens/">Robinhood's documentation</a> describes Stock Tokens as tokenized debt securities issued by Robinhood Assets (Jersey) Limited, or RHJ. The products are designed to provide economic exposure to a referenced stock or exchange-traded fund. Their holders receive no legal or beneficial interest in the company behind the reference security.</p>
+<p>The <a href="https://cdn.robinhood.com/assets/robinhood/legal/rhj_final_terms_for_tokenised_debt_securities_linked_to_amc_entertainment_holdings_inc.pdf">AMC-specific final terms</a> identify RHJ as the issuer and AMC common stock as the reference asset. Robinhood's <a href="https://api.robinhood.com/rhj/assets">asset registry</a> listed the AMC-linked instrument as active when accessed Sept. 4.</p>
+<table>
+<thead>
+<tr>
+<th>Product feature</th>
+<th>Robinhood's disclosed structure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Issuer</td>
+<td>Robinhood Assets (Jersey) Limited</td>
+</tr>
+<tr>
+<td>Legal form</td>
+<td>Debt security linked to AMC common stock</td>
+</tr>
+<tr>
+<td>Holder relationship</td>
+<td>Creditor of RHJ under the product terms, with no legal or beneficial ownership of AMC</td>
+</tr>
+<tr>
+<td>Company rights</td>
+<td>No AMC voting, meeting, pre-emption, or direct dividend rights</td>
+</tr>
+<tr>
+<td>Corporate-action economics</td>
+<td>Dividends and stock splits are reflected through the product's mechanics</td>
+</tr>
+<tr>
+<td>U.S. distribution</td>
+<td>The prospectus bars offering, sale, or delivery in the United States or to U.S. persons</td>
+</tr>
+</tbody>
+</table>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/robinhood-put-stocks-on-a-permissionless-blockchain-memecoin-traders-are-stress-testing-what-happens-next/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Robinhood put stocks on a permissionless blockchain- memecoin traders are stress-testing what happens next</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The <a href="https://cdn.robinhood.com/assets/robinhood/legal/rhj_base_prospectus.pdf">RHJ base prospectus</a> says token holders are creditors of RHJ under the debt product. Their claim runs through RHJ's terms, with no claim to AMC voting, meeting, pre-emption, or direct dividend rights. Dividends and stock splits are reflected economically through product mechanics that include an onchain multiplier.</p>
+<p>That arrangement lets the token track aspects of AMC's economics while remaining outside AMC's shareholder register. The separation also explains the sharp disagreement. Aron sees an instrument using AMC as its reference point without giving holders ownership in the company. Robinhood offers it as a distinct security for economic exposure.</p>
+<p>The prospectus says Stock Tokens remain unregistered under U.S. securities laws and cannot be offered, sold, or delivered in the United States or to U.S. persons. The product is issued through a Jersey entity for eligible customers outside that distribution boundary.</p>
+<p>Those restrictions define the offering perimeter. Aron's broader challenge to the structure remains disputed, and the available evidence establishes no regulator decision on Robinhood's AMC-linked instrument. The public record at this stage consists of Aron's threatened legal and <a href="https://cryptoslate.com/regulation/">regulatory scrutiny</a> and Robinhood's refusal to withdraw the product.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/the-sec-is-rewriting-50-year-old-wall-street-rules-to-let-public-blockchains-decide-who-legally-owns-a-stock/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">The SEC is rewriting 50-year-old Wall Street rules to let public blockchains decide who legally owns a stock</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>For investors, the practical divide is already clear. The token's name and reference asset supply AMC-linked economics; the rights come from RHJ's debt terms. That gap between exposure and ownership is the commercial issue driving the confrontation.</p>
+<h2>A meme-stock role reversal</h2>
+<p>The fight carries unusual historical weight because AMC was one of the defining companies of the 2021 meme-stock era, when retail traders organized online around a small group of volatile shares.</p>
+<p>On Jan. 28, 2021, Robinhood <a href="https://robinhood.com/us/en/newsroom/when-and-why-we-restrict-trading/">placed AMC, GameStop and other securities</a> into position-closing-only status, temporarily restricting purchases during the market frenzy. The <a href="https://www.sec.gov/newsroom/press-releases/2021-212">SEC later examined</a> the episode and the market-structure pressures surrounding broker restrictions.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/robinhood-took-on-coinbase-and-immediately-inherited-bases-biggest-problem/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Robinhood tackled Coinbase head-on then immediately inherited Base’s biggest problem</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Five years later, the same companies sit on opposite sides of a new access dispute. Robinhood operates the AMC-linked instrument, while the chief executive of AMC is demanding that it stop.</p>
+<p>The parallel supplies historical context rather than a legal conclusion. The 2021 dispute focused on a broker limiting access to AMC shares. The current fight asks whether Robinhood can keep offering exposure linked to AMC through a separate debt instrument over the company's objection.</p>
+<p>AMC's meme-stock rise made direct share ownership and retail market access central to its public identity. Robinhood's Stock Token model separates AMC-linked economics from the rights and corporate relationship attached to AMC shares.</p>
+<p>Aron is contesting that separation. Robinhood is defending it.</p>
+<p>The post <a href="https://cryptoslate.com/robinhood-rejects-amc-ceos-demand-to-halt-amc-tokenized-stock-offering-holders-no-shareholder-rights/">Robinhood rejects AMC CEO&#8217;s demand to halt AMC tokenized &#8216;meme stock&#8217; which offers no shareholder rights</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/amc-robinhood-token-split.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/amc-robinhood-token-split.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Wall Street is turning AI’s massive electricity appetite into a $61 billion bond market</title>
+		<link>https://cryptoslate.com/wall-street-is-turning-ais-massive-electricity-appetite-into-a-61-billion-bond-market/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 07:00:44 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=560074</guid>
+
+					<description><![CDATA[<p>Every interaction with AI uses electricity in a data center. Servers calculate the answer, cooling equipment carries away the heat, and network connections send the result back to the user. Multiply that process across millions of requests and the electric bill becomes one of the facility's highest costs, while access to enough power determines how [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/wall-street-is-turning-ais-massive-electricity-appetite-into-a-61-billion-bond-market/">Wall Street is turning AI’s massive electricity appetite into a $61 billion bond market</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Every interaction with AI uses electricity in a data center. Servers calculate the answer, cooling equipment carries away the heat, and network connections send the result back to the user.</p>
+<p>Multiply that process across millions of requests and the electric bill becomes one of the facility's highest costs, while access to enough power determines how much computing the building can support and how much money it can earn.</p>
+<p>Wall Street is now packaging that income into bonds. Once a data center is open and has paying customers, its owner can transfer the facility and its contracts to a separate legal entity that issues debt. Investors are repaid from the rent and service fees paid by the data center's customers after expenses such as electricity, maintenance, taxes, and insurance are covered.</p>
+<p>The collateral extends beyond rent, covering the property, its essential systems, customer agreements, and the business that keeps everything running. Electricity appears as an expense in the cash-flow waterfall, so power prices and deliverable megawatts can shape the bond almost as much as tenant credit.</p>
+<p>In February, S&P assigned an A(sf) rating to <a href="https://www.spglobal.com/ratings/en/regulatory/article/-/view/type/HTML/id/3512773">Sabey Data Center Issuer's $475 million 2026-1 notes</a>, backed by real estate and tenant lease payments. Across the sector, outstanding data-center securitizations expanded from roughly $4 billion in 2020 to $61 billion through July 2026, according to <a href="https://structuredfinance.org/wp-content/uploads/2026/07/SFA-Research-Corner_How-Data-Center-ABS-and-CMBS-Fit-in-a-Broader-Financing-Ecosystem.pdf">Structured Finance Association research</a> drawing on Barclays data.</p>
+<p>The bond gives investors a claim on real estate and operating revenue, though the economic unit underneath is nothing more than reliable electricity delivered to a creditworthy computing customer.</p>
+<p>AI has turned the megawatt into something Wall Street can price and place in a fixed-income portfolio.</p>
+<h2>The new unit of real estate is a megawatt</h2>
+<p>Conventional property language struggles with a data center because square footage explains only the shell. Server campuses need a utility connection, substations, backup generation, cooling, security, and fiber routes designed around each rack's power draw.</p>
+<p>Space with little usable electricity offers little to an AI company, while a secured megawatt in a region short on capacity can define the entire project.</p>
+<p>The national totals show how fast that physical requirement is expanding. <a href="https://eta.lbl.gov/publications/united-states-data-center-energy-2025">Lawrence Berkeley National Laboratory's 2025 update</a> estimates that US data centers could consume 649 terawatt-hours in 2030 in its reference case, equal to 11.8% of total US electricity use.</p>
+<p>The wider model range runs from 521 to 843 TWh, or 9.5% to 15.3%, depending partly on chip shipments, server use, equipment life, and cooling performance.</p>
+<p>For bond investors, that wide range captures how far the industry's power needs could move during the life of a long-dated security.</p>
+<p>More AI chips can lift revenue but also require extra power equipment, utility upgrades, and cooling. Even a facility with a long customer contract may need expensive retrofits as new processors pack more heat into each rack.</p>
+<p>The customer agreement translates that computing demand into revenue. Large cloud and AI tenants lease a data hall or a block of capacity measured in megawatts, then pay for the space, available power, and operating services.</p>
+<p>Those payments create recurring cash while tenant concentration ties an entire campus to a small number of technology companies.</p>
+<p>The <a href="https://www.sec.gov/files/corpfin/no-action/dcs-interp-letter-072326.pdf">transaction structure described to the SEC</a> starts with tenant and customer revenue, then deducts taxes, insurance, electricity, repairs, and operating costs before bondholders get paid.</p>
+<p>The property and contracts form the collateral, while the electric bill controls how much revenue completes the trip from an AI tenant to an investor's coupon.</p>
+<p>That leaves bond buyers with two connected underwriting jobs, since an investment-grade hyperscaler can make lease payments look dependable even when the building faces limits around power and technological usefulness.</p>
+<p>Tenant credit asks whether the customer can pay, while facility design asks whether that customer will still want the building when denser chips demand another electrical and cooling configuration.</p>
+<h2>How an AI server hall becomes a bond</h2>
+<p>Data centers pass through several kinds of finance as their risk profile matures. Construction loans, project finance, private credit, or corporate bonds can fund the land, equipment, permits, and utility work.</p>
+<p>Those early lenders bear the danger of a delayed grid connection, cost overruns, or a facility that opens without enough tenants.</p>
+<p>Once the building is operating and leased, its owner can refinance through a data-center securitization or commercial mortgage-backed security. Corporate debt depends on the company's broad balance sheet, while a commercial mortgage-backed deal owns a mortgage loan secured by the property.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/ai-data-centers-are-learning-the-power-trick-bitcoin-miners-mastered-first/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">AI data centers are learning the power trick Bitcoin miners mastered first</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>A data-center securitization places the facilities and operating assets themselves inside a ring-fenced issuer, giving investors recourse mainly to that pool.</p>
+<p>The special-purpose issuer can own the property, power and cooling systems, fiber, leases, and service contracts, while an operator runs the facilities. A master trust lets the sponsor add qualifying data centers and issue more notes over time, turning a portfolio of server campuses into a repeat source of finance for another round of construction.</p>
+<p>The <a href="https://www.sec.gov/files/corpfin/no-action/dcs-interp-letter-072326.pdf">Latham letter filed with the SEC</a> says these transactions usually start with debt equal to no more than 70% of the appraised asset value, leaving at least 30% as sponsor equity. The notes often carry an expected repayment point around five years and a legal final maturity of 25 to 30 years.</p>
+<p>Such a wide gap creates refinancing exposure because the business plan assumes the owner can issue new debt or repay early many years before the legal deadline.</p>
+<p>Wall Street can divide the same pool into classes with different claims on the cash, allowing one building portfolio to serve pension funds, insurers, hedge funds, and other buyers with different risk appetites.</p>
+<p>Senior classes receive their payments first and usually carry lower coupons, while junior classes collect more interest because they absorb losses sooner.</p>
+<p>The <a href="https://structuredfinance.org/wp-content/uploads/2026/07/SFA-Research-Corner_How-Data-Center-ABS-and-CMBS-Fit-in-a-Broader-Financing-Ecosystem.pdf">Structured Finance Association's sector review</a> puts average data-center ABS issuance near $600 million and average data-center CMBS issuance near $1.2 billion.</p>
+<p>The market is still small beside the capital race feeding it. The Structured Finance Association cites a <a href="https://cryptoslate.com/companies/morgan-stanley/">Morgan Stanley</a> estimate of $2.9 trillion in global data-center spending through 2028, with about $1.4 trillion covered by cash generated at large cloud companies and another $1.5 trillion needing external finance.</p>
+<p>Securitizations and commercial mortgage bonds could supply around $150 billion, leaving corporate debt, bank loans, project finance, private credit, and equipment lending to fund the rest.</p>
+<p>Data centers already take up much more room in structured credit. The same paper puts data-center ABS at about 12% of the esoteric ABS market in 2026, up from 3% in 2020, while data-center CMBS represents about 6% of single-asset, single-borrower CMBS.</p>
+<p>A Barclays projection cited in the report puts outstanding data-center securitizations as high as $180 billion by the end of 2028.</p>
+<h2>The AI bond market sheds an ABS label</h2>
+<p>A legal distinction gave this market a valuable opening on July 29, when the SEC's Office of Structured Finance agreed that data-center securitizations matching Latham's description fall outside the Exchange Act definition of an asset-backed security.</p>
+<p>The <a href="https://www.sec.gov/rules-regulations/no-action-interpretive-exemptive-letters/division-corporation-finance-no-action/certain-data-center-securitizations-072926">SEC staff response</a> applies only to the facts presented, carries no independent legal force, and leaves room for staff to reach another conclusion when a deal uses a different structure.</p>
+<p>The reasoning depends on what is left once investors have been repaid. Conventional asset-backed securities often contain mortgages, car loans, or receivables that convert into cash and disappear as borrowers pay them down.</p>
+<p>Data-center issuers still own and operate the facility once its notes have been repaid, and the land, power gear, cooling equipment, contracts, and business can keep producing value. That makes the structure much closer to financing an operating real-estate company.</p>
+<p>It also creates a language issue because the market still refers to these instruments as data-center ABS, while the SEC letter deals with the narrower legal definition of an Exchange Act ABS. The familiar market label and the statutory category can now point to different things without either usage being wrong.</p>
+<p>That classification lets qualifying deals avoid several ABS-specific obligations. <a href="https://www.lw.com/en/insights/latham-letter-delivers-regulatory-clarity-for-data-center-securitizations">Latham's explanation of the SEC view</a> says market participants can stop voluntarily observing the federal rule requiring securitizers to retain 5% of the credit risk.</p>
+<p>Rule 192, which bars certain conflicts of interest for covered securitizations, also falls outside the structure, along with disclosure provisions tied to repurchase activity and third-party due-diligence reports.</p>
+<p>Typical data-center structures keep sponsor equity at 30% or more, giving owners plenty of their money at risk, though that feature differs from a statutory retention rule.</p>
+<p>Federal antifraud law and the relevant registration or offering exemption still apply. The staff letter can reduce the cost and work of issuing the bonds while still leaving investors to study the deal documents for power contracts, tenant exposure, refinancing assumptions, and asset condition.</p>
+<p>If lower issuance costs bring more operating facilities into the bond market, voluntary disclosure will carry more weight. Investors need enough information to compare deliverable power, tenant concentration, equipment age, and debt due at the expected repayment point.</p>
+<p>Familiar ratings compress a complicated credit view into a letter, while the physical reasons behind that view can stay buried several layers down.</p>
+<p>Those layers connect in ways that make AI credit different from an ordinary office mortgage. Delayed grid connections postpone the lease and the revenue that comes with it, while concentrated tenants can choose to renegotiate or leave. Higher electricity costs then reduce cash available for debt service, and denser chips can force expensive retrofits.</p>
+<p>If the bond market also turns hostile near the five-year repayment point, the issuer may need another lender just as demand for its older facilities is weakening.</p>
+<p><a href="https://cryptoslate.com/ai-data-centers-are-learning-the-power-trick-bitcoin-miners-mastered-first/">AI data centers are testing the power-saving playbook pioneered by Bitcoin miners</a>, using flexible computing to cut electricity use when the grid is strained.</p>
+<p>The bond version carries the same physical reality into credit markets. A facility that can manage power intelligently may preserve margins and improve reliability, while one built around uninterrupted maximum demand leaves the grid and its operating cash with less room.</p>
+<p>The user who receives an AI-generated answer sees software moving at extraordinary speed. The investor holding a data-center note owns a claim that may stretch across decades.</p>
+<p>Between them lies a chain of utilities, substations, leases, servers, and refinancing assumptions, all feeding one stream of operating cash. Wall Street has made AI's electric appetite investable, and every coupon now carries the physical constraints the interface leaves out.</p>
+<p>The post <a href="https://cryptoslate.com/wall-street-is-turning-ais-massive-electricity-appetite-into-a-61-billion-bond-market/">Wall Street is turning AI’s massive electricity appetite into a $61 billion bond market</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/megawatts-into-bonds.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/megawatts-into-bonds.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Bitcoin dips below $80,000 as a hot August jobs report shifts Fed policy expectations</title>
+		<link>https://cryptoslate.com/bitcoins-80000-rally-just-lost-the-feds-labor-market-escape-hatch/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 04:00:32 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=560447</guid>
+
+					<description><![CDATA[<p>August payrolls weakened the case for patience, leaving Sept. 11 CPI as Bitcoin’s next decisive volatility test.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoins-80000-rally-just-lost-the-feds-labor-market-escape-hatch/">Bitcoin dips below $80,000 as a hot August jobs report shifts Fed policy expectations</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Bitcoin's push above $80,000 lost an important policy cushion on Sept. 4, when the August jobs report came in far stronger than the recent hiring trend. The result made it harder for the Fed to justify holding rates steady on labor-market weakness alone.</p>
+<p>Bitcoin registered an intraday low of $78,660, but recovered to stay close to $80,000.</p>
+<p>Within the same post-release window, <a href="https://www.marketwatch.com/livecoverage/stock-market-today-dow-s-p-500-nasdaq-investors-await-august-jobs-data/card/treasury-yields-spike-after-jobs-data-PXatWOa5VAWR1pr6rAFX">MarketWatch reported</a> the two-year Treasury yield near 4.40%, up from just above 4.33%, and the 10-year near 4.80%, up from just under 4.75%. <a href="https://www.wsj.com/finance/currencies/yen-consolidates-likely-buoyed-by-prospects-of-hawkish-boj-rate-hike-b1eb9c38">The Wall Street Journal reported</a> that the dollar index touched 99.932 from about 99.035 before the data.</p>
+<p>Those aligned timestamps show that a more resilient labor market gave policymakers more room to focus on inflation, while higher short-term yields and a firmer dollar tightened the financial backdrop for a dollar-priced risk asset.</p>
+<h2>Payrolls narrowed the Fed question</h2>
+<p><a href="https://www.bls.gov/news.release/empsit.nr0.htm">The Bureau of Labor Statistics said</a> nonfarm payrolls rose by 162,000 in August, more than five times the average monthly gain of 31,000 over the previous 12 months. The separately measured unemployment rate was unchanged at 4.1%.</p>
+<p>BLS raised June payroll growth to 31,000 and July growth to 21,000, adding a combined 55,000 jobs to its earlier estimates.</p>
+<p>Average hourly earnings for private nonfarm workers rose 0.3% in August to $37.75 and were 3.1% higher than a year earlier.</p>
+<p>Food services and drinking places accounted for 59,000 jobs, and local government education added 42,000. Information employment fell by 23,000, while health care added 13,000, well below that sector's 32,000 average monthly gain over the prior year.</p>
+<p>The report weakened the labor-market argument for an immediate pause without establishing that every corner of the economy was overheating. Inflation now has more weight in determining whether the Fed can stay patient.</p>
+<p>Fed Governor Christopher Waller had laid out one visible version of that tradeoff the day before the release. His view does not bind the full Federal Open Market Committee, but his <a href="https://www.federalreserve.gov/newsevents/speech/waller20260903a.htm">published remarks</a> offered a clear reaction function.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-faces-a-new-macro-test-as-fed-chair-kevin-warsh-highlights-sticky-inflation-metrics/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin faces a new macro test as Fed Chair Kevin Warsh highlights sticky inflation metrics</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Waller described the labor market as satisfactory and stable, with employment near its maximum sustainable level, and said that August inflation would heavily influence his September stance.</p>
+<p>Continued progress toward the Fed's 2% goal would make him willing to hold the policy rate steady, while a hot reading, or evidence that progress had reversed, could make him consider a hike.</p>
+<p>The payroll report removed the kind of obvious labor deterioration that could have outweighed an uncomfortable inflation print. September's decision now turns more cleanly on whether price pressures continue to ease.</p>
+<figure id="attachment_560450" aria-describedby="caption-attachment-560450" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-6a2bc5c4-e4d8-48f0-8863-236fc8e90cf7.png" target="_blank" rel="noopener"><img decoding="async" class="wp-image-560450" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-6a2bc5c4-e4d8-48f0-8863-236fc8e90cf7.png" alt="Infographic showing August payrolls, post-release Bitcoin, Treasury yield and dollar moves, and the Sept. 11 CPI deadline before the FOMC meeting." width="720" height="1080" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/exec-6a2bc5c4-e4d8-48f0-8863-236fc8e90cf7.png 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-6a2bc5c4-e4d8-48f0-8863-236fc8e90cf7-200x300.png 200w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-6a2bc5c4-e4d8-48f0-8863-236fc8e90cf7-683x1024.png 683w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-6a2bc5c4-e4d8-48f0-8863-236fc8e90cf7-768x1152.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-560450" class="wp-caption-text">Infographic outlines Bitcoin’s September macro tests, including a stronger jobs report, post-release price decline, upcoming inflation data and a Federal Reserve meeting.</figcaption></figure>
+<h2>CPI becomes Bitcoin's next September deadline</h2>
+<p>The <a href="https://www.bls.gov/schedule/2026/09_sched.htm">BLS calendar</a> schedules the August consumer price index for 8:30 a.m. ET on Sept. 11. The <a href="https://www.federalreserve.gov/newsevents/2026-september.htm">Federal Reserve calendar</a> lists the FOMC meeting for Sept. 15-16, with decision-day events on Sept. 16.</p>
+<p>The five-day gap makes CPI the last major scheduled inflation test before the meeting. For <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin traders</a>, Sept. 11 is when the September rate debate can absorb new evidence, rather than when policymakers formally settle it.</p>
+<p>A cooler report would fit Waller's condition for supporting a hold and could relieve pressure transmitted through short-term yields and the dollar. A hotter print would strengthen the case that inflation progress has stalled just as the labor market has shown renewed resilience.</p>
+<p>Waller spoke only for himself, and one inflation report will not erase the other evidence policymakers weigh. CPI can nevertheless change the balance because payrolls have already answered the labor side of the debate more firmly than the recent trend suggested.</p>
+<p>Bitcoin had rallied above $80,000 before the two closely spaced macro tests. After payrolls, the asset fell back below it while yields and the dollar rose.</p>
+<p>A softer CPI reading could reopen the hold narrative and give the rally breathing room. A hotter one could leave Bitcoin approaching the Sept. 16 decision with both labor resilience and inflation pressure pointing toward tighter policy.</p>
+<p>The Fed meeting remains the policy deadline, but Sept. 11 comes first for Bitcoin volatility.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoins-80000-rally-just-lost-the-feds-labor-market-escape-hatch/">Bitcoin dips below $80,000 as a hot August jobs report shifts Fed policy expectations</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-jobs-cpi-fed-pressure.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-jobs-cpi-fed-pressure.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>A major outage and corporate backlash hit Robinhood Chain at the peak of its growth</title>
+		<link>https://cryptoslate.com/a-major-outage-and-corporate-backlash-hit-robinhood-chain-at-the-peak-of-its-growth/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 05 Sep 2026 00:20:00 +0000</pubDate>
+				<category><![CDATA[Adoption]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Layer-2]]></category>
+		<category><![CDATA[Outage]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Tokenization]]></category>
+		<category><![CDATA[Trading]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=560478</guid>
+
+					<description><![CDATA[<p>Robinhood Chain’s rapid growth ran into two problems at once on Sept. 4 as the network briefly stopped producing blocks while AMC challenged its fast-growing Stock Token business. On Sept. 4, the Ethereum layer-2 network halted block production for at least 14 minutes, stalling transactions before activity began recovering. Robinhood had not publicly disclosed the [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/a-major-outage-and-corporate-backlash-hit-robinhood-chain-at-the-peak-of-its-growth/">A major outage and corporate backlash hit Robinhood Chain at the peak of its growth</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Robinhood Chain’s rapid growth ran into two problems at once on Sept. 4 as the network briefly stopped producing blocks while AMC challenged its fast-growing Stock Token business.</p>
+<p>On Sept. 4, the <a href="https://cryptoslate.com/coins/ethereum/">Ethereum layer-2</a> network halted block production for at least 14 minutes, stalling transactions before activity began recovering. <a href="https://cryptoslate.com/robinhoods-expanding-crypto-bet-meets-a-faster-moving-prediction-market-boom/">Robinhood</a> had not publicly disclosed the cause of the interruption at the time of publication.</p>
+<p>The outage came roughly two months after the network’s public mainnet launch.</p>
+<h2>Robinhood Chain’s rapid growth raises the stakes</h2>
+<p>The disruption comes after <a href="https://cryptoslate.com/robinhood-took-on-coinbase-and-immediately-inherited-bases-biggest-problem/">Robinhood Chain rapidly emerged</a> as one of crypto’s highest-earning networks, making even a brief interruption in block production more significant.</p>
+<p>The network has generated about $23 million in cumulative fees, including roughly $4 million in a recent 24-hour period, Entropy Advisors’ Tom Wan <a href="https://x.com/tomwanhh/status/2095800316897673658">said</a>. Token Terminal separately estimated that Robinhood Chain accounted for 78.5% of layer-2 blockchain revenue over the past 30 days.</p>
+<p>At its recent pace, Robinhood Chain’s revenue would annualize to roughly $1.7 billion. That figure extrapolates a short period of elevated activity rather than representing a formal revenue forecast, but it illustrates how quickly the two-month-old network has scaled.</p>
+<figure id="attachment_560479" aria-describedby="caption-attachment-560479" style="width: 1500px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-560479 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/HRStuL8boAA_J5J.jpg" alt="Robinhood Chain Daily Revenue" width="1500" height="1500" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/HRStuL8boAA_J5J.jpg 1500w, https://cryptoslate.com/wp-content/uploads/2026/09/HRStuL8boAA_J5J-300x300.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/09/HRStuL8boAA_J5J-1024x1024.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/HRStuL8boAA_J5J-150x150.jpg 150w, https://cryptoslate.com/wp-content/uploads/2026/09/HRStuL8boAA_J5J-768x768.jpg 768w" sizes="(max-width: 1500px) 100vw, 1500px" /><figcaption id="caption-attachment-560479" class="wp-caption-text">Chart shows Robinhood Chain’s daily revenue surging to $4.6 million two months after launch, equivalent to about $1.7 billion annualized. Source: Token Terminal</figcaption></figure>
+<p>DeFi activity has expanded alongside those fees. <a href="https://defillama.com/chain/robinhood-chain">Data</a> from DeFiLlama shows that the total value locked on Robinhood Chain climbed nearly 27% over the past week to roughly $840 million, while decentralized exchange activity has also accelerated as users move more assets and trades onto the network.</p>
+<p>The chain is also creating revenue opportunities beyond transaction fees.</p>
+<p>Wan estimated that Robinhood could have generated roughly $1.7 million from its share of USDG economics at a 3% annual yield.</p>
+<p>Growth in assets held across Robinhood and <a href="https://cryptoslate.com/companies/bitstamp/">Bitstamp</a> may also support higher trading revenue, with crypto assets under management rising by about $4 billion on Robinhood and $600 million on Bitstamp.</p>
+<p>Stock Tokens add another potential revenue source, though their economics are less transparent. Robinhood has not published a detailed fee schedule covering possible minting and redemption charges for authorized participants or market makers.</p>
+<p>This rapid expansion has pushed <a href="https://cryptoslate.com/robinhood-launched-a-wall-street-layer-2-chain-and-the-market-crowned-a-150m-cat-coin-first/">Robinhood Chain</a> into territory normally occupied by much older networks like BNB Chain and others.</p>
+<h2>Stock Tokens draw resistance as adoption accelerates</h2>
+<p>That growth raises the cost of downtime as <a href="https://cryptoslate.com/robinhood-put-stocks-on-a-permissionless-blockchain-memecoin-traders-are-stress-testing-what-happens-next/">Robinhood pushes more financial products</a> onto the network, including a Stock Token business already attracting resistance from some of the companies it tracks.</p>
+<p>AMC Entertainment CEO Adam Aron challenged Robinhood this week after discovering a token tracking his company’s shares on the platform's Ethereum layer-2 network.</p>
+<p>He <a href="https://x.com/CEOAdam/status/2095622531524784212">stated</a> on X:</p>
+<blockquote><p>“They are not registered under U.S. securities laws !!!!!! I find this practice to be contemptible, outrageous, disgusting, detestable, inexcusable, vile. How can it possibly be legal? We have no connection to this at all, and do not condone it in any way.”</p></blockquote>
+<p>Aron said AMC would ask outside securities counsel to examine the offering, while asking &#8220;Robinhood to voluntarily CEASE AND DECIST the trading of AMC stock tokens. If you don’t, our high priced securities counsel has been asked to see whether we can force you to stop.&#8221;</p>
+<p>In response, Dan Gallagher, Robinhood's chief legal officer, stated that the company will not stop trading the AMC token. He said:</p>
+<blockquote><p>&#8220;We know a little something about the US securities laws and will not &#8216;DECIST.' Send your lawyers and we’ll educate them.&#8221;</p></blockquote>
+<p>The dispute highlights how <a href="https://cryptoslate.com/robinhood-chains-2-7-million-app-day-says-little-about-robinhoods-actual-take/">Robinhood brings equities onchain</a> without requiring participation from the companies being referenced.</p>
+<p>Robinhood describes Stock Tokens as the flagship real-world asset on its chain. The ERC-20 tokens provide economic exposure to US shares and exchange-traded funds and can be transferred or used within onchain applications.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/robinhood-took-on-coinbase-and-immediately-inherited-bases-biggest-problem/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Robinhood tackled Coinbase head-on then immediately inherited Base’s biggest problem</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The instruments are debt securities issued by Robinhood Assets Limited. Holders receive exposure to the performance of the referenced security but gain no legal or beneficial ownership of the underlying shares and no claim against the company whose stock is tracked.</p>
+<p>The tokens are not registered under US securities laws and cannot be offered or sold to US persons.</p>
+<p>That framework allows Robinhood to create an instrument linked to AMC’s share price without AMC participating in the issuance, with the legal relationship instead running between the token holder and Robinhood’s Jersey entity.</p>
+<p><a href="https://cryptoslate.com/openai-disavows-robinhoods-openai-tokens-says-demo-stock-was-not-approved-and-has-no-equity-backing/">OpenAI previously raised a similar objection</a> after Robinhood introduced tokens referencing the privately held company. OpenAI said the instruments were not OpenAI equity, that it had not partnered with Robinhood and that it did not endorse the offering.</p>
+<p>However, corporate resistance has so far done little to slow demand.</p>
+<p>Token Terminal data show Robinhood has become the largest Stock Token issuer by holder count in roughly two months, reaching about 862,800 holders. The wider tokenized-stock market has expanded more than eightfold over the past six months to roughly 2.6 million holders.</p>
+<figure id="attachment_560485" aria-describedby="caption-attachment-560485" style="width: 1704px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-560485 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/HRO2C2-bAAAj_CQ.jpg" alt="Tokenized Stocks" width="1704" height="924" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/HRO2C2-bAAAj_CQ.jpg 1704w, https://cryptoslate.com/wp-content/uploads/2026/09/HRO2C2-bAAAj_CQ-300x163.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/09/HRO2C2-bAAAj_CQ-1024x555.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/HRO2C2-bAAAj_CQ-768x416.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/09/HRO2C2-bAAAj_CQ-1536x833.jpg 1536w" sizes="(max-width: 1704px) 100vw, 1704px" /><figcaption id="caption-attachment-560485" class="wp-caption-text">Chart shows Robinhood leading tokenized-stock issuers with 862,800 asset holders, narrowly ahead of Binance’s 827,200. Source: Token Terminal</figcaption></figure>
+<p>Trading has accelerated alongside that expansion. Tokenized stocks generated about $6.4 billion in decentralized exchange volume over the past 30 days, up more than 90% from the preceding period. PancakeSwap accounted for about $3.1 billion and <a href="https://cryptoslate.com/coins/uniswap/">Uniswap</a> another $2.5 billion, giving the two exchanges the overwhelming majority of activity.</p>
+<p>Stock Tokens now represent more than $200 million of active real-world assets on Robinhood Chain, while stablecoins on the network have approached $1 billion.</p>
+<p>The scale puts the Sept. 4 outage in perspective. Robinhood is positioning its chain as infrastructure for financial products that can trade and move onchain while simultaneously expanding a Stock Token model that some of the referenced companies have openly rejected.</p>
+<p>As more assets and users migrate onto those rails, Robinhood will have to demonstrate that the infrastructure can support the financial activity its distribution network is bringing onchain.</p>
+<p>The post <a href="https://cryptoslate.com/a-major-outage-and-corporate-backlash-hit-robinhood-chain-at-the-peak-of-its-growth/">A major outage and corporate backlash hit Robinhood Chain at the peak of its growth</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/robinhood-chain-broken-bridge.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/robinhood-chain-broken-bridge.jpg" length="1280" type="image/jpg"/>
+	</item>
+	</channel>
+</rss>
