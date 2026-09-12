@@ -21,6 +21,8 @@ struct ChatRoute: Hashable {
 /// screen as its own Compose view. Replaces the Compose bottom bar on iOS 26.
 @available(iOS 26.0, *)
 struct LiquidGlassRootView: View {
+    /// Paint each destination's safe areas; NavigationStack covers the window background.
+    let appBackground: Color
     @EnvironmentObject private var urlHandler: URLHandler
     @State private var selection = 0
     /// Tab that Settings was opened from, so its back arrow can return there (tabs have no back stack).
@@ -35,6 +37,7 @@ struct LiquidGlassRootView: View {
                     MarketComposeView { symbol, display in
                         marketPath.append(CoinRoute(symbol: symbol, display: display))
                     }
+                    .background(appBackground.ignoresSafeArea())
                     .ignoresSafeArea(.keyboard)
                     // Extend Compose under the floating glass tab bar so the list frosts through it
                     // (Contacts-style). Bottom only — the top status-bar inset must be preserved.
@@ -69,6 +72,7 @@ struct LiquidGlassRootView: View {
                     FavoritesComposeView { symbol, display in
                         favPath.append(CoinRoute(symbol: symbol, display: display))
                     }
+                    .background(appBackground.ignoresSafeArea())
                     .ignoresSafeArea(.keyboard)
                     .ignoresSafeArea(.container, edges: .bottom)
                     .toolbar(.hidden, for: .navigationBar)
@@ -94,12 +98,14 @@ struct LiquidGlassRootView: View {
 
             Tab("Portfolio", systemImage: "chart.pie.fill", value: 2) {
                 PortfolioComposeView { selection = 3 } // "Open Settings" → Settings tab
+                    .background(appBackground.ignoresSafeArea())
                     .ignoresSafeArea(.keyboard)
                     .ignoresSafeArea(.container, edges: .bottom)
             }
 
             Tab("Settings", systemImage: "gearshape", value: 3) {
                 SettingsComposeView { selection = previousSelection } // back → origin tab
+                    .background(appBackground.ignoresSafeArea())
                     .ignoresSafeArea(.keyboard)
                     .ignoresSafeArea(.container, edges: .bottom)
             }
@@ -160,6 +166,7 @@ struct LiquidGlassRootView: View {
             onOpenSettings: { selection = 3 },
             onAskAi: onAskAi
         )
+            .background(appBackground.ignoresSafeArea())
             .ignoresSafeArea(.keyboard)
             .toolbar(.hidden, for: .navigationBar)
             .toolbar(.hidden, for: .tabBar)
@@ -177,6 +184,7 @@ struct LiquidGlassRootView: View {
         )
             // Compose owns the keyboard inset on this screen: its composer lifts itself via window
             // insets, so letting SwiftUI resize the host as well would push the input up twice.
+            .background(appBackground.ignoresSafeArea())
             .ignoresSafeArea(.keyboard)
             .toolbar(.hidden, for: .navigationBar)
             .toolbar(.hidden, for: .tabBar)

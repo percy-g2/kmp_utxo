@@ -19,7 +19,7 @@ struct ContentView: View {
         (appearance.colorScheme ?? deviceScheme) == .dark
     }
 
-    /// The Compose theme background (#141313 dark) so native chrome matches the content
+    /// The Compose theme background (resolved from the shared palette) so native chrome matches the content
     /// instead of iOS's default pure black.
     private var appBackgroundArgb: Int32 {
         MainViewControllerKt.themeBackgroundArgb(dark: isDark)
@@ -32,7 +32,7 @@ struct ContentView: View {
 
             if #available(iOS 26.0, *) {
                 // Native SwiftUI TabView with Liquid Glass; each tab hosts a Compose screen.
-                LiquidGlassRootView()
+                LiquidGlassRootView(appBackground: Color(argb: appBackgroundArgb))
             } else {
                 // Fallback: full Compose UI with its own bottom bar.
                 ComposeView()

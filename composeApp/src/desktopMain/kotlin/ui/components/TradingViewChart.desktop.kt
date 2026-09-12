@@ -10,6 +10,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.SwingPanel
+import javafx.concurrent.Worker
 import javafx.application.Platform
 import javafx.embed.swing.JFXPanel
 import javafx.scene.Scene
@@ -56,6 +57,11 @@ actual fun TradingViewChart(
             Platform.runLater {
                 val webView = WebView()
                 webView.isContextMenuEnabled = false
+                webView.engine.loadWorker.stateProperty().addListener { _, _, loadState ->
+                    if (loadState == Worker.State.SUCCEEDED) {
+                        webView.engine.executeScript(buildTradingViewChromeScript(currentDark))
+                    }
+                }
                 val scene = Scene(webView)
                 panel.scene = scene
                 webView.engine.load(

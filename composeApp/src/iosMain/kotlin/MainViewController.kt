@@ -1,3 +1,8 @@
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.interop.LocalUIViewController
+import kotlinx.cinterop.ExperimentalForeignApi
+import platform.UIKit.UIColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -48,11 +53,23 @@ object IosShared {
 }
 
 /** Per-screen wrapper providing the theme + network dialog that App() normally provides once. */
+@OptIn(ExperimentalForeignApi::class)
 @Composable
 private fun IosScreen(content: @Composable () -> Unit) {
     val settings by store.updates.collectAsState(initial = ui.Settings(appTheme = AppTheme.System))
     val status by IosShared.networkStatus.collectAsState()
     UTXOTheme(isDarkTheme(settings)) {
+        val controller = LocalUIViewController.current
+        val background = MaterialTheme.colorScheme.background
+        SideEffect {
+            // Compose's native view can cover SwiftUI's background in its safe-area margins.
+            controller.view.backgroundColor = UIColor(
+                red = background.red.toDouble(),
+                green = background.green.toDouble(),
+                blue = background.blue.toDouble(),
+                alpha = background.alpha.toDouble(),
+            )
+        }
         content()
         // Only block on a *confirmed* offline status. `null` is the not-yet-determined seed
         // (cold start before the monitor's first callback) — treating it as offline flashed a
@@ -167,8 +184,7 @@ fun portfolioPause() = IosShared.portfolioViewModel.pause()
  */
 /**
  * The Compose theme background color (ARGB) so SwiftUI can paint the window / status-bar strip /
- * tab-bar surround the same shade as the app content (the app uses #141313, not the iOS default
- * pure black). [dark] selects the dark vs light theme background.
+ * tab-bar surround the same shade as the app content (resolved from the shared palette). [dark] selects the dark vs light theme background.
  */
 fun themeBackgroundArgb(dark: Boolean): Int = (if (dark) backgroundDark else backgroundLight).toArgb()
 

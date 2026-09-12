@@ -2,6 +2,7 @@ package ui
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -195,7 +196,9 @@ fun OrderBookHeatMap(
         modifier = modifier
             .fillMaxWidth()
             .padding(all = 16.dp),
-        elevation = CardDefaults.cardElevation(2.dp)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Column(
             modifier = Modifier

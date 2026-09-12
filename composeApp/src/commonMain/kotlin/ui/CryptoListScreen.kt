@@ -2,10 +2,6 @@ package ui
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -35,7 +31,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -46,6 +41,8 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -77,7 +74,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
@@ -129,6 +125,8 @@ import utxo.composeapp.generated.resources.no_favorites_yet
 import utxo.composeapp.generated.resources.no_trading_pairs_found
 import utxo.composeapp.generated.resources.please_wait_fetching
 import utxo.composeapp.generated.resources.search
+import utxo.composeapp.generated.resources.nav_market
+import utxo.composeapp.generated.resources.market_subtitle
 import utxo.composeapp.generated.resources.search_placeholder
 import utxo.composeapp.generated.resources.sort_change_down
 import utxo.composeapp.generated.resources.sort_change_up
@@ -260,6 +258,21 @@ fun CryptoList(
     Scaffold {
         Box(modifier = Modifier.fillMaxSize()) {
             Column {
+                Column(
+                    modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 4.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    Text(
+                        text = stringResource(Res.string.nav_market),
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = stringResource(Res.string.market_subtitle),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
                 SearchBar(viewModel = cryptoViewModel)
 
                 val lazyRowState = rememberLazyListState()
@@ -267,8 +280,9 @@ fun CryptoList(
                     state = lazyRowState,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                        .padding(vertical = 4.dp),
+                    contentPadding = PaddingValues(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     if (tradingPairs.isEmpty()) {
                         items(count = 6, key = { it }) { _ ->
@@ -468,10 +482,10 @@ fun SearchBar(
         onValueChange = {
             viewModel.setSearchQuery(it)
         },
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(16.dp),
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 8.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp),
         placeholder = {
             Text(
                 stringResource(
@@ -515,45 +529,23 @@ fun SearchBar(
 
 @Composable
 fun TradingPairItem(quote: String, isSelected: Boolean, onClick: (String) -> Unit) {
-    val scale by animateFloatAsState(
-        targetValue = if (isSelected) 1.1f else 1f,
-        animationSpec = tween(200),
-        label = "Trading Pair Scale Animation"
-    )
-
-    Box(
-        modifier = Modifier
-            .padding(4.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(
-                if (isSelected) MaterialTheme.colorScheme.primary
-                else MaterialTheme.colorScheme.surfaceVariant
-            )
-            .debouncedClickable { onClick(quote) }
-            .padding(horizontal = 12.dp, vertical = 8.dp)
-            .animateContentSize(animationSpec = tween(200))
-            .let {
-                if (isSelected) it.graphicsLayer(scaleX = scale, scaleY = scale)
-                else it
-            }
-    ) {
-        AnimatedContent(
-            targetState = isSelected,
-            transitionSpec = {
-                fadeIn(animationSpec = tween(150)) togetherWith fadeOut(animationSpec = tween(150))
-            },
-            label = "Trading Pair Text Animation"
-        ) { selected ->
+    FilterChip(
+        selected = isSelected,
+        onClick = { onClick(quote) },
+        label = {
             Text(
-                modifier = Modifier.padding(horizontal = 2.dp),
                 text = quote,
-                color = if (selected) MaterialTheme.colorScheme.onPrimary
-                else MaterialTheme.colorScheme.onSurfaceVariant,
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium,
             )
-        }
-    }
+        },
+        shape = RoundedCornerShape(12.dp),
+        colors = FilterChipDefaults.filterChipColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        ),
+    )
 }
 
 @Composable
@@ -743,7 +735,7 @@ fun TickerCardListHeader(viewModel: CryptoViewModel) {
                 }
                 Text(
                     text = stringResource(Res.string.header_slash),
-                    color = MaterialTheme.colorScheme.onSecondary,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.W300,
                 )
@@ -812,7 +804,7 @@ fun TickerCardListHeaderItem(
             text,
             fontSize = 12.sp,
             fontWeight = FontWeight.W400,
-            color = if (currentSortKey.value == sortKey) MaterialTheme.colorScheme.onBackground else Color.Gray,
+            color = if (currentSortKey.value == sortKey) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.End
         )
         Box {
@@ -824,7 +816,7 @@ fun TickerCardListHeaderItem(
                 ),
                 tint = if (currentSortKey.value == sortKey && isSortDesc.value)
                     MaterialTheme.colorScheme.onBackground
-                else Color.Gray,
+                else MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
                     .padding(bottom = 6.dp)
                     .size(18.dp)
@@ -837,7 +829,7 @@ fun TickerCardListHeaderItem(
                 ),
                 tint = if (viewModel.currentSortKey.value == sortKey && !isSortDesc.value)
                     MaterialTheme.colorScheme.onBackground
-                else Color.Gray,
+                else MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 6.dp).size(18.dp)
             )
         }
@@ -883,21 +875,6 @@ fun TickerCard(
         tickerData.volume.formatVolume()
     }
 
-    // --- Bounce animation magic on first appearance! ---
-    val appeared = remember(tickerData.symbol) { mutableStateOf(false) }
-    LaunchedEffect(tickerData.symbol) {
-        appeared.value = true
-    }
-    val bounceScale by animateFloatAsState(
-        targetValue = if (appeared.value) 1f else 0.95f,
-        animationSpec = spring(
-            stiffness = Spring.StiffnessMedium,
-            dampingRatio = 0.42f // subtle bounce
-        ),
-        label = "TickerCardBounceScale"
-    )
-    // --- End bounce animation ---
-
     // Lifecycle-aware chart data fetching with cancellation
     LaunchedEffect(tickerData.symbol) {
         try {
@@ -912,22 +889,23 @@ fun TickerCard(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .graphicsLayer(
-                scaleX = bounceScale,
-                scaleY = bounceScale
-            )
     ) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 12.dp, vertical = 4.dp)
+                .padding(horizontal = 16.dp, vertical = 5.dp)
+                .clip(RoundedCornerShape(16.dp))
                 .debouncedClickable { onClick(tickerData.symbol, symbolLabel) },
-            elevation = CardDefaults.cardElevation(2.dp)
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+            ),
+            elevation = CardDefaults.cardElevation(0.dp)
         ) {
             Row(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
-                    .padding(horizontal = 10.dp, vertical = 10.dp),
+                    .padding(start = 32.dp, end = 12.dp, top = 14.dp, bottom = 14.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Row(
@@ -954,7 +932,7 @@ fun TickerCard(
                             Text(
                                 text = actualTradingPair,
                                 fontSize = 12.sp,
-                                color = Color.Gray,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -964,7 +942,7 @@ fun TickerCard(
                         Text(
                             text = formattedVolume,
                             style = MaterialTheme.typography.labelMedium,
-                            color = Color.Gray,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -983,17 +961,11 @@ fun TickerCard(
                         horizontalAlignment = Alignment.End,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        // %-change: plain Text; the green/red sign color is the persistent affordance.
+                        // Keep the price prominent and group the signed daily change beneath it.
                         val priceChangeColor = getPriceChangeColor(
                             priceChangePercent,
                             isDarkTheme,
                             MaterialTheme.colorScheme.primary
-                        )
-                        Text(
-                            modifier = Modifier.padding(bottom = 8.dp),
-                            text = "$priceChangePercent %",
-                            color = priceChangeColor,
-                            style = MaterialTheme.typography.titleSmall
                         )
                         // Brief color flash on each price change preserves the "value updated"
                         // feedback the old crossfade gave — a draw-phase color animation with no relayout.
@@ -1015,6 +987,15 @@ fun TickerCard(
                             style = MaterialTheme.typography.titleSmall,
                             modifier = Modifier.padding(bottom = 8.dp),
                         )
+                        Text(
+                            text = "${if ((priceChangePercent.toDoubleOrNull() ?: 0.0) > 0) "+" else ""}$priceChangePercent%",
+                            color = priceChangeColor,
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            modifier = Modifier
+                                .background(priceChangeColor.copy(alpha = 0.12f), RoundedCornerShape(6.dp))
+                                .padding(horizontal = 6.dp, vertical = 4.dp),
+                        )
                     }
                 }
             }
@@ -1029,17 +1010,12 @@ fun TickerCard(
                 else cryptoViewModel.addToFavorites(tickerData.symbol)
             },
             modifier = Modifier
-                .align(Alignment.TopStart)
-                .offset(x = 0.dp, y = (-4).dp)
-                .size(24.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                    shape = CircleShape
-                )
-                .clip(CircleShape)
+                .align(Alignment.CenterStart)
+                .offset(x = 12.dp)
+                .size(48.dp)
         ) {
             Icon(
-                modifier = Modifier.padding(4.dp),
+                modifier = Modifier.size(18.dp),
                 imageVector = if (isFavorite) Icons.Filled.Star else Icons.Filled.StarBorder,
                 contentDescription = if (isFavorite)
                     stringResource(Res.string.unfavorite)
@@ -1174,8 +1150,9 @@ fun FavoritesListScreen(
             Column {
                 Text(
                     text = stringResource(resource = Res.string.favorites_title),
-                    style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.padding(16.dp)
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(20.dp)
                 )
                 if (isLoading) {
                     Column(
