@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Sat, 12 Sep 2026 15:28:26 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Thailand’s stablecoin proposal would block transfers to other people’s wallets</title>
+		<link>https://cryptoslate.com/thailands-stablecoin-proposal-would-block-transfers-to-other-peoples-wallets/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 21:25:29 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[regulation]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<category><![CDATA[Tether]]></category>
+		<category><![CDATA[USDT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=562012</guid>
+
+					<description><![CDATA[<p>Licensed crypto firms could accept deposits and withdrawals only through accounts verified as the customer’s own.</p>
+<p>The post <a href="https://cryptoslate.com/thailands-stablecoin-proposal-would-block-transfers-to-other-peoples-wallets/">Thailand’s stablecoin proposal would block transfers to other people’s wallets</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Thailand’s Securities and Exchange Commission has proposed a same-owner requirement for stablecoin transfers that would sharply narrow how customers can move tokens such as USDT through licensed crypto firms. The measure remains at the consultation stage and is not yet an operative rule.</p>
+<p>Under the <a href="https://www.sec.or.th/EN/Pages/News_Detail.aspx?SECID=13294">SEC Board-approved Sept. 3 consultation principles</a>, stablecoins entering a customer account at a digital asset operator would have to come from an account or wallet verified as belonging to that customer. Withdrawals would likewise have to go to an account or wallet verified as the customer’s own.</p>
+<p>The consequence is explicit: a stablecoin deposit from another person’s account, or a withdrawal to another person’s account, would be prohibited.</p>
+<h2>How the proposed ownership gate would work</h2>
+<p>As drafted, the restriction would stop a customer from using a Thai SEC-supervised platform to receive a transfer from someone else’s wallet or to send stablecoins to another person’s wallet. Its reach is limited to transfers conducted through supervised digital asset operators, rather than peer-to-peer transfers that take place entirely outside those firms.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3.png" target="_blank" rel="noopener"><img fetchpriority="high" decoding="async" class="aligncenter wp-image-562018 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3.png" alt="Diagram of Thailand’s proposed stablecoin rule showing transfers allowed between a customer’s verified wallet and a licensed Thai crypto firm, while transfers involving another person’s wallet are blocked; the proposal has no announced effective date and the separate Travel Rule takes effect Feb. 27, 2027." width="1122" height="631" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3.png 1672w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3-300x169.png 300w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3-1024x576.png 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3-768x432.png 768w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3-1536x864.png 1536w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3-480x270.png 480w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-487be3e9-80b3-43ed-ba29-f2f5d0e82ff3-1200x675.png 1200w" sizes="(max-width: 1122px) 100vw, 1122px" /></a><br />
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/stablecoin-issuers-get-a-new-kyc-clock-but-defis-harder-fight-is-still-ahead/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">US starts clock to bring in ID checks for converting dollars to stablecoins but DeFi stays outside the rules</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+</p>
+<p>The proposal would also require stablecoin transfer values to be consistent with a customer’s income source and financial position. Inbound and outbound transfers would each be capped at 5 million baht per day, per person, per operator.</p>
+<p>The cap would not apply to transfers between customer accounts through SEC-supervised operators when both firms comply with the Travel Rule. The Sept. 11 consultation also lists cap exemptions for specified operator business transfers, certain Bank of Thailand-authorized operators and stablecoin/baht market makers. It remains unclear whether that cap waiver would affect the separately stated same-owner test, and consultation could add implementation detail.</p>
+<p>The SEC said it developed the measures after observing significant growth in <a href="https://cryptoslate.com/stablecoins/">stablecoin transaction volume</a> and value, particularly involving <a href="https://cryptoslate.com/coins/tether/">USDT</a>. It also cited patterns that it associated with risks tied to money laundering, cybercrime and the circumvention of rules governing international money transfers.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/thailands-sec-gives-tether-and-usdc-the-green-light-for-digital-trades/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Thailand's SEC gives Tether and USDC the green light for digital trades</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The ownership test would be separate from Thailand’s <a href="https://www.sec.or.th/TH/Pages/News_Detail.aspx?SECID=13275">finalized Travel Rule</a>. That rule requires digital asset operators to collect information about transfer parties, check counterparties and verify ownership or control of certain self-hosted wallets. It takes effect on Feb. 27, 2027.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/thailand-puts-private-wallets-and-offshore-crypto-transfers-on-notice-in-a-major-new-crypto-rule/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Thailand puts private wallets and offshore crypto transfers on notice in a major new crypto rule</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>As described, the stablecoin proposal would add a stricter condition when a transfer crosses the boundary of a licensed operator: the outside sending or receiving account would have to belong to the platform’s customer, not another person.</p>
+<p>On Sept. 11, the SEC <a href="https://www.sec.or.th/TH/Pages/News_Detail.aspx?SECID=13319">opened the public consultation</a>, with comments due by Sept. 25, 2026. It did not announce an effective date for the proposed stablecoin restrictions. Until final rules are issued, the same-owner restriction remains a proposal.</p>
+<p>The post <a href="https://cryptoslate.com/thailands-stablecoin-proposal-would-block-transfers-to-other-peoples-wallets/">Thailand’s stablecoin proposal would block transfers to other people’s wallets</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/thailand-wallet-transfer-block.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/thailand-wallet-transfer-block.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Bitcoin’s $80,000 ceiling looks fragile after stocks shrugged off near-5% Treasury yields</title>
+		<link>https://cryptoslate.com/bitcoins-80000-ceiling-looks-different-after-stocks-shrugged-off-near-5-treasury-yields/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 20:20:10 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=562025</guid>
+
+					<description><![CDATA[<p>With Bitcoin near $77,743 and weekend options volatility elevated, Wednesday’s Fed decision will test whether the gap persists.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoins-80000-ceiling-looks-different-after-stocks-shrugged-off-near-5-treasury-yields/">Bitcoin’s $80,000 ceiling looks fragile after stocks shrugged off near-5% Treasury yields</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Bitcoin failed to break $80,000 on Sept. 11 as US stocks climbed about 1% and long-dated Treasury yields stayed near levels not seen in years.</p>
+<p>Bitcoin registered an intraday high of $79,890, still short of the $80,000-$82,000 resistance zone identified by digital asset trading firm QCP. The S&P 500 closed up nearly 1%, while the Dow and Nasdaq followed closely.</p>
+<p>That split is not proof that Bitcoin has decoupled from macro conditions yet or that sellers around $80,000 have become the dominant market force. Nevertheless, Bitcoin still has to show it can reclaim the level that has capped its recent advance.</p>
+<h2>Bonds eased from their peaks, but conditions stayed tight</h2>
+<p>August <a href="https://www.bls.gov/news.release/cpi.htm">core CPI rose 0.3% on the month</a>, keeping the Fed decision central to Bitcoin’s weekend setup.</p>
+<p>The 10-year yield briefly touched 4.9915%, its highest level in almost three years, while the 30-year reached 5.424%, a 19-year high. The yields later pulled back to roughly 4.95% and 5.341%, respectively.</p>
+<p>The move left the 10-year yield near 5%, maintaining a demanding backdrop for risk assets. Markets priced about an 85% probability of a quarter-point Fed rate increase the following week.</p>
+<p>Bitcoin’s weaker showing narrowed the weekend question: was the cryptocurrency only lagging an equity rebound, or was resistance near $80,000 becoming an obstacle in its own right?</p>
+<h2>The options market sets a two-level test</h2>
+<p><a href="https://www.qcpgroup.com/insights/qcp-market-colour-44/">QCP reported</a> that the Sept. 12 <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin options</a> expiry carried at-the-money implied volatility near 46%, compared with roughly 38%-40% across the rest of the curve.</p>
+<p>Turnover was concentrated in Sept. 12 calls at $78,500 and $80,000, and QCP also saw steady demand for $75,000 puts expiring Sept. 11 and Sept. 18.</p>
+<p>Call activity kept upside exposure active near spot, while the puts showed that investors were still paying for downside protection.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-traders-hedged-60k-and-loaded-up-above-78k-leaving-the-low-70k-exposed/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin traders hedged $60k and loaded up above $78k leaving the low $70k exposed</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>QCP’s levels reduce the weekend setup to support at the $76,300-$76,500 zone and resistance at the $80,000-$82,000 range.</p>
+<table>
+<thead>
+<tr>
+<th>Bitcoin outcome</th>
+<th>What it could indicate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Breaks below $76,300-$76,500</td>
+<td>The case that Bitcoin is merely pausing weakens, placing greater weight on downside protection around $75,000.</td>
+</tr>
+<tr>
+<td>Stays between roughly $76,500 and $80,000</td>
+<td>Consolidation remains intact, leaving the Fed decision as the more important test.</td>
+</tr>
+<tr>
+<td>Reclaims $80,000 and pushes into $80,000-$82,000</td>
+<td>Friday’s relative weakness looks more like delayed catch-up than a damaged recovery.</td>
+</tr>
+</tbody>
+</table>
+<figure id="attachment_562027" aria-describedby="caption-attachment-562027" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf.png" target="_blank" rel="noopener"><img decoding="async" class="wp-image-562027" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf.png" alt="Bitcoin weekend decision map showing $80K–$82K resistance, $76.3K–$76.5K support, and elevated Sept. 12 options volatility." width="720" height="405" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf.png 1672w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf-300x169.png 300w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf-1024x576.png 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf-768x432.png 768w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf-1536x864.png 1536w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf-480x270.png 480w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-23a87400-ce90-42ae-acf2-810a3b422dcf-1200x675.png 1200w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-562027" class="wp-caption-text">Infographic maps Bitcoin’s weekend price scenarios between $76,300 and $82,000 alongside elevated options volatility before the Fed’s Sept. 16 decision.</figcaption></figure>
+<p>A weekend break can establish direction, but cannot by itself distinguish macro pressure from Bitcoin-specific selling.</p>
+<h2>Wednesday’s Fed decision is the verification event</h2>
+<p>The Federal Reserve’s <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm">Sept. 15-16 meeting</a> includes a new Summary of Economic Projections.</p>
+<p>The test is whether Bitcoin can sustain a move beyond QCP’s range after the announcement. A break above $80,000–$82,000 would strengthen the recovery case; a loss of $76,300–$76,500 would weaken the consolidation case. Neither outcome alone would establish the cause.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoins-80000-ceiling-looks-different-after-stocks-shrugged-off-near-5-treasury-yields/">Bitcoin’s $80,000 ceiling looks fragile after stocks shrugged off near-5% Treasury yields</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-fed-key.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-fed-key.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>The biggest vulnerability in your Bitcoin wallet might be the shipping label</title>
+		<link>https://cryptoslate.com/your-bitcoin-wallet-has-a-shipping-problem/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 19:30:23 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Crime]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Scams]]></category>
+		<category><![CDATA[Wallets]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=561281</guid>
+
+					<description><![CDATA[<p>Hardware wallets might be able to protect your keys, but the paperwork from buying them could expose your identity. To buy a hardware wallet, you give a company your name and address so it can send you a device designed to put you in control of your money. Once you've unpacked the box and set [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/your-bitcoin-wallet-has-a-shipping-problem/">The biggest vulnerability in your Bitcoin wallet might be the shipping label</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Hardware wallets might be able to protect your keys, but the paperwork from buying them could expose your identity.</p>
+<p>To buy a hardware wallet, you give a company your name and address so it can send you a device designed to put you in control of your money. Once you've unpacked the box and set it up, there is little reason to think about the order again.</p>
+<p>However, somewhere in the delivery business a record of that purchase may survive for years.</p>
+<p>In a <a href="https://trezor.io/blog/news/recent-customer-data-exposed-in-shipping-provider-incident">Sept. 4 update to its shipping-provider breach disclosure</a>, Trezor said <a href="https://cryptoslate.com/users-exposed-by-trezor-breach-grows-sixfold-after-supposedly-deleted-shipping-logs-are-found/">approximately 67,000 additional US customers</a> were affected, including orders from 2019 to 2021. It said ShipMonk, the shipping company tasked with delivering the devices, gave it written assurances that it deleted the records. The company now lists 80,689 affected customers overall.</p>
+<p><a href="https://cryptoslate.com/companies/trezor/">Trezor</a> says its systems and devices were unaffected and that the contents of parcels weren't exposed. The leaked information included only contact and delivery details, so no funds were stolen or misappropriated.</p>
+<p>And while the financial damage so far is zero, those contact details create a bigger problem for the customer that has outlasted the purchase and could continue well into the future.</p>
+<p>The device they bought will continue protecting their money, but the <a href="https://cryptoslate.com/new-ledger-breach-didnt-steal-your-crypto-but-it-exposed-the-one-thing-that-leads-criminals-to-your-door/">information used to deliver it</a> could help a stranger impersonate someone they trust.</p>
+<h2>The device and the person</h2>
+<p>The <a href="https://cryptoslate.com/bitcoin/">Bitcoin network</a> records coins and who can spend them. Wallets hold the private keys that authorize spending: the secrets that let their owner instruct the network to transfer money.</p>
+<p>Hardware wallets keep those secrets in a dedicated device. When you make a payment, it can approve the transaction without handing the private key to the computer running the accompanying software.</p>
+<p>That separation means a problem with the computer doesn't automatically become a loss of money.</p>
+<p>You also need a way to recover access if the device breaks or disappears, which is <a href="https://cryptoslate.com/guides/seed-phrase/">where wallet backups step in</a>. The way they work depends mostly on the setup, but it's usually a sequence of words that can recreate the wallet on another device.</p>
+<p>However, that recovery mechanism can also help a thief who obtains it, which is why <a href="https://trezor.io/guides/backups-recovery/general-standards/how-to-use-a-wallet-backup">Trezor's backup instructions</a> advise against sharing the backup or keeping digital copies.</p>
+<p>Any attacker who persuades the wallet owner to hand over that information bypasses all the device's protections. But convincing a person that a request for their backup is legitimate has always been the hardest part of this type of scam.</p>
+<p>Even the tiniest bit of personal information can make that message much more convincing. An email addressed to you by name that refers to an order you recognize feels different from a generic warning sent to a million inboxes. Letters delivered to your home can easily look like official correspondence, even when their instructions are fraudulent.</p>
+<p><a href="https://www.ledger.com/phishing-campaigns-status">Ledger's record of phishing campaigns</a> includes physical letters directing recipients to scan a code or visit a website where they are asked for their recovery words. Those campaigns show how physical mail can carry the scam.</p>
+<p>The phrase &#8216;wallet leak' can obscure what someone has actually obtained. Contact information can help a scammer approach an owner; the wallet's secrets can give them access to the money.</p>
+<table>
+<tbody>
+<tr>
+<th>Information</th>
+<th>What it enables</th>
+<th>Limits</th>
+</tr>
+<tr>
+<td>Name and delivery address</td>
+<td>Where an order was sent and a way to contact the recipient</td>
+<td>Whether the recipient currently owns Bitcoin or how much</td>
+</tr>
+<tr>
+<td>A public wallet address</td>
+<td>Transactions and balances associated with that address</td>
+<td>The real-world identity of its owner</td>
+</tr>
+<tr>
+<td>A private key</td>
+<td>Authority to spend the coins controlled by that key</td>
+<td>A complete picture of the owner's other assets</td>
+</tr>
+<tr>
+<td>A wallet backup</td>
+<td>Restoration of wallet access</td>
+<td>Extra passphrases or a setup requiring several backup shares can also govern access</td>
+</tr>
+</tbody>
+</table>
+<p>An order might have been a gift. The buyer might have stopped using the device or sold their coins. A shipping record is a clue to a past purchase, but it leaves plenty of uncertainty about what the buyer owns today.</p>
+<p>An imperfect clue can still be enough to select a target for deception. The owner then has to assess messages from strangers who may know details that were guaranteed to remain private. The secret inside the hardware wallet and the information outside it are part of the same discussion of personal security, even though they require different protections.</p>
+<h2>Wallet orders outlive their delivery</h2>
+<p>Shipping information has a legitimate purpose, as someone has to put the right parcel on the right route, resolve a failed delivery, and handle a return. Given the size and scope of that logistical operation, companies selling devices internationally often rely on other businesses to do that for them.</p>
+<p>Problems start when what should be temporary operational information becomes a permanent corporate asset. Keeping an old record costs very little, and deciding where every piece of information went can require work across departments and vendors.</p>
+<p>The original reason for collecting it will most likely expire long before the system that stores it does.</p>
+<p>Across businesses, information can persist in database replicas, support-system exports, and backups long after its removal from the application staff use every day. Establishing that a record is gone requires a process that accounts for the ways it was stored and shared.</p>
+<p>The <a href="https://www.ftc.gov/business-guidance/resources/protecting-personal-information-guide-business">Federal Trade Commission's business guidance</a> starts from a pretty straightforward principle: collect and retain sensitive information only for a legitimate business need, know where it goes, and dispose of it securely. Its guidance also addresses service providers, because outsourcing a task doesn't absolve the company of the need to understand how the information is handled.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/users-exposed-by-trezor-breach-grows-sixfold-after-supposedly-deleted-shipping-logs-are-found/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Users exposed by Trezor breach grows sixfold after supposedly deleted shipping logs are found</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>A deletion clause that most contracts have is part of that process, and so is a vendor's assurance that the clause has been followed. But neither one is the same as direct evidence that every relevant system has applied the retention policy.</p>
+<p>You can check the address on the parcel and confirm receipt of the device, but you can't inspect the fulfillment partner's databases several years later. The company choosing the partner needs to demand evidence, define retention periods, and test whether those terms are being honored.</p>
+<p>That makes privacy a product responsibility as well as a user habit. Advising customers to be careful with their backup addresses doesn't resolve the fate of a record already entrusted to a retailer and its contractors.</p>
+<p>Payment cards can be replaced with a new number and compromised passwords can be retired. But home addresses can remain valid long after the original purchase is forgotten, and a copied record can't be recalled from everyone who received it.</p>
+<p>Even moving doesn't erase the association. Old addresses can still help someone match other records or impersonate a business the customer once dealt with. The ongoing cost is partly financial security and partly the effort of deciding which communications deserve attention.</p>
+<h2>Privacy has to survive the wallet purchase</h2>
+<p>There are ways to keep deliveries more private. Parcel lockers, neutral packaging, and separate contact details for online orders can make these scams much harder to pull off.</p>
+<p>However, there's a limit to how much you can push each of these measures. Locker operators can require identification, payment providers can retain billing information, and having a hardware wallet sent in a blank box doesn't delete the retailer's records.</p>
+<p>Buying through an unfamiliar or secondhand seller can introduce a different problem if the device's origin becomes harder to trust.</p>
+<p>These protections work at different points in the purchase. Buyers need to know which protection they are paying for and which organizations will receive their details.</p>
+<p>For manufacturers, the biggest improvement needs to happen before a breach notice. It means collecting less where possible, separating information that doesn't need to travel together, and establishing evidence that contractors dispose of records when their job is over.</p>
+<p>Legitimate obligations don't automatically require keeping every old phone number and delivery address available throughout the commercial relationship.</p>
+<p>Hardware wallets protect private keys by keeping them away from an ordinary computer. Protecting the person who buys one requires work throughout the business delivering it. Manufacturers choose the warehouse and negotiate the contract, so they can demand evidence that old records have been removed.</p>
+<p>Those decisions help determine how much trust a customer must keep extending long after they open the box.</p>
+<p>The post <a href="https://cryptoslate.com/your-bitcoin-wallet-has-a-shipping-problem/">The biggest vulnerability in your Bitcoin wallet might be the shipping label</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/wallet-shipping-paper-trail.jpg?ver=1789227102" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/wallet-shipping-paper-trail.jpg?ver=1789227102" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Why Bitcoin initially held its gain as rate traders put September hike odds at 85%</title>
+		<link>https://cryptoslate.com/why-bitcoin-initially-held-its-gain-as-rate-traders-put-september-hike-odds-at-85/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 18:20:06 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=561995</guid>
+
+					<description><![CDATA[<p>Gasoline drove much of August's headline jump, but faster monthly core inflation kept Waller's warning alive.</p>
+<p>The post <a href="https://cryptoslate.com/why-bitcoin-initially-held-its-gain-as-rate-traders-put-september-hike-odds-at-85/">Why Bitcoin initially held its gain as rate traders put September hike odds at 85%</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>August’s inflation report left the Federal Reserve with a mixed signal: gasoline drove much of the headline increase, but monthly core inflation accelerated. That combination kept Governor Christopher Waller’s conditional case for a rate hike in play even as Bitcoin held its daily gain.</p>
+<p>CryptoSlate's live <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin market data</a> had BTC at $78,683, up 2.08% over 24 hours, when trading closed in the US for the week. In contrast, <a href="https://krro.com/2026/09/11/fed-seen-likely-to-raise-rates-next-week-after-inflation-report/">Reuters reported</a> that futures had moved to about an 85% probability of a quarter-point increase at the Fed's September 15-16 meeting, from about 70% before the inflation report. CME says its <a href="https://www.cmegroup.com/fedwatch">FedWatch probabilities</a> are derived from 30-Day Fed Funds futures.</p>
+<p>The policy tension lay inside the inflation report: annual core inflation eased, while its latest monthly pace picked up.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-holds-near-78k-as-markets-confront-the-macro-shocks-they-may-have-underpriced-this-week/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin holds near $78K as markets confront the macro shocks they may have underpriced this week</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>CPI composition cut both ways</h2>
+<p>The <a href="https://www.bls.gov/news.release/cpi.nr0.htm">Bureau of Labor Statistics</a> said the consumer price index increased 0.4% in August on a seasonally adjusted basis after a 0.1% rise in July. The unadjusted 12-month rate stayed at 3.4%.</p>
+<p>Gasoline supplied the clearest reason to look beneath the headline. Its index rose 3.9% and accounted for more than one-third of the monthly all-items increase, while the broader energy index gained 2.1%.</p>
+<p>That composition could support a limited relief case for Bitcoin. An outsized contribution from a volatile component does not carry the same policy signal as a similarly broad increase across the basket.</p>
+<p>The report did not, however, deliver an energy-only inflation story. Core CPI, which excludes food and energy, rose 0.3% in August after a 0.2% increase in July. Its annual rate eased to 2.4% from 2.5%, creating the central split: the longer-run measure improved while the latest monthly pace accelerated.</p>
+<p>Other parts of the basket showed pressure too. Shelter rose 0.3% in August, and services excluding energy services were up 3.0% over 12 months. Gasoline explained a large share of the headline move, but not the entire report.</p>
+<p>Federal Reserve Governor Christopher Waller had made August inflation central to his next decision. In a <a href="https://www.federalreserve.gov/newsevents/speech/waller20260903a.htm">September 3 speech</a>, Waller said continued progress toward the Fed's 2% goal would incline him to support holding the policy rate steady. He also said a hot report, or evidence that progress had reversed, could lead him to consider a hike at the September 15-16 meeting.</p>
+<p>Waller described that view as a reaction function, not a commitment. His comments do not determine how he or the committee will vote. They do show why the monthly core acceleration cannot be dismissed simply because annual core inflation edged lower.</p>
+<p>Waller also said core inflation was useful for seeing through energy volatility and that broader spillovers from earlier energy increases had not appeared so far. At the same time, he identified renewed energy pressure and a possible rise in longer-term inflation expectations as risks the Fed should watch.</p>
+<p>The August report therefore landed between the two sides of his test. Annual core inflation moved closer to target, but the latest monthly core reading moved away from the pace seen in July. The futures response showed that traders gave substantial weight to the latter risk.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoins-80000-rally-just-lost-the-feds-labor-market-escape-hatch/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin dips below $80,000 as a hot August jobs report shifts Fed policy expectations</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>September’s energy risk lies beyond August CPI</h2>
+<p>Bitcoin's 24-hour move still needs careful handling. During Saturday trading, Bitcoin has fallen to around $77,500 into thin weekend liquidity.</p>
+<p>Also, Friday's release describes August, so it cannot include the sharper oil-price move that developed in September.</p>
+<p>CryptoSlate's <a href="https://cryptoslate.com/fed-inflation-trap-threatens-bitcoin-below-80k-as-100-oil-blindsides-fridays-cpi-report/">pre-CPI analysis</a> highlighted that timing gap. The new energy shock is not evidence inside August CPI, and it would be premature to say it has already spread into broader prices. It can still matter through future inflation data and expectations, the channels Waller identified as policy risks.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-faces-a-two-week-fed-trap-as-inflation-rewrite-threatens-to-upend-rate-cuts/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin faces a two-week Fed trap as inflation rewrite threatens to upend rate cuts</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>August CPI gave policymakers a reason to look through part of the gasoline-led jump, but faster monthly core inflation complicated the case for a hold. Whether September’s energy pressure persists or spreads remains a separate risk for subsequent data and inflation expectations.</p>
+<p>The post <a href="https://cryptoslate.com/why-bitcoin-initially-held-its-gain-as-rate-traders-put-september-hike-odds-at-85/">Why Bitcoin initially held its gain as rate traders put September hike odds at 85%</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-bull-fed-pressure.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-bull-fed-pressure.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Stablecoins make sending money easy until someone needs to spend it</title>
+		<link>https://cryptoslate.com/stablecoins-make-sending-money-easy-until-someone-needs-to-spend-it/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 17:30:53 +0000</pubDate>
+				<category><![CDATA[Adoption]]></category>
+		<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=561277</guid>
+
+					<description><![CDATA[<p>When you send money to someone abroad, the confirmation on your phone is only your half of the transaction: the other half belongs to the person who has to use it. Their rent may be due in local currency. Their nearest cash collection point may be across town. They may want to spend some of [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/stablecoins-make-sending-money-easy-until-someone-needs-to-spend-it/">Stablecoins make sending money easy until someone needs to spend it</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>When you send money to someone abroad, the confirmation on your phone is only your half of the transaction: the other half belongs to the person who has to use it. Their rent may be due in local currency. Their nearest cash collection point may be across town. They may want to spend some of the money immediately and keep the rest in dollars.</p>
+<p>Transfers can take seconds and leave recipients with an afternoon's work. <a href="https://cryptoslate.com/cryptos/stablecoin/">Stablecoin payments</a> compete in that everyday setting. These privately issued digital tokens are designed to track a currency, usually the dollar, and move across blockchain networks. Recipients can also keep them, retaining dollar exposure until they want to convert the money into the currency used at home.</p>
+<p>But receiving a dollar token isn't the same as receiving money in a local bank account. Whether it's better depends partly on what the recipient intends to do next. The same transfer can be convenient for someone already using a crypto app and very difficult for their parent who wants cash for the week.</p>
+<h2>Where stablecoins stop being cheap</h2>
+<p>Consider a transfer that begins with euros in a bank account and ends with reais available to spend in Brazil. Senders using stablecoins might first fund an exchange account and buy tokens, then transfer them to the recipient. At the other end, the recipient sells those tokens and withdraws the proceeds into a local account.</p>
+<p>The blockchain handles the movement of the token, but it doesn't set every exchange rate or control the price of every service around that movement. An inexpensive transfer between digital addresses can therefore be surrounded by more expensive transactions.</p>
+<p>Some costs are explicit fees, while others are built into the exchange rate. Services can advertise low transfer fees while supplying fewer reais for each euro than a competitor. Households experience both as less money received, regardless of where the charge appears on the receipt.</p>
+<p><a href="https://www.bancaditalia.it/pubblicazioni/mercati-infrastrutture-e-sistemi-di-pagamento/approfondimenti/2026-086/N.86-MISP.pdf?language_id=1">Bank of Italy researchers</a> examined $200 USDC transfers across routes connecting Italy with five countries in a paper published in July. Its Brazil results show how the same pair of countries can produce very different comparisons depending on which way the money travels.</p>
+<table>
+<tbody>
+<tr>
+<th>Direction</th>
+<th>USDC route cost</th>
+<th>Cost on $200</th>
+<th>Wise quote used in the paper</th>
+<th>Cost on $200</th>
+</tr>
+<tr>
+<td>Italy to Brazil</td>
+<td>2.70%</td>
+<td>$5.40</td>
+<td>2.20%</td>
+<td>$4.40</td>
+</tr>
+<tr>
+<td>Brazil to Italy</td>
+<td>2.21%</td>
+<td>$4.42</td>
+<td>4.68%–4.89%</td>
+<td>$9.36–$9.78</td>
+</tr>
+</tbody>
+</table>
+<p><em>USDC transactions were conducted in March 2026; Wise simulations were conducted on April 14. These are a small set of dated observations, not current quotes or market-wide averages. Dollar amounts are calculations from the paper's percentages.</em></p>
+<p>The cheaper route switched with the direction of the payment. That makes sense once the transfer is understood as a sequence of purchases and withdrawals in different markets. Someone selling tokens in one country faces a different set of prices and services from someone buying them there.</p>
+<p>The <a href="https://remittanceprices.worldbank.org/">World Bank's remittance-price work</a> also includes exchange-rate margins in the cost of sending money. Comparing the sender's total spending with the recipient's payout captures costs that an advertised fee can leave out. Country averages provide context, while individual households need quotes for the route and payout method they will actually use.</p>
+<p>Speed depends on those surrounding services too. Tokens may appear in a wallet within seconds, while conversion or withdrawal requires a banking step that takes a day. Recipients who need the local payout have to wait for that step before they can spend.</p>
+<p>Well-connected exchanges and fast domestic payment systems can make the last step painless. Recipients in Brazil may have little reason to care which network carried the token if the proceeds become spendable in the app they already use.</p>
+<p>That's a much more demanding standard than counting how quickly a blockchain confirms a transfer, but it's also the standard payment services are supposed to meet.</p>
+<h2>Stablecoins give the recipient another choice</h2>
+<p>There's also another reason a simple cheapest-route comparison can miss the appeal of digital dollars: it often assumes the recipient wants to convert everything immediately.</p>
+<p>Imagine, instead, someone receiving $200 who wants the local-currency equivalent of $120 for expenses and wants to retain the rest in dollar form. It's a hypothetical household, but it exposes two separate decisions: how to move the money and what to hold once they receive it.</p>
+<p>Stablecoins can combine those decisions. Recipients can convert part of the balance and retain the rest, provided the available services and local rules permit it. Alongside any savings on the transfer, they gain control over how much to convert.</p>
+<p>Keeping dollars brings exchange-rate risk for people whose expenses are in local currency. Dollars can also lose purchasing power, and holding them as tokens adds dependence on the issuer's reserves and redemption arrangements. Stablecoin balances generally lack the deposit insurance that eligible bank accounts provide.</p>
+<p>Still, the ability to choose when and how much to convert can have genuine household value. It's different from a provider deciding that a transfer must be paid out entirely in local currency, and different again from a sender insisting the recipient learn a new financial system simply because the sender prefers it.</p>
+<p>Access to the issuer follows its own rules. <a href="https://www.circle.com/usdc">Circle Mint</a> serves institutions obtaining and redeeming USDC, while retail users often buy and sell through exchanges or payment providers. Circle's <a href="https://www.circle.com/legal/mica-redemption-policy">EEA redemption policy</a> provides a separate route for eligible holders under European rules. Households may therefore have redemption rights even when they can't open institutional accounts.</p>
+<p>For someone sending money home, those rights work with the services they can actually reach. Redemption with an issuer still leaves the recipient needing local conversion or cash access, with support they can understand if something goes wrong.</p>
+<p>Familiarity has an economic value here. Recipients who know the person behind the counter can ask for help; relatives using the same app can explain an unfamiliar step. Those relationships save time and reduce mistakes. They also spare the sender from becoming unpaid technical support for the whole family, a cost absent from blockchain fee estimates.</p>
+<p>Recipients deserve a say in how they get their money. The sender's preferred app becomes a poor choice if using it means giving someone else a task they didn't ask for.</p>
+<h2>The best payment is the one you can actually use</h2>
+<p>Much of the appeal of remittance technology comes from making small payments less expensive. Fees that look modest in a comparison table add up when the same family pays them every month.</p>
+<p>In a purely illustrative example, reducing the all-in cost of a $200 monthly transfer from 5% to 2% saves $6 each time, or $72 across twelve transfers. That's the relevant financial gain; whether it comes from a stablecoin, a bank, or a specialist payment company is secondary to whether the household can actually receive it.</p>
+<p>The comparison also needs a fixed starting point. If the sender has $200 in total, adding a fee on top produces a different result from deducting that fee from the amount sent. Comparing only the advertised transfer amounts can accidentally compare different budgets.</p>
+<p>Getting started takes work too. New customers may need to verify their identity and fund another account before learning which network their recipient supports. Sending to the wrong address or an unsupported network can make recovery difficult or impossible, depending on who controls the receiving account. Experienced crypto users may navigate those steps easily, while first-time customers need help that the quoted transfer price may exclude.</p>
+<p>Conventional services impose their own work. Cash collection can require travel and waiting, while account access may depend on documents the recipient lacks. Providers with excellent apps in the sending country can offer poor service at the destination. The comparison has to include the effort each route demands from both people.</p>
+<p>Payment companies can take on much of that work themselves. They might move stablecoins between their own accounts and pay out ordinary money through a familiar local system, handling the conversion and network choices for the household.</p>
+<p>For someone paying for food, a familiar local balance may be the whole point. The company can choose its settlement method while the customer chooses where to spend.</p>
+<p>Other recipients will prefer the wallet because retaining the token is the point. Services that offer both choices let households decide how much of the balance to convert, with the costs explained before they commit.</p>
+<p>Sending money home is a personal financial transaction. The sender has often already decided who needs the money and what they want it to accomplish. The payment service earns its fee by carrying that intention through to the recipient.</p>
+<p>For one family, that may mean more local currency for the week's expenses; for another, it may mean keeping part of the payment in dollars. Both depend on what the person receiving the money can do with it.</p>
+<p>The post <a href="https://cryptoslate.com/stablecoins-make-sending-money-easy-until-someone-needs-to-spend-it/">Stablecoins make sending money easy until someone needs to spend it</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/stablecoin-checkout-adapter-1.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/stablecoin-checkout-adapter-1.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>The challenge for AI agents is deciding who pays for automated errors</title>
+		<link>https://cryptoslate.com/your-ai-shopping-agent-has-a-wallet-but-needs-a-refund-policy/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 16:50:51 +0000</pubDate>
+				<category><![CDATA[Adoption]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Culture]]></category>
+		<category><![CDATA[Featured]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=561279</guid>
+
+					<description><![CDATA[<p>Imagine asking an AI assistant to book a decent hotel for a weekend away. You give it a budget and say you’d like somewhere near the center, then it finds a room, pays, and sends you the confirmation. The hotel is within budget and in a solid location, but the room has no window, breakfast [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/your-ai-shopping-agent-has-a-wallet-but-needs-a-refund-policy/">The challenge for AI agents is deciding who pays for automated errors</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Imagine asking an AI assistant to book a decent hotel for a weekend away. You give it a budget and say you’d like somewhere near the center, then it finds a room, pays, and sends you the confirmation.</p>
+<p>The hotel is within budget and in a solid location, but the room has no window, breakfast costs extra, and cancellation is impossible.</p>
+<p>The software may have followed its instructions closely enough to leave you arguing about a purchase you would never have made yourself. As payment companies build services for AI agents, that gap between permission and satisfaction becomes part of the product they have to sell.</p>
+<p>In a <a href="https://www.mastercard.com/news/europe/en/newsroom/press-releases/en/2026/mastercard-report-predicts-that-one-in-10-people-will-routinely-use-ai-agents-to-shop-and-pay-by-2030/">report released Sept. 8</a>, <a href="https://cryptoslate.com/companies/mastercard-blockchain/">Mastercard</a> forecasts that one in ten people will routinely use AI agents to shop and pay by 2030.</p>
+<p>Shopping online can mean comparing a dozen tabs, decoding fees, and wondering whether the product description has omitted something essential. Software that does the tiresome part deserves a chance, but once it can spend money, its mistakes become purchases someone has to undo.</p>
+<p>Crypto is one way to give that software a payment method. The hard work is deciding how much authority it has and who is responsible when a completed transaction becomes the start of the problem.</p>
+<h2>Teaching a wallet what you meant</h2>
+<p>AI agents are software allowed <a href="https://cryptoslate.com/ai-agents-can-talk-use-tools-and-pay-but-crypto-wants-to-control-the-escrow-moment/">to take actions toward a goal</a>. Travel assistants cross an important boundary when they go from recommending rooms to reserving and paying for them on your behalf.</p>
+<p>Payment permission needs to describe the purchase you authorized. Spending ceilings of $200 can prevent $500 bookings, while leaving room for disagreement over cancellation terms and checkout fees. Software also needs to know which room features it can compromise on.</p>
+<p>People routinely leave details unstated because another person would infer them or ask before committing. Payment systems need instructions they can verify, which means translating an ordinary request into limits without making the user write a contract before every purchase.</p>
+<p><a href="https://cryptoslate.com/companies/google/">Google’s</a> Agent Payments Protocol <a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol">addresses part of that work</a> through digitally signed records called mandates. These connect users’ instructions with proposed purchases and payments. Users can approve specific carts or authorize purchases under conditions set in advance.</p>
+<p>For the hotel example, that could mean a record of the maximum total price and the exact room approved. If the AI agent books something else, the signed record gives the participants evidence beyond their competing recollections of what happened in a chat.</p>
+<p>Card networks are also working on their own agent arrangements. <a href="https://www.mastercard.com/news/ap/en/perspectives/en/2025/as-ai-agents-gain-autonomy-trust-becomes-the-new-currency-mastercard-wants-to-power-both/">Mastercard describes authorization and authentication</a> as part of Agent Pay, alongside controls over what an assistant is allowed to do.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/ai-agents-can-talk-use-tools-and-pay-but-crypto-wants-to-control-the-escrow-moment/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Can crypto protect us against the growing web of economic AI agents?</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The word &#8220;token&#8221; appears here too. Card tokens replace sensitive card credentials with identifiers used to process payments, and <a href="https://cryptoslate.com/cryptos/stablecoin/">dollar stablecoins</a> are transferable assets designed to track the dollar.</p>
+<p>The limits built around either method determine how much freedom an agent gets. Carefully configured crypto wallets can restrict spending more tightly than poorly configured card services.</p>
+<p>Card-based products can provide their own controls alongside established dispute processes, and users delegate authority across that arrangement, including the settings that govern individual purchases.</p>
+<h2>The payment can succeed while the purchase fails</h2>
+<p>Some things agents buy may be too small or too dull for people to approve individually. Travel assistants might pay other software services for current room availability as part of finding the right booking.</p>
+<p>The <a href="https://docs.x402.org/introduction">x402 payment standard</a> enables this through <a href="https://cryptoslate.com/coinbase-and-14-other-x402-facilitators-failed-security-tests-built-for-the-coming-ai-agent-economy/">standard web requests</a>. Services reply that payment is required and supply the terms. The requesting software can then submit payment for verification and receive the information it wanted.</p>
+<p>The user doesn’t have to open a subscription with every small service involved. That can be an appealing alternative to maintaining accounts for one-off use, especially when each request costs only a few cents.</p>
+<p>Small purchases still need a budget. In this hypothetical example, an AI assistant pays two cents each time it checks a data service:</p>
+<table data-pm-slice="3 1 []">
+<tbody>
+<tr>
+<th>AI agent behavior</th>
+<th>Price per lookup</th>
+<th>Total spent</th>
+</tr>
+<tr>
+<td>Checks five times and finishes</td>
+<td>$0.02</td>
+<td>$0.10</td>
+</tr>
+<tr>
+<td>Repeats the task 500 times</td>
+<td>$0.02</td>
+<td>$10.00</td>
+</tr>
+</tbody>
+</table>
+<p><em>Illustrative prices and usage, not a quote from an actual provider.</em></p>
+<p>Per-payment limits would permit both outcomes. Total budgets and attempt limits can stop the second, provided the software tracks spending across the task, which is important when services return errors and the assistant keeps trying.</p>
+<p>Repeated attempts need to be distinguished from completed purchases, with controls against duplicate charges. Receipts must also connect spending to the task so users can see whether the money bought information or funded a loop.</p>
+<p>Under x402’s <a href="https://docs.x402.org/faq">exact-payment scheme</a>, executed <a href="https://cryptoslate.com/tiny-x402-payments-expose-gap-holding-ai-agents-back/">transfers are irreversible</a>, though sellers can refund buyers by sending money back in new transfers. Its batch-settlement scheme has separate provisions for refunds and withdrawals from escrow, where funds are held under specified release conditions.</p>
+<p>Getting money back depends on the seller’s policy and any contractual or escrow arrangements governing the funds. Basic token transfers have no card-style dispute process of their own, so the surrounding service must provide a route for complaints and repayment.</p>
+<p>The <a href="https://www.consumerfinance.gov/ask-cfpb/how-can-i-get-a-refund-on-a-product-or-service-i-purchased-with-my-credit-card-en-1969/">Consumer Financial Protection Bureau describes circumstances</a> in which a credit-card purchase can be disputed, and the issuer may reverse a charge. Those processes aren’t a universal promise that every disappointing purchase, including one delegated to software, will be refunded.</p>
+<p>An agent booking a hotel needs more than a successful payment receipt. The customer needs proof of the advertised room, the cancellation terms, and the instruction that authorized the booking. The payment network can establish that money moved, but resolving the purchase can require evidence from several other participants.</p>
+<h2>Nobody wants to manage the AI agent shopping assistant</h2>
+<p>The hotel example starts as an attempt to save time. It fails if the traveler has to spend hours reading logs to establish why the assistant chose a windowless room.</p>
+<p>People buy this kind of convenience to spend less time on a task. Supervising a junior purchasing department would be an expensive substitute, especially if every mistake requires reconstructing a chain of software decisions.</p>
+<p>People want to approve expensive purchases and let small, repetitive ones proceed within a budget. Refundable reservations could go through automatically, while nonrefundable bookings require confirmation.</p>
+<p>Those controls track how expensive a mistake would be and how easily it could be undone.</p>
+<p>The interface has to preserve those distinctions through checkout. Spending ceilings should include fees, and permissions need to expire when the job ends. Receipts should identify the merchant and explain the purchase in terms the customer recognizes, so resolving a dispute starts with what was bought rather than a search through payment addresses.</p>
+<p>An AI assistant recommending a hotel can rank options by the user’s preferences, by payments from sellers, or by some combination disclosed in its business model. Automating the purchase just makes the incentives less visible if the customer never sees the alternatives.</p>
+<p>The commercial model belongs alongside the spending permissions. Before letting an agent choose and pay, buyers need to understand whether sellers can pay for placement and how those payments affect the options presented.</p>
+<p>The same applies to the software services an agent buys along the way. The user may be happy to pay a few cents for better information, but it may be less happy if the assistant repeatedly purchases data that doesn’t improve the booking.</p>
+<p>A system that handles these details well can support both card networks and stablecoins. Cards connect to established merchant and dispute arrangements, and crypto payment standards can make small, programmatic purchases easier to arrange across services.</p>
+<p>Neither payment method can substitute for understanding the task.</p>
+<p>For travelers, successful assistants would remember the room requirements, explain the total commitment, and resolve a booking that went wrong. The payment would be one step in a job completed on their behalf.</p>
+<p>That's the convenience worth paying for: closing the app and getting on with the weekend.</p>
+<p>The post <a href="https://cryptoslate.com/your-ai-shopping-agent-has-a-wallet-but-needs-a-refund-policy/">The challenge for AI agents is deciding who pays for automated errors</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/ai-agent-wallet-limits.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/ai-agent-wallet-limits.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>XRP&#8217;s 30% monthly rebound meets a $4.6 million liquidity trial inside XRPL&#8217;s $1.1 billion stablecoin boom</title>
+		<link>https://cryptoslate.com/xrps-30-monthly-rebound-meets-a-4-6-million-liquidity-trial-inside-xrpls-1-1-billion-stablecoin-boom/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 16:15:05 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[payments]]></category>
+		<category><![CDATA[Ripple]]></category>
+		<category><![CDATA[RLUSD]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<category><![CDATA[xrp]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=561916</guid>
+
+					<description><![CDATA[<p>Monthly DEX volume more than doubled, yet XRP routing and market-maker holding time remain unmeasured.</p>
+<p>The post <a href="https://cryptoslate.com/xrps-30-monthly-rebound-meets-a-4-6-million-liquidity-trial-inside-xrpls-1-1-billion-stablecoin-boom/">XRP&#8217;s 30% monthly rebound meets a $4.6 million liquidity trial inside XRPL&#8217;s $1.1 billion stablecoin boom</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Stablecoins on the XRP Ledger swelled to $1.126 billion as XRP logged a 29.7% monthly rebound, putting the network's value-capture case under a sharper test.</p>
+<p>At a Sept. 11 snapshot, <a href="https://cryptoslate.com/coins/xrp/">XRP traded near $1.32</a> after losing about 8.7% over seven days. Meanwhile, XRPL decentralized-exchange volume reached $253.1 million across the latest complete 30-day window, more than double the preceding period.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/xrp-rebounds-32-from-1-as-etf-money-pours-in-and-whales-reposition/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">XRP rebounds 32% from $1 as ETF money pours in and whales reposition</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The figures enlarge the market in which XRP could serve as bridge inventory. Whether that opportunity becomes lasting token demand depends on routing behavior and holding time. XRPL can send issued-token trades through XRP when the bridge offers better pricing, while direct routes can bypass it. The available datasets report supply, turnover and pool reserves, but not the share of flow that actually uses XRP or how long liquidity providers retain the asset.</p>
+<h2>A larger dollar market meets modest visible XRP depth</h2>
+<p><a href="https://defillama.com/stablecoins/xrpl">DefiLlama's XRPL stablecoin series</a> rose from $921.9 million on Aug. 12 to $1.126 billion on Sept. 11, a 22.2% increase. That measurement covers the dollar value of tracked pegged assets on the ledger.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/xrpl-stablecoins-surge-to-900m-but-the-breakout-trend-is-not-rlusd/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">XRPL stablecoins surge to $900M, but the breakout trend is not RLUSD</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Exchange activity grew faster over the monthly window. DefiLlama recorded $253.1 million of XRPL DEX volume for the latest complete 30 days, compared with $100.4 million in the preceding 30 days, a 152.1% increase.</p>
+<p>The shorter window cooled. Seven-day volume fell to $30.6 million from $41.1 million in the prior seven days, a 25.4% decline. A strong rolling month and a weaker latest week can coexist when earlier activity remains inside the longer window.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Latest reading</th>
+<th>Comparison</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XRPL stablecoin value</td>
+<td>$1.126 billion</td>
+<td>Up 22.2% from Aug. 12</td>
+<td>A larger base of issued dollars</td>
+</tr>
+<tr>
+<td>XRPL DEX volume, 30 days</td>
+<td>$253.1 million</td>
+<td>Up 152.1% from the prior window</td>
+<td>More monthly exchange activity</td>
+</tr>
+<tr>
+<td>XRPL DEX volume, seven days</td>
+<td>$30.6 million</td>
+<td>Down 25.4% from the prior window</td>
+<td>Recent turnover cooled</td>
+</tr>
+<tr>
+<td>Observed XRP/RLUSD AMM</td>
+<td>About $4.6 million</td>
+<td>About 0.41% of XRPL stablecoin value</td>
+<td>One visible XRP-linked pool remains modest in scale</td>
+</tr>
+<tr>
+<td>XRP market price</td>
+<td>About $1.32</td>
+<td>Up 29.7% in 30 days, down 8.7% in seven days</td>
+<td>Market context without a causal link</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-fc747638-2cc2-4de1-9b9a-f93546b3fe4b-wordpress.jpg" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-561932" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-fc747638-2cc2-4de1-9b9a-f93546b3fe4b-wordpress.jpg" alt="XRPL liquidity test comparing $1.126 billion in stablecoins, monthly and weekly DEX turnover, a $4.6 million XRP-RLUSD pool, conditional XRP routing and two unmeasured demand signals." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/exec-fc747638-2cc2-4de1-9b9a-f93546b3fe4b-wordpress.jpg 1122w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-fc747638-2cc2-4de1-9b9a-f93546b3fe4b-wordpress-240x300.jpg 240w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-fc747638-2cc2-4de1-9b9a-f93546b3fe4b-wordpress-819x1024.jpg 819w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-fc747638-2cc2-4de1-9b9a-f93546b3fe4b-wordpress-768x960.jpg 768w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p>The visible bridge inventory is far smaller than the stablecoin base. At validated ledger 106912297, an XRP/RLUSD automated market maker tracked by <a href="https://xrpl.to/pool/rhWTXC2m2gGGA9WozUaoMm6kLAVPb1tcS3">XRPL.to</a> held about 1.724 million XRP and 2.288 million RLUSD.</p>
+<p>Valuing the XRP side at the nearby $1.32 market snapshot and RLUSD at its $1 target puts both reserve sides at about $4.56 million, or $4.6 million when rounded. That is roughly 0.41% of DefiLlama's daily XRPL stablecoin total.</p>
+<p>The ratio is a scale comparison between one observed pool and the network's tracked stablecoins. It does not establish that this is the largest XRP/RLUSD venue, nor does it show how often payments, order books or other pools use XRP. It does show that a multimillion-dollar pool sits inside a billion-dollar stablecoin base, leaving a wide gap between dollars issued and XRP visibly committed to this venue.</p>
+<p>RLUSD's headline circulation number needs the same boundary. <a href="https://ripple.com/products/stablecoin/transparency/">Ripple reported</a> about 2.3956 billion RLUSD in total circulation as of Sept. 3, while an XRPL ledger query on Sept. 11 showed about 1.0315 billion RLUSD of issuer obligations on XRPL.</p>
+<p>The ledger figure equals roughly 43% of Ripple's eight-day-earlier total. Because the observations are not simultaneous, that percentage is a scale marker rather than a precise chain allocation. The residual cannot be assigned to Ethereum from these two snapshots alone.</p>
+<h2>Routing economics decide how much XRP matters</h2>
+<p>XRPL's <a href="https://xrpl.org/docs/concepts/tokens/decentralized-exchange/autobridging">auto-bridging system</a> can connect two issued-token markets through XRP when the combined route offers a better exchange rate than the direct pair. An order can also combine direct and auto-bridged liquidity.</p>
+<p>That mechanism gives XRP a chance to intermediate stablecoin activity, but no exclusive claim on it. A direct issued-token pair can offer the better price. Ordinary Payment transactions do not auto-bridge by default, although pathfinding can discover routes with a similar effect.</p>
+<p>Transaction fees create a separate form of native-asset use. The <a href="https://xrpl.org/docs/concepts/transactions/transaction-cost">standard minimum cost</a> is 10 drops before load scaling, equal to 0.00001 XRP, and the fee is destroyed. Special transactions can cost more and congestion can raise the effective fee, but the reference minimum was worth only a tiny fraction of a cent at the observed XRP price.</p>
+<p>The larger demand question therefore rests on liquidity rather than fee burn. A bridge asset can support substantial gross turnover while being bought and sold quickly. Persistent demand becomes more plausible if market makers need to hold larger XRP balances for longer periods or if XRP-linked routes consistently capture a growing share of activity.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/xrp-faces-a-brutal-2026-paradox-as-xrpl-adoption-surges-and-the-token-captures-little-value/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">XRP faces a brutal 2026 paradox as XRPL adoption surges and the token captures little value</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Neither condition is visible in the current aggregate datasets. <a href="https://cryptoslate.com/stablecoins/">Stablecoin supply</a> shows how many dollar-linked assets are present. DEX volume shows how much exchange activity occurred. Pool reserves show inventory at one venue and one moment. None of those figures reveals the path taken by each trade or the duration of the XRP position behind it.</p>
+<p>That leaves XRP holders with a clear set of observable signals. XRP-linked pools and order books would need to deepen alongside stablecoin turnover. Path-level reporting would need to show XRP winning routes rather than merely being available. Inventory data would need to show that intermediaries retain meaningful XRP exposure instead of recycling it almost immediately.</p>
+<p>XRPL has moved beyond the argument that it lacks dollar liquidity. Its stablecoin base is larger, its <a href="https://cryptoslate.com/decentralized-exchanges/">monthly DEX turnover</a> has surged and XRP itself remains sharply higher over 30 days despite the latest weekly pullback. The next step is value capture: translating those dollars into measurable XRP-routed flow and durable inventory. Until those measures appear, the evidence supports a bigger opportunity for XRP liquidity, not a confirmed source of sustained token demand.</p>
+<p>The post <a href="https://cryptoslate.com/xrps-30-monthly-rebound-meets-a-4-6-million-liquidity-trial-inside-xrpls-1-1-billion-stablecoin-boom/">XRP&#8217;s 30% monthly rebound meets a $4.6 million liquidity trial inside XRPL&#8217;s $1.1 billion stablecoin boom</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/xrp-liquidity-bridge-test.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/xrp-liquidity-bridge-test.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Revolut tricked into handing hackers the passports and Bitcoin histories of wealthy customers</title>
+		<link>https://cryptoslate.com/revolut-tricked-into-handing-hackers-the-passports-and-bitcoin-histories-of-wealthy-customers/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 15:30:34 +0000</pubDate>
+				<category><![CDATA[Crime]]></category>
+		<category><![CDATA[Exchanges]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Trading]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=562146</guid>
+
+					<description><![CDATA[<p>Revolut disclosed customers’ passports, verification selfies and Bitcoin transaction histories after treating a fraudulent government request as legitimate. Affected customers were told Friday that the disclosed information could include passport or driver’s license copies, verification selfies, names, dates of birth, occupations, home addresses, phone numbers, IBANs, and account statements. Withdrawal records and complete transaction histories, [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/revolut-tricked-into-handing-hackers-the-passports-and-bitcoin-histories-of-wealthy-customers/">Revolut tricked into handing hackers the passports and Bitcoin histories of wealthy customers</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a href="https://cryptoslate.com/companies/revolut/">Revolut</a> disclosed customers’ passports, verification selfies and Bitcoin transaction histories after treating a fraudulent government request as legitimate.</p>
+<p>Affected customers were told Friday that the disclosed information could include passport or driver’s license copies, verification selfies, names, dates of birth, occupations, home addresses, phone numbers, IBANs, and account statements. Withdrawal records and complete transaction histories, including <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin</a> activity, may also have been released.</p>
+<p>The request came from an unauthorized mailbox operating inside the domain infrastructure of a genuine government agency and carried valid authentication credentials.</p>
+<p>Revolut subsequently contacted the agency, concluded the request was fraudulent, blocked the address and began notifying customers and regulators. The company has not identified the agency or disclosed how many customers were affected.</p>
+<h2>Compliance demands sharpen customer backlash</h2>
+<p>The incident has drawn scrutiny over how much information financial institutions collect from customers and the controls used when governments later seek access to those records.</p>
+<p><a href="https://cryptoslate.com/defi-protocol-aave-to-launch-bespoke-blockchain-following-v4-upgrade/">Marc Zeller, founder of the Aave Chan Initiative</a>, said the disclosure came shortly after Revolut demanded additional information from him, threatening to close his account.</p>
+<p>“The infuriating part is that it happens right after Revolut sent me a notification to provide a LOT of data or ‘we will close your account in 20 days,’” Zeller <a href="https://x.com/mzeller/status/2098664895285764421">said</a>. He accused the company of doing the attackers’ work for them after the request fooled him.</p>
+<p>The criticism cuts into a tension created by modern financial compliance. Banks and fintech firms collect extensive identity and transaction records to satisfy know-your-customer and anti-money laundering requirements. Those databases become especially sensitive when they link verified identities and residential information to cryptocurrency activity.</p>
+<p>For Bitcoin holders, the exposed records could give an attacker far more than a financial statement. Bitcoin transactions are recorded on a public blockchain, meaning information tying a known person to specific activity can potentially help map that individual’s wider onchain footprint.</p>
+<p>Onchain investigator <a href="https://cryptoslate.com/people/zachxbt/">ZachXBT</a>, who publicized the incident, <a href="https://t.me/investigations/363">said</a> the disclosure appeared limited in scale and may have targeted high-net-worth customers. Revolut has not provided a figure that would establish the scope of the incident.</p>
+<p>No customer funds have been reported stolen, and the information described in Revolut’s notices did not include passwords, card PINs or cryptocurrency private keys.</p>
+<p>The immediate risk instead stems from the combination of identity documents, contact information, residential addresses and financial histories now potentially available to the attacker.</p>
+<h2>A genuine government domain defeated Revolut’s checks</h2>
+<p>The method used to obtain the information leaves a separate problem for Revolut and potentially other financial institutions that received requests from the same source.</p>
+<p>The fraudulent email passed SPF, DKIM and DMARC authentication, mechanisms designed to help verify that messages are authorized by the domain they claim to represent.</p>
+<p>That suggests the attacker had access to an unauthorized mailbox within the government agency’s actual email infrastructure rather than simply changing the sender information on a conventional spoofed email.</p>
+<p>Revolut said that combination led it to fulfill the request, believing it came from an authentic government authority. The firm discovered the problem after contacting the agency separately, then alerted officials to the unauthorized mailbox and blocked the sender internally.</p>
+<p>Former <a href="https://cryptoslate.com/companies/mt-gox/">Mt. Gox</a> CEO Mark Karpelès, who circulated a copy of the notification Saturday, <a href="https://x.com/MagicalTux/status/2098669462816018627">argued</a> that identifying the compromised government agency could allow other banks and exchanges to determine whether they also received information demands from the same mailbox. Revolut has so far withheld the agency’s identity while it investigates.</p>
+<p>That leaves the verification sequence as the key unresolved issue. Revolut has explained why the email looked authentic, but has yet to say whether government information requests require confirmation outside email, why it contacted the agency only after releasing customer records, or whether it has changed that process since discovering the fraud.</p>
+<p>The post <a href="https://cryptoslate.com/revolut-tricked-into-handing-hackers-the-passports-and-bitcoin-histories-of-wealthy-customers/">Revolut tricked into handing hackers the passports and Bitcoin histories of wealthy customers</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/revolut-bitcoin-data-breach-1.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/revolut-bitcoin-data-breach-1.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>XRP Ledger just quietly activated critical foundation for its upcoming new lending protocol</title>
+		<link>https://cryptoslate.com/xrp-ledger-just-quietly-activated-critical-foundation-for-its-upcoming-new-lending-protocol/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 14:40:43 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Ripple]]></category>
+		<category><![CDATA[xrp]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=562075</guid>
+
+					<description><![CDATA[<p>fixCleanup3_3_0 corrects AMM, vault, lending, Checks and pseudo-account code paths without launching XRPL’s pending feature amendments.</p>
+<p>The post <a href="https://cryptoslate.com/xrp-ledger-just-quietly-activated-critical-foundation-for-its-upcoming-new-lending-protocol/">XRP Ledger just quietly activated critical foundation for its upcoming new lending protocol</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The <a href="https://cryptoslate.com/coins/xrp/">XRP</a> Ledger activated a package of fixes for transaction handling, AMMs, and newer protocol features, putting outdated servers at risk.</p>
+<p>The <code>fixCleanup3_3_0</code> amendment went live Sept. 11 at 11:29 UTC in validated ledger 106,911,489, according to <a href="https://api.xrpscan.com/api/v1/amendment/3298D47E1F3A8A24FECAA30F699B8FE1DD234E072834BA099AD8180FFCE0FEC4">XRPSCAN</a>. Ripple’s public <a href="https://cryptoslate.com/xrp-ledger-crossed-5-billion-transactions-but-92-of-august-activity-came-from-just-767-bots/">XRP Ledger</a> endpoint showed the amendment enabled and supported on Sept. 12.</p>
+<p>The update bundles maintenance corrections involving Checks, automated market makers, pseudo-accounts, permissioned trading, Single Asset Vaults, and <a href="https://cryptoslate.com/xrp-lending-model-leaves-depositors-with-90-of-a-bad-loans-loss-despite-reserves-twice-its-size/">the Lending Protocol</a> as part of the network’s live rules.</p>
+<p>Several changes target transaction paths that could previously fail in edge cases. <code>CheckCash</code> and <code>CheckCancel</code> now reject an all-zero CheckID during preflight with <code>temMALFORMED</code>, while a narrow divide-by-zero condition involving <code>AMMWithdraw</code> returns <code>tecAMM_FAILED</code> instead of ending in <code>tefEXCEPTION</code>.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-1385a1eb-4b75-4e66-9a75-758a774cda74.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter wp-image-562078" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-1385a1eb-4b75-4e66-9a75-758a774cda74.png" alt="Infographic showing fixCleanup3_3_0 activation on XRP Ledger, the maintenance areas it corrects, separate features that remain disabled, and the compatibility action required of xrpld server operators." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/exec-1385a1eb-4b75-4e66-9a75-758a774cda74.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-1385a1eb-4b75-4e66-9a75-758a774cda74-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-1385a1eb-4b75-4e66-9a75-758a774cda74-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-1385a1eb-4b75-4e66-9a75-758a774cda74-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p>Other fixes adjust freeze handling for transfers involving pseudo-accounts and tighten safeguards around AMMs, permissioned markets and cleanup processes, according to the <a href="https://xrpl.org/resources/known-amendments">XRPL amendment registry</a>.</p>
+<p>The code supporting those changes has been available since <code>xrpld</code> 3.3.0 was released Aug. 6. Their activation this week marks the point when they shifted from optional software support into rules that servers must understand to remain fully compatible with the ledger.</p>
+<h2>The fixes now carry consequences for outdated servers</h2>
+<p>XRPL’s amendment system allows new code to be distributed before validators make it part of the network’s consensus rules. Once an amendment secures the required majority for the prescribed period and activates, servers that do not support it can become amendment blocked.</p>
+<p>That creates the immediate operational issue for exchanges, custodians, payment companies and other businesses running their own <a href="https://cryptoslate.com/ripple-bets-xrpl-lending-can-give-xrp-a-future-beyond-payments-as-price-struggles/">XRP Ledger infrastructure</a>.</p>
+<p>XRPL documentation says an amendment-blocked server cannot determine whether ledgers are valid, submit or process transactions, or participate in consensus. Restoring those functions requires software that supports the active amendment, with the project recommending operators use the latest appropriate <code>xrpld</code> release.</p>
+<p>XRPSCAN reported 31 of 35 validations supporting <code>fixCleanup3_3_0</code> against a threshold of 28 at 01:45 UTC on Sept. 12, after the amendment completed its two-week majority period.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/xrp-lending-model-leaves-depositors-with-90-of-a-bad-loans-loss-despite-reserves-twice-its-size/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">XRP lending model leaves depositors with 90% of a bad loan’s loss despite reserves twice its size</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The activation does not mean every feature included alongside the fixes in version 3.3.0 is now live.</p>
+<p>Separate amendments covering LendingProtocol, SingleAssetVault, BatchV1_1, ConfidentialTransfer, DynamicMPT, PermissionDelegationV1_1 and Sponsor remained disabled on Sept. 12. Ripple’s public server reported support for those amendments, meaning the software can recognize them even though validators have not yet made them active network rules.</p>
+<p>For users relying on maintained wallets or exchanges, the compatibility work largely sits with service providers. Firms operating their own XRPL servers now face the more immediate requirement of keeping those systems current as validator-approved amendments move from available code into the ledger’s active rule set.</p>
+<p>The post <a href="https://cryptoslate.com/xrp-ledger-just-quietly-activated-critical-foundation-for-its-upcoming-new-lending-protocol/">XRP Ledger just quietly activated critical foundation for its upcoming new lending protocol</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/xrpl-stitched-ledger.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/xrpl-stitched-ledger.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>The dilution trap where Bitcoin holdings rise while shareholder value stalls</title>
+		<link>https://cryptoslate.com/the-dilution-trap-where-bitcoin-holdings-rise-while-shareholder-value-stalls/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 13:40:26 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Debt]]></category>
+		<category><![CDATA[Digital Asset Treasuries]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=561816</guid>
+
+					<description><![CDATA[<p>Buying shares in a Bitcoin treasury company gives ownership in a business that holds Bitcoin, and management decides how to pay for the coins and when to buy or sell them. The company also has bills to pay and may owe money to lenders, so the shares' value depends on those decisions and Bitcoin's price. [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/the-dilution-trap-where-bitcoin-holdings-rise-while-shareholder-value-stalls/">The dilution trap where Bitcoin holdings rise while shareholder value stalls</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Buying shares in a Bitcoin treasury company gives ownership in a business that holds Bitcoin, and management decides how to pay for the coins and when to buy or sell them.</p>
+<p>The company also has bills to pay and may owe money to lenders, so the shares' value depends on those decisions and Bitcoin's price.</p>
+<p>France's <a href="https://cptlb.com/about/who-we-are/">Capital B</a> is a Bitcoin treasury company that makes that relationship easy to see. Between Aug. 17 and Sept. 7, its treasury Bitcoin holdings increased from 3,145 BTC to 3,521 BTC, roughly 12%.</p>
+<p>However, Bitcoin per share barely moved under the company's calculation, which includes some shares that could be created in the future. More Bitcoin came into the business alongside more claims to ownership.</p>
+<p>That result explains why the method of paying for Bitcoin belongs at the center of any assessment of a treasury stock.</p>
+<p>Selling new shares raises cash, but existing shareholders then own a smaller percentage of the company. Borrowing preserves their percentage for the moment while adding a repayment obligation. Either can work well on favorable terms, but both affect the investment's value.</p>
+<p>Capital B is <a href="https://cryptoslate.com/european-bitcoin-treasury-company-launches-20b-bitcoin-strategy/?utm_source=chatgpt.com">listed on Euronext Growth Paris</a> and adopted its Bitcoin strategy in November 2024. Previously known as The Blockchain Group, it also retained technology-services businesses. Its <a href="https://cptlb.com/about/operational-companies/">operating-company portfolio</a> includes iORGA, which builds web applications, and Trimane, which supplies business-intelligence and AI consulting.</p>
+<p>Shareholders own a stake in the whole group, including the subsidiaries and their expenses.</p>
+<p>Like <a href="https://cryptoslate.com/companies/strategy/">Strategy</a>, Capital B aims to use access to investment capital to accumulate Bitcoin. Its French accounting rules and euro funding mean it must pursue that goal in a very different financial setting than its American colleagues. The comparison helps explain what investors gain by putting a management team between themselves and the coins, and what they pay for that arrangement.</p>
+<h2>Buying Bitcoin is the easy part</h2>
+<p>Companies can use cash earned by their businesses to buy Bitcoin, or raise money from investors and lenders. Each approach gives the financiers a different claim on the company.</p>
+<p>Using surplus operating cash doesn't directly add shares or debt, although it uses money that could have served another purpose. Selling shares brings in fresh capital and spreads ownership across more shares. Borrowing creates an obligation that has to be met even if the investment disappoints.</p>
+<p>More shares aren't automatically bad for existing shareholders. The issue price determines how much new purchasing power each share brings into the company.</p>
+<p>Consider a hypothetical business with 100 BTC and 100 shares, with Bitcoin fixed at €100,000. It issues another ten shares and uses every euro raised to buy coins. This simplified example assumes no fees, taxes, operating expenses, or debt.</p>
+<table>
+<tbody>
+<tr>
+<th>New share issue</th>
+<th>Cash raised</th>
+<th>Bitcoin purchased</th>
+<th>Total BTC</th>
+<th>Total shares</th>
+<th>BTC per share</th>
+</tr>
+<tr>
+<td>Ten shares at €150,000 each</td>
+<td>€1.5 million</td>
+<td>15</td>
+<td>115</td>
+<td>110</td>
+<td>1.0455</td>
+</tr>
+<tr>
+<td>Ten shares at €80,000 each</td>
+<td>€800,000</td>
+<td>8</td>
+<td>108</td>
+<td>110</td>
+<td>0.9818</td>
+</tr>
+</tbody>
+</table>
+<p><em>Both start with one BTC per share. Prices and quantities are hypothetical and do not describe Capital B securities.</em></p>
+<p>In the first case, an existing shareholder owns a smaller percentage of a company containing enough additional Bitcoin to increase the amount per share. In the second, the new cash doesn't buy enough coins to maintain the original ratio.</p>
+<p>The first transaction depends on investors paying more per new share than the Bitcoin value of an existing one. They might accept that premium because they expect management to repeat profitable financings.</p>
+<p>That expectation can help the process continue, but once buyers stop paying the premium, issuing shares buys less Bitcoin for each additional share created.</p>
+<p>Capital B also <a href="https://cryptoslate.com/capital-bs-e21-million-bitcoin-raise-comes-with-heavy-warrant-dilution-risk/">raises money through packages</a> combining ordinary shares and warrants. Warrants give holders the right to buy future shares at specified exercise prices. Capital B's <a href="https://cptlb.com/wp-content/uploads/2026/08/d91DZH9P3c/20260828-Capital-B-CP-28-aout-2026-EN-FINAL.pdf">Aug.28 financing terms</a> attached four warrants to each share, with different exercise prices and five-year maturities.</p>
+<p>Investors pay for the initial package and can later pay again to exercise the warrants. That second payment could finance more Bitcoin purchases, but it isn't cash already in the company's account. If exercise is unattractive, the holder may never supply that additional cash.</p>
+<p>Exercised warrants bring in cash and create shares at the same time. Any estimate of their effect on existing owners needs to include both, using the exercise price to calculate how much money the company would receive.</p>
+<p>Convertible debt is another way to finance Bitcoin purchases. Lenders receive repayment claims with a contractual path into shares, and the company owes the debt under its terms until conversion.</p>
+<p>Capital B has used Bitcoin-denominated convertible financing, described in its annual results <a href="https://cptlb.com/wp-content/uploads/2026/04/20260430-Capital-B-FY25-Annual-Results.pdf">presentation</a>, alongside its other funding arrangements.</p>
+<p>Bitcoin-linked obligations behave differently from fixed-euro debt. When repayment follows Bitcoin's value, a more valuable reserve can come with a more expensive obligation in euros. The conversion and repayment provisions determine that relationship.</p>
+<p>Zero-coupon financing avoids periodic interest payments, while lenders can receive compensation through other terms, including their conversion rights.</p>
+<p>Strategy's US business uses common equity, convertible debt, and preferred stock. Preferred shares generally rank above common shares for specified claims and can carry dividend obligations, depending on their terms.</p>
+<p>Its <a href="https://www.strategy.com/press/strategy-announces-second-quarter-2026-financial-results_07-30-2026">July results</a> also describe Bitcoin sales to fund part of its preferred dividends. Treasury companies can therefore differ in how they use Bitcoin and how they finance it.</p>
+<h2>More coins divided among more shares</h2>
+<p>The most visible number in a treasury announcement is usually the coin balance. To understand an existing shareholder's position, you have to pair that number with a share count.</p>
+<p>Capital B's <a href="https://cptlb.com/wp-content/uploads/2026/09/v5VovtATca/20260907-Capital-B-CP-7-septembre-2026-EN-FINAL.pdf">Sept. 7 filing</a> provides the comparison below. Its <a href="https://cryptoslate.com/bitcoin-treasury-investors-are-turning-on-companies-diluting-them-to-keep-buying/">diluted share count</a> includes existing shares and certain shares that could be issued, allowing the company to estimate how much Bitcoin each would represent. Satoshis are the smallest Bitcoin units, with 100 million in one BTC.</p>
+<table>
+<tbody>
+<tr>
+<th>Company-reported measure</th>
+<th>Aug. 17, 2026</th>
+<th>Sept. 7, 2026</th>
+</tr>
+<tr>
+<td>Treasury-strategy Bitcoin</td>
+<td>3,145 BTC</td>
+<td>3,521 BTC</td>
+</tr>
+<tr>
+<td>Issued common shares</td>
+<td>330,306,740</td>
+<td>382,506,040</td>
+</tr>
+<tr>
+<td>Shares counted in the company's diluted measure</td>
+<td>427,074,421</td>
+<td>477,977,121</td>
+</tr>
+<tr>
+<td>Satoshis per diluted share</td>
+<td>736.4</td>
+<td>736.6</td>
+</tr>
+</tbody>
+</table>
+<p><em>All share figures use the pre-consolidation basis in the Sept. 7 filing. The reserve excludes separately designated operational Bitcoin. The diluted count is company-defined.</em></p>
+<p>Both the Bitcoin reserve and the diluted share count expanded by roughly 12%, leaving the ratio almost flat. This ratio compares the holdings to a defined number of shares. Shareholders have no general right to exchange each share for that amount of Bitcoin, and the calculation doesn't deduct the company's debts.</p>
+<p>The next day brought an administrative event that can distort comparisons with these figures. Capital B's <a href="https://www.actusnews.com/en/download/capital-b/2026/09/08/100109-20260908-capital-b-cp-08-septembre-2026-en-final.pdf">ten-for-one reverse stock split</a> took effect Sept. 8. Ten old shares became one new share. The consolidation reduces the share count and mechanically increases the amount attributable to each resulting share without multiplying the company's assets.</p>
+<p>On that basis, 736.6 satoshis per old share corresponds mechanically to 7,366 per new share, converting the historical figure into the new units. Charts must use a consistent share basis or risk displaying spectacular performance produced entirely by the consolidation.</p>
+<p>The company's &#8220;BTC Yield&#8221; measures the percentage movement in Bitcoin per diluted share over a period. Despite its name, it pays shareholders no cash and measures a different outcome from their investment return, as Capital B explains in its disclosure.</p>
+<p>Shareholders' returns depend on the prices at which they buy and sell, while corporate obligations affect their claim on the assets.</p>
+<p>&#8220;Fully diluted&#8221; sounds as though it includes every possible future share, but a company-defined performance measure can use a specific set of assumptions. Capital B's count incorporates issued shares, assumed convertible-bond shares, employee awards, and an additional reserve for potential shares.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/capital-bs-e21-million-bitcoin-raise-comes-with-heavy-warrant-dilution-risk/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Capital B’s €21 million Bitcoin raise comes with heavy warrant dilution risk</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>To assess the outstanding warrants, we need a separate exercise scenario, including the proceeds discussed earlier. How much Bitcoin those proceeds could buy depends on its price when the cash becomes available.</p>
+<p>Conversion adds shares to the calculation, but it doesn't make conversion inevitable. If lenders instead retain repayment claims, common shareholders must account for those claims. Subtracting debt and assuming the same debt converts at the same time can also double-count the burden.</p>
+<p>Gross Bitcoin-per-share figures describe the reserve relative to a share count. Net asset value subtracts obligations from assets, and the stock market can price shares above or below that result.</p>
+<p>Comparing these measures requires consistent assumptions about debt conversion and the money any new shares would bring in.</p>
+<h2>What buying through a French company adds</h2>
+<p>Europe makes this model different in ways that reach beyond the exchange on which the shares trade, starting with the currency.</p>
+<p>Capital B raises money and reports most figures in euros. Bitcoin itself isn't a dollar claim, even though the <a href="https://cryptoslate.com/bitcoin/">Bitcoin dollar price</a> dominates financial coverage. The euro cost of buying it reflects both that commonly quoted price and the euro-dollar exchange rate.</p>
+<p>Suppose Bitcoin stays at $100,000. At $1.25 to the euro, it costs €80,000. At $1 to the euro, it costs €100,000. Those are hypothetical exchange rates, but they explain why an unchanged dollar Bitcoin price doesn't imply an unchanged euro balance-sheet value.</p>
+<p>Euro operating costs and Bitcoin-linked financing obligations add different exposures to the same company.</p>
+<p>The second difference is the market through which it raises capital. <a href="https://www.euronext.com/en/listing/raise-capital/how-go-public/choosing-market">Euronext Growth is a multilateral trading facility</a> aimed at smaller companies, with requirements distinct from Euronext's main regulated markets.</p>
+<p>Capital B operates within a French corporate framework and the rules governing that venue and its securities.</p>
+<p>Those rules govern how management can issue shares and what investors must be told. Subscription rights can give existing shareholders a chance to buy new shares before outside investors, helping them maintain their ownership percentage.</p>
+<p>Whether those rights apply or have been waived depends on the transaction. The price at which Capital B can raise money also depends on investors willing to buy its securities.</p>
+<p>Accounting is the third difference, and it depends on the company and its location.</p>
+<p>Capital B's <a href="https://cptlb.com/wp-content/uploads/2026/04/20260430-TBG-RFA-2025-EN-FINAL-updated.pdf">2025 consolidated accounts</a> use French accounting rules. Under its stated Bitcoin policy, unrealized gains are recorded through balance-sheet accounts, while unrealized losses can require a provision charged against earnings.</p>
+<p>That means increases and decreases in Bitcoin's value can affect reported results differently, even when no coins are sold.</p>
+<p>US rules for qualifying crypto assets require fair-value measurement with valuation movements recognized in net income, so the <a href="https://www.fasb.org/news-and-meetings/in-the-news/fasb-issues-standard-to-improve-the-accounting-for-and-disclosure-of-certain-crypto-assets-397718">FASB standard</a> produces different earnings.</p>
+<p>Other European companies may use IFRS, whose <a href="https://www.ifrs.org/content/dam/ifrs/supporting-implementation/agenda-decisions/2019/holdings-of-cryptocurrencies-june-2019.pdf">crypto accounting framework</a> also depends on the purpose of the holdings. The applicable accounting rules must therefore be checked company by company.</p>
+<table>
+<tbody>
+<tr>
+<th>Dimension</th>
+<th>Capital B</th>
+<th>Strategy</th>
+</tr>
+<tr>
+<td>Main common-share venue</td>
+<td>Euronext Growth Paris</td>
+<td>Nasdaq</td>
+</tr>
+<tr>
+<td>Reporting currency</td>
+<td>Euro</td>
+<td>US dollar</td>
+</tr>
+<tr>
+<td>Financing featured in the cited disclosures</td>
+<td>Share sales with warrants and Bitcoin-denominated convertibles</td>
+<td>Common equity, convertible debt, and preferred securities</td>
+</tr>
+<tr>
+<td>Accounting basis relevant here</td>
+<td>French rules in its 2025 consolidated accounts</td>
+<td>US GAAP fair-value treatment of qualifying crypto assets</td>
+</tr>
+<tr>
+<td>What common shareholders must evaluate</td>
+<td>Financing terms, operating costs, and claims against assets</td>
+<td>Financing terms, operating costs, and claims against assets</td>
+</tr>
+</tbody>
+</table>
+<p><em>Company-specific comparison using the cited disclosures. Neither column represents every treasury company in its region; instruments and policies can evolve.</em></p>
+<p>Different accounting can make two businesses' reported profits difficult to compare even when their assets experience the same market move. Those valuation entries describe movements in <em>asset</em> value, while the cash available to meet bills depends on the company's receipts, spending, and financing.</p>
+<p>Capital B's <a href="https://cptlb.com/wp-content/uploads/2026/04/bccmFPr6q4/20260430-TBG-CP-30-avr-2026-EN-FINAL.pdf">2025 results</a> put that distinction into context. It reported a €62.2 million net loss, largely attributable to a €53.9 million Bitcoin impairment, alongside positive adjusted EBITDA of about €1.2 million at its established operating entities. Group adjusted EBITDA was negative, and the release identified about €4.1 million of treasury-business costs.</p>
+<p>Those numbers describe different parts of the business and help describe operating performance, while cash available to buy coins depends on actual receipts and payments.</p>
+<p>Custody, staff, and corporate financing require resources even when management intends to retain its reserves. Operating subsidiaries can help fund those expenses without making them disappear.</p>
+<p>Finally, European investors already have alternatives to corporate treasury exposure. <a href="https://dataspanapi.wisdomtree.com/pdr/documents/PRIIP_KID/WIXL/GB/EN-GB/GB00BJYDH287/">WisdomTree's Bitcoin product document</a> describes a physically backed exchange-traded debt security. Its legal structure differs from both direct Bitcoin and shares in Capital B, but it demonstrates that buying a treasury company isn't Europe's only listed route to the asset.</p>
+<p>Investors also have to separate the business's merit from its share price. Paying a large premium for capable management means paying today for some of its hoped-for future success. Discounts may compensate buyers for corporate expenses or doubts about access to fresh capital.</p>
+<p>Either price needs to be judged against the obligations and prospects behind it.</p>
+<p>Favorable issuance can increase Bitcoin exposure per share, giving shareholders something direct holdings cannot deliver on their own. That benefit has to earn its place alongside corporate expenses and financing risk.</p>
+<p>Investors who prefer a passive product accept a more limited mandate in exchange for avoiding those management decisions.</p>
+<p>Capital B's appeal depends on management raising money on terms that leave existing shareholders better off once the company's costs and obligations are accounted for. Its larger Bitcoin reserve is one part of that assessment.</p>
+<p>The share count explains how widely ownership is divided, and the financing contracts explain who must be paid. Buying the stock means trusting management to make those pieces work together at a price worth paying.</p>
+<p>The post <a href="https://cryptoslate.com/the-dilution-trap-where-bitcoin-holdings-rise-while-shareholder-value-stalls/">The dilution trap where Bitcoin holdings rise while shareholder value stalls</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-company-trunk.jpg_.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-company-trunk.jpg_.jpg" length="1280" type="image/jpg"/>
+	</item>
+	</channel>
+</rss>

@@ -1,0 +1,1221 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>BeInCrypto</title>
+	<atom:link href="https://beincrypto.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://beincrypto.com/</link>
+	<description>Cryptocurrency News</description>
+	<lastBuildDate>Sat, 12 Sep 2026 20:00:00 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.7</generator>
+
+<image>
+	<url>https://assets.beincrypto.com/img/ULB28daJBFR3Nw9y1kUzR_AA--E=/32x32/smart/e3ad5fc1201d4ea8b2d44804964c6e9e</url>
+	<title>BeInCrypto</title>
+	<link>https://beincrypto.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Coinbase Engineer Turns a Virtual Fly Brain Into a Crypto Trader</title>
+		<link>https://beincrypto.com/coinbase-engineer-fly-brain-crypto-trader/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 20:00:00 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[AI News]]></category>
+		<category><![CDATA[AI Trading Bots]]></category>
+		<category><![CDATA[Bitcoin (BTC) News]]></category>
+		<category><![CDATA[Coinbase News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865962</guid>
+
+					<description><![CDATA[<p>A Coinbase engineer wired a simulated fruit fly brain into a Bitcoin trading account. He warns it proves nothing.</p>
+<p>The post <a href="https://beincrypto.com/coinbase-engineer-fly-brain-crypto-trader/">Coinbase Engineer Turns a Virtual Fly Brain Into a Crypto Trader</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>A software engineer at Coinbase has wired a digital copy of a fruit fly&rsquo;s brain into a Bitcoin trading account. The open-source project is called Stonkfly.</strong></p>
+
+
+
+<p>It shows the simulated brain a price chart and rewards profitable trades with a burst of virtual dopamine. The fly never sees a single price number.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-how-a-simulated-fly-brain-places-a-trade">How a Simulated Fly Brain Places a Trade</h2>
+
+
+
+<p>Alex Wormuth published the code on <a href="https://github.com/nftechie/stonkfly" target="_blank" rel="noreferrer noopener nofollow">GitHub</a> alongside a public <a href="https://stonkfly-three.vercel.app/" target="_blank" rel="noreferrer noopener nofollow">dashboard</a>. The model runs 166,700 neurons and roughly 25.6 million connections between them.</p>
+
+
+
+<p>Those figures come from a connectome, a published wiring map of an adult male fruit fly&rsquo;s nervous system. Neuroscientists spent years building it. Wormuth pointed it at a candlestick chart instead.</p>
+
+
+
+<p>Stonkfly draws that chart as a small image and splits it across the fly&rsquo;s two simulated eyes. Light-sensing cells read the raw pixel colors. The brain then settles on buy, sell, or hold.</p>
+
+
+
+<p>Profit fires 15 reward neurons. A loss fires two that register something unpleasant. Trading fees count as losses. The fly cannot borrow or bet on a falling price, which puts it ahead of many <a href="https://beincrypto.com/grok-vs-claude-stock-trading-comparison/" target="_blank" rel="noreferrer noopener">AI bots trading stocks</a>.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-the-creator-says-it-proves-nothing">The Creator Says It Proves Nothing</h2>
+
+
+
+<p>According to the Coinbase engineer, the experiment does not show everything. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/_eytldn63T2rmD5QpAU29WlDrlc=/smart/868451bf35ad4a3f886a2452f34cc081" alt="Coinbase Engineer Turns a Virtual Fly Brain Into a Crypto Trader" class="wp-image-865964"><figcaption class="wp-element-caption">Coinbase Engineer Turns a Virtual Fly Brain Into a Crypto Trader. Source: <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/engineer-turns-simulated-fly-brain-into-a-crypto-day-trader-posts-downloadable-sim-to-github-166-700-virtual-neurons-read-candlestick-charts-for-dopamine-hits" target="_blank" rel="noreferrer noopener nofollow">tomshardware.com</a></figcaption></figure>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;Synaptic changes do not establish that it learns to trade profitably,&rdquo; Alex Wormuth <a href="https://github.com/nftechie/stonkfly" target="_blank" rel="noreferrer noopener nofollow">said</a>. </p>
+
+
+
+<p></p>
+</blockquote>
+
+
+
+<p>The program runs on paper money by default, starting with $100. Live mode caps each order at $10, and limits attempts to 24 per day. The public dashboard still showed zero completed trades on Saturday.</p>
+
+
+
+<p>That caution lands differently in a falling market. Bitcoin (BTC) <a href="https://beincrypto.com/price/bitcoin/">traded near $77,286</a> on Saturday, up 0.6% on the day but far below its peak. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/Jva6IMGGgmVpqsM0QxIlfkseOuM=/smart/119661187bb74971b0e7590a20b4fad2" alt="Bitcoin (BTC) Price Performance. Source: BeInCrypto" class="wp-image-865965"><figcaption class="wp-element-caption">Bitcoin (BTC) Price Performance. Source: <a href="https://beincrypto.com/price/bitcoin/" target="_blank" rel="noreferrer noopener">BeInCrypto</a></figcaption></figure>
+
+
+
+<p>The real question is not whether the fly makes money. It is whether a mapped brain rewires itself for a reward evolution never gave it.</p>
+<p>The post <a href="https://beincrypto.com/coinbase-engineer-fly-brain-crypto-trader/">Coinbase Engineer Turns a Virtual Fly Brain Into a Crypto Trader</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/sT5hfW7bspo2W4_lT6WOSdRT7T8=/smart/fe676ec8341041b786dfe93f0f3f51d3" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/sT5hfW7bspo2W4_lT6WOSdRT7T8=/smart/fe676ec8341041b786dfe93f0f3f51d3"/>
+
+	</item>
+		<item>
+		<title>The ETF Built to Bet Against XRP Price Has a New Launch Date</title>
+		<link>https://beincrypto.com/short-xrp-etf-delayed-new-launch-date/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 18:33:29 +0000</pubDate>
+				<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[ETF News]]></category>
+		<category><![CDATA[Ripple (XRP) News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865945</guid>
+
+					<description><![CDATA[<p>Teucrium has delayed its short XRP ETF 19 times since April 2025. The newest filing pushes launch to October 11.</p>
+<p>The post <a href="https://beincrypto.com/short-xrp-etf-delayed-new-launch-date/">The ETF Built to Bet Against XRP Price Has a New Launch Date</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Teucrium has pushed back the launch of its short XRP ETF (exchange-traded fund) for the 19th time. A filing dated September 11 moves the earliest possible start to October 11, 2026.</strong></p>
+
+
+
+<p>The fund is built to pay investors when XRP falls. Its mirror image, which pays when XRP rises, has been trading since April 2025.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-19-xrp-short-etf-filings-and-not-one-launch">19 XRP Short ETF Filings and Not One Launch</h2>
+
+
+
+<p>Public records held by the US Securities and Exchange Commission show the same three-page document arriving roughly every month since April 4, 2025. Each one does a single job. It moves the date.</p>
+
+
+
+<p>The newest <a href="https://www.sec.gov/Archives/edgar/data/1683471/000089418926025151/teucrium485bxt2xshortxrp.htm" target="_blank" rel="noreferrer noopener nofollow">filing</a> carries no explanation beyond the new date. Strategy, fees, and risk warnings all stay untouched.</p>
+
+
+
+<p>Even that date is not a launch date. It marks the first day the fund is permitted to start trading, and permission is not the same as arrival.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">&#128196; SEC filing alert:<br><br>Listed Funds Trust just delayed the effectiveness of the Teucrium 2x Short Daily XRP ETF to October 11, 2026.<br><br>A 2x SHORT XRP ETF is literally in the pipeline. Institutions aren't just betting up on XRP they're building tools to bet against it too.<br><br>Two-way&hellip; <a href="https://t.co/qJBDF2YDSr">https://t.co/qJBDF2YDSr</a> <a href="https://t.co/QUu0Ic7sSY">pic.twitter.com/QUu0Ic7sSY</a></p>&mdash; &#120277;&#120302;&#120315;&#120312;XRP (@BankXRP) <a href="https://x.com/BankXRP/status/2098658594770309180?ref_src=twsrc%5Etfw">September 12, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>The first postponement landed four days before the <a href="https://beincrypto.com/teucrium-2x-long-daily-xrp-etf-launch/" target="_blank" rel="noreferrer noopener">2x long XRP fund</a> began trading on the New York Stock Exchange. Teucrium sold the upside version and shelved the downside one.</p>
+
+
+
+<p>No regulator blocked this. The company chose each delay itself.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-the-bet-against-xrp-never-reached-the-market">Why the Bet Against XRP Never Reached the Market</h2>
+
+
+
+<p>The product aims to move twice as much as XRP does each day, in the opposite direction. It would never sell any XRP. Instead, it would use contracts with trading firms that pay out when the price drops.</p>
+
+
+
+<p>Teucrium has never explained the holdup in any filing.</p>
+
+
+
+<p>Meanwhile, the thing the fund was designed for happened without it. XRP peaked at $3.65 in July 2025 and now trades near $1.37, suggesting a drawdown of over 60%.  Anyone wanting a listed way to bet against that slide had none.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/4o27uGI9RbIH8UMBRCQvdFzyC1Y=/smart/06f999c065fb4984965a4982d6d378c4" alt="" class="wp-image-865950"><figcaption class="wp-element-caption">XRP Price Performance. Source: <a href="https://beincrypto.com/price/ripple/" target="_blank" rel="noreferrer noopener">BeInCrypto</a></figcaption></figure>
+
+
+
+<p>Ordinary funds that simply hold XRP did arrive, and money kept flowing in. Over their past 20 trading days those funds <a target="_blank" href="https://beincrypto.com/bitcoin-etf-outflows-xrp-inflow-streak/" rel="noreferrer noopener">took in $190.5 million</a>, with withdrawals on a single day.</p>
+
+
+
+<p>Buyers stayed put through the decline. Cumulative inflows since launch now stand at $1.70 billion. What nobody could buy was the other side of the trade.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/q7r_dHVbe5BcbNft2OIVnR2ALvo=/smart/78b5ebece8ba4c4b8035c78f7cac1d3b" alt="XRP ETF Flows. Source: SoSoValue" class="wp-image-865955"><figcaption class="wp-element-caption">XRP ETF Flows. Source: <a href="https://sosovalue.com/assets/etf/us-xrp-spot" target="_blank" rel="noreferrer noopener nofollow">SoSoValue</a></figcaption></figure>
+
+
+
+<p>October 11 marks the 20th deadline for this fund. After 19 postponements, the sharper question is what changes if it ever does launch.</p>
+<p>The post <a href="https://beincrypto.com/short-xrp-etf-delayed-new-launch-date/">The ETF Built to Bet Against XRP Price Has a New Launch Date</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/PIIfKc-FHWI96iq6NQcCYKYhSRM=/smart/ffcf19b48bc347d1bbc491a882de0a5a" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/PIIfKc-FHWI96iq6NQcCYKYhSRM=/smart/ffcf19b48bc347d1bbc491a882de0a5a"/>
+<ticker>XRP</ticker>
+	</item>
+		<item>
+		<title>8 Weeks After Kimi K3 Launch, Moonshot AI is Filing Police Reports</title>
+		<link>https://beincrypto.com/kimi-k3-moonshot-police-report-distillation/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 16:56:00 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[AI Companies]]></category>
+		<category><![CDATA[AI News]]></category>
+		<category><![CDATA[China News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865910</guid>
+
+					<description><![CDATA[<p>Kimi K3 launched loudest in July. Eight weeks on, Moonshot is denying detention claims and filing police reports.</p>
+<p>The post <a href="https://beincrypto.com/kimi-k3-moonshot-police-report-distillation/">8 Weeks After Kimi K3 Launch, Moonshot AI is Filing Police Reports</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>In July, Moonshot AI released the world&rsquo;s largest free artificial intelligence (AI) model. Eight weeks later, the company is filing police reports.</strong></p>
+
+
+
+<p>Kimi K3 arrived on July 16. Anyone could download it and run it. In an industry that guards its best work, that was rare. But then the servers buckled.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-a-launch-that-ate-its-own-computers">A Launch That Ate Its Own Computers</h2>
+
+
+
+<p>Four days in, Moonshot stopped selling new subscriptions. Paying members kept their seats as everyone else waited.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;Over the past 48 hours, demand has pushed close to the limits of our current capacity,&rdquo; the team said in a <a href="https://www.scmp.com/tech/article/3361172/kimi-k3-developer-suspends-new-subscriptions-amid-compute-constraints" target="_blank" rel="noreferrer noopener nofollow">statement</a>. </p>
+</blockquote>
+
+
+
+<p>That was the loudest the company would be all summer.</p>
+
+
+
+<p>On September 11, Moonshot pushed a smaller model, K2.8 Preview, across its coding platform. Read the changelog closely and something odd appears. Some K3 requests now get answered by the smaller model instead.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">&#128680; Kimi K2.8 Preview just dropped in Kimi Code<br><br>From reading the docs it has performance close to K3 but apparently with "more efficient thinking"<br><br>&bull; 1M context<br>&bull; image + video input<br>&bull; low / high / max reasoning<br><br>Kimi K3 is a very good model too, im hoping the "more efficient&hellip; <a href="https://t.co/52I5Ege2TV">pic.twitter.com/52I5Ege2TV</a></p>&mdash; Lumina (@LuminaBench) <a href="https://x.com/LuminaBench/status/2098339580298539493?ref_src=twsrc%5Etfw">September 11, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>However, that same week, Anthropic <a href="https://www.anthropic.com/threat-intelligence-report-september-2026" target="_blank" rel="noreferrer noopener nofollow">accused</a> Moonshot of quietly passing Kimi users&rsquo; questions to Claude. It said Moonshot showed Claude&rsquo;s answers as Kimi&rsquo;s own work. In a single 10-day window, it counted nearly 300,000 handoffs routed through 5,380 fake accounts.</p>
+
+
+
+<p>One of those users was probably military, Anthropic says. They uploaded footage from hundreds of security cameras in Chengdu and asked whether a man was behaving strangely.</p>
+
+
+
+<p>Here is the uncomfortable part. All of it rests on Anthropic&rsquo;s own logs. No regulator has tested any of it. BeInCrypto reported on September 1 that Anthropic had already shipped <a href="https://beincrypto.com/claude-fable-5-1-launch-anti-distillation/" target="_blank" rel="noreferrer noopener">a block against this</a>. That was 10 days before <a href="https://beincrypto.com/anthropic-biological-weapons-report-claude/" target="_blank" rel="noreferrer noopener">its September threat report</a> named a single company.</p>
+
+
+
+<p>Then came the claim that Moonshot&rsquo;s founder had been taken away after the Anthropic report. </p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="zh" dir="ltr">&#32593;&#20256;Kimi&#34987;&#24102;&#36208;16&#20010;&#20154;&#65292;&#21253;&#25324;&#32769;&#22823;&#65292;&#22914;&#26524;&#20256;&#38395;&#23646;&#23454;&#65292;&#37027;&#22823;&#27010;&#29575;&#21487;&#33021;&#20063;&#26159;&#21644;Anthropic&#21018;&#21457;&#24067;&#30340;&#20837;&#20405;&#25253;&#21578;&#26377;&#20851;&#12290;&#22312;&#26368;&#21518;&#19968;&#33410;&ldquo;&#38750;&#27861;&#33976;&#39311;&#37324;&rdquo;&#65292;Anthropic&#35828;&#26376;&#20043;&#26263;&#38754;&#25226;&#26412;&#35813;&#21457;&#32473; Kimi &#22788;&#29702;&#30340;&#23458;&#25143;&#35831;&#27714;&#20599;&#20599;&#36716;&#32473; Claude&#65292;&#20877;&#25226; Claude &#30340;&#22238;&#31572;&#24403;&#20316; Kimi&hellip; <a href="https://t.co/aiFbPc7dI0">pic.twitter.com/aiFbPc7dI0</a></p>&mdash; ZhangChi (@zhangchitc) <a href="https://x.com/zhangchitc/status/2098449022621008042?ref_src=twsrc%5Etfw">September 11, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>On Saturday, the company answered.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;The information circulating online regarding the founder and employees is completely fabricated and malicious slander. We have immediately reported the matter to the police and will pursue legal action against those responsible for spreading the rumors,&rdquo; Moonshot AI <a href="https://news.bjd.com.cn/2026/09/12/11956218.shtml" target="_blank" rel="noreferrer noopener nofollow">said</a> on Saturday. </p>
+</blockquote>
+
+
+
+<p>No newspaper has confirmed an arrest. No agency has confirmed an investigation. What is confirmed is stranger. The year&rsquo;s biggest open AI model is now partly handled by something smaller, and the fullest account of where its users&rsquo; questions went was written in San Francisco.</p>
+<p>The post <a href="https://beincrypto.com/kimi-k3-moonshot-police-report-distillation/">8 Weeks After Kimi K3 Launch, Moonshot AI is Filing Police Reports</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/O1dRY9QNij6zfYvI00yMgG9__2Q=/smart/7848697a04c04695b1487e9622ce33ca" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/O1dRY9QNij6zfYvI00yMgG9__2Q=/smart/7848697a04c04695b1487e9622ce33ca"/>
+
+	</item>
+		<item>
+		<title>Can AI Build a Startup in 72 Hours? Elon Musk&#039;s Team Will Livestream the Test</title>
+		<link>https://beincrypto.com/grok-bot-livestream-72-hour-startup/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 13:23:38 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[AI News]]></category>
+		<category><![CDATA[AI Technology Trends]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Elon Musk News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865899</guid>
+
+					<description><![CDATA[<p>Three SpaceXAI staff will try to build a startup in 72 hours on livestream, testing how far AI agents go.</p>
+<p>The post <a href="https://beincrypto.com/grok-bot-livestream-72-hour-startup/">Can AI Build a Startup in 72 Hours? Elon Musk&#039;s Team Will Livestream the Test</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Three employees at Elon Musk&rsquo;s AI company will try to build a startup in 72 hours using AI agents, with every product, engineering, and business decision streamed live from September 15 to 17.</strong></p>
+
+
+
+<p>The company has no name, no product, and no idea yet. Matt Palmer, Lauren Tan and Roshan Sadanani are meant to choose all three on camera as they go.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-what-the-72-hour-build-involves">What the 72-Hour Build Involves</h2>
+
+
+
+<p>The <a href="https://luma.com/3ifrgttw" target="_blank" rel="noreferrer noopener nofollow">event</a>, called Grok Bot Galaxy, runs at a San Francisco venue with a worldwide livestream. Sessions run from 8.30 a.m. to 6 p.m. Pacific time each day.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">The company name has not been announced. Matt Palmer, Lauren Tan and Roshan Sadanani will start from a blank slate during the Grok Bot Galaxy livestream (Sept 15-17) and decide the idea, plan and name in real time as they build.</p>&mdash; Grok (@grok) <a href="https://x.com/grok/status/2098641916547956806?ref_src=twsrc%5Etfw">September 12, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>Grok Bot is SpaceXAI&rsquo;s agent product, not the Grok chatbot that answers questions on X (Twitter). The company describes it as a team of AI agents that users can name, assign objectives, and set loose across apps and websites.</p>
+
+
+
+<p>BeInCrypto has covered the product since before laits unch, including a <a href="https://beincrypto.com/grok-bot-domain-1-million-musk/" target="_blank" rel="noreferrer noopener">Grok Bot domain dispute</a> in which an anonymous owner demanded $1 million.</p>
+
+
+
+<p>The three builders will use it for ideation, planning, product calls, and engineering. Colleagues drop in for separate sessions on sales, customer support, and marketing operations.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-spacexai-is-staging-the-test">Why SpaceXAI Is Staging the Test</h2>
+
+
+
+<p>SpaceXAI is the company formed after SpaceX bought xAI in February in an all-stock deal that valued xAI at $250 billion. It then bought coding firm Cursor for $60 billion in August.</p>
+
+
+
+<p>Musk has spent the year making <a href="https://beincrypto.com/grok-4-7-release-spacex-data/" target="_blank" rel="noreferrer noopener">large claims about Grok</a>, and rival labs have matched him. A three-day unedited build is a harder thing to stage than a demo clip.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Next week, the SpaceXAI team will build a company from the ground and livestream it.<br><br>&ldquo;We'll use Grok Bot for every part of the build &ndash; from ideation and product development to real engineering work and deployment.&rdquo; <a href="https://t.co/iz5s0R3ZaE">pic.twitter.com/iz5s0R3ZaE</a></p>&mdash; Sawyer Merritt (@SawyerMerritt) <a href="https://x.com/SawyerMerritt/status/2098169457914847277?ref_src=twsrc%5Etfw">September 10, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>It remains a vendor showing off its own tool rather than an independent trial. The useful measure is how much the three humans steer, edit and rescue the agents along the way. </p>
+
+
+
+<p>Questions about <a href="https://beincrypto.com/ai-agent-payments-accountability-problem/" target="_blank" rel="noreferrer noopener">who answers for AI agents</a> when they act alone are still unsettled.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-musk-concedes-grok-is-not-the-default-yet">Musk Concedes Grok Is Not the Default Yet</h2>
+
+
+
+<p>The build lands in an awkward week for agent products. Rival lab Anthropic published a report on September 11 documenting <a href="https://beincrypto.com/anthropic-biological-weapons-report-claude/" target="_blank" rel="noreferrer noopener">how people misused its Claude models</a>, covering cyber operations, surveillance, fraud and conventional weapons work. Anthropic said it removed the accounts involved.</p>
+
+
+
+<p>Meanwhile, reports suggest that every side in the Gulf conflict involves a Claude user, a nuance that Elon Musk acknowledges, conceding that Grok is not the default, at least for now.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;I guess Grok is not yet a preferred choice in this arena. Not sure how to feel about that,&rdquo; he <a href="https://x.com/elonmusk/status/2098579651429810534" target="_blank" rel="noreferrer noopener nofollow">chimed</a>. </p>
+</blockquote>
+
+
+
+<p>Absence from a rival&rsquo;s abuse report is not a safety record. Labs only publish what they catch on their own systems, and Grok Bot is barely a month old in public.</p>
+
+
+
+<p>By Thursday the stream should show what the word company actually covers here. A working product with users would land differently from a name and a landing page.</p>
+<p>The post <a href="https://beincrypto.com/grok-bot-livestream-72-hour-startup/">Can AI Build a Startup in 72 Hours? Elon Musk&#039;s Team Will Livestream the Test</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/7TK9YCx6XCz6VzwrIea2R3WFWw8=/smart/93155c04be914629a2448a7285bd7150" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/7TK9YCx6XCz6VzwrIea2R3WFWw8=/smart/93155c04be914629a2448a7285bd7150"/>
+
+	</item>
+		<item>
+		<title>Tom Lee Says Crypto Will Be “Really Bullish” For the Next 12 Months</title>
+		<link>https://beincrypto.com/tom-lee-crypto-bull-market-prediction/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 12:47:55 +0000</pubDate>
+				<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Bitcoin (BTC) News]]></category>
+		<category><![CDATA[Crypto Personalities]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Ethereum (ETH) News]]></category>
+		<category><![CDATA[Stock Market News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865970</guid>
+
+					<description><![CDATA[<p>Tom Lee says crypto's next 12 months look really bullish. His own firm is $5 billion underwater on ether.</p>
+<p>The post <a href="https://beincrypto.com/tom-lee-crypto-bull-market-prediction/">Tom Lee Says Crypto Will Be “Really Bullish” For the Next 12 Months</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Tom Lee says the next 12 months will be &ldquo;really bullish&rdquo; for crypto. The Wall Street strategist has reason to hope he is right, because the company he chairs sits about $5 billion underwater.</strong></p>
+
+
+
+<p>Lee runs research at Fundstrat Global Advisors and chairs BitMine Immersion Technologies, which holds 5.93 million ether.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-the-worst-is-over-for-crypto-markets">The Worst is Over for Crypto Markets?</h2>
+
+
+
+<p>His first argument is that the pain already happened. On October 10 last year, a threat of 100% tariffs on China <a href="https://beincrypto.com/trump-china-tariff-triggers-200-billion-crypto-crash/" target="_blank" rel="noreferrer noopener">set off the largest liquidation crypto has seen</a>. More than $19 billion in leveraged bets vanished in a day.</p>
+
+
+
+<p>The borrowed money went with it, Lee says. He reads the bottom of crypto&rsquo;s four-year cycle, a rhythm many traders use to time the market, as next month.</p>
+
+
+
+<p>Prices have not caught up. Bitcoin (BTC) <a href="https://beincrypto.com/price/bitcoin/">trades near $77,315</a>, roughly 39% below its record above $126,000, set days before that crash. Ether has added 3.2% in 24 hours to about $2,533.</p>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img decoding="async" src="https://assets.beincrypto.com/img/ODLe7N77LxHdhTVS8ZJfSh2JFbY=/smart/d58444fa81764893b34bac0cafadaf8c" alt="Bitcoin and Ethereum Price Performance. Source: TradingView" class="wp-image-865973" style="width:1024px;height:auto"><figcaption class="wp-element-caption">Bitcoin and Ethereum Price Performance. Source: <a href="https://www.tradingview.com/x/1i0hTfYv/" target="_blank" rel="noreferrer noopener nofollow">TradingView</a></figcaption></figure>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;I think it&rsquo;s going to be a really bullish period for crypto for the next 12 months,&rdquo; Lee <a href="https://www.youtube.com/watch?v=ZpdPhN7aZYA" target="_blank" rel="noreferrer noopener nofollow">told</a> Wealthion.</p>
+
+
+
+<p></p>
+</blockquote>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-a-20-trillion-bet-on-wall-street">A $20 Trillion Bet on Wall Street</h2>
+
+
+
+<p>The bigger idea is tokenization. That means moving stocks, bonds and funds onto blockchains instead of the slow back-office systems banks run today. BlackRock chief Larry Fink has <a href="https://www.blackrock.com/corporate/investor-relations/2025-larry-fink-annual-chairmans-letter" target="_blank" rel="noreferrer noopener nofollow">said</a> every asset can be tokenized.</p>
+
+
+
+<p>Lee did the arithmetic. Shift $100 trillion of assets on chain, keep 1% of it, and that is $1.1 trillion a year in income. Valued like a normal business, that is a $20 trillion prize.</p>
+
+
+
+<p>However, Lee&rsquo;s math assumes the assets move. Theo chief investment officer, Iggy Ioppe, calls wrapping an asset and parking it &ldquo;tokenization theater.&rdquo; <a href="https://research.beincrypto.com/tokenization-2026-report-first-edition" target="_blank" rel="noreferrer noopener">BeInCrypto Research&rsquo;s </a><a href="https://research.beincrypto.com/tokenization-2026-report-first-edition">Tokenization 2026 report</a> counted $60 billion (0.06% of 1% of the number Lee is pricing) on chain as of May 31, with 56% of that value seeing no weekly transfers.</p>
+
+
+
+<p><a href="https://beincrypto.com/clarity-act-senate-vote-crypto-lobby/" target="_blank" rel="noreferrer noopener">Washington votes Tuesday</a> on whether to debate the CLARITY Act, which would hand the Commodity Futures Trading Commission (CFTC) control of spot crypto markets. Lee said the agency already acts that way.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-the-part-he-does-not-advertise">The Part He Does Not Advertise</h2>
+
+
+
+<p>None of this is neutral. BitMine&rsquo;s ether is <a href="https://beincrypto.com/bitmine-eth-cost-basis-tom-lee/" target="_blank" rel="noreferrer noopener">about $5 billion underwater</a>, BeInCrypto reported this month. In August, Lee said fear could <a href="https://beincrypto.com/tom-lee-september-crash-fear-bitcoin-150000/" target="_blank" rel="noreferrer noopener">push Bitcoin toward $150,000</a>.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;I might just say the real question that people need to ask is do they want to be right or do they want to make money?&rdquo; he posed.</p>
+</blockquote>
+
+
+
+<p>Fundstrat has advised a 2% crypto allocation for more than a decade. In client accounts that took it, he said, crypto is now more than 85% of the portfolio.</p>
+<p>The post <a href="https://beincrypto.com/tom-lee-crypto-bull-market-prediction/">Tom Lee Says Crypto Will Be “Really Bullish” For the Next 12 Months</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/cvzXz2VJpC4MqjPN8FuHOaogzM0=/smart/5592b7822f4946938b64c0160934f2d9" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/cvzXz2VJpC4MqjPN8FuHOaogzM0=/smart/5592b7822f4946938b64c0160934f2d9"/>
+<ticker>BTC</ticker>
+<ticker>ETH</ticker>
+	</item>
+		<item>
+		<title>Nvidia Could Make Anthropic IPO Bigger than SpaceX With $10 Billion</title>
+		<link>https://beincrypto.com/nvidia-muscle-anthropic-ipo-beat-spacex/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 12:02:59 +0000</pubDate>
+				<category><![CDATA[Businesses]]></category>
+		<category><![CDATA[AI Companies]]></category>
+		<category><![CDATA[AI News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[IPO News]]></category>
+		<category><![CDATA[Stock Market News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865894</guid>
+
+					<description><![CDATA[<p>Nvidia may put $10 billion behind the Anthropic IPO, but traders give it 57% odds of pricing before November.</p>
+<p>The post <a href="https://beincrypto.com/nvidia-muscle-anthropic-ipo-beat-spacex/">Nvidia Could Make Anthropic IPO Bigger than SpaceX With $10 Billion</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Nvidia is in talks to back the much-awaited Anthropic IPO (initial public offering) with as much as $10 billion. The money would help the artificial intelligence company chase the largest stock market debut on record.</strong></p>
+
+
+
+<p>Reuters reported the talks on Friday. Anthropic is seeking up to $100 billion at a valuation near $2 trillion, and neither company has confirmed those figures.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-what-beating-spacex-actually-takes">What Beating SpaceX Actually Takes</h2>
+
+
+
+<p>SpaceX set the record in June. It raised $75 billion at roughly $1.8 trillion. The stock then closed 19% higher on day one, one of the <a href="https://beincrypto.com/biggest-ipo-returns-spacex-nvidia/" target="_blank" rel="noreferrer noopener">biggest IPO returns ever</a>.</p>
+
+
+
+<p>Anthropic has to clear both marks. Its $100 billion target beats the raise, and $2 trillion beats the valuation. The record falls if the deal prices as reported.</p>
+
+
+
+<p>That pricing is the hard part. An anchor investor agrees to buy a large block of shares before a listing opens. That early order tells other buyers the price is credible.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">BREAKING: Nvidia is in talks to invest up to $10 BILLION in Anthropic's mega IPO, per Reuters.<br><br>Anthropic is seeking to raise as much as $100 BILLION at a massive $2 TRILLION valuation.<br><br>The IPO is expected before the November midterm elections and could become the largest public&hellip; <a href="https://t.co/BphH7NcfOv">pic.twitter.com/BphH7NcfOv</a></p>&mdash; Bull Theory (@BullTheoryio) <a href="https://x.com/BullTheoryio/status/2098635846174089692?ref_src=twsrc%5Etfw">September 12, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>Nvidia&rsquo;s $10 billion would cover roughly a tenth of the raise. The chipmaker committed the same amount in November 2025. It also guarantees <a href="https://beincrypto.com/openai-anthropic-investment-grade-credit-ratings/" target="_blank" rel="noreferrer noopener">Nvidia&rsquo;s $105 billion backstop</a> on AI data center leases.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-traders-already-price-anthropic-above-spacex">Traders Already Price Anthropic Above SpaceX</h2>
+
+
+
+<p>Nineteen exchanges now list pre-IPO perpetual futures on Anthropic. These contracts let traders bet on what a private company is worth before it lists. Kraken, Coinbase and Binance all offer them.</p>
+
+
+
+<p>Those contracts implied an average valuation of $1.94 trillion at the start of September, according to CoinGecko. That already sits above the $1.8 trillion SpaceX carried at pricing.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/ijHdwLF4szh5p85k8D1Q3gRwhkE=/smart/bfc445b849be4685889efaca516ca57f" alt="Anthropic Pre-IPO Valuations. Source: Coingecko" class="wp-image-865896"><figcaption class="wp-element-caption">Anthropic Pre-IPO Valuations. Source: <a href="https://www.coingecko.com/learn/crypto-pre-ipo-trading-anthropic-openai-perps" target="_blank" rel="noreferrer noopener nofollow">Coingecko</a></figcaption></figure>
+
+
+
+<p>Polymarket lets users bet real money on future events. There, traders <a href="https://polymarket.com/event/anthropic-ipo-by" target="_blank" rel="noreferrer noopener nofollow">give</a> the IPO only 67% odds of completing by October 31.</p>
+
+
+
+<p>Those odds reach 85% by November 15 and 90% by year end, across $2.89 million in volume. The market expects the record to fall, just not necessarily before the midterm elections.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/gMY1jz-06NazEVwOe6XgX1X7i5U=/smart/880c81e729bc47d586973231db8de2d3" alt="Anthropic IPO Bets. Source: Polymarket" class="wp-image-865897"><figcaption class="wp-element-caption">Anthropic IPO Bets. Source: <a href="https://polymarket.com/event/anthropic-ipo-by" target="_blank" rel="noreferrer noopener nofollow">Polymarket</a></figcaption></figure>
+
+
+
+<p>Anthropic filed confidentially in June and still has to publish its prospectus. </p>
+<p>The post <a href="https://beincrypto.com/nvidia-muscle-anthropic-ipo-beat-spacex/">Nvidia Could Make Anthropic IPO Bigger than SpaceX With $10 Billion</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/-dz8nkLT1Wl756y4hbfIKbnumi4=/smart/f1fe39cc68dd43d9b9b996ac002369a2" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/-dz8nkLT1Wl756y4hbfIKbnumi4=/smart/f1fe39cc68dd43d9b9b996ac002369a2"/>
+
+	</item>
+		<item>
+		<title>Wall Street’s Tokenized Stock Rush Is Getting Messy</title>
+		<link>https://beincrypto.com/tokenized-stocks-wall-street-onchain/</link>
+		
+		<dc:creator><![CDATA[Jakub Dziadkowiec]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 10:56:31 +0000</pubDate>
+				<category><![CDATA[Stocks]]></category>
+		<category><![CDATA[Institutional]]></category>
+		<category><![CDATA[Institutional Strategy and On-Chain Finance Council]]></category>
+		<category><![CDATA[News Menu]]></category>
+		<category><![CDATA[Stock Market News]]></category>
+		<category><![CDATA[Tokenization]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865948</guid>
+
+					<description><![CDATA[<p>At Geneva&#8217;s Onchain Leaders Gathering, BeInCrypto moderated a discussion on the infrastructure needed to bring capital markets onchain. Experts from Zama, G-20 Group, Blobb.io, and Rex Change argued that tokenization now faces a harder test of making onchain markets liquid, private, compliant, and genuinely useful for institutions.&#160; Nasdaq and LSEG are pushing stocks onto blockchain</p>
+<p>The post <a href="https://beincrypto.com/tokenized-stocks-wall-street-onchain/">Wall Street’s Tokenized Stock Rush Is Getting Messy</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>At Geneva&rsquo;s <a href="https://decentral-house-p626kw.subscribepage.io/" target="_blank" rel="noreferrer noopener nofollow">Onchain Leaders Gathering</a>, BeInCrypto moderated a discussion on the infrastructure needed to bring capital markets onchain. Experts from Zama, G-20 Group, Blobb.io, and Rex Change argued that tokenization now faces a harder test of making onchain markets liquid, private, compliant, and genuinely useful for institutions.&nbsp;</strong></p>
+
+
+
+<p>Nasdaq and LSEG are pushing stocks onto blockchain rails. A recent viral fight on social media over AMC tokens shows why the infrastructure underneath them now matters more than the token itself.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/oYo8QCtzxuDlqxLJ1s0VLNZpEp4=/smart/d3333d0830444ffbb072a18d60bbe623" alt="" class="wp-image-865953"><figcaption class="wp-element-caption">The New Financial Stack Panel Discussion at Geneva Onchain Leaders Gathering</figcaption></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-wall-street-s-tokenization-race-accelerated-this-week">Wall Street&rsquo;s Tokenization Race Accelerated This Week.</h2>
+
+
+
+<p>Nasdaq agreed to invest $100 million in Kraken parent Payward to develop infrastructure for tokenized equities. Days earlier, London Stock Exchange Group partnered with Payward on tokenized UK shares and a planned 24-hour trading venue.</p>
+
+
+
+<p>Yet the harder question is already emerging: <strong>What exactly happens when stocks move onchain?</strong></p>
+
+
+
+<p>This was the central talking point of &ldquo;The New Financial Stack,&rdquo; a panel moderated by BeInCrypto at the Onchain Leaders Gathering in Geneva on September 8.</p>
+
+
+
+<p>Florent Gabriel of Blobb.io, Jonathan Mathai of G-20 Group, Antoine Hello of Zama, and Fran&ccedil;ois Meurier of Rex Change discussed the barriers institutions still face across infrastructure, liquidity, confidentiality, and market access.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>&ldquo;True enterprise adoption happens when we move beyond isolated proofs-of-concept,&rdquo; said <a href="https://www.linkedin.com/in/4n7h1/?locale=en" target="_blank" rel="noreferrer noopener nofollow">Antoine Hello</a>, Director of Financial Institutions at Zama, which develops confidential blockchain infrastructure for financial institutions.&nbsp;</strong></p>
+</blockquote>
+
+
+
+<p>Ahead of the event, Hello argued that institutions need public blockchain infrastructure capable of handling real volume while protecting sensitive financial information.</p>
+
+
+
+<p>Fran&ccedil;ois Meurier framed the challenge more directly.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>&ldquo;Not in theory but how it works in practice. We do this every day,&rdquo; said <a href="https://www.linkedin.com/in/fran%C3%A7ois-meurier-839843134/" target="_blank" rel="noreferrer noopener">Meurier</a>, Founder and Managing Director of Rex Change, a Geneva-based regulated crypto exchange and OTC service.</strong></p>
+</blockquote>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-a-parallel-stock-market-is-already-forming"><strong>A Parallel Stock Market Is Already Forming</strong></h2>
+
+
+
+<p>The market is no longer tiny enough to ignore. RWA.xyz tracked $2.91 billion in distributed tokenized stocks and $13.31 billion in monthly transfer volume as of September 10. More than 3.17 million addresses held these assets.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/55CWUusQ3qdBtwLfpm4jnWr4ifI=/smart/000b9b373a27480d8feba27a80f3fb1d" alt="" class="wp-image-865952"><figcaption class="wp-element-caption">Source: RWA.xyz</figcaption></figure>
+
+
+
+<p>However, growth is uneven. Holder numbers jumped 174% over 30 days, while monthly transfer volume dropped almost 53%. That gap matters if institutions expect deep, reliable markets rather than simply more tokens.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/mcT5lTm1i02IcE75XsC4vXsX2pI=/smart/03e598e8920c41a69709309c146cea87" alt="" class="wp-image-865951"><figcaption class="wp-element-caption">Source: RWA.xyz, Sept. 10, 2026</figcaption></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-tokenizing-a-stock-does-not-solve-the-stock-market"><strong>Tokenizing a Stock Does Not Solve the Stock Market</strong></h2>
+
+
+
+<p>AMC has already exposed another problem: ownership.</p>
+
+
+
+<p><a href="https://beincrypto.com/robinhood-amc-tokenized-stock-clash/" target="_blank" rel="noreferrer noopener">CEO Adam Aron attacked Robinhood</a> after it offered tokenized exposure to AMC without the company&rsquo;s approval. The products track the stock, but holders do not own AMC shares or receive normal shareholder rights. Robinhood CEO Vlad Tenev has defended the structure, arguing that companies cannot control every third-party financial product referencing their shares.</p>
+
+
+
+<p>The World Federation of Exchanges has gone further, calling some third-party tokenized equities &ldquo;mimics&rdquo; and warning that they could weaken investor protections and market integrity.</p>
+
+
+
+<p>That tension also surfaced elsewhere in Geneva.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>&ldquo;We&rsquo;re very much in production now,&rdquo; said <a href="https://www.linkedin.com/in/diana-cezara-toader/" target="_blank" rel="noreferrer noopener nofollow">Diana-Cezara Toader</a>, Head of Digital Assets at UBS Asset Management, during a separate panel on moving tokenization from pilots into live markets. She pointed to liquidity, common infrastructure and regulation as remaining barriers to wider adoption.</strong></p>
+</blockquote>
+
+
+
+<p>Francesco Ranieri Fabracci reduced the problem to one sentence.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><strong>&ldquo;To tokenize something, you need to make the token useful,&rdquo; said <a href="https://www.linkedin.com/in/francesco-ranieri-fabracci-839784133/" target="_blank" rel="noreferrer noopener">Fabracci</a>, Head of Tokenization Expansion at Tether, where he works on Hadron, the company&rsquo;s platform for bringing real-world assets onchain.</strong></p>
+</blockquote>
+
+
+
+<p>Nasdaq and LSEG suggest Wall Street is ready to test that idea at scale.</p>
+
+
+
+<p>Now the infrastructure has to prove that an onchain stock can deliver the liquidity, privacy and investor rights that made the original stock useful in the first place.</p>
+<p>The post <a href="https://beincrypto.com/tokenized-stocks-wall-street-onchain/">Wall Street’s Tokenized Stock Rush Is Getting Messy</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/B9WRGo8yOLhP8rAFqawy6AKdqI8=/smart/373c65c2ffec4d9bbb972702495e1b02" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/B9WRGo8yOLhP8rAFqawy6AKdqI8=/smart/373c65c2ffec4d9bbb972702495e1b02"/>
+
+	</item>
+		<item>
+		<title>SKY7 and Fintech Amigo Combine Expertise to Launch IBAN Cloud</title>
+		<link>https://beincrypto.com/sky7-fintech-amigo-launch-iban-cloud/</link>
+		
+		<dc:creator><![CDATA[Advertorial]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 10:35:22 +0000</pubDate>
+				<category><![CDATA[Businesses]]></category>
+		<category><![CDATA[Banks]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865942</guid>
+
+					<description><![CDATA[<p>The two companies bring together legal, regulatory, and fintech expertise to simplify the way businesses build banking and payment infrastructure. SKY7 and Fintech Amigo are strengthening their strategic collaboration through IBAN Cloud, a joint project designed to help businesses and individuals find banking and payment solutions that match their actual needs and business models. Although</p>
+<p>The post <a href="https://beincrypto.com/sky7-fintech-amigo-launch-iban-cloud/">SKY7 and Fintech Amigo Combine Expertise to Launch IBAN Cloud</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>The two companies bring together legal, regulatory, and fintech expertise to simplify the way businesses build banking and payment infrastructure.</strong></p>
+
+
+
+<p>SKY7 and Fintech Amigo are strengthening their strategic collaboration through <strong><a href="https://ibancloud.com/" target="_blank" rel="noreferrer noopener">IBAN Cloud</a></strong>, a joint project designed to help businesses and individuals find banking and payment solutions that match their actual needs and business models.</p>
+
+
+
+<p>Although both companies operate within the fintech industry and often work with similar types of clients, their areas of expertise are distinct and highly complementary.</p>
+
+
+
+<p><strong>SKY7 </strong>specializes in the legal, regulatory, and corporate aspects of financial businesses. The company assists clients with obtaining financial and crypto licenses, establishing companies across different jurisdictions, developing AML and compliance frameworks, opening banking and payment accounts, and supporting transactions involving the acquisition of existing licensed financial institutions.</p>
+
+
+
+<p><strong>Fintech Amigo</strong> focuses on the technology and infrastructure behind fintech businesses. The company designs technical architectures for financial products, helps select and implement core banking systems, and integrates external providers ranging from Banking-as-a-Service, Cards-as-a-Service, and KYC/KYB solutions to liquidity providers, custody infrastructure, Wallet-as-a-Service, and blockchain analytics.</p>
+
+
+
+<p>The collaboration is built around a simple principle: launching and scaling a financial product cannot be efficiently divided into isolated legal, banking, and technology tasks. For an entrepreneur, it is one project in which corporate structure, licensing, compliance, technology, banking relationships, and payment infrastructure must operate as a single ecosystem.</p>
+
+
+
+<p>The practical result of combining these two areas of expertise is IBAN Cloud.</p>
+
+
+
+<p>The project was created in response to a challenge regularly faced by fintechs, EMIs, PSPs, crypto companies, and international businesses: finding the right banking infrastructure is becoming increasingly complex.</p>
+
+
+
+<p>One company may require an operating account, while another needs safeguarding or settlement accounts. An international business may need multi-currency accounts, SEPA and SWIFT connectivity, FX, acquiring, or mass payouts. A CEX, OTC desk, or prime broker may require fiat banking and settlement infrastructure specifically compatible with its crypto-related business model.</p>
+
+
+
+<p>Instead of starting with the question, <strong>&ldquo;Which bank should we open an account with?&rdquo;</strong>, IBAN Cloud starts by determining what financial infrastructure the business actually needs.</p>
+
+
+
+<p>Based on the client&rsquo;s business model, geography, currencies, expected volumes, account purpose, and flow of funds, the required banking and payment structure can be mapped out. Potentially suitable banks, EMIs, and other financial partners can then be identified, while clients receive support with application preparation, introductions, and the onboarding process.</p>
+
+
+
+<p><strong>Importantly, IBAN Cloud is not a bank, does not hold client funds, and does not make account-opening decisions. The final decision always remains with the relevant bank or payment institution.</strong></p>
+
+
+
+<p>This approach is particularly relevant for regulated fintech and crypto businesses, where financial institutions assess not only the company and its license but also its ownership structure, AML framework, client geography, source of funds, and overall flow of funds.</p>
+
+
+
+<p>IBAN Cloud also supports traditional international businesses and individuals seeking international accounts, multi-currency solutions, FX, corporate cards, or more efficient cross-border payment infrastructure.</p>
+
+
+
+<p>The collaboration between SKY7 and Fintech Amigo reflects a broader trend across the fintech industry: as regulation, technology, and banking infrastructure become increasingly complex, specialized areas of expertise need to work together.</p>
+
+
+
+<p>At the core of the partnership is a shared principle: <strong>financial infrastructure should be built around the client&rsquo;s business model &mdash; not the business model around a randomly available provider.</strong></p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-iban-cloud"><strong>IBAN Cloud</strong></h2>
+
+
+
+<p>If your company is looking for a banking or payment account, access to new currencies, SEPA or SWIFT connectivity, acquiring, settlement solutions, or a more comprehensive banking and payment infrastructure, you can submit your requirements through <a href="https://ibancloud.com/" target="_blank" rel="noreferrer noopener">IBAN Cloud</a> and start exploring suitable solutions.</p>
+<p>The post <a href="https://beincrypto.com/sky7-fintech-amigo-launch-iban-cloud/">SKY7 and Fintech Amigo Combine Expertise to Launch IBAN Cloud</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/zRJuUozCs194Myn-OjtfF_9tjGI=/smart/78f08b367f5c49a48800778b61ac44b1" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/zRJuUozCs194Myn-OjtfF_9tjGI=/smart/78f08b367f5c49a48800778b61ac44b1"/>
+
+	</item>
+		<item>
+		<title>FTX’s Caroline Ellison is “Carol” Now and Secretly Works for a Charity</title>
+		<link>https://beincrypto.com/caroline-ellison-manifund-charity-job/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 10:26:18 +0000</pubDate>
+				<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Editor’s Choice]]></category>
+		<category><![CDATA[FTX News]]></category>
+		<category><![CDATA[Regulation News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865891</guid>
+
+					<description><![CDATA[<p>Caroline Ellison worked at charity Manifund as Carol for two months. Austin Chen says he believes in redemption.</p>
+<p>The post <a href="https://beincrypto.com/caroline-ellison-manifund-charity-job/">FTX’s Caroline Ellison is “Carol” Now and Secretly Works for a Charity</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Remember Caroline Ellison? The Alameda CEO who helped Sam Bankman-Fried steal $8 billion in customer funds from FTX. After serving 2 years in prison, she is now doing charity work under the name &ldquo;Carol&rdquo;.&nbsp;</strong></p>
+
+
+
+<p>Manifund cofounder Austin Chen disclosed on Friday that the former Alameda Research CEO is now a full-time hire. Manifund is a nonprofit grant platform that funds effective altruism and artificial intelligence safety projects. It promises radical transparency by publishing its finances, data, and source code.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-a-transparency-pledge-and-a-hidden-hire">A Transparency Pledge and a Hidden Hire</h2>
+
+
+
+<p>Ellison reportedly started a work trial on July 13 and converted to a full-time role on August 10. Across both months, she posted updates and handled user support as Carol.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">BREAKING: Caroline Ellison has been hired by Manifund, a nonprofit grant marketplace <a href="https://t.co/4G3Rjgw3NV">pic.twitter.com/4G3Rjgw3NV</a></p>&mdash; TBPN (@tbpn) <a href="https://x.com/tbpn/status/2098529895253258745?ref_src=twsrc%5Etfw">September 11, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>Chen apologized for the pseudonym while defending the decision. His broader argument leans on second chances rather than on her r&eacute;sum&eacute;.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;I believe in redemption. Caroline has admitted her faults, worked to make creditors whole, and served her time in prison,&rdquo; he <a href="https://manifund.substack.com/p/caroline-ellison-has-joined-manifund" target="_blank" rel="noreferrer noopener nofollow">wrote</a>. </p>
+</blockquote>
+
+
+
+<p>He also credits the FTX Future Fund, the philanthropic arm the exchange built, for seeding his earlier projects and shaping how Manifund gives money away.</p>
+
+
+
+<p>Her practical selling point is bookkeeping. Chen says she built a reconciliation tool that flagged misregistered transactions worth six-figure amounts. Alameda&rsquo;s own records concealed roughly $8.7 billion in missing customer deposits.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-a-new-life-for-caroline-ellison-beyond-ftx">A New Life for Caroline Ellison Beyond FTX</h2>
+
+
+
+<p>The Commodity Futures Trading Commission (CFTC) <a href="https://beincrypto.com/cftc-ellison-wang-ftx-final-deal/" target="_blank" rel="noopener">closed her civil case</a> on August 19, as BeInCrypto reported. Ellison accepted a five-year trading ban and a 10-year registration ban without a new fine.</p>
+
+
+
+<p>Regulators pointed to her cooperation and to an $11.02 billion criminal forfeiture already on the books. </p>
+
+
+
+<p>A separate Securities and Exchange Commission (SEC) order bars her from officer and director roles at public companies, a restriction noted when she <a href="https://beincrypto.com/whats-next-for-ftx-culprit-caroline-ellison-after-her-prison-release/" target="_blank" rel="noopener">left prison in January</a>. Nonprofit staff work sits outside it.</p>
+
+
+
+<p>Meanwhile, FTX&rsquo;s estate has no such ending. On the same day, its recovery trust <a href="https://storage.courtlistener.com/recap/gov.uscourts.deb.188450/gov.uscourts.deb.188450.36245.0.pdf" target="_blank" rel="noreferrer noopener nofollow">asked</a> a Delaware judge to block two claimants from reviving old fraud theories for extra payouts.</p>
+
+
+
+<p>The trust has already sent more than $11 billion to creditors under a plan built to settle those claims collectively. That fight resumes on October 20.</p>
+<p>The post <a href="https://beincrypto.com/caroline-ellison-manifund-charity-job/">FTX’s Caroline Ellison is “Carol” Now and Secretly Works for a Charity</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/n1jz7vMXXOWYyDw9Z37haF0jBjY=/smart/14fc0df8732946f1bc82b4e7115b9d26" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/n1jz7vMXXOWYyDw9Z37haF0jBjY=/smart/14fc0df8732946f1bc82b4e7115b9d26"/>
+
+	</item>
+		<item>
+		<title>Revolut Confirms Sending Passport and Bitcoin Records to Fake Government Email</title>
+		<link>https://beincrypto.com/revolut-data-breach-fake-government-request/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 09:20:43 +0000</pubDate>
+				<category><![CDATA[Security]]></category>
+		<category><![CDATA[Breaking]]></category>
+		<category><![CDATA[Crypto Crime News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Privacy (Crypto Scams and Hacks)]]></category>
+		<category><![CDATA[Security (Crypto Scams and Hacks)]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865902</guid>
+
+					<description><![CDATA[<p>Revolut confirms a fake government email pulled customer data, including passports and Bitcoin records.</p>
+<p>The post <a href="https://beincrypto.com/revolut-data-breach-fake-government-request/">Revolut Confirms Sending Passport and Bitcoin Records to Fake Government Email</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Revolut has confirmed that fraudsters tricked the platform into handing over customer data, including information that its own notices say covered passports, verification selfies, and Bitcoin transaction records.</strong></p>
+
+
+
+<p>The request came from a real government agency email domain and carried valid credentials. Revolut believed it was genuine and released the data.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-what-revolut-says-happened">What Revolut Says Happened</h2>
+
+
+
+<p>A Revolut spokesperson told BeInCrypto the bank blocked the sender as soon as it spotted the problem.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;Revolut recently identified a sophisticated external impersonation attack where an unauthorised third party utilised a legitimate government agency domain email to submit fraudulent requests for information&hellip; Revolut systems and customer funds are unaffected.&rdquo;</p>
+
+
+
+<p></p>
+</blockquote>
+
+
+
+<p><strong>The company says it alerted the agency, the police, and its data protection and financial regulators. It has contacted what it calls the limited number of people affected.</strong></p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-are-revolut-accounts-secure">Are Revolut Accounts Secure?</h2>
+
+
+
+<p>Revolut says accounts remain secure. That is true. Passcodes, login details, and biometric data were never exposed, the bank told BeInCrypto. No money moved.</p>
+
+
+
+<p>The notices sent to customers put it differently. They say the verification selfie went out, and rule out only biometric facial telemetry, meaning the face template a system builds from a photo. The photo itself is another matter.</p>
+
+
+
+<p>Those notices list the rest. Passports, Driving licenses, Home addresses, Bank statements. A full record of Bitcoin going in and out.</p>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img decoding="async" src="https://assets.beincrypto.com/img/NZgbEbHUi-rmcD5nzdFvZ9LtOJQ=/smart/f07c298e07004f5698dc6f194971d1c6" alt="Revolut Reportedly Handed Over Passports, Bitcoin Records After Fake Government Request" class="wp-image-865920" style="width:700px;height:auto"><figcaption class="wp-element-caption">Revolut Handed Over Passports, Bitcoin Records After Fake Government Request. Source: <a href="https://t.me/investigations/363" target="_blank" rel="noreferrer noopener nofollow">ZachXBT</a></figcaption></figure>
+
+
+
+<p>Revolut will not say which agency&rsquo;s domain was used, citing the live police investigation. So nobody outside the company knows whether a government mailbox was hijacked, or whether someone already inside it pressed send.</p>
+
+
+
+<p>Blockchain investigator ZachXBT, who traces stolen crypto for a living, flagged the leak, <a href="https://t.me/investigations/363" target="_blank" rel="noreferrer noopener nofollow">highlighting</a> that it reached a small group of users and looked aimed at wealthy ones.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Woke up to all my data leaked by <a href="https://x.com/Revolut?ref_src=twsrc%5Etfw">@Revolut</a>.<br><br>Sharp reminder that KYC hasn&rsquo;t produced meaningful upside and has put many in harm&rsquo;s way. <a href="https://t.co/RimOBQr7DW">pic.twitter.com/RimOBQr7DW</a></p>&mdash; Marc Zeller (@mzeller) <a href="https://x.com/mzeller/status/2098662798158954690?ref_src=twsrc%5Etfw">September 12, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>Stolen customer lists have fed <a href="https://beincrypto.com/trezor-data-breach-phishing-risk/" target="_blank" rel="noreferrer noopener">phishing risk after breaches</a>. Leaked home addresses have come before <a href="https://beincrypto.com/violent-crypto-attacks-2026-france/" target="_blank" rel="noreferrer noopener">violent attacks on holders</a>.</p>
+
+
+
+<p>Revolut has described this as a sophisticated attack. But by its own account, the attacker used a legitimate government email system to send a fraudulent request. Revolut accepted that request as genuine and released the data.</p>
+<p>The post <a href="https://beincrypto.com/revolut-data-breach-fake-government-request/">Revolut Confirms Sending Passport and Bitcoin Records to Fake Government Email</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/c4_-MkDCSD-5A6mZG7s1uZwnmcM=/smart/5794a8b2db9e4862ae9bc2de34e2215c" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/c4_-MkDCSD-5A6mZG7s1uZwnmcM=/smart/5794a8b2db9e4862ae9bc2de34e2215c"/>
+
+	</item>
+		<item>
+		<title>Will Gold Price Fall Below $4,000 Amid Renewed Economic Risks?</title>
+		<link>https://beincrypto.com/gold-price-risk-fed-rate-hike-september-2026/</link>
+		
+		<dc:creator><![CDATA[Jakub Dziadkowiec]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 01:00:00 +0000</pubDate>
+				<category><![CDATA[Commodities]]></category>
+		<category><![CDATA[Federal Reserve]]></category>
+		<category><![CDATA[Gold (XAU) News]]></category>
+		<category><![CDATA[Gold Price]]></category>
+		<category><![CDATA[Inflation News]]></category>
+		<category><![CDATA[Technical Analysis]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865670</guid>
+
+					<description><![CDATA[<p>Gold sits on its head and shoulders neckline as US CPI lands. A confirmed break targets $3,950, almost 9% lower.</p>
+<p>The post <a href="https://beincrypto.com/gold-price-risk-fed-rate-hike-september-2026/">Will Gold Price Fall Below $4,000 Amid Renewed Economic Risks?</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Gold trades near $4,347 on Friday, resting directly on the neckline of a daily head-and-shoulders pattern. A confirmed break would target $3,950, roughly 9% below the current price.</strong></p>
+
+
+
+<p>The August consumer price index lands Friday morning in the United States. The technical level and the macro catalyst have arrived in the same session.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-macro-pressure-builds-before-the-cpi-print">Macro Pressure Builds Before the CPI Print</h2>
+
+
+
+<p>Thursday&rsquo;s producer price index rose 5.4% year over year against a 5.3% forecast. The <a href="https://beincrypto.com/gold-bitcoin-slide-hot-us-inflation/">inflation surprise</a> pushed gold below $4,400.</p>
+
+
+
+<p>Treasury yields followed. The 10-year note reached 4.95%, its highest level since October 2023.</p>
+
+
+
+<p>Markets now price a 67.1% chance of a <a href="https://beincrypto.com/fed-hike-odds-ecb-boj-hawkish/" target="_blank" rel="noreferrer noopener">Federal Reserve hike next week</a>, up from 61.2%. Economists expect headline CPI at 0.4% month over month and 3.4% annually.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/W6lKBFvQgvzYp5UChng8iuCrZKA=/smart/8491f19e5f634545b2547898cffe50d9" alt="" class="wp-image-865674"><figcaption class="wp-element-caption">Fed hike probability / <a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html" target="_blank" rel="noreferrer noopener nofollow">Source: CME Group</a></figcaption></figure>
+
+
+
+<p>The driver matters. Brent crude trades above $105 after the Iran escalation, up almost 19% in a month. Energy-led inflation lifts nominal yields without producing a dovish Fed. </p>
+
+
+
+<p>Therefore, gold absorbs the rate pressure while losing its hedge appeal, a dynamic reinforced by a firm <a href="https://beincrypto.com/us-dollar-stuck-deadlock-impact/" target="_blank" rel="noreferrer noopener">dollar</a>.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-gold-head-and-shoulders-targets-3-950">Gold Head and Shoulders Targets $3,950</h2>
+
+
+
+<p>Gold broke above the descending trendline from its January record on August 5. The rally stalled near $4,750 to $4,800, just under the 0.236 Fibonacci retracement at $4,816.</p>
+
+
+
+<p>Price then retraced to the 0.382 level at $4,333 and formed a head-and-shoulders pattern. The head printed near $4,720, with shoulders at roughly $4,480 and $4,560.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/BGwdBIWmSpNf_iS7e1rk-jEU_6M=/smart/4a29b3aa7fc9457aaef81f6bf0d45a10" alt="" class="wp-image-865672"><figcaption class="wp-element-caption">XAU daily chart. <a href="https://www.tradingview.com/symbols/XAUUSD/?exchange=FOREXCOM" target="_blank" rel="noreferrer noopener nofollow">Source: TradingView</a></figcaption></figure>
+
+
+
+<p>Two methods point to the same destination. The measured move subtracts $385 of pattern height from the $4,335 neckline, giving $3,950. The 0.5 retracement sits at $3,942. That zone also marks the June and July base.</p>
+
+
+
+<p>A completed break implies a 9.4% decline. However, the pattern remains unconfirmed. Gold gained 0.69% on Friday and still holds the neckline. A $4,560 reclaim would invalidate the setup.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-record-inflows-argue-the-other-way">Record Inflows Argue the Other Way</h2>
+
+
+
+<p>Physical demand contradicts the chart. Gold ETFs absorbed $18 billion of inflows in August, lifting holdings to a record 4,189 tonnes.</p>
+
+
+
+<p>Central banks bought 288.9 tonnes in the second quarter, a 62% annual increase, purchased into a falling market.</p>
+
+
+
+<p>Gold is heading for a third consecutive weekly loss, down nearly 2%. The CPI print decides whether the neckline holds or the measured move begins.</p>
+<p>The post <a href="https://beincrypto.com/gold-price-risk-fed-rate-hike-september-2026/">Will Gold Price Fall Below $4,000 Amid Renewed Economic Risks?</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/E34JtAEYkwrIT4XSVcFGPQFnHVA=/smart/7f3be3f9391246c988ae2eca64bbf5db" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/E34JtAEYkwrIT4XSVcFGPQFnHVA=/smart/7f3be3f9391246c988ae2eca64bbf5db"/>
+
+	</item>
+		<item>
+		<title>Bitcoin vs Zcash: Grayscale Reveals Which Is More Profitable to Mine</title>
+		<link>https://beincrypto.com/bitcoin-zcash-mining-profitability-grayscale/</link>
+		
+		<dc:creator><![CDATA[Luis Blanco]]></dc:creator>
+		<pubDate>Sat, 12 Sep 2026 00:42:40 +0000</pubDate>
+				<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Bitcoin (BTC) News]]></category>
+		<category><![CDATA[Cryptocurrency Market News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Mining]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=865845</guid>
+
+					<description><![CDATA[<p>Zcash mining has become significantly more profitable than Bitcoin mining for individuals. That is the finding of a new analysis from Grayscale Research. Research director Zach Pandl found that Bitcoin dominates in total scale. ZEC, however, currently delivers stronger returns per machine and per unit of electricity consumed. Bitcoin Wins on Scale, Zcash Wins on</p>
+<p>The post <a href="https://beincrypto.com/bitcoin-zcash-mining-profitability-grayscale/">Bitcoin vs Zcash: Grayscale Reveals Which Is More Profitable to Mine</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Zcash mining has become significantly more profitable than Bitcoin mining for individuals. That is the finding of a new analysis from Grayscale Research.</strong></p>
+
+
+
+<p>Research director Zach Pandl found that Bitcoin dominates in total scale. ZEC, however, currently delivers stronger returns per machine and per unit of electricity consumed.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Zcash <a href="https://x.com/search?q=%24ZEC&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$ZEC</a> mining is taking off <br><br>Compared to Bitcoin, Zcash mining rewards are currently ~2x higher per machine and ~4x higher per MWh <br><br>Blog post from Grayscale Research &#11015;&#65039;&#11015;&#65039; <a href="https://t.co/l9l0ThpGIk">pic.twitter.com/l9l0ThpGIk</a></p>&mdash; Zach Pandl (@LowBeta) <a href="https://x.com/LowBeta/status/2098441607448019056?ref_src=twsrc%5Etfw">September 11, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-bitcoin-wins-on-scale-zcash-wins-on-efficiency">Bitcoin Wins on Scale, Zcash Wins on Efficiency</h2>
+
+
+
+<p>Bitcoin miners collectively earn approximately $35 million in daily rewards, <a href="https://www.grayscale.com/the-stack/zcash-mining-is-taking-off" target="_blank" rel="noreferrer noopener nofollow">according</a> to Grayscale, far exceeding the roughly $2 million Zcash miners generate. That gap reflects Bitcoin&rsquo;s vastly larger network and hashrate.</p>
+
+
+
+<p>The picture flips at the level of the individual operator, however. Grayscale estimates a typical Zcash mining rig delivers roughly twice the daily revenue of a comparable Bitcoin machine.</p>
+
+
+
+<p>On a power-consumption basis, the advantage widens further: Zcash mining generates about 4x the revenue per megawatt-hour relative to Bitcoin, in some cases even exceeding returns <a href="https://beincrypto.com/bitcoin-miners-ai-power-war/" target="_blank" rel="noreferrer noopener">from certain AI and high-performance computing cloud services.</a></p>
+
+
+
+<p>That elevated profitability traces largely to ZEC&rsquo;s strong price performance. The privacy coin <a href="https://beincrypto.com/zcash-zec-1000-price-outlook/" target="_blank" rel="noreferrer noopener">crossed $1,000 for the first time in nearly a decade</a> on September 4 and now <a href="https://beincrypto.com/price/zcash/" target="_blank" rel="noreferrer noopener nofollow">trades</a> near $1,177, up nearly 15% over the past week.  </p>
+
+
+
+<p><strong><em><a href="https://go.beincrypto.com/beincrypto-X" target="_blank" rel="noreferrer noopener">Follow us on X</a>&nbsp;to get the latest news as it happens</em></strong>.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/Nkfn5m03rdYtfl3ZDeljlZg16uE=/smart/c2cd6294d0574a50a1a3ae9972800242" alt="" class="wp-image-865868"><figcaption class="wp-element-caption">Zcash is ~1% of Bitcoin&rsquo;s Market Cap with ~140% Price Volatility. Source: <a href="https://x.com/Grayscale/status/2097695435523862585" target="_blank" rel="noreferrer noopener nofollow">X/@Grayscale</a></figcaption></figure>
+
+
+
+<p>Higher prices have drawn in additional mining capacity, with standardized hashrate metrics showing that Zcash&rsquo;s total mining activity has risen more than 2.5x year-to-date.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-a-direct-comparison-remains-difficult">Why a Direct Comparison Remains Difficult</h2>
+
+
+
+<p>Bitcoin and Zcash rely on entirely different mining hardware. Bitcoin uses SHA-256 ASICs, while Zcash depends on Equihash-optimized machines, meaning operators cannot simply redirect the same equipment toward whichever chain looks more profitable that week.</p>
+
+
+
+<p>Grayscale&rsquo;s figures also measure revenue rather than net profit. Actual earnings depend heavily on <a href="https://beincrypto.com/bitcoin-miners-citadel-ghost-seller-cleared/" target="_blank" rel="noreferrer noopener">electricity costs, hardware prices, cooling, and maintenance.</a></p>
+
+
+
+<p>The findings point to what Grayscale frames as a self-reinforcing dynamic: attractive mining economics draw more computational power, strengthening network security and supporting sustained investor interest. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/WNqEOBdrKHnyOTbDnMMzHvHwhSg=/smart/6070a2ecadfd47ddb77992cdebbefa22" alt="Zcash (ZEC) Hashrate. Source: BitInfoCharts" class="wp-image-865864"><figcaption class="wp-element-caption">Zcash (ZEC) Hashrate. Source: <a href="https://bitinfocharts.com/comparison/zcash-hashrate.html#3y" target="_blank" rel="noreferrer noopener nofollow">BitInfoCharts</a></figcaption></figure>
+
+
+
+<p>Grayscale itself <a href="https://beincrypto.com/zcash-etf-zcsh-assets-grow/" target="_blank" rel="noreferrer noopener">converted its Zcash Trust into a spot ETF, ZCSH</a>, which listed on NYSE Arca on August 25 and had already gathered more than $500 million in assets within two weeks.</p>
+
+
+
+<p>Mining remains a volatile business regardless of which network looks more attractive on paper. Rising network difficulty, fluctuating electricity costs, and the price swings inherent to both assets mean today&rsquo;s favorable Zcash economics could compress just as quickly as they emerged. </p>
+
+
+
+<p>Operators weighing where to deploy capital would need to factor in those risks alongside the efficiency gap Grayscale has highlighted.</p>
+
+
+
+<p><strong><em><a href="https://go.beincrypto.com/beincrypto-youtube" target="_blank" rel="noreferrer noopener">Subscribe to our YouTube</a>&nbsp;channel to watch leaders and journalists provide expert insights</em>.</strong></p>
+<p>The post <a href="https://beincrypto.com/bitcoin-zcash-mining-profitability-grayscale/">Bitcoin vs Zcash: Grayscale Reveals Which Is More Profitable to Mine</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/9UIbz08vyTEuFWG0477vbz6ZCo4=/smart/4da7a809b4e14f518ebff2f32942b323" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/9UIbz08vyTEuFWG0477vbz6ZCo4=/smart/4da7a809b4e14f518ebff2f32942b323"/>
+
+	</item>
+	</channel>
+</rss>
