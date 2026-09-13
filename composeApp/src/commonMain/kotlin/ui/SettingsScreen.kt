@@ -68,7 +68,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardType
@@ -200,11 +199,7 @@ fun SettingsScreen(
                     containerColor = MaterialTheme.colorScheme.surface,
                     scrolledContainerColor = MaterialTheme.colorScheme.surface
                 ),
-                modifier = Modifier.shadow(
-                    elevation = 4.dp,
-                    ambientColor = if (isDarkTheme) Color.White else Color.LightGray,
-                    spotColor = if (isDarkTheme) Color.White else Color.LightGray
-                ),
+
                 title = { Text(stringResource(Res.string.settings_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBackPress) {
@@ -480,7 +475,9 @@ private fun SettingsItem(
     Surface(
         onClick = { onClick?.invoke() },
         enabled = onClick != null,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp),
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
     ) {
         Row(
             modifier = Modifier
@@ -536,7 +533,9 @@ private fun SettingsSwitchItem(
 ) {
     Surface(
         onClick = { onCheckedChange(!checked) },
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp),
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
     ) {
         Row(
             modifier = Modifier

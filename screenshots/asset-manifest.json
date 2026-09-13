@@ -1,0 +1,152 @@
+{
+  "capture_date": "2026-09-13",
+  "ui_commit": "5850db56f846d3e292feb108de3dc7387dfc009b",
+  "brand_color": "#2856C5",
+  "note": "iPad marketing canvases contain iPhone simulator captures. Portfolio wallets are public Hyperliquid leaderboard examples.",
+  "screenshots": [
+    {
+      "file": "screenshots/01_markets_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "702b3462dd41b98218170eef36618d43745e7f20c1096d2b8b14d0116259070c"
+    },
+    {
+      "file": "screenshots/02_portfolio_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "c5edc2599a82b89f16e34d2d568da2cad03de567ca5ac74caa276c10efd9e99a"
+    },
+    {
+      "file": "screenshots/03_ai_insights_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "a5b6f28f70d42d3c8c64d672b903b747584757487764b719338756974bfb06c2"
+    },
+    {
+      "file": "screenshots/04_allocation_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "08c9a55455f5adb2a1a8c48f3dd0a84d9b0f9bcc14bd040009abb2a78e05f027"
+    },
+    {
+      "file": "screenshots/05_charts_light.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "d3fc281869c0e79b40b33f8726c522d36e6c8a9c1df66adc55d235ddd93e66a2"
+    },
+    {
+      "file": "screenshots/06_depth_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "c67f9aca74c35138afb13775fbbc95cb61a672a5974284bbaaa7e3213818cbde"
+    },
+    {
+      "file": "screenshots/07_news_light.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "94cefce2ff968445c1e8ab60966cf95f40df7692146c09ba0e7da4af62f9b681"
+    },
+    {
+      "file": "screenshots/08_favorites_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "e63d2aa26232d333a7bae7e3dcd755405cc8a8c9f1ea7cfdea1dc0b60fcff022"
+    },
+    {
+      "file": "play-store/01_markets_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "49693a6a84d8db1df0a8266ca350b43f05b9c405b3fa1cb68d051fca0f7552d8"
+    },
+    {
+      "file": "play-store/02_portfolio_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "61a4e30e32b641844d65da3c24127385fefc2b81e745700c041d730d4326c8a1"
+    },
+    {
+      "file": "play-store/03_ai_insights_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "4fcc1e60546257b873e08af08b85384bc35fcacf0f9aa381f622a1609a4d895a"
+    },
+    {
+      "file": "play-store/04_allocation_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "f98b0a0455bdb210a2a5a97c654762f59c3f47ffbc2d7ac47fd5490af823ebc7"
+    },
+    {
+      "file": "play-store/05_charts_light.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "cb628fbe389de750bd0d3eec2310a643d49dfbcf115f0d66e734614039109362"
+    },
+    {
+      "file": "play-store/06_depth_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "73a68a164e9e36b81d738bad2f5ea8d7297f4ceb5a229f88271bd5532269c31b"
+    },
+    {
+      "file": "play-store/07_news_light.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "fb260f4dfc98b8be25877e0322bfb1bc4617adfaef171e12cb75c8ffe650ca65"
+    },
+    {
+      "file": "play-store/08_favorites_dark.png",
+      "width": 1284,
+      "height": 2778,
+      "sha256": "a7c330cd2d3ef88a12eeebd831cdf3097d05640c9bf3ff733ed35d090f2d20d2"
+    },
+    {
+      "file": "screenshots/ipad/01_markets_dark.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "b15e75adbdab1fa2d854335d31a6b0fd28d8bc4ec610a68d02345e0c0cbd5d71"
+    },
+    {
+      "file": "screenshots/ipad/02_portfolio_dark.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "b91e64a1087e9993202d995b27d2d7fd7654cfc00b2e0c1e80c61c3e202a4109"
+    },
+    {
+      "file": "screenshots/ipad/03_ai_insights_dark.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "76bc492702b4e42cbe63c90337ebe4ec5f8f3a0a015d284dbfad6e133b9aa0c7"
+    },
+    {
+      "file": "screenshots/ipad/04_allocation_dark.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "4d489d8184c246da6bcce4363a98af0454cdbe9450138ac5a4b98892ef7b13d3"
+    },
+    {
+      "file": "screenshots/ipad/05_charts_light.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "f8a190afe66691187e8b20e05b63963bfa81d7bae2d1e6475bdbf1a4ed9000d4"
+    },
+    {
+      "file": "screenshots/ipad/06_depth_dark.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "dec28d6f421ab946c9c3987bb021e9f7d3640aa0287f15f822c3dfb98ca0c0e0"
+    },
+    {
+      "file": "screenshots/ipad/07_news_light.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "b12b246a26411b1eedb488e56b51ecec2882740796e6de1928bb30cb23a6c3b3"
+    },
+    {
+      "file": "screenshots/ipad/08_favorites_dark.png",
+      "width": 2064,
+      "height": 2752,
+      "sha256": "fbc41d5f33514b4f0a83aa87487e3ee03444ea5b270e14a5388c46930c4c5615"
+    }
+  ]
+}

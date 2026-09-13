@@ -1,9 +1,16 @@
 package ui
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import copyToClipboard
+import openLink
+
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,20 +32,21 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Article
-import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -47,6 +55,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.Tab
+import androidx.compose.material3.SecondaryScrollableTabRow
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -54,11 +64,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -71,7 +80,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import copyToClipboard
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -84,15 +93,22 @@ import model.NewsItem
 import model.Ticker24hr
 import model.TradingPair
 import network.AiInsightService
-import openLink
 import org.jetbrains.compose.resources.stringResource
+import ui.components.CoinIcon
 import ui.components.LazyColumnScrollbar
-import ui.components.ScrollToEdgeButton
 import ui.components.TradingViewChart
 import ui.utils.debouncedClickable
-import ui.utils.getPriceChangeColor
 import ui.utils.isDarkTheme
 import ui.utils.shimmerEffect
+import utxo.composeapp.generated.resources.detail_chart
+import utxo.composeapp.generated.resources.detail_insights
+import utxo.composeapp.generated.resources.detail_depth
+import utxo.composeapp.generated.resources.detail_news
+import utxo.composeapp.generated.resources.detail_expand
+import utxo.composeapp.generated.resources.detail_collapse
+import utxo.composeapp.generated.resources.detail_ask_ai
+import utxo.composeapp.generated.resources.favorite
+import utxo.composeapp.generated.resources.unfavorite
 import utxo.composeapp.generated.resources.Res
 import utxo.composeapp.generated.resources.ai_insights
 import utxo.composeapp.generated.resources.ai_insights_copied
@@ -108,7 +124,6 @@ import utxo.composeapp.generated.resources.back
 import utxo.composeapp.generated.resources.chat_ask_anything
 import utxo.composeapp.generated.resources.chat_open
 import utxo.composeapp.generated.resources.error
-import utxo.composeapp.generated.resources.label_24h_change
 import utxo.composeapp.generated.resources.label_24h_high
 import utxo.composeapp.generated.resources.label_24h_low
 import utxo.composeapp.generated.resources.label_24h_statistics
@@ -116,7 +131,6 @@ import utxo.composeapp.generated.resources.label_24h_volume_base
 import utxo.composeapp.generated.resources.label_24h_volume_quote
 import utxo.composeapp.generated.resources.label_best_ask
 import utxo.composeapp.generated.resources.label_best_bid
-import utxo.composeapp.generated.resources.label_last_price
 import utxo.composeapp.generated.resources.label_last_quantity
 import utxo.composeapp.generated.resources.label_open_price
 import utxo.composeapp.generated.resources.label_previous_close
@@ -134,7 +148,6 @@ import utxo.composeapp.generated.resources.no_news_available_hint
 import utxo.composeapp.generated.resources.no_news_providers_selected
 import utxo.composeapp.generated.resources.no_news_providers_selected_hint
 import utxo.composeapp.generated.resources.price_data_not_available
-import utxo.composeapp.generated.resources.price_information
 import utxo.composeapp.generated.resources.refresh
 import utxo.composeapp.generated.resources.unknown_error
 import kotlin.time.ExperimentalTime
@@ -210,6 +223,9 @@ fun CoinDetailScreen(
     
     val listState = rememberLazyListState()
     val selectedTimeframe = state.selectedTimeframe
+    var selectedSection by rememberSaveable(symbol) { mutableStateOf(0) }
+    val scope = rememberCoroutineScope()
+    val isFavorite = settingsState?.favPairs?.contains(symbol) == true
 
     // Reload when the symbol or the enabled providers change — but never before settings are read.
     LaunchedEffect(symbol, enabledProvidersKey, settingsLoaded) {
@@ -242,14 +258,20 @@ fun CoinDetailScreen(
                     containerColor = MaterialTheme.colorScheme.surface
                 ),
                 title = {
-                    Column {
-                        Text(displaySymbol.buildStyledSymbol())
-                        state.ticker?.closeTime?.let { timestamp ->
-                            Text(
-                                text = formatTickerUpdateTime(timestamp),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                            )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        CoinIcon(baseAsset = baseAsset, modifier = Modifier.size(32.dp))
+                        Column {
+                            Text(displaySymbol.buildStyledSymbol())
+                            state.ticker?.closeTime?.let { timestamp ->
+                                Text(
+                                    text = formatTickerUpdateTime(timestamp),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                                )
+                            }
                         }
                     }
                 },
@@ -262,6 +284,16 @@ fun CoinDetailScreen(
                     }
                 },
                 actions = {
+                    IconButton(onClick = {
+                        if (isFavorite) cryptoViewModel.removeFromFavorites(symbol)
+                        else cryptoViewModel.addToFavorites(symbol)
+                    }) {
+                        Icon(
+                            imageVector = if (isFavorite) Icons.Default.Star else Icons.Default.StarBorder,
+                            contentDescription = stringResource(if (isFavorite) Res.string.unfavorite else Res.string.favorite),
+                            tint = if (isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                     IconButton(onClick = {
                         AppLogger.logger.d { "CoinDetailScreen: Manual refresh for $symbol with providers: $enabledProviders" }
                         viewModel.refresh(symbol, enabledProviders, aiApiToken)
@@ -282,13 +314,14 @@ fun CoinDetailScreen(
         Box(
             modifier = Modifier
                     .fillMaxSize()
-                    .padding(PaddingValues(top = paddingValues.calculateTopPadding()))
+                    .padding(paddingValues),
+            contentAlignment = Alignment.TopCenter,
         ) {
 
             when {
                 state.error != null -> {
                     Column(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize().padding(24.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
@@ -301,229 +334,120 @@ fun CoinDetailScreen(
                         Text(
                             text = state.error ?: stringResource(Res.string.unknown_error),
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Center,
                         )
+                        TextButton(onClick = { viewModel.refresh(symbol, enabledProviders, aiApiToken) }) {
+                            Text(stringResource(Res.string.refresh))
+                        }
                     }
                 }
 
                 else -> {
-                    Box(modifier = Modifier.fillMaxSize()) {
+                    Box(modifier = Modifier.widthIn(max = 1040.dp).fillMaxSize()) {
                         LazyColumn(
                             state = listState,
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier.fillMaxSize(),
+                            contentPadding = PaddingValues(bottom = if (onAskAi != null) 100.dp else 24.dp),
                         ) {
-                            // Timeframe Selection Buttons
-                            item {
-                                TimeframeSelector(
-                                    selectedTimeframe = selectedTimeframe,
-                                    onTimeframeSelected = { timeframe ->
-                                        viewModel.changeTimeframe(timeframe)
-                                    }
-                                )
-                            }
-                            
-                            // Chart Section - TradingView widget
-                            item {
-                                Card(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                                    elevation = CardDefaults.cardElevation(2.dp)
-                                ) {
-                                    TradingViewChart(
-                                        symbol = symbol,
-                                        interval = selectedTimeframe,
-                                        isDarkTheme = isDarkTheme,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(400.dp)
-                                    )
-                                }
-                            }
-
-                            // Price Info Section - Show shimmer if loading, otherwise show price info
-                            item {
-                                if (state.isLoadingTicker) {
-                                    ShimmerPriceInfoPlaceholder()
-                                } else {
-                                    PriceInfoSection(
-                                        symbol = symbol,
-                                        ticker = state.ticker,
-                                        isDarkTheme = isDarkTheme,
-                                        tradingPairs = tradingPairs
-                                    )
-                                }
-                            }
-
-                            // AI Insights Section - market overview generated from 24h ticker data
-                            item {
-                                AiInsightCard(
-                                    insight = state.aiInsight,
-                                    isLoading = state.isLoadingInsight,
-                                    rateLimited = state.insightRateLimited,
-                                    error = state.insightError,
-                                    ticker = state.ticker,
-                                    baseAsset = baseAsset,
-                                    hasNews = state.news.isNotEmpty(),
-                                    onRetry = { viewModel.regenerateInsight() },
-                                    onOpenSettings = onOpenSettings,
-                                    onAskAi = onAskAi
-                                )
-                            }
-
-                            // Order Book Heat Map Section
-                            item {
-                                OrderBookHeatMap(
-                                    orderBookData = state.orderBookData,
-                                    orderBookError = state.orderBookError,
+                            item(key = "price_hero") {
+                                CoinPriceHero(
                                     symbol = symbol,
+                                    ticker = state.ticker,
+                                    isLoading = state.isLoadingTicker,
+                                    isDarkTheme = isDarkTheme,
                                     tradingPairs = tradingPairs,
-                                    isDarkTheme = isDarkTheme
+                                    onRetry = { viewModel.refresh(symbol, enabledProviders, aiApiToken) },
                                 )
                             }
-
-                            // News Section Header
-                            item {
-                                Text(
-                                    text = stringResource(Res.string.latest_news),
-                                    style = MaterialTheme.typography.headlineSmall,
-                                    fontWeight = FontWeight.Bold,
-                                    modifier = Modifier.padding(16.dp)
-                                )
+                            stickyHeader(key = "detail_sections") {
+                                CoinDetailTabs(selectedSection = selectedSection) { index ->
+                                    selectedSection = index
+                                    scope.launch { listState.scrollToItem(0) }
+                                }
                             }
-
-                            // News Items - Show shimmer placeholders for pending providers, show items as they arrive
-                            val hasNoProviders = enabledProviders.isEmpty()
-                            if (hasNoProviders) {
-                                item {
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(32.dp),
-                                        contentAlignment = Alignment.Center
+                            if (selectedSection == 0) {
+                                item(key = "chart") {
+                                    Card(
+                                        modifier = Modifier.fillMaxWidth().padding(16.dp),
+                                        shape = RoundedCornerShape(20.dp),
+                                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
                                     ) {
-                                        Column(
-                                            horizontalAlignment = Alignment.CenterHorizontally,
-                                            verticalArrangement = Arrangement.Center
-                                        ) {
-                                            Icon(
-                                                imageVector = Icons.AutoMirrored.Filled.Article,
-                                                contentDescription = null,
-                                                modifier = Modifier
-                                                    .size(64.dp)
-                                                    .padding(bottom = 16.dp),
-                                                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                                    alpha = 0.6f
-                                                )
-                                            )
-                                            Text(
-                                                text = stringResource(Res.string.no_news_providers_selected),
-                                                style = MaterialTheme.typography.titleMedium,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                textAlign = TextAlign.Center
-                                            )
-                                            Text(
-                                                text = stringResource(Res.string.no_news_providers_selected_hint),
-                                                style = MaterialTheme.typography.bodyMedium,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                                    alpha = 0.7f
-                                                ),
-                                                modifier = Modifier.padding(top = 8.dp),
-                                                textAlign = TextAlign.Center
+                                        TimeframeSelector(
+                                            selectedTimeframe = selectedTimeframe,
+                                            onTimeframeSelected = viewModel::changeTimeframe,
+                                        )
+                                        BoxWithConstraints {
+                                            TradingViewChart(
+                                                symbol = symbol,
+                                                interval = selectedTimeframe,
+                                                isDarkTheme = isDarkTheme,
+                                                modifier = Modifier.fillMaxWidth().height(if (maxWidth < 600.dp) 320.dp else 440.dp),
                                             )
                                         }
                                     }
                                 }
-                            } else {
-                                // Show news items as they arrive. Stable key (link) so Compose moves
-                                // existing cards across the re-sort on each provider append instead of
-                                // rebuilding every NewsItemCard (re-parsing dates, re-laying-out text).
-                                items(state.news, key = { it.link }) { newsItem ->
-                                    NewsItemCard(
-                                        newsItem = newsItem,
+
+                                // Price Info Section - Show shimmer if loading, otherwise show price info
+                                item {
+                                    if (state.isLoadingTicker) {
+                                        ShimmerPriceInfoPlaceholder()
+                                    } else {
+                                        PriceInfoSection(
+                                            symbol = symbol,
+                                            ticker = state.ticker,
+                                            isDarkTheme = isDarkTheme,
+                                            tradingPairs = tradingPairs
+                                        )
+                                    }
+                                }
+
+                            }
+                            if (selectedSection == 1) {
+                                // AI Insights Section - market overview generated from 24h ticker data
+                                item {
+                                    AiInsightCard(
+                                        insight = state.aiInsight,
+                                        isLoading = state.isLoadingInsight,
+                                        rateLimited = state.insightRateLimited,
+                                        error = state.insightError,
+                                        ticker = state.ticker,
+                                        baseAsset = baseAsset,
+                                        hasNews = state.news.isNotEmpty(),
+                                        onRetry = { viewModel.regenerateInsight() },
+                                        onOpenSettings = onOpenSettings,
+                                        onAskAi = onAskAi
+                                    )
+                                }
+
+                            }
+                            if (selectedSection == 2) {
+                                // Order Book Heat Map Section
+                                item {
+                                    OrderBookHeatMap(
+                                        orderBookData = state.orderBookData,
+                                        orderBookError = state.orderBookError,
+                                        symbol = symbol,
+                                        tradingPairs = tradingPairs,
                                         isDarkTheme = isDarkTheme
                                     )
                                 }
 
-                                // Show shimmer placeholders for providers that are still loading
-                                if (state.loadingNewsProviders.isNotEmpty()) {
-                                    items(count = state.loadingNewsProviders.size, key = { it }) {
-                                        ShimmerNewsItemPlaceholder()
-                                    }
+                            }
+                            if (selectedSection == 3) {
+                                // News Section Header
+                                item {
+                                    Text(
+                                        text = stringResource(Res.string.latest_news),
+                                        style = MaterialTheme.typography.headlineSmall,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(16.dp)
+                                    )
                                 }
 
-                                // Nothing conclusive to show until every provider has reported.
-                                val newsSettled =
-                                    state.loadingNewsProviders.isEmpty() && !state.isLoadingNews
-                                val failedCount = state.failedNewsProviders.size
-                                // Only claim everything failed when everything actually did. One
-                                // dead feed alongside seven that were read fine and simply had
-                                // nothing about this coin is an empty result, not an outage, and
-                                // telling the user to check their connection would send them after
-                                // a problem they do not have.
-                                val allFailed =
-                                    failedCount > 0 && failedCount >= enabledProviders.size
-
-                                if (newsSettled && allFailed) {
-                                    // Every source we asked was unreachable. That is a broken
-                                    // transport, not a quiet news day, and the two used to render
-                                    // identically — which is exactly how a total CORS outage on the
-                                    // web build stayed invisible. Say so, and offer a way out.
-                                    item {
-                                        Box(
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .padding(32.dp),
-                                            contentAlignment = Alignment.Center
-                                        ) {
-                                            Column(
-                                                horizontalAlignment = Alignment.CenterHorizontally,
-                                                verticalArrangement = Arrangement.Center
-                                            ) {
-                                                Icon(
-                                                    imageVector = Icons.Default.CloudOff,
-                                                    contentDescription = null,
-                                                    modifier = Modifier
-                                                        .size(64.dp)
-                                                        .padding(bottom = 16.dp),
-                                                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                                        alpha = 0.6f
-                                                    )
-                                                )
-                                                Text(
-                                                    text = stringResource(Res.string.news_unavailable),
-                                                    style = MaterialTheme.typography.titleMedium,
-                                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                    textAlign = TextAlign.Center
-                                                )
-                                                Text(
-                                                    text = stringResource(Res.string.news_unavailable_hint),
-                                                    style = MaterialTheme.typography.bodyMedium,
-                                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                                        alpha = 0.7f
-                                                    ),
-                                                    modifier = Modifier.padding(top = 8.dp),
-                                                    textAlign = TextAlign.Center
-                                                )
-                                                TextButton(
-                                                    onClick = {
-                                                        viewModel.refresh(symbol, enabledProviders, aiApiToken)
-                                                    },
-                                                    modifier = Modifier.padding(top = 8.dp)
-                                                ) {
-                                                    Icon(
-                                                        imageVector = Icons.Default.Refresh,
-                                                        contentDescription = null,
-                                                        modifier = Modifier.size(18.dp)
-                                                    )
-                                                    Spacer(modifier = Modifier.width(8.dp))
-                                                    Text(text = stringResource(Res.string.news_retry))
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else if (newsSettled && state.news.isEmpty()) {
-                                    // Every feed was read fine; none of them mentioned this coin.
+                                // News Items - Show shimmer placeholders for pending providers, show items as they arrive
+                                val hasNoProviders = enabledProviders.isEmpty()
+                                if (hasNoProviders) {
                                     item {
                                         Box(
                                             modifier = Modifier
@@ -546,13 +470,13 @@ fun CoinDetailScreen(
                                                     )
                                                 )
                                                 Text(
-                                                    text = stringResource(Res.string.no_news_available),
+                                                    text = stringResource(Res.string.no_news_providers_selected),
                                                     style = MaterialTheme.typography.titleMedium,
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                                     textAlign = TextAlign.Center
                                                 )
                                                 Text(
-                                                    text = stringResource(Res.string.no_news_available_hint),
+                                                    text = stringResource(Res.string.no_news_providers_selected_hint),
                                                     style = MaterialTheme.typography.bodyMedium,
                                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
                                                         alpha = 0.7f
@@ -563,43 +487,163 @@ fun CoinDetailScreen(
                                             }
                                         }
                                     }
-                                }
-
-                                // Some sources dropped out while others reported. Whether that left
-                                // a partial list or nothing at all, what is on screen is real but
-                                // incomplete, so say so rather than passing it off as the lot.
-                                if (newsSettled && !allFailed && failedCount > 0) {
-                                    item {
-                                        Text(
-                                            text = stringResource(
-                                                Res.string.news_partial_failure,
-                                                failedCount,
-                                                enabledProviders.size
-                                            ),
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                                alpha = 0.7f
-                                            ),
-                                            textAlign = TextAlign.Center,
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .padding(horizontal = 16.dp, vertical = 12.dp)
+                                } else {
+                                    // Show news items as they arrive. Stable key (link) so Compose moves
+                                    // existing cards across the re-sort on each provider append instead of
+                                    // rebuilding every NewsItemCard (re-parsing dates, re-laying-out text).
+                                    items(state.news, key = { it.link }) { newsItem ->
+                                        NewsItemCard(
+                                            newsItem = newsItem,
+                                            isDarkTheme = isDarkTheme
                                         )
+                                    }
+
+                                    // Show shimmer placeholders for providers that are still loading
+                                    if (state.loadingNewsProviders.isNotEmpty()) {
+                                        items(count = state.loadingNewsProviders.size, key = { it }) {
+                                            ShimmerNewsItemPlaceholder()
+                                        }
+                                    }
+
+                                    // Nothing conclusive to show until every provider has reported.
+                                    val newsSettled =
+                                        state.loadingNewsProviders.isEmpty() && !state.isLoadingNews
+                                    val failedCount = state.failedNewsProviders.size
+                                    // Only claim everything failed when everything actually did. One
+                                    // dead feed alongside seven that were read fine and simply had
+                                    // nothing about this coin is an empty result, not an outage, and
+                                    // telling the user to check their connection would send them after
+                                    // a problem they do not have.
+                                    val allFailed =
+                                        failedCount > 0 && failedCount >= enabledProviders.size
+
+                                    if (newsSettled && allFailed) {
+                                        // Every source we asked was unreachable. That is a broken
+                                        // transport, not a quiet news day, and the two used to render
+                                        // identically — which is exactly how a total CORS outage on the
+                                        // web build stayed invisible. Say so, and offer a way out.
+                                        item {
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(32.dp),
+                                                contentAlignment = Alignment.Center
+                                            ) {
+                                                Column(
+                                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                                    verticalArrangement = Arrangement.Center
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.CloudOff,
+                                                        contentDescription = null,
+                                                        modifier = Modifier
+                                                            .size(64.dp)
+                                                            .padding(bottom = 16.dp),
+                                                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                            alpha = 0.6f
+                                                        )
+                                                    )
+                                                    Text(
+                                                        text = stringResource(Res.string.news_unavailable),
+                                                        style = MaterialTheme.typography.titleMedium,
+                                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                        textAlign = TextAlign.Center
+                                                    )
+                                                    Text(
+                                                        text = stringResource(Res.string.news_unavailable_hint),
+                                                        style = MaterialTheme.typography.bodyMedium,
+                                                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                            alpha = 0.7f
+                                                        ),
+                                                        modifier = Modifier.padding(top = 8.dp),
+                                                        textAlign = TextAlign.Center
+                                                    )
+                                                    TextButton(
+                                                        onClick = {
+                                                            viewModel.refresh(symbol, enabledProviders, aiApiToken)
+                                                        },
+                                                        modifier = Modifier.padding(top = 8.dp)
+                                                    ) {
+                                                        Icon(
+                                                            imageVector = Icons.Default.Refresh,
+                                                            contentDescription = null,
+                                                            modifier = Modifier.size(18.dp)
+                                                        )
+                                                        Spacer(modifier = Modifier.width(8.dp))
+                                                        Text(text = stringResource(Res.string.news_retry))
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else if (newsSettled && state.news.isEmpty()) {
+                                        // Every feed was read fine; none of them mentioned this coin.
+                                        item {
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(32.dp),
+                                                contentAlignment = Alignment.Center
+                                            ) {
+                                                Column(
+                                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                                    verticalArrangement = Arrangement.Center
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.AutoMirrored.Filled.Article,
+                                                        contentDescription = null,
+                                                        modifier = Modifier
+                                                            .size(64.dp)
+                                                            .padding(bottom = 16.dp),
+                                                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                            alpha = 0.6f
+                                                        )
+                                                    )
+                                                    Text(
+                                                        text = stringResource(Res.string.no_news_available),
+                                                        style = MaterialTheme.typography.titleMedium,
+                                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                        textAlign = TextAlign.Center
+                                                    )
+                                                    Text(
+                                                        text = stringResource(Res.string.no_news_available_hint),
+                                                        style = MaterialTheme.typography.bodyMedium,
+                                                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                            alpha = 0.7f
+                                                        ),
+                                                        modifier = Modifier.padding(top = 8.dp),
+                                                        textAlign = TextAlign.Center
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // Some sources dropped out while others reported. Whether that left
+                                    // a partial list or nothing at all, what is on screen is real but
+                                    // incomplete, so say so rather than passing it off as the lot.
+                                    if (newsSettled && !allFailed && failedCount > 0) {
+                                        item {
+                                            Text(
+                                                text = stringResource(
+                                                    Res.string.news_partial_failure,
+                                                    failedCount,
+                                                    enabledProviders.size
+                                                ),
+                                                style = MaterialTheme.typography.bodySmall,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                                    alpha = 0.7f
+                                                ),
+                                                textAlign = TextAlign.Center,
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(horizontal = 16.dp, vertical = 12.dp)
+                                            )
+                                        }
                                     }
                                 }
                             }
                         }
                         LazyColumnScrollbar(listState = listState)
-                        // Gate the totalItemsCount read behind derivedStateOf so scrolling only
-                        // re-triggers this button when the item COUNT changes, not every scroll frame.
-                        val scrollTotal by remember(listState) {
-                            derivedStateOf { listState.layoutInfo.totalItemsCount }
-                        }
-                        ScrollToEdgeButton(
-                            listState = listState,
-                            totalItems = scrollTotal
-                        )
-
                         if (onAskAi != null) {
                             AskAiFab(
                                 baseAsset = baseAsset,
@@ -615,42 +659,43 @@ fun CoinDetailScreen(
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun CoinDetailTabs(selectedSection: Int, onSelect: (Int) -> Unit) {
+    BoxWithConstraints {
+        SecondaryScrollableTabRow(
+            selectedTabIndex = selectedSection,
+            containerColor = MaterialTheme.colorScheme.background,
+            edgePadding = 0.dp,
+            minTabWidth = maxWidth / 4,
+            divider = {},
+        ) {
+            listOf(Res.string.detail_chart, Res.string.detail_insights, Res.string.detail_depth, Res.string.detail_news)
+                .forEachIndexed { index, title ->
+                    Tab(
+                        selected = selectedSection == index,
+                        onClick = { onSelect(index) },
+                        text = { Text(stringResource(title), maxLines = 1) },
+                    )
+                }
+        }
+    }
+}
+
 /** How many chips the card offers before handing over to the chat screen's fuller set. */
 private const val CARD_SUGGESTION_COUNT = 3
 
-/**
- * Clears [ScrollToEdgeButton]'s slot: that is a 40dp small FAB pinned 16dp from the bottom of the
- * same Box, so this sits one row above it.
- */
-private val AskAiFabBottomInset = 68.dp
-
-/**
- * Always-available way into the chat.
- *
- * The AI card's chips are the richer entry — they arrive with a question already chosen — but they
- * scroll away, and this screen is long. Somebody reading the order book or the news shouldn't have
- * to scroll back up to ask something.
- */
+/** Visible entry to the coin conversation, kept clear of the last scrollable item. */
 @Composable
 private fun BoxScope.AskAiFab(baseAsset: String, onClick: () -> Unit) {
-    FloatingActionButton(
+    ExtendedFloatingActionButton(
         onClick = onClick,
-        modifier = Modifier
-            .align(Alignment.BottomEnd)
-            .padding(end = 24.dp, bottom = AskAiFabBottomInset),
-        // `primary`, not `primaryContainer`: this palette is a muted monochrome where the container
-        // tone (#33342E in dark) is within a hair of the background, which left the FAB reading as
-        // a second scroll button. This also matches the chat's own send button.
+        modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = MaterialTheme.colorScheme.onPrimary
-    ) {
-        Icon(
-            imageVector = Icons.Default.AutoAwesome,
-            // The sparkle is this app's AI mark (it heads the insights card), so the label is what
-            // carries the meaning for anyone who can't see the icon.
-            contentDescription = stringResource(Res.string.chat_open, baseAsset)
-        )
-    }
+        contentColor = MaterialTheme.colorScheme.onPrimary,
+        icon = { Icon(Icons.Default.AutoAwesome, contentDescription = null) },
+        text = { Text(stringResource(Res.string.detail_ask_ai, baseAsset)) },
+    )
 }
 
 @Composable
@@ -690,7 +735,9 @@ fun AiInsightCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(2.dp)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Column(
             modifier = Modifier
@@ -954,13 +1001,15 @@ fun PriceInfoSection(
     isDarkTheme: Boolean,
     tradingPairs: List<TradingPair> = emptyList()
 ) {
-    var isExpanded by remember { mutableStateOf(false) }
+    var isExpanded by rememberSaveable(symbol) { mutableStateOf(false) }
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(2.dp)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Column(
             modifier = Modifier
@@ -977,39 +1026,29 @@ fun PriceInfoSection(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = stringResource(Res.string.price_information),
+                    text = stringResource(Res.string.label_24h_statistics),
+                    modifier = Modifier.weight(1f).padding(end = 8.dp),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Icon(
                     imageVector = if (isExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                    contentDescription = if (isExpanded) "Collapse" else "Expand"
+                    contentDescription = stringResource(if (isExpanded) Res.string.detail_collapse else Res.string.detail_expand)
                 )
             }
 
             if (ticker != null) {
-                // Always show essential info
                 Column(
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     PriceRow(
-                        label = stringResource(Res.string.label_last_price),
-                        value = ticker.lastPrice.formatPrice(symbol, tradingPairs),
-                        isHighlighted = true
+                        label = stringResource(Res.string.label_best_bid),
+                        value = ticker.bidPrice.formatPrice(symbol, tradingPairs),
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
-
-                    val priceChangePercent = ticker.priceChangePercent.toDoubleOrNull() ?: 0.0
-                    val priceChangeColor = getPriceChangeColor(
-                        ticker.priceChangePercent,
-                        isDarkTheme,
-                        MaterialTheme.colorScheme.onSurface
-                    )
-
                     PriceRow(
-                        stringResource(Res.string.label_24h_change),
-                        "${if (priceChangePercent >= 0) "+" else ""}${ticker.priceChangePercent}%",
-                        valueColor = priceChangeColor
+                        label = stringResource(Res.string.label_best_ask),
+                        value = ticker.askPrice.formatPrice(symbol, tradingPairs),
                     )
                 }
 
@@ -1149,11 +1188,14 @@ fun PriceRow(
     ) {
         Text(
             text = label,
+            modifier = Modifier.weight(1f).padding(end = 12.dp),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Text(
             text = value,
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.End,
             style = if (isHighlighted) {
                 MaterialTheme.typography.titleMedium
             } else {
@@ -1183,7 +1225,9 @@ fun NewsItemCard(
                     }
                 }
             },
-        elevation = CardDefaults.cardElevation(2.dp)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -1242,7 +1286,9 @@ fun ShimmerPriceInfoPlaceholder() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(2.dp)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Column(
             modifier = Modifier
@@ -1279,7 +1325,9 @@ fun ShimmerNewsItemPlaceholder() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(2.dp)
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -1350,29 +1398,17 @@ fun TimeframeSelector(
 ) {
     val timeframes = remember { listOf("1m", "5m", "15m", "1h", "4h", "1d") }
 
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    LazyRow(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
     ) {
-        LazyRow(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-            contentPadding = PaddingValues(horizontal = 4.dp)
-        ) {
-            items(
-                items = timeframes,
-                key = { it }
-            ) { timeframe ->
-                TimeframeChip(
-                    timeframe = timeframe,
-                    isSelected = timeframe == selectedTimeframe,
-                    onClick = { onTimeframeSelected(timeframe) }
-                )
-            }
+        items(items = timeframes, key = { it }) { timeframe ->
+            TimeframeChip(
+                timeframe = timeframe,
+                isSelected = timeframe == selectedTimeframe,
+                onClick = { onTimeframeSelected(timeframe) },
+            )
         }
     }
 }
@@ -1393,14 +1429,6 @@ private fun TimeframeChip(
                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
             )
         },
-        leadingIcon = if (isSelected) {
-            {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ShowChart,
-                    contentDescription = null,
-                    modifier = Modifier.size(18.dp)
-                )
-            }
-        } else null
+        shape = RoundedCornerShape(10.dp),
     )
 }

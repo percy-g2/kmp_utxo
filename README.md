@@ -17,7 +17,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 </p>
 
 <p align="center"><sub><b>Phone</b> · iOS · 1284 × 2778 · App Store</sub></p>
-<p align="center"><sub><i>App Store set captured on the iOS simulator. Portfolio is seeded from live Hyperliquid leaderboard wallets; AI Insights is generated on-device from 24h market data and news.</i></sub></p>
+<p align="center"><sub><i>Refreshed blue UI captured on the iPhone 17 Pro simulator, September 13, 2026. Portfolio uses public Hyperliquid demo wallets; AI Insights uses live 24h data and news. Full-screen framing preserves the navigation and chart content.</i></sub></p>
 
 <table>
   <tr>
@@ -33,7 +33,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 </table>
 
 <p align="center"><sub><b>Phone</b> · Android · 1284 × 2778 · Play Store</sub></p>
-<p align="center"><sub><i>Play Store set captured on the Android emulator — the same Compose Multiplatform UI runs on both.</i></sub></p>
+<p align="center"><sub><i>Refreshed blue UI captured separately on the Android emulator. The Android feature graphic is in <code>play-store/feature_graphic_1024x500.png</code>.</i></sub></p>
 
 <table>
   <tr>
@@ -49,7 +49,7 @@ A modern, cross-platform cryptocurrency tracking application built with Kotlin M
 </table>
 
 <p align="center"><sub><b>Tablet</b> · iOS · 2064 × 2752 · App Store 13" iPad Pro slot — marketing frames</sub></p>
-<p align="center"><sub><i>Sized for Apple's 13" iPad Pro (M4) Display slot (iPhone captures in a tablet canvas), in <code>screenshots/ipad/</code>. Play Store tablet listings would need a separate render pass at Google's recommended 7" / 10" dimensions.</i></sub></p>
+<p align="center"><sub><i>Sized for Apple's 13" iPad Pro Display slot (iPhone captures in a tablet canvas), in <code>screenshots/ipad/</code>. Play Store tablet listings would need a separate render pass at Google's recommended 7" / 10" dimensions.</i></sub></p>
 
 <table>
   <tr>

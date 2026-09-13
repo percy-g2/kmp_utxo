@@ -3,6 +3,18 @@
     <!-- App -->
     <string name="app_name">UTXO</string>
     
+    <string name="market_subtitle">Explore prices and 24-hour trends</string>
+
+    <string name="detail_price_in_quote">Last price · %1$s</string>
+    <string name="detail_chart">Chart</string>
+    <string name="detail_insights">Insights</string>
+    <string name="detail_depth">Depth</string>
+    <string name="detail_news">News</string>
+    <string name="detail_expand">Expand statistics</string>
+    <string name="detail_collapse">Collapse statistics</string>
+    <string name="detail_ask_ai">Ask AI about %1$s</string>
+    <string name="detail_daily_range">Current price within the 24-hour low-to-high range</string>
+
     <!-- Navigation -->
     <string name="nav_market">Market</string>
     <string name="nav_settings">Settings</string>

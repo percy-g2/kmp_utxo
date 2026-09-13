@@ -191,6 +191,10 @@ def render_phone(spec, app, uploads_dir, out_dir):
     sw, sh = src.size
     target_w = int(PHONE_W * 0.84)
     target_h = int(target_w * sh / sw)
+    # Keep navigation and lower chart content visible in the refreshed store set.
+    if spec.get("fit_phone", False):
+        target_h = min(target_h, PHONE_H - phone_top - 96)
+        target_w = int(target_h * sw / sh)
     src = src.resize((target_w, target_h), Image.LANCZOS)
 
     bezel_px = 8
