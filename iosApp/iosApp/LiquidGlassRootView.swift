@@ -168,6 +168,9 @@ struct LiquidGlassRootView: View {
         )
             .background(appBackground.ignoresSafeArea())
             .ignoresSafeArea(.keyboard)
+            // The detail Scaffold handles the home-indicator inset. Reserving it here as
+            // well leaves a second empty strip and lifts the floating action button.
+            .ignoresSafeArea(.container, edges: .bottom)
             .toolbar(.hidden, for: .navigationBar)
             .toolbar(.hidden, for: .tabBar)
             .onAppear { MainViewControllerKt.cryptoPause() }
