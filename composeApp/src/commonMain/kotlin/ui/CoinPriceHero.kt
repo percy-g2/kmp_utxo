@@ -2,6 +2,7 @@ package ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -51,8 +52,36 @@ internal fun CoinPriceHero(
     tradingPairs: List<TradingPair>,
     onRetry: () -> Unit,
 ) {
+    BoxWithConstraints(Modifier.fillMaxWidth().padding(20.dp)) {
+        if (maxWidth >= 720.dp && ticker != null) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(32.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                HeroPrice(symbol, ticker, isLoading, isDarkTheme, tradingPairs, onRetry, Modifier.weight(0.4f))
+                HeroRange(symbol, ticker, tradingPairs, Modifier.weight(0.6f))
+            }
+        } else {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                HeroPrice(symbol, ticker, isLoading, isDarkTheme, tradingPairs, onRetry, Modifier.fillMaxWidth())
+                if (ticker != null) HeroRange(symbol, ticker, tradingPairs, Modifier.fillMaxWidth())
+            }
+        }
+    }
+}
+
+@Composable
+private fun HeroPrice(
+    symbol: String,
+    ticker: Ticker24hr?,
+    isLoading: Boolean,
+    isDarkTheme: Boolean,
+    tradingPairs: List<TradingPair>,
+    onRetry: () -> Unit,
+    modifier: Modifier,
+) {
     Column(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 20.dp),
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         val quote = tradingPairs.filter { symbol.endsWith(it.quote) }.maxByOrNull { it.quote.length }?.quote
@@ -97,50 +126,60 @@ internal fun CoinPriceHero(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
-        Surface(
-            shape = RoundedCornerShape(16.dp),
-            color = MaterialTheme.colorScheme.surfaceContainerLow,
+    }
+}
+
+@Composable
+private fun HeroRange(
+    symbol: String,
+    ticker: Ticker24hr,
+    tradingPairs: List<TradingPair>,
+    modifier: Modifier,
+) {
+    Surface(
+        modifier = modifier,
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Column(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                HeroMetric(
+                    label = stringResource(Res.string.label_24h_low),
+                    value = ticker.lowPrice.formatPrice(symbol, tradingPairs).trim().substringBeforeLast(" "),
+                    modifier = Modifier.weight(1f),
+                )
+                HeroMetric(
+                    label = stringResource(Res.string.label_24h_high),
+                    value = ticker.highPrice.formatPrice(symbol, tradingPairs).trim().substringBeforeLast(" "),
+                    modifier = Modifier.weight(1f),
+                    alignEnd = true,
+                )
+            }
+            val rangePosition = dailyRangePosition(ticker.lastPrice, ticker.lowPrice, ticker.highPrice)
+            val rangeDescription = stringResource(Res.string.detail_daily_range)
+            if (rangePosition != null) {
+                LinearProgressIndicator(
+                    progress = { rangePosition },
+                    modifier = Modifier.fillMaxWidth().height(4.dp).semantics { contentDescription = rangeDescription },
+                    color = MaterialTheme.colorScheme.primary,
+                    trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                    drawStopIndicator = {},
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    HeroMetric(
-                        label = stringResource(Res.string.label_24h_low),
-                        value = ticker.lowPrice.formatPrice(symbol, tradingPairs).trim().substringBeforeLast(" "),
-                        modifier = Modifier.weight(1f),
-                    )
-                    HeroMetric(
-                        label = stringResource(Res.string.label_24h_high),
-                        value = ticker.highPrice.formatPrice(symbol, tradingPairs).trim().substringBeforeLast(" "),
-                        modifier = Modifier.weight(1f),
-                        alignEnd = true,
-                    )
-                }
-                val rangePosition = dailyRangePosition(ticker.lastPrice, ticker.lowPrice, ticker.highPrice)
-                val rangeDescription = stringResource(Res.string.detail_daily_range)
-                if (rangePosition != null) {
-                    LinearProgressIndicator(
-                        progress = { rangePosition },
-                        modifier = Modifier.fillMaxWidth().height(4.dp).semantics { contentDescription = rangeDescription },
-                        color = MaterialTheme.colorScheme.primary,
-                        trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                        drawStopIndicator = {},
-                    )
-                }
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    Text(
-                        stringResource(Res.string.label_24h_volume_quote),
-                        modifier = Modifier.weight(1f),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    Text(ticker.quoteVolume.formatVolume(), style = MaterialTheme.typography.labelLarge)
-                }
+                Text(
+                    stringResource(Res.string.label_24h_volume_quote),
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(ticker.quoteVolume.formatVolume(), style = MaterialTheme.typography.labelLarge)
             }
         }
     }

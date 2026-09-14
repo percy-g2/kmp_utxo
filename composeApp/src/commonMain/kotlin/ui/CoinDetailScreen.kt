@@ -1,5 +1,7 @@
 package ui
 
+import DeviceInfo
+
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import copyToClipboard
@@ -10,7 +12,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -344,7 +345,10 @@ fun CoinDetailScreen(
                 }
 
                 else -> {
-                    Box(modifier = Modifier.widthIn(max = 1040.dp).fillMaxSize()) {
+                    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                        // Size against the viewport, not the unbounded LazyColumn item.
+                        val chartHeight = if (maxWidth < 600.dp) 320.dp
+                            else (maxHeight * 0.5f).coerceIn(280.dp, 440.dp)
                         LazyColumn(
                             state = listState,
                             modifier = Modifier.fillMaxSize(),
@@ -377,14 +381,12 @@ fun CoinDetailScreen(
                                             selectedTimeframe = selectedTimeframe,
                                             onTimeframeSelected = viewModel::changeTimeframe,
                                         )
-                                        BoxWithConstraints {
-                                            TradingViewChart(
-                                                symbol = symbol,
-                                                interval = selectedTimeframe,
-                                                isDarkTheme = isDarkTheme,
-                                                modifier = Modifier.fillMaxWidth().height(if (maxWidth < 600.dp) 320.dp else 440.dp),
-                                            )
-                                        }
+                                        TradingViewChart(
+                                            symbol = symbol,
+                                            interval = selectedTimeframe,
+                                            isDarkTheme = isDarkTheme,
+                                            modifier = Modifier.fillMaxWidth().height(chartHeight),
+                                        )
                                     }
                                 }
 
@@ -643,7 +645,10 @@ fun CoinDetailScreen(
                                 }
                             }
                         }
-                        LazyColumnScrollbar(listState = listState)
+                        LazyColumnScrollbar(
+                            listState = listState,
+                            alwaysShowScrollBar = remember { DeviceInfo().getDeviceType() == "web" },
+                        )
                         if (onAskAi != null) {
                             AskAiFab(
                                 baseAsset = baseAsset,
