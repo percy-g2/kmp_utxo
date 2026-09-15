@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    >
+
+<channel>
+    <title>The Block</title>
+    <link>https://www.theblock.co</link>
+    <atom:link href="https://www.theblock.co/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.theblock.co/rss.xml?paged=2" rel="next" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+    <description>The Block features breaking Crypto news about Bitcoin, Blockchain, Web3, and DeFi from the web&#039;s most reliable source.</description>
+    <lastBuildDate>Tue, 15 Sep 2026 19:37:07 +0000</lastBuildDate>
+    <language>en-US</language>
+    <copyright>© 2026 THE BLOCK</copyright>
+    <generator>TheBlock</generator>
+    <ttl>5</ttl>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+        <url>https://www.tbstat.com/wp/uploads/2024/03/the-block-logo-wordmark-black.png</url>
+        <title>The Block</title>
+        <link>https://www.theblock.co</link>
+    </image>
+        <item>
+        <title><![CDATA[Clarity Act preliminary vote falls short in Senate amid ethics fight over Trump’s crypto wealth]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-15-clarity-act-preliminary-vote-falls-short-in-senate-amid-ethics-fight-over-trumps-crypto-wealth-415010</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/05/20250523_DJT-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">a957c071-3ac2-5ffa-8e0c-183b2b156057</guid>
+        <pubDate>Tue, 15 Sep 2026 18:57:00 +0000</pubDate>
+            <description><![CDATA[An initial vote to try to push the Clarity Act closer to becoming law fell flat amid opposition to President Trump's crypto wealth. ]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/us-policymaking"><![CDATA[U.S. Policymaking]]></category>
+		<category domain="tag"><![CDATA[Cynthia Lummis]]></category>
+		<category domain="tag"><![CDATA[Donald Trump]]></category>
+		<category domain="tag"><![CDATA[Elections 2026]]></category>
+		<category domain="tag"><![CDATA[Senate Banking Committee]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[DOJ charges Robinhood former engineers with front-running crypto listings on Hyperliquid]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-15-doj-charges-robinhood-engineers-front-running-crypto-listings-hyperliquid-414865</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/12/20251208_Robinhood_News_2-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">3a6cd9cb-be99-5ce9-a66b-1ea157114569</guid>
+        <pubDate>Tue, 15 Sep 2026 17:50:23 +0000</pubDate>
+            <description><![CDATA[According to prosecutors, the two took positions in tokens ahead of Robinhood’s public listing announcements between 2025 and 2026.]]></description>            <dc:creator><![CDATA[Jason Shubnell]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/defi"><![CDATA[DeFi]]></category>
+		<category domain="https://www.theblock.co/category/exchanges"><![CDATA[Exchanges]]></category>
+		<category domain="https://www.theblock.co/category/legal"><![CDATA[Legal]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/public-equities"><![CDATA[Public Equities]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="tag"><![CDATA[Crime]]></category>
+		<category domain="tag"><![CDATA[Protocols]]></category>
+		<category domain="tag"><![CDATA[Robinhood]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Sen. Elizabeth Warren says she wants a crypto bill, but the Clarity Act just isn’t it]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-15-sen-elizabeth-warren-says-she-wants-a-crypto-bill-but-the-clarity-act-just-isnt-it-414869</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2021/09/20210927_Elizabeth_Warren_Generic-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">d811c4c9-4800-583c-bdc1-a0777bf5dc84</guid>
+        <pubDate>Tue, 15 Sep 2026 17:49:30 +0000</pubDate>
+            <description><![CDATA[Sen. Elizabeth Warren says she remains determined to get a crypto bill signed into law — even if she doesn’t support the current Clarity Act.]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/us-policymaking"><![CDATA[U.S. Policymaking]]></category>
+		<category domain="tag"><![CDATA[Elections 2026]]></category>
+		<category domain="tag"><![CDATA[Elizabeth Warren]]></category>
+		<category domain="tag"><![CDATA[Senate Banking Committee]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Bitcoin price recovery unlikely to lure AI-focused miners back, CoinShares says]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-15-bitcoin-price-recovery-unlikely-lure-ai-focused-miners-back-coinshares-says-414844</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2021/10/210930_Bitcoin_Mining_General-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">2b03fb5a-deb7-5522-95cb-e2083aa83dd6</guid>
+        <pubDate>Tue, 15 Sep 2026 15:37:47 +0000</pubDate>
+            <description><![CDATA[Publicly listed BTC miners produced bitcoin at an average ex-tax cash cost of roughly $75,500 in in the second quarter.]]></description>            <dc:creator><![CDATA[Kyle Baird]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/crypto-infrastructure"><![CDATA[Crypto Infrastructure]]></category>
+		<category domain="https://www.theblock.co/category/infrastructure"><![CDATA[Infrastructure]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[AI]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="tag"><![CDATA[Mining]]></category>
+		<category domain="tag"><![CDATA[Mining Companies]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Lead Senate Republican Lummis rejects Democratic counteroffer as Clarity Act vote nears]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-15-senate-republican-lummis-rejects-democratic-counteroffer-clarity-act-vote-414850</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2021/06/20210630_Senator_Cynthia_Lummis-1200x675.png" type="image/*" medium="image"/>        <guid isPermaLink="false">b29a74e8-1f86-59c8-9e07-805f1d33110a</guid>
+        <pubDate>Tue, 15 Sep 2026 14:38:13 +0000</pubDate>
+            <description><![CDATA[Hours ahead of an initial vote on the Clarity Act, Senate Republicans are pushing back against a counterproposal from fellow Democrats.]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="tag"><![CDATA[Cynthia Lummis]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[House committee releases sweeping crypto tax bill ahead of Wednesday markup]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-15-house-committee-crypto-tax-bill-414824</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2023/08/20230712_USA_CryptoTax_News-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">3007abaa-2b19-5c5c-aecf-18bfa54e4128</guid>
+        <pubDate>Tue, 15 Sep 2026 11:52:36 +0000</pubDate>
+            <description><![CDATA[Among its provisions is a $10 exception for certain fees paid in crypto, along with provisions covering stablecoins, mining, and staking.]]></description>            <dc:creator><![CDATA[James Hunt]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[Crypto]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Standard Chartered sees Arbitrum at $10 by end-2030, up 70-fold]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-15-standard-chartered-sees-arbitrum-at-10-by-end-2030-up-70-fold-414821</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2023/03/20230315_Arbitrum_airdrop-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">d3071efd-6078-59c2-aa66-68d7f4de5602</guid>
+        <pubDate>Tue, 15 Sep 2026 11:50:30 +0000</pubDate>
+            <description><![CDATA[Standard Chartered sees Arbitrum at $10 by 2030, projecting a roughly 70-fold increase as tokenization grows and TradFi firms move onchain.]]></description>            <dc:creator><![CDATA[Brian Danga]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/equities"><![CDATA[Equities]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="tag"><![CDATA[Analyst Reports]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Tonkeeper rebrands as Keeper with support for 7 networks, including Bitcoin and Ethereum]]></title>
+        <link>https://www.theblock.co/news/business/2026-09-15-tonkeeper-rebrands-as-keeper-with-support-for-7-networks-including-bitcoin-and-ethereum-414807</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2023/09/20230811_WalletsCryptoPayments_News2-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">2cb2487c-b723-5ee4-93b6-6190e9dc45de</guid>
+        <pubDate>Tue, 15 Sep 2026 09:35:02 +0000</pubDate>
+            <description><![CDATA[Tonkeeper has rebranded as Keeper, with the wallet now supporting seven blockchain networks, including Bitcoin and Ethereum.]]></description>            <dc:creator><![CDATA[Brian Danga]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/infrastructure"><![CDATA[Infrastructure]]></category>
+		<category domain="tag"><![CDATA[exclusive]]></category>
+		<category domain="tag"><![CDATA[Wallets]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Ark Invest sells $14 million in Circle, trims Coinbase as crypto stocks rally]]></title>
+        <link>https://www.theblock.co/news/business/2026-09-15-ark-invest-sells-circle-coinbase-414811</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2022/11/20221114_ArkInvest-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">630600c4-0260-5486-a00c-bca37a6aea59</guid>
+        <pubDate>Tue, 15 Sep 2026 09:32:31 +0000</pubDate>
+            <description><![CDATA[The Cathie Wood-led investment firm routinely adds and trims its crypto stock holdings throughout the year.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/exchanges"><![CDATA[Exchanges]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/public-equities"><![CDATA[Public Equities]]></category>
+		<category domain="tag"><![CDATA[Coinbase]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Zama expands confidential Morpho lineup after first vault hits $40 million, launches private swaps on Ethereum]]></title>
+        <link>https://www.theblock.co/news/defi/2026-09-15-zama-expands-confidential-morpho-lineup-after-first-vault-hits-40-million-launches-private-swaps-on-ethereum-414613</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2022/04/20220422_Bullion-Vault-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">94ab6920-6c76-59bf-bf5b-9cd5c6b97445</guid>
+        <pubDate>Tue, 15 Sep 2026 07:05:03 +0000</pubDate>
+            <description><![CDATA[Users get confidential access to 12 existing Morpho vaults on Ethereum, while another four have been created as confidential-only products.]]></description>            <dc:creator><![CDATA[James Hunt]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/defi"><![CDATA[DeFi]]></category>
+		<category domain="tag"><![CDATA[exclusive]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Crypto exchange CoinEx to shut down after 9 years, citing market slump]]></title>
+        <link>https://www.theblock.co/news/business/2026-09-15-coinex-shut-down-414788</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2024/11/20241104_ZK-proofs_News_2-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">9bebd4a6-9091-5f3e-8a3a-81ba2248c224</guid>
+        <pubDate>Tue, 15 Sep 2026 06:22:17 +0000</pubDate>
+            <description><![CDATA[The exchange blamed a long market slump, shrinking volume and liquidity, and rising regulatory and compliance costs.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Balancer proposes winding down protocol and distributing treasury to BAL holders]]></title>
+        <link>https://www.theblock.co/news/defi/2026-09-15-balancer-proposes-winding-down-414782</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2021/05/20210511_Balancer_V2-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">6aefec5e-45e3-5679-b8ad-1e2eb556062d</guid>
+        <pubDate>Tue, 15 Sep 2026 05:29:13 +0000</pubDate>
+            <description><![CDATA[The proposal comes six months after corporate entity Balancer Labs shut down operations, citing a 2025 exploit that drained $128 million.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/defi"><![CDATA[DeFi]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Ethereum, Base developers abandon effort to align account abstraction proposals]]></title>
+        <link>https://www.theblock.co/news/ecosystems/2026-09-15-ethereum-base-account-abstraction-proposals-414775</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2023/04/ethereum-ether-eth-network-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">02c0057d-280c-52c3-ac27-06d809e927d6</guid>
+        <pubDate>Tue, 15 Sep 2026 04:35:26 +0000</pubDate>
+            <description><![CDATA[The talks to align two proposals, EIP-8130 and EIP-8141, fell short of a shared standard after the two sides diverged on priorities.]]></description>            <dc:creator><![CDATA[Timmy Shen]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[US DOJ seeks $61 million in crypto proceeds from illicit Iranian oil sales laundered on Binance]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-15-doj-61-million-crypto-proceeds-iranian-oil-sales-414768</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2019/07/iran-3-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">c19839bf-0911-57e6-bf90-6d6f22b252be</guid>
+        <pubDate>Tue, 15 Sep 2026 04:01:48 +0000</pubDate>
+            <description><![CDATA[Prosecutors alleged that two Chinese companies used Binance to launder those funds to Iran and its proxies.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/exchanges"><![CDATA[Exchanges]]></category>
+		<category domain="https://www.theblock.co/category/legal"><![CDATA[Legal]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="tag"><![CDATA[Binance]]></category>
+		<category domain="tag"><![CDATA[Sanctions]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Where the Clarity Act stands ahead of Tuesday’s Senate vote]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-14-where-the-clarity-act-stands-ahead-of-tuesdays-senate-vote-414720</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2022/01/20210120_Capitol_Generic-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">4b91e77e-46aa-5162-be5f-b44d34a28e35</guid>
+        <pubDate>Mon, 14 Sep 2026 21:32:37 +0000</pubDate>
+            <description><![CDATA[The Senate heads into a consequential vote Tuesday on sweeping cryptocurrency legislation, but does it have enough support to pass?]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/us-policymaking"><![CDATA[U.S. Policymaking]]></category>
+		<category domain="tag"><![CDATA[Donald Trump]]></category>
+		<category domain="tag"><![CDATA[Elizabeth Warren]]></category>
+		<category domain="tag"><![CDATA[Senate Banking Committee]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Robinhood Chain’s rapid growth is being driven by 4 key factors, analyst says]]></title>
+        <link>https://www.theblock.co/news/business/2026-09-14-robinhood-chain-rapid-growth-being-driven-4-key-factors-analyst-says-414687</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2025/12/20251208_Robinhood_News_3-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">0003b0e3-0681-55e1-801f-5f360a3bcc5d</guid>
+        <pubDate>Mon, 14 Sep 2026 20:21:52 +0000</pubDate>
+            <description><![CDATA[The chain’s TVL has climbed to nearly $1 billion since its July 1 launch, while daily DEX volume reached $1.88 billion Sunday.]]></description>            <dc:creator><![CDATA[Jason Shubnell]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/defi"><![CDATA[DeFi]]></category>
+		<category domain="https://www.theblock.co/category/exchanges"><![CDATA[Exchanges]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/public-equities"><![CDATA[Public Equities]]></category>
+		<category domain="tag"><![CDATA[DEXs]]></category>
+		<category domain="tag"><![CDATA[Protocols]]></category>
+		<category domain="tag"><![CDATA[Robinhood]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[White House crypto adviser feels ‘very good’ ahead of Senate Clarity Act vote on Tuesday]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-14-white-house-crypto-adviser-feels-very-good-ahead-senate-clarity-act-vote-tuesday-414702</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2026/02/image-d3d3f946-f84d-4ec0-af8e-b8e8f8da2cab-2-1195x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">d78e3977-f096-59cf-9d95-bbca33b55a3d</guid>
+        <pubDate>Mon, 14 Sep 2026 19:29:41 +0000</pubDate>
+            <description><![CDATA[The White House's top crypto advisor says he feels "very good" about an initial vote in the Senate on cryptocurrency legislation on Tuesday.]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/us-policymaking"><![CDATA[U.S. Policymaking]]></category>
+		<category domain="tag"><![CDATA[Senate Agriculture Committee]]></category>
+		<category domain="tag"><![CDATA[Senate Banking Committee]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Bitcoin production rebounds in August for BitFuFu, edges higher at CleanSpark as Canaan slips]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-14-bitcoin-production-rebounds-august-bitfufu-edges-higher-cleanspark-canaan-slips-414660</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2023/12/20231204_BitcoinMining_News-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">d162f378-aa6e-569d-8cb2-d6e7f03a0e72</guid>
+        <pubDate>Mon, 14 Sep 2026 18:01:35 +0000</pubDate>
+            <description><![CDATA[Canaan sold its entire ETH position and 54 BTC, using part of the proceeds to repurchase 13.6 million shares.]]></description>            <dc:creator><![CDATA[Kyle Baird]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/crypto-infrastructure"><![CDATA[Crypto Infrastructure]]></category>
+		<category domain="https://www.theblock.co/category/infrastructure"><![CDATA[Infrastructure]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="tag"><![CDATA[Mining]]></category>
+		<category domain="tag"><![CDATA[Mining Companies]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Strive reaches 25,000 BTC milestone with latest $36.6 million purchase]]></title>
+        <link>https://www.theblock.co/news/markets/2026-09-14-strive-reaches-25000-btc-milestone-36-6-million-purchase-414631</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2024/09/20240904_Bitcoin_News_3-1200x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">00a83ba1-730a-54c3-9a50-6429887a751b</guid>
+        <pubDate>Mon, 14 Sep 2026 15:15:51 +0000</pubDate>
+            <description><![CDATA[The latest acquisition marks a slowdown from the prior week, when Strive purchased 1,375 BTC for approximately $109 million.]]></description>            <dc:creator><![CDATA[Kyle Baird]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[NY Attorney General James leads bipartisan push against the Clarity Act ahead of initial Senate vote]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-09-14-ny-attorney-general-james-bipartisan-push-against-clarity-act-initial-senate-vote-414635</link>
+        <media:content url="https://www.tbstat.com/wp/uploads/2019/05/new-york-690868_1920-1013x675.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">cfc07639-35d6-51e6-baae-d5b138725b19</guid>
+        <pubDate>Mon, 14 Sep 2026 14:43:34 +0000</pubDate>
+            <description><![CDATA[New York Attorney General Letitia James led a group of 17 bipartisan attorneys general urging lawmakers to vote against crypto legislation.]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/us-policymaking"><![CDATA[U.S. Policymaking]]></category>
+		<category domain="tag"><![CDATA[Elections 2026]]></category>
+		<category domain="tag"><![CDATA[Elizabeth Warren]]></category>
+		<category domain="tag"><![CDATA[Senate Agriculture Committee]]></category>
+		<category domain="tag"><![CDATA[Senate Banking Committee]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+    </channel>
+</rss>

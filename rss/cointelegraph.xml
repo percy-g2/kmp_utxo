@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+  <channel>
+    <title>Cointelegraph.com News</title>
+    <link>https://cointelegraph.com</link>
+    <atom:link href="https://cointelegraph.com/rss" rel="self" type="application/rss+xml"/>
+    <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    <generator>cointelegraph.com</generator>
+    <lastBuildDate>Tue, 15 Sep 2026 19:45:35 +0000</lastBuildDate>
+    <language>en</language>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <title>Cointelegraph.com News</title>
+      <link>https://cointelegraph.com</link>
+      <url>https://s3.cointelegraph.com/storage/uploads/view/b9ea15d46738b4df64e6e100ab59b373.png</url>
+      <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    </image>
+    <item>
+      <title>US Senate fails to advance CLARITY Act</title>
+      <pubDate>Tue, 15 Sep 2026 18:46:51 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 19:03:41 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/us-senate-fails-to-advance-clarity-act</guid>
+      <link><![CDATA[https://cointelegraph.com/news/us-senate-fails-to-advance-clarity-act?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2K3DC5KWJ1X6BP5W0XSQ09S/x-hi-us-senate-infrastructure-bill-doom-and-gloom-for-crypto-clarity-act.png" alt="US Senate fails to advance CLARITY Act" class="type:primaryImage"></p><p>The failed procedural vote leaves the CLARITY Act facing an uncertain future after months of negotiations over crypto oversight and ethics provisions.</p>]]></description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2K3DC5KWJ1X6BP5W0XSQ09S/x-hi-us-senate-infrastructure-bill-doom-and-gloom-for-crypto-clarity-act.png" fileSize="1491557" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2K3DC5KWJ1X6BP5W0XSQ09S/x-hi-us-senate-infrastructure-bill-doom-and-gloom-for-crypto-clarity-act.png" length="1491557" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Stablecoin growth could boost dollar dominance, US Treasury demand: BoE official</title>
+      <pubDate>Tue, 15 Sep 2026 17:53:04 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 17:58:26 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/stablecoins-us-dollar-dominance-treasury-demand-boe</guid>
+      <link><![CDATA[https://cointelegraph.com/news/stablecoins-us-dollar-dominance-treasury-demand-boe?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JZTTWXRSC00VVMGKVA4JWM/hi-central-bank-issued-digital-currency-the-new-bank-account-uk2.jpg" alt="Stablecoin growth could boost dollar dominance, US Treasury demand: BoE official" class="type:primaryImage"></p><p>A Bank of England policy maker said digital dollars could expand access to the US currency while turning stablecoin issuers into bigger buyers of government debt.</p>]]></description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JZTTWXRSC00VVMGKVA4JWM/hi-central-bank-issued-digital-currency-the-new-bank-account-uk2.jpg" fileSize="323968" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JZTTWXRSC00VVMGKVA4JWM/hi-central-bank-issued-digital-currency-the-new-bank-account-uk2.jpg" length="323968" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Binance adds 11 US-listed ETFs to wealth management offering</title>
+      <pubDate>Tue, 15 Sep 2026 17:22:04 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 17:25:29 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-adds-11-us-listed-etfs-to-wealth-management-offering</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-adds-11-us-listed-etfs-to-wealth-management-offering?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JZT31WJSAPCWV4C5T6FJ1R/hi-bitcoin-etf-sec-deadline-on-nov-5-not-a-decision-on-etfs-but-deadline-for-the-public-to-submit-a-review-clarifying-piece.png" alt="Binance adds 11 US-listed ETFs to wealth management offering" class="type:primaryImage"></p><p>The crypto exchange is expanding its traditional finance offerings with 11 US-listed exchange-traded funds focused on US Treasurys and investment-grade bonds.
+</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JZT31WJSAPCWV4C5T6FJ1R/hi-bitcoin-etf-sec-deadline-on-nov-5-not-a-decision-on-etfs-but-deadline-for-the-public-to-submit-a-review-clarifying-piece.png" fileSize="1580265" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JZT31WJSAPCWV4C5T6FJ1R/hi-bitcoin-etf-sec-deadline-on-nov-5-not-a-decision-on-etfs-but-deadline-for-the-public-to-submit-a-review-clarifying-piece.png" length="1580265" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitcoin price falls to $75.6K September low as global bonds hit multidecade highs</title>
+      <pubDate>Tue, 15 Sep 2026 16:02:01 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 16:08:50 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-price-falls-to-756k-september-low-as-global-bonds-hit-multidecade-highs</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-price-falls-to-756k-september-low-as-global-bonds-hit-multidecade-highs?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JWDC9JXEQB4J55MT31ZEK2/hi-what-are-bonds-and-how-do-they-work-for-crypto-red.jpg" alt="Bitcoin price falls to $75.6K September low as global bonds hit multidecade highs" class="type:primaryImage"></p><p>Bitcoin price action weakened over market nerves prior to the Senate CLARITY Act vote, while surging bond yields pressured risk assets across the board.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JWDC9JXEQB4J55MT31ZEK2/hi-what-are-bonds-and-how-do-they-work-for-crypto-red.jpg" fileSize="693216" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JWDC9JXEQB4J55MT31ZEK2/hi-what-are-bonds-and-how-do-they-work-for-crypto-red.jpg" length="693216" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Standard Chartered says Arbitrum could outperform Bitcoin, Ether through 2030</title>
+      <pubDate>Tue, 15 Sep 2026 15:50:49 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 15:53:40 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/standard-chartered-arbitrum-arb-price-10-2030</guid>
+      <link><![CDATA[https://cointelegraph.com/news/standard-chartered-arbitrum-arb-price-10-2030?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JRTG1Y6S9M2Y37M3XPJ1PC/hi-arbitrum-a-beginners-guide-to-the-next-generation-layer-2-for-ethereum-1.jpg" alt="Standard Chartered says Arbitrum could outperform Bitcoin, Ether through 2030" class="type:primaryImage"></p><p>Standard Chartered sees Robinhood Chain as an early sign that tokenization could transform Arbitrum’s economics and drive ARB sharply higher by 2030.
+</p>]]></description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JRTG1Y6S9M2Y37M3XPJ1PC/hi-arbitrum-a-beginners-guide-to-the-next-generation-layer-2-for-ethereum-1.jpg" fileSize="527698" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JRTG1Y6S9M2Y37M3XPJ1PC/hi-arbitrum-a-beginners-guide-to-the-next-generation-layer-2-for-ethereum-1.jpg" length="527698" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>ETH wallet exploit backfires as MEV bot captures $7.7M, Kelp freezes address</title>
+      <pubDate>Tue, 15 Sep 2026 15:21:26 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 15:24:24 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/mev-bot-intercepts-77m-in-rseth-from-ethereum-wallet-exploit</guid>
+      <link><![CDATA[https://cointelegraph.com/news/mev-bot-intercepts-77m-in-rseth-from-ethereum-wallet-exploit?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JRVDXPPS1RFJ7HQKY6AX30/hi-transactions-stopped-danger-1.jpg" alt="ETH wallet exploit backfires as MEV bot captures $7.7M, Kelp freezes address" class="type:primaryImage"></p><p>An MEV bot known as “Yoink” front-ran an attacker attempting to exploit a custom Safe module, capturing the stolen rsETH before Kelp temporarily froze the receiving address.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JRVDXPPS1RFJ7HQKY6AX30/hi-transactions-stopped-danger-1.jpg" fileSize="368246" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JRVDXPPS1RFJ7HQKY6AX30/hi-transactions-stopped-danger-1.jpg" length="368246" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>USDT payments feature in Polish energy giant’s failed $230M oil deal: FT</title>
+      <pubDate>Tue, 15 Sep 2026 13:37:31 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 13:42:17 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/usdt-payments-polish-energy-giants-failed-230m-oil-deal</guid>
+      <link><![CDATA[https://cointelegraph.com/news/usdt-payments-polish-energy-giants-failed-230m-oil-deal?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JGJQHSGWT0JCBGJ8YAJD8X/oil-tether-blockchain-sky-platform-production.jpg" alt="USDT payments feature in Polish energy giant’s failed $230M oil deal: FT" class="type:primaryImage"></p><p>Tether’s USDT stablecoin was part of a failed oil trade that reportedly cost a Polish energy giant $230 million in late 2023.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JGJQHSGWT0JCBGJ8YAJD8X/oil-tether-blockchain-sky-platform-production.jpg" fileSize="346276" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2JGJQHSGWT0JCBGJ8YAJD8X/oil-tether-blockchain-sky-platform-production.jpg" length="346276" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>US House crypto tax package omits mining, staking reward deferral</title>
+      <pubDate>Tue, 15 Sep 2026 10:04:21 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 10:09:53 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/us-house-crypto-tax-bill-mining-staking-reward-deferral</guid>
+      <link><![CDATA[https://cointelegraph.com/news/us-house-crypto-tax-bill-mining-staking-reward-deferral?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J6TX6A7KEPZNSA4AMER8KE/regulations-us-tax.jpg" alt="US House crypto tax package omits mining, staking reward deferral" class="type:primaryImage"></p><p>The 114-page bill would change the tax treatment of crypto fees, stablecoins and lending while leaving existing reward-tax timing unchanged.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J6TX6A7KEPZNSA4AMER8KE/regulations-us-tax.jpg" fileSize="737222" type="image/jpeg" medium="image" height="967" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J6TX6A7KEPZNSA4AMER8KE/regulations-us-tax.jpg" length="737222" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Ethereum, Base wallet standards talks fail, Ethlabs researcher says</title>
+      <pubDate>Tue, 15 Sep 2026 09:40:27 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 09:43:08 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/ethereum-base-wallet-standards-collaboration-breaks</guid>
+      <link><![CDATA[https://cointelegraph.com/news/ethereum-base-wallet-standards-collaboration-breaks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J4CY20932Q9DX6CEYR4793/robotethereum.jpg" alt="Ethereum, Base wallet standards talks fail, Ethlabs researcher says" class="type:primaryImage"></p><p>Ethereum and Base are pursuing different account abstraction designs after talks failed, according to Ethlabs researcher Derek Chiang.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J4CY20932Q9DX6CEYR4793/robotethereum.jpg" fileSize="581629" type="image/jpeg" medium="image" height="1365" width="2048">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J4CY20932Q9DX6CEYR4793/robotethereum.jpg" length="581629" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitcoin short-term holders hit 30-day profit streak as bull-market odds improve: CryptoQuant</title>
+      <pubDate>Tue, 15 Sep 2026 09:30:31 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 09:36:09 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-short-term-holders-hit-30-day-profit-streak-as-bull-market-odds-improve-cryptoquant</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-short-term-holders-hit-30-day-profit-streak-as-bull-market-odds-improve-cryptoquant?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J63GGEEN1J9P0Q9KPEPHYH/hodler-investment-bitcoin.jpg" alt="Bitcoin short-term holders hit 30-day profit streak as bull-market odds improve: CryptoQuant" class="type:primaryImage"></p><p>Bitcoin short-term holders approached a full month in partial profit as analysis saw improving odds of an enduring bullish BTC price reversal.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J63GGEEN1J9P0Q9KPEPHYH/hodler-investment-bitcoin.jpg" fileSize="520465" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J63GGEEN1J9P0Q9KPEPHYH/hodler-investment-bitcoin.jpg" length="520465" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>US seeks $61M in USDT allegedly tied to sanctioned Iranian oil sales</title>
+      <pubDate>Tue, 15 Sep 2026 08:46:35 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 08:55:35 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/doj-61m-usdt-forfeiture-iranian-oil</guid>
+      <link><![CDATA[https://cointelegraph.com/news/doj-61m-usdt-forfeiture-iranian-oil?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J0JSDM845NTQMSBRH4G509/stablecoin-tetherr.png" alt="US seeks $61M in USDT allegedly tied to sanctioned Iranian oil sales" class="type:primaryImage"></p><p>Tether froze $61.19 million across 10 Tron addresses in 2025 that prosecutors allege were connected to black-market Iranian oil proceeds.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J0JSDM845NTQMSBRH4G509/stablecoin-tetherr.png" fileSize="1665631" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J0JSDM845NTQMSBRH4G509/stablecoin-tetherr.png" length="1665631" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Solana more than triples transaction size limit with mainnet upgrade</title>
+      <pubDate>Tue, 15 Sep 2026 08:18:53 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 08:21:10 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/solana-transaction-size-limit-4096-bytes-upgrade</guid>
+      <link><![CDATA[https://cointelegraph.com/news/solana-transaction-size-limit-4096-bytes-upgrade?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J0C2PCAGZC7WZDC6R7BJFX/hi-solana-ecosystem-expands-institutional-push-with-europe-focused-research-arm-1.jpg" alt="Solana more than triples transaction size limit with mainnet upgrade" class="type:primaryImage"></p><p>Solana raised its transaction size limit to 4,096 bytes, giving developers more room for zero-knowledge proofs and transactions with multiple signatures.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J0C2PCAGZC7WZDC6R7BJFX/hi-solana-ecosystem-expands-institutional-push-with-europe-focused-research-arm-1.jpg" fileSize="484476" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2J0C2PCAGZC7WZDC6R7BJFX/hi-solana-ecosystem-expands-institutional-push-with-europe-focused-research-arm-1.jpg" length="484476" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Here’s what happened in crypto today</title>
+      <pubDate>Tue, 15 Sep 2026 05:50:00 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 14:00:41 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/what-happened-in-crypto-today</guid>
+      <link><![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" alt="Here’s what happened in crypto today" class="type:primaryImage"></p><p>Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, Web3 and crypto regulation.</p>]]></description>
+      <dc:creator>Cointelegraph by Robert Lakin</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" fileSize="848525" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" length="848525" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>CLARITY Act odds fall to 16% as key Democrats resist GOP’s ‘final’ offer</title>
+      <pubDate>Tue, 15 Sep 2026 05:32:12 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 09:01:15 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/clarity-act-odds-fall-democrats-gop-final-offer</guid>
+      <link><![CDATA[https://cointelegraph.com/news/clarity-act-odds-fall-democrats-gop-final-offer?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HQJ6Z513GQZPG3QPPMTZFF/clarity.png" alt="CLARITY Act odds fall to 16% as key Democrats resist GOP’s ‘final’ offer" class="type:primaryImage"></p><p>Banking groups also said the GOP’s final text leaves stablecoin reward loopholes, while tribal gaming interests warn that its prediction market provisions threaten tribal sovereignty.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HQJ6Z513GQZPG3QPPMTZFF/clarity.png" fileSize="1465471" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HQJ6Z513GQZPG3QPPMTZFF/clarity.png" length="1465471" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>CoinEx to cease operation after 9 years, citing ‘significant’ crypto contraction</title>
+      <pubDate>Tue, 15 Sep 2026 04:19:16 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 06:12:01 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/coinex-cease-operation-citing-significant-crypto-contraction</guid>
+      <link><![CDATA[https://cointelegraph.com/news/coinex-cease-operation-citing-significant-crypto-contraction?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HV2WP39A13M6VPCXQJBABW/single-leaf-on-tree-balance.png" alt="CoinEx to cease operation after 9 years, citing ‘significant’ crypto contraction" class="type:primaryImage"></p><p>CoinEx said falling trading volumes and liquidity, along with rising regulatory and compliance costs, had exceeded “reasonable boundaries,” with withdrawals remaining open until Dec. 22.</p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HV2WP39A13M6VPCXQJBABW/single-leaf-on-tree-balance.png" fileSize="2328904" type="image/png" medium="image" height="1090" width="1627">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HV2WP39A13M6VPCXQJBABW/single-leaf-on-tree-balance.png" length="2328904" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Balancer eyes wind-down after restructuring fails to revive revenue </title>
+      <pubDate>Tue, 15 Sep 2026 03:33:23 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 05:54:09 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/balancer-eyes-wind-down-after-restructuring-fails-revive-revenue</guid>
+      <link><![CDATA[https://cointelegraph.com/news/balancer-eyes-wind-down-after-restructuring-fails-revive-revenue?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HHXN4JX4VQKB9WX83V8K8J/single-leaf-on-tree-balancer.jpg" alt="Balancer eyes wind-down after restructuring fails to revive revenue " class="type:primaryImage"></p><p>Balancer cut costs and shipped new products after restructuring, but Marcus Hardt says v3 failed to replace legacy revenue as November’s $128 million exploit continued to weigh on adoption. </p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HHXN4JX4VQKB9WX83V8K8J/single-leaf-on-tree-balancer.jpg" fileSize="205895" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2HHXN4JX4VQKB9WX83V8K8J/single-leaf-on-tree-balancer.jpg" length="205895" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Democrats push back on GOP’s ‘final’ CLARITY offer with counterproposal: Politico</title>
+      <pubDate>Tue, 15 Sep 2026 00:46:15 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 05:56:44 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/democrats-push-back-on-gops-final-clarity-offer-with-counterproposal</guid>
+      <link><![CDATA[https://cointelegraph.com/news/democrats-push-back-on-gops-final-clarity-offer-with-counterproposal?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2H8AP988B45330TXZG3C9KM/republicans-vs-democrats.jpg" alt="Democrats push back on GOP’s ‘final’ CLARITY offer with counterproposal: Politico" class="type:primaryImage"></p><p>Some Democrats remain dissatisfied with the bill’s crypto ethics provisions and will be sending a counterproposal just hours before a key procedural vote. </p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2H8AP988B45330TXZG3C9KM/republicans-vs-democrats.jpg" fileSize="452457" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2H8AP988B45330TXZG3C9KM/republicans-vs-democrats.jpg" length="452457" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Kraken brings DeFi yield to tokenized stocks and ETFs</title>
+      <pubDate>Mon, 14 Sep 2026 20:54:10 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 06:03:08 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/kraken-brings-defi-yield-to-tokenized-stocks-and-etfs</guid>
+      <link><![CDATA[https://cointelegraph.com/news/kraken-brings-defi-yield-to-tokenized-stocks-and-etfs?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GSWMB1C2Z7PZH9MAVV9T6X/hi-crypto-market-trading-1-breaking-news.png" alt="Kraken brings DeFi yield to tokenized stocks and ETFs" class="type:primaryImage"></p><p>Kraken’s new xStocks vaults let investors earn yield on tokenized versions of Nvidia and major US stock market ETFs by lending the assets in DeFi markets.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GSWMB1C2Z7PZH9MAVV9T6X/hi-crypto-market-trading-1-breaking-news.png" fileSize="1848311" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GSWMB1C2Z7PZH9MAVV9T6X/hi-crypto-market-trading-1-breaking-news.png" length="1848311" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitcoin tops $79K, oil falls as Trump says Iran war could end</title>
+      <pubDate>Mon, 14 Sep 2026 18:56:28 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 09:08:35 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-passes-79k-oil-prices-cool-on-trump-iran-war-hints</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-passes-79k-oil-prices-cool-on-trump-iran-war-hints?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GMDWFDT25SQYFK0HHP7F8E/oil-bitcoin-petrol-2.jpg" alt="Bitcoin tops $79K, oil falls as Trump says Iran war could end" class="type:primaryImage"></p><p>Bitcoin’s price rose toward $80,000 after US President Donald Trump hinted that the US-Iran war would end, pushing oil prices lower.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GMDWFDT25SQYFK0HHP7F8E/oil-bitcoin-petrol-2.jpg" fileSize="481153" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GMDWFDT25SQYFK0HHP7F8E/oil-bitcoin-petrol-2.jpg" length="481153" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Strive adds 469 Bitcoin to reach 25,000 BTC treasury</title>
+      <pubDate>Mon, 14 Sep 2026 17:50:12 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 06:11:56 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/strive-adds-469-bitcoin-to-reach-25000-btc-treasury</guid>
+      <link><![CDATA[https://cointelegraph.com/news/strive-adds-469-bitcoin-to-reach-25000-btc-treasury?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GEQRXMNZKPZF714Z603E41/hi-five-bitcoin-narratives-analysts-are-watching-beyond-price-1.png" alt="Strive adds 469 Bitcoin to reach 25,000 BTC treasury" class="type:primaryImage"></p><p>Strive’s latest Bitcoin purchase was funded entirely through its SATA preferred stock as the company continues its rapid climb among corporate BTC holders.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GEQRXMNZKPZF714Z603E41/hi-five-bitcoin-narratives-analysts-are-watching-beyond-price-1.png" fileSize="1694089" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GEQRXMNZKPZF714Z603E41/hi-five-bitcoin-narratives-analysts-are-watching-beyond-price-1.png" length="1694089" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>CLARITY Act faces state AGs opposition ahead of key Senate vote</title>
+      <pubDate>Mon, 14 Sep 2026 17:42:04 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 05:33:47 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/clarity-act-faces-new-opposition-ahead-of-key-senate-vote</guid>
+      <link><![CDATA[https://cointelegraph.com/news/clarity-act-faces-new-opposition-ahead-of-key-senate-vote?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description>Trump’s ethics concession addresses one hurdle for the crypto bill, but 18 state attorneys general say the revised legislation would weaken state oversight.</description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title><![CDATA[S&P Global backs Kaiko as Series B reaches $110M]]></title>
+      <pubDate>Mon, 14 Sep 2026 16:17:52 +0000</pubDate>
+      <atom:updated>Mon, 14 Sep 2026 16:22:02 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/sp-global-leads-110m-kaiko-funding-round-as-wall-street-eyes-tokenized-markets</guid>
+      <link><![CDATA[https://cointelegraph.com/news/sp-global-leads-110m-kaiko-funding-round-as-wall-street-eyes-tokenized-markets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GA9N8SV4RP2PV1J1A9GWVD/hi-crypto-market-trading-trader-breaking-news.png" alt="S&amp;P Global backs Kaiko as Series B reaches $110M" class="type:primaryImage"></p><p>The investment brings together major financial institutions as Kaiko expands its data infrastructure for tokenized securities and onchain financial markets.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GA9N8SV4RP2PV1J1A9GWVD/hi-crypto-market-trading-trader-breaking-news.png" fileSize="2089917" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2GA9N8SV4RP2PV1J1A9GWVD/hi-crypto-market-trading-trader-breaking-news.png" length="2089917" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitmine projects $334M in annual staking revenue from $15.8B crypto treasury</title>
+      <pubDate>Mon, 14 Sep 2026 15:55:59 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 08:58:40 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/bitmine-5-million-eth-staked-334-million-revenue</guid>
+      <link><![CDATA[https://cointelegraph.com/news/bitmine-5-million-eth-staked-334-million-revenue?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M20KSZECABXAPAY6J96Y7ZX7/hi-the-7-largest-ethereum-treasury-companies-right-now-ranked-by-holdings-bitmine-4.jpg" alt="Bitmine projects $334M in annual staking revenue from $15.8B crypto treasury" class="type:primaryImage"></p><p>Bitmine now has more than 5 million ETH staked, turning most of its Ether holdings into a recurring income stream as it continues to accumulate.
+</p>]]></description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M20KSZECABXAPAY6J96Y7ZX7/hi-the-7-largest-ethereum-treasury-companies-right-now-ranked-by-holdings-bitmine-4.jpg" fileSize="531639" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M20KSZECABXAPAY6J96Y7ZX7/hi-the-7-largest-ethereum-treasury-companies-right-now-ranked-by-holdings-bitmine-4.jpg" length="531639" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Why are AI’s biggest companies suddenly asking to slow down?</title>
+      <pubDate>Mon, 14 Sep 2026 15:18:46 +0000</pubDate>
+      <atom:updated>Mon, 14 Sep 2026 15:55:03 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/magazine/why-are-biggest-ai-companies-suddenly-asking-to-slow-down</guid>
+      <link><![CDATA[https://cointelegraph.com/magazine/why-are-biggest-ai-companies-suddenly-asking-to-slow-down?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2G1M9RG81KG7CSFP69XNX5A/hi-what-is-chaosgpt-an-ai-tool-that-wants-to-destroy-humanity.jpg" alt="Why are AI’s biggest companies suddenly asking to slow down?" class="type:primaryImage"></p><p>AI’s biggest labs are suddenly calling for a slower pace of development. Is it because AI risks are catching up with the technology, or because the economics of the race are getting harder to justify?</p>]]></description>
+      <dc:creator>Cointelegraph by Christina Comben</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2G1M9RG81KG7CSFP69XNX5A/hi-what-is-chaosgpt-an-ai-tool-that-wants-to-destroy-humanity.jpg" fileSize="383210" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2G1M9RG81KG7CSFP69XNX5A/hi-what-is-chaosgpt-an-ai-tool-that-wants-to-destroy-humanity.jpg" length="383210" type="image/jpeg"/>
+      <category>Magazine</category>
+    </item>
+    <item>
+      <title>Fragmented regulations limit stablecoin adoption in international finance: WTO head</title>
+      <pubDate>Mon, 14 Sep 2026 13:30:00 +0000</pubDate>
+      <atom:updated>Mon, 14 Sep 2026 15:13:48 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/fragmented-regulations-limit-stablecoin-adoption-in-international-finance-wto-director</guid>
+      <link><![CDATA[https://cointelegraph.com/news/fragmented-regulations-limit-stablecoin-adoption-in-international-finance-wto-director?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2G0YC6M7V2K2DGBYCT9YS2P/cross-border-transaction-stablecoin-swift-1.jpg" alt="Fragmented regulations limit stablecoin adoption in international finance: WTO head" class="type:primaryImage"></p><p>Stablecoins may reduce trade finance friction, fragmented regulatory regimes limit their adoption to just 3% of global payments, according to the World Trade Organization.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2G0YC6M7V2K2DGBYCT9YS2P/cross-border-transaction-stablecoin-swift-1.jpg" fileSize="350510" type="image/jpeg" medium="image" height="967" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2G0YC6M7V2K2DGBYCT9YS2P/cross-border-transaction-stablecoin-swift-1.jpg" length="350510" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>HYPE price could suffer as Binance takes its revenue: Alice Liu</title>
+      <pubDate>Mon, 14 Sep 2026 13:30:00 +0000</pubDate>
+      <atom:updated>Mon, 14 Sep 2026 01:46:21 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/magazine/hype-price-could-suffer-as-binance-takes-its-revenue-alice-liu</guid>
+      <link><![CDATA[https://cointelegraph.com/magazine/hype-price-could-suffer-as-binance-takes-its-revenue-alice-liu?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2EQBXGXVCXHB5FJG3RJFAZP/alice-liu.png" alt="HYPE price could suffer as Binance takes its revenue: Alice Liu" class="type:primaryImage"></p><p>Token buybacks have pushed Hyperliquid to all time highs, but Alice Liu from CoinMarketCap warns that Binance poses a threat to the revenue stream it depends on to pay for them. </p>]]></description>
+      <dc:creator>Cointelegraph by Ciaran Lyons</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2EQBXGXVCXHB5FJG3RJFAZP/alice-liu.png" fileSize="4349144" type="image/png" medium="image" height="1684" width="2528">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2EQBXGXVCXHB5FJG3RJFAZP/alice-liu.png" length="4349144" type="image/png"/>
+      <category>Magazine</category>
+    </item>
+    <item>
+      <title>EU cyber rules put crypto wallet makers on 24-hour reporting clock</title>
+      <pubDate>Mon, 14 Sep 2026 11:38:44 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 03:08:12 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/eu-cyber-rules-put-crypto-wallet-24-hour-reporting</guid>
+      <link><![CDATA[https://cointelegraph.com/news/eu-cyber-rules-put-crypto-wallet-24-hour-reporting?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FR3T0NEB8ZH35X810AQSMA/european-union-eu-european-parliament-brussels-2.jpg" alt="EU cyber rules put crypto wallet makers on 24-hour reporting clock" class="type:primaryImage"></p><p>Crypto wallet providers must submit an early vulnerability report within 24 hours and a full notification within 72 hours of exploits, or risk administrative fines of as much as $17.3 million.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FR3T0NEB8ZH35X810AQSMA/european-union-eu-european-parliament-brussels-2.jpg" fileSize="539522" type="image/jpeg" medium="image" height="1060" width="1591">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FR3T0NEB8ZH35X810AQSMA/european-union-eu-european-parliament-brussels-2.jpg" length="539522" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>CLARITY Act vote meets Fed rate hike: Five things to know in Bitcoin this week</title>
+      <pubDate>Mon, 14 Sep 2026 10:02:00 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 16:07:06 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/clarity-act-vote-meets-fed-rate-hike-five-things-to-know-in-bitcoin-this-week</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/clarity-act-vote-meets-fed-rate-hike-five-things-to-know-in-bitcoin-this-week?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FNBW97VVK5XYKANMB2SP3G/hi-us-senate-infrastructure-bill-doom-and-gloom-for-crypto-clarity-act-1.jpg" alt="CLARITY Act vote meets Fed rate hike: Five things to know in Bitcoin this week" class="type:primaryImage"></p><p>Bitcoin traders brace for volatility as the CLARITY Act awaits a Senate vote to move forward and the Fed is due to announce its latest rate decision.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FNBW97VVK5XYKANMB2SP3G/hi-us-senate-infrastructure-bill-doom-and-gloom-for-crypto-clarity-act-1.jpg" fileSize="245056" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FNBW97VVK5XYKANMB2SP3G/hi-us-senate-infrastructure-bill-doom-and-gloom-for-crypto-clarity-act-1.jpg" length="245056" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Symbiosis says recovered 15 BTC from bridge hack, offers 20% bounty</title>
+      <pubDate>Mon, 14 Sep 2026 09:55:35 +0000</pubDate>
+      <atom:updated>Tue, 15 Sep 2026 03:30:00 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/symbiosis-recovered-15-btc-bridge-hack-20-bounty</guid>
+      <link><![CDATA[https://cointelegraph.com/news/symbiosis-recovered-15-btc-bridge-hack-20-bounty?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FK6GAEQRFQBFCE1EBGAMG5/hi-what-is-a-crypto-money-mule-scam-and-how-to-avoid-it-1.jpg" alt="Symbiosis says recovered 15 BTC from bridge hack, offers 20% bounty" class="type:primaryImage"></p><p>Symbiosis is offering a 20% bounty for information leading to asset recovery after the hacker refused to return the stolen funds for the same white-hat bounty.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FK6GAEQRFQBFCE1EBGAMG5/hi-what-is-a-crypto-money-mule-scam-and-how-to-avoid-it-1.jpg" fileSize="463406" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FK6GAEQRFQBFCE1EBGAMG5/hi-what-is-a-crypto-money-mule-scam-and-how-to-avoid-it-1.jpg" length="463406" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>UK FCA seeks views on fund rule exemptions for tokenized gold</title>
+      <pubDate>Mon, 14 Sep 2026 08:57:00 +0000</pubDate>
+      <atom:updated>Mon, 14 Sep 2026 10:29:35 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/uk-fca-weighs-fund-rules-exemption-for-tokenized-gold-ft</guid>
+      <link><![CDATA[https://cointelegraph.com/news/uk-fca-weighs-fund-rules-exemption-for-tokenized-gold-ft?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FH25D983BQTGVJMM116BR7/hi-fintech-in-the-united-kingdom-after-brexit-fca.jpg" alt="UK FCA seeks views on fund rule exemptions for tokenized gold" class="type:primaryImage"></p><p>The FCA said uncertainty over whether some tokenized gold products fall under UK fund rules could affect adoption and investor access.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FH25D983BQTGVJMM116BR7/hi-fintech-in-the-united-kingdom-after-brexit-fca.jpg" fileSize="867645" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M2FH25D983BQTGVJMM116BR7/hi-fintech-in-the-united-kingdom-after-brexit-fca.jpg" length="867645" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+  </channel>
+</rss>

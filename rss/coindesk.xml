@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title>CoinDesk: Bitcoin, Ethereum, Crypto News and Price Data</title>
+    <link>https://www.coindesk.com/</link>
+    <atom:link rel="self" type="application/rss+xml" href="https://www.coindesk.com/arc/outboundfeeds/rss"/>
+    <atom:link rel="hub" href="true"/>
+    <description>Leader in cryptocurrency, Bitcoin, Ethereum, XRP, blockchain, DeFi, digital finance and Web 3.0 news with analysis, video and live price updates.</description>
+    <lastBuildDate>Tue, 15 Sep 2026 19:45:58 +0000</lastBuildDate>
+    <language>en-US</language>
+    <copyright>© 2026 CoinDesk, Inc.</copyright>
+    <generator>CoinDesk</generator>
+    <ttl>5</ttl>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <url>https://downloads.coindesk.com/arc/failsafe/feeds/coindesk-feed-logo.png</url>
+      <title>CoinDesk: Bitcoin, Ethereum, Crypto News and Price Data</title>
+      <link>https://www.coindesk.com/</link>
+    </image>
+    <item>
+      <title><![CDATA[Crypto industry reacts after Clarity Act fails Senate vote]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/15/clarity-act-fails-in-senate-here-is-how-the-crypto-industry-is-reacting</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/01d0c944fddf68f63ab3aad72a8140ea9b33b42d-2549x1433.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">3378990a-2319-4c5b-bc63-d55776a91937</guid>
+      <pubDate>Tue, 15 Sep 2026 19:06:31 +0000</pubDate>
+      <description><![CDATA[One of the most crucial U.S. regulations for crypto markets couldn't secure enough support to clear the Senate's final 60-vote hurdle.]]></description>
+      <dc:creator>Jamie Crawley</dc:creator>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <dc:creator>Cheyenne Ligon</dc:creator>
+      <dc:creator>Helene Braun</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Clarity Act]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Crypto Clarity Act flames out in failed U.S. Senate vote]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/15/crypto-clarity-act-flames-out-in-failed-u-s-senate-vote</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/0615c820bc3ebcfa10bf4c09cfc6078f828a1a6e-3830x2154.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">5f1d6f00-982d-4430-b8b1-fd1d5f82b714</guid>
+      <pubDate>Tue, 15 Sep 2026 18:50:58 +0000</pubDate>
+      <description><![CDATA[The years-long effort to set U.S. regulations for crypto markets couldn't muster enough support to make the leap over the Senate's final 60-vote hurdle.]]></description>
+      <dc:creator>Jesse Hamilton</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Clarity Act]]></category>
+      <category domain="tag"><![CDATA[Regulation]]></category>
+      <category domain="tag"><![CDATA[Breaking News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Solana lender Kamino taps fintech veteran Michael Weisz as CEO for massive U.S. expansion]]></title>
+      <link>https://www.coindesk.com/business/2026/09/15/solana-lender-kamino-taps-yieldstreet-co-founder-as-ceo-in-wall-street-expansion</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/e51e066362c8bb5ce669efe6d8bfceab56af7c5d-1672x941.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">6cc5b442-335d-4e9e-b64e-40fa4b7ba025</guid>
+      <pubDate>Tue, 15 Sep 2026 18:02:05 +0000</pubDate>
+      <description><![CDATA[Michael Weisz will lead Kamino from a new New York headquarters as the DeFi lender is expanding into tokenized assets.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Solana News]]></category>
+      <category domain="tag"><![CDATA[DeFi]]></category>
+      <category domain="tag"><![CDATA[Tokenization]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Crypto Clarity Act barrels toward disappointment barring last-minute Senate turnaround]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/15/crypto-clarity-act-barrels-toward-disappointment-barring-last-minute-senate-turnaround</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/cb7714b875f98af0e0118a795ebe30c3fc3b672e-3832x2157.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">96a05f58-df73-4770-a5a8-ddf1b51e9061</guid>
+      <pubDate>Tue, 15 Sep 2026 15:50:23 +0000</pubDate>
+      <description><![CDATA[As the parties dig in their heels, the market structure bill hasn't yet amassed the votes it would need to clear the first Senate hurdle scheduled for Tuesday.]]></description>
+      <dc:creator>Jesse Hamilton</dc:creator>
+      <dc:creator>Nikhilesh De</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Clarity Act]]></category>
+      <category domain="tag"><![CDATA[Regulation]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[European Central Bank calls for merchants to participate in digital euro pilot]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/15/european-central-bank-calls-for-merchants-to-participate-in-digital-euro-pilot</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/26cccb22ec392aed75fa716d72a469596e1faf75-6048x4032.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">9141fc76-89e7-4f12-b379-c9eca3f0d919</guid>
+      <pubDate>Tue, 15 Sep 2026 14:15:06 +0000</pubDate>
+      <description><![CDATA[The 12-month test will put a beta version of the central bank currency through online, mobile, in-store and peer-to-peer payments.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[ECB]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="tag"><![CDATA[CBDC]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Clarity Act's odds of passing plunge as Republicans reject Democrats' counter-proposal]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/15/clarity-act-s-odds-of-passing-plunge-as-republicans-reject-democrats-counter-proposal</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/3ec2100aace37d25cc5a14721f17c2eabccdb000-7781x5190.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">4d5c83db-1ac0-4d54-afda-f230f3fc121d</guid>
+      <pubDate>Tue, 15 Sep 2026 14:13:44 +0000</pubDate>
+      <description><![CDATA[Prediction markets sharply marked down the crypto market structure bill’s near-term prospects as negotiations remained stuck hours before a key Senate vote.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Clarity Act]]></category>
+      <category domain="tag"><![CDATA[Market Structure Legislation]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[A hacker turned 25 cents of bitcoin into 46 billion fake BTC tokens on a DeFi bridge]]></title>
+      <link>https://www.coindesk.com/tech/2026/09/15/a-hacker-turned-25-cents-of-bitcoin-into-46-billion-fake-btc-tokens-on-a-defi-bridge</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/c18c9af8ef94bcbc9a17fac89a01b83bfc76fd8f-5472x3648.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">5fa13fb5-191d-40b9-803d-7ed36fc99316</guid>
+      <pubDate>Tue, 15 Sep 2026 13:43:50 +0000</pubDate>
+      <description><![CDATA[Two software bugs allowed the attacker to create more than 2,000 times Bitcoin’s maximum supply in unbacked syBTC. Symbiosis puts preliminary losses at 9.97 BTC.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="tag"><![CDATA[Hack]]></category>
+      <category domain="tag"><![CDATA[DeFi]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Standard Chartered predicts Arbitrum's ARB to rise 70-fold to $10, citing Robinhood Chain revenue]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/15/standard-chartered-expects-arbitrum-s-arb-rising-70-fold-to-usd10-as-robinhood-boosts-its-revenue</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/635098a63fd9f1666a72fdfb7fee8ca9adedf6a2-4032x2268.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">3b8b7d5f-dfc2-4c2b-a976-9480a668c134</guid>
+      <pubDate>Tue, 15 Sep 2026 13:25:52 +0000</pubDate>
+      <description><![CDATA[The bank expects tokenization to make Arbitrum a favored network for traditional finance, even though ARB holders currently have no direct claim on the fees.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Standard chartered]]></category>
+      <category domain="tag"><![CDATA[Robinhood]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[To ensure permanent economic innovation, we must pass the Clarity Act now]]></title>
+      <link>https://www.coindesk.com/opinion/2026/09/15/to-ensure-permanent-economic-innovation-we-must-pass-the-clarity-act-now</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/494d277dcaea50b9f7e23e23a346bc86c3387a5d-7290x4862.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">da026753-05f1-4839-aafd-0b9900a0ad4e</guid>
+      <pubDate>Tue, 15 Sep 2026 12:00:06 +0000</pubDate>
+      <description><![CDATA[Congress needs 60 Senators willing to put innovation first and provide critical relief to the digital asset industry, argues Rep. Shri Thanedar (D-Mich.)]]></description>
+      <dc:creator>Shri Thanedar</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/opinion"><![CDATA[Opinion]]></category>
+      <category domain="https://www.coindesk.com/">Opinion</category>
+    </item>
+    <item>
+      <title><![CDATA[Ether, solana, XRP likely to gain if Clarity Act progresses]]></title>
+      <link>https://www.coindesk.com/daybook-us/2026/09/15/ether-solana-xrp-likely-to-gain-if-clarity-act-progresses</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/402f14eb115486b7678788a66c6d30abc23d8c52-1280x720.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">fc76d519-28c4-4150-ba25-935834e58fe9</guid>
+      <pubDate>Tue, 15 Sep 2026 11:15:44 +0000</pubDate>
+      <description><![CDATA[Your day-ahead look for Sept. 15, 2026]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/daybook-us"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="tag"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Why banks should stop worrying and learn to love the Clarity Act]]></title>
+      <link>https://www.coindesk.com/opinion/2026/09/15/why-banks-should-stop-worrying-and-learn-to-love-the-clarity-act</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/ca1f526406a260d1dd572fbb8db8e2afb27e1170-5577x3137.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">494f04fe-ed16-48d3-9bb4-a75f26172e56</guid>
+      <pubDate>Tue, 15 Sep 2026 11:00:00 +0000</pubDate>
+      <description><![CDATA[They could be the biggest winners from regulatory clarity, argues Alex Tapscott, CEO of CMCC Global Capital Markets. ]]></description>
+      <dc:creator>Alex Tapscott</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/opinion"><![CDATA[Opinion]]></category>
+      <category domain="https://www.coindesk.com/">Opinion</category>
+    </item>
+    <item>
+      <title><![CDATA[Velocity extends Series A to $48M at $200M valuation with backing from Visa, Circle, and Ripple]]></title>
+      <link>https://www.coindesk.com/business/2026/09/10/velocity-extends-series-a-to-usd48m-at-usd200m-valuation-with-backing-from-visa-circle-and-ripple</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/4475a5908f4b8588b7316127aebd08216fd1288c-4096x2304.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">ec775a09-346e-48c6-9f9f-7f6193d23b5a</guid>
+      <pubDate>Tue, 15 Sep 2026 11:00:00 +0000</pubDate>
+      <description><![CDATA[The investment brings Velocity's Series A round to $48 million and values the London-based payments infrastructure firm at $200 million, CEO Eric Queathem said.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="tag"><![CDATA[Circle]]></category>
+      <category domain="tag"><![CDATA[Ripple]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin gives back Monday's gain as Clarity Act odds fade on Polymarket]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/15/bitcoin-gives-back-monday-s-gain-as-clarity-act-odds-fade-on-polymarket</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/9169b3ce79395c7b56a98fd9781f13842780d443-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">1472cc9a-239b-4bd4-9044-a6f30837ed41</guid>
+      <pubDate>Tue, 15 Sep 2026 10:41:35 +0000</pubDate>
+      <description><![CDATA[Bitcoin fell 1.7% since midnight UTC to $76,862, unwinding a late Monday rally as Polymarket odds on the Clarity Act becoming law this year halved overnight.]]></description>
+      <dc:creator>Oliver Knight</dc:creator>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Crypto Markets Today]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[How a simple coding mistake let a hacker drain $7.8 million from a crypto wallet]]></title>
+      <link>https://www.coindesk.com/business/2026/09/15/how-a-simple-coding-mistake-let-a-hacker-drain-usd7-8-million-from-a-crypto-wallet</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/c18c9af8ef94bcbc9a17fac89a01b83bfc76fd8f-5472x3648.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">80712b0b-5930-44bb-8a29-0044bd1207d2</guid>
+      <pubDate>Tue, 15 Sep 2026 10:27:55 +0000</pubDate>
+      <description><![CDATA[Security firms traced the $7.8 million loss to a helper contract the wallet owner had authorized, not to Safe itself.]]></description>
+      <dc:creator>Oliver Knight</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Hack]]></category>
+      <category domain="tag"><![CDATA[Ethereum News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Nigel Farage-backed Stack BTC plans to acquire a gold dealer for $16 million to fund bitcoin buy]]></title>
+      <link>https://www.coindesk.com/business/2026/09/15/nigel-farage-backed-stack-btc-eyes-usd16-million-gold-dealer-deal-to-fund-bitcoin-buy</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/54d425afad71df8d6e1593c490cf930909b6742f-640x360.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">2c0315fa-2589-411b-ac97-1db93d31700a</guid>
+      <pubDate>Tue, 15 Sep 2026 10:06:40 +0000</pubDate>
+      <description><![CDATA[The proposed acquisition would use cash flow from precious metals sales to build bitcoin holdings.]]></description>
+      <dc:creator>James Van Straten</dc:creator>
+      <dc:creator>AI Boost</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="tag"><![CDATA[UK]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Hong Kong crypto exchange CoinEx to cease operations after 9 years in business]]></title>
+      <link>https://www.coindesk.com/business/2026/09/15/hong-kong-crypto-exchange-coinex-to-cease-operations-after-9-years-in-business</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/bd826ce3a449dbf6a021b11b1fd3117ac2127196-2560x1707.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">48bd98f0-8fd3-4b91-9b72-d4445ec6233f</guid>
+      <pubDate>Tue, 15 Sep 2026 09:30:58 +0000</pubDate>
+      <description><![CDATA[Founder and CEO Haipo Yang cited mounting security and compliance risks and said he rejected a sale in favor of a “clean ending.”]]></description>
+      <dc:creator>Jamie Crawley</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Hong Kong]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Live updates: Clarity Act fails in Senate, sending crypto lower]]></title>
+      <link>https://www.coindesk.com/business/2026/09/15/live-updates-bitcoin-slides-from-nearly-usd80-000-as-senate-votes-on-clarity-act</link>
+      <guid isPermaLink="false">1dce478a-6810-4a5b-b5d1-a5c4c1184294</guid>
+      <pubDate>Tue, 15 Sep 2026 06:37:24 +0000</pubDate>
+      <description><![CDATA[The failure essentially ends market structure legislative work in the Senate for 2026 and is a major blow to the crypto industry, which has invested years and hundreds of millions of dollars trying to support its interests.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <dc:creator>James Van Straten</dc:creator>
+      <dc:creator>Stephen Alpher</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Live News]]></category>
+      <category domain="https://www.coindesk.com/">live_news</category>
+    </item>
+    <item>
+      <title><![CDATA[XRP Ledger is one vote away from starting its next big payments upgrade]]></title>
+      <link>https://www.coindesk.com/tech/2026/09/15/xrp-ledger-is-one-vote-away-from-starting-its-next-big-payments-upgrade</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/7062083f3eac875ac832f0c15d78be2612e57afe-1440x810.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">5d4601ef-1a27-478d-8302-3f81cec281f3</guid>
+      <pubDate>Tue, 15 Sep 2026 05:58:41 +0000</pubDate>
+      <description><![CDATA[Batch V1.1 would let users bundle up to eight linked transactions into one operation, with 27 of 35 trusted validators now backing the change.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[ U.S. DOJ seeks $61 million in what it calls Iran's crypto-laundered black market oil sales]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/15/u-s-doj-seeks-usd61-million-in-what-it-calls-crypto-laundered-iranian-oil-proceeds</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/daff9ba693e030b0bf954a2c3bd97fd9395cc604-1920x1403.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">d6162874-8e51-43cf-8fe5-80cbde1beedb</guid>
+      <pubDate>Tue, 15 Sep 2026 05:12:06 +0000</pubDate>
+      <description><![CDATA[Prosecutors have filed a civil forfeiture complaint against what they call Iran's illegal crypto proceeds that are used to fund its military. ]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Cryptocurrency]]></category>
+      <category domain="tag"><![CDATA[Iran]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Solana transactions just got more than 3 times bigger, narrowing the gap with Ethereum]]></title>
+      <link>https://www.coindesk.com/tech/2026/09/15/solana-transactions-just-got-more-than-3-times-bigger-giving-an-edge-over-ethereum</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/e6376ed45a3d412e45b43d8bef2b7e97998c05ab-5760x3240.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">8cbe20a6-56ef-484f-adbd-ff88f2fa2168</guid>
+      <pubDate>Tue, 15 Sep 2026 04:34:10 +0000</pubDate>
+      <description><![CDATA[Transaction V1 raises Solana’s limit to 4,096 bytes from 1,232, giving developers more room for multi-step trades, company-wallet approvals and privacy proofs.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Democrats send counteroffer to Republicans over Clarity Act provisions]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/15/democrats-send-counteroffer-to-republicans-over-clarity-act-provisions</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/d960f691e3e8d1df1d85c75dada63f4f46fe67c5-6000x3376.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">aaeedda9-7a5a-4bcd-a756-ea22cb333df2</guid>
+      <pubDate>Tue, 15 Sep 2026 04:09:01 +0000</pubDate>
+      <description><![CDATA[Democratic Senators were said to be meeting late Monday to discuss the latest proposed draft text. ]]></description>
+      <dc:creator>Nikhilesh De</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Clarity Act]]></category>
+      <category domain="tag"><![CDATA[Market Structure Legislation]]></category>
+      <category domain="tag"><![CDATA[Breaking News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[U.S. House panel shares crypto tax bill ahead of hearing later this week]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/14/u-s-house-panel-shares-crypto-tax-bill-ahead-of-hearing-later-this-week</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/13ac995b99ca118ff9b61fe29239c0b16abd0a24-3456x2304.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">b646c87b-9678-45ec-b4c8-5cc21b27e848</guid>
+      <pubDate>Tue, 15 Sep 2026 03:27:38 +0000</pubDate>
+      <description><![CDATA[The House Ways and Means Committee published a crypto tax bill addressing de minimis transactions, staking and other issues for which the industry's clamored for policies. ]]></description>
+      <dc:creator>Nikhilesh De</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Tax]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin slips to $77,800 as Senate Clarity Act vote nears and oil prices climb]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/15/bitcoin-slips-to-usd77-800-as-senate-clarity-act-vote-nears-and-oil-prices-climb</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/3c2cec85b0ff164779a92237b9e4d66cfaac9e49-2191x1176.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">a93d0f83-f233-4cb1-a697-857b80483621</guid>
+      <pubDate>Tue, 15 Sep 2026 03:23:28 +0000</pubDate>
+      <description><![CDATA[Bitcoin pulls back from $79,000 as the Senate prepares to vote on the Clarity Act and oil prices rise.]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Even if Clarity fails, Wall Street’s crypto push is unlikely to stop]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/14/even-if-clarity-fails-wall-street-s-crypto-push-is-unlikely-to-stop</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/d0183643376c63d3344b437b12fb69486c8bd450-1500x996.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">9ce678d1-0577-4847-b046-89efc6291b92</guid>
+      <pubDate>Mon, 14 Sep 2026 23:43:28 +0000</pubDate>
+      <description><![CDATA[The Clarity Act could give banks, brokers and asset managers a clearer rulebook, but financial firms have already moved far enough into digital assets that failure may slow adoption rather than stop it.]]></description>
+      <dc:creator>Helene Braun</dc:creator>
+      <dc:creator>AI Boost</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Clarity Act]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[SEC's Atkins backs Clarity Act but says agency will keep pushing crypto rules without it]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/14/sec-s-atkins-backs-clarity-act-but-says-agency-will-keep-pushing-crypto-rules-without-it</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/f5e51d142f4aa8a9a66d07435fa821e33f12872b-4858x2733.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">e65deafa-e0a6-41d8-8478-86131ab3eb87</guid>
+      <pubDate>Mon, 14 Sep 2026 23:30:40 +0000</pubDate>
+      <description><![CDATA[The SEC chair said crypto issuance, transfer agent modernization and custody will form the backbone of the agency’s regulatory push.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Clarity Act]]></category>
+      <category domain="tag"><![CDATA[Market Structure Legislation]]></category>
+      <category domain="tag"><![CDATA[SEC]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+  </channel>
+</rss>
