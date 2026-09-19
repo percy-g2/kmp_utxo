@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Sat, 19 Sep 2026 15:02:47 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>AI was supposed to take scammers’ jobs, but it gave them superpowers instead</title>
+		<link>https://cryptoslate.com/ai-was-supposed-to-take-scammers-jobs-but-it-gave-them-superpowers-instead/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 17:10:40 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Crime]]></category>
+		<category><![CDATA[Culture]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Crypto scams]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=562746</guid>
+
+					<description><![CDATA[<p>For anyone worried that AI would eliminate every profession except the one sending messages about your frozen crypto account, there's unwelcome news for that last bastion of human enterprise. Fraud has found an automation budget. Scamming has always required a surprising amount of manual labor. Romance scams need someone to keep a conversation going for [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/ai-was-supposed-to-take-scammers-jobs-but-it-gave-them-superpowers-instead/">AI was supposed to take scammers’ jobs, but it gave them superpowers instead</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>For anyone worried that AI would eliminate every profession except the one sending messages about your frozen crypto account, there's unwelcome news for that last bastion of human enterprise. Fraud has found an automation budget.</p>
+<p>Scamming has always required a surprising amount of manual labor. Romance scams need someone to keep a conversation going for weeks, investment fraud needs someone to answer questions and maintain a believable identity, and impersonation scams need someone to keep the act together long enough to transfer money. AI can now do more of that work, meaning the same criminal operation can reach far more people without adding more humans.</p>
+<p>That's what FATF president Giles Thomson meant when he told the Financial Times this month that AI could let &#8220;one or two people in a basement with a very big server&#8221; do work that once required a much larger scam operation. It's a grimly efficient version of the productivity boom every other industry has been promised.</p>
+<p>The important change isn't that AI is about to make scammers unemployed. It's that every scam becomes cheaper to run. One person can maintain more fake identities, carry on more conversations, and attempt more fraud at the same time, which means criminals don't need a giant operation to create the appearance of one.</p>
+<p>For an industry built around stealing other people's money, that's a fairly compelling productivity gain.</p>
+<h2>Fraud has discovered scale with AI</h2>
+<p><a href="https://cryptoslate.com/companies/chainalysis/">Chainalysis</a> found average on-chain revenue of $3.2 million per scam operation with observed links to AI vendors, compared with $719,000 for operations without those links, or roughly <a href="https://www.chainalysis.com/blog/crypto-scams-2026/">4.5 times as much revenue per operation.</a></p>
+<p>That doesn't mean buying an AI subscription automatically quadruples a criminal's income. Larger operations may simply be more likely to buy sophisticated tools, and Chainalysis can't see every use of AI through blockchain data.</p>
+<p>What the numbers do show is why criminals have an incentive to automate.</p>
+<p>Traditional confidence fraud is labor-intensive because somebody has to maintain the illusion. A fake investment adviser needs to answer questions, a romance scammer needs to remember previous conversations, and an impersonator needs to sound enough like a colleague or executive that the target doesn't become suspicious.</p>
+<p>AI makes that attention cheap. Criminals don't need software to feel empathy, only software that can imitate empathy well enough to keep someone talking.</p>
+<p>That allows one operator to maintain more conversations, in more languages, for longer periods of time, while generating convincing documents, images, voices, and identities around them. The expensive part of the scam used to be maintaining the human performance. Increasingly, parts of that performance can be rented from a model.</p>
+<p>The losses are already substantial. The FBI's <a href="https://www.fbi.gov/news/press-releases/cryptocurrency-and-ai-scams-bilk-americans-of-billions">summary of its 2025 Internet Crime Complaint Center report</a> recorded 22,364 complaints containing AI-related information and approximately $893.3 million in adjusted losses.</p>
+<p>Those cases include fake romantic identities, business impersonation, and other forms of fraud built on convincing someone they're dealing with a real person.</p>
+<p>An AI provider has documented an even more direct example of the staffing change. Anthropic's <a href="https://www.anthropic.com/news/detecting-countering-misuse-aug-2025">August 2025 misuse report</a> described an actor using Claude Code in an extortion campaign targeting at least 17 organizations.</p>
+<p>According to <a href="https://cryptoslate.com/companies/anthropic/">Anthropic</a>, the model assisted with parts of the technical work, analyzed information, and helped prepare extortion demands that sometimes exceeded $500,000. The company subsequently banned the accounts and shared information with authorities.</p>
+<p>The important part isn't the particular model or the number of victims. It's that work that might have previously required different people with different skills can now be coordinated by one operator, with software helping across several parts of the operation.</p>
+<p>The victim doesn't see that smaller organization. They see a convincing email, a believable identity, a professional-looking service, or a person who appears to know exactly what they're talking about.</p>
+<p>AI lets a tiny operation present the surface area of a much larger one.</p>
+<p>For crypto, that can be particularly effective because the distance between persuasion and payment is so short. A scammer can spend days or weeks building trust, but once the victim agrees, moving crypto can take seconds. Making the first part cheaper means criminals can push far more people toward the second.</p>
+<h2>The scam factories aren't disappearing</h2>
+<p>There's a tempting joke in all of this about AI taking scammers' jobs, but it stops being funny around the people working inside actual scam compounds.</p>
+<p>Many of them aren't willing participants.</p>
+<p>Amnesty International's <a href="https://www.amnesty.org/en/latest/news/2025/06/cambodia-government-allows-slavery-torture-flourish-inside-scamming-compounds/">2025 investigation into Cambodian scam compounds</a> documented at least 53 sites and interviewed 58 survivors from eight nationalities. It found evidence of trafficking, forced labor, confinement, and violence.</p>
+<p>Those operations haven't been replaced by two men and a server. FinCEN's <a href="https://www.fincen.gov/news/news-releases/fincen-identifies-nearly-13-billion-linked-suspected-digital-asset-scams">September analysis of Southeast Asian scam centers</a> describes large transnational criminal organizations operating alongside <a href="https://cryptoslate.com/ai-scammers-no-longer-need-to-hack-your-wallet-if-they-can-convince-you-to-use-it-for-them/">AI-enabled services and other specialized criminal infrastructure</a>.</p>
+<p>The two models can exist at the same time because automation doesn't necessarily cause an industry to shrink. Sometimes it simply increases how much the same workforce can produce.</p>
+<p>A scam operation that can automate part of every conversation has two choices. It can attempt the same amount of fraud with fewer people, or keep the people and dramatically increase the number of targets.</p>
+<p>For victims, the difference isn't comforting at all.</p>
+<p>This is why the idea that AI will put scammers out of work misses the more important economic change. The relevant unit isn't how many people the criminal enterprise employs. It's how cheaply it can attempt another fraud.</p>
+<p>If the cost of producing a convincing fake identity falls, more fake identities become economical. If one person can supervise dozens of conversations instead of five, the number of people a gang can approach expands accordingly.</p>
+<p>The internet already made distribution almost free. AI is now reducing the cost of persuasion.</p>
+<h2>When the bots start talking to each other</h2>
+<p>The defense industry has responded with automation of its own.</p>
+<p>O2 created Daisy, an AI grandmother designed to keep phone scammers talking for as long as possible. In the company's <a href="https://news.virginmediao2.co.uk/o2s-ai-granny-daisy-unveils-what-shes-learnt-from-her-time-on-the-phone-to-scammers-and-what-you-can-do-to-ruin-their-day/">account of the experiment</a>, Daisy had answered scammers more than 1,000 times and spent hundreds of hours in conversation, with some calls lasting around 40 minutes.</p>
+<p>The idea is wonderful because the scammer expects an elderly victim and instead receives an inexhaustible woman with nowhere else to be and no bank account to empty. It works by attacking something that used to be scarce: the scammer's time.</p>
+<p>But that becomes less powerful when the scammer's side of the conversation is automated too.</p>
+<p>If one bot spends 40 minutes discussing a fictional bank problem with another bot pretending to be somebody's grandmother, neither criminal nor victim has lost 40 minutes of human life. Somewhere, two organizations can congratulate themselves on engagement while the electricity meter does most of the work.</p>
+<p>That absurd endpoint shows where the defensive problem is moving. Making scammers waste time still helps when human attention is expensive. As AI makes that attention cheaper, defenses have to move closer to the point where criminals still need something real.</p>
+<p>They need an account capable of receiving money. They need an exchange, payment service, mule network, or bank that lets them move the proceeds. They need victims to authorize transfers and institutions to process them. Those parts are harder to automate away.</p>
+<p>Interpol's <a href="https://www.interpol.int/en/News-and-Events/News/2026/INTERPOL-report-warns-of-increasingly-sophisticated-global-financial-fraud-threat">2026 global fraud assessment</a> describes more than 1,500 transnational fraud cases involving $1.1 billion in reported losses and highlights international efforts to stop payments after fraud has been detected.</p>
+<p>CryptoSlate has previously covered how <a href="https://cryptoslate.com/crypto-scammers-net-over-9b-in-2024-as-ai-supercharges-fraud/">AI is increasing the scale of crypto scams</a>. The next stage is about what happens when convincing fraud becomes abundant.</p>
+<p>Familiar voices can no longer carry as much trust when voices can be generated for fractions of a cent. Video calls also become weaker evidence when faces can be synthesized, and a long, thoughtful conversation means less when maintaining it costs almost nothing.</p>
+<p>That leaves ordinary people doing more verification while criminals do less manual work.</p>
+<p>The great promise of automation was that software would take tedious tasks away from humans. Fraud has found a particularly irritating implementation of that idea: the machine handles the impersonation, while the person receiving the message has to investigate whether anybody involved is real.</p>
+<p>AI may eventually reduce the number of humans required to run a scam. Unfortunately, it also makes running another scam much cheaper.</p>
+<p>The post <a href="https://cryptoslate.com/ai-was-supposed-to-take-scammers-jobs-but-it-gave-them-superpowers-instead/">AI was supposed to take scammers’ jobs, but it gave them superpowers instead</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/automated-scam-call-center.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/automated-scam-call-center.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>ZEC’s 100% rally above $1500 sends Grayscale’s Zcash ETF within $85 million of $1 billion</title>
+		<link>https://cryptoslate.com/zecs-100-rally-above-1500-sends-grayscales-zcash-etf-within-85-million-of-1-billion/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 15:50:04 +0000</pubDate>
+				<category><![CDATA[ETF]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Price Watch]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[Grayscale]]></category>
+		<category><![CDATA[payments]]></category>
+		<category><![CDATA[ZCash]]></category>
+		<category><![CDATA[ZEC]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=564126</guid>
+
+					<description><![CDATA[<p>ZCSH holders would receive three shares for every one held as the fund cuts per-share NAV proportionately without changing investment value solely because of the split.</p>
+<p>The post <a href="https://cryptoslate.com/zecs-100-rally-above-1500-sends-grayscales-zcash-etf-within-85-million-of-1-billion/">ZEC’s 100% rally above $1500 sends Grayscale’s Zcash ETF within $85 million of $1 billion</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a href="https://cryptoslate.com/grayscales-zcash-etf-regulated-privacy-or-privacy-in-name-only/">Grayscale’s Zcash ETF</a> is closing in on $1 billion in assets less than a month after its Wall Street debut.</p>
+<p>The fund, which trades as ZCSH on NYSE Arca, has accumulated $914.53 million in net assets and $270.95 million in cumulative net inflows, SoSoValue <a href="https://sosovalue.com/assets/etf/us-zec-spot">data</a> shows. Its rapid expansion has coincided with Zcash's value roughly doubling since the product began trading on Aug. 25.</p>
+<p>ZCSH has added more than $400 million in assets since Sept. 8, when Grayscale said the fund had crossed $500 million just two weeks after listing. The acceleration leaves the product about $85 million short of the $1 billion threshold as investor demand converges with one of ZEC’s strongest rallies in years.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/zcash-breaks-1000-as-its-spot-etf-crosses-400-million-in-assets/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Zcash breaks $1,000 as its spot ETF crosses $400 million in assets</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>ZEC rally pushes derivatives activity to records</h2>
+<p>Data from <em>CryptoSlate</em> showed ZEC traded around $1,540 on Sept. 19, roughly twice its level when ZCSH began trading on NYSE Arca.</p>
+<p>The rally has increasingly spilled into derivatives markets.</p>
+<p>CoinGlass <a href="https://www.coinglass.com/currencies/ZEC">data</a> showed ZEC futures open interest climbing to an all-time high of about $3.5 billion this week, while futures trading volume crossed $10 billion for the first time since early June.</p>
+<p>The buildup shows traders are committing substantially more leveraged capital to ZEC as its spot price rises. Higher open interest does not establish that positioning is uniformly bullish, but record exposure combined with elevated turnover increases the market’s sensitivity to abrupt reversals and liquidation cascades.</p>
+<p>The price advance has also coincided with a series of decisions over <a href="https://cryptoslate.com/zcash-holders-vote-to-preserve-halvings-and-defer-recycled-zec-until-2031/">Zcash’s monetary policy and next network upgrade.</a></p>
+<p>Zcash holders this month backed retaining the network’s Bitcoin-style halving schedule rather than moving to a smoother issuance system. About 2.4 million ZEC participated in the advisory vote, representing roughly two-thirds of eligible supply.</p>
+<p>Participants also favored delaying the reissuance of tokens accumulated through the Network Sustainability Mechanism until 2031. The mechanism removes a portion of transaction fees from circulation before those tokens can eventually return through future block rewards, while preserving Zcash’s 21 million maximum supply.</p>
+<p>The result keeps key scarcity features intact at a time when regulated access to ZEC is expanding through ZCSH.</p>
+<p>Holders separately backed reducing block times to 25 seconds from 75 seconds under the planned NU7 upgrade. They also supported advancing NU7 as quickly as possible while excluding features that fail to meet a Sept. 30 implementation-readiness deadline.</p>
+<p>Those decisions remain advisory and still require technical implementation, leaving developers to determine which components will ultimately make the upgrade.</p>
+<p>For ZCSH, the underlying token rally has already had a direct effect on the fund’s asset base.</p>
+<p>Because the product holds ZEC, gains in the cryptocurrency increase the value of assets already inside the vehicle alongside new investor creations. That helps explain why ZCSH’s $914.53 million asset base is more than three times its cumulative $270.95 million net inflows.</p>
+<h2>Grayscale moves to lower ZCSH’s per-share price</h2>
+<p>The rapid increase in the value represented by each ZCSH share is now being followed by a change in the fund’s share structure.</p>
+<p><a href="https://cryptoslate.com/companies/grayscale-investments/">Grayscale</a> <a href="https://www.globenewswire.com/news-release/2026/09/18/3364663/0/en/the-zcash-etf-ticker-zcsh-built-by-grayscale-announces-intention-to-effect-3-1-share-split.html">announced</a> a 3-for-1 forward split on Sept. 18 that will triple the number of ZCSH shares outstanding while reducing the net asset value represented by each share to roughly one-third of its pre-split level.</p>
+<p>Shareholders of record at the close of trading Sept. 28 will receive two additional shares for every share already held. The distribution is scheduled after the market closes Sept. 29, with split-adjusted trading expected to begin before the opening bell on Sept. 30.</p>
+<p>The transaction will not change the aggregate value of an investor’s position solely because of the split. A holder will own three times as many shares, with each representing a proportionately smaller portion of the fund.</p>
+<p>Lowering the nominal share price can make smaller whole-share purchases easier, particularly after a sharp rise in the value of the underlying asset. Grayscale has not said the move is intended to increase demand or liquidity, and the fund will retain its ZCSH ticker and existing CUSIP.</p>
+<p>The timing puts the fund’s first major share adjustment alongside another key date for the network itself. Sept. 30 is also the implementation-readiness deadline for proposed NU7 features.</p>
+<p>ZCSH could reach the $1 billion mark before then if inflows continue and ZEC holds its recent gains. At the same time, record derivatives exposure means a sharp reversal in the token would feed quickly into <a href="https://cryptoslate.com/zcash-fixed-the-flaw-that-nearly-halved-zec-and-926-million-in-leverage-now-tests-the-rebound/">the value of the ZEC backing the fund,</a> making the next leg of asset growth increasingly dependent on both investor demand and the durability of the rally.</p>
+<p>The post <a href="https://cryptoslate.com/zecs-100-rally-above-1500-sends-grayscales-zcash-etf-within-85-million-of-1-billion/">ZEC’s 100% rally above $1500 sends Grayscale’s Zcash ETF within $85 million of $1 billion</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/zcash-etf-split-conveyor.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/zcash-etf-split-conveyor.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Bitcoin faces an October 18 test as Trump prepares new Russia tariffs</title>
+		<link>https://cryptoslate.com/bitcoin-faces-an-october-18-test-as-trump-prepares-new-russia-tariffs/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 13:20:13 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=564117</guid>
+
+					<description><![CDATA[<p>Trump’s new law sets the clock, but rates, targets and energy-market spillovers will decide whether crypto feels it.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-faces-an-october-18-test-as-trump-prepares-new-russia-tariffs/">Bitcoin faces an October 18 test as Trump prepares new Russia tariffs</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>President <a href="https://cryptoslate.com/people/donald-trump/">Donald Trump’s</a> new Russia sanctions law gives Bitcoin traders another macro deadline to watch: Oct. 18.</p>
+<p>On Sept. 18, Trump <a href="https://www.whitehouse.gov/briefings-statements/2026/09/congressional-bill-h-r-5334-signed-into-law/">signed</a> H.R. 5334, starting a 30-day clock for his administration to determine tariffs that could disrupt Russian energy trade and potentially feed into inflation, Treasury yields, and the dollar. Those channels matter for Bitcoin because tighter financial conditions have historically weighed on crypto markets.</p>
+<p>The <a href="https://www.govinfo.gov/content/pkg/BILLS-119hr5334enr/html/BILLS-119hr5334enr.htm">law</a> requires the president to raise duties on all Russian goods imported into the US, including oil, natural gas, and petroleum products, by up to 500%. The figure is a ceiling rather than a mandated rate, leaving the administration considerable discretion over how aggressively it implements the measure.</p>
+<p>A separate provision creates a potentially broader trade shock. Countries that continue making new purchases of Russian crude or natural gas after the 30-day window can face <a href="https://cryptoslate.com/bitcoin-ignored-trumps-new-25-tariff-threat-this-time-but-the-19b-liquidation-ghost-from-october-is-quietly-resetting-in-the-shadows/">tariffs</a> of up to 100% on all goods they export to the US if they rank among the five largest buyers. The same ceiling applies to the five largest countries deemed to be facilitating <a href="https://cryptoslate.com/russias-crypto-trade-corridor-puts-bitcoin-and-stablecoins-in-sanctions-crosshairs/">Russian oil sanctions evasion</a>.</p>
+<p>The legislation does not name those countries or prescribe an initial minimum tariff, making implementation more important for markets than the headline ceilings themselves.</p>
+<p>That uncertainty turns Oct. 18 into an early test of whether the law becomes a significant macro shock or remains a limited sanctions measure.</p>
+<p>At least 10 days before imposing or changing duties under the third-country provision, the president or US Trade Representative must provide six congressional committees with a written justification covering both the tariff rate and the methodology used to select the affected country.</p>
+<p>The administration also retains room to soften the impact. The law includes an exception for some natural-gas purchases and allows Trump to waive duties after certifying to Congress that doing so serves US national interests.</p>
+<h2>Energy prices become the key transmission channel for Bitcoin</h2>
+<p>For Bitcoin, the first market to watch is energy.</p>
+<p>Large tariffs on countries that remain major buyers of Russian crude or gas could alter trade flows if continued purchases become economically or politically costly.</p>
+<p>The effect on <a href="https://cryptoslate.com/bitcoin-traders-bet-borrowed-money-on-a-rally-as-oil-surges-ahead-of-fridays-inflation-test/">global oil and gas prices</a> would depend on which countries are targeted, the tariff rates chosen, and whether Russian supply is rerouted rather than removed from the market.</p>
+<p><img fetchpriority="high" decoding="async" class="aligncenter wp-image-564139" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-fb732c10-a599-4348-a249-2ae3614e313b.png" alt="Infographic showing H.R. 5334 signed Sept. 18, an Oct. 18 tariff deadline, tariff ceilings and a conditional energy-to-Bitcoin transmission chain." width="720" height="480" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/exec-fb732c10-a599-4348-a249-2ae3614e313b.png 1536w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-fb732c10-a599-4348-a249-2ae3614e313b-300x200.png 300w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-fb732c10-a599-4348-a249-2ae3614e313b-1024x683.png 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-fb732c10-a599-4348-a249-2ae3614e313b-768x512.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></p>
+<p>The inflation consequences become more significant if energy prices remain elevated.</p>
+<p>Federal Reserve Governor Christopher Waller <a href="https://www.federalreserve.gov/newsevents/speech/files/waller20260417a.pdf">said</a> earlier this year that prolonged increases in energy costs can spread into the prices of other goods and services as businesses absorb higher input costs. He also warned that repeated energy and tariff shocks could lift inflation expectations and complicate monetary policy.</p>
+<p>That risk comes as the Fed already runs restrictive policy.</p>
+<p>The central bank <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm">raised</a> its benchmark rate by a quarter percentage point on Sept. 16 to a range of 3.75% to 4%, saying inflation remained elevated and that policy would continue to support a return toward its 2% goal.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-holds-76000-after-fed-rate-hike-but-4-demand-signals-flash-warning/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin holds $76,000 after Fed rate hike, but 4 demand signals flash warning</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>A renewed energy-driven inflation impulse could therefore reduce the Fed’s <a href="https://www.federalreserve.gov/publications/files/2026-final-supervisory-stress-test-scenarios-20260204.pdf">flexibility</a> to ease financial conditions. <a href="https://cryptoslate.com/bitcoin-tests-critical-76000-support-cluster-during-macro-energy-shock/">Higher inflation expectations</a> can push Treasury yields upward and support the dollar, increasing the cost of capital and reducing liquidity available for risk assets.</p>
+<p>Crypto markets have shown sensitivity to that backdrop. <a href="https://www.bis.org/publications/working-paper-1219-stablecoins-money-market-funds-and-monetary-policy">Research</a> published by the Bank for International Settlements found that tighter US monetary policy was associated with falling crypto prices and lower demand for stablecoins, linking digital-asset liquidity more closely to conventional financial conditions.</p>
+<p>That leaves traders with a sequence of signals to monitor before assigning the sanctions law a larger impact on Bitcoin.</p>
+<p>The first will be the administration’s congressional notices, which should indicate which countries are targeted and how close tariff rates come to the statutory ceilings. <a href="https://cryptoslate.com/brent-is-back-near-90-so-why-is-bitcoin-still-above-66000/">Oil and gas prices</a> would then provide the clearest measure of whether the policy is materially disrupting energy flows.</p>
+<p>Bond yields, inflation expectations and the dollar would show whether any energy shock is beginning to spill into monetary conditions.</p>
+<p>A mild implementation, broad use of waivers, or stable energy markets would limit that transmission. Aggressive tariffs against major Russian-energy buyers, combined with sustained pressure on oil or gas, would increase the likelihood that the sanctions regime becomes another constraint on financial conditions.</p>
+<p>That distinction will become clearer before Oct. 18, when the administration must move from the law’s broad tariff authority to the rates and countries that determine its economic reach.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-faces-an-october-18-test-as-trump-prepares-new-russia-tariffs/">Bitcoin faces an October 18 test as Trump prepares new Russia tariffs</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/trump-oil-tariff-clock.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/trump-oil-tariff-clock.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Did RWA futures really overtake crypto? Only if you ignore 90% of the market</title>
+		<link>https://cryptoslate.com/rwa-futures-only-overtook-crypto-in-one-narrow-market-sample/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 12:05:28 +0000</pubDate>
+				<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Research]]></category>
+		<category><![CDATA[RWA]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[ETH]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[OKX]]></category>
+		<category><![CDATA[SOL]]></category>
+		<category><![CDATA[Solana]]></category>
+		<category><![CDATA[Token Terminal]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=564095</guid>
+
+					<description><![CDATA[<p>A $107.6 billion crossover on selected venues shrinks to about 15.2% when compared with CoinDesk's broader CEX derivatives total.</p>
+<p>The post <a href="https://cryptoslate.com/rwa-futures-only-overtook-crypto-in-one-narrow-market-sample/">Did RWA futures really overtake crypto? Only if you ignore 90% of the market</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>A new report from OKX and Token Terminal says real-world-asset (RWA) futures on trade.xyz edged past crypto futures on Hyperliquid in July. The headline numbers were $107.6 billion of RWA-contract volume against $105.7 billion of crypto-contract volume.</p>
+<p>That was a selected-venue crossover, not an industry-wide change in market leadership. The <a href="https://tokenterminal.com/explorer/research-reports/real-world-assets-caught-up-to-bitcoin.pdf">underlying report</a> treats trade.xyz and Hyperliquid as category-leading onchain venues. Broader datasets confirm that RWA perpetuals are growing quickly, but they do not show a comparable takeover of crypto derivatives as a whole.</p>
+<h2>RWA futures crossed crypto inside the report's sample</h2>
+<p>The report tracked July 1 through July 30 and found that RWA volume on trade.xyz reached $107.6 billion, slightly above $105.7 billion of crypto-perpetual volume on Hyperliquid. Its selected RWA series had climbed from $760 million in October 2025.</p>
+<p>That is a significant change inside the measured sample. It is also narrower than the <a href="https://www.okx.com/learn/rwa-futures-catch-up-to-bitcoin">OKX summary</a> suggests when it says RWA futures surpassed crypto futures by volume.</p>
+<p>A category-leading venue is a proxy, not the whole market. Its data can show what is happening on that platform, but it cannot establish the size of every competing venue and contract outside the sample.</p>
+<p>The report's open-interest figures reinforce the growth signal without resolving that scope problem. Its selected RWA series rose from $16.1 million to $1.72 billion over nine months. The page contains conflicting fold-change labels, so the endpoints are more reliable than any one multiplier.</p>
+<p>Broader July measurements show how much the picture changes with the market universe:</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/hype-etfs-quietly-pulled-161m-in-one-month-as-wall-street-buys-cryptos-on-chain-exchange-bet/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">HYPE ETFs quietly pulled $161M in one month as Wall Street buys crypto’s on-chain exchange bet</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>RWA measure</th>
+<th>Comparison universe</th>
+<th>Defensible takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OKX and Token Terminal</td>
+<td>$107.6B</td>
+<td>trade.xyz RWA versus $105.7B of Hyperliquid crypto volume</td>
+<td>RWA edged crypto inside a selected onchain venue comparison</td>
+</tr>
+<tr>
+<td>CoinDesk Research</td>
+<td>$460B</td>
+<td>$3.03T of total centralized-exchange derivatives volume</td>
+<td>RWA perps were about 15.2% of this CEX denominator</td>
+</tr>
+<tr>
+<td>CoinMarketCap Research</td>
+<td>$792.2B</td>
+<td>19 centralized and decentralized venues</td>
+<td>RWA activity was larger across a wider venue set, but no equivalent all-crypto denominator was supplied</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><a href="https://www.coindesk.com/research/exchange-review-july-2026">CoinDesk</a> Research reported $460 billion of July RWA perpetual volume on centralized exchanges and $3.03 trillion of total CEX derivatives. Dividing those figures puts RWA perpetuals at approximately 15.2% of CoinDesk's CEX denominator.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/crypto-exchanges-are-becoming-the-new-distribution-channel-for-wall-street-assets/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Crypto exchanges are becoming the new distribution channel for Wall Street assets</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>That calculated share is not a consolidated global estimate. Still, it shows why the trade.xyz-versus-Hyperliquid crossover cannot prove that traditional-asset contracts displaced crypto derivatives across the industry.</p>
+<p><a href="https://coinmarketcap.com/events/rwa-perpetuals-state-of-the-market-august-2026/">CoinMarketCap</a> Research measured $792.2 billion of July RWA-perpetual volume across 19 centralized and decentralized venues. That total confirms the category's scale. It does not establish RWA's share of all derivatives because the report does not pair it with an equivalent all-crypto denominator.</p>
+<h2>One denominator can reverse the result</h2>
+<p>CoinMarketCap's DEX analysis demonstrates the effect directly. Across nine fully collected decentralized exchanges, RWA contracts remained below 20% of volume. When the HIP-3 venue group was added as a tenth venue, the measured RWA share crossed 50% on July 8.</p>
+<p>The reason was structural. HIP-3 activity in that dataset was more than 99% RWA, while Hyperliquid's much larger main crypto book was excluded from the calculation. Adding an RWA-heavy venue without adding the related crypto venue changed the denominator enough to reverse the result.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/your-bitcoin-trade-can-now-get-liquidated-because-a-stock-crashed/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Your Bitcoin trade can now get liquidated because a stock crashed</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>That does not make the trading activity unreal. It means “overtook” describes a chosen sample, not a settled fact about the entire derivatives market.</p>
+<p>Within the report's selected series, RWA trading grew from $760 million to $107.6 billion and open interest reached $1.72 billion. Separate CoinDesk and CoinMarketCap datasets found hundreds of billions of dollars in monthly RWA-perpetual activity across broader venue sets.</p>
+<p>Those measurements establish that <a href="https://cryptoslate.com/crypto-exchanges/">crypto exchanges</a> are becoming substantial markets for derivatives linked to offchain assets. They do not establish market-wide displacement. Until researchers use like-for-like venue coverage, contract definitions, time windows and crypto denominators, any crossover claim should state the sample that produced it.</p>
+<p>The post <a href="https://cryptoslate.com/rwa-futures-only-overtook-crypto-in-one-narrow-market-sample/">Did RWA futures really overtake crypto? Only if you ignore 90% of the market</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/rwa-market-data-prism.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/rwa-market-data-prism.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Brazil blocks stablecoins from key cross-border payment rail as $1.1 trillion market faces new limits</title>
+		<link>https://cryptoslate.com/brazil-blocks-stablecoins-from-key-cross-border-payment-rail-as-1-1-trillion-market-faces-new-limits/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 10:40:55 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=564005</guid>
+
+					<description><![CDATA[<p>Brazil's central bank will bar virtual assets, including stablecoins, from settling one specific type of international payment flow starting Oct. 1. Resolution 561 targets the settlement leg between regulated foreign-exchange providers and their overseas counterparties, requiring that leg to run through a licensed FX transaction or a qualifying non-resident real account. Individual international transfers using [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/brazil-blocks-stablecoins-from-key-cross-border-payment-rail-as-1-1-trillion-market-faces-new-limits/">Brazil blocks stablecoins from key cross-border payment rail as $1.1 trillion market faces new limits</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Brazil's central bank will bar virtual assets, including stablecoins, from settling one specific type of international payment flow starting Oct. 1.</p>
+<p>Resolution 561 targets the settlement leg between regulated foreign-exchange providers and their overseas counterparties, requiring that leg to run through <a href="https://cryptoslate.com/crypto-laws/brazil-central-bank-resolution-521-2025-virtual-assets-fx/">a licensed FX transaction</a> or a qualifying non-resident real account.</p>
+<p>Individual international transfers using virtual assets remain permitted under <a href="https://cryptoslate.com/crypto-laws/brazil-bcb-normative-instruction-693-2025-virtual-asset-reporting/">Brazil's existing framework</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Status after Oct. 1</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eFX providers netting and consolidating multiple international payments</td>
+<td>Still allowed</td>
+<td>The core eFX aggregation model remains intact</td>
+</tr>
+<tr>
+<td>Settlement between eFX provider and foreign counterparty using stablecoins or other virtual assets</td>
+<td>Barred</td>
+<td>This is the specific shortcut Resolution 561 removes</td>
+</tr>
+<tr>
+<td>Settlement through licensed FX transaction</td>
+<td>Allowed</td>
+<td>Keeps the flow inside the formal FX system</td>
+</tr>
+<tr>
+<td>Settlement through qualifying non-resident real account</td>
+<td>Allowed</td>
+<td>Provides a regulated alternative settlement path</td>
+</tr>
+<tr>
+<td>Individual international transfers using virtual assets</td>
+<td>Still allowed</td>
+<td>Shows the rule is not a general stablecoin ban</td>
+</tr>
+</tbody>
+</table>
+<h2>A gap in stablecoins that the central bank decided to close</h2>
+<p>Oscar Guillermo Farah Osorio, founding partner at Zanella & Farah, described the move to <em>CryptoSlate</em> as resolving genuine ambiguity.</p>
+<p>Brazil's 2022 virtual assets law had already given the central bank authority to decide which crypto operations count as foreign-exchange activity, but specific rules never followed, leaving a gap some market participants used to their advantage.</p>
+<p>The eFX model these providers operate under lets them bundle many individual payments together, netting balances across an entire day before settling once with their foreign counterparty.</p>
+<p>That structure suits high-volume, low-value flows like streaming subscriptions, online gaming payments and e-commerce transactions especially well. Farah said the new resolution directly closes that ambiguity, giving the central bank clearer visibility into flows it previously could not fully see within the formal exchange system.</p>
+<h2>What stays possible to do with stablecoins</h2>
+<p>Providers can still net and consolidate balances before settling with foreign counterparties. Farah framed the practical effect as removing one settlement method from an otherwise intact structure, since providers retain both the consolidated eFX model through permitted channels and the option of individual virtual-asset transfers outside it.</p>
+<p>What disappears is the specific combination of stablecoin settlement with bulk aggregation, and Farah argued that combination is where much of the cost advantage lived.</p>
+<p>Losing it could mean absorbing Brazil's financial transaction tax on conventional FX conversions. It could also mean paying correspondent-bank and SWIFT-network fees that stablecoin settlement previously avoided, real costs Farah expects will eventually land on Brazilian consumers and businesses.</p>
+<p>Brazil's tax authority recorded <a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/julho/stablecoins-ja-respondem-por-cerca-de-80-do-volume-declarado-de-criptoativos-no-brasil">R$1.13 trillion in declared stablecoin transactions</a> between August 2019 and December 2025, roughly 72% of all declared crypto activity in that window. Stablecoins accounted for close to 80% of declared volume in 2025 alone, and USDT made up nearly 89% of that stablecoin total.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th align="right">Figure</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Declared stablecoin transactions, Aug. 2019–Dec. 2025</td>
+<td align="right">R$1.13 trillion</td>
+<td>Stablecoins are a major part of reported Brazilian crypto activity</td>
+</tr>
+<tr>
+<td>Stablecoin share of declared crypto activity in that window</td>
+<td align="right">~72%</td>
+<td>Stablecoins dominated declared transaction volume</td>
+</tr>
+<tr>
+<td>Stablecoin share of declared crypto volume in 2025</td>
+<td align="right">Close to 80%</td>
+<td>Their role has remained large into the current regulatory period</td>
+</tr>
+<tr>
+<td>USDT share of declared stablecoin volume</td>
+<td align="right">Nearly 89%</td>
+<td>Brazil’s stablecoin market is heavily dollar-stablecoin driven</td>
+</tr>
+<tr>
+<td>Publicly isolated eFX settlement volume affected by Resolution 561</td>
+<td align="right">Not available</td>
+<td>The adoption data does not measure the restricted channel directly</td>
+</tr>
+</tbody>
+</table>
+<h2>The cost problem</h2>
+<p>A July Bank of Italy study <a href="https://www.bancaditalia.it/pubblicazioni/mercati-infrastrutture-e-sistemi-di-pagamento/approfondimenti/2026-086/index.html?com.dotmarketing.htmlpage.language=1">tested 200-dollar USDC transfers</a> across ten international corridors, including Brazil, and found total costs ranging from 0.3% to nearly 9%, with no consistent advantage over conventional payment channels.</p>
+<p>The study never examined Resolution 561 specifically, and it found something else worth noting. The blockchain transfer itself accounted for only a marginal share of total cost, while currency conversion and local payment infrastructure drove most of the expense.</p>
+<p>Settlement finished in under 20 minutes where instant payment systems existed and stretched to one or two business days everywhere else. The Financial Stability Board reached <a href="https://www.fsb.org/2026/07/cross-border-payments-towards-the-next-chapter/">a similar conclusion in July</a>.</p>
+
+<p>Stablecoins' near-term value may sit inside hybrid arrangements built around existing bank money and settlement systems, short of functioning as standalone global payment rails.</p>
+<p>Cregis CEO Shawn Yan said the more consequential move is happening inside brokers' own infrastructure. He noted brokers are using stablecoins for treasury management, liquidity movement between entities and internal settlement, all invisible to the end client.</p>
+<p>As volumes grow, Yan said the question shifts from whether to use stablecoins to how much of that infrastructure a broker wants to control directly, including fund location, transaction speed, and internal approval processes.</p>
+<p>He said that the core business is still FX, and what's changing is the infrastructure underneath it. Yan expects the practical response to regulatory restrictions to stay architectural, well short of avoidant.</p>
+<p>Brokers can keep wallets and treasury controls in-house wherever permitted, while routing specific legs through licensed intermediaries wherever a jurisdiction requires it.</p>
+<p>Yan said:</p>
+<blockquote><p>&#8220;You can't build the model around one assumption about how stablecoins will be treated everywhere.&#8221;</p></blockquote>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Likely handled in-house</th>
+<th>Likely handled through licensed partners</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wallet management</td>
+<td>Yes, where permitted</td>
+<td>Sometimes, if custody rules require it</td>
+</tr>
+<tr>
+<td>Treasury visibility</td>
+<td>Yes</td>
+<td>No, but partner data must feed internal systems</td>
+</tr>
+<tr>
+<td>Internal approvals and access controls</td>
+<td>Yes</td>
+<td>Usually integrated into partner workflows</td>
+</tr>
+<tr>
+<td>Liquidity movement between entities</td>
+<td>Often</td>
+<td>When local rules require a regulated intermediary</td>
+</tr>
+<tr>
+<td>Settlement into local currency or regulated FX channels</td>
+<td>Limited</td>
+<td>Yes, especially in restricted jurisdictions</td>
+</tr>
+<tr>
+<td>Compliance reporting</td>
+<td>Shared responsibility</td>
+<td>Often depends on local licensing rules</td>
+</tr>
+</tbody>
+</table>
+<h2>The outcomes for the hybrid infrastructure</h2>
+<p>Farah also raised a question the resolution leaves open. Brazil's own virtual-assets law lists free enterprise, competition and operational efficiency among its stated goals.</p>
+<p>He asked why individual international stablecoin transfers stay permitted while the aggregated eFX version does not, especially given that regulated providers could plausibly supply the same underlying transaction data the central bank wants either way.</p>
+<p>He reads the rule mainly as an attempt to keep flows inside channels the central bank can already see and control, well short of any genuine conceptual break in how regulators classify stablecoins themselves.</p>
+<p>The bull case has Brazil's explicit boundary reducing legal uncertainty, with larger firms obtaining the right permissions, partnering with licensed institutions, and building standardized compliance workflows around the restriction.</p>
+<p>Under that path, stablecoins keep working for treasury management and cross-border liquidity everywhere outside the specific eFX leg now closed. Firms are starting to market them as operational infrastructure, offering faster reconciliation and programmable controls.</p>
+<p>The bear case is that the required settlement path adds enough FX, banking, and correspondent costs that stablecoins lose much of their advantage for Brazil-linked flows specifically. Smaller payment firms may struggle to justify building separate architecture for one market.</p>
+<p>In that scenario, the central tension becomes whether any meaningful efficiency survives once the full regulated payment chain gets priced into the transaction.</p>
+<p>Brazil's October rule is a reminder that settling the <a href="https://cryptoslate.com/global-2-75b-payments-deal-shows-stablecoins-moving-into-the-rails-they-were-meant-to-bypass/">value that stablecoins move across borders</a> still depends entirely on which border it happens to cross.</p>
+<p>The post <a href="https://cryptoslate.com/brazil-blocks-stablecoins-from-key-cross-border-payment-rail-as-1-1-trillion-market-faces-new-limits/">Brazil blocks stablecoins from key cross-border payment rail as $1.1 trillion market faces new limits</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/brazil-usdt-regulatory-cut.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/brazil-usdt-regulatory-cut.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Bitcoin survived the Fed and CLARITY, and now faces the next major test at $82,000 this weekend</title>
+		<link>https://cryptoslate.com/bitcoin-survived-the-fed-and-clarity-and-now-faces-the-next-major-test-at-82000-this-weekend/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 09:06:06 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=564019</guid>
+
+					<description><![CDATA[<p>Bitcoin hit an intraday high of $81,400 on Friday, approaching the low-$82,000 zone that has capped every recovery attempt since late August. US spot Bitcoin ETF shares stop trading once American markets close for the weekend. Any further push through that ceiling over the next two days would occur in continuously open crypto markets, without [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-survived-the-fed-and-clarity-and-now-faces-the-next-major-test-at-82000-this-weekend/">Bitcoin survived the Fed and CLARITY, and now faces the next major test at $82,000 this weekend</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Bitcoin hit an intraday high of $81,400 on Friday, approaching the low-$82,000 zone that has capped every recovery attempt since late August.</p>
+<p>US spot Bitcoin ETF shares stop trading once American markets close for the weekend. Any further push through that ceiling over the next two days would occur in continuously open crypto markets, without US spot ETF-share trading.</p>
+<h2>The week's shocks already happened</h2>
+<p>Bitcoin <a href="https://cryptoslate.com/why-bitcoin-is-up-today-the-rally-began-before-weak-us-data/">absorbed two real setbacks</a> before Friday's rebound. The Senate failed to advance <a href="https://cryptoslate.com/bitcoin-drops-below-76000-as-senate-rejects-clarity-act-motion/">the CLARITY Act</a>, and the Federal Reserve delivered its first rate hike in three years, raising its target range 25 basis points to 3.75% to 4.00% on Sept. 16.</p>
+<p>Policymakers' projections point toward a 4.1% median rate by year-end. Treasury yields have held near 5%, and oil <a href="https://cryptoslate.com/bitcoin-tests-critical-76000-support-cluster-during-macro-energy-shock/">has stayed above $100</a>, keeping the inflation backdrop unresolved even as Bitcoin recovered.</p>
+<p>US spot <a href="https://farside.co.uk/btc/">Bitcoin ETFs took in $433 million</a> on Sept. 18, according to Farside’s latest figures, following $159.5 million in inflows on Sept. 17. Those gains followed $746.3 million in outflows over Sept. 15 and 16.</p>
+<p>From the Sept. 18 close near $81,100, the immediate test sits at $82,000 to $82,200, a zone that has repeatedly rejected Bitcoin's advances and now sits roughly 1% to 1.4% away.</p>
+<p>Clearing it and holding would open a path toward $84,000 to $85,000, with $86,000 cited in Friday's technical commentary as the next meaningful target beyond that. A break below that sends Bitcoin back toward $80,000, the round number it just reclaimed.</p>
+<p>From there, $78,000 sits as a deeper retracement toward last week's trading range, with $74,000 to $75,000 standing as the major support zone buyers defended during this week's selloff.</p>
+<p>A separate structural level near $70,000 remains part of the broader post-Fed downside conversation, outside the article’s immediate weekend scenarios.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Level</th>
+<th align="right">Distance from ~$81,100</th>
+<th>What it signals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><strong>$86,000</strong></td>
+<td align="right"><strong>+6.0%</strong></td>
+<td>Extended upside target if breakout momentum accelerates</td>
+</tr>
+<tr>
+<td align="right"><strong>$84,000–$85,000</strong></td>
+<td align="right"><strong>+3.6% to +4.8%</strong></td>
+<td>First upside zone after a clean break above resistance</td>
+</tr>
+<tr>
+<td align="right"><strong>$82,000–$82,200</strong></td>
+<td align="right"><strong>+1.1% to +1.4%</strong></td>
+<td>Immediate resistance and the key weekend breakout test</td>
+</tr>
+<tr>
+<td align="right"><strong>$80,000</strong></td>
+<td align="right"><strong>−1.4%</strong></td>
+<td>First downside line; losing it weakens Friday’s recovery</td>
+</tr>
+<tr>
+<td align="right"><strong>$78,000</strong></td>
+<td align="right"><strong>−3.8%</strong></td>
+<td>Deeper retracement toward the prior trading range</td>
+</tr>
+<tr>
+<td align="right"><strong>$74,000–$75,000</strong></td>
+<td align="right"><strong>−7.5% to −8.8%</strong></td>
+<td>Major support zone defended during the week’s selloff</td>
+</tr>
+<tr>
+<td align="right"><strong>~$70,000</strong></td>
+<td align="right"><strong>−13.7%</strong></td>
+<td>Broader structural downside level, not the main weekend target</td>
+</tr>
+</tbody>
+</table>
+<h2>Why the weekend changes the test</h2>
+<p>The ETF demand that has driven much of Bitcoin's recent institutional flow does not trade on weekends.</p>
+<p><a href="https://cryptoslate.com/companies/nasdaq/">Nasdaq</a> and other US exchanges run their regular sessions Monday through Friday. Any Saturday or Sunday move through resistance would occur through continuously open spot and derivatives markets, without the fresh ETF-share buying that showed up at week's end.</p>
+<p>Kaiko's research into the ETF era found Bitcoin's weekend trading share had fallen to 16% of total volume in a 2024 study, down from 28% in 2019.</p>
+<p>That decline suggests activity has concentrated on weekdays since institutional products launched. Thinner weekend conditions can exaggerate moves in either direction, which is why a breakout on Saturday or Sunday still needs Monday to confirm it once ETF trading resumes.</p>
+<p>A genuine breakout needs more than a single green candle above $82,200. Spot volume should broaden across major venues, and open interest should climb gradually alongside price.</p>
+<p>It is key to see whether the pullback comes from spot sellers taking profit or from leveraged long positions getting forcibly closed, and whether the move lines up with fresh macro headlines out of oil markets or geopolitics.</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Weekday setup</th>
+<th>Weekend setup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>US spot Bitcoin ETFs</td>
+<td>Trading during market hours</td>
+<td>Closed</td>
+</tr>
+<tr>
+<td>Institutional ETF flow</td>
+<td>Can add or remove demand intraday</td>
+<td>No fresh ETF-share trading</td>
+</tr>
+<tr>
+<td>Crypto spot markets</td>
+<td>Open</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>Perpetual futures</td>
+<td>Open</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>Liquidity profile</td>
+<td>Broader, with ETF-linked activity</td>
+<td>Thinner and more crypto-native</td>
+</tr>
+<tr>
+<td>Breakout confirmation</td>
+<td>Can be supported by ETF demand</td>
+<td>Needs Monday validation</td>
+</tr>
+</tbody>
+</table>
+<h2>Whether Bitcoin's ceiling finally breaks or holds one more time</h2>
+<p>The bull case has <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin clearing $82,200</a> and turning that level into support, with spot buying spread across venues and open interest building without funding rates running hot.</p>
+<p>Under that path, $84,000 to $85,000 comes into view first, followed by the $86,000 level Friday's technical commentary already flagged. The real validation arrives Monday if price holds those gains once US ETF trading resumes and adds fresh institutional flow on top of whatever the weekend already built.</p>
+<p>The bear case has Bitcoin failing near $82,000 for what would be another rejection in a pattern stretching back to late August. That would send it sliding back below $80,000 and testing $78,000 on the way toward the $74,000 to $75,000 zone that already proved its importance earlier this week.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Trigger</th>
+<th align="right">First target</th>
+<th>What would confirm it</th>
+<th>What would weaken it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Breakout</strong></td>
+<td>BTC clears and holds <strong>$82,200</strong></td>
+<td align="right"><strong>$84,000–$85,000</strong></td>
+<td>Broad spot volume, controlled open interest, Monday ETF follow-through</td>
+<td>Thin-volume wick above resistance</td>
+</tr>
+<tr>
+<td><strong>Extended breakout</strong></td>
+<td>BTC holds above <strong>$85,000</strong></td>
+<td align="right"><strong>$86,000</strong></td>
+<td>Continued spot buying without overheated funding</td>
+<td>Sharp reversal below $82,200</td>
+</tr>
+<tr>
+<td><strong>Rejection</strong></td>
+<td>BTC fails near <strong>$82,000</strong></td>
+<td align="right"><strong>$80,000</strong></td>
+<td>Spot selling or profit-taking at resistance</td>
+<td>Quick reclaim of $82,200</td>
+</tr>
+<tr>
+<td><strong>Deeper pullback</strong></td>
+<td>BTC loses <strong>$80,000</strong></td>
+<td align="right"><strong>$78,000</strong>, then <strong>$74,000–$75,000</strong></td>
+<td>Long liquidations, weak spot bid, macro pressure</td>
+<td>Buyers defend $78,000 quickly</td>
+</tr>
+</tbody>
+</table>
+<p>In that scenario, ETF inflows from Sept. 17 and 18 would still need to be weighed against the $746.3 million withdrawn over the preceding two sessions. Thinner weekend liquidity can amplify a modest rejection.</p>
+<p>Bitcoin needs acceptance above a level sellers have defended for weeks. Whether that acceptance holds without the ETF trading that helped build Thursday and Friday's rebound will not be fully clear until Monday morning proves it one way or the other.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-survived-the-fed-and-clarity-and-now-faces-the-next-major-test-at-82000-this-weekend/">Bitcoin survived the Fed and CLARITY, and now faces the next major test at $82,000 this weekend</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-82k-market-barrier.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-82k-market-barrier.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Ethereum co-founder Vitalik Buterin argues that local AI can protect your privacy without losing speed</title>
+		<link>https://cryptoslate.com/ethereum-cofounder-vitalik-says-local-ai-is-nearly-ready-but-crypto-wallets-still-cannot-trust-it-alone/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 04:30:33 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Wallets]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[Ethereum foundation]]></category>
+		<category><![CDATA[Privacy]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=563577</guid>
+
+					<description><![CDATA[<p>Faster private inference makes laptop orchestration practical, while spending authority remains behind hard limits, transaction checks and human approval.</p>
+<p>The post <a href="https://cryptoslate.com/ethereum-cofounder-vitalik-says-local-ai-is-nearly-ready-but-crypto-wallets-still-cannot-trust-it-alone/">Ethereum co-founder Vitalik Buterin argues that local AI can protect your privacy without losing speed</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Ethereum co-founder Vitalik Buterin says laptop AI is approaching a practical turning point. Wallet software still needs a much higher bar before it can hand an AI control over crypto assets.</p>
+<p>He said on Sept. 17 that Qwen 3.8 Flash and recent improvements in llama.cpp had brought local models close to <a href="https://x.com/VitalikButerin/status/2100388909410885974">handling a “large share” of tasks</a> on his Strix Halo laptop.</p>
+<p>For more advanced work, he described a local model coordinating requests to stronger remote systems while withholding the user's full personal context.</p>
+<p>The benchmark image attached to the post showed 10 workloads. Its reported input-processing rates ranged from 109.82 to 373.22 tokens per second, while output generation ranged from 18.42 to 33.37 tokens per second.</p>
+<p>Those figures support a practical claim about responsiveness on one high-end laptop. They leave model judgment, resistance to malicious instructions, and transaction authorization unanswered.</p>
+<p>Local inference can improve privacy while the power to move funds remains behind separate, enforceable controls.</p>
+<h2>Ethereum co-founder shows what changed between April and September</h2>
+<p>In an <a href="https://vitalik.eth.limo/general/2026/04/02/secure_llms.html">April account of his local AI setup</a>, Vitalik described a narrower role for laptop models.</p>
+<p>He wrote that Qwen3.5:35B could handle bounded tasks and familiar programming work, while advanced independent agents that could keep working on a codebase remained beyond laptops' practical reach. Harder coding and intellectual work still called for stronger remote models.</p>
+<p>The September post changes his assessment of where the practical boundary sits. A local model no longer appears limited to transcription, summarization, or other tightly bounded work. In the newer description, it can become the main interface for a larger share of activity and decide when a remote model is necessary.</p>
+<p>A remote service receives only the question or context the local model selects, rather than every file, message, and wallet detail needed to understand the user's wider situation. The local system becomes both an information gatekeeper and an assistant.</p>
+<p>April and September involved different model generations and different tasks. The September post provides token counts and throughput, but it omits prompt contents, quantization choices, and the full runtime configuration.</p>
+<p><a href="https://github.com/QwenLM/Qwen3.8-Flash-Next">Qwen3.8-Flash-Next</a>, released by Alibaba's Qwen team, is an open-weight multimodal mixture-of-experts model. Its main model has 125 billion parameters, plus another 51 billion in n-gram embedding tables, while 6 billion parameters are activated per token.</p>
+<p>The official repository documents local text and vision inference through llama.cpp using quantized GGUF builds.</p>
+<p>Activating a fraction of the model for each token lowers the compute burden. The user still needs enough memory for the chosen build and context, and the official materials provide no single hardware minimum that applies across quantization levels and workloads.</p>
+<h2>Capability benchmarks leave wallet authority unresolved</h2>
+<p>Qwen's <a href="https://raw.githubusercontent.com/QwenLM/Qwen3.8-Flash-Next/main/tech_report.pdf">technical report</a> evaluates the base model across 14 benchmarks covering general knowledge, mathematics, science, reasoning, coding and multilingual understanding.</p>
+<p>The Qwen team reported that Flash-Next beat the larger Qwen3.7-Plus base model on eight of those tests while using fewer activated parameters and less training compute.</p>
+<p>The report covers model capability, efficiency, and training stability. Prompt-injection resistance, policy enforcement, wallet authorization, and the correctness of autonomous financial actions sit outside that benchmark set.</p>
+<p>An assistant can privately explain a transaction, prepare calldata, or suggest a route. A signer can make an irreversible request that transfers assets or grants another contract permission to move them.</p>
+<p>Better reasoning reduces some errors, yet a malicious instruction hidden in a website, message, or transaction description can still redirect the model's plan.</p>
+<p>The <a href="https://cryptoslate.com/blockchain/ethereum/">Ethereum ecosystem</a> is already testing an on-device version of the assistant concept. In its <a href="https://blog.ethereum.org/2026/08/18/allocation-q2-26">second-quarter allocation update</a>, the <a href="https://cryptoslate.com/companies/ethereum-foundation/">Ethereum Foundation</a> listed Steward, a fully local macOS smart-account wallet whose light client and AI assistant are intended to run on-device.</p>
+<p>The disclosure establishes funding and project scope, but leaves production deployment, independent audit status, and autonomous transaction authority unestablished.</p>
+<p><a href="https://cryptoslate.com/people/vitalik-buterin/">Vitalik's</a> April wallet guidance placed that policy outside the language model. He described a human-confirmation firewall for risky actions, deterministic limits on transaction amounts, calldata, and transaction counts, and a human-plus-model 2-of-2 rule.</p>
+<p>model may recognize a scam pattern that a distracted person misses, while a person may reject an action after malicious content manipulates the model. Requiring both approvals for risky transactions prevents either participant from quietly becoming the sole trust anchor.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/ledger-patched-an-ethereum-app-bug-that-could-show-one-transaction-and-sign-another/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Ledger patched an Ethereum app bug that could show one transaction and sign another</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Low-risk automation can remain available within software-defined permissions. Reading balances, preparing unsigned transactions, or operating under tightly capped limits can make an assistant useful without giving it open-ended spending power.</p>
+<figure id="attachment_563997" aria-describedby="caption-attachment-563997" style="width: 579px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-563997 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_7LX4t9SSCk.jpg" alt="Ethereum co-founder says local AI is faster, wallet trust is separate" width="579" height="733" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_7LX4t9SSCk.jpg 579w, https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_7LX4t9SSCk-237x300.jpg 237w" sizes="(max-width: 579px) 100vw, 579px" /><figcaption id="caption-attachment-563997" class="wp-caption-text">Local AI can privately propose wallet actions, but deterministic policies, transaction checks and human approval must remain separate authorization layers.</figcaption></figure>
+<h2>Wallet trust depends on rules the model cannot rewrite</h2>
+<p><a href="https://eips.ethereum.org/EIPS/eip-7906">EIP-7906</a>, which remains a draft, proposes post-transaction assertion frames that inspect the final state differences produced by a transaction. An assertion can reject the application outcome when those changes violate a specified condition.</p>
+<p>A wallet could use that mechanism to require that a swap changed only approved balances, that a hidden token approval never appeared, or that a protected account's state stayed untouched. Those checks compare the transaction's actual effects with explicit rules.</p>
+<p>The draft also describes the edges of the protection. An assertion that checks too little can create false confidence. Wallet validation logic must require the intended assertion frame, and the assertion itself must cover every relevant state change for the protected operation.</p>
+<p>Local inference and transaction assertions solve different parts of the wallet-agent problem.</p>
+<p>The local model protects context and turns natural-language intent into a proposed action, deterministic permissions restrict recipients, contracts, value, and frequency, assertions inspect final state changes. Human confirmation remains the second factor for risky actions.</p>
+<p>September's laptop result makes the first layer more credible. It suggests a private local model can respond quickly enough to coordinate daily work and selectively use remote intelligence. The remaining layers still carry the authority that protects assets.</p>
+<p>A <a href="https://cryptoslate.com/crypto-wallets/">crypto wallet</a> can treat the model as a capable interface, planner, and monitor. Trust belongs to controls the model cannot alter and to an approval path that keeps the user meaningfully in charge.</p>
+<p>The post <a href="https://cryptoslate.com/ethereum-cofounder-vitalik-says-local-ai-is-nearly-ready-but-crypto-wallets-still-cannot-trust-it-alone/">Ethereum co-founder Vitalik Buterin argues that local AI can protect your privacy without losing speed</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/local-ai-wallet-authority-standard-image.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/local-ai-wallet-authority-standard-image.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>XRP ETFs hit a speed bump, but big investors aren&#8217;t dumping their tokens yet</title>
+		<link>https://cryptoslate.com/xrp-etfs-hit-a-speed-bump-but-big-investors-arent-dumping-their-tokens-yet/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 02:50:47 +0000</pubDate>
+				<category><![CDATA[ETF]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Investments]]></category>
+		<category><![CDATA[Market]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=563822</guid>
+
+					<description><![CDATA[<p>A $5.15 million redemption was concentrated in two funds, leaving the next weekly flow pattern to decide whether the pause becomes a broader retreat.</p>
+<p>The post <a href="https://cryptoslate.com/xrp-etfs-hit-a-speed-bump-but-big-investors-arent-dumping-their-tokens-yet/">XRP ETFs hit a speed bump, but big investors aren&#8217;t dumping their tokens yet</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>A roughly $5.15 million outflow from US spot XRP exchange-traded products on Sept. 17 interrupted a $192 million inflow month. The reversal creates the first clean test of whether recent demand is cooling, yet the broader flow pattern still favors the buyers.</p>
+<p><a href="https://maketo.com/etf/xrp">Maketo's five-fund series</a> remained about $10 million positive for the rolling week through Sept. 17. Its rolling month contained 16 inflow days and two outflow days, and <a href="https://cryptoslate.com/companies/canary-capital/">Canary Capital's</a> official fund table showed that only part of the daily reversal <a href="https://canaryetfs.com/xrpc/">coincided with a confirmed contraction</a> in shares.</p>
+<p>The base case is a narrow, one-session reset inside a positive trend. A broader multi-session wave that turns the weekly total negative would materially change that reading.</p>
+<h2>The reversal was concentrated in two funds</h2>
+<p>Maketo's cumulative net-flow total declined from $1,715,570,157 on Sept. 16 to $1,710,416,747 on Sept. 17. The exact change was negative $5,153,410, displayed by the tracker as a rounded $5 million outflow.</p>
+<p>The tracker attributed about $1 million of redemptions to Canary's XRPC and about $4 million to <a href="https://cryptoslate.com/companies/21shares/">21Shares'</a> TOXR. <a href="https://cryptoslate.com/companies/bitwise/">Bitwise's</a> XRP fund, <a href="https://cryptoslate.com/companies/franklin-templeton/">Franklin Templeton's</a> XRPZ and <a href="https://cryptoslate.com/companies/grayscale-investments/">Grayscale's</a> GXRP were flat.</p>
+<table>
+<thead>
+<tr>
+<th>Fund</th>
+<th>Sept. 17 flow</th>
+<th>Issuer-data status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitwise XRP</td>
+<td>$0</td>
+<td>Official holdings available through Sept. 16</td>
+</tr>
+<tr>
+<td>Franklin XRPZ</td>
+<td>$0</td>
+<td>Maketo tracker reading</td>
+</tr>
+<tr>
+<td>Canary XRPC</td>
+<td>About -$1 million</td>
+<td>Shares fell by 100,000 on Sept. 17</td>
+</tr>
+<tr>
+<td>Grayscale GXRP</td>
+<td>$0</td>
+<td>Maketo tracker reading</td>
+</tr>
+<tr>
+<td>21Shares TOXR</td>
+<td>About -$4 million</td>
+<td>Maketo tracker reading</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://maketo.com/license">Maketo says</a> it compiles the flow figures from published fund disclosures, making same-day issuer data the best available cross-check.</p>
+<p>XRPC shares outstanding fell from 23.4 million on Sept. 16 to 23.3 million on Sept. 17. <a href="https://www.sec.gov/Archives/edgar/data/2039505/000199937125017549/canaryxrp-424b3_111225.htm">Canary's prospectus</a> defines a basket as 10,000 shares, so the 100,000-share decline equaled 10 baskets.</p>
+<p>The issuer also reported $319.86 million of net assets and a $13.73 net asset value per share on Sept. 17.</p>
+<p>The share-count contraction confirms the direction of the XRPC move while leaving its settlement form and market effect unresolved.</p>
+<p>As of Sept. 16, one day before the aggregate outflow, <a href="https://bitxrpetf.com/">Bitwise's official snapshot</a> for its XRP ETF reported 33.69 million shares outstanding, 376.29 million XRP in trust, and about $486.85 million in net assets.</p>
+<p>That snapshot establishes the fund's scale, while its earlier date prevents a same-day check of the Sept. 17 reading.</p>
+<p>Maketo showed about $10 million entering the covered funds over the rolling week through Sept. 17 and roughly $192 million over the rolling month. Money arrived on 16 days during that monthly window and left on two.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/wall-streets-altcoin-etf-rotation-is-not-producing-an-altseason-and-the-old-playbook-may-be-breaking/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Wall Street’s altcoin ETF rotation is not producing an altseason, and the old playbook may be breaking</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Maketo estimated that the five products held about 1.08 billion XRP worth a combined $1.39 billion, which is inventory associated with outstanding ETF shares. Creations and redemptions can change the inventory, while XRP price moves can change its dollar value even when net subscriptions are quiet.</p>
+<figure id="attachment_563994" aria-describedby="caption-attachment-563994" style="width: 588px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-563994 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_0N2TSYmim3.jpg" alt="The XRP ETF demand test" width="588" height="736" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_0N2TSYmim3.jpg 588w, https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_0N2TSYmim3-240x300.jpg 240w" sizes="(max-width: 588px) 100vw, 588px" /><figcaption id="caption-attachment-563994" class="wp-caption-text">XRP ETF demand depends on whether one-day redemptions stay concentrated or broaden into sustained weekly outflows across multiple funds.</figcaption></figure>
+<h2>The decisive signal is breadth over several sessions</h2>
+<p>ETF flows measure demand for fund shares, but they are an imperfect proxy for immediate XRP buying and selling.</p>
+<p>In a cash creation, an authorized participant delivers cash and the trust or a liquidity provider may acquire XRP to back new shares. A cash redemption can prompt XRP sales to fund the withdrawal, so cash-settled baskets can add demand or supply to the underlying market.</p>
+<p>In-kind baskets transfer XRP into or out of a trust without requiring a contemporaneous trust-level market order, while authorized participants may still trade or hedge elsewhere. <a href="https://www.sec.gov/Archives/edgar/data/2039525/000119312526214111/xrp-20260331.htm">The fund filings</a> show why flow data alone cannot establish the timing, execution venue, underlying XRP transactions, or price impact for a particular day.</p>
+<p><a href="https://cryptoslate.com/coins/xrp/">XRP price</a> registered an intraday high of $1.41 for Sept. 18 and traded at $1.30 when checked on Sept. 17. Price and fund flows can be observed side by side, while the retained evidence supplies no causal bridge between them.</p>
+<p>The Sept. 17 outflow followed the Senate's <a href="https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00234.htm">49-50 rejection of cloture</a> on the motion to proceed to the CLARITY Act by two calendar days.</p>
+<p>The next useful signal is a shift from concentration to breadth. Additional outflows that push the rolling week below zero and spread beyond XRPC and TOXR would offer stronger evidence of a wider institutional retreat.</p>
+<p>That framework is an analytical test: a negative week would strengthen the reversal case, while a longer series would still be needed to judge the monthly trend.</p>
+<p>A return to positive sessions, particularly across several funds, would reinforce the current reading of Sept. 17 as a pause inside a strong inflow month. The five products had absorbed about $192 million across the rolling month and still held an estimated 1.08 billion XRP at the cutoff.</p>
+<p>For now, the data show a concentrated redemption day against positive weekly and monthly totals. The next several sessions will determine whether the institutional bid broadens into a trend.</p>
+<p>The post <a href="https://cryptoslate.com/xrp-etfs-hit-a-speed-bump-but-big-investors-arent-dumping-their-tokens-yet/">XRP ETFs hit a speed bump, but big investors aren&#8217;t dumping their tokens yet</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/xrp-etf-bull-test.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/xrp-etf-bull-test.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Anthropic’s Claude helped 3 researchers breach OpenAI in under 72 hours</title>
+		<link>https://cryptoslate.com/anthropics-claude-helped-3-researchers-breach-openai-in-under-72-hours/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 19 Sep 2026 00:40:50 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Hacks]]></category>
+		<category><![CDATA[Technology]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=563915</guid>
+
+					<description><![CDATA[<p>Anthropic’s Claude helped three security researchers breach OpenAI accounts and reach an internal code repository within 72 hours. Researchers at cybersecurity startup Hacktron chained an image-processing vulnerability with a flaw in OpenAI’s identity infrastructure in July to gain access to multiple employees’ ChatGPT and Codex accounts. One compromised Codex account was connected to OpenAI’s GitHub [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/anthropics-claude-helped-3-researchers-breach-openai-in-under-72-hours/">Anthropic’s Claude helped 3 researchers breach OpenAI in under 72 hours</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Anthropic’s Claude helped three security researchers breach OpenAI accounts and reach an internal code repository within 72 hours.</p>
+<p>Researchers at cybersecurity startup Hacktron chained an image-processing vulnerability with a flaw in OpenAI’s identity infrastructure in July to gain access to multiple employees’ <a href="https://cryptoslate.com/chatgpts-prompt-box-has-meta-up-at-night/">ChatGPT</a> and Codex accounts.</p>
+<p>One compromised Codex account was connected to OpenAI’s <a href="https://cryptoslate.com/glossary/github/">GitHub</a> organization, giving the researchers a path into the company’s internal software environment.</p>
+<p>The team stopped after instructing the compromised employee’s Codex account to create a harmless pull request inside <a href="https://cryptoslate.com/companies/openai/">OpenAI’s</a> private <code>openai/openai</code> monorepo. Hacktron said the researchers did not inspect proprietary source code.</p>
+<p>This week, Hacktron <a href="https://www.hacktron.ai/blog/hacking-openai">disclosed</a> the vulnerabilities and ended further testing.</p>
+<p>OpenAI reportedly fixed the identity-side flaw roughly 14 hours after receiving the report and later paid the company a $6,500 bounty.</p>
+<h2>Anthropic's Opus 5 cleared a hurdle its predecessor could not</h2>
+<p>The <a href="https://cryptoslate.com/blockchain-security-firm-warns-of-ai-code-poisoning-risk-after-openais-chatgpt-recommends-scam-api/">OpenAI attack</a> accelerated after <a href="https://cryptoslate.com/companies/anthropic/">Anthropic</a> released Claude Opus 5, which overcame an exploitation hurdle that its predecessor had repeatedly failed to solve.</p>
+<p>Hacktron began examining the image-upload pipeline used by OpenAI’s Discourse community forum on July 23. HEIC and HEIF files were processed through ImageMagick and the underlying <code>libheif</code> decoding library, giving attacker-controlled images a path into vulnerable code.</p>
+<p>The researchers supplied Claude Opus 4.8 with a Discourse Docker image and asked it to inspect the installed <code>libheif</code> package for security weaknesses. The model identified missing fixes that left a heap buffer overflow, enabling out-of-bounds reads and writes.</p>
+<p>By July 24, Opus 4.8 had produced an exploit that achieved code execution when address space layout randomization (ASLR) was disabled. But repeated attempts to make the exploit work reliably against Discourse’s normal configuration with ASLR enabled failed.</p>
+<p>Anthropic released Opus 5 later that day, giving the researchers another route.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/profit-connect-owner-convicted-over-24m-ai-crypto-fraud-scheme/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">How a fake AI supercomputer stole $24 million from hundreds of crypto investors</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Hacktron opened a fresh session with the new model, which produced a working ARM64 exploit for a local Mac within about three hours. The researchers then asked it to adapt the exploit to the x86-64 architecture and <code>jemalloc</code> memory configuration used by Discourse.</p>
+<p>By 6 a.m. on July 25, the team had a working <a href="https://cryptoslate.com/anthropic-ai-smart-contract-exploits/">exploit</a> that could execute code through a malicious image upload.</p>
+<p>With that foothold established, the researchers next tested whether Claude could reproduce the attack against a remote environment with less human intervention.</p>
+<p>Hacktron placed the model in an autonomous loop against its own Discourse Cloud instance. The company said Claude initially refused to develop an exploit directly against a remote system, prompting the team to proxy the test environment so it resembled a capture-the-flag security challenge.</p>
+<p>Four hours later, the agent had reproduced the attack against the remote test environment.</p>
+<p>The researchers then used the resulting exploit against OpenAI’s community forum, where they gained administrative access. A separate weakness in OpenAI’s single-sign-on system allowed them to move from the forum into ChatGPT and Codex accounts.</p>
+<p>One compromised employee had connected Codex to OpenAI’s GitHub organization, creating the path the researchers later used to demonstrate access to the company’s internal repository.</p>
+<p>Hacktron co-founder Mohan “s1r1us” Pedhapati <a href="https://x.com/S1r1u5_/status/2100777832297447442">said</a> the episode showed how quickly AI was compressing exploit-development timelines that once required far more specialized labor.</p>
+<p>He said:</p>
+<blockquote><p>“Our main takeaway from hacking OpenAI: AI is reducing the amount of scarce expertise needed to develop exploits. Work that once took months can now take days. Even leading AI labs can be vulnerable.”</p></blockquote>
+<p>However, Hacktron stressed that the operation still depended on experienced human researchers. The company noted:</p>
+<blockquote><p>“This was not completely autonomous hacking, and skilled human guidance remained important.”</p></blockquote>
+<p>Robert Reith, founder of blockchain security firm Accretion, <a href="https://x.com/r0bre/status/2100842520448041011">said</a> experienced researchers still supplied much of the judgment needed to turn <a href="https://cryptoslate.com/profit-connect-owner-convicted-over-24m-ai-crypto-fraud-scheme/">AI-generated work into a successful attack</a>, but warned that the advantage may erode as models improve.</p>
+<p>According to him:</p>
+<blockquote><p>&#8220;There’s still a large gap between what skilled researchers + AI can do vs. general population + AI. The scary part is that this gap may become smaller as AI absorbs this knowledge and intuition over time.&#8221;</p></blockquote>
+<h2>AI Coding agents expand the blast radius of a compromised account</h2>
+<p>The same coding agents that accelerated the exploit also increased its potential reach once the researchers gained control of an OpenAI employee account.</p>
+<p>ChatGPT and Codex can connect to external services, meaning a compromised account may expose whatever integrations a user has authorized. Hacktron cited GitHub, Slack, and email as services that could become reachable, depending on an account’s configuration.</p>
+<p>In this case, the employee’s GitHub connection provided the path into OpenAI’s internal repository.</p>
+<p>Security agents warned that this concentration of permissions around <a href="https://cryptoslate.com/cracking-1-33-trillion-daily-tokens-b-ai-powers-the-ai-grid-with-full-stack-infrastructure-to-fuel-the-agentic-era/">AI coding tools</a> could make them increasingly attractive targets as Codex, Claude Code and similar <a href="https://cryptoslate.com/your-ai-shopping-agent-has-a-wallet-but-needs-a-refund-policy/">agents</a> become more deeply embedded in corporate development workflows.</p>
+<p>Codey Blakeney, research lead at Arcee, said:</p>
+<blockquote><p>“The more popular Codex and Claude Code get, the more people are going to try and target them.”</p></blockquote>
+<p>Blakeney <a href="https://x.com/code_star/status/2100843354401747012">said</a> the risk could grow if software development becomes concentrated around a small number of AI providers, creating broader points of failure across engineering teams.</p>
+<p>He noted that if regulation moves us to fewer players, it means less choice and more single points of failure. Blakeney added:</p>
+<blockquote><p>“The entire way software engineering works at most places has completely changed with coding agents, and if just one company has a bad day, it’s going to mess up your roadmap and timelines.&#8221;</p></blockquote>
+<p>Maxime Fournes, CEO of AI safety advocacy group PauseAI, <a href="https://x.com/FournesMaxime/status/2100917444843811244">said</a> the breach also highlighted a longstanding imbalance between attackers and defenders that could become more consequential as AI lowers the cost of developing sophisticated exploits.</p>
+<p>According to him, attackers need to find one overlooked weakness, while defenders must secure a much broader attack surface. He noted:</p>
+<blockquote><p>“It’s massively harder and more expensive to defend against all possible flaws than to exploit a single one.&#8221;</p></blockquote>
+<p>OpenAI tightened access after the disclosure, while Discourse prepared a patch by July 27 and added further sandboxing around its image-processing system.</p>
+<p>The post <a href="https://cryptoslate.com/anthropics-claude-helped-3-researchers-breach-openai-in-under-72-hours/">Anthropic’s Claude helped 3 researchers breach OpenAI in under 72 hours</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/claude-openai-breach.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/claude-openai-breach.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Exchanges lower token risk values, leaving leveraged traders with less breathing room</title>
+		<link>https://cryptoslate.com/exchanges-lower-token-risk-values-leaving-leveraged-traders-with-less-breathing-room/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Fri, 18 Sep 2026 22:50:13 +0000</pubDate>
+				<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Lending]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BNB]]></category>
+		<category><![CDATA[PAXG]]></category>
+		<category><![CDATA[XAUT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=563919</guid>
+
+					<description><![CDATA[<p>Exchange-set rules can shrink borrowing power even when the underlying holdings keep the same market value.</p>
+<p>The post <a href="https://cryptoslate.com/exchanges-lower-token-risk-values-leaving-leveraged-traders-with-less-breathing-room/">Exchanges lower token risk values, leaving leveraged traders with less breathing room</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Binance lowered the collateral ratio for six tokens on Sept. 18, while Coinbase International Exchange says 29 assets will leave its eligible-collateral list on Sept. 29. That ratio determines how much of an asset’s market value an exchange recognizes for borrowing or margin calculations.</p>
+<p>The exchanges operate separate products and account systems, but both changes show how an affected token can keep the same market price while contributing less to a trader’s borrowing limit or margin cushion.</p>
+<p>Binance’s <a href="https://www.binance.com/en/support/announcement/detail/390301281fa84012b654ddbe811f9a53">Sept. 18 update</a> cut collateral ratios for AUCTION, BLUR, GALA, HYPER, S and SYRUP from 30% to 10%. The same update raised ARB, TAO and WLD from 50% to 60%.</p>
+<h2>How exchange rules shrink usable token collateral</h2>
+<p>A hypothetical trader holding $100,000 of one of <a href="https://cryptoslate.com/companies/binance/">Binance’s</a> six affected assets illustrates the change. A 30% collateral ratio gives the holding $30,000 of recognized collateral value, while a 10% ratio gives it $10,000.</p>
+<p>The holding’s assumed market value stays at $100,000, while the amount the exchange recognizes falls by $20,000. The ratio falls by 20%, equivalent to a 66.7% relative reduction.</p>
+<figure id="attachment_563979" aria-describedby="caption-attachment-563979" style="width: 1302px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-563979 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_Br8I5ysVA0.jpg" alt="How $100,000 of token collateral becomes $10,000" width="1302" height="734" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_Br8I5ysVA0.jpg 1302w, https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_Br8I5ysVA0-300x169.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_Br8I5ysVA0-1024x577.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_Br8I5ysVA0-768x432.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_Br8I5ysVA0-480x270.jpg 480w, https://cryptoslate.com/wp-content/uploads/2026/09/ChatGPT_Br8I5ysVA0-1200x675.jpg 1200w" sizes="(max-width: 1302px) 100vw, 1302px" /><figcaption id="caption-attachment-563979" class="wp-caption-text">Binance’s collateral ratio reduction from 30% to 10% cuts recognized value on $100,000 of affected tokens from $30,000 to $10,000.</figcaption></figure>
+<p>Binance said its Cross Margin change affects the amount a customer can borrow or transfer out. In Portfolio Margin, collateral ratios feed the unified maintenance margin ratio, or uniMMR, which measures whether the combined portfolio has enough margin to support its positions.</p>
+<p>A lower recognized value can reduce that cushion, but the outcome depends on the account’s other assets, liabilities, and applicable risk tiers.</p>
+<p>Coinbase International Exchange’s <a href="https://help.coinbase.com/en/international-exchange/perpetual-futures-basics/what-is-collateral">collateral page</a> says 29 assets will no longer count as eligible collateral on Sept. 29. The list includes BNB, AVAX, ARB, ONDO, PEPE, SHIB, and UNI.</p>
+<p>The notice changes collateral eligibility within Coinbase’s derivatives system. Customers whose accounts rely on those assets may need to add other collateral or reduce exposure, depending on their individual margin position.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/deribit-already-holds-96-6-of-coinbases-derivatives-open-interest-ahead-of-sept-9-migration/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Coinbase is moving $227 million onto the venue already holding over 96% of its derivatives</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>SYRUP shows how quickly a venue can reverse an internal risk weight. Binance <a href="https://www.binance.com/en/support/announcement/detail/1f12c2c6cc2b43aa941e382dfc19c417">raised SYRUP’s ratio</a> from 10% to 30% on Sept. 4, then returned it to 10% on Sept. 18, a total of 14 days apart.</p>
+<h2>Selective repricing sets the limits of the story</h2>
+<p>Binance adjusted higher ratios for ARB, TAO and WLD usage as collateral in the Sept. 18 update. A <a href="https://www.binance.com/en/support/announcement/detail/58b63eb8dd664487910a7cdcb7fc0c23">Sept. 11 change</a> also raised ratios for tokenized gold and equity-linked assets, including PAXG, XAUT, QQQB and SPYB, while cutting seven cryptoassets.</p>
+<p>Those mixed changes support a conclusion of selective risk repricing within Binance’s system. Aggregate borrowing capacity could rise or fall depending on the balances held in each asset.</p>
+<p>A report by <a href="https://cryptoslate.com/companies/glassnode/">Glassnode</a> and <a href="https://cryptoslate.com/companies/bybit/">Bybit</a> said coin-margined collateral lost the majority of the tracked Bitcoin futures book and never regained it. Coin-margined positions expose a trader to a losing contract and weakening collateral during the same market move.</p>
+<p>That report describes <a href="https://20368641.fs1.hubspotusercontent-na1.net/hubfs/20368641/Lead%20Magnets/bybit-report-lineflow.pdf">a longer-running shift in Bitcoin derivatives</a> market structure. The September notices address current rules at Binance and Coinbase, and the available evidence shows no link indicating the exchanges coordinated their decisions.</p>
+<p>Binance also <a href="https://www.binance.com/en/support/announcement/detail/61e6132794e14f4495ba3314d2d1fc27">removed five cross-margin pairs</a> on Sept. 18: ENJ/USDC, GENIUS/USDC, CVX/USDC, GUN/USDC and VANA/USDC. It removed the GENIUS/USDC isolated-margin pair and automatically settled remaining positions.</p>
+<p>The next measurable effects would appear in pledged collateral, borrowing utilization, margin calls, position reductions, or liquidations.</p>
+<p>Exchange disclosures covering those figures would show whether the parameter changes caused material deleveraging. For now, the notices demonstrate that exchange-set collateral rules can tighten usable leverage independently of token prices.</p>
+<p>The post <a href="https://cryptoslate.com/exchanges-lower-token-risk-values-leaving-leveraged-traders-with-less-breathing-room/">Exchanges lower token risk values, leaving leveraged traders with less breathing room</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/broken-margin-bridge.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/broken-margin-bridge.webp" length="1280" type="image/jpg"/>
+	</item>
+	</channel>
+</rss>
