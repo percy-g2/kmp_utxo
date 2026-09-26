@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Sat, 26 Sep 2026 09:14:03 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Nearly $15B is moving off LayerZero, now a $292M lawsuit puts its security model on trial</title>
+		<link>https://cryptoslate.com/nearly-15-billion-is-moving-off-layerzero-now-a-292-million-lawsuit-puts-its-security-model-on-trial/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 26 Sep 2026 13:30:11 +0000</pubDate>
+				<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Hacks]]></category>
+		<category><![CDATA[Legal]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=566160</guid>
+
+					<description><![CDATA[<p>Evercrest Technologies, the company behind KelpDAO, has sued LayerZero Labs, its Canadian affiliate, and CEO Bryan Pellegrino in British Columbia over April's $292 million rsETH exploit. The claim alleges negligent misrepresentation, negligence and defamation, seeks aggravated and punitive damages, and says Kelp users have withdrawn more than $650 million since the attack. Pellegrino has called [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/nearly-15-billion-is-moving-off-layerzero-now-a-292-million-lawsuit-puts-its-security-model-on-trial/">Nearly $15B is moving off LayerZero, now a $292M lawsuit puts its security model on trial</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Evercrest Technologies, the company behind KelpDAO, has sued LayerZero Labs, its Canadian affiliate, and CEO Bryan Pellegrino in British Columbia over April's $292 million rsETH exploit.</p>
+<p>The claim alleges negligent misrepresentation, negligence and defamation, seeks aggravated and punitive damages, and says Kelp users have withdrawn more than $650 million since the attack.</p>
+<p>Pellegrino has called the suit meritless. By Aug. 4, projects tied to roughly $14.5 billion in assets had announced moves <a href="https://cryptoslate.com/chainlink-emerges-as-the-unlikely-3b-winner-of-kelpdao-exploit-as-defi-projects-dump-layerzero/">from LayerZero to Chainlink's CCIP</a>, nearly 50 times the amount stolen.</p>
+<p><a href="https://x.com/KelpDAO/status/2103333337750536696?s=20">The lawsuit now asks a court</a> to settle a responsibility dispute that customers have been pricing on their own since April.</p>
+<h2>Two failures had to line up</h2>
+<p>On April 18, attackers <a href="https://cryptoslate.com/after-the-16-5-billion-in-exploits-defi-now-forced-toward-the-controls-it-once-resisted/">tricked LayerZero's verifier</a> into approving a forged cross-chain transfer. LayerZero's incident report traces the intrusion to a developer who was socially engineered into cloning a malicious GitHub repository in March.</p>
+<p>The attackers reached LayerZero's RPC environment, poisoned two internal nodes, and knocked an external RPC provider offline, so the verifier signed a message built on false source-chain data <a href="https://cryptoslate.com/defi-users-pull-out-10-billion-from-market-as-292-million-exploit-sparks-bank-run-optics/">and 116,500 rsETH left Kelp's bridge</a>.</p>
+<p>That compromise succeeded because Kelp's bridge required approval from a single verifier, LayerZero's own, leaving one party able to authorize the release. The on-chain signature check worked as designed, since the signature was valid and simply attested to false information.</p>
+<p>LayerZero's report splits the blame accordingly, assigning the number of required verifiers to the application and the compromised RPC layer to LayerZero as its operator.</p>
+<table>
+<thead>
+<tr>
+<th>Security layer</th>
+<th>What was supposed to happen</th>
+<th>What failed</th>
+<th>Who controlled that layer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Verifier count</strong></td>
+<td>Multiple independent verifiers could reject a bad message</td>
+<td>Kelp required only LayerZero's verifier</td>
+<td>Application / Kelp</td>
+</tr>
+<tr>
+<td><strong>RPC data</strong></td>
+<td>Verifier receives accurate source-chain state</td>
+<td>Attackers poisoned LayerZero-operated RPC infrastructure</td>
+<td>LayerZero</td>
+</tr>
+<tr>
+<td><strong>Independent check</strong></td>
+<td>A second verifier could disagree with false data</td>
+<td>No second required verifier existed</td>
+<td>Application configuration</td>
+</tr>
+<tr>
+<td><strong>Signature generation</strong></td>
+<td>Verifier signs only valid source-chain events</td>
+<td>LayerZero's verifier signed false data</td>
+<td>LayerZero-operated verifier</td>
+</tr>
+<tr>
+<td><strong>On-chain contract</strong></td>
+<td>Accept valid signatures from configured verifier set</td>
+<td>Worked exactly as configured</td>
+<td>Smart contract logic</td>
+</tr>
+</tbody>
+</table>
+<h2>Kelp's claim targets what happened to LayerZero before the hack</h2>
+<p>Evercrest alleges LayerZero reviewed and approved the single-verifier setup in writing, including telling Kelp in February 2024 there was &#8220;no problem&#8221; with a default configuration.</p>
+<p>The suit also alleges LayerZero warned another developer, USDT0, about risks in default verifier configurations while withholding a comparable warning from Kelp.</p>
+<p>Those allegations have yet to be tested in court. LayerZero's account <a href="https://cryptoslate.com/the-next-big-defi-exploit-will-start-before-the-code-is-deployed/">puts the choice on Kelp</a>, saying the application had previously used a two-of-two configuration and moved to one-of-one.</p>
+<p>LayerZero's verifier now refuses to sign on any channel where it's the only required signer, and the company requires multiple independent RPC sources across providers and geographies.</p>
+<p>By Aug. 4, it had moved default pathways on both versions of its endpoint to a minimum of three verifiers, while applications can still build custom setups at the protocol level.</p>
+<p>LayerZero also said in May that letting its own verifier act alone on high-value transfers had been a mistake, and it maintained the incident touched about 0.14% of the applications on its network.</p>
+<h2>LayerZero customers moved faster than the courts</h2>
+<p><a href="https://cryptoslate.com/companies/bitgo/">BitGo</a> accounted for the largest migration, with WBTC making up about $7.4 billion of the Aug. 4 tally, and it named CCIP its exclusive cross-chain provider for WBTC and the default for future BitGo-issued assets.</p>
+<p>Mantle, Kelp's rsETH and Lombard added billions more, and Chainlink puts the total near $15 billion. Kelp says its own migration remains underway, so announced value and completed transfers are separate measures.</p>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th align="right">Associated asset value</th>
+<th align="right">Relative to $292M exploit</th>
+<th>What it represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Kelp exploit</strong></td>
+<td align="right"><strong>$292M</strong></td>
+<td align="right"><strong>1.0×</strong></td>
+<td>Approximate value stolen</td>
+</tr>
+<tr>
+<td>Early migration wave, May</td>
+<td align="right"><strong>&gt;$3B</strong></td>
+<td align="right"><strong>&gt;10×</strong></td>
+<td>Projects announcing moves toward Chainlink</td>
+</tr>
+<tr>
+<td>Migration wave, July</td>
+<td align="right"><strong>&gt;$7B</strong></td>
+<td align="right"><strong>&gt;24×</strong></td>
+<td>Broader group of assets/projects changing infrastructure</td>
+</tr>
+<tr>
+<td>Aug. 4 tally</td>
+<td align="right"><strong>~$14.5B</strong></td>
+<td align="right"><strong>~49.7×</strong></td>
+<td>Associated asset value of announced LayerZero-to-Chainlink migrations</td>
+</tr>
+<tr>
+<td>WBTC alone</td>
+<td align="right"><strong>~$7.4B</strong></td>
+<td align="right"><strong>~25×</strong></td>
+<td>Largest single asset in Aug. 4 tally</td>
+</tr>
+</tbody>
+</table>
+<p>Wyoming's Stable Token Commission fully moved its FRNT state-issued token off LayerZero in August and signed a multi-year deal making CCIP its exclusive cross-chain provider.</p>
+<p>Commission CISO Keith Lawhorn said Sept. 14 that the review began because of the Kelp attack and found problems with access controls, private key management, and incident disclosures, findings LayerZero has partly disputed.</p>
+<p>The standard he described was infrastructure that is secure by default, with safeguards built into the product for a public issuer to rely on.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/after-the-16-5-billion-in-exploits-defi-now-forced-toward-the-controls-it-once-resisted/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">After the $16.5 billion in exploits, DeFi is now being forced toward the controls it once resisted</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>A responsibility gap that reaches past bridges</h2>
+<p>Kelp chose how many verifiers its bridge required, and LayerZero ran the infrastructure its only verifier depended on. Each party controlled a layer that failed, and the smart contract accepted the configuration both had allowed.</p>
+<p>The same arrangement appears wherever an automated protocol depends on an identifiable company for oracles, custody, cloud hosting, or sequencing, since smart contracts turn whatever those services attest into irreversible outcomes.</p>
+<p>A self-service provider can argue that a customer picked its own settings from the tools on offer. Kelp's allegation describes a provider that reviewed a client's architecture, called it acceptable, and operated the component that later broke, a harder position to defend if the allegations hold up.</p>
+<p>LayerZero remains a large network, spanning 96 chains and $9.5 billion in bridged volume for the past 30 days, according to DefiLlama.</p>
+<table>
+<thead>
+<tr>
+<th>Infrastructure model</th>
+<th>Customer controls</th>
+<th>Provider controls</th>
+<th>Responsibility question if something fails</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pure self-service</strong></td>
+<td>Architecture, thresholds, configuration</td>
+<td>Software/tooling only</td>
+<td>Did the customer knowingly choose the risky setup?</td>
+</tr>
+<tr>
+<td><strong>Guided integration</strong></td>
+<td>Final deployment choice</td>
+<td>Documentation, implementation advice, configuration review</td>
+<td>Did provider guidance materially influence the risky choice?</td>
+</tr>
+<tr>
+<td><strong>Provider-operated component</strong></td>
+<td>Which component to use</td>
+<td>Runtime infrastructure, RPCs, signers, oracles, custody</td>
+<td>Did the operated service itself fail despite correct customer use?</td>
+</tr>
+<tr>
+<td><strong>Secure-by-default model</strong></td>
+<td>Limited customization</td>
+<td>Enforced minimum redundancy and hardened defaults</td>
+<td>Did the provider's minimum safeguards perform as promised?</td>
+</tr>
+<tr>
+<td><strong>Managed / institutional service</strong></td>
+<td>Business requirements</td>
+<td>Configuration, monitoring, operational controls</td>
+<td>Does provider assume more contractual or operational liability?</td>
+</tr>
+</tbody>
+</table>
+<p>If the court and the contracts behind the integration place responsibility for verifier choices on the application owner, configurable infrastructure keeps its place, with providers adding formal risk acknowledgments and hardened defaults like LayerZero's.</p>
+<p>The migration wave would settle into a one-time repricing, and LayerZero's message volume and new asset launches would show whether its redesign restored confidence.</p>
+<p>If Kelp substantiates its written-approval claims, approving custom security designs starts carrying legal exposure. Vendors could respond with warranties, indemnities and higher prices, or by refusing to sign off on nonstandard configurations.</p>
+<p>More issuers adopting Wyoming's secure-by-default standard would steer institutional assets toward a smaller group of approved providers, trading configuration risk for concentration risk.</p>
+<p>Kelp's bridge did exactly what its configuration told it to do, and LayerZero's verifier signed exactly what its compromised infrastructure told it was true. A court in British Columbia will now decide who owed the safeguards the industry spent five months adding.</p>
+<p>The post <a href="https://cryptoslate.com/nearly-15-billion-is-moving-off-layerzero-now-a-292-million-lawsuit-puts-its-security-model-on-trial/">Nearly $15B is moving off LayerZero, now a $292M lawsuit puts its security model on trial</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/layerzero-asset-rescue.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/layerzero-asset-rescue.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Kalshi must lock out state users after major court loss</title>
+		<link>https://cryptoslate.com/kalshi-must-lock-out-state-users-after-major-court-loss/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 26 Sep 2026 12:30:13 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Sports]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=566186</guid>
+
+					<description><![CDATA[<p>The Sixth Circuit ruled Sept. 25 that Ohio and Tennessee can apply their gambling laws to Kalshi's sports contracts. The court rejected Kalshi's argument that complying state by state would conflict with its duties as a federally regulated exchange, and it pointed to geofencing as a workable way to satisfy both. That second appellate win [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/kalshi-must-lock-out-state-users-after-major-court-loss/">Kalshi must lock out state users after major court loss</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The Sixth Circuit ruled Sept. 25 that Ohio and Tennessee can apply their gambling laws to Kalshi's sports contracts.</p>
+<p>The court rejected Kalshi's argument that complying state by state would conflict with its duties as a federally regulated exchange, and it pointed to geofencing as a workable way to satisfy both.</p>
+<p>That second appellate win for states hits the demand Eilers & Krejcik Gaming models as most exposed, the 69% of Kalshi's retail sports demand that comes from states without legal online sportsbooks.</p>
+<h2>Two routes to the same result</h2>
+<p>The unanimous panel held that Kalshi had failed to show its sports contracts meet the Commodity Exchange Act's definition of a swap, the premise behind its claim to exclusive CFTC oversight.</p>
+<p>It then added an alternative holding that even if the contracts were swaps, federal commodities law would leave Ohio and Tennessee gambling statutes in force.</p>
+<p>That second finding gives states within the circuit two separate paths to win, since a later ruling in Kalshi's favor on the swap question would leave the preemption conclusion standing.</p>
+<table>
+<thead>
+<tr>
+<th>Legal question</th>
+<th>Kalshi’s position</th>
+<th>Sixth Circuit ruling</th>
+<th>Practical consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Are the sports contracts “swaps”?</strong></td>
+<td>Yes, bringing them within the CFTC’s exclusive-jurisdiction framework</td>
+<td>Kalshi failed to show the contracts meet the relevant swap definition</td>
+<td>Kalshi cannot rely on the swap classification to block state enforcement</td>
+</tr>
+<tr>
+<td><strong>If they are swaps, does federal law preempt state gambling law?</strong></td>
+<td>Yes</td>
+<td><strong>No</strong> — Ohio and Tennessee laws can coexist with federal regulation</td>
+<td>Even a later win on the swap question would not automatically eliminate state authority</td>
+</tr>
+<tr>
+<td><strong>Can state-by-state compliance coexist with DCM rules?</strong></td>
+<td>No; geographic segmentation conflicts with national-market obligations</td>
+<td><strong>Yes</strong></td>
+<td>State-specific access controls remain legally possible</td>
+</tr>
+<tr>
+<td><strong>What happens now?</strong></td>
+<td>Kalshi sought protection from enforcement</td>
+<td>Ohio denial affirmed; Tennessee injunction vacated</td>
+<td>Both states regain room to enforce while litigation continues</td>
+</tr>
+</tbody>
+</table>
+<p>The court affirmed an Ohio ruling against Kalshi, vacated the preliminary injunction that had shielded it from enforcement in Tennessee and sent both cases back to the lower courts.</p>
+<p>Like the earlier rulings in this fight, the decision comes at the preliminary-injunction stage. It now governs federal courts across Ohio, Tennessee, Michigan and Kentucky.</p>
+<p>Kentucky sued Kalshi and Polymarket earlier this year, and Michigan's state-court case runs on its own track.</p>
+<h2>The court's answer on Kalshi's geofencing</h2>
+<p>Kalshi argued that its obligations as a designated contract market, including impartial access and national order matching, made compliance with Ohio's geographic restrictions and Tennessee's laws impossible.</p>
+<p>The panel read those federal requirements as applying to whatever markets an exchange chooses to list, which leaves room for contracts offered in some states and withheld in others.</p>
+<p>It pointed to companies that <a href="https://cryptoslate.com/kalshis-court-loss-shows-federal-approval-may-still-leave-prediction-markets-fenced-off-by-states/">already use geofencing</a> to meet federal exchange rules and state gaming laws at the same time. Kalshi told the court that segmenting access by geography would be technically difficult, time-consuming, and expensive, and the judges answered that &#8220;expensive does not mean impossible.&#8221;</p>
+<p>In Michigan, a <a href="https://cryptoslate.com/kalshi-faces-500000-daily-fines-as-michigan-forces-sports-event-contracts-offline/">Sept. 1 state-court injunction</a> requires Kalshi to keep covered sports contracts unavailable to users located in the state, verified through a qualifying third-party geolocation provider.</p>
+<p>Violations carry penalties of up to $500,000 a day. The Kalshi app keeps working there, and its sports markets disappear for anyone standing inside the state line.</p>
+<h2>Where Kalshi's sports demand sits</h2>
+<p>EKG's July model estimates that 69% of <a href="https://cryptoslate.com/prediction-markets/kalshi-review/">Kalshi's retail sports</a> demand comes from states without legal online sportsbooks, with California and Texas alone accounting for 44%.</p>
+<p>EKG builds those figures from surrounding indicators, since Kalshi keeps its state-level trading data private. The same research estimates prediction markets displaced only 2% to 4% of sportsbook handle in the most competitive legal betting states, pointing to growth driven mainly by customers in places closed to licensed sportsbooks.</p>
+<p>Sports carries the business, with more than 90% of Kalshi's trades and 95% of its revenue in 2025 tied to sports contracts, according to figures cited in the Ninth Circuit's August opinion. As a sizing exercise, restrictions covering half of that non-sportsbook footprint would cover a geography that holds about 34.5% of EKG's modeled retail sports demand.</p>
+<p>California falls within the Ninth Circuit, which ruled against Kalshi's preemption argument in Nevada on Aug. 28. Texas belongs to the Fifth Circuit, which has yet to rule on the question.</p>
+<table>
+<thead>
+<tr>
+<th>Geography / exposure</th>
+<th align="right">Share of EKG-modeled Kalshi retail sports demand</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>States <strong>without</strong> legal online sportsbooks</td>
+<td align="right"><strong>69%</strong></td>
+<td>Core geography where prediction markets had an access advantage over conventional sportsbooks</td>
+</tr>
+<tr>
+<td>California + Texas</td>
+<td align="right"><strong>44%</strong></td>
+<td>Two especially important non-sportsbook states</td>
+</tr>
+<tr>
+<td>States with legal online sportsbooks</td>
+<td align="right"><strong>31%</strong></td>
+<td>Kalshi competes more directly with licensed sportsbooks</td>
+</tr>
+<tr>
+<td>Illustrative: half of non-OSB footprint restricted</td>
+<td align="right"><strong>34.5%</strong></td>
+<td>Shows how quickly state-by-state limits could affect a large share of modeled demand</td>
+</tr>
+<tr>
+<td>EKG-estimated sportsbook substitution in competitive legal states</td>
+<td align="right"><strong>2%–4%</strong></td>
+<td>Suggests much of prediction-market growth came from expanding access rather than simply stealing sportsbook share</td>
+</tr>
+</tbody>
+</table>
+<h2>Ohio and Tennessee already allow sports betting</h2>
+<p>Both states legalized sports wagering and regulate it with a minimum age of 21, geographic limits, licensing, taxes, and consumer protections, rules Kalshi currently operates outside of.</p>
+<p>The Sixth Circuit's opinion noted that states collected more than $3.2 billion in sports-gambling tax revenue in fiscal 2025. Their position is that sports contracts are welcome in both states under the same rules licensed sportsbooks follow.</p>
+<p>The largest sportsbook operators have tapped the same regulatory arbitrage, with DraftKings saying DraftKings Predictions now serves California and Texas, where its sportsbook remains unavailable.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/kalshis-court-loss-shows-federal-approval-may-still-leave-prediction-markets-fenced-off-by-states/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Kalshi court loss shows federal approval cannot erase state barriers</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>FanDuel says FanDuel Predicts offers sports contracts in states where online betting is illegal and will pull them once a state legalizes conventional sportsbooks. Both companies copied the federal route Kalshi opened, and both already run the state-by-state compliance systems the Sixth Circuit described.</p>
+<p>EKG counted $31.1 billion in US sports prediction-market execution volume through Sept. 20 in the third quarter, and it reports Polymarket's US exchange reaching roughly 22% of sports contract volume in September. EKG now ranks state-by-state contraction of the addressable market as the industry's top near-term policy risk.</p>
+<h2>The appellate map and the calendar</h2>
+<p>The Third Circuit sided with <a href="https://cryptoslate.com/companies/kalshi/">Kalshi</a> in New Jersey in April, finding it had a reasonable chance of proving federal law preempts state gambling rules.</p>
+<p>The Ninth Circuit ruled the other way in Nevada, and the Sixth Circuit has now joined it for Ohio and Tennessee, leaving the split at two circuits against Kalshi and one in its favor. A Fourth Circuit appeal involving Maryland remains pending and could reshape that count.</p>
+<p>New Jersey asked the Supreme Court on Sept. 2 to resolve the split. Kalshi's response, originally due Oct. 8, is now due Nov. 9 after a Sept. 22 extension, and the Court has yet to decide whether to hear the case.</p>
+<p>The first concrete test of the Sixth Circuit ruling runs through Tennessee, where regulators regained their enforcement position once the injunction was vacated.</p>
+<table>
+<thead>
+<tr>
+<th>Circuit</th>
+<th>State dispute</th>
+<th>Current preliminary-injunction result</th>
+<th>What it means for Kalshi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Third Circuit</strong></td>
+<td>New Jersey</td>
+<td><strong>Favorable to Kalshi</strong></td>
+<td>Kalshi showed a reasonable chance that federal law preempts state gambling restrictions</td>
+</tr>
+<tr>
+<td><strong>Ninth Circuit</strong></td>
+<td>Nevada</td>
+<td><strong>Against Kalshi</strong></td>
+<td>Court rejected Kalshi’s swap/preemption theory for the sports contracts at issue</td>
+</tr>
+<tr>
+<td><strong>Sixth Circuit</strong></td>
+<td>Ohio + Tennessee</td>
+<td><strong>Against Kalshi</strong></td>
+<td>Court rejected both the swap theory and, independently, the preemption argument</td>
+</tr>
+<tr>
+<td><strong>Fourth Circuit</strong></td>
+<td>Maryland</td>
+<td><strong>Pending</strong></td>
+<td>Could change the appellate balance again</td>
+</tr>
+<tr>
+<td><strong>Supreme Court</strong></td>
+<td>New Jersey petition</td>
+<td><strong>Review not granted</strong></td>
+<td>Kalshi response currently due <strong>Nov. 9</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>What a national exchange looks like from here</h2>
+<p>If the Supreme Court takes up the split and adopts the Third Circuit's reading, sports contracts could stay available nationwide under one federal rulebook. A Fourth Circuit ruling in Kalshi's favor would strengthen that case before the justices act.</p>
+<p>Kalshi would then compete with DraftKings, FanDuel and <a href="https://cryptoslate.com/companies/polymarket/">Polymarket</a> on liquidity, pricing and product design, and EKG's projection of $279 billion in 2027 sports prediction-market execution volume would rest on a national market.</p>
+<p>If Sixth- and Ninth-Circuit reasoning spreads, Kalshi faces a state-by-state permissions matrix. Some states could bar sports contracts outright, while others could demand licenses, a 21-and-over threshold, taxes, or local geolocation checks.</p>
+<p>Markets split by geography also split the pool of eligible traders, which could thin liquidity and push Kalshi toward different contract catalogs from one state to the next.</p>
+<p>Kalshi would <a href="https://cryptoslate.com/prediction-markets/us-regulated/">remain a CFTC-regulated exchange</a> offering economic and political markets across the country, with its sports business tracing the same borders sportsbooks already work within.</p>
+<p>Kalshi's sports edge came from running one federal market while sportsbooks answered to dozens of state regimes. Two appeals courts have now tied that geography to state law, and the Sixth Circuit named the tool that could redraw it.</p>
+<p>The post <a href="https://cryptoslate.com/kalshi-must-lock-out-state-users-after-major-court-loss/">Kalshi must lock out state users after major court loss</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/kalshi-state-access-ruling.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/kalshi-state-access-ruling.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Why cash hoarding in the UK proves the world still craves permissionless money</title>
+		<link>https://cryptoslate.com/why-cash-hoarding-in-the-uk-proves-the-world-still-craves-permissionless-money/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 26 Sep 2026 11:05:05 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Banking]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=564889</guid>
+
+					<description><![CDATA[<p>You can spend weeks paying for everything with your phone and still feel better knowing there's some cash at home. That might sound old-fashioned until your bank's app stops working, your card gets declined for reasons nobody can explain, or the power goes out while you need groceries. In those moments, the idea of financial [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/why-cash-hoarding-in-the-uk-proves-the-world-still-craves-permissionless-money/">Why cash hoarding in the UK proves the world still craves permissionless money</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>You can spend weeks paying for everything with your phone and still feel better knowing there's some cash at home. That might sound old-fashioned until your bank's app stops working, your card gets declined for reasons nobody can explain, or the power goes out while you need groceries.</p>
+<p>In those moments, the idea of financial security stops being an abstract ideal you strive for and turns into something very practical. You need to be able to pay, and the money in your account only helps if you can get to it.</p>
+<p>This seems to be what's going on in the UK, as Britain's newest cash numbers capture this change surprisingly well. In a <a href="https://www.bankofengland.co.uk/bank-insights/2026/the-promise-to-pay-what-backs-banknotes">Sept. 17 explanation of its banknotes</a>, the Bank of England said cash made up just 8% of UK payments in 2025, down from 58% in 2009. However, the value of notes on its balance sheet went from £50 billion to £99 billion over that period, with £94 billion now held by the public in Britain and overseas.</p>
+<p>Those are nominal pounds, so inflation accounts for part of the increase, and the overseas holdings mean we can't treat the total as money British households have stuffed into drawers. But even with those qualifications, the contrast is striking: people use cash less often but still want to own it.</p>
+<p>The Bank describes this as the paradox of banknotes. Anyone who's kept emergency money in an envelope probably understands it without needing a central bank to give it a name.</p>
+<h2>Your money, within reach</h2>
+<p>Digital payments have earned their popularity. They're quick, they spare you a trip to an ATM, and they make buying something from another country almost absurdly easy. Most people have no desire to give that up.</p>
+<p>But convenience depends on a collection of things working together. Your device needs power, communications networks need to function, and the institutions processing the payment need to let it through. Having three cards doesn't give you three independent backups if the same outage prevents every shop nearby from accepting them.</p>
+<p>Cash gives you another way to pay. Once you have the notes, handing them to someone doesn't require a bank to approve the transaction or a phone to connect. That independence has a value even on the many days you don't need it.</p>
+<p>Imagine being able to afford a tank of fuel but being unable to buy it because payments are down. Your balance hasn't fallen, but your practical freedom has. Money you can use immediately is a different kind of security from money an institution confirms you own.</p>
+<p>Central banks understand this perfectly well. The Dutch National Forum on the Payment System, which includes the central bank, banks and consumer groups, <a href="https://www.dnb.nl/en/general-news/press-release-2025/nfps-advice-prepare-for-a-three-day-disruption-of-electronic-payments/">advises households to prepare for three days of disrupted electronic payments</a>. Its cash benchmark is €70 per adult and €30 per child, based on minimum expenses for essentials such as food, medicine and transport.</p>
+<p>That's a local estimate, with households encouraged to adapt it to their circumstances and build it gradually. The accompanying advice also tells retailers to keep enough coins and notes to give customers their money back when they overpay.</p>
+<p>There's a privacy benefit, too. Paying another person directly in cash doesn't create the same bank transaction record as a card payment. Wanting that option is a reasonable preference for an ordinary person buying ordinary things. Financial freedom includes being able to conduct some of your daily life without generating another entry in a company's database.</p>
+<h2>Crises make the argument for you</h2>
+<p>The <a href="https://www.ecb.europa.eu/press/economic-bulletin/articles/2025/html/ecb.ebart202506_02~1a773e2ca3.en.html">European Central Bank's research on cash during crises</a> documents surges in public demand during the 2008 financial crisis, Greece's sovereign debt crisis, the pandemic and the war in Ukraine.</p>
+<p>Even though all of these were very different emergencies, they shared a reason for people to want more control over money they might need at short notice.</p>
+<p>During the pandemic, euro banknote circulation expanded even as everyday cash payments fell.</p>
+<p>The April 2025 blackout across Spain and Portugal also led to a significant increase in the use of cash. The ECB said physical cash helped when digital payment infrastructure failed, although shops still needed to be open and capable of serving customers. Banknotes don't restore electricity to a supermarket's refrigerators or fuel pumps.</p>
+<p>That limitation helps define what cash actually does. It removes one dependency from a transaction, giving people a better chance of continuing with their lives when part of the system stops working.</p>
+<p>Unfortunately, financial and political crises can turn that desire into a need. Someone worried about access to their bank account may want notes in hand. Someone worried about the currency itself faces a different problem, because withdrawing local cash leaves them exposed to its purchasing power.</p>
+<p>This is where gold enters the picture. Physical gold gives its owner an asset that isn't a promise by a bank to pay out a deposit, or by a government to maintain a currency's value. Its appeal makes sense when people fear that the institutions protecting their savings might also be the source of the danger.</p>
+<p>The <a href="https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-full-year-2025/investment">World Gold Council's full-year investment figures</a> show global bar and coin demand increased 16% in 2025 to roughly 1,374 tonnes, the highest annual total since 2013. Its report connects buying in China and the Middle East with geopolitical uncertainty, alongside momentum from higher prices. The appetite wasn't uniform: US bar and coin demand fell by volume.</p>
+<p>Gold brings its own trade-offs. Its price can drop when you need to sell, dealers charge a spread between buying and selling, and keeping it safe costs money or effort. Paying for a prescription with a small gold bar also requires considerably more work than handing over banknotes.</p>
+<p>Cash and gold answer different fears. Cash can help you get through a few days when payments fail; gold offers a way to hold wealth outside a particular currency, with market risk attached. Neither does every job people associate with the word &#8220;safe.&#8221;</p>
+<h2>Keeping the cash option alive</h2>
+<p>Britain's latest announcement shows how much institutional work supports something as simple as a banknote. The Bank of England plans to retain £120 billion of government bonds to back notes indirectly during its transition to a new framework, part of the broader <a href="https://cryptoslate.com/bitcoin-faces-an-eight-year-rates-test-as-the-boe-unwinds-368-billion/">balance-sheet overhaul covered by CryptoSlate</a>.</p>
+<p>That arrangement doesn't make pounds redeemable for gold, and backing the notes doesn't guarantee what they'll buy next year. Inflation still eats into purchasing power, while holding cash also means giving up the interest it could earn elsewhere. Keeping all your savings at home adds theft and fire risks to the list.</p>
+<p>But judging an emergency reserve only by its return misses why someone holds it. People pay for spare keys, insurance, and backup batteries because access has value when the usual route fails. Forgone interest on a modest cash reserve can be understood in much the same way.</p>
+<p>That backup also depends on society keeping cash practical. Households need somewhere to withdraw it, businesses need to accept and handle it, and the networks supplying banknotes need to survive periods when fewer people use them. If those services disappear, telling everyone to carry emergency cash becomes an empty instruction.</p>
+<p>The choice extends beyond how we pay for coffee. Preserving cash gives regular people a small amount of independence that doesn't depend on having technical expertise, an expensive device, or permission from a payment provider at the moment they need to spend.</p>
+<p>You can love your banking app and still want that. When the system works, cash can stay in the drawer. When it doesn't, being able to buy what you need is a very good return.</p>
+<p>The post <a href="https://cryptoslate.com/why-cash-hoarding-in-the-uk-proves-the-world-still-craves-permissionless-money/">Why cash hoarding in the UK proves the world still craves permissionless money</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/uk-cash-resilience-path.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/uk-cash-resilience-path.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Bitcoin posts on X can pay even when Bitcoin doesn’t</title>
+		<link>https://cryptoslate.com/bitcoin-posts-on-x-can-pay-even-when-bitcoin-doesnt/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 26 Sep 2026 09:05:19 +0000</pubDate>
+				<category><![CDATA[Crime]]></category>
+		<category><![CDATA[Culture]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=564890</guid>
+
+					<description><![CDATA[<p>You don't have to own Bitcoin to make money from people getting excited about it. On X, just posting about it can be a business in itself, and the company now wants £207,384 back from people it alleges took that business a bit too far. In its Sept. 17 lawsuit, X accuses Vivek Kumar Sen, [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-posts-on-x-can-pay-even-when-bitcoin-doesnt/">Bitcoin posts on X can pay even when Bitcoin doesn’t</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>You don't have to own Bitcoin to make money from people getting excited about it. On X, just posting about it can be a business in itself, and the company now wants £207,384 back from people it alleges took that business a bit too far.</p>
+<p>In its <a href="https://transparency.x.com/assets/legal/2026-09-17-X-v-Sen-and-Sherpa-Complaint.pdf">Sept. 17 lawsuit</a>, X accuses Vivek Kumar Sen, Zamyang Sherpa, and unidentified operators of running a coordinated account network that manipulated engagement to collect creator payments.</p>
+<p>If £207,000 seems like very little money for a company the size of X, that's because it absolutely is. So why is a company that was bought for $44 <em>billion </em>suing a couple of guys for literally pennies?</p>
+<p>The stakes here are the principles behind its (often controversial) payment program and the potential cost of allowing other users to copy the (alleged) behavior. Paying creators gives people a reason to publish, but if manufactured popularity pays too, the company then risks funding the very activity it wants to remove from people's feeds.</p>
+<h2>Bitcoin can fall while the posts keep paying</h2>
+<p>The basic arrangement is straightforward: X pays eligible creators for attracting an audience, with <a href="https://help.x.com/en/using-x/creator-revenue-sharing">views from paying subscribers</a> contributing to earnings. The account essentially gets paid for the attention it gets, more or less regardless of what it or its audience says or does.</p>
+<p>That means that someone writing about Bitcoin has a much different set of incentives from someone buying Bitcoin. Buyers just want the price to go up, but posters (for lack of a better word) can get attention anytime they want just by posting content that's bound to enrage or entice their audience.</p>
+<p>There's nothing inherently dishonest about that. Newspapers and TV also earn money from audiences through good markets and bad ones. But readers should understand the arrangement, especially when a post feels like friendly advice from someone who shares their enthusiasm.</p>
+<p>Short attention spans mean a lengthy announcement or analysis is unlikely to attract hundreds of thousands of views, so users who want a quick, immediate burst of attention resort to publishing clickbait-y headlines. Then, publishing versions or sometimes even word-for-word copies of that headline through multiple accounts gives the same material a better chance of finding an audience.</p>
+<p>X alleges the accounts in this case went even further by coordinating their posts and interactions. One example in its filing puts the same posts from @Vivek4real_ and @TrendingBitcoin just 11 seconds apart. It also alleges connections between payment records and devices used by the accounts.</p>
+<p>Those connections are more relevant than speed alone. Independent people reacting to the same announcement can publish almost simultaneously, and X's <a href="https://help.x.com/en/rules-and-policies/authenticity">rules allow multiple accounts with different purposes</a>. The abuse X accused these users of involves making coordinated activity look like independent engagement and collecting money from it.</p>
+<p>Most readers can't see who receives an account's payments or which devices operate it. They see different names, different pictures, and many verified accounts that appear to agree with one another.</p>
+<h2>Small bill, expensive habit</h2>
+<p>X's public explanation of the lawsuit shows that protecting the creator monetization program is at the center of the case. In his <a href="https://x.com/BurnhamDC/status/2101818319091224740">announcement of the lawsuit</a>, general counsel James Burnham said the company will act against fraud to protect its platform and legitimate creators' earnings.</p>
+<p>That makes deterrence the main reason for the lawsuit. X has a reason to discourage this kind of behavior before more people decide it's a business worth copying. Recovering one set of payments can also show users that the consequences extend beyond just losing an account.</p>
+<p>If getting caught means only being banned, the money already collected could make the attempt worthwhile. Being pursued for repayment and legal costs makes that a significantly less attractive deal.</p>
+<p>The principle also has a commercial purpose. Creators who spend hours producing original work need to believe the platform can distinguish their audience from manufactured activity, and readers need a feed they want to keep opening. Paying for behavior that frustrates both groups would undermine the product X is trying to sell.</p>
+<p>CryptoSlate previously covered <a href="https://cryptoslate.com/on-chain-sleuth-zachxbt-says-xs-controversial-not-a-bot-fee-unlikely-to-eliminate-scams/">ZachXBT's criticism of paid anti-bot measures</a>, including his argument that scammers could afford verified accounts. The same economic logic applies here: an entry fee offers little protection against someone who expects to earn much more once inside.</p>
+<p>The defendants didn't manipulate Bitcoin's price or entice anyone to make BTC purchases. The case against them only involves the abuse of creator payments.</p>
+<p>However, the posts could still have affected users. The posts wouldn't need to publish lies to get engagement and mislead their readers, either. Imagine a company says it's considering buying Bitcoin. Immediately after the original announcement, five or more verified accounts say that the company <em>bought </em>Bitcoin, and all of the posts have a significant amount of engagement from verified users that confirm the purchase happened. A random user encountering those posts could very reasonably think that the purchase did happen, as it looks like the information is coming from several independent sources.</p>
+<p>That experience extends well beyond crypto. Health advice, political claims, and celebrity rumors can all seem more convincing when they appear to come from several places. Bitcoin adds an immediate financial temptation because readers can act on what they've seen within minutes, while the people circulating it may already be earning from the attention.</p>
+<h2>Paying people to add something</h2>
+<p>X has begun replacing the program involved in the lawsuit with <a href="https://help.x.com/en/using-x/original-content-rewards">Original Content Rewards</a>. Existing revenue-sharing participants could earn through Sept. 7, and applications for the replacement began rolling out Sept. 8. The transition predates the filing, so it can't be presented as a consequence of this case.</p>
+<p>The new rules exclude copied material and lightly rewritten versions of someone else's work, while allowing commentary that adds the author's own perspective. Artificially generated views don't qualify for payment either.</p>
+<p>The new regime makes sense: give people a financial reason to contribute something. Applying it, however, is much harder. Someone who adds a joke to an announcement has contributed their own words; someone who explains a condition buried in the document has given readers information that could affect how they understand it. Both are commentary, but they do different work.</p>
+<p>Originality doesn't guarantee accuracy, either. People can write completely original nonsense, while an account quoting an official document may be giving readers exactly what they need. Good aggregation earns its audience by saving people time and directing them toward evidence.</p>
+<p>Under the <a href="https://legal.x.com/en/original-content-rewards-terms.html">new program's terms</a>, X controls payment calculations and can withhold earnings for manipulation. How it uses that power will determine whether creators trust the replacement. Removing copycats could reward people doing better work, but mistaken exclusions could also cut off legitimate income. Creators need explanations they can understand and a way to contest errors.</p>
+<p>CryptoSlate's coverage of <a href="https://cryptoslate.com/x-brings-crypto-trading-closer-to-your-social-feed/">X's links to crypto exchanges</a> examined the shorter route from reading about an asset to trading it. Creator payments put another person earning money along that route, before the reader has bought anything.</p>
+<p>X can pursue repayment and make abuse more expensive, but the incentive to chase attention will survive this lawsuit. Its task is to make careful, original work worth paying for. The reader's task is simpler: check whether those five enthusiastic accounts have brought five pieces of evidence, or just five opportunities for someone to earn from the same announcement.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-posts-on-x-can-pay-even-when-bitcoin-doesnt/">Bitcoin posts on X can pay even when Bitcoin doesn’t</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-post-payouts.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-post-payouts.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>ARK partners with Securitize to put a venture fund on Ethereum, but leaves exit doors locked</title>
+		<link>https://cryptoslate.com/ark-partners-with-securitize-to-put-venture-fund-on-ethereum-but-leaves-exit-doors-locked/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 26 Sep 2026 07:30:29 +0000</pubDate>
+				<category><![CDATA[Adoption]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Investments]]></category>
+		<category><![CDATA[Tokenization]]></category>
+		<category><![CDATA[ark invest]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[regulation]]></category>
+		<category><![CDATA[Securitize]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=566142</guid>
+
+					<description><![CDATA[<p>The tokenized ARKVX interest still comes with a fund-wide quarterly repurchase cap and no announced secondary venue.</p>
+<p>The post <a href="https://cryptoslate.com/ark-partners-with-securitize-to-put-venture-fund-on-ethereum-but-leaves-exit-doors-locked/">ARK partners with Securitize to put a venture fund on Ethereum, but leaves exit doors locked</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>ARK Invest and Securitize announced on Sept. 24 that eligible investors would be able to hold tokenized interests in the ARK Venture Fund on Ethereum.</p>
+<p>This new ownership route puts an established interval fund on blockchain infrastructure, so investors still face the fund's limited exit options when trying to sell their shares.</p>
+<p>ARKVX invests <a href="https://investors.securitize.io/news/news-details/2026/ARK-Invest-Tokenizes-ARK-Venture-Fund-ARKVX-with-Securitize/default.aspx">across private and public technology companies</a>, and its tokenized interests represent exposure through the managed fund, giving holders a stake in ARKVX. According to the announcement, Securitize will handle the on-chain issuance and investor experience.</p>
+<h2>Shares remain hard to sell</h2>
+<p>ARK's <a href="https://assets.ark-funds.com/media-12243148-2a3e-4996-9763-260f93905eb9/b0be6071-83ac-40f1-b07e-6174052cf553/2026%20ARK%20Venture%20Fund%20Repurchase%20Calendar.pdf">2026 calendar</a> sets Sept. 30 as the next repurchase request deadline, days after the tokenization announcement. The fund offers to buy back up to 5% of its outstanding shares at net asset value each quarter.</p>
+<p>The published calendar and launch terms leave open whether someone acquiring a tokenized interest after Sept. 24 can participate in this month's offer.</p>
+<figure id="attachment_566144" aria-describedby="caption-attachment-566144" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-9791a852-9c71-44c4-ab62-a5734baf6b91.png" target="_blank" rel="noopener"><img fetchpriority="high" decoding="async" class="wp-image-566144" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-9791a852-9c71-44c4-ab62-a5734baf6b91.png" alt="ARKVX exit routes: quarterly repurchases for up to 5% of outstanding fund shares, and SEC-permitted secondary trading with no venue announced" width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/exec-9791a852-9c71-44c4-ab62-a5734baf6b91.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-9791a852-9c71-44c4-ab62-a5734baf6b91-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-9791a852-9c71-44c4-ab62-a5734baf6b91-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-9791a852-9c71-44c4-ab62-a5734baf6b91-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-566144" class="wp-caption-text">ARKVX investors can seek quarterly fund repurchases or a future secondary sale, but no trading venue or guaranteed buyer is announced.</figcaption></figure>
+<p><a href="https://cryptoslate.com/companies/ark-invest/">ARK</a> and <a href="https://cryptoslate.com/companies/securitize/">Securitize's</a> launch disclosure says the shares are unlisted and that no secondary market is expected. ARK's <a href="https://www.ark-funds.com/funds/arkvx">fund page</a> tells shareholders to expect sales through its repurchase policy, and the calendar likewise calls the shares illiquid.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/rwa-tokenization-defi-composability-gap/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">RWA tokenization nears $30 billion, but DeFi is capturing only a fraction</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>A <a href="https://www.sec.gov/files/rules/ic/2026/ic-36333.pdf">Sept. 21 SEC order</a> gives ARK permission to offer a tokenized share class that may trade on alternative trading systems or appear on other quotation services. Regulatory permission could eventually provide another route to buyers, depending on whether trading begins and whether buyers emerge.</p>
+<p>The <a href="https://www.sec.gov/Archives/edgar/data/1697748/000121390026086478/ea0301027-01_40appa.htm">application behind the order</a> sets further limits on that possibility. ARK said only approved wallets could hold tokenized shares and it did not expect a robust trading market at the outset. It described alternative-system, over-the-counter and peer-to-peer transactions as possibilities subject to those controls.</p>
+<p>The application also says repurchase offers are allocated across the entire fund, so the tokenized class has no separate buyback pool.</p>
+<p>For an investor considering ARKVX now, the key question is whether a place to sell tokenized shares actually opens and attracts buyers. Until then, ARK's published terms center on a quarterly process that can buy back only a limited share of the fund.</p>
+<p>The post <a href="https://cryptoslate.com/ark-partners-with-securitize-to-put-venture-fund-on-ethereum-but-leaves-exit-doors-locked/">ARK partners with Securitize to put a venture fund on Ethereum, but leaves exit doors locked</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/arkvx-ethereum-liquidity-standard-image.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/arkvx-ethereum-liquidity-standard-image.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>EU faces September 30 clock to decide future of DeFi loans</title>
+		<link>https://cryptoslate.com/eu-faces-september-30-clock-to-decide-future-of-defi-loans/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 26 Sep 2026 05:10:00 +0000</pubDate>
+				<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Lending]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Aave]]></category>
+		<category><![CDATA[MetaMask]]></category>
+		<category><![CDATA[regulation]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=566133</guid>
+
+					<description><![CDATA[<p>Its MiCA review response points to crypto firms’ access routes while any new lending duties remain a future legislative choice.</p>
+<p>The post <a href="https://cryptoslate.com/eu-faces-september-30-clock-to-decide-future-of-defi-loans/">EU faces September 30 clock to decide future of DeFi loans</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The European Banking Authority has asked the European Commission to examine new MiCA rules for crypto firms that connect customers to DeFi loans.</p>
+<p>Its <a href="https://eba.europa.eu/sites/default/files/2026-09/12cb4f01-0d51-46bf-a561-165ac486698f/EBA%20response%20to%20EC%20targeted%20consultation%20on%20MiCA%20review.pdf">September 24 response</a> calls for a cost-benefit analysis of possible duties for intermediated borrowing and lending, and for crypto-asset service providers (CASPs) that give clients access to DeFi lending through interfaces or products.</p>
+<p>A loan can run on an on-chain protocol while a company supplies the app that brings a customer to it. The EBA’s recommendation puts that company-controlled route within the Commission’s review, and it is a request to assess legislation, so the EBA’s response itself changes no lending rule.</p>
+<p>The <a href="https://eba.europa.eu/publications-and-media/press-releases/eba-identifies-priorities-review-mica">regulator said</a> consumer risks prompted its call to examine the issue.</p>
+<figure id="attachment_566168" aria-describedby="caption-attachment-566168" style="width: 754px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-566168 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/Photos_b1MUvyEhis.jpg" alt="Where a DeFi loan meets a service provider" width="754" height="953" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/Photos_b1MUvyEhis.jpg 754w, https://cryptoslate.com/wp-content/uploads/2026/09/Photos_b1MUvyEhis-237x300.jpg 237w" sizes="(max-width: 754px) 100vw, 754px" /><figcaption id="caption-attachment-566168" class="wp-caption-text">The EBA’s MiCA review maps potential CASP roles in DeFi lending, while direct smart-contract use remains unresolved and no new rule is enacted.</figcaption></figure>
+<p>The EBA identified two possible changes. The first would add intermediating crypto borrowing and lending to MiCA’s list of CASP services, while the second would set requirements for CASPs facilitating access to DeFi lending protocols, whether through an interface or a product offering exposure to DeFi.</p>
+<p>The Commission would need to weigh the scale of these activities, retail participation and the seriousness of the risks before deciding whether to pursue legislation.</p>
+<p>Suitability tests could assess whether a customer should take part, while leverage caps and fuller disclosures could address borrowing risks.</p>
+<p>For DeFi access, the EBA suggested extra warnings that activity through a truly decentralized protocol may lack regulatory safeguards. It also floated certification of lending protocols for resilience to cyberattacks.</p>
+<p>A separate option concerns tokens whose issuers lack required MiCA authorization. The EBA said CASPs could be prohibited from intermediating or facilitating borrowing and lending involving assets that meet MiCA’s definition of an asset-referenced or e-money token but have no authorized issuer. The proposed restriction limits CASPs' access to those lending activities.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/eu-central-banks-attack-mica-rules-and-stablecoin-runs-are-blamed/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">EU central banks attack MiCA rules and stablecoin runs are blamed</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The <a href="https://eba.europa.eu/sites/default/files/2026-09/12cb4f01-0d51-46bf-a561-165ac486698f/EBA%20response%20to%20EC%20targeted%20consultation%20on%20MiCA%20review.pdf" target="_blank" rel="noopener">response</a> describes potential consumer harms behind the proposals, such as incomplete information about fees, yields, or changes to collateral requirements, leverage that can amplify losses, and risks from commingling, outages, hacks, and poor recordkeeping.</p>
+<p>It also flags the absence of creditworthiness checks and possible over-indebtedness.</p>
+<figure id="attachment_566170" aria-describedby="caption-attachment-566170" style="width: 772px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-566170 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/Photos_RoguTmKgV5.jpg" alt="What the EBA wants examined for DeFi loans" width="772" height="958" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/Photos_RoguTmKgV5.jpg 772w, https://cryptoslate.com/wp-content/uploads/2026/09/Photos_RoguTmKgV5-242x300.jpg 242w, https://cryptoslate.com/wp-content/uploads/2026/09/Photos_RoguTmKgV5-768x953.jpg 768w" sizes="(max-width: 772px) 100vw, 772px" /><figcaption id="caption-attachment-566170" class="wp-caption-text">The EBA proposed six DeFi lending safeguards for Commission analysis, but none currently constitutes an enacted rule.</figcaption></figure>
+<h2>An app can connect a user to DeFi loans</h2>
+<p><a href="https://cryptoslate.com/products/metamask/">MetaMask’s</a> lending guide describes in-app access to Aave stablecoin pools, with <a href="https://support.metamask.io/manage-crypto/earn/lending/how-to-lend">mobile steps for depositing tokens</a>. <a href="https://aave.com/help/aave-101/accessing-aave">Aave’s access guide</a> says users can reach the protocol through its interface, other applications, or direct smart contract interaction.</p>
+<p>The documents show how users can access lending infrastructure through different routes.</p>
+<p>Neither guide establishes whether MetaMask’s feature is available to EU customers or how any named operator would be classified under a future CASP rule. The EBA’s proposal specifically discusses CASPs that facilitate access.</p>
+<p>Future lawmakers would still have to define that activity and decide how to treat direct smart contract use. Depending on those choices, an app could face checks or warnings at its entry point while a protocol continues executing loans on-chain.</p>
+<p>The Commission’s <a href="https://finance.ec.europa.eu/regulation-and-supervision/consultations-0/targeted-consultation-review-mica-regulation_en">targeted consultation</a> closes on Sept. 30 at 11:59 p.m. Central European Summer Time. Feedback will inform its report on MiCA’s application and crypto-market developments.</p>
+<p>The Commission says it may accompany that report with a legislative proposal if warranted. Until then, the EBA’s proposals signal a possible access and compliance boundary, with its reach and requirements still to be decided.</p>
+<p>The EBA's document also points to why an access rule could differ across products. It asks the Commission to consider the nature and scale of an activity, the extent of retail participation, and the materiality of its risks.</p>
+<p>The response mentions an interface giving protocol access, a service that intermediates a loan, and a product providing DeFi exposure. Any future measure would have to translate those distinctions into clear obligations for firms and customers, including the checks and disclosures attached to each route.</p>
+<p>The post <a href="https://cryptoslate.com/eu-faces-september-30-clock-to-decide-future-of-defi-loans/">EU faces September 30 clock to decide future of DeFi loans</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/eba-defi-access-review-standard-image.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/eba-defi-access-review-standard-image.jpg" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Swiss bank shields Bitget institutions while retail funds freeze</title>
+		<link>https://cryptoslate.com/swiss-bank-shields-bitget-institutions-while-retail-funds-freeze/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 26 Sep 2026 02:30:16 +0000</pubDate>
+				<category><![CDATA[Banking]]></category>
+		<category><![CDATA[Exchanges]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Hacks]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Bitget]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=566131</guid>
+
+					<description><![CDATA[<p>Sygnum offers bank-held trading collateral to institutional clients, while Bitget's withdrawal pause leaves ordinary balances dependent on its own controls and fund.</p>
+<p>The post <a href="https://cryptoslate.com/swiss-bank-shields-bitget-institutions-while-retail-funds-freeze/">Swiss bank shields Bitget institutions while retail funds freeze</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Bitget says about $387.5 million in assets was transferred to attacker-controlled addresses during a Sept. 24 wallet breach. Its withdrawals remained suspended in notices issued through Sept. 25, even as deposits and trading continued.</p>
+<p>On the day of the breach, Sygnum announced that Bitget's institutional clients could trade against collateral held at the Swiss bank instead of placing that collateral in Bitget's wallets.</p>
+<p>The juxtaposition puts a question behind the promise of off-exchange custody: which assets sit beyond an exchange wallet breach, and what still depends on the exchange when trading or withdrawals are disrupted?</p>
+<p><a href="https://www.sygnum.com/news/bitget-latest-major-crypto-exchange-to-partner-with-sygnum-for-off-exchange-custody/">Sygnum's route</a> is for eligible institutional clients who onboard with its bank. The companies have not disclosed how many Bitget clients use it or whether any Sygnum-held collateral was connected to this incident.</p>
+<h2>A breach alongside a new custody route</h2>
+<p><a href="https://cryptoslate.com/companies/bitget/">Bitget</a> said its systems detected unauthorized transfers at 18:31 UTC on Sept. 24. Its <a href="https://www.bitget.com/support/articles/12560603896024">initial notice</a> placed the affected funds at about $351.6 million and said the breach reached portions of its hot and warm wallet layers, while cold wallets remained secure.</p>
+<p>In a <a href="https://www.bitget.com/support/articles/12560603896108">Sept. 25 update</a>, Bitget raised the estimated assets transferred to attacker-controlled addresses to about $387.5 million after including Zcash and TRON transfers in a fuller accounting. It said the revision did not represent a fresh wave of unauthorized transfers.</p>
+<p>The exchange said it identified and remediated the underlying vulnerability and contained the incident. Mandiant and SlowMist were assisting its investigation, according to Bitget.</p>
+<p><a href="https://www.bitget.com/support/articles/12560603896025">Bitget's withdrawal notice</a> said withdrawals were temporarily unavailable while deposits and trading stayed operational. The exchange promised to announce a withdrawal plan or status by Sept. 26 at 04:00 UTC.</p>
+<p>For a customer with an ordinary Bitget balance, a displayed balance and the ability to trade do not by themselves provide an exit while withdrawals are paused.</p>
+<p><a href="https://www.sygnum.com/news/bitget-latest-major-crypto-exchange-to-partner-with-sygnum-for-off-exchange-custody/">Sygnum said</a> Bitget's institutional clients can use its Protect service for spot and derivatives trading while pledged collateral remains in Sygnum custody in Switzerland. Bitget mirrors the balance as trading margin.</p>
+<p>The bank lists Bitcoin, Ethereum, stablecoins and US Treasuries among the eligible collateral. Its <a href="https://www.sygnum.com/protect/">published process</a> requires a client to onboard with Sygnum, sign a contractual framework, open a Protect portfolio, and pledge assets before receiving exchange margin.</p>
+<p>Under Sygnum's description, the collateral is held in segregated accounts off the bank's balance sheet and is bankruptcy remote under Swiss banking law. Keeping the pledged assets at the bank reduces direct custody exposure to Bitget's own wallets.</p>
+<p>It also addresses the concern that if an exchange faces financial distress, the collateral is intended to remain outside its estate. These are features of the arrangement as Sygnum describes it.</p>
+<p>The announcement is dated Sept. 24 but does not state when Bitget client access became operational, nor that the integration preceded the 18:31 UTC breach or arose in response to it, nor does it identify any Bitget client who had completed onboarding, give a Bitget-specific collateral balance, or say whether Sygnum-held assets were involved in the incident.</p>
+<p>Figures in the release for Protect's total assets and the trading-volume share of all its integrated exchanges do not measure Bitget client uptake.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitgets-351-6-million-hack-pushes-september-crypto-losses-to-2026-high/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitget’s $351.6 million hack pushes September crypto losses to 2026 high</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>The limits of custody and a separate backstop</h2>
+<p><a href="https://www.sygnum.com/protect/">Protect's public page</a> advertises flexible collateral top-ups and withdrawals. It does not publish the Bitget-specific contract that would determine when pledged assets can be released, how positions are settled, or what happens to margin if Bitget pauses its withdrawal service.</p>
+<p>A trading balance mirrored at an exchange is also not the same thing as an ordinary customer's withdrawable exchange balance.</p>
+<p>Trading still depends on the exchange's order, margin, and settlement processes even when the pledged assets are held elsewhere. Segregated custody can reduce exposure to theft from Bitget-held wallets and to Bitget insolvency, as Sygnum describes.</p>
+<p>The public materials do not establish that a Protect client can instantly reclaim pledged collateral during an exchange disruption, or that an exchange's operational problems could never delay settlement. They equally do not show that any Sygnum client is blocked from its collateral in this incident.</p>
+<p>The arrangement creates an optional boundary between institutional collateral and Bitget wallet custody.</p>
+<figure id="attachment_566137" aria-describedby="caption-attachment-566137" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/09/exec-74e3e399-2cbc-4dbb-9c63-e75ffa9cfb37.png" target="_blank" rel="noopener"><img decoding="async" class="wp-image-566137" src="https://cryptoslate.com/wp-content/uploads/2026/09/exec-74e3e399-2cbc-4dbb-9c63-e75ffa9cfb37.png" alt="Two custody paths at Bitget: some hot and warm wallets breached and withdrawals paused, while institutional Protect collateral is held at Sygnum with margin mirrored on Bitget; uptake and release terms are undisclosed." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/exec-74e3e399-2cbc-4dbb-9c63-e75ffa9cfb37.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-74e3e399-2cbc-4dbb-9c63-e75ffa9cfb37-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-74e3e399-2cbc-4dbb-9c63-e75ffa9cfb37-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/09/exec-74e3e399-2cbc-4dbb-9c63-e75ffa9cfb37-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-566137" class="wp-caption-text">Bitget’s ordinary balances faced exchange-wallet exposure, while Institutional Protect keeps pledged collateral off-exchange with Sygnum.</figcaption></figure>
+<p>For users holding assets on Bitget, the exchange pointed to its User Protection Fund. In its initial Sept. 24 notice, Bitget said the fund was worth more than $464 million and that the then-estimated $351.6 million incident fell within its coverage.</p>
+<p>Its public fund page lists 5,500 BTC and says users may claim for qualifying losses from platform-wide events beyond their own actions or trading behavior. Bitget reserves the right to assess and investigate claims.</p>
+<p>The dollar value of a Bitcoin-denominated fund moves with <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin's price</a>. Bitget's <a href="https://www.bitget.com/blog/articles/bitget-protection-fund-382m-august-2026/">report for August</a> put the fund's monthly average at $382 million and its month-end value near $432 million on the same 5,500 BTC holding.</p>
+<p><a href="https://www.bitget.com/support/articles/12560603896108">Bitget also said</a> it froze some affected assets through work with industry partners, but its Sept. 25 update did not quantify the frozen or recovered amount. The next measurable tests are a confirmed withdrawal timetable, a firmer loss and recovery accounting, and the terms of any fund disbursement.</p>
+<p>For the custody comparison, the missing facts are Bitget-specific Protect uptake and the contract governing collateral release and settlement when the exchange is under strain.</p>
+<p>The post <a href="https://cryptoslate.com/swiss-bank-shields-bitget-institutions-while-retail-funds-freeze/">Swiss bank shields Bitget institutions while retail funds freeze</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitget-custody-withdrawals.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitget-custody-withdrawals.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>IBM links 17 banks to the SWIFT ledger, but the cloud risk persists</title>
+		<link>https://cryptoslate.com/ibm-links-17-banks-to-the-swift-ledger-but-the-cloud-risk-persists/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 26 Sep 2026 00:40:46 +0000</pubDate>
+				<category><![CDATA[Banking]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Tokenization]]></category>
+		<category><![CDATA[IBM]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=566084</guid>
+
+					<description><![CDATA[<p>Digital Asset Haven’s ISO 20022 adapter supports tokenized-deposit instructions, while final settlement stays with existing systems.</p>
+<p>The post <a href="https://cryptoslate.com/ibm-links-17-banks-to-the-swift-ledger-but-the-cloud-risk-persists/">IBM links 17 banks to the SWIFT ledger, but the cloud risk persists</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>IBM announced a beta connection between its Digital Asset Haven and SWIFT's shared ledger for tokenized deposits on Sept. 24, using an ISO 20022 Messaging Adapter that lets participating institutions instruct ledger transactions through standard payment messages.</p>
+<p>The route brings IBM’s digital-asset platform into an existing SWIFT program while letting banks work with familiar formats and compliance processes.</p>
+<p><a href="https://cryptoslate.com/companies/ibm/">IBM</a> also <a href="https://newsroom.ibm.com/2026-09-24-ibm-expands-its-digital-banking-infrastructure-with-swift-integration-and-digital-asset-haven-on-prem">announced a separate on-premises beta</a> for institutions that want to run Haven in their own data centers.</p>
+<h2>Standard messages connect to tokenized deposits</h2>
+<p>Digital Asset Haven brings together wallets, key management, transaction signing and policy controls for regulated organizations.</p>
+<p>IBM <a href="https://www.ibm.com/new/announcements/ibm-digital-asset-haven-advances-tokenized-payments-and-expands-deployment-flexibility-with-on-prem">says</a> its adapter maps ISO 20022 payment instructions to transactions on SWIFT’s permissioned ledger. This lets institutions use the payment messages they already exchange to test transfers of bank-issued tokenized deposits.</p>
+<p>The adapter works alongside Haven’s digital-asset controls and Hyperledger Besu connectivity. IBM says institutions already participating in SWIFT's program have tested tokenized deposits on the shared ledger with Haven.</p>
+<p>Participating clients can move digital assets around the clock through the ledger, according to IBM. Final settlement still uses existing mechanisms, including real-time gross settlement systems, so a tokenized-deposit transfer can move ahead of the final settlement step.</p>
+<p>That distinction matters for banks assessing a continuous service: the beta adapter provides a route to instruct and move value on the ledger while established systems complete the underlying payment.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/wall-street-is-building-tokenized-deposits-to-lock-in-customer-balances/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Wall Street is building tokenized deposits to lock in customer balances</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>SWIFT <a href="https://www.swift.com/news-events/press-releases/swifts-blockchain-ledger-ready-use-17-banks-set-pioneer-tokenised-cross-border-payments-trusted-global-infrastructure">said in July</a> that its ledger was ready for initial use, with 17 banks preparing to pilot live tokenized-deposit transactions in a controlled rollout. IBM’s September announcement adds Haven as a beta route into that existing effort.</p>
+<h2>On-premises beta keeps Haven in client data centers</h2>
+<p>The second beta lets clients run Digital Asset Haven entirely inside their own data centers on IBM Z and LinuxONE, without a public-cloud dependency. IBM says both the solution layer and key-management layer stay within the client’s environment.</p>
+<p>That gives regulated institutions direct control over the infrastructure used for custody and transaction management as they evaluate digital-asset services.</p>
+<p>IBM says the on-premises option uses the same architecture, APIs, and workflows as Haven’s SaaS and hybrid deployments. Institutions can evaluate that deployment choice separately from the SWIFT connection.</p>
+<p>A bank could focus on where its keys and platform operate while testing whether the messaging adapter fits its payment processes. Tom McPherson, general manager of IBM Z and LinuxONE, framed the expansion as a way for regulated institutions to participate in emerging digital-asset networks while retaining control of critical operations.</p>
+<p>The post <a href="https://cryptoslate.com/ibm-links-17-banks-to-the-swift-ledger-but-the-cloud-risk-persists/">IBM links 17 banks to the SWIFT ledger, but the cloud risk persists</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/tokenized-deposit-harbor.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/tokenized-deposit-harbor.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Dormant whale moves $380M Bitcoin, leaving the sale question unanswered</title>
+		<link>https://cryptoslate.com/dormant-whale-moves-380m-bitcoin-leaving-the-sale-question-unanswered/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Fri, 25 Sep 2026 22:50:32 +0000</pubDate>
+				<category><![CDATA[Adoption]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Wallets]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=565986</guid>
+
+					<description><![CDATA[<p>The principal output dated to April 2022, and the Sept. 25 destination still held the full balance at the time checked.</p>
+<p>The post <a href="https://cryptoslate.com/dormant-whale-moves-380m-bitcoin-leaving-the-sale-question-unanswered/">Dormant whale moves $380M Bitcoin, leaving the sale question unanswered</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>A Bitcoin address sent 4,499.99987779 BTC to a single destination in a transaction confirmed at 02:30:04 UTC on Sept. 25, 2026.</p>
+<p>The output was still unspent at a 13:33 UTC check, <a href="https://blockstream.info/api/tx/1541cf9c5615649cd0228801f6ae568fba208286ed14ed9c1db18e1c05c1d630">leaving nearly 4,500 BTC visible</a> at one address after the move.</p>
+<p>At <a href="https://cryptoslate.com/companies/coinbase/">Coinbase's</a> BTC/USD low and <a href="https://cryptoslate.com/crypto-exchanges/coinbase-exchange-review/">high of $84,152.88 and $84,882.18</a> during the 02:00-03:00 UTC hour that included confirmation, the Bitcoin output had an estimated value of about $379 million to $382 million. That <a href="https://api.exchange.coinbase.com/products/BTC-USD/candles?start=2026-09-25T02%3A00%3A00Z&end=2026-09-25T03%3A00%3A00Z&granularity=3600">price window</a> helps size the transfer.</p>
+<p>The transaction spent eight outputs from the source address and created one output at the destination. Its largest input was 4,499.99986261 BTC, <a href="https://blockstream.info/api/tx/446118221c3402c64e0eb59dd83a22202ac0af6195057878d3f945060b7e8c26">received</a> on April 21, 2022. That principal output had not moved for more than four years before the Sept. 25 transaction.</p>
+<p>The address wasn't completely inactive during that period. Its <a href="https://blockstream.info/api/address/bc1qlnexsqagmk27ju9dmmvj470l6jsl4j6t4lm34x/txs">transaction history</a> shows seven later deposits, each worth only a few hundred satoshis, between Dec. 30, 2024 and Sept. 11, 2026.</p>
+<p>Together they totaled 2,821 satoshis (0.00002821 BTC). The nearly 4,500 BTC principal was long held, while small later Bitcoin payments still reached the address.</p>
+<figure id="attachment_566152" aria-describedby="caption-attachment-566152" style="width: 765px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-566152 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/Photos_WjKTad3Akj.jpg" alt="4,500 BTC moved in one confirmed Bitcoin transaction" width="765" height="958" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/Photos_WjKTad3Akj.jpg 765w, https://cryptoslate.com/wp-content/uploads/2026/09/Photos_WjKTad3Akj-240x300.jpg 240w" sizes="(max-width: 765px) 100vw, 765px" /><figcaption id="caption-attachment-566152" class="wp-caption-text">A Sept. 25 transaction consolidated eight inputs into one 4,499.99987779 BTC output, without identifying an owner or proving a sale.</figcaption></figure>
+<p>At the 13:33 UTC snapshot, the <a href="https://blockstream.info/api/address/bc1qpls5rs7z53avm0k60hh40y30lkmekl0hnaevuw">receiving address</a> had one confirmed incoming Bitcoin output totaling 4,499.99987779 BTC, no spent output, and no mempool transaction. The source address's eight inputs were combined into that single output, with 1,303 satoshis paid as a network fee.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/mt-gox-linked-wallets-moved-10422-btc-worth-roughly-739-million/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Mt. Gox-linked wallets moved 10,422 BTC, worth roughly $739 million as BTC price slides</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Those records show a confirmed on-chain transfer, but they do not identify who controls the destination. They also do not establish that the address belongs to an exchange, that <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin was sold</a>, that beneficial ownership changed or that an off-chain trade occurred.</p>
+<p>A Bitcoin transfer can precede any of those events, yet this transaction alone follows from none.</p>
+<p>The balance says nothing about the holder's other wallets or any trades elsewhere, and a later transaction could change it. That is why any claim about the coins' current location needs a time-stamped address check, while any claim about trading needs separate evidence.</p>
+<p>Large movements of old coins can draw attention because traders watch for potential supply reaching exchanges. Here, the full output remained at one address at the time of the check, with no visible onward transfer.</p>
+<p>A later spend would be observable on Bitcoin's blockchain, but its purpose would still need separate evidence.</p>
+<p>The post <a href="https://cryptoslate.com/dormant-whale-moves-380m-bitcoin-leaving-the-sale-question-unanswered/">Dormant whale moves $380M Bitcoin, leaving the sale question unanswered</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-transfer-door.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-transfer-door.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Bitcoin survives a 5.2% Treasury shock as traders slash $1.7 billion in leverage</title>
+		<link>https://cryptoslate.com/bitcoin-survives-a-5-2-treasury-shock-as-traders-slash-1-7-billion-in-leverage/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Fri, 25 Sep 2026 21:10:07 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[us treasury]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=566104</guid>
+
+					<description><![CDATA[<p>Bitcoin is holding near $84,000 even as a historic US bond selloff pushes Treasury yields to decades-high levels. The benchmark 10-year Treasury yield climbed to 5.22%, extending a move that has taken borrowing costs to their highest level since 2007. The 30-year yield reached a fresh 22-year high of 5.5185% before trading around 5.511%, up [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-survives-a-5-2-treasury-shock-as-traders-slash-1-7-billion-in-leverage/">Bitcoin survives a 5.2% Treasury shock as traders slash $1.7 billion in leverage</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Bitcoin is holding near $84,000 even as a historic US bond selloff pushes Treasury yields to decades-high levels.</p>
+<p>The benchmark 10-year Treasury yield <a href="https://www.tradingview.com/symbols/TVC-US10Y/">climbed</a> to 5.22%, extending a move that has taken borrowing costs to their highest level since 2007. The 30-year yield reached a fresh 22-year high of 5.5185% before trading around 5.511%, up nearly five basis points on the session.</p>
+<p>The surge is raising the hurdle for Bitcoin and other risk assets by offering investors yields above 5% on US government debt while simultaneously lifting financing costs throughout the financial system.</p>
+<p>Yet crypto has absorbed the latest leg of the bond rout relatively calmly so far. Bitcoin remained inside a roughly $83,000 to $85,000 range after retreating from <a href="https://cryptoslate.com/bitcoins-87000-breakout-puts-90000-in-sight-but-history-comes-with-a-catch/">this week's high near $87,000.</a></p>
+<p>Camran Khosravi, an analyst at <a href="https://cryptoslate.com/companies/bitwise/">Bitwise</a>, <a href="https://x.com/CamKhosravi/status/2103494695485862273">said</a> Bitcoin has gained about 22% since Aug. 19 even as the 10-year real yield climbed 50 basis points. Real yields have risen steadily, while Bitcoin posted most of its gains early in the period and then held much of them.</p>
+<figure id="attachment_566119" aria-describedby="caption-attachment-566119" style="width: 1167px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-566119 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/HTEcuF_WgAA7r-c.jpg" alt="Bitcoin Price vs 10-Year Treasury Real Yield" width="1167" height="1036" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/HTEcuF_WgAA7r-c.jpg 1167w, https://cryptoslate.com/wp-content/uploads/2026/09/HTEcuF_WgAA7r-c-300x266.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/09/HTEcuF_WgAA7r-c-1024x909.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/HTEcuF_WgAA7r-c-768x682.jpg 768w" sizes="(max-width: 1167px) 100vw, 1167px" /><figcaption id="caption-attachment-566119" class="wp-caption-text">Bitcoin gained about 22% from Aug. 19 to Sept. 24 even as the 10-year real Treasury yield rose roughly 50 basis points. Source: Bitwise</figcaption></figure>
+<p>That leaves traders confronting whether Bitcoin can continue resisting one of the sharpest increases in risk-free yields in decades.</p>
+<h2>5% Treasury yields raise Bitcoin’s opportunity cost</h2>
+<p>The pressure has been building for months, with Jefferies noting that the 10-year yield is on track for a seventh consecutive monthly increase. That would tie the longest such streak in data going back to 1970.</p>
+<p>Demand at this week's Treasury auctions has also shown signs of strain.</p>
+<p>James Lavish, co-managing partner of Bitcoin Opportunity Fund, <a href="https://x.com/jameslavish/status/2103178148536062299">said</a> a $44 billion sale of seven-year notes Thursday cleared at 5.085%, up sharply from 4.512% in August and the highest auction yield since April 1993. The auction tailed the prevailing market yield by 0.7 basis points, while its bid-to-cover ratio slipped to 2.42 from 2.50 previously.</p>
+<p>The Treasury discontinued seven-year notes in 1993 before reintroducing the maturity in 2009, making the latest auction yield the highest in roughly 33 years.</p>
+<p>Mohamed El-Erian, chief economic adviser at Allianz, <a href="https://x.com/elerianm/status/2102864457412329759">said</a> the selloff reflects forces visible for some time, including heavy government and corporate borrowing, strong economic activity, and reduced willingness or capacity among some traditional Treasury buyers.</p>
+<p>He argued that investors may also remain anchored to the unusually low yields that followed the 2008 financial crisis, leaving markets less prepared for borrowing costs that stay structurally higher.</p>
+<p>The economic data are adding to those longer-term pressures.</p>
+<p>The <a href="https://cryptoslate.com/bitcoin-volatility-spikes-as-fomc-confirms-25-basis-point-rate-cut-for-september/">Federal Reserve raised its target range by 25 basis points</a> last week, while strong business activity, resilient employment and elevated energy costs are keeping expectations of further tightening alive.</p>
+<p>S&P Global's preliminary September <a href="https://cryptoslate.com/bitcoin-slips-below-85000-as-5-treasury-yield-returns-to-haunt-risk-assets/">composite purchasing managers' index</a> jumped to 58.4 from 56.0, its strongest reading since July 2021. Companies increased payrolls at the fastest pace in more than four years while input costs climbed to near a four-year high.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoins-87000-breakout-puts-90000-in-sight-but-history-comes-with-a-catch/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin’s $87,000 breakout puts $90,000 in sight, but history comes with a catch</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Those readings have reinforced concern that an economy running hotter than expected could keep inflation pressure elevated and force policymakers to maintain restrictive conditions for longer.</p>
+<p>With yields now above 5%, that repricing is also changing the investment case for bonds themselves.</p>
+<p>Jurrien Timmer, director of global macro at <a href="https://cryptoslate.com/companies/fidelity-investments/">Fidelity</a> Investments, <a href="https://x.com/TimmerFidelity/status/2103290135957602566">said</a> a 5% 10-year yield provides bond investors with a substantial cushion. By his calculation, a 100-basis-point decline in yields could generate an 11.9% return, while a rise to 6% would produce a loss of only about 1.9%.</p>
+<p>That asymmetry raises Bitcoin's opportunity cost because the asset pays no coupon or dividend while government debt now offers nominal yields above 5%.</p>
+<p>Timmer nevertheless said Bitcoin remained among the leading assets in his current multi-asset framework, alongside commodities, while long-duration bonds were lagging.</p>
+<h2>Bitcoin sheds leverage without a comparable price collapse</h2>
+<p>Bitcoin's adjustment to the macro shock has so far been more pronounced in derivatives positioning than in its spot price.</p>
+<p><a href="https://cryptoslate.com/companies/cryptoquant/">CryptoQuant</a> data show combined <a href="https://cryptoslate.com/a-48-billion-bitcoin-leverage-trap-is-about-to-trigger-a-massive-forced-exit-the-moment-price-boundaries-break/">Bitcoin open interest</a> across Binance, <a href="https://cryptoslate.com/companies/gate/">Gate.io</a>, <a href="https://cryptoslate.com/companies/htx/">HTX</a> and Bybit falling to <a href="https://cryptoquant.com/insights/quicktake/6ab679c498605f52d2616a68-Bitcoin-Open-Interest-Drops-172B-Across-Four-Exchanges-as-Leverage-Retreats">about $10.3 billion on Sept. 25</a> from $12 billion on Sept. 22.</p>
+<p>The $1.7 billion decline represents a 14.3% contraction in leveraged exposure, compared with only about a 2.3% decline in <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin from roughly $86,000</a> to $84,000 over the same period.</p>
+<p>The reduction was broad-based, led by a roughly $710 million decline on <a href="https://cryptoslate.com/companies/gate/">Gate.io</a> and a $680 million drop on <a href="https://cryptoslate.com/companies/binance/">Binance</a>, while HTX and <a href="https://cryptoslate.com/companies/bybit/">Bybit</a> also recorded lower open interest.</p>
+<p>Open-interest data cannot establish whether longs or shorts accounted for most of the reduction because contracts disappear when either side closes a position. The scale of the contraction relative to Bitcoin's price decline nevertheless shows that traders have substantially reduced leverage without producing a proportional break in spot.</p>
+<p>That deleveraging can reduce the fuel available for cascading liquidations, although large pockets of leveraged positioning remain around the current market.</p>
+<p><a href="https://cryptoslate.com/companies/coinglass/">CoinGlass'</a> 24-hour liquidation <a href="https://x.com/coinglass_com/status/2103482440031584502">heatmap</a> shows concentrations around $85,300 to $85,700 above Bitcoin, with additional liquidity near $83,000 and a larger cluster around $80,000 below.</p>
+<figure id="attachment_566124" aria-describedby="caption-attachment-566124" style="width: 1903px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-566124 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/09/HTER-vvWIAAPT22.jpg" alt="Bitcoin Liquidation Heatmap" width="1903" height="882" srcset="https://cryptoslate.com/wp-content/uploads/2026/09/HTER-vvWIAAPT22.jpg 1903w, https://cryptoslate.com/wp-content/uploads/2026/09/HTER-vvWIAAPT22-300x139.jpg 300w, https://cryptoslate.com/wp-content/uploads/2026/09/HTER-vvWIAAPT22-1024x475.jpg 1024w, https://cryptoslate.com/wp-content/uploads/2026/09/HTER-vvWIAAPT22-768x356.jpg 768w, https://cryptoslate.com/wp-content/uploads/2026/09/HTER-vvWIAAPT22-1536x712.jpg 1536w" sizes="(max-width: 1903px) 100vw, 1903px" /><figcaption id="caption-attachment-566124" class="wp-caption-text">Binance BTCUSDT liquidation levels cluster near $85,300-$85,700 above spot, with downside pockets around $83,000 and $80,000. Source: CoinGlass</figcaption></figure>
+<p>BlockScholes <a href="https://x.com/BlockScholes/status/2103427641428554063">said</a> the surge in long-term Treasury yields had yet to produce a comparable expansion in crypto volatility, with Bitcoin remaining inside its recent range while 30-day implied volatility stayed near the lower end of its recent range.</p>
+<p>That leaves the Treasury market as an increasingly important test of whether Bitcoin's recent resilience can persist.</p>
+<p>A further rise in the 10-year above 5.2%, or in the 30-year beyond 5.52%, would test whether the bond-market shock can finally break through Bitcoin's recent resistance.</p>
+<p>Falling yields would ease that pressure after the cryptocurrency absorbed a double-digit contraction in selected-exchange leverage while largely maintaining its spot range.</p>
+<p>The next major test comes from the Fed's preferred PCE inflation gauge on Sept. 30, followed by the September employment report on Oct. 2. Strong readings could give bond traders further reason to push long-term yields higher and subject Bitcoin's relative resilience to a more sustained macro test.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-survives-a-5-2-treasury-shock-as-traders-slash-1-7-billion-in-leverage/">Bitcoin survives a 5.2% Treasury shock as traders slash $1.7 billion in leverage</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-yield-wave-2.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/09/bitcoin-yield-wave-2.webp" length="1280" type="image/jpg"/>
+	</item>
+	</channel>
+</rss>

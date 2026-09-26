@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title>CoinDesk: Bitcoin, Ethereum, Crypto News and Price Data</title>
+    <link>https://www.coindesk.com/</link>
+    <atom:link rel="self" type="application/rss+xml" href="https://www.coindesk.com/arc/outboundfeeds/rss"/>
+    <atom:link rel="hub" href="true"/>
+    <description>Leader in cryptocurrency, Bitcoin, Ethereum, XRP, blockchain, DeFi, digital finance and Web 3.0 news with analysis, video and live price updates.</description>
+    <lastBuildDate>Sat, 26 Sep 2026 14:01:53 +0000</lastBuildDate>
+    <language>en-US</language>
+    <copyright>© 2026 CoinDesk, Inc.</copyright>
+    <generator>CoinDesk</generator>
+    <ttl>5</ttl>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <url>https://downloads.coindesk.com/arc/failsafe/feeds/coindesk-feed-logo.png</url>
+      <title>CoinDesk: Bitcoin, Ethereum, Crypto News and Price Data</title>
+      <link>https://www.coindesk.com/</link>
+    </image>
+    <item>
+      <title><![CDATA[Kraken’s parent Payward is betting billions on becoming financial infrastructure, not just a crypto exchange]]></title>
+      <link>https://www.coindesk.com/business/2026/09/26/kraken-s-parent-payward-is-betting-billions-on-becoming-financial-infrastructure-not-just-a-crypto-exchange</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/60eaa4392d735a85d254d5ac89ec08baf0b7a62e-2048x1152.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">8bf9807d-93f0-4d78-bba1-2b092b1897a8</guid>
+      <pubDate>Sat, 26 Sep 2026 14:00:00 +0000</pubDate>
+      <description><![CDATA[Kraken parent Payward is unifying trading, payments, asset management and institutional services on common rails, co-CEO Arjun Sethi said.]]></description>
+      <dc:creator>Will Canny</dc:creator>
+      <dc:creator>AI Boost</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Kraken]]></category>
+      <category domain="tag"><![CDATA[Payward]]></category>
+      <category domain="tag"><![CDATA[Exclusive]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Binance deal gives Circle a boost in stablecoin race with Tether, analysts say]]></title>
+      <link>https://www.coindesk.com/business/2026/09/26/binance-deal-gives-circle-a-boost-in-stablecoin-race-with-tether-analysts-say</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/9bfacc43729daed7fb15a2d284673bb17f22de40-1920x1080.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">105bfe76-3a32-4c8f-89ad-9052c33b9b04</guid>
+      <pubDate>Sat, 26 Sep 2026 13:00:00 +0000</pubDate>
+      <description><![CDATA[The five-year deal could strengthen USDC’s reach in emerging markets, though Tether’s liquidity advantage remains hard to dislodge, analysts told CoinDesk.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="tag"><![CDATA[Circle]]></category>
+      <category domain="tag"><![CDATA[Binance]]></category>
+      <category domain="tag"><![CDATA[Tether]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitget hacker moves $83 million in stolen XRP that Ripple cannot freeze]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/26/bitget-hacker-moves-usd83-million-in-stolen-xrp-that-ripple-cannot-freeze</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/2334c8f6eda3e4f6be934696bc4538b3f1603be7-1336x746.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">009fc444-a057-4ac9-abbf-0be00e333f04</guid>
+      <pubDate>Sat, 26 Sep 2026 12:56:41 +0000</pubDate>
+      <description><![CDATA[Two wallets have been almost emptied and a third is being drained, with about $75 million remaining across the five original holding accounts.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin could soon get Zcash-style 'shielded' privacy without changing its rules]]></title>
+      <link>https://www.coindesk.com/tech/2026/09/25/bitcoin-could-soon-get-zcash-style-shielded-privacy-without-changing-its-rules</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/bb91f522b50463896027288e6037d9a39f937ae2-5472x3648.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">a5ca0471-ae18-4e87-b3eb-2470edec7974</guid>
+      <pubDate>Sat, 26 Sep 2026 12:00:00 +0000</pubDate>
+      <description><![CDATA[Researchers have mapped out private bitcoin-denominated transfers that run alongside Bitcoin, but the system still lacks a finished way to lock up real BTC and release it again.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="tag"><![CDATA[Privacy]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Solana’s 150-millisecond settlement upgrade reaches second public test network]]></title>
+      <link>https://www.coindesk.com/tech/2026/09/26/solana-s-150-millisecond-settlement-upgrade-reaches-second-public-test-network</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/54c0f3b41e62df4cdf774aab4c7d68c64e5e976c-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">100b2cba-7e49-4f89-8113-588b5b53e894</guid>
+      <pubDate>Sat, 26 Sep 2026 05:00:00 +0000</pubDate>
+      <description><![CDATA[Alpenglow is running on both public test networks, giving application teams a place to check their software before the live blockchain switches.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[XRP Ledger’s Batch upgrade slips to Oct. 9 after validator support resets]]></title>
+      <link>https://www.coindesk.com/tech/2026/09/26/xrp-ledger-s-batch-upgrade-slips-to-oct-9-after-validator-support-resets</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/af945cfdd3152f9ebc96d44f89ccafea550ccb57-5760x3840.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">4e3afdfc-0e98-4569-adc2-020b5762a762</guid>
+      <pubDate>Sat, 26 Sep 2026 04:30:00 +0000</pubDate>
+      <description><![CDATA[The feature would let users bundle up to eight transactions, including asset-and-payment transfers, but a brief drop below the network’s 80% support threshold restarted its two-week activation clock.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[U.S. SEC's steadiest crypto advocate, Hester Peirce, to depart next week]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/25/u-s-sec-s-steadiest-crypto-advocate-hester-peirce-to-depart-next-week</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/d1c75b8857f5c36e8d847c43e3dd545814aed4d1-2048x1152.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">fe3908e5-a758-4fce-b2a9-c1e7c6073eb9</guid>
+      <pubDate>Fri, 25 Sep 2026 22:17:38 +0000</pubDate>
+      <description><![CDATA[The long-anticipated exit of the commissioner sometimes known as Crypto Mom is Oct. 2, announced as the agency was sending out its latest crypto work. ]]></description>
+      <dc:creator>Jesse Hamilton</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Regulation]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Another appeals court rules against prediction market provider Kalshi, says sports contracts are subject to state regulations]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/25/another-appeals-court-rules-against-prediction-market-provider-kalshi-says-sports-contracts-are-subject-to-state-regulations</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/cd68dbf11ea2b03847eb5020d28aec70f8c83de4-2321x1306.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">f04f9116-d717-4489-970c-c6f36b34e6d7</guid>
+      <pubDate>Fri, 25 Sep 2026 21:17:30 +0000</pubDate>
+      <description><![CDATA[A Sixth Circuit Court of Appeals panel ruled that prediction markets' sports-related events contracts are not swaps, and therefore aren't subject to federal regulatory oversight. ]]></description>
+      <dc:creator>Nikhilesh De</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Kalshi]]></category>
+      <category domain="tag"><![CDATA[Prediction Markets]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Blockchain Association sees leadership shift shortly after crypto Clarity Act fizzles]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/25/blockchain-association-sees-leadership-shift-shortly-after-crypto-clarity-act-fizzles</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/e7a96fe3976c9a072d7edd2ee0e738cfc2ba95a3-2048x1152.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">818c011b-a4ae-45af-9d08-4f565e17aeec</guid>
+      <pubDate>Fri, 25 Sep 2026 20:01:05 +0000</pubDate>
+      <description><![CDATA[The trade group will be run again by its original CEO, Kristin Smith, when Summer Mersinger leaves at the end of a long congressional tussle.]]></description>
+      <dc:creator>Jesse Hamilton</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Regulation]]></category>
+      <category domain="tag"><![CDATA[Clarity Act]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Circle and Tether step in to freeze hacker wallet after massive Bitget crypto heist]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/25/circle-and-tether-step-in-to-freeze-hacker-wallet-after-massive-bitget-crypto-heist</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/fa4127f0e7d39e461c0b46e5ad103a58c4d7cf7f-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">a0b4a6ba-5569-4fef-940c-e402f9698d89</guid>
+      <pubDate>Fri, 25 Sep 2026 14:41:53 +0000</pubDate>
+      <description><![CDATA[The stablecoin issuer blacklisted a wallet holding about $318,000 in USDT and USDC. Most of the stolen funds sit in ether, which can't be frozen.]]></description>
+      <dc:creator>Oliver Knight</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Circle]]></category>
+      <category domain="tag"><![CDATA[Tether]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Tokenization is moving faster than Washington]]></title>
+      <link>https://www.coindesk.com/opinion/2026/09/25/tokenization-is-moving-faster-than-washington</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/795133dffb990742b929b07d85a82856f0623e6f-7000x4000.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">4b1641e9-2454-46f5-841d-56cf7c985a35</guid>
+      <pubDate>Fri, 25 Sep 2026 14:37:32 +0000</pubDate>
+      <description><![CDATA[Regulatory clarity is not simply a legal or political issue, argues former New York Governor Andrew Cuomo. It is an economic one.]]></description>
+      <dc:creator>Andrew Cuomo</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/opinion"><![CDATA[Opinion]]></category>
+      <category domain="https://www.coindesk.com/">Opinion</category>
+    </item>
+    <item>
+      <title><![CDATA[Tether confirms minimal EQIBank exposure following $89M US asset seizure]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/25/tether-confirms-minimal-eqibank-exposure-following-usd89m-us-asset-seizure</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/3137cc47810b9ff5837f91552adf6f55d77eaa56-1259x708.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">8c72534c-d321-4ff2-a9db-0d3ee8cc1a04</guid>
+      <pubDate>Fri, 25 Sep 2026 14:32:48 +0000</pubDate>
+      <description><![CDATA[While Tether's stated ceiling places its maximum exposure under $64 million, the incident underscores lingering counterparty risks in fiat gateway networks.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Tether]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Strategy proposes daily dividends to bring STRC back toward $100]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/25/strategy-proposes-daily-dividends-to-bring-strc-back-toward-usd100</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/1e583cf684e800304cee9ffc173a9c5c677d2aa3-1206x748.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">40a7a32a-4dde-407f-aa04-c9fee2ae7ad4</guid>
+      <pubDate>Fri, 25 Sep 2026 14:22:07 +0000</pubDate>
+      <description><![CDATA[STRC has remained below $100 since May, despite a 12% dividend rate and roughly $1 billion in preferred share buybacks.]]></description>
+      <dc:creator>James Van Straten</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bond volatility surges while bitcoin and Wall Street stay calm]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/25/bond-volatility-surges-while-bitcoin-and-wall-street-stay-calm</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/77696cb11ed522d8f5a7bb512cc29ab103a42ee7-1542x969.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">abfa70b3-385c-498f-b0db-a1c64c721268</guid>
+      <pubDate>Fri, 25 Sep 2026 11:54:28 +0000</pubDate>
+      <description><![CDATA[Bond volatility is at its highest since March, while the bitcoin VIX, BVIV and Wall Street's VIX remain near its yearly low.]]></description>
+      <dc:creator>James Van Straten</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin holders are cashing out, just not the way they did at prior market tops]]></title>
+      <link>https://www.coindesk.com/daybook-us/2026/09/25/bitcoin-holders-are-cashing-out-just-not-the-way-they-did-at-prior-market-tops</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/ba9db405b43bd2a5dd16da9cb4754a0bd05b3057-5184x3456.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">36dd3e4f-3ef0-47ae-8722-03380d23dbc8</guid>
+      <pubDate>Fri, 25 Sep 2026 11:29:04 +0000</pubDate>
+      <description><![CDATA[Your day-ahead look for Sept. 25, 2026]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/daybook-us"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="tag"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Altcoins rally across the board as bitcoin consolidates near $84,000]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/25/altcoins-rally-across-the-board-as-bitcoin-consolidates-near-usd84-000</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/e4b4d678e8586eec1d7e84c78d901caaa4188cf7-1920x1080.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">5b41c565-bbfd-4841-976b-123c6a86f980</guid>
+      <pubDate>Fri, 25 Sep 2026 09:59:45 +0000</pubDate>
+      <description><![CDATA[Quant jumped 39% over 24 hours and 93 of 100 CoinDesk 100 constituents rose, with the altcoin season index at its highest in more than three months.]]></description>
+      <dc:creator>Oliver Knight</dc:creator>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Crypto Markets Today]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin ETF flows turn positive for 2026 after erasing $5.8 billion deficit]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/25/bitcoin-etfs-have-erased-a-usd5-8-billion-hole</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/133ec4662458f7c7fc72023fa8f6ed9686c5ee4f-1600x1125.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">156010f1-b751-4734-918a-a7bd754bdab6</guid>
+      <pubDate>Fri, 25 Sep 2026 09:13:01 +0000</pubDate>
+      <description><![CDATA[At one point in July, ETFs were down $5.8 billion in net outflows for the year. Now, that’s turned into $800 million in net inflows.]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="tag"><![CDATA[ETFs]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[KelpDAO sues LayerZero for the largest exploit 2026 has seen so far]]></title>
+      <link>https://www.coindesk.com/business/2026/09/25/kelpdao-sues-layerzero-for-the-largest-exploit-2026-has-seen-so-far</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/7863e30b8c5511b68b91043a228ce3b5235c6c49-5616x3744.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">ab157ac9-ca60-44da-89bc-0e6b92ff9e7b</guid>
+      <pubDate>Fri, 25 Sep 2026 08:58:03 +0000</pubDate>
+      <description><![CDATA[The cross-chain lending protocol accused LayerZero and its co-founder Brian Pellegrino of failing to disclose weaknesses in their protocol, which led to the $292 million hack.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Hack]]></category>
+      <category domain="tag"><![CDATA[DeFi]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Live updates: Bitcoin moves to $84,000, oil slides on latest report of Middle East progress]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/25/live-updates-bitcoin-steadies-near-usd84-000-as-the-bond-selloff-pauses</link>
+      <guid isPermaLink="false">cf83a51a-bd24-4e7e-8e66-dfc83264e971</guid>
+      <pubDate>Fri, 25 Sep 2026 07:09:11 +0000</pubDate>
+      <description><![CDATA[Separate reports from Axios and CBS suggest some positive movement in U.S.-Iran negotiations.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <dc:creator>James Van Straten</dc:creator>
+      <dc:creator>Stephen Alpher</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Live News]]></category>
+      <category domain="https://www.coindesk.com/">live_news</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitget's $352 million hack happened via spoofed transfers, not private keys, CEO Gracy Chen says]]></title>
+      <link>https://www.coindesk.com/markets/2026/09/25/bitget-s-usd351-million-hack-happened-via-spoofed-transfers-not-private-keys-ceo-gray-chen-says</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/78b3f87428f21c1dfdfb8cd5be86d655dc81ddb0-2994x1605.png?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">9adc59f7-2575-4b03-b14c-c3504510ce1c</guid>
+      <pubDate>Fri, 25 Sep 2026 04:29:34 +0000</pubDate>
+      <description><![CDATA[Bitget lost $351.6 million after attackers compromised a wallet backend, spoofed transaction data, Chen said on X.]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[New York sues Polymarket, alleging it is running an illegal gambling operation]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/24/new-york-sues-polymarket-alleging-it-is-running-an-illegal-gambling-operation</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/2ec97b5f53822d5eb5b0edd48b47b8c5638b7d2b-3059x2115.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">3104e571-2648-4823-bc35-4911ef0d6643</guid>
+      <pubDate>Thu, 24 Sep 2026 22:41:44 +0000</pubDate>
+      <description><![CDATA[The state wants to block Polymarket from operating without a gambling license and recover allegedly illegal gains.]]></description>
+      <dc:creator>Helene Braun</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Polymarket]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[U.S. Federal Reserve moves on proposals to implement GENIUS Act for stablecoins]]></title>
+      <link>https://www.coindesk.com/policy/2026/09/24/u-s-federal-reserve-moves-on-proposals-to-implement-genius-act-for-stablecoins</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/dac6b40648bfca7f7ad8e408d3240b1934842e14-3052x1717.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">331cde12-93a7-47e4-8e88-0f54bb0c491c</guid>
+      <pubDate>Thu, 24 Sep 2026 22:28:49 +0000</pubDate>
+      <description><![CDATA[The Fed proposed rules on putting last year's GENIUS Act into place with regulations, including those governing stablecoin yield programs.]]></description>
+      <dc:creator>Jesse Hamilton</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[Regulation]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Crypto exchange Bitget says $352 million affected in a hack, claims user funds are 'safe']]></title>
+      <link>https://www.coindesk.com/markets/2026/09/24/crypto-exchange-bitget-loses-usd352-million-in-hack-claims-user-funds-are-safe</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/b211dc0a2c42f8c64487bc73e191e498111d9fed-7737x5161.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">3d99cf63-848f-4bc8-b46a-b779908fafae</guid>
+      <pubDate>Thu, 24 Sep 2026 21:59:32 +0000</pubDate>
+      <description><![CDATA[Bitget CEO Gracy Chen announced the hack shortly after independent researchers flagged unusual wallet movements. ]]></description>
+      <dc:creator>Aoyon Ashraf</dc:creator>
+      <dc:creator>Nikhilesh De</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Hack]]></category>
+      <category domain="tag"><![CDATA[Breaking News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Someone was trying to sell Ondo Finance after founder Nathan Allman's death]]></title>
+      <link>https://www.coindesk.com/business/2026/09/23/someone-was-trying-to-sell-ondo-finance-after-founder-nathan-allman-s-death</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/80c70565576dca57e467a9c505945531db3c6631-1452x817.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">6ebdf1a5-c0de-4eb4-a867-0fa5c493ee88</guid>
+      <pubDate>Thu, 24 Sep 2026 20:13:25 +0000</pubDate>
+      <description><![CDATA[The company has vehemently denied that it was shopping for buyers. Allman’s estate declined to comment.]]></description>
+      <dc:creator>Will Canny</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[ondo finance]]></category>
+      <category domain="tag"><![CDATA[mergers and acquisitions]]></category>
+      <category domain="tag"><![CDATA[Exclusive]]></category>
+      <category domain="tag"><![CDATA[Tokenization]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bullish, Alpaca, Apex Fintech and DriveWealth form coalition to push issuer-backed tokenized stocks]]></title>
+      <link>https://www.coindesk.com/business/2026/09/24/bullish-alpaca-and-apex-fintech-form-coalition-to-push-issuer-backed-tokenized-stocks</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/6d8345ab102c51714055bd408fc49095d52d1019-4000x1868.jpg?fm=jpg&amp;w=1920&amp;h=1080&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">c06095bb-4167-4d73-9cf2-6cf6cffc77ae</guid>
+      <pubDate>Thu, 24 Sep 2026 20:05:00 +0000</pubDate>
+      <description><![CDATA[The group aims to link onchain shares to official shareholder records following the U.S. SEC's innovation exemption for tokenized stock trading.]]></description>
+      <dc:creator>Krisztian Sandor</dc:creator>
+      <dc:creator>AI Boost</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Tokenization]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+  </channel>
+</rss>

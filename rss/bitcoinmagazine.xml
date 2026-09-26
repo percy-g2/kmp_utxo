@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/" >
+
+<channel>
+	<title>Bitcoin Magazine</title>
+	<atom:link href="https://bitcoinmagazine.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://bitcoinmagazine.com</link>
+	<description>Bitcoin News, Articles and Expert Insights</description>
+	<lastBuildDate>Fri, 25 Sep 2026 20:08:55 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1.1</generator>
+
+<image>
+	<url>https://bitcoinmagazine.com/wp-content/uploads/2024/09/cropped-Bitcoin-Magazine-glyph-black-01-32x32.png</url>
+	<title>Bitcoin Magazine</title>
+	<link>https://bitcoinmagazine.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>North Korean Hackers Linked to $388M Bitget Crypto Exchange Theft: CEO</title>
+		<link>https://bitcoinmagazine.com/news/north-korea-linked-to-bitget-hack</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 25 Sep 2026 20:08:41 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[bitget]]></category>
+		<category><![CDATA[hack]]></category>
+		<category><![CDATA[North korea]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55229</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Pics-37.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/north-korea-linked-to-bitget-hack">North Korean Hackers Linked to $388M Bitget Crypto Exchange Theft: CEO</a></p>
+<p>Crypto exchange Bitget has released more details on Thursday’s hack. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/north-korea-linked-to-bitget-hack">North Korean Hackers Linked to $388M Bitget Crypto Exchange Theft: CEO</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Pics-37.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/north-korea-linked-to-bitget-hack">North Korean Hackers Linked to $388M Bitget Crypto Exchange Theft: CEO</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Hackers from North Korea targeted crypto exchange Bitget on Thursday, according to an update from the CEO, making away with close to $388 million in digital assets — more than originally reported.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Bitget CEO Gracy Chen said Friday that the higher figure “reflects a more complete accounting of transfers during the incident.” Chen had first reported that over $350 million had been moved. </p>
+
+
+
+<p class="wp-block-paragraph">Security firms first <a href="https://x.com/hackenclub/status/2103216092583964978">flagged</a> unauthorized transactions from the Victoria, Seychelles-based exchange’s hot wallets on Thursday before the company <a href="https://bitcoinmagazine.com/news/bitget-suffers-352-million-hack">announced</a> it had frozen withdrawals.</p>
+
+
+
+<p class="wp-block-paragraph">Bitget is the sixth biggest crypto exchange, processing over $1 billion in trading volume per day, according to CoinGecko data.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“Based on IP behavior patterns and on-chain analysis, the attack method in this incident is highly consistent with known patterns of North Korean hacker organizations,” Chen <a href="https://x.com/GracyBitget">wrote</a> on X on Friday.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">She added: “Our goal is to complete a full recovery as soon as possible. We will announce the specific time window immediately upon confirmation.”</p>
+
+
+
+<p class="wp-block-paragraph">In a security update, the exchange said it identified the digital assets stolen, which mostly included ethereum, tron, and USDT stablecoin — and no bitcoin. But a stolen funds tracker does <a href="https://trace.bgblockchain.xyz/v2#explorer" target="_blank" rel="noopener">show</a> that the attacker has over $28.8 million in the leading cryptocurrency.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Crypto stealing criminals — especially from North Korea — have become more sophisticated and faster since last year. Experts have said that the use of artificial intelligence tools is allowing cyber crooks to work more efficiently.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">U.S. authorities have long alleged that hacking groups with ties to the North Korea’s government, such as Lazarus, steal from crypto exchanges.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Crypto security is in the limelight after a string of breaches this year have the community reeling. Just in July, hackers targeted a firmware bug in the popular bitcoin hardware wallet, Coldcard, to <a href="https://bitcoinmagazine.com/news/coldcard-security-risk-immediate-action-required">steal</a> nearly $120 million in user funds.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">And this month, purported white-hat hackers <a href="https://bitcoinmagazine.com/news/liquid-gets-3400-btc-back-after-on-chain-talks-white-hats-keep-598-5-btc">withdrew</a> about 4,000 bitcoins — worth about $320 million at the time — from Blockstream’s Liquid sidechain’s federation wallet. They then <a href="https://bitcoinmagazine.com/news/liquid-gets-3400-btc-back-after-on-chain-talks-white-hats-keep-598-5-btc">returned</a> 85% and demanded to keep the rest as ransom days later.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/north-korea-linked-to-bitget-hack">North Korean Hackers Linked to $388M Bitget Crypto Exchange Theft: CEO</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin ETFs Extend Winning Streak With Nearly $3B in Inflows</title>
+		<link>https://bitcoinmagazine.com/news/bitcoin-etfs-bring-in-nearly-3-billion</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 25 Sep 2026 19:55:01 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Bitcoin ETFs]]></category>
+		<category><![CDATA[Blackrock]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55224</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Bitcoin-ETFs-Extend-Winning-Streak-With-Nearly-3B-in-Inflows.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/bitcoin-etfs-bring-in-nearly-3-billion">Bitcoin ETFs Extend Winning Streak With Nearly $3B in Inflows</a></p>
+<p>Over six days, investors have spent $2.8 billion buying shares in bitcoin exchange-traded funds. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/bitcoin-etfs-bring-in-nearly-3-billion">Bitcoin ETFs Extend Winning Streak With Nearly $3B in Inflows</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Bitcoin-ETFs-Extend-Winning-Streak-With-Nearly-3B-in-Inflows.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/bitcoin-etfs-bring-in-nearly-3-billion">Bitcoin ETFs Extend Winning Streak With Nearly $3B in Inflows</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Bitcoin exchange-traded funds are on a winning streak, with investors buying for six consecutive days.</p>
+
+
+
+<p class="wp-block-paragraph">The funds — managed by the likes of BlackRock, Fidelity, and Morgan Stanley — have received over $2.8 billion in new investment since September 17, <a href="https://farside.co.uk/bitcoin-etf-flow-all-data/" target="_blank" rel="noopener">according</a> to Farside Investors data.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">On Monday alone, investors bought nearly $1 billion in shares&nbsp; — the most since October 6, when the funds received over $1.2 billion and the price of the leading cryptocurrency hit a new all-time high of $126,080.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Still, <a href="https://bitcoinmagazine.com/bitcoin-price">Bitcoin’s price</a> on Friday is only up modestly: it recently stood at nearly $83,975 after reaching as high as $87,330 on Monday. Over the past seven days, the coin’s price has surged by nearly 4%.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">While the price of the leading cryptocurrency has since dipped from earlier this week, Bloomberg ETF analyst James Seyffart <a href="https://x.com/JSeyff/status/2102018013599838604">pointed out</a> that the average ETF buyer is now in profit after the estimated ETF cost basis surged above $81,72 for the first time since January.  </p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="550" data-dnt="true"><p lang="en" dir="ltr">NEW: The average Bitcoin ETF Holder is back above water for the first time since January. The rally this morning has bitcoin:native above our estimated ETF cost basis of $81,722 per coin. h/t <a href="https://x.com/EricBalchunas?ref_src=twsrc%5Etfw">@EricBalchunas</a> <a href="https://t.co/h21zuvTxj6">pic.twitter.com/h21zuvTxj6</a></p>&mdash; James Seyffart (@JSeyff) <a href="https://x.com/JSeyff/status/2102018013599838604?ref_src=twsrc%5Etfw">September 21, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p class="wp-block-paragraph">Investors have a renewed interest in Bitcoin since the U.S. Department of the Treasury in August said it would at least double the size of its liquidity-support buyback operations.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin’s price rallied as the move pushed 30-year Treasury yields down and weakened the dollar. Since the August announcement, U.S. Treasury yields have surged again.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin continued its run last week, shrugging off the fact that lawmakers had blocked landmark crypto legislation, the Clarity Act, and the Federal Reserve had hiked interest rates.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Some analysts have said that the leading cryptocurrency is now in a bull run. Crypto market data firm CryptoQuant this week <a href="https://bitcoinmagazine.com/news/bitcoin-bull-run-is-back-data-shows">wrote</a> that the leading cryptocurrency crossed above its 365-day moving average, a signal that the asset has finished being in a bear market.&nbsp;&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin notched a record of $126,080 in October of last year but then began to sink later that month after the biggest liquidation event in crypto history saw over $19 billion in bets closed. But the so-called <a href="https://www.bloomberg.com/news/articles/2026-08-24/dollar-usd-outlook-what-is-the-debasement-trade-and-why-does-it-matter" target="_blank" rel="noopener">debasement trade</a> — where investors throw money at an asset to hedge against a currency losing its value — is hot again, and bitcoin&#8217;s price has benefited as the dollar has weakened. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/bitcoin-etfs-bring-in-nearly-3-billion">Bitcoin ETFs Extend Winning Streak With Nearly $3B in Inflows</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Treasury Strategy Proposes Daily Dividends For Preferred Stocks</title>
+		<link>https://bitcoinmagazine.com/news/strategy-proposes-daily-dividends</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 25 Sep 2026 15:39:53 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[bitcoin treasury]]></category>
+		<category><![CDATA[MSTR]]></category>
+		<category><![CDATA[Strategy]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55221</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/06/Strategy-MSTR-Sells-Bitcoin-for-First-Time-in-Years-as-Bitcoin-Price-Tumbles.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/strategy-proposes-daily-dividends">Bitcoin Treasury Strategy Proposes Daily Dividends For Preferred Stocks</a></p>
+<p>Strategy stockholders are being asked to attend a meeting to approve daily dividends on STRF, STRC, STRK, and STRD. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/strategy-proposes-daily-dividends">Bitcoin Treasury Strategy Proposes Daily Dividends For Preferred Stocks</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/06/Strategy-MSTR-Sells-Bitcoin-for-First-Time-in-Years-as-Bitcoin-Price-Tumbles.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/strategy-proposes-daily-dividends">Bitcoin Treasury Strategy Proposes Daily Dividends For Preferred Stocks</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Bitcoin treasury company Strategy wants to pay investors daily dividends on four of its preferred stocks.</p>
+
+
+
+<p class="wp-block-paragraph">The largest corporate holder of bitcoin <a href="https://www.strategy.com/mstr/vote" target="_blank" rel="noopener">said</a> Friday that it was asking shareholders to approve the move, which would pay investors dividends every calendar day — including weekends and holidays — on STRF, STRC, STRK, and STRD.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“If approved and adopted, we believe this would reduce reinvestment lag, enhance liquidity and market efficiency, and increase price stability,” Strategy said in a statement. Stockholders will attend a meeting to vote on the proposal on October 28.&nbsp;</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="550" data-dnt="true"><p lang="en" dir="ltr">Strategy is proposing daily dividends on <a href="https://x.com/search?q=%24STRF&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$STRF</a>, <a href="https://x.com/search?q=%24STRC&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$STRC</a>, <a href="https://x.com/search?q=%24STRK&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$STRK</a>, and <a href="https://x.com/search?q=%24STRD&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$STRD</a>, accruing every calendar day, including weekends and holidays, and paid the next business day, with economics unchanged. The proposed changes aim to support price stability, liquidity, and demand. <a href="https://t.co/N0wkXzi1gl">pic.twitter.com/N0wkXzi1gl</a></p>&mdash; Michael Saylor (@saylor) <a href="https://x.com/saylor/status/2103456332741521789?ref_src=twsrc%5Etfw">September 25, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p class="wp-block-paragraph">Strategy <a href="https://bitcoinmagazine.com/news/strategy-resumes-bitcoin-buys">slowed down</a> with its aggressive bitcoin buys this year, as the largest cryptocurrency fell into a bear market. The Nasdaq-listed company instead focused on protecting its balance sheet and sold chunks of its bitcoin. </p>
+
+
+
+<p class="wp-block-paragraph">Friday’s announcement claimed the move would help both investors and common stockholders.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“We believe these enhancements can also benefit our common stockholders by increasing the attractiveness and utility of our Digital Credit instruments, supporting our ability to access preferred equity capital efficiently and expanding the capital markets toolkit we use to execute our Bitcoin Treasury strategy,” Strategy added in a statement.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Strategy — formerly MicroStrategy — is an enterprise software company that pivoted to buying and holding bitcoin in 2020.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">It first bought the cryptocurrency to protect its shareholders from inflation. Since then, it has aggressively bought the asset and pivoted to being a bitcoin treasury.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Investors can now buy its shares to get heightened exposure to the cryptocurrency, or get paid a yield via its digital credit products.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The company would buy bitcoin every Monday but slowed down its buys after announcing a program under which it may sell BTC&nbsp; from time to time to generate up to $1.25 billion in proceeds for the USD reserve, additionally fund preferred stock dividends and interest expenses or fund repurchases.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Strategy <a href="https://www.strategy.com/press/strategy-acquires-950-btc-and-repurchases-174-million-of-strc_09-21-2026" target="_blank" rel="noopener">said</a> in a filing Monday that it last week bought 950 bitcoins for $75.7 million — its first buy since August.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Its Nasdaq-listed stock (MSTR) is down nearly 50% over the past year after the price of bitcoin took a hit.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">But since the company started buying bitcoin in 2020, MSTR has appreciated by nearly 1,000%.&nbsp;</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/strategy-proposes-daily-dividends">Bitcoin Treasury Strategy Proposes Daily Dividends For Preferred Stocks</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Is US Defence Secretary Pete Hegseth a Bitcoiner? This Is What His Accounts Say</title>
+		<link>https://bitcoinmagazine.com/news/is-us-defence-secretary-pete-hegseth-a-bitcoiner-this-is-what-his-accounts-say</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 25 Sep 2026 15:35:30 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Pete Hegseth]]></category>
+		<category><![CDATA[Trump]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55216</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/image17_1920x1080.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/is-us-defence-secretary-pete-hegseth-a-bitcoiner-this-is-what-his-accounts-say">Is US Defence Secretary Pete Hegseth a Bitcoiner? This Is What His Accounts Say</a></p>
+<p>U.S. Defence Secretary Pete Hegseth has millions of dollars in investments. But how much of it is in bitcoin?</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/is-us-defence-secretary-pete-hegseth-a-bitcoiner-this-is-what-his-accounts-say">Is US Defence Secretary Pete Hegseth a Bitcoiner? This Is What His Accounts Say</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/image17_1920x1080.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/is-us-defence-secretary-pete-hegseth-a-bitcoiner-this-is-what-his-accounts-say">Is US Defence Secretary Pete Hegseth a Bitcoiner? This Is What His Accounts Say</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">U.S. Secretary of Defense Peter Hegseth holds more cash than he does bitcoin.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">That’s <a href="https://extapps2.oge.gov/201/Presiden.nsf/PAS+Index/3502A5AE0F0ACEB285258E7C002DB817/$FILE/Pete-Hegseth-2026-278ANNU.pdf" target="_blank" rel="noopener">according</a> to his newly released 2025 annual financial disclosure, which shows he has&nbsp; between $16,000 and $65,000 in the leading cryptocurrency while a bank account holds $1 million in cash.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Hegseth, who was appointed Defense Secretary in January 2025, is part of the most crypto-friendly administration the U.S. has had.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">President Donald Trump was backed by digital asset industry bigwigs and last month pushed for landmark crypto legislation, the <a href="https://bitcoinmagazine.com/takes/what-the-clarity-act-actually-does-for-bitcoin">Clarity Act</a>, to pass.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Hegseth’s Office of Government Ethics filing also showed that he and his wife have retirement accounts containing investments worth roughly $2.05 million to $4.35 million.</p>
+
+
+
+<p class="wp-block-paragraph">Some of the investments include exchange-traded funds like the tech-heavy Invesco QQQ Trust and the closed-end fund the Apollo Diversified Real Estate Fund.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Transactions made by Hegseth including sales of Amazon, Microsoft, and Apple stock.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The bitcoin stash held by Hegseth is kept in a Coinbase wallet, the filing states.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Hegseth’s crypto holdings are modest compared to the Trump family’s, which has made billions in crypto ventures since the president took office.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">President Trump personally disclosed that he’d made more than $1.4 billion from the family’s digital asset ventures, making crypto his largest income source and far ahead of real estate and legal settlements.</p>
+
+
+
+<p class="wp-block-paragraph">His family — including sons Eric and Donald Jr. — made $2.3 billion from four crypto ventures through the end of April 2026, a Reuters investigation <a href="https://www.reuters.com/investigations/under-trump-crypto-playbook-family-always-wins-investors-dont-2026-06-09/" target="_blank" rel="noopener">reported</a> this year.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Critics, including Democrats, have accused Trump of profiting from crypto while shaping policy on it. The White House has consistently denied any conflicts of interest, and Trump has pointed to stock trading by members of Congress, particularly Nancy Pelosi, calling for a ban on the practice.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/is-us-defence-secretary-pete-hegseth-a-bitcoiner-this-is-what-his-accounts-say">Is US Defence Secretary Pete Hegseth a Bitcoiner? This Is What His Accounts Say</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Mitchell Askew Explains What 15M Inactive BTC Means for Bitcoin’s Next Move</title>
+		<link>https://bitcoinmagazine.com/videos/mitchell-askew-explains-what-15m-inactive-btc-means-for-bitcoins-next-move</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Fri, 25 Sep 2026 13:18:01 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Bitcoin ETF]]></category>
+		<category><![CDATA[Blockware]]></category>
+		<category><![CDATA[BMTV]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[Mitchell Askew]]></category>
+		<category><![CDATA[On-chain Data]]></category>
+		<category><![CDATA[Video]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55212</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/On-Chain-Data-Shows-Bitcoin-Sellers-Are-Exhausted-–-Whats-Next-w-Mitchell-Askew-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/mitchell-askew-explains-what-15m-inactive-btc-means-for-bitcoins-next-move">Mitchell Askew Explains What 15M Inactive BTC Means for Bitcoin’s Next Move</a></p>
+<p>Bitcoin is rallying despite macro headwinds. Mitchell Askew explains why on-chain data and 15M BTC in long-term supply signal seller exhaustion.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/mitchell-askew-explains-what-15m-inactive-btc-means-for-bitcoins-next-move">Mitchell Askew Explains What 15M Inactive BTC Means for Bitcoin’s Next Move</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/On-Chain-Data-Shows-Bitcoin-Sellers-Are-Exhausted-–-Whats-Next-w-Mitchell-Askew-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/mitchell-askew-explains-what-15m-inactive-btc-means-for-bitcoins-next-move">Mitchell Askew Explains What 15M Inactive BTC Means for Bitcoin’s Next Move</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Bitcoin is rallying despite a Fed rate hike and the failure of the Clarity Act, and the on-chain data suggests sellers may be nearly exhausted. Mitchell Askew, Head of Blockware Intelligence, breaks down long-term holder supply, which hit an all-time high of 15 million BTC this summer. He explains why so many coins sitting still signals more room for price to run. He also shares what Bitcoin ETF flows reveal about institutional buyers returning to the market.</p>
+
+
+
+<p class="wp-block-paragraph">Chapters:<br>0:00 Mitchell Askew of Blockware Intelligence on Bitcoin&#8217;s Rally<br>0:22 Is Bitcoin Selling Pressure Exhausted? Long-Term Holder Supply<br>1:36 Bitcoin ETF Flows &amp; Returning Institutional Buyers<br>2:36 Why the Four-Year Halving Cycle Is Breaking<br>4:06 AI Data Centers Pulling Compute Away From Bitcoin Mining<br>5:56 The Hash Rate Bear Market: Should Bitcoiners Worry?<br>6:58 Stranded Energy, Global Mining &amp; AI Data Center Arbitrage<br>8:12 Why Gen Z Isn&#8217;t Buying Homes<br>9:58 Will Gen Z Ever Save in Bitcoin?<br>11:26 Shallower Drawdowns &amp; the Future of Bitcoin Cycles</p>
+
+
+
+<p class="wp-block-paragraph">DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/mitchell-askew-explains-what-15m-inactive-btc-means-for-bitcoins-next-move">Mitchell Askew Explains What 15M Inactive BTC Means for Bitcoin’s Next Move</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Nearly $352M Moved From Crypto Exchange Bitget Wallets in Suspected Hack</title>
+		<link>https://bitcoinmagazine.com/news/bitget-suffers-352-million-hack</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Thu, 24 Sep 2026 22:53:59 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[bitget]]></category>
+		<category><![CDATA[hack]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55207</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Pics-36.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/bitget-suffers-352-million-hack">Nearly $352M Moved From Crypto Exchange Bitget Wallets in Suspected Hack</a></p>
+<p>Crypto exchange Bitget detected unauthorized transfers and has temporarily halted withdrawals. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/bitget-suffers-352-million-hack">Nearly $352M Moved From Crypto Exchange Bitget Wallets in Suspected Hack</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Pics-36.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/bitget-suffers-352-million-hack">Nearly $352M Moved From Crypto Exchange Bitget Wallets in Suspected Hack</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">An estimated $351.6 million in crypto has been moved from digital asset exchange Bitget’s hot wallets in a suspected hack.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The platform’s CEO said in a Thursday statement that Bitget’s security team activated an emergency response when the movements were detected. Blockchain security firms had <a href="https://x.com/aggrnews/status/2103216075106144561">flagged</a> the issue earlier in the day.&nbsp;&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“At 18:31 UTC on September 24, 2026, Bitget&#8217;s security systems detected unauthorized transfers from some of our hot wallets,” Bitget CEO Gracy Chen <a href="https://x.com/GracyBitget/status/2103235655879074084">wrote</a> on X. “Our security team activated emergency response protocols immediately.”</p>
+
+
+
+<p class="wp-block-paragraph">She added: “Bitget has navigated multiple market cycles. We will not run from this. Every dollar and every decision will be accounted for, transparently and in full.”</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="550" data-dnt="true"><p lang="en" dir="ltr">[SECURITY NOTICE] Bitget Hot Wallet Incident — September 24, 2026<br><br>At 18:31 UTC on September 24, 2026, Bitget&#39;s security systems detected unauthorized transfers from some of our hot wallets. Our security team activated emergency response protocols immediately.<br><br>What we have…</p>&mdash; Gracy Chen @Bitget (@GracyBitget) <a href="https://x.com/GracyBitget/status/2103235655879074084?ref_src=twsrc%5Etfw">September 24, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p class="wp-block-paragraph">Victoria, Seychelles-based Bitget is the sixth biggest exchange, processing over $1.1 billion in trading volume per day, according to CoinGecko data.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The incident comes as crypto security is in the limelight after a string of breaches this year have the community reeling. Just in July, hackers targeted a firmware bug in the popular bitcoin hardware wallet, Coldcard, to <a href="https://bitcoinmagazine.com/news/coldcard-security-risk-immediate-action-required">steal</a> nearly $120 million in user funds.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">And this month, purported white-hat hackers <a href="https://bitcoinmagazine.com/news/liquid-gets-3400-btc-back-after-on-chain-talks-white-hats-keep-598-5-btc">withdrew</a> about 4,000 bitcoins — worth about $320 million at the time — from Blockstream’s Liquid sidechain&#8217;s federation wallet.</p>
+
+
+
+<p class="wp-block-paragraph">Chen added that the exchange’s cold wallets remained fully secure and that user funds were safe.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">She wrote: “Bitget operates a three-tier wallet architecture — the breach contained only a portion of the hot wallet and warm wallet layers.”</p>
+
+
+
+<p class="wp-block-paragraph">According to the statement, deposits and trading remain fully operational but withdrawals are temporarily paused until a security review is complete.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Blockchain data firm Arkham Intelligence <a href="https://arkm.com/explorer/entity/f22a00ea-0a01-41d4-af5d-9e565bb12f37" target="_blank" rel="noopener">created</a> a dashboard soon after the unauthorized transfers showing that a number of different cryptocurrencies — including stablecoins — had been moved from the Bitget hot wallet.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">While Bitcoin was not on Arkham’s list, crypto security firm Hacken later <a href="https://x.com/hackenclub/status/2103216092583964978">said</a> on X that the largest cryptocurrency had been moved.&nbsp;</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/bitget-suffers-352-million-hack">Nearly $352M Moved From Crypto Exchange Bitget Wallets in Suspected Hack</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>New York Sues Polymarket, Calling Prediction Market an Illegal Gambling Operation</title>
+		<link>https://bitcoinmagazine.com/news/new-york-sues-polymarket</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Thu, 24 Sep 2026 22:09:02 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[CFTC]]></category>
+		<category><![CDATA[crypto betting]]></category>
+		<category><![CDATA[Letitia James]]></category>
+		<category><![CDATA[New York]]></category>
+		<category><![CDATA[Polymarket]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55205</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/07/Traders-Took-8.2-Million-From-Polymarkets-Five-Minute-Bitcoin-Bets-Study-Found.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/new-york-sues-polymarket">New York Sues Polymarket, Calling Prediction Market an Illegal Gambling Operation</a></p>
+<p>Attorney General Letitia James and Governor Kathy Hochul allege Polymarket operates without a license in a new complaint. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/new-york-sues-polymarket">New York Sues Polymarket, Calling Prediction Market an Illegal Gambling Operation</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/07/Traders-Took-8.2-Million-From-Polymarkets-Five-Minute-Bitcoin-Bets-Study-Found.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/new-york-sues-polymarket">New York Sues Polymarket, Calling Prediction Market an Illegal Gambling Operation</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">New York Attorney General Letitia James and Governor Kathy Hochul on Thursday <a href="https://ag.ny.gov/press-release/2026/attorney-general-james-and-governor-hochul-announce-lawsuit-against-polymarket" target="_blank" rel="noopener">filed</a> a lawsuit against crypto-based prediction market <a href="https://bitcoinmagazine.com/news/polymarket-unveils-exchange-overhaul">Polymarket</a>, accusing the platform of running an unlicensed gambling operation in the state.</p>
+
+
+
+<p class="wp-block-paragraph">An investigation by the Attorney General&#8217;s office concluded that these markets meet New York&#8217;s legal definition of gambling because users stake money on uncertain outcomes they cannot control.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Polymarket never obtained a license from the New York State Gaming Commission, the suit alleges, and so avoided the taxes that licensed casinos and mobile sportsbooks pay. That revenue helps fund public schools, youth sports programs and problem gambling treatment.</p>
+
+
+
+<p class="wp-block-paragraph">The suit comes as regulators like the Securities and Exchange Commission and the&nbsp; Commodity Futures Trading Commission are working to <a href="https://bitcoinmagazine.com/news/cftc-is-preparing-for-onchain-markets">regulate</a> crypto-powered prediction markets.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Polymarket and rival Kalshi argue they aren&#8217;t gambling sites at all, but rather federally regulated exchanges offering “event contracts,” a type of derivative, which would put them under the Commodity Futures Trading Commission rather than state gaming laws.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The CFTC agrees, and it has joined the fight on the platforms’ side. In 2026 it sued nine states, arguing that it should have exclusive nationwide authority over the industry.</p>
+
+
+
+<p class="wp-block-paragraph">Thursday’s complaint also <a href="https://ag.ny.gov/sites/default/files/court-filings/new-york-v-polymarket-us-petition-2026.pdf" target="_blank" rel="noopener">says</a> the platform is open to users aged 18 to 20, although New York requires mobile sports bettors to be at least 21.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“By skirting New York’s laws, Polymarket is targeting the most vulnerable,” James said. Hochul added that the company had “knowingly” violated state law and put underage users at risk.</p>
+
+
+
+<p class="wp-block-paragraph">The state is asking a court to bar Polymarket from operating as an unlicensed gambling business in New York. It also wants the company to forfeit its illegal gains, repay harmed users and pay fines equal to three times those gains.</p>
+
+
+
+<p class="wp-block-paragraph">The lawsuit is the latest in a string of New York actions against gambling-adjacent platforms. James and Hochul sued rival prediction market Kalshi in July, and James sued Coinbase and Gemini in April over similar claims. Earlier this month, James secured $8 million from the leading operator of sweepstakes casinos.</p>
+
+
+
+<p class="wp-block-paragraph">Polymarket launched in the United States in December 2025, initially letting users bet on sporting events with plans to expand into markets on a wide range of topics.&nbsp;</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/new-york-sues-polymarket">New York Sues Polymarket, Calling Prediction Market an Illegal Gambling Operation</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>SEC Commissioner Hester ‘Crypto Mom’ Peirce Advocates Privacy-Preserving Tech </title>
+		<link>https://bitcoinmagazine.com/news/hester-peirce-advocates-privacy-tech</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Thu, 24 Sep 2026 20:58:35 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Hester peirce]]></category>
+		<category><![CDATA[Privacy]]></category>
+		<category><![CDATA[SEC]]></category>
+		<category><![CDATA[Tech]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55203</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2025/05/Hester-Peirce-Defends-Innovation-and-Accountability-in-Bitcoin-2025-Fireside-Chat-1.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/hester-peirce-advocates-privacy-tech">SEC Commissioner Hester ‘Crypto Mom’ Peirce Advocates Privacy-Preserving Tech </a></p>
+<p>The outgoing regulator took aim at how regulators collect crypto users’ data. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/hester-peirce-advocates-privacy-tech">SEC Commissioner Hester ‘Crypto Mom’ Peirce Advocates Privacy-Preserving Tech </a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2025/05/Hester-Peirce-Defends-Innovation-and-Accountability-in-Bitcoin-2025-Fireside-Chat-1.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/hester-peirce-advocates-privacy-tech">SEC Commissioner Hester ‘Crypto Mom’ Peirce Advocates Privacy-Preserving Tech </a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Outgoing Securities and Exchange Commission Commissioner <a href="https://bitcoinmagazine.com/tags/hester-peirce">Hester Peirce</a> has said that regulators should rethink how they monitor the financial system, and to press for less personal data collection, not more.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">In a speech Wednesday focusing on digital identity systems and decentralized networks, Peirce took aim at know-your-customer and anti-money-laundering rules.</p>
+
+
+
+<p class="wp-block-paragraph">U.S. regulators are now racing ahead with crypto rulemaking. Peirce, who earned the nickname “crypto mom” for her friendly approach to watchdogging the space, is set to leave the SEC in November.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“Today society is at a crossroads,” Peirce <a href="https://www.sec.gov/newsroom/speeches-statements/peirce-looking-change-haystacks-remarks-sifma-s-digital-assets-conference-092326" target="_blank" rel="noopener">said</a> at the SIFMA&#8217;s Digital Assets Conference in New York.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“Down one path lies the status quo: more data collection, more intermediary surveillance, more ‘know your customer’ requirements that turn our financial rails into a panopticon.”</p>
+
+
+
+<p class="wp-block-paragraph">“Down the other path lies an opportunity to use new technologies to improve our ability to catch criminals while collecting less personal information than ever before, and monitoring more sparingly to protect Americans’ privacy.”</p>
+
+
+
+<p class="wp-block-paragraph">Peirce argued that piling up ever more data on law-abiding customers to help find criminals doesn’t work. In her view, bigger “haystacks” make the needles harder to find, while every stored data point raises the risk of leaks or misuse.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">She criticized a regulatory mindset fixated on “data go up,” comparing it to crypto enthusiasts&#8217; obsession with rising prices.</p>
+
+
+
+<p class="wp-block-paragraph">Peirce pointed to cryptographic tools such as zero-knowledge proofs and attribute-based credentials, which can confirm facts like a person’s age, accredited-investor status, or absence from sanctions lists without revealing the underlying personal details.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">She also urged the SEC to let firms rely on identity checks already performed by other regulated institutions, rather than making every firm collect and store the same sensitive information.</p>
+
+
+
+<p class="wp-block-paragraph">Under President Joe Biden, the SEC was tough on the crypto space, with its Biden-appointed former Chair Gary Gensler frequently suing major crypto companies for allegedly selling unregistered securities.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Peirce was appointed to lead the Crypto Task Force in 2025. The regulator has taken a far more friendly approach to watchdogging the space since Donald Trump became president again.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Now, regulators are saying they want to create clear rules for the fast-moving industry, despite landmark legislation, the <a href="https://bitcoinmagazine.com/takes/what-the-clarity-act-actually-does-for-bitcoin">Clarity Act</a>, being blocked last week.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Despite Commissioner Peirce’s alias, she previously said she would not describe herself as an advocate of the industry, but rather a “freedom maximalist.”</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/hester-peirce-advocates-privacy-tech">SEC Commissioner Hester ‘Crypto Mom’ Peirce Advocates Privacy-Preserving Tech </a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Jeff Booth: Why $1 Million BTC is Thinking too Small</title>
+		<link>https://bitcoinmagazine.com/videos/jeff-booth-why-1-million-btc-is-thinking-too-small</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Thu, 24 Sep 2026 19:29:53 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BMTV]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[debasement]]></category>
+		<category><![CDATA[Ego Death Capital]]></category>
+		<category><![CDATA[jeff booth]]></category>
+		<category><![CDATA[Video]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55200</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Jeff-Booth-Why-1-Million-BTC-is-Thinking-too-Small-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/jeff-booth-why-1-million-btc-is-thinking-too-small">Jeff Booth: Why $1 Million BTC is Thinking too Small</a></p>
+<p>Jeff Booth says a $1 million Bitcoin price target is thinking too small. Here is why valuing Bitcoin in debased fiat currency uses a rigged system.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/jeff-booth-why-1-million-btc-is-thinking-too-small">Jeff Booth: Why $1 Million BTC is Thinking too Small</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Jeff-Booth-Why-1-Million-BTC-is-Thinking-too-Small-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/jeff-booth-why-1-million-btc-is-thinking-too-small">Jeff Booth: Why $1 Million BTC is Thinking too Small</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Is a $1 million Bitcoin price target thinking too small? Jeff Booth thinks so, and he explains why valuing Bitcoin in dollars means pricing it from a game that&#8217;s rigged by debasement. He argues that Bitcoin isn&#8217;t just a coin or an asset, but the beginning of a decentralized, secure, and private protocol stack that will look a lot like the internet. In his view, Bitcoin is evidence of the first free market that has ever existed.</p>
+
+
+
+<p class="wp-block-paragraph">Chapters:<br>0:00 Jeff Booth, The Price of Tomorrow &amp; Technological Deflation<br>0:30 AI Valuations &amp; Why Free Markets Push AI Prices Toward Zero<br>1:29 AI Deflation vs the Debt-Based Monetary System<br>2:38 $40 Trillion US Debt, Bond Yields &amp; the $350 Trillion Insolvent System<br>4:06 AI Singularity Claims, Fear &amp; Monopoly Regulation<br>6:50 Productivity &amp; Bitcoin&#8217;s True Value in a Deflationary Future<br>8:43 Why a $1 Million Bitcoin Price Target Is Thinking Too Small<br>10:11 Bitcoin Adoption Timeline &amp; Why Bitcoin Isn&#8217;t Just an Asset<br>12:38 Bitcoin Payments &amp; Circular Economies Scaling Worldwide<br>13:49 Bitcoin-Backed Private Equity &amp; Owning Businesses Forever</p>
+
+
+
+<p class="wp-block-paragraph">DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/jeff-booth-why-1-million-btc-is-thinking-too-small">Jeff Booth: Why $1 Million BTC is Thinking too Small</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Saifedean Ammous: The Bond Crisis &#038; Bitcoin’s Rise as a True Macro Asset</title>
+		<link>https://bitcoinmagazine.com/videos/saifedean-ammous-the-bond-crisis-bitcoins-rise-as-a-true-macro-asset</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Thu, 24 Sep 2026 19:21:38 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BMTV]]></category>
+		<category><![CDATA[Bonds]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Saifedean ammous]]></category>
+		<category><![CDATA[Video]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55192</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Saifedean-Ammous-The-Bond-Crisis-Bitcoins-Rise-as-a-True-Macro-Asset-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/saifedean-ammous-the-bond-crisis-bitcoins-rise-as-a-true-macro-asset">Saifedean Ammous: The Bond Crisis &#038; Bitcoin’s Rise as a True Macro Asset</a></p>
+<p>Falling volatility is Bitcoin's most bullish signal right now, according to Saifedean Ammous.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/saifedean-ammous-the-bond-crisis-bitcoins-rise-as-a-true-macro-asset">Saifedean Ammous: The Bond Crisis &#038; Bitcoin’s Rise as a True Macro Asset</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/Saifedean-Ammous-The-Bond-Crisis-Bitcoins-Rise-as-a-True-Macro-Asset-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/saifedean-ammous-the-bond-crisis-bitcoins-rise-as-a-true-macro-asset">Saifedean Ammous: The Bond Crisis &#038; Bitcoin’s Rise as a True Macro Asset</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph"><a href="https://www.youtube.com/@BitcoinMagazine" target="_blank" rel="noopener"></a></p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin&#8217;s volatility is falling, and Saifedean Ammous calls that the most bullish development in Bitcoin right now. Bear-market drawdowns have shrunk from roughly 87% to 77% to about 54% this cycle, which moves Bitcoin closer to an investable asset for money managers. Saifedean explains why the halving still drives the four-year Bitcoin cycle and why fewer people are buying with leverage at the top. He also discusses how markets may eventually arbitrage these cycles away.</p>
+
+
+
+<p class="wp-block-paragraph">Chapters:<br>0:00 Tether, Bitcoin &amp; the Dollar Milkshake Theory<br>1:45 How the US Carries $40 Trillion in Debt as the World&#8217;s Reserve Currency<br>4:21 Treasury Yields Hit Multi-Decade Highs &amp; the Bond Market Bear Case<br>7:00 War Spending, Iran &amp; the Collapse of Fiscal Hope<br>9:20 Stablecoins vs Banks &amp; the Hidden Treasury Rollover Risk<br>15:11 The Longest Hash Rate Bear Market in Bitcoin History<br>18:47 Why Miners Are Pivoting to AI Data Centers<br>21:31 The Halving, Bitcoin Cycles &amp; Shrinking Drawdowns<br>25:56 MicroStrategy, Strive &amp; Bitcoin Treasury Companies<br>29:07 The Humble Peasant Theory of High Finance</p>
+
+
+
+<p class="wp-block-paragraph">DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/saifedean-ammous-the-bond-crisis-bitcoins-rise-as-a-true-macro-asset">Saifedean Ammous: The Bond Crisis &#038; Bitcoin’s Rise as a True Macro Asset</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
