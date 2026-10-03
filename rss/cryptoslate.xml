@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Sat, 03 Oct 2026 10:44:17 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Bankers sue to overturn OCC trust-bank rule used by crypto firms</title>
+		<link>https://cryptoslate.com/bankers-sue-to-overturn-occ-trust-bank-rule-used-by-crypto-firms/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 20:00:08 +0000</pubDate>
+				<category><![CDATA[Banking]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=568528</guid>
+
+					<description><![CDATA[<p>The Independent Community Bankers of America sued the OCC in federal court in Washington on Oct. 2, two weeks after the agency approved Agora National Trust Bank, Catena Trust Bank and Bastion Platforms. American Banker reported that the complaint asked the court to vacate the OCC's national trust bank rule and Interpretive Letter 1176. It [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/bankers-sue-to-overturn-occ-trust-bank-rule-used-by-crypto-firms/">Bankers sue to overturn OCC trust-bank rule used by crypto firms</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The Independent Community Bankers of America sued the OCC in federal court in Washington on Oct. 2, two weeks after the agency approved Agora National Trust Bank, Catena Trust Bank and Bastion Platforms.</p>
+<p>American Banker reported that the complaint asked the court to vacate the OCC's national trust bank rule and Interpretive Letter 1176. It argued the agency exceeded its authority by widening limited-purpose trust charters for fintech and crypto firms.</p>
+<p>ICBA says the OCC has approved or <a href="https://www.americanbanker.com/news/exclusive-icba-sues-occ-over-trust-charters/">conditionally approved 21 trust banks</a>, 13 of them tied to crypto.</p>
+<h2>Banks lost the applicant-by-applicant fight against crypto firms</h2>
+<p>Banking groups objected company by company, <a href="https://cryptoslate.com/coinbase-occ-approval-federal-crypto-lane/">and the OCC kept approving</a>. Five crypto-linked national trust applications, including <a href="https://cryptoslate.com/companies/bitgo/">BitGo</a>, <a href="https://cryptoslate.com/companies/fidelity-investments/">Fidelity</a> Digital Assets, First National Digital Currency Bank, <a href="https://cryptoslate.com/companies/paxos/">Paxos</a> and <a href="https://cryptoslate.com/companies/ripple/">Ripple</a>-linked applicants, won decisions in December 2025.</p>
+<p>Bridge, National Digital Trust and Foris DAX, the parent of <a href="https://cryptoslate.com/companies/crypto-com/">Crypto.com</a>, followed in February, <a href="https://cryptoslate.com/companies/coinbase/">Coinbase</a> in April and Laser Digital in May. <a href="https://cryptoslate.com/why-federal-approval-wont-save-these-3-crypto-banks/">Agora, Catena and Bastion arrived Sept. 18</a>, and several of these approvals are conditional or preliminary.</p>
+<p>The OCC finalized its national trust bank rule in February, effective April 1. It replaced the phrase &#8220;fiduciary activities&#8221; with the statute's broader wording, &#8220;the operations of a trust company and activities related thereto.&#8221;</p>
+<p>The OCC says the language leaves its chartering authority intact and that <a href="https://cryptoslate.com/america-is-creating-a-new-class-of-crypto-banks-but-they-arent-really-banks/">national trust banks</a> have long performed some nonfiduciary work, including custody. It points to 12 U.S.C. 24(Seventh) as authority for nonfiduciary custody and related activities.</p>
+<p>ICBA's complaint reads the same rule as stretching a limited-purpose trust charter to cover non-depository, non-fiduciary crypto businesses under a lighter framework than insured banks face.</p>
+<p>An objection to Coinbase or Ripple asks the agency to deny one applicant. A suit over the rule asks a judge to decide the scope of authority behind every charter that relies on it.</p>
+<h2>The OCC said a court would decide</h2>
+<p>In the February rule, the OCC cited the Supreme Court's Loper Bright decision. It said that when a party with standing disputes whether the National Bank Act authorizes a national trust bank charter, courts must exercise independent judgment on the statutory question.</p>
+<p>That is the review ICBA now requests. The OCC spent 2026 approving crypto trust charters while on record that a court would settle their legal basis.</p>
+<p>Exposure varies with business plan, with plain fiduciary custody furthest from the dispute and nonfiduciary custody, stablecoin issuance and reserves, payments, settlement, conversion, and execution nearest to it.</p>
+<p>Coinbase's approved plan covers digital asset custody as a fiduciary plus transactional services tied to custodied assets, and the OCC defended it as trust-company operations or related activities under fiduciary authority and 24(Seventh).</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/coinbase-occ-approval-federal-crypto-lane/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Washington has started selecting which crypto firms control custody at a national level</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Agora plans dollar-backed stablecoin issuance, reserve maintenance, nonfiduciary custody, and payment and settlement services. Catena combines custody, investment management, and trust services with conversion, clearing, and execution, and Bastion offers white-label stablecoin issuance, custodial wallets, conversion, and issuer services.</p>
+<p>Foris DAX's plan couples custody with trade settlement and staking, and Bridge's initial approval covers custody, stablecoin issuance and orchestration, and reserve management.</p>
+<p>ICBA seeks vacatur plus declaratory and injunctive relief. What happens to existing charters depends on the order a judge writes, including how it treats final approvals, conditional approvals and activities with independent statutory support.</p>
+<p>The OCC said in August that it had received 40 de novo charter applications over about 18 months, and Comptroller Jonathan Gould said 23 of them involved digital assets.</p>
+<p>The agency's digital-asset licensing page lists pending applicants, including zerohash, Dakota National Trust Bank, Payward (Kraken), Lorum National Trust Bank, EDX Trust and PAYO Digital Bank.</p>
+<p>Whether the OCC keeps processing those applications on the same terms while the court weighs the rule is the open question for each of them.</p>
+<h2>Where the court crypto test leads</h2>
+<p>If the court sides with the OCC, the national trust bank becomes a firmer federal route for crypto custody and stablecoin infrastructure.</p>
+<p><a href="https://cryptoslate.com/companies/jpmorgan/">JPMorgan</a> sees $500 billion by 2028, Coinbase's model centers on $1.2 trillion by the end of 2028, and <a href="https://cryptoslate.com/companies/standard-chartered/">Standard Chartered</a> expects $2 trillion by then. <a href="https://cryptoslate.com/companies/citigroup/">Citi's</a> 2030 cases run from $1.9 trillion in its base scenario to $4 trillion in its most optimistic one.</p>
+<p>FDIC-insured banks held about $20.7 trillion in deposits in the second quarter, so $500 billion to $2 trillion equals roughly 2.4% to 9.7% of that base. For Bitcoin, a win would deepen bank-supervised custody and settlement-linked services for institutions.</p>
+<p>If the court vacates or narrows the rule or the letter, the effect lands hardest on plans built around stablecoin issuance, reserves, nonfiduciary custody, conversion, payments and settlement.</p>
+<p>Those firms might restructure activities into affiliates, state trust companies or partner-bank arrangements, and pending charters could face tougher review. Bitcoin custody itself could stay available, with the federal wrapper less flexible around adjacent services such as conversion, execution, settlement, staking-like services and collateral movement.</p>
+<p>The San Francisco Fed estimates stablecoin issuers' Treasury demand could roughly double to about $400 billion by 2030, which gives the answer weight beyond crypto.</p>
+<p>How much nonfiduciary market infrastructure can sit inside a national trust bank is now a question for a federal judge, which is where the OCC said it would land.</p>
+<p>The post <a href="https://cryptoslate.com/bankers-sue-to-overturn-occ-trust-bank-rule-used-by-crypto-firms/">Bankers sue to overturn OCC trust-bank rule used by crypto firms</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/occ-trust-bank-gateway.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/occ-trust-bank-gateway.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Hedge funds built a $1.2 trillion Treasury trade on money they have to keep borrowing</title>
+		<link>https://cryptoslate.com/hedge-funds-built-a-1-2-trillion-treasury-trade-on-money-they-have-to-keep-borrowing/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 18:40:22 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<category><![CDATA[Trading]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=567105</guid>
+
+					<description><![CDATA[<p>Companies can own a mountain of US government debt without betting that bond prices will rise. Hedge funds buy Treasury securities and sell futures against them to collect a small pricing gap, borrowing most of the purchase money to make the return worthwhile. The government gets another buyer, whose interest lasts as long as the [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/hedge-funds-built-a-1-2-trillion-treasury-trade-on-money-they-have-to-keep-borrowing/">Hedge funds built a $1.2 trillion Treasury trade on money they have to keep borrowing</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Companies can own a mountain of US government debt without betting that bond prices will rise. Hedge funds buy Treasury securities and sell futures against them to collect a small pricing gap, borrowing most of the purchase money to make the return worthwhile.</p>
+<p>The government gets another buyer, whose interest lasts as long as the trade pays.</p>
+<p>The catch is that the loan can expire tomorrow while the trade needs longer to pay off. The government's ability to repay its debt doesn't solve the fund's need to repay its lender.</p>
+<p>This is the Treasury cash-futures basis trade, and the sums involved are large enough to reach well beyond the bond desk. <a href="https://cryptoslate.com/companies/morgan-stanley/">Morgan Stanley</a> estimated positions had fallen 20% this year to about $1.2 trillion, according to Sept. 24 reports.</p>
+<p>The bank hadn't found evidence of broad basis-related market stress at that point, so a smaller trade wasn't automatically a trade that would blow up.</p>
+<h2>Hedge funds love small profits when it's someone else's money</h2>
+<p>You can buy a Treasury security outright, or trade a futures contract that sets terms now for a transaction completed later. The contract specifies which securities can be delivered against it, linking their prices without making them identical.</p>
+<p>When futures are expensive enough relative to an eligible bond, the fund buys the bond and sells the futures. Investors wanting bond-market exposure through contracts supply the other side, leaving the fund to hold the actual securities.</p>
+<p>Selling the futures is the hedge: if bond prices fall, that short position can earn money that offsets much of the loss on the bond. The fund aims to collect the pricing gap as the contract approaches delivery, while limiting its exposure to the market's overall direction.</p>
+<p>To pay for the bond, it uses repo, short for repurchase agreement. The fund sells the security for cash and agrees to buy it back later at a slightly higher price, which, economically speaking, looks like a loan secured by the bond.</p>
+<p>Overnight repo means the fund must renew or replace the financing to keep the position.</p>
+<p>Consider an illustrative $100 million position earning 0.2% annually from the strategy, net of assumed financing and trading costs. That's $200,000, which becomes a 4% return if the fund has committed only $5 million of its own capital.</p>
+<p>But if borrowing costs on the other $95 million increase by 0.2% for the year, the extra bill is $190,000. Almost the entire expected profit has gone to the lender, without the government defaulting on anything.</p>
+<p>The <a href="https://www.financialresearch.gov/the-ofr-blog/2026/08/19/hedge-funds-cash-treasury-holdings/">Office of Financial Research</a> includes the cost of futures margin and the seller's options over which eligible bond to deliver and when. Calculating the return means valuing those delivery rights and accounting for financing and margin costs.</p>
+<p>If that calculation stops looking attractive, a fund can simply stop replacing positions as they expire. Professional investors don't need a crisis to find something better to do with their money.</p>
+<h2>Being right doesn't pay today's bill</h2>
+<p>The hedge may work, but the fund can't afford the payments needed to keep it open.</p>
+<p>Suppose the bond gains value and the short futures position loses a similar amount. The futures account can require a cash payment against that loss, known as variation margin, while the bond's gain is still tied up in a security.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/fed-data-show-hedge-funds-added-400-billion-before-bitcoins-september-rate-test/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Fed data shows hedge funds added $400 billion before Bitcoin’s September rate test</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The fund has to get dollars out of that asset or find them elsewhere before the payment is due.</p>
+<p>Crypto traders with gains on one exchange and a liquidation approaching on another will recognize the problem: money in the wrong account won't meet the payment, and explaining the hedge won't extend the deadline.</p>
+<p>The repo lender can also require more money. If it lends $98 against $100 of bonds, the fund supplies the other $2, a 2% haircut. If that haircut becomes 4%, the fund must supply twice as much of its own money against the same collateral, even before considering futures margin.</p>
+<p>If many funds have to close positions at the same time, they sell bonds to repay loans and buy futures to close their shorts. Those trades can push bond prices down relative to futures, hurting funds still holding the same positions and making their own exits more expensive.</p>
+<p>That forced selling is different from letting trades expire without replacing them, although both reduce outstanding positions. The reported contraction alone won't tell you which is happening.</p>
+<p>Federal Reserve researchers <a href="https://www.federalreserve.gov/econres/notes/feds-notes/decomposing-hedge-funds-u-s-treasury-exposures-20260622.html">estimated $830 billion of basis positions for September 2025</a>, in research published this June. That and Morgan Stanley's newer estimate use different approaches, so treating them as consecutive readings would manufacture a comparison the data doesn't support.</p>
+<p>Total hedge-fund Treasury holdings also include other strategies, as do their short futures positions.</p>
+<h2>Someone still has to own the Treasury bonds</h2>
+<p>Fewer trades dependent on tomorrow's loan can make the market less fragile, provided the next owners bring financing they can keep through a difficult week. Investors buying with committed capital don't face the same daily negotiation with a repo lender.</p>
+<p>Those buyers may want a better price because they're buying the bond for its income. Cheaper bonds offer higher yields, attracting replacement demand while potentially making new government borrowing more expensive.</p>
+<p>Dealers can hold bonds while they find buyers, but their capacity also costs money and has limits. An orderly transfer can therefore leave Washington paying more without the market breaking down.</p>
+<p>Higher repo rates or larger haircuts become more troubling if funds must sell into a market with few willing buyers. Those financing terms and the prices sellers can obtain say more about stress than a position total alone.</p>
+<p>The same restraint applies to Bitcoin, as <a href="https://cryptoslate.com/fed-data-show-hedge-funds-added-400-billion-before-bitcoins-september-rate-test/">hedge funds' broader balance sheets</a> show why one strategy can't stand in for everything those firms do.</p>
+<p>Connecting Treasury trouble to crypto requires evidence that the institutions involved are selling crypto or withdrawing financing, rather than assuming every cash need ends with a <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin sale</a>.</p>
+<p>Borrowed money makes these funds willing to own bonds for a return that would otherwise be too small to bother with.</p>
+<p>When that calculation stops working, replacing them can reduce the market's dependence on overnight loans, but the next owner may want a higher yield to take the debt off their hands.</p>
+<p>The post <a href="https://cryptoslate.com/hedge-funds-built-a-1-2-trillion-treasury-trade-on-money-they-have-to-keep-borrowing/">Hedge funds built a $1.2 trillion Treasury trade on money they have to keep borrowing</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/hedge-fund-treasury-basis-trade-standard.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/hedge-fund-treasury-basis-trade-standard.jpg" length="1672" type="image/jpg"/>
+	</item>
+		<item>
+		<title>ESMA proposes ending EU custody and transfer services for non-compliant stablecoins</title>
+		<link>https://cryptoslate.com/esma-proposes-ending-eu-custody-and-transfer-services-for-non-compliant-stablecoins/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 16:00:54 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[regulation]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<category><![CDATA[Tether]]></category>
+		<category><![CDATA[USDC]]></category>
+		<category><![CDATA[USDT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=568545</guid>
+
+					<description><![CDATA[<p>Non-compliant tokens could lose licensed custody and transfer access if the proposal becomes law, with exit rules still unresolved.</p>
+<p>The post <a href="https://cryptoslate.com/esma-proposes-ending-eu-custody-and-transfer-services-for-non-compliant-stablecoins/">ESMA proposes ending EU custody and transfer services for non-compliant stablecoins</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The European Securities and Markets Authority wants to extend Europe’s restrictions on non-compliant stablecoins beyond trading to the services that let customers keep and move them. If adopted as proposed, the change would remove the option of leaving such tokens with a licensed custodian after their trading pairs disappear.</p>
+<p>In its <a href="https://www.esma.europa.eu/sites/default/files/2026-09/ESMA75-113276571-1721_Response_to_the_EC_consultation_MiCA_regulation_review.pdf">September 30, 2026 response</a> to a review of the EU’s Markets in Crypto-Assets regulation (MiCA), ESMA asks the European Commission to prohibit every licensable crypto-asset service involving stablecoins that fail the regulation’s applicable requirements. Custody and transfers fall within that service list. The consequence would reach existing holders who have stopped trading, as well as customers seeking to buy.</p>
+<p>That is a further step from the regulator’s January 2025 approach, which said mere custody and transfer should remain possible. It could give compliant tokens a wider advantage in European distribution, but neither a forced conversion timetable nor a global demand shift follows from the proposal.</p>
+<h2>The permission left after delisting</h2>
+<p>ESMA’s <a href="https://www.esma.europa.eu/sites/default/files/2025-01/ESMA75-223375936-6099_Statement_on_stablecoins.pdf">January 17, 2025 statement</a> distinguished services that offered non-compliant stablecoins to the public or admitted them to trading from simply holding or transferring them. Platforms were expected to stop making the tokens available for trading, and other services had to cease where they constituted an offer to the public.</p>
+<p>Under that earlier transition, acquisition restrictions were expected by the end of January 2025, with temporary sell-only services through the end of the quarter.</p>
+<p>For an investor, the custody distinction mattered. Losing access to a trading pair did not necessarily mean losing the service that safeguarded an existing balance or enabled its withdrawal. ESMA acknowledged that investors retaining those holdings could face worse execution conditions, even while custody and transfer remained possible.</p>
+<p>A historical example shows the distinction. In its <a href="https://cryptoslate.com/binance-to-delist-9-stablecoins-including-usdt-for-europe-in-mica-win-for-circles-usdc/">March 3, 2025 reporting</a>, CryptoSlate said Binance planned to remove nine tokens’ trading pairs for European Economic Area users by March 31 while keeping deposits, withdrawals, conversions and custody available. This was the exchange’s announced approach in March 2025.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/how-mica-brings-banks-closer-to-controlling-europes-stablecoin-access/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">How MiCA brings banks closer to controlling Europe’s stablecoin access</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The September response would replace the activity-by-activity distinction with a broader asset-compliance test. ESMA argues that the lack of a clear prohibition creates disparities between compliant and non-compliant issuers and facilitates regulatory arbitrage.</p>
+<p>The reach comes from <a href="https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica/article-3-definitions">MiCA’s Article 3 definitions</a>. Custody includes safekeeping or controlling clients’ crypto-assets or their means of access, including private keys. Transfers cover moving assets on a client’s behalf from one ledger address or account to another. Both are expressly listed services, with <a href="https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica/article-82-providing-transfer-services">Article 82</a> setting client-agreement requirements for transfers.</p>
+<p>Provider permissions are also separate from token compliance. <a href="https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica/article-59-authorisation">Article 59</a> requires authorization as a crypto-asset service provider, or qualifying permissions for specified financial entities, and says authorizations must identify the services permitted. A license for a provider does not by itself settle whether a particular stablecoin can be serviced.</p>
+<p>An existing holder would therefore not avoid the proposed restriction by deciding never to trade again. If the wording became law without an exception, the custodian’s continued safekeeping would itself be covered.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-183dd4ea-c33b-4faa-b1d6-9f5e5248e98f.png" target="_blank" rel="noopener"><img fetchpriority="high" decoding="async" class="aligncenter shoggoth-infographic shoggoth-infographic-portrait wp-image-568546" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-183dd4ea-c33b-4faa-b1d6-9f5e5248e98f.png" alt="Comparison of ESMA’s January 2025 stablecoin guidance and September 2026 proposal, showing the proposed extension to custody and transfers and unresolved exit rules." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-183dd4ea-c33b-4faa-b1d6-9f5e5248e98f.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-183dd4ea-c33b-4faa-b1d6-9f5e5248e98f-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-183dd4ea-c33b-4faa-b1d6-9f5e5248e98f-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-183dd4ea-c33b-4faa-b1d6-9f5e5248e98f-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p>ESMA’s response is a policy submission, not an enacted amendment. The <a href="https://finance.ec.europa.eu/regulation-and-supervision/consultations-0/targeted-consultation-review-mica-regulation_en">Commission’s consultation</a> had a September 30 deadline, and its page says the resulting review report may, if warranted, be accompanied by a legislative proposal.</p>
+<p>Section 3.2 of ESMA’s submission gives no implementation date, withdrawal exception or wind-down mechanism. That omission matters because ending custody requires a way to return assets that a provider already controls, while the proposed prohibition also reaches transfer services.</p>
+<p>Current custody rules provide a relevant starting point. <a href="https://www.esma.europa.eu/publications-and-data/interactive-single-rulebook/mica/article-75-providing-custody-and">Article 75</a> requires procedures to return clients’ crypto-assets or their means of access as soon as possible. Client assets must also be segregated from the provider’s own holdings.</p>
+<p>An answer from the European Commission via ESMA, <a href="https://www.esma.europa.eu/publications-data/questions-answers/2320">dated February 18, 2026</a>, further says the assets returned must be the same type held when the client requests withdrawal. A provider may offer conversion into fiat or another crypto-asset, but the client must request it at withdrawal and the provider must have permission for the additional service.</p>
+<p>That existing interpretation does not settle how a future blanket service restriction would handle exits. It does explain why delisting, termination of custody and compulsory conversion cannot be treated as interchangeable outcomes. Legislators would need to resolve how any new prohibition fits the obligation to return assets.</p>
+<p>The stablecoin proposal targets those professional services. It does not itself ban personal ownership, order tokens frozen or prescribe compulsory conversion. A holder’s ability to retain an asset and a licensed business’s ability to hold or move it for that customer are different questions.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/eu-faces-september-30-clock-to-decide-future-of-defi-loans/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">EU faces September 30 clock to decide future of DeFi loans</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Trading shares do not measure custody exposure</h2>
+<p>The earlier delistings show how trading can change at European-facing venues without a comparable shift across a wider market.</p>
+<p>In a <a href="https://arxiv.org/html/2607.09514v1">July 2026 paper</a>, Nicola Borri and Kirill Shakhnov examine trading in the dollar-linked tokens USDT and USDC across 14 exchanges selected from CoinMarketCap’s top 30 centralized venues. Their daily pair-volume data from CryptoCompare run from January 1, 2024, through December 7, 2025.</p>
+<p>The authors classify Bitstamp, Coinbase, Gemini and Kraken as “regulated-facing” because their Similarweb EU audience shares exceed 10%; all four also have US audience shares above 10%. The other 10 venues are classified as globally oriented, including Binance despite its EEA delistings. The audience proxy identifies neither individual EU-resident trades nor a clean division of legal exposure.</p>
+<p>Around the study’s April 1, 2025 event date, the authors estimate that USDC’s share of combined USDT and USDC trading rose by about six percentage points on regulated-facing exchanges relative to global exchanges. The estimate covers a 30-day window and uses smoothed, detrended data; it measures a relative trading shift across venue groups.</p>
+<p>The authors estimate <a href="https://cryptoslate.com/markets/">USDT trading volume</a> fell about 20% on regulated-facing exchanges relative to global venues, while the USDC-volume estimate was not statistically significant. USDC gained share primarily because USDT trading contracted in that comparison, not because the study established a corresponding expansion in USDC trading.</p>
+<p>Aggregate USDC-to-USDT trading-volume ratios across the sample stayed nearly flat around the event. That describes sampled exchange turnover, not worldwide demand or EU custodial balances. The legal documents and study provide no total for the holdings that a future custody restriction could affect.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/europes-central-banks-want-to-scrap-this-stablecoin-reserve-safeguard/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Europe's central banks want to scrap this stablecoin reserve safeguard</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>If the proposal became law in its present form, compliant tokens could retain access to regulated custody and transfer channels that non-compliant tokens would lose. For customers who want a provider to safeguard and move a dollar-linked balance, compliance could affect the usefulness of that asset beyond the availability of a trading pair.</p>
+<p>The next consequential text would be a legislative amendment, particularly its scope, application date and treatment of existing balances. How it reconciles an end to custody with the return of clients’ assets would determine whether and how existing holders must leave regulated services.</p>
+<p>The post <a href="https://cryptoslate.com/esma-proposes-ending-eu-custody-and-transfer-services-for-non-compliant-stablecoins/">ESMA proposes ending EU custody and transfer services for non-compliant stablecoins</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/eu-stablecoin-compliance-split.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/eu-stablecoin-compliance-split.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Six US banks have failed in 2026 but the numbers look nothing like 2023</title>
+		<link>https://cryptoslate.com/six-us-banks-have-failed-in-2026-but-the-numbers-look-nothing-like-2023/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 13:20:17 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Banking]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=567216</guid>
+
+					<description><![CDATA[<p>Six US banks have failed in 2026 so far, which is one more than in 2023 and enough to make another banking-crisis headline practically write itself. But before we start reliving Silicon Valley Bank, it's worth looking at what those six banks actually held: about $1.43 billion in combined assets, compared with roughly $552.54 billion [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/six-us-banks-have-failed-in-2026-but-the-numbers-look-nothing-like-2023/">Six US banks have failed in 2026 but the numbers look nothing like 2023</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Six US banks have failed in 2026 so far, which is one more than in 2023 and enough to make another banking-crisis headline practically write itself.</p>
+<p>But before we start reliving <a href="https://cryptoslate.com/companies/silicon-valley-bank/">Silicon Valley Bank</a>, it's worth looking at what those six banks actually held: about $1.43 billion in combined assets, compared with roughly $552.54 billion at the banks that failed in 2023, according to <a href="https://www.fdic.gov/media/187651">historical numbers from the Federal Deposit Insurance Corporation (FDIC)</a>.</p>
+<p>Counting each bank as one gives you a perfectly accurate number and a pretty lousy sense of scale. This year's total includes a lender with $3.73 million in assets, which gets the same vote in the tally as a bank the size of SVB.</p>
+<p>Meanwhile, FDIC's latest industry assessment shows stronger profits and fewer banks on its problem list. That doesn't mean the six failures were harmless, or that every surviving bank is doing well, but anyone selling a 2023 rerun has some explaining to do.</p>
+<p><a href="https://content.govdelivery.com/accounts/USFDIC/bulletins/42c8901">Nano Banc's Sept. 25 closure</a> brought the count to six and supplied the largest failure of the year so far. The Irvine, California, lender reported $736 million in assets, and the FDIC estimated a $114 million cost to its Deposit Insurance Fund.</p>
+<p>Someone will bear that loss, but a bill attached to one failed bank doesn't mean the rest of banking is about to follow.</p>
+<h2>Six is bigger than five (until you look inside)</h2>
+<p>The FDIC's annual totals record four failures in 2020, none in 2021 or 2022, five in 2023, and two apiece in 2024 and 2025. Through Sept. 25, this year had beaten every annual count in the 2020s, which sounds much, much worse than it actually is.</p>
+<p>Consider Kentland Federal Savings and Loan Association, which the FDIC described as the country's smallest standalone bank when it closed. Its $3.73 million in assets counts for exactly as much as Silicon Valley Bank in a chart of bank failures, because that chart counts only institutions.</p>
+<p>Asking it to measure financial trouble gives a very small bank a very large role.</p>
+<div>
+<div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Failed institution</th>
+<th>Closure date in 2026</th>
+<th>Reported assets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/2026">Metropolitan Capital Bank & Trust</a></td>
+<td>Jan. 30</td>
+<td>$261.10 million</td>
+</tr>
+<tr>
+<td><a href="https://www.fdic.gov/bank-failures/failed-bank-list/community-bank-and-trust-west-georgia">Community Bank and Trust &#8211; West Georgia</a></td>
+<td>May 1</td>
+<td>$288 million</td>
+</tr>
+<tr>
+<td><a href="https://content.govdelivery.com/accounts/USFDIC/bulletins/41fbc2f">Kentland Federal Savings and Loan Association</a></td>
+<td>July 10</td>
+<td>$3.73 million</td>
+</tr>
+<tr>
+<td><a href="https://content.govdelivery.com/accounts/USFDIC/bulletins/420fa4b">Small Business Bank</a></td>
+<td>July 17</td>
+<td>$73 million</td>
+</tr>
+<tr>
+<td><a href="https://content.govdelivery.com/accounts/USFDIC/bulletins/4261b20">Tioga-Franklin Savings Bank</a></td>
+<td>Aug. 21</td>
+<td>$68 million</td>
+</tr>
+<tr>
+<td>Nano Banc</td>
+<td>Sept. 25</td>
+<td>$736 million</td>
+</tr>
+<tr>
+<td><strong>Combined</strong></td>
+<td><strong>Through Sept. 25</strong></td>
+<td><strong>$1.43 billion</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><em>Sources: FDIC failure announcements and annual summary. The unrounded sum is $1,429.83 million, using numbers from different reporting dates cited around the closures, rather than a single-date balance sheet or an estimate of losses.</em></p>
+<p>The $552.54 billion number for 2023 and this year's $1.43 billion come from balance sheets with different reporting dates, so we can't turn them into an exact ratio. Luckily, we don't need one to see that the amounts belong in very different conversations, even if six is technically more than five.</p>
+<p>The FDIC's problem-bank list adds another issue because it counts banks that are still operating, using their condition measured at a particular date. Banks get onto it when examiners assign one of the two weakest overall ratings for <a href="https://www.fdic.gov/sites/default/files/2024-03/2023-risk-review-full.pdf">financial, operational, or managerial weaknesses</a>, which is a more specific diagnosis than having an ugly week in the stock market.</p>
+<p>The <a href="https://ebs.publicnow.com/view/06980C7CD869BD9EB6E455E598C4E54CF1463E9C">second-quarter assessment</a> put 47 banks on that list as of June 30, down from 54 in March and 60 at the end of 2025. They made up about 1.1% of insured institutions, within the FDIC's normal 1% to 2% range outside a crisis.</p>
+<p>That doesn't give the industry a certificate of perfect health, because a bank can leave the list by failing just as it can leave by recovering or merging. The failure count adds up closures over the year, while the problem list takes a snapshot of institutions still open, so it's not mysterious for one to get longer while the other gets shorter.</p>
+<p>The dates also prevent us from doing some tempting mental math. Four of this year's six failures came in July through September, beyond the June snapshot, but subtracting four from 47 won't tell us how many troubled banks are left.</p>
+<p>We don't know every bank that entered or left the list in between, and the published totals don't identify them.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/first-us-bank-collapse-of-2026-adds-to-gold-silver-and-bitcoin-chaos-while-337b-in-unrealized-losses-loom/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">First US bank collapse of 2026 adds to gold, silver, and Bitcoin chaos while $337B in unrealized contagion looms</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Some banks were broken long before the headline</h2>
+<p>The records behind these closures describe institutions that had been struggling for quite a while. Illinois regulators said <a href="https://idfpr.illinois.gov/news/2026/state-of-illinois-announces-steps-to-protect-consumers-deposits-state-chartered-bank.html">Metropolitan Capital had impaired capital and unsafe conditions</a>, while Kansas officials described years of financial trouble at Small Business Bank.</p>
+<p>At the Kansas lender, <a href="https://osbckansas.gov/kansas-office-of-the-state-bank-commissioner-closes-small-business-bank-lenexa-kansas-appoints-federal-deposit-insurance-corporation-fdic-as-receiver/">continuing operating losses ate through its capital</a> until it became critically undercapitalized. Capital is the cushion that absorbs losses before creditors have to bear them, and a bank that keeps losing money can burn through that cushion while the rest of the industry has an excellent quarter.</p>
+<p>Someone else's profits don't refill your bank's capital, and Kentland reached a similar endpoint, with the Office of the Comptroller of the Currency finding that <a href="https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-56.html">unsafe practices had depleted its assets and earnings</a> and that there was no reasonable prospect of restoring adequate capital.</p>
+<p>Tioga-Franklin had its own <a href="https://orders.fdic.gov/sfc/servlet.shepherd/document/download/0693d00000DRBvXAAX?operationContext=S1">FDIC consent order</a> from earlier, covering weaknesses in management and capital planning, as well as liquidity and credit administration. It consented without admitting or denying the charges, so that record tells us supervisors had identified problems, without settling exactly what caused its August failure.</p>
+<p>We know less about the full diagnosis at Community Bank and Trust &#8211; West Georgia. The <a href="https://dbf.georgia.gov/press-releases/2026-05-01/department-banking-and-finance-takes-possession-community-bank-trust-west">state's closure notice</a> explains the authority to take possession without supplying a detailed financial account, and the FDIC inspector general has <a href="https://fdicoig.gov/ongoing-work">a material loss review underway</a>.</p>
+<p>Giving it the same cause as the other failures would make the narrative tidier than the evidence allows.</p>
+<p>Nano also had a lengthy regulatory history. California Business and Consumer Services Secretary Rohit Chopra described <a href="https://bcsa.ca.gov/newsroom/2026/09/20260928.html">repeated violations and earlier action against mismanagement</a>, while pointing to its large level of uninsured deposits.</p>
+<p>Customers with money above the insurance limit have more to lose if a bank fails, which gives them a stronger reason to leave when they doubt it can pay them back.</p>
+<p>You can take all of that seriously without treating the six banks as a chain of falling dominoes. The records describe unresolved weaknesses at individual lenders, but don't establish a common funding shock or show one closure bringing down the next.</p>
+<p>Putting them in the same table doesn't create a financial connection.</p>
+<p>The broader numbers don't support the small-bank-doom argument either. In the <a href="https://content.govdelivery.com/accounts/USFDIC/bulletins/426aa10">FDIC's second-quarter results</a>, community banks earned 8.2% more than in the preceding quarter, while industry-wide profit reached $90.1 billion.</p>
+<p>The regulator described capital and liquidity as strong, leaving plenty of room for a few badly damaged banks in an industry making more money.</p>
+<h2>The losses are real even when the apocalypse isn't</h2>
+<p>None of this makes a failed bank a non-event for the people caught in it.</p>
+<p>Nano's estimated $114 million insurance-fund cost is a real financial consequence, even though Sunwest Bank agreed to take over substantially all its deposits and buy about $476 million of its assets.</p>
+<p>The FDIC retained the rest for disposal and said customers could keep using checks and cards through the closure weekend.</p>
+<p>Those customers could keep paying their bills while the receivership faced a loss, because access to deposits and the final cost of resolving a bank aren't the same thing.</p>
+<p>The FDIC's estimate can move as it sells retained assets, and the six banks' combined $1.43 billion in assets shouldn't be treated as money that vanished. Loans can still be repaid, and securities can still be sold when their former owner has failed.</p>
+<p>Tioga-Franklin's buyer assumed all deposits, while the West Georgia transaction transferred substantially all <em>insured</em> deposits, excluding certain brokered accounts.</p>
+<p>Georgia officials said customers above the insurance limit would receive notices explaining their rights as uninsured depositors, which is a pretty different experience from being told your account now has another bank's name on it.</p>
+<p><em>CryptoSlate's</em> <a href="https://cryptoslate.com/first-us-bank-collapse-of-2026-adds-to-gold-silver-and-bitcoin-chaos-while-337b-in-unrealized-losses-loom/">coverage of the year's first bank failure</a> examined broader banking risks, but the road from a failed lender to crypto still needs spelling out. Whose money was at the bank, and what could they no longer do when it closed?</p>
+<p>In 2023, <a href="https://cryptoslate.com/companies/circle/">Circle</a> had $3.3 billion of USDC reserves at Silicon Valley Bank, giving stablecoin holders a direct reason to worry about access to part of their tokens' backing. The <a href="https://www.federalreserve.gov/econres/notes/feds-notes/in-the-shadow-of-bank-run-lessons-from-the-silicon-valley-bank-failure-and-its-impact-on-stablecoins-20251217.html">Federal Reserve's analysis of that failure</a> follows that connection from bank distress into stablecoins.</p>
+<p>This year's tally doesn't provide an equivalent connection on its own. Disclosed crypto deposits at a failed lender, or the loss of banking services needed to process customer payments, would give us something concrete to examine.</p>
+<p>Another tick in the failure column can't tell us whose reserves are trapped or whose business has lost access to cash.</p>
+<p>There are good reasons to keep watching the banks, including whether withdrawals spread across institutions and whether lenders have more trouble obtaining funding. The assets on the problem-bank list deserve attention too, because a shorter list can still contain more money at risk.</p>
+<p>None of those possibilities gets answered by comparing six with five.</p>
+<p>The case for another 2023 has to explain how trouble is spreading through the banks that are still open. Until the evidence shows that, six failed lenders tell us that six lenders couldn't keep going, and turning that into a verdict on the whole system asks a headcount to do a balance sheet's job.</p>
+<p>The post <a href="https://cryptoslate.com/six-us-banks-have-failed-in-2026-but-the-numbers-look-nothing-like-2023/">Six US banks have failed in 2026 but the numbers look nothing like 2023</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/us-bank-failure-count.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/us-bank-failure-count.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Leveraged funds’ Bitcoin futures shorts fall by 5,300 BTC-equivalent as longs shrink</title>
+		<link>https://cryptoslate.com/leveraged-funds-bitcoin-futures-shorts-fall-by-5300-btc-equivalent-as-longs-shrink/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 11:30:07 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[CME group]]></category>
+		<category><![CDATA[ETF]]></category>
+		<category><![CDATA[regulation]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=568549</guid>
+
+					<description><![CDATA[<p>The September 29 snapshot shows leveraged funds’ reported shorts fell about 5,300 BTC-equivalent across four products, while longs and open interest also declined.</p>
+<p>The post <a href="https://cryptoslate.com/leveraged-funds-bitcoin-futures-shorts-fall-by-5300-btc-equivalent-as-longs-shrink/">Leveraged funds’ Bitcoin futures shorts fall by 5,300 BTC-equivalent as longs shrink</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Leveraged funds’ reported Bitcoin futures shorts fell by about 5,300 BTC-equivalent in the week to Sept. 29, narrowing their net short even as their aggregate long exposure shrank.</p>
+<p>The Commodity Futures Trading Commission’s <a href="https://publicreporting.cftc.gov/resource/gpe5-46if.json?%24where=report_date_as_yyyy_mm_dd%3D%272026-09-29T00%3A00%3A00.000%27%20AND%20cftc_contract_market_code%20in%28%27133741%27%2C%27133742%27%2C%27133LM1%27%2C%27133LM4%27%29">latest futures-only figures</a>, released in the Oct. 2 reporting cycle, cover CME standard and micro Bitcoin futures plus Coinbase Derivatives’ nano Bitcoin and nano perpetual-style futures. The totals convert different contract sizes into BTC-equivalent exposure; they describe futures positions, not transfers of physical bitcoin.</p>
+<p>Compared with <a href="https://publicreporting.cftc.gov/resource/gpe5-46if.json?%24where=report_date_as_yyyy_mm_dd%3D%272026-09-22T00%3A00%3A00.000%27%20AND%20cftc_contract_market_code%20in%28%27133741%27%2C%27133742%27%2C%27133LM1%27%2C%27133LM4%27%29">Sept. 22 positions</a>, the funds’ reported shorts fell 5,299.69 BTC-equivalent and longs fell 908.99 BTC-equivalent. Their net short consequently narrowed by 4,390.70 BTC-equivalent, from 40,110.83 to 35,720.13. Their combined short exposure still exceeded their longs. These long and short columns exclude separately recorded, offsetting spread positions.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-916394b5-6be8-46d8-984a-eb62dc773ffc.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter shoggoth-infographic shoggoth-infographic-portrait wp-image-568553" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-916394b5-6be8-46d8-984a-eb62dc773ffc.png" alt="Leveraged funds’ Bitcoin futures shorts fell 5,299.69 BTC-equivalent and longs fell 908.99 in the week to Sept. 29, 2026, narrowing the net short from 40,110.83 to 35,720.13 BTC-equivalent; combined open interest fell 13.31%." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-916394b5-6be8-46d8-984a-eb62dc773ffc.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-916394b5-6be8-46d8-984a-eb62dc773ffc-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-916394b5-6be8-46d8-984a-eb62dc773ffc-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-916394b5-6be8-46d8-984a-eb62dc773ffc-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p>A better net figure can result from shrinking positions on both sides when shorts fall faster. In this snapshot, aggregate futures long exposure did not expand.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/why-bitcoins-rally-above-80000-isnt-backed-by-institutional-conviction/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Why Bitcoin's rally above $80,000 isn't backed by institutional conviction</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The individual products did not move uniformly. Standard CME futures accounted for 4,310 BTC-equivalent of the reduction in reported shorts, while their leveraged-fund longs increased 1,175 BTC-equivalent. Longs fell in CME micro futures and both Coinbase products, more than offsetting that increase.</p>
+<p>The standard-CME move reversed the widening of net shorts in <a href="https://cryptoslate.com/big-institutional-money-is-split-on-bitcoins-next-move-as-massive-market-bets-shift/">the Sept. 22 snapshot</a>. That earlier report covered standard CME alone; the latest totals include all four products.</p>
+<p>Asset managers’ net long across the four products increased 2,137.90 BTC-equivalent to 18,069.10. Their longs rose 573.10 BTC-equivalent, while shorts fell 1,564.80 BTC-equivalent. Most of their stronger net position therefore also came from fewer reported shorts.</p>
+<p>Combined open interest, the outstanding futures exposure across these markets, fell 13.31% to 103,343.14 BTC-equivalent from 119,208.26. The improvement in net positioning occurred alongside a contraction in the overall futures market measured here.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-survives-a-5-2-treasury-shock-as-traders-slash-1-7-billion-in-leverage/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin survives a 5.2% Treasury shock as traders slash $1.7 billion in leverage</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Smaller shorts do not establish spot demand</h2>
+<p>The <a href="https://www.cftc.gov/sites/default/files/idc/groups/public/%40commitmentsoftraders/documents/file/tfmexplanatorynotes.pdf">separately recorded spreading positions</a> represent offsetting positions. Leveraged funds’ spreading column also fell, by 11,231.11 BTC-equivalent. The 5,300 BTC-equivalent reduction covers the reported short column, excluding those spread legs.</p>
+<p>The <a href="https://www.cftc.gov/sites/default/files/filings/ptc/21/04/ptc042621cmedcm001.pdf">monthly CME micro expiry rule</a> places September’s expiry on Sept. 25, between the two observations. That provides calendar context without proving that expiry or rolls caused the contraction. Classification changes can also affect category totals.</p>
+<p>The CFTC groups traders by predominant business activity. Its <a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm">Tuesday position reports</a> do not reveal individual transactions or paired spot and ETF holdings. A futures short may be part of a hedge, so fewer shorts do not establish fresh spot buying or reduced bearish conviction.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/leveraged-funds-rebuilt-1669-btc-of-bitcoin-futures-shorts-before-fed/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Leveraged funds rebuilt 1,669 BTC of Bitcoin futures shorts before Fed</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The next release is <a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm">scheduled for Oct. 9</a>. It can show whether the category shift persists.</p>
+<p>The post <a href="https://cryptoslate.com/leveraged-funds-bitcoin-futures-shorts-fall-by-5300-btc-equivalent-as-longs-shrink/">Leveraged funds’ Bitcoin futures shorts fall by 5,300 BTC-equivalent as longs shrink</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/bitcoin-futures-road-ahead.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/bitcoin-futures-road-ahead.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Arbitrum pauses new Stylus activations over AI-assisted attack risks</title>
+		<link>https://cryptoslate.com/arbitrum-pauses-new-stylus-activations-over-ai-assisted-attack-risks/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 09:50:30 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Layer-2]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=568541</guid>
+
+					<description><![CDATA[<p>Existing programs keep running, while a separate proof-conflict guard can delay unconfirmed withdrawals to Ethereum.</p>
+<p>The post <a href="https://cryptoslate.com/arbitrum-pauses-new-stylus-activations-over-ai-assisted-attack-risks/">Arbitrum pauses new Stylus activations over AI-assisted attack risks</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Arbitrum's Security Council temporarily blocked new Stylus contract activations on Arbitrum One and Nova in an October 2 emergency action, restricting programs and app updates that require fresh activation. Already-active Stylus applications can keep running, while ordinary Solidity contract deployment and execution remain unaffected, according to the Council's <a href="https://forum.arbitrum.foundation/t/security-council-emergency-action-2-10-2026/31530">action report</a>.</p>
+<p>Arbitrum attributed the precaution to increasingly sophisticated AI-assisted attacks involving hand-crafted WebAssembly programs outside the standard Stylus compiler toolchain. It said known Stylus bugs primarily threaten chain liveness, including denial-of-service risks, and that no attack permitting theft of user funds had been discovered.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/boltzs-shutdown-shows-the-real-danger-of-ai-hacking-is-pushing-crypto-back-into-the-hands-of-giant-custodians/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Boltz’s shutdown shows the real danger of AI hacking is pushing crypto back into the hands of giant custodians</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The linked <a href="https://etherscan.io/tx/0x30732bb7d2fe35e3ada0929ad5ab603c59355ad71a3f75d109bba0d3db97d11f">Ethereum</a>, <a href="https://arbiscan.io/tx/0x9eb3a4be3ba777f9fc82250eddc10f8356731cc97c09a70801d30ce33322c652">Arbitrum One</a> and <a href="https://arbitrum-nova.blockscout.com/api/v2/transactions/0x79e0fed470dff7a22059b108e3f8f42eddd2b580a6771594060c4e7326c5f984">Nova transaction records</a> show successful execution on October 2, around 15:30 to 15:31 UTC.</p>
+<p>For builders, the distinction is between storing code and making it usable. Stylus contracts run WebAssembly programs, which need activation to become executable. <a href="https://docs.arbitrum.io/stylus/concepts/activation">Arbitrum's documentation</a> distinguishes that step from deployment, which stores code onchain. New contract instances using identical program code can reuse an existing activation, provided it is still valid.</p>
+<p>A new application version requiring fresh activation cannot become executable during the pause. Reactivating an expired program, or one needing reactivation after a Stylus version change, is also blocked, the Council said. The scope is activation, rather than a blanket prohibition on deploying every new contract instance.</p>
+<p>Existing programs remain callable until expiration. Developers can continue extending an active program's lifetime through the permissionless keepalive renewal mechanism before it expires, according to the <a href="https://docs.arbitrum.io/notices/stylus-activation-pause-notice">official pause notice</a>. This leaves renewal available while reactivation of an already-expired program is blocked.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-9e71bdb3-344a-463a-b31a-547d5b3c5f2b.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter shoggoth-infographic shoggoth-infographic-portrait wp-image-568542" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-9e71bdb3-344a-463a-b31a-547d5b3c5f2b.png" alt="Arbitrum's October 2 action blocks new Stylus activations on One and Nova while active programs, keepalive and EVM contracts continue. A separate guard pauses One's Ethereum settlement only if conflicting proofs are accepted, delaying unconfirmed withdrawals while processing continues." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-9e71bdb3-344a-463a-b31a-547d5b3c5f2b.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-9e71bdb3-344a-463a-b31a-547d5b3c5f2b-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-9e71bdb3-344a-463a-b31a-547d5b3c5f2b-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-9e71bdb3-344a-463a-b31a-547d5b3c5f2b-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p>The Council said it implemented the restriction by raising the activation gas requirement to a prohibitively expensive level. It described this as a configuration change requiring no upgrade to ArbOS, the network's operating software.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/robinhood-chain-kept-producing-blocks-through-a-roughly-40-minute-app-disruption/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Robinhood Chain kept producing blocks through a roughly 40-minute app disruption</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>When withdrawals could wait</h2>
+<p>The same emergency action installed a separate safeguard for BoLD's one-step proofs on Arbitrum One. Anyone can present two conflicting answers to the same step of an open challenge. If the one-step proof accepts both, the guard puts One's settlement to Ethereum on hold, according to the Council.</p>
+<p>Arbitrum says One would continue processing normally during that suspension. However, messages from One to Ethereum that have not yet been confirmed, including withdrawals, would have to wait while the Council deploys a fix and resumes settlement. Installing the guard does not itself pause withdrawals; the delay depends on its conflict condition being met.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/ethereum-isnt-instant-but-collateral-could-make-it-feel-that-way/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Ethereum is not instant, but collateral could make it feel that way</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>For builders waiting to activate new Stylus code, reopening remains the next decision. The October 2 report and developer notice give no date, saying the Foundation will work with ArbitrumDAO on the timeline and manner of restoring activations.</p>
+<p>The post <a href="https://cryptoslate.com/arbitrum-pauses-new-stylus-activations-over-ai-assisted-attack-risks/">Arbitrum pauses new Stylus activations over AI-assisted attack risks</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/arbitrum-stylus-activation-tray.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/arbitrum-stylus-activation-tray.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Plunging GPU prices threaten AI hosts, and new hedges step in</title>
+		<link>https://cryptoslate.com/plunging-gpu-prices-threaten-ai-hosts-and-new-hedges-step-in/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 07:30:22 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Trading]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=568084</guid>
+
+					<description><![CDATA[<p>Companies building AI applications can rent powerful computers instead of buying the equipment themselves, paying for access to the graphics processing units, or GPUs, that run their software. Lower rental prices make those applications cheaper to operate, but they can also make life harder for the company that bought the machines and needs the rent [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/plunging-gpu-prices-threaten-ai-hosts-and-new-hedges-step-in/">Plunging GPU prices threaten AI hosts, and new hedges step in</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Companies building AI applications can rent powerful computers instead of buying the equipment themselves, paying for access to the graphics processing units, or GPUs, that run their software.</p>
+<p>Lower rental prices make those applications cheaper to operate, but they can also make life harder for the company that bought the machines and needs the rent to pay its debts.</p>
+<p>If you've financed a room full of GPUs assuming customers will pay a certain hourly rate, a cheaper competitor can upset the calculation long before you've paid off the equipment. Your machines might still work perfectly, and demand for AI might still be strong, but the amount you earn from each hour could start falling below what the business needs.</p>
+<p>Financial contracts could let you protect part of that income by arranging a payment when rental prices fall, in exchange for taking on your own obligations. That's the basic idea behind AI compute derivatives, which let businesses trade their exposure to computing prices separately from renting the computers themselves.</p>
+<p><a href="https://cryptoslate.com/companies/luxor/">Luxor</a>, a company that provides services and financial products to <a href="https://cryptoslate.com/coins/bitcoin/">Bitcoin miners</a>, included these contracts in its <a href="https://luxor.tech/news/corporate-news/article/luxor-launches-full-stack-ai-infrastructure-business">latest expansion into AI</a>. It sees an opportunity to bring its experience hedging mining revenue to another business that spends heavily on machines before knowing what it'll earn.</p>
+<p>The company told <em>CryptoSlate</em> that it's already brokering agreements between owners of computing capacity and customers who want to use it.</p>
+<p>However, its cash-settled derivatives business is still early, and the company said it couldn't provide a customer hedge example or current derivatives trading volumes because a liquid market hadn't formed yet.</p>
+<p>That gives this promising idea the difficult commercial task of persuading someone to accept losses another business wants to avoid.</p>
+<p>Getting that arrangement to work could help operators plan around more predictable income, but the protection is only as dependable as the price used to calculate it and the party responsible for paying.</p>
+<h2>Locking in the rent without locking in a customer</h2>
+<p>The tried-and-true way to make rental income more predictable is to sign a customer for a longer period at an agreed price. The customer gets access to the machines, while the operator gets a commitment it can use to plan its business.</p>
+<p>That works well when both sides want the same arrangement, but customers don't always know how much computing they'll need that far into the future. Operators may also prefer to keep selling capacity to different users.</p>
+<p>Cash-settled derivatives offer another approach because the contract pays money according to a price formula, without requiring the parties to exchange computing capacity. The operator can keep renting its GPUs to customers while using a separate financial agreement to offset movements in the rental rate.</p>
+<p>Imagine an operator expecting to sell 1 million GPU-hours in a month, where one GPU-hour means access to one processor for an hour. At $2 per hour, that would produce $2 million in rental income, and the operator enters a hypothetical contract designed to protect that rate.</p>
+<p>If the agreed market benchmark falls to $1.50, the contract pays the operator the 50-cent difference across the million hours, or $500,000. Assuming its actual rental income also falls to $1.5 million, that payment brings the combined amount back to $2 million before fees and other costs.</p>
+<p>The obligation runs both ways, so if the benchmark increases to $2.50, the operator owes $500,000 while earning more from its customers. It gives up the benefit of a higher rate in exchange for protection against a lower one, making revenue easier to plan around.</p>
+<p>This is just back-of-the-napkin math to explain the arrangement, as the result depends on the operator actually selling the expected hours at a rate that tracks the benchmark. Empty machines still produce no rental income, so fixing the hourly price doesn't guarantee someone will buy it.</p>
+<p>Someone on the other side needs a reason to accept the opposite payments, and an AI business worried about more expensive computing could have one. Its financial contract would pay when the benchmark increased, helping cover a larger rental bill, while a fall would create a payment obligation alongside cheaper computing.</p>
+<p>Dealers could help connect those interests or take some of the exposure themselves, charging for the risk they carry. But customers need a price for the amount of protection they want, covering the period when their business needs it.</p>
+<p><a href="https://cryptoslate.com/companies/cme-group/">CME</a> Group is pursuing an exchange-traded version of this idea through its <a href="https://cmegroupinc.gcs-web.com/news-releases/news-release-details/cme-group-and-silicon-data-launch-compute-futures-october-5">announced H100 and B200 rental-index futures</a>. Its Aug. 11 announcement targeted Oct. 5, subject to regulatory review, for contracts tied to Silicon Data's GPU rental benchmarks, although listing a contract alone can't guarantee enough participation to make it easy to trade.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-miners-are-getting-a-new-ai-hedge-but-it-may-protect-them-from-the-wrong-risk/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin miners are getting a new AI hedge, but it may protect them from the wrong risk</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Your GPU hour might be different from mine</h2>
+<p>But even with willing counterparties, the payment formula needs a price both sides accept as relevant to their business.</p>
+<p>In the example above, the hedge works perfectly because the operator's rental income moved exactly with the benchmark. However, you can't replicate perfect conditions once actual customers enter the picture.</p>
+<p>Suppose its customers negotiate rates down to $1.25 while the benchmark only falls to $1.50, perhaps because the index covers a different service or type of equipment. The same $500,000 hedge payment would then bring its $1.25 million in rental income to $1.75 million, leaving a gap even though the contract works as written.</p>
+<p>That mismatch is called basis risk, which simply means the price you've protected against doesn't move exactly like the price you actually receive. <a href="https://cryptoslate.com/bitcoin-miners-are-getting-a-new-ai-hedge-but-it-may-protect-them-from-the-wrong-risk/">Compute hedges can leave Bitcoin miners exposed</a>, and this is one reason a hedge needs to be judged against the particular business using it.</p>
+<p>Luxor compared its AI ambitions with its path in Bitcoin mining, where publishing a reference price helped create a foundation for financial contracts. Its <a href="https://docs.luxor.tech/hashrateindex/hashprice">hashprice measure</a> estimates what a unit of computing power can earn from mining Bitcoin, giving operators a shared revenue reference even when their own operating costs differ.</p>
+<p>Bitcoin miners perform the same network task, whereas AI customers can attach different values to access that looks similar on a specification sheet. Someone buying uninterrupted access for months is purchasing a different service from someone willing to have a short job stopped whenever the provider needs the machines back.</p>
+<p>Price providers already account for differences like these, with <a href="https://ccir.io/documents/methodology">CCIR's rental-data methodology</a> treating interruptibility and commitment length as separate characteristics. It uses publicly advertised rates, which also means the figures don't necessarily capture privately negotiated discounts.</p>
+<p>The index Luxor supplied in its reply was its <a href="https://hashrateindex.com/blog/announcement-introducing-the-ai-hardware-price-index/">AI Hardware Price Index</a>, which measures advertised prices for selected GPU systems. That can help someone assess an equipment purchase, but buying a machine and earning rent from it involve different prices, so the link doesn't establish how an AI rental hedge would settle.</p>
+<figure id="attachment_568306" aria-describedby="caption-attachment-568306" style="width: 2218px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-568306 size-full" src="https://cryptoslate.com/wp-content/uploads/2026/10/ai-hardware-price-index-20261002.png" alt="Graph showing Luxor's AI hardware price index from June 23 to Oct. 2, 2026 (Source: Hashrate Index)" width="2218" height="1408" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/ai-hardware-price-index-20261002.png 2218w, https://cryptoslate.com/wp-content/uploads/2026/10/ai-hardware-price-index-20261002-300x190.png 300w, https://cryptoslate.com/wp-content/uploads/2026/10/ai-hardware-price-index-20261002-1024x650.png 1024w, https://cryptoslate.com/wp-content/uploads/2026/10/ai-hardware-price-index-20261002-768x488.png 768w, https://cryptoslate.com/wp-content/uploads/2026/10/ai-hardware-price-index-20261002-1536x975.png 1536w, https://cryptoslate.com/wp-content/uploads/2026/10/ai-hardware-price-index-20261002-2048x1300.png 2048w" sizes="(max-width: 2218px) 100vw, 2218px" /><figcaption id="caption-attachment-568306" class="wp-caption-text">B300 prices climbed toward $69,000 as new and refurbished H100s settled near $36,000 and $29,000.</figcaption></figure>
+<p>Luxor's <a href="https://luxor.tech/news/corporate-news/article/luxor-launches-ai-data-sets-on-hashrate-index">August data announcement</a> described expanded compute spot pricing as forthcoming. Operators trying to protect income would still need contracts that name a rental benchmark and show it tracks what customers pay.</p>
+<p>Narrower benchmarks might fit better, but each additional contract splits potential trading among smaller groups. Building this market requires a compromise between matching each customer's business closely and bringing enough people together under the same contract to make trading affordable.</p>
+<h2>The protection has to survive the bad month</h2>
+<p>Even a closely matched contract leaves the operator relying on someone else's ability to pay when rental income falls.</p>
+<p>If that counterparty also earns much of its money from AI infrastructure, cheaper computing could damage both businesses at the same moment, just when one expects support from the other.</p>
+<p>Collateral can reduce that dependence by requiring money or eligible assets to be posted against obligations, giving the recipient something to draw on if the other party fails. It also creates a financing requirement, because money committed to the hedge can't simultaneously pay the operator's other bills.</p>
+<p>In the example where rental prices increase, the operator might have to pay its hedge obligation before customers settle their higher invoices.</p>
+<p>The overall economics could still work even if the bank account runs short, making the timing of cash flows a huge part of that protection's affordability.</p>
+<p>Luxor didn't provide the requested AI collateral terms or explain the procedures for a counterparty failing to pay. Its reply also left unanswered how it separates its own trading from the business it arranges for customers, a relevant point because the launch announcement disclosed an internal compute trading fund.</p>
+<p>More predictable rental income could give an operator greater confidence about meeting its debt payments, even when customers become less willing to pay yesterday's rates.</p>
+<p>Getting that benefit requires a contract that follows the income closely enough, with payment obligations the operator can afford throughout the period it's trying to protect.</p>
+<p>Cheaper computing could let more people build and use AI while leaving some owners of the machines with disappointing returns.</p>
+<p>Financial contracts won't make that loss disappear, but they could move part of it to someone prepared to bear it, giving the operator more room to keep serving customers when the rent falls.</p>
+<p>The post <a href="https://cryptoslate.com/plunging-gpu-prices-threaten-ai-hosts-and-new-hedges-step-in/">Plunging GPU prices threaten AI hosts, and new hedges step in</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/ai-compute-price-crossroads-1.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/ai-compute-price-crossroads-1.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>US judge kills Milei&#8217;s LIBRA memecoin lawsuit, leaving investors stranded</title>
+		<link>https://cryptoslate.com/us-judge-kills-mileis-libra-memecoin-lawsuit-leaving-investors-stranded/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 03:40:54 +0000</pubDate>
+				<category><![CDATA[Crime]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[Memecoins]]></category>
+		<category><![CDATA[LIBRA]]></category>
+		<category><![CDATA[memecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=568512</guid>
+
+					<description><![CDATA[<p>A September 29 ruling closes the LIBRA/M3M3 district-court case after continuity, pleading and jurisdiction failures.</p>
+<p>The post <a href="https://cryptoslate.com/us-judge-kills-mileis-libra-memecoin-lawsuit-leaving-investors-stranded/">US judge kills Milei&#8217;s LIBRA memecoin lawsuit, leaving investors stranded</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Investors in LIBRA, the memecoin promoted by Argentine President Javier Milei, lost a district-court route to recovering their losses after a US judge dismissed the proposed class action over LIBRA and fellow memecoin M3M3.</p>
+<p>In a <a href="https://law.justia.com/cases/federal/district-courts/new-york/nysdce/1:2025cv03891/642202/274/">Sept. 29 opinion</a>, Judge Jennifer L. Rochon dismissed the amended complaint with prejudice, denied permission to amend it again and ordered the Southern District of New York case closed. The decision also blocked investors' proposed expansion of the lawsuit to three other tokens.</p>
+<p>The plaintiffs alleged that insiders controlled token launches and extracted funds from liquidity pools at outside investors' expense.</p>
+<p>According to the complaint as recounted by the court, LIBRA launched on Feb. 14, 2025, and Milei promoted it before withdrawing his support that day. The dismissal resolved the legal sufficiency of the claims and the court's jurisdiction.</p>
+<h2>Why the racketeering claims in the LIBRA case failed</h2>
+<p>The central federal claim relied on the Racketeer Influenced and Corrupt Organizations Act, or RICO. It requires a pattern of related racketeering acts that either spans a substantial period or threatens continuing criminal activity.</p>
+<p>The court found neither form of continuity adequately pleaded against the Kelsier defendants, including Kelsier Ventures and Hayden Davis, and Benjamin Chow, Meteora's co-founder and former CEO.</p>
+<p>For the first route, the court treated the alleged conduct from October 2024 through the March 2025 complaint as a six-month period. Multiple schemes and a potentially large group of victims did not overcome that short duration.</p>
+<p>The opinion applied Second Circuit precedent that generally demands a longer period for this form of continuity, while expressly recognizing that two years is not a fixed cutoff. I</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitgo-investors-face-flood-of-aug-7-class-action-deadline-warnings/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">BitGo investors face flood of Aug. 7 class-action deadline warnings</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The alternative route required facts supporting a continuing threat. The court found that broad assertions about a repeatable token-launch business and referrals to other projects did not establish, defendant by defendant, that alleged wire fraud was a regular business practice. The dependent RICO conspiracy claims failed too.</p>
+<p>The <a href="https://cases.justia.com/federal/district-courts/new-york/nysdce/1:2025cv03891/642202/274/0.pdf?ts=1790793936">proposed amendment</a> would have added MELANIA, ENRON and TRUST, another plaintiff and new defendants. But the judge found it extended the alleged racketeering period to only seven months and provided no facts curing the continuing-threat defect.</p>
+<p>After RICO failed, the court dismissed the Kelsier defendants' remaining state-law claims for lack of personal jurisdiction. Allegations about nationwide social media and crypto infrastructure did not establish the necessary New York connections. The court did not reach the merits of those state-law claims.</p>
+<p>The court dismissed all claims against Chow for pleading defects, including insufficient allegations of fraudulent intent. Claims against Meteora failed because investors had not adequately pleaded it as a legal association or partnership capable of being sued.</p>
+<figure id="attachment_568516" aria-describedby="caption-attachment-568516" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-9deb705b-2f6f-4031-a5cc-864ec3152ba4.png" target="_blank" rel="noopener"><img decoding="async" class="shoggoth-infographic shoggoth-infographic-portrait wp-image-568516" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-9deb705b-2f6f-4031-a5cc-864ec3152ba4.png" alt="LIBRA and M3M3 ruling of September 29, 2026: RICO continuity, Kelsier jurisdiction, Chow pleading and Meteora capacity defects; proposed expansion rejected. The scope is this district-court case, without a trial finding of blanket lawfulness." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-9deb705b-2f6f-4031-a5cc-864ec3152ba4.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-9deb705b-2f6f-4031-a5cc-864ec3152ba4-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-9deb705b-2f6f-4031-a5cc-864ec3152ba4-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-9deb705b-2f6f-4031-a5cc-864ec3152ba4-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-568516" class="wp-caption-text">A New York court dismissed the claims with prejudice without deciding whether the alleged conduct was lawful.</figcaption></figure>
+<p><a href="https://cryptoslate.com/us-entrepreneur-hayden-davis-testifies-in-libra-case-in-new-york-as-legal-proceedings-advance/">Hayden Davis's denied wrongdoing and jurisdiction objections</a> in June 2025. The new ruling turns that earlier dispute into a concrete setback for investors seeking recovery through this action.</p>
+<p>The order does not establish that every alleged act was lawful or determine the status of every other possible recovery route.</p>
+<p>The post <a href="https://cryptoslate.com/us-judge-kills-mileis-libra-memecoin-lawsuit-leaving-investors-stranded/">US judge kills Milei&#8217;s LIBRA memecoin lawsuit, leaving investors stranded</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/libra-rico-timeline-standard-v2.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/libra-rico-timeline-standard-v2.jpg" length="1672" type="image/jpg"/>
+	</item>
+		<item>
+		<title>New SEC crypto rules threaten small advisers, but big firms win</title>
+		<link>https://cryptoslate.com/new-sec-crypto-rules-threaten-small-advisers-but-big-firms-win/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 01:30:40 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Investments]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[regulation]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=568474</guid>
+
+					<description><![CDATA[<p>The SEC’s modeled $433,833 annual adviser cost subtotal excludes significant technology spending, raising questions about who can offer the fallback.</p>
+<p>The post <a href="https://cryptoslate.com/new-sec-crypto-rules-threaten-small-advisers-but-big-firms-win/">New SEC crypto rules threaten small advisers, but big firms win</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The US Securities and Exchange Commission’s proposed crypto custody fallback could broaden investment choices while making them easier for larger advisers to offer.</p>
+<p>The agency’s economic analysis says the expense of safeguarding assets and arranging independent oversight may lead smaller firms to decline to offer the service.</p>
+<p>Approved on Oct. 1, the <a href="https://www.sec.gov/files/rules/proposed/2026/ia-7023.pdf">proposal</a> would let advisers hold covered client crypto assets when an eligible custodian is unavailable, subject to safeguards. Table 8 models certain annual costs of $433,833 per adviser using that option.</p>
+<p>That estimate includes an independent control report but leaves out some potentially significant technology costs.</p>
+<p>For clients, the consequence could be that an asset might become available through an adviser with sufficient custody resources while remaining outside another adviser’s offering.</p>
+<p>SEC Commissioner<a href="https://cryptoslate.com/people/hester-peirce/"> Hester Peirce</a> distinguished adviser <a href="https://www.sec.gov/newsroom/speeches-statements/peirce-statement-proposed-amendments-custody-rules-100126">“self-custody” from investors holding their own assets</a>. Here, an intermediary would hold clients' key materials, potentially including a non-controlling portion. Clients would still depend on that intermediary’s safeguards.</p>
+<p>For ordinary advisory clients, the adviser amendments concern crypto assets that are funds or securities, while the relevant scope for regulated-fund accounts is securities or similar investments.</p>
+<h2>What the annual estimate includes</h2>
+<p>The largest modeled annual component is the independent internal control report. The SEC puts its average cost at $376,000, alongside $57,833 in recurring internal compliance work.</p>
+<p><a href="https://www.sec.gov/files/rules/proposed/2026/ia-7023.pdf">Table 8</a> combines those amounts and separately lists an initial internal compliance cost of $173,499, all in 2026 dollars.</p>
+<table>
+<thead>
+<tr>
+<th>Modeled adviser cost</th>
+<th>Amount</th>
+<th>Timing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internal compliance work</td>
+<td>$173,499</td>
+<td>Initial</td>
+</tr>
+<tr>
+<td>Internal compliance work</td>
+<td>$57,833</td>
+<td>Recurring annually</td>
+</tr>
+<tr>
+<td>Independent internal control report</td>
+<td>$376,000</td>
+<td>Annual estimate</td>
+</tr>
+<tr>
+<td>Table 8 adviser annual subtotal</td>
+<td>$433,833</td>
+<td>Internal work plus control report</td>
+</tr>
+</tbody>
+</table>
+<p>The internal estimate assumes 300 initial hours and 100 recurring annual hours at $578.33 an hour. It covers information, communications, and an agreement between adviser and client to treat the asset as a financial asset under applicable state law.</p>
+<p>The subtotal leaves out some technology, software, hardware, and associated systems and processes. The SEC expects those costs to be economically high. Recordkeeping and disclosure burdens also appear separately in other tables, so the subtotal cannot serve as a complete operating budget.</p>
+<p>The accountant figure comes from an inflation-adjusted prior estimate in the Paperwork Reduction Act analysis, rounded to the nearest $1,000, reflecting the agency’s historical cost model. Report costs could vary with the assets, safeguarding systems, and expertise needed to check different networks.</p>
+<p>The agency assumes approximately 823 advisers, or 5% of 16,442 registered advisers, would use self-custody for that burden calculation. It cautions that actual uptake may be lower.</p>
+<h2>Scale changes the cost of access</h2>
+<p>The economic analysis explicitly anticipates that smaller advisers may elect against self-custody, while larger advisers could have sufficient resources to meet the safeguards. It also identifies ways to share some costs across a larger client base, multiple assets, or affiliated businesses.</p>
+<p>That creates a plausible advantage without establishing a universal minimum firm size. An adviser with substantial overall assets may have only a small pool of covered crypto assets needing this fallback.</p>
+<p>Conversely, an adviser with a focused crypto business may already have the expertise and infrastructure another firm would have to acquire.</p>
+<p>A shared cost weighs more heavily on a small pool of assets than a large one, if the burden stays constant. Firms could allocate costs across their wider businesses rather than charge only clients using the fallback.</p>
+<p>The SEC expects many direct costs could be passed on to clients through fees or expenses. More assets and more networks can require more complex controls and more specialized accountant work, increasing absolute costs. The potential benefit comes from spreading or reusing parts of the infrastructure.</p>
+<p>Accountant pricing could work either way: the SEC warns that demand for people who can assess crypto controls could make services harder to obtain, particularly for smaller advisers with less bargaining power.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/why-millions-of-everyday-savers-will-soon-own-bitcoin-without-ever-downloading-a-crypto-app/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Why millions of everyday savers will soon own Bitcoin without ever downloading a crypto app</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>An option that can expire for each asset</h2>
+<p>The <a href="https://www.sec.gov/files/rules/proposed/2026/ia-7023.pdf">proposed fallback</a> would depend on the adviser having a written reasonable basis, after due inquiry, that no qualified custodian would maintain each asset.</p>
+<p>The adviser would need to make this determination before taking custody and at least quarterly afterward. Custodian costs could not form the basis of that determination.</p>
+<p>An adviser could not choose the fallback simply because its custody arrangement looked cheaper. The relevant barrier is the availability of an eligible custodian for the asset, assessed under the proposed conditions.</p>
+<p>Once an adviser learned that a qualified custodian had become available, it would have to place the asset with that custodian as soon as reasonably practicable. That obligation could arise between quarterly reviews. The proposal does not specify a single transfer deadline for every situation.</p>
+<p>A firm might incur costs to support an asset and later have to move it out of adviser custody. Eligibility could also leave the firm with only a narrow set of unsupported assets to spread the remaining expense across.</p>
+<p>If no client crypto assets remained in self-custody by the report’s due date, the report would not be required. That could reduce costs for a short-lived arrangement, although advisers retaining other covered client crypto assets in self-custody would still face the applicable obligation.</p>
+<figure id="attachment_568514" aria-describedby="caption-attachment-568514" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-e609b067-e064-4bad-afd5-494ee556d8a2.png" target="_blank" rel="noopener"><img decoding="async" class="shoggoth-infographic shoggoth-infographic-portrait wp-image-568514" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-e609b067-e064-4bad-afd5-494ee556d8a2.png" alt="SEC proposed adviser custody pathway: check asset-specific custodian availability, safeguard client keys, review at least quarterly and transfer when a qualified custodian becomes available, with independent reports and client reporting." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-e609b067-e064-4bad-afd5-494ee556d8a2.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-e609b067-e064-4bad-afd5-494ee556d8a2-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-e609b067-e064-4bad-afd5-494ee556d8a2-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-e609b067-e064-4bad-afd5-494ee556d8a2-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-568514" class="wp-caption-text">Advisers could hold client crypto when qualified custody is unavailable, with recurring checks and oversight.</figcaption></figure>
+<h2>The safeguards buy independent scrutiny</h2>
+<p>The expense accompanies a change in who holds the assets. An adviser offering investment advice would also hold client key materials, creating risks of misuse, misappropriation and operational error. A lower-cost arrangement would have to be assessed alongside those risks.</p>
+<p>As SEC Commissioner <a href="https://cryptoslate.com/people/mark-uyeda/">Mark Uyeda’s</a> statement explains, the proposed conditions<a href="https://www.sec.gov/newsroom/speeches-statements/uyeda-statement-proposed-amendments-custody-rules-100126"> include safeguarding expertise</a>, cybersecurity protections, annual reviews, reporting and client disclosures.</p>
+<p>The adviser would need asset-specific expertise and systems for key management, authorization by two or more designated people, and segregation of each client’s assets.</p>
+<p>The first independent control report would be due within six months of taking self-custody and at least once each calendar year thereafter. It would assess the design, implementation and effectiveness of controls and include verification of reconciliation to the crypto network.</p>
+<p>That supplies scrutiny beyond an adviser’s assessment of its capability.</p>
+<p>Quarterly client reporting would also apply, with electronic alternatives and exceptions for qualifying audited pools and regulated funds. Clients’ visibility into balances and transactions can complement safeguards, while the accountant’s work addresses questions that a balance alone cannot settle.</p>
+<p>These protections would not eliminate custodial risk, and the SEC cautions that spending itself does not establish safeguarding competence. A firm’s ability to absorb compliance costs is a separate question from whether its systems effectively protect clients.</p>
+<h2>Alternatives could soften the scale advantage</h2>
+<p>SEC Commissioner Hester Peirce’s <a href="https://www.sec.gov/newsroom/speeches-statements/peirce-statement-custody-crypto-assets-093025">Sept. 30, 2025 statement</a> described conditional staff no-action relief for certain state trust companies and identified national and state banks as other permissible custodians.</p>
+<p>The <a href="https://www.sec.gov/files/rules/proposed/2026/ia-7023.pdf">October proposal</a> would also permit eligible state trust companies to custody crypto assets, subject to initial and annual due inquiry into authorization and safeguards. Where an eligible institution supports an asset, clients may gain access without their adviser building the proposed fallback arrangement.</p>
+<p>Its cost advantage would depend on the particular asset and custody arrangement, since a firm authorized to provide crypto custody does not necessarily maintain every asset a client wants to hold.</p>
+<p>The question for investors is whether the proposal would produce usable access at an acceptable cost and level of protection. The SEC’s analysis supports a possible advantage for advisers with sufficient resources and reusable infrastructure.</p>
+<p>How widely clients benefit would depend on firms’ actual implementation costs, independent-accountant pricing, and the assets that eligible custodians begin to support.</p>
+<p>The post <a href="https://cryptoslate.com/new-sec-crypto-rules-threaten-small-advisers-but-big-firms-win/">New SEC crypto rules threaten small advisers, but big firms win</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/sec-crypto-custody-scale-cost-standard.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/sec-crypto-custody-scale-cost-standard.jpg" length="1672" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Blast shuts down $20M layer-2 network, forcing Oct. 26 exit deadline</title>
+		<link>https://cryptoslate.com/blast-shuts-down-20m-layer-2-network-forcing-oct-26-exit-deadline/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Fri, 02 Oct 2026 23:10:14 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Layer-2]]></category>
+		<category><![CDATA[Outage]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[Lido]]></category>
+		<category><![CDATA[MakerDAO]]></category>
+		<category><![CDATA[Paradigm]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=568482</guid>
+
+					<description><![CDATA[<p>Users face a temporary withdrawal pause before an Oct. 26 deadline to exit through Blast’s normal interface.</p>
+<p>The post <a href="https://cryptoslate.com/blast-shuts-down-20m-layer-2-network-forcing-oct-26-exit-deadline/">Blast shuts down $20M layer-2 network, forcing Oct. 26 exit deadline</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Ethereum layer-2 network built around native yield Blast said on Oct. 2 that it will shut down because maintaining the chain costs more than it earns.</p>
+<p>The project asked users to move their assets to Ethereum mainnet by Oct. 26 to withdraw through its normal interface.</p>
+<p>Blast said in its <a href="https://x.com/blast/status/2106032805280891073">shutdown announcement</a> that it sees no credible path to making the network economically sustainable. It plans to wind down the chain through an asset withdrawal process that will temporarily interrupt users’ ability to exit.</p>
+<p>The decision comes nearly three years after Blast <a href="https://x.com/blast/status/1726747087906464024">disclosed $20 million in funding</a> from <a href="https://cryptoslate.com/companies/paradigm/">Paradigm</a> and Standard Crypto on Nov. 20, 2023. The network <a href="https://x.com/blast/status/1726747138217144780">opened early access that November</a>, with a mainnet launch then planned for February 2024.</p>
+<p>Its <a href="https://blast.io/en/about">documented design</a> describes an Ethereum-compatible optimistic rollup that passes yield from ETH staking and real-world-asset protocols to users. The website identifies <a href="https://cryptoslate.com/companies/lido/">Lido</a> and MakerDAO as yield sources and lists additional investors among <a href="https://cryptoslate.com/coins/blast-io/">Blast's backers</a>.</p>
+<p>The yield model was intended to let holders benefit from returns earned by those underlying protocols, but Blast now says those operating economics no longer justify keeping the network running.</p>
+<h2>Blast's withdrawal pause and Oct. 26 cutoff</h2>
+<p>Blast said it will first withdraw its assets from Lido, which its design identifies as a source of ETH staking yield, a process that is expected to take approximately one week.</p>
+<p>User withdrawals will be temporarily unavailable during the unwind, even after the network reduces its withdrawal delay to 24 hours.</p>
+<p>Withdrawals will resume with the new 24-hour delay once the Lido process is complete, according to the announcement. The roughly one-week interruption and the withdrawal delay after reopening are separate parts of the exit timetable.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/lidos-new-reserve-power-could-reshape-steth-withdrawal-waits-when-the-buffer-is-tight/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Lido’s 1,500 ETH reserve target could slow stETH withdrawals in a crunch</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The request to move funds back to Ethereum includes balances held in Blast’s web app, which the announcement calls the PWA. Blast encouraged all users to withdraw before Oct. 26.</p>
+<p>After that date, Blast said assets will remain withdrawable, but users will need to interact directly with its bridge contracts on Ethereum mainnet.</p>
+<figure id="attachment_568489" aria-describedby="caption-attachment-568489" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-ec40415c-463e-454e-a36e-2e8d4a485adb.png" target="_blank" rel="noopener"><img decoding="async" class="shoggoth-infographic shoggoth-infographic-portrait wp-image-568489" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-ec40415c-463e-454e-a36e-2e8d4a485adb.png" alt="Blast’s announced withdrawal plan: about one week for its Lido unwind with user withdrawals paused, then reopening with a 24-hour delay; normal interface until Oct. 26, 2026, followed by direct Ethereum L1 bridge-contract withdrawals." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-ec40415c-463e-454e-a36e-2e8d4a485adb.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-ec40415c-463e-454e-a36e-2e8d4a485adb-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-ec40415c-463e-454e-a36e-2e8d4a485adb-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-ec40415c-463e-454e-a36e-2e8d4a485adb-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-568489" class="wp-caption-text">Blast will unwind Lido assets before reopening withdrawals, with a 24-hour delay and an Oct. 26 deadline.</figcaption></figure>
+<p>Blast promised to publish detailed instructions for that route before the deadline. The announcement gives an approximate duration for the Lido unwind but does not specify an exact date when normal withdrawals will resume.</p>
+<p>The post <a href="https://cryptoslate.com/blast-shuts-down-20m-layer-2-network-forcing-oct-26-exit-deadline/">Blast shuts down $20M layer-2 network, forcing Oct. 26 exit deadline</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/blast-ethereum-exodus.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/blast-ethereum-exodus.webp" length="1280" type="image/jpg"/>
+	</item>
+	</channel>
+</rss>
