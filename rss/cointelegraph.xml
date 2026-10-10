@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+  <channel>
+    <title>Cointelegraph.com News</title>
+    <link>https://cointelegraph.com</link>
+    <atom:link href="https://cointelegraph.com/rss" rel="self" type="application/rss+xml"/>
+    <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    <generator>cointelegraph.com</generator>
+    <lastBuildDate>Sat, 10 Oct 2026 16:14:28 +0000</lastBuildDate>
+    <language>en</language>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <title>Cointelegraph.com News</title>
+      <link>https://cointelegraph.com</link>
+      <url>https://s3.cointelegraph.com/storage/uploads/view/b9ea15d46738b4df64e6e100ab59b373.png</url>
+      <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    </image>
+    <item>
+      <title>Here’s what happened in crypto today</title>
+      <pubDate>Sat, 10 Oct 2026 12:30:00 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 12:41:11 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/what-happened-in-crypto-today</guid>
+      <link><![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" alt="Here’s what happened in crypto today" class="type:primaryImage"></p><p>Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, Web3 and crypto regulation.</p>]]></description>
+      <dc:creator>Cointelegraph by Michael Millard</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" fileSize="848525" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" length="848525" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Justin Sun says Tron’s post-quantum cryptography has gone live on testnet</title>
+      <pubDate>Sat, 10 Oct 2026 11:52:14 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 11:55:35 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/justin-sun-says-trons-post-quantum-cryptography-has-gone-live-on-testnet</guid>
+      <link><![CDATA[https://cointelegraph.com/news/justin-sun-says-trons-post-quantum-cryptography-has-gone-live-on-testnet?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JTDX55MBW63WXCMHPNB3P5/justin-sun.png" alt="Justin Sun says Tron’s post-quantum cryptography has gone live on testnet" class="type:primaryImage"></p><p>“We’re ready to bring quantum resistance to mainnet at any time,” Sun said in a post on X.</p>]]></description>
+      <dc:creator>Cointelegraph by Michael Millard</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JTDX55MBW63WXCMHPNB3P5/justin-sun.png" fileSize="1916045" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JTDX55MBW63WXCMHPNB3P5/justin-sun.png" length="1916045" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Tech chief says EU can fend off rogue AI risk: Report</title>
+      <pubDate>Sat, 10 Oct 2026 08:41:06 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 08:45:14 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/tech-chief-says-eu-can-fend-off-rogue-ai-risk-report</guid>
+      <link><![CDATA[https://cointelegraph.com/news/tech-chief-says-eu-can-fend-off-rogue-ai-risk-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JFDB4ND4321Z9KER496JAS/ai-machine-cyber-mind-google.png" alt="Tech chief says EU can fend off rogue AI risk: Report" class="type:primaryImage"></p><p>There are global concerns following incidents at OpenAI ‌and Anthropic, and fears have arisen that rogue AI agents may venture beyond human control.</p>]]></description>
+      <dc:creator>Cointelegraph by Michael Millard</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JFDB4ND4321Z9KER496JAS/ai-machine-cyber-mind-google.png" fileSize="1616309" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JFDB4ND4321Z9KER496JAS/ai-machine-cyber-mind-google.png" length="1616309" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Sam Altman-backed Bitcoin life insurer, Meanwhile, raises more funds</title>
+      <pubDate>Sat, 10 Oct 2026 07:10:43 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 07:23:50 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/sam-altman-backed-bitcoin-life-insurer-meanwhile-raises-more-funds</guid>
+      <link><![CDATA[https://cointelegraph.com/news/sam-altman-backed-bitcoin-life-insurer-meanwhile-raises-more-funds?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JA710W3MTHS923BYD1G7PT/hi-the-increasingly-acute-need-for-crypto-native-insurance.png" alt="Sam Altman-backed Bitcoin life insurer, Meanwhile, raises more funds" class="type:primaryImage"></p><p>The round follows increased international demand for Meanwhile’s Bitcoin life insurance policies amid broader macro instability.</p>]]></description>
+      <dc:creator>Cointelegraph by Michael Millard</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JA710W3MTHS923BYD1G7PT/hi-the-increasingly-acute-need-for-crypto-native-insurance.png" fileSize="2091479" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4JA710W3MTHS923BYD1G7PT/hi-the-increasingly-acute-need-for-crypto-native-insurance.png" length="2091479" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>US plans to seize $1B in crypto linked to Iran this week: Scott Bessent</title>
+      <pubDate>Fri, 09 Oct 2026 20:39:17 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 06:35:34 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/scott-bessent-us-seize-crypto-iran-sanctions</guid>
+      <link><![CDATA[https://cointelegraph.com/news/scott-bessent-us-seize-crypto-iran-sanctions?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4H3BG1JYYXKKGEB4KD8923P/hi-us-has-seized-iranian-crypto-1.jpg" alt="US plans to seize $1B in crypto linked to Iran this week: Scott Bessent" class="type:primaryImage"></p><p>The Treasury Department has announced several digital asset seizures related to sanctions on Iran as part of US sanctions.</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4H3BG1JYYXKKGEB4KD8923P/hi-us-has-seized-iranian-crypto-1.jpg" fileSize="489698" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4H3BG1JYYXKKGEB4KD8923P/hi-us-has-seized-iranian-crypto-1.jpg" length="489698" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>New York permanently bars Celsius founder Mashinsky in $35M fraud settlement</title>
+      <pubDate>Fri, 09 Oct 2026 20:14:02 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 06:37:50 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/celsius-founder-alex-mashinsky-permanently-banned-from-crypto-industry-in-ny-settlement</guid>
+      <link><![CDATA[https://cointelegraph.com/news/celsius-founder-alex-mashinsky-permanently-banned-from-crypto-industry-in-ny-settlement?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4H3BAEH9JKD3WDH6MG84JNW/interviewalex-mashinsky2.png" alt="New York permanently bars Celsius founder Mashinsky in $35M fraud settlement" class="type:primaryImage"></p><p>The agreement resolves a 2023 civil fraud lawsuit against the Celsius founder and permanently bars him from the cryptocurrency, securities and commodities industries.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4H3BAEH9JKD3WDH6MG84JNW/interviewalex-mashinsky2.png" fileSize="1586876" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4H3BAEH9JKD3WDH6MG84JNW/interviewalex-mashinsky2.png" length="1586876" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>THORChain exec accuses Tether of temporarily freezing USDT vaults</title>
+      <pubDate>Fri, 09 Oct 2026 19:04:03 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 06:49:58 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/thorchain-tether-freezing-usdt-addresses</guid>
+      <link><![CDATA[https://cointelegraph.com/news/thorchain-tether-freezing-usdt-addresses?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3NT5GYVR0DHCZ7EB688AQWY/tether-2.jpg" alt="THORChain exec accuses Tether of temporarily freezing USDT vaults" class="type:primaryImage"></p><p>Chad Barraford, technical co-founder of the network, said that the funds were frozen and then unfrozen without explanation. </p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3NT5GYVR0DHCZ7EB688AQWY/tether-2.jpg" fileSize="472310" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3NT5GYVR0DHCZ7EB688AQWY/tether-2.jpg" length="472310" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>HSBC, Ant Digital test AI-agent payments using tokenized deposits</title>
+      <pubDate>Fri, 09 Oct 2026 17:21:07 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 06:56:17 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/hsbc-ant-digital-test-ai-agent-payments-using-tokenized-deposits</guid>
+      <link><![CDATA[https://cointelegraph.com/news/hsbc-ant-digital-test-ai-agent-payments-using-tokenized-deposits?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GS7BG4ZGWXJ6GRW1QETMHP/hi-trading-bots-vs-ai-agents-everything-you-need-to-know2-3.png" alt="HSBC, Ant Digital test AI-agent payments using tokenized deposits" class="type:primaryImage"></p><p>The technical trial showed how AI agents could discover services and make micropayments using HSBC’s tokenized deposits, with real-time settlement and risk checks.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GS7BG4ZGWXJ6GRW1QETMHP/hi-trading-bots-vs-ai-agents-everything-you-need-to-know2-3.png" fileSize="1571299" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GS7BG4ZGWXJ6GRW1QETMHP/hi-trading-bots-vs-ai-agents-everything-you-need-to-know2-3.png" length="1571299" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Ledger investigates fund losses linked to Southeast Asian reseller, warns users</title>
+      <pubDate>Fri, 09 Oct 2026 17:02:47 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 06:52:07 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/ledger-investigates-fund-losses-linked-to-southeast-asian-reseller-warns-users</guid>
+      <link><![CDATA[https://cointelegraph.com/news/ledger-investigates-fund-losses-linked-to-southeast-asian-reseller-warns-users?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GQZR5EE6DC45BS4MEHM47N/hi-got-crypto-losses-wallet-shutdown-2.png" alt="Ledger investigates fund losses linked to Southeast Asian reseller, warns users" class="type:primaryImage"></p><p>Hardware wallet maker Ledger probes losses tied to reseller CryptoBilis, as researchers separately estimate more than $72 million to $86 million in suspected crypto thefts.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GQZR5EE6DC45BS4MEHM47N/hi-got-crypto-losses-wallet-shutdown-2.png" fileSize="1460769" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GQZR5EE6DC45BS4MEHM47N/hi-got-crypto-losses-wallet-shutdown-2.png" length="1460769" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Blockchain.com pursues CFTC approval for prediction markets: CNBC</title>
+      <pubDate>Fri, 09 Oct 2026 16:22:45 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 08:05:50 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/blockchain-cftc-approval-derivatives-prediction-markets</guid>
+      <link><![CDATA[https://cointelegraph.com/news/blockchain-cftc-approval-derivatives-prediction-markets?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1MD85WHZ0X0XYT5WKK8H3PD/man-documents-cftc-1.jpg" alt="Blockchain.com pursues CFTC approval for prediction markets: CNBC" class="type:primaryImage"></p><p>The crypto company has reportedly applied for two licenses with the US commodities regulatory as the courts weigh prediction markets cases.</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1MD85WHZ0X0XYT5WKK8H3PD/man-documents-cftc-1.jpg" fileSize="522231" type="image/jpeg" medium="image" height="967" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1MD85WHZ0X0XYT5WKK8H3PD/man-documents-cftc-1.jpg" length="522231" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Crypto Biz: Wealthy investors are buying crypto, but their advisers aren’t sold</title>
+      <pubDate>Fri, 09 Oct 2026 15:51:53 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 15:57:32 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/wealthy-investors-crypto-advisers-okx-strategy-buybacks</guid>
+      <link><![CDATA[https://cointelegraph.com/news/wealthy-investors-crypto-advisers-okx-strategy-buybacks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GNSX9H9TAR1WVGN6VK00JF/rope-and-some-sand.jpg" alt="Crypto Biz: Wealthy investors are buying crypto, but their advisers aren’t sold" class="type:primaryImage"></p><p>Wealthy investors are embracing crypto faster than their advisers, while OKX attracts new funding and Strategy shifts more capital toward preferred stock buybacks.</p>]]></description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GNSX9H9TAR1WVGN6VK00JF/rope-and-some-sand.jpg" fileSize="538610" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GNSX9H9TAR1WVGN6VK00JF/rope-and-some-sand.jpg" length="538610" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitcoin consolidates near $82.5K as crypto weathers Ledger theft reports</title>
+      <pubDate>Fri, 09 Oct 2026 15:20:36 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 15:26:01 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-consolidates-crypto-weathers-ledger-theft-reports</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-consolidates-crypto-weathers-ledger-theft-reports?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GJTJRRZ47S1YP6DQSY53GK/hand-coin-laptop-hack-bitcoin-1280x853.webp" alt="Bitcoin consolidates near $82.5K as crypto weathers Ledger theft reports" class="type:primaryImage"></p><p>Bitcoin and crypto markets eyed a recovery from Thursday’s drop despite concerns of another hardware wallet exploit.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GJTJRRZ47S1YP6DQSY53GK/hand-coin-laptop-hack-bitcoin-1280x853.webp" fileSize="84628" type="image/webp" medium="image" height="853" width="1280">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GJTJRRZ47S1YP6DQSY53GK/hand-coin-laptop-hack-bitcoin-1280x853.webp" length="84628" type="image/webp"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Dragonfly partner rejects ‘bunker mode’ doomerism, calls for proactive blockchain measures </title>
+      <pubDate>Fri, 09 Oct 2026 13:49:22 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 13:53:51 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/dragonfly-bunker-mode-doomerism-proactive-blockchain-measures</guid>
+      <link><![CDATA[https://cointelegraph.com/news/dragonfly-bunker-mode-doomerism-proactive-blockchain-measures?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GCWY4XX0MD3NEZQFT038VE/hi-using-ai-in-crypto-do-it-at-your-own-risk.jpg" alt="Dragonfly partner rejects ‘bunker mode’ doomerism, calls for proactive blockchain measures " class="type:primaryImage"></p><p>Dragonfly’s Qureshi argued that asset migration is not a real solution in case of AI models breaking cryptographic signatures, and urged blockchains to adopt proactive measures.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GCWY4XX0MD3NEZQFT038VE/hi-using-ai-in-crypto-do-it-at-your-own-risk.jpg" fileSize="338258" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4GCWY4XX0MD3NEZQFT038VE/hi-using-ai-in-crypto-do-it-at-your-own-risk.jpg" length="338258" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>France is world’s most dangerous place for Bitcoiners: 90 attacks in 7 months</title>
+      <pubDate>Fri, 09 Oct 2026 13:30:00 +0000</pubDate>
+      <atom:updated>Thu, 08 Oct 2026 23:24:15 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/magazine/france-is-worlds-most-dangerous-place-for-bitcoiners-90-attacks-in-7-months</guid>
+      <link><![CDATA[https://cointelegraph.com/magazine/france-is-worlds-most-dangerous-place-for-bitcoiners-90-attacks-in-7-months?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4AWRRN51808RRM7J8KQMKT8/magazine-investigations-2.png" alt="France is world’s most dangerous place for Bitcoiners: 90 attacks in 7 months" class="type:primaryImage"></p><p>French authorities recorded 90 crypto-related cases involving kidnapping, extortion, threats and violent theft in seven months. What makes France such a hotspot?</p>]]></description>
+      <dc:creator>Cointelegraph by Christina Comben</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4AWRRN51808RRM7J8KQMKT8/magazine-investigations-2.png" fileSize="1662558" type="image/png" medium="image" height="768" width="1376">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4AWRRN51808RRM7J8KQMKT8/magazine-investigations-2.png" length="1662558" type="image/png"/>
+      <category>Magazine</category>
+    </item>
+    <item>
+      <title>ESMA seeks evidence tokenized collateral can be cashed out in crisis</title>
+      <pubDate>Fri, 09 Oct 2026 10:49:24 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 08:07:52 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/esma-tokenized-collateral-eu-clearinghouses</guid>
+      <link><![CDATA[https://cointelegraph.com/news/esma-tokenized-collateral-eu-clearinghouses?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4G06R9TT5S4ED9Y271GTGVR/hi-company-wants-to-launch-digital-currency-bank-stablecoin-eu-1.jpg" alt="ESMA seeks evidence tokenized collateral can be cashed out in crisis" class="type:primaryImage"></p><p>ESMA is seeking industry feedback on the legal, liquidity and operational risks of tokenized collateral before deciding whether additional EU regulatory measures are necessary.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4G06R9TT5S4ED9Y271GTGVR/hi-company-wants-to-launch-digital-currency-bank-stablecoin-eu-1.jpg" fileSize="321697" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4G06R9TT5S4ED9Y271GTGVR/hi-company-wants-to-launch-digital-currency-bank-stablecoin-eu-1.jpg" length="321697" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>UK sanctions three crypto exchanges tied to Russian illicit funds </title>
+      <pubDate>Fri, 09 Oct 2026 10:34:37 +0000</pubDate>
+      <atom:updated>Sat, 10 Oct 2026 08:09:38 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/uk-sanctions-crypto-exchanges-russian-illicit-funds</guid>
+      <link><![CDATA[https://cointelegraph.com/news/uk-sanctions-crypto-exchanges-russian-illicit-funds?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FZR0YP4HAX26C5RVN1W1T2/hi-russias-law-on-crypto-whats-the-latest-2.jpg" alt="UK sanctions three crypto exchanges tied to Russian illicit funds " class="type:primaryImage"></p><p>The UK sanctioned crypto exchanges and payment processors, some of which were tied to thousands of Russian entities and the sanctioned HTX exchange.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FZR0YP4HAX26C5RVN1W1T2/hi-russias-law-on-crypto-whats-the-latest-2.jpg" fileSize="503239" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FZR0YP4HAX26C5RVN1W1T2/hi-russias-law-on-crypto-whats-the-latest-2.jpg" length="503239" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>French lawmakers back stablecoin swap tax in 2027 budget bill</title>
+      <pubDate>Fri, 09 Oct 2026 10:16:48 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 10:20:59 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/france-crypto-stablecoin-swap-tax-2027-budget</guid>
+      <link><![CDATA[https://cointelegraph.com/news/france-crypto-stablecoin-swap-tax-2027-budget?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FT35RCS7WXQT4HAHHT14GK/regulations-france-crypto.jpg" alt="French lawmakers back stablecoin swap tax in 2027 budget bill" class="type:primaryImage"></p><p>France’s Finance Committee backed taxes on stablecoin swaps, as well as unrealized crypto gains when households with more than 800,000 euros move abroad.
+</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FT35RCS7WXQT4HAHHT14GK/regulations-france-crypto.jpg" fileSize="377012" type="image/jpeg" medium="image" height="1080" width="1620">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FT35RCS7WXQT4HAHHT14GK/regulations-france-crypto.jpg" length="377012" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitcoin speculators move 55K BTC to exchanges amid $1.1B liquidations</title>
+      <pubDate>Fri, 09 Oct 2026 09:50:01 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 09:56:10 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-speculators-btc-exchanges-crypto-liquidation</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-speculators-btc-exchanges-crypto-liquidation?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FX2DFZ8H6KSQP3M3F615T4/article-covers-246541-three-signs-bitcoin-price-near-full-capitulation-960x640.webp" alt="Bitcoin speculators move 55K BTC to exchanges amid $1.1B liquidations" class="type:primaryImage"></p><p>Bitcoin dipped below $81,000, sparking mass crypto liquidations as traders sent BTC to exchanges at a loss. </p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FX2DFZ8H6KSQP3M3F615T4/article-covers-246541-three-signs-bitcoin-price-near-full-capitulation-960x640.webp" fileSize="65912" type="image/webp" medium="image" height="640" width="960">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FX2DFZ8H6KSQP3M3F615T4/article-covers-246541-three-signs-bitcoin-price-near-full-capitulation-960x640.webp" length="65912" type="image/webp"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Bitcoin, Ether ETFs’ October outflows swell toward $1B</title>
+      <pubDate>Fri, 09 Oct 2026 07:34:44 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 07:39:18 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-ether-etfs-october-outflows-billion</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-ether-etfs-october-outflows-billion?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FQAANP3H5Z0XYV77PNYB10/hi-will-the-blockchain-stop-leaks-of-crypto.jpg" alt="Bitcoin, Ether ETFs’ October outflows swell toward $1B" class="type:primaryImage"></p><p>Bitcoin ETFs lost $244 million on Thursday, while Ether funds extended their outflow streak to eight sessions, shedding $641 million.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FQAANP3H5Z0XYV77PNYB10/hi-will-the-blockchain-stop-leaks-of-crypto.jpg" fileSize="285666" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FQAANP3H5Z0XYV77PNYB10/hi-will-the-blockchain-stop-leaks-of-crypto.jpg" length="285666" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Crypto projects apply for Anthropic’s new frontier AI security scanner  </title>
+      <pubDate>Fri, 09 Oct 2026 05:34:33 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 05:39:01 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/crypto-projects-apply-for-anthropics-new-frontier-ai-security-scanner</guid>
+      <link><![CDATA[https://cointelegraph.com/news/crypto-projects-apply-for-anthropics-new-frontier-ai-security-scanner?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FJ993JA7JTR422QAJS3TDX/hi-can-ai-bots-verify-you.jpg" alt="Crypto projects apply for Anthropic’s new frontier AI security scanner  " class="type:primaryImage"></p><p>Anthropic’s new opt-in service promises vulnerability reports from its strongest AI models, including Claude Mythos.</p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FJ993JA7JTR422QAJS3TDX/hi-can-ai-bots-verify-you.jpg" fileSize="237953" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FJ993JA7JTR422QAJS3TDX/hi-can-ai-bots-verify-you.jpg" length="237953" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Trump administration outlines quantum, AI initiatives in $6B science push</title>
+      <pubDate>Fri, 09 Oct 2026 05:25:27 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 07:26:27 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/trump-administration-quantum-computing-ai-6-billion-science-push</guid>
+      <link><![CDATA[https://cointelegraph.com/news/trump-administration-quantum-computing-ai-6-billion-science-push?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FG6B1R6A2XBTWZ9CFPZ8SJ/ai-and-quantum.png" alt="Trump administration outlines quantum, AI initiatives in $6B science push" class="type:primaryImage"></p><p>The White House outlined a $215 million quantum computing competition and $2.4 billion in AI industry commitments as concerns grow over quantum threats to cryptocurrency security.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FG6B1R6A2XBTWZ9CFPZ8SJ/ai-and-quantum.png" fileSize="1839958" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FG6B1R6A2XBTWZ9CFPZ8SJ/ai-and-quantum.png" length="1839958" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Thailand finalizes rules paving way for Bitcoin, Ether ETFs</title>
+      <pubDate>Fri, 09 Oct 2026 03:08:51 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 13:15:25 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/thailand-finalizes-rules-paving-way-for-bitcoin-ether-etfs</guid>
+      <link><![CDATA[https://cointelegraph.com/news/thailand-finalizes-rules-paving-way-for-bitcoin-ether-etfs?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FA1413AR809PCC2V0XRTMJ/thailand.jpg" alt="Thailand finalizes rules paving way for Bitcoin, Ether ETFs" class="type:primaryImage"></p><p>The rules are set to take effect next week, allowing crypto ETFs to trade exclusively on the Stock Exchange of Thailand. </p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FA1413AR809PCC2V0XRTMJ/thailand.jpg" fileSize="179450" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4FA1413AR809PCC2V0XRTMJ/thailand.jpg" length="179450" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Cantor Fitzgerald faces Senate Democrat’s questions over Tether ties  </title>
+      <pubDate>Fri, 09 Oct 2026 00:46:27 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 04:27:33 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/cantor-fitzgerald-faces-senate-democrats-probe-over-tether-ties</guid>
+      <link><![CDATA[https://cointelegraph.com/news/cantor-fitzgerald-faces-senate-democrats-probe-over-tether-ties?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4F1W4R51W8W7BPK0508NAMP/investigation.jpg" alt="Cantor Fitzgerald faces Senate Democrat’s questions over Tether ties  " class="type:primaryImage"></p><p>The letter follows a report by the Democratic investigators last month alleging Tether’s USDT has become a key tool for Iran’s shadow banking network.</p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4F1W4R51W8W7BPK0508NAMP/investigation.jpg" fileSize="383502" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4F1W4R51W8W7BPK0508NAMP/investigation.jpg" length="383502" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>China’s P2P stablecoin wallets surge 43x, Korea’s $450B crypto economy: Asia Express</title>
+      <pubDate>Thu, 08 Oct 2026 22:35:00 +0000</pubDate>
+      <atom:updated>Thu, 08 Oct 2026 23:15:32 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/magazine/chinas-p2p-stablecoin-wallets-surge-43x-koreas-450b-crypto-economy-asia-express</guid>
+      <link><![CDATA[https://cointelegraph.com/magazine/chinas-p2p-stablecoin-wallets-surge-43x-koreas-450b-crypto-economy-asia-express?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M26Q2WGDD8GDA5QMCWQF3GB3/magazineasia-expresssnow.jpg" alt="China’s P2P stablecoin wallets surge 43x, Korea’s $450B crypto economy: Asia Express" class="type:primaryImage"></p><p>Despite ongoing bans, China has seen a big surge in peer-to-peer stablecoin use. New figures show South Korea’s $450B crypto economy is the largest in East Asia.</p>]]></description>
+      <dc:creator>Cointelegraph by Andrew Fenton</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M26Q2WGDD8GDA5QMCWQF3GB3/magazineasia-expresssnow.jpg" fileSize="519546" type="image/jpeg" medium="image" height="1446" width="2570">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M26Q2WGDD8GDA5QMCWQF3GB3/magazineasia-expresssnow.jpg" length="519546" type="image/jpeg"/>
+      <category>Magazine</category>
+    </item>
+    <item>
+      <title>Securitize stock jumps over 10% after launching tokenized US equities on Solana</title>
+      <pubDate>Thu, 08 Oct 2026 19:31:38 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 04:29:12 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/securitize-stock-jumps-launching-tokenized-us-equities-solana</guid>
+      <link><![CDATA[https://cointelegraph.com/news/securitize-stock-jumps-launching-tokenized-us-equities-solana?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4EEEA4K0X2GAJFKB9A8T56C/hi-how-ondo-finance-plans-to-bring-tokenized-us-stocks-to-solana-3.png" alt="Securitize stock jumps over 10% after launching tokenized US equities on Solana" class="type:primaryImage"></p><p>Securitize’s new offering gives eligible investors access to tokenized shares of 12 US companies, with dividend and voting rights and plans for round-the-clock trading.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4EEEA4K0X2GAJFKB9A8T56C/hi-how-ondo-finance-plans-to-bring-tokenized-us-stocks-to-solana-3.png" fileSize="1840904" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4EEEA4K0X2GAJFKB9A8T56C/hi-how-ondo-finance-plans-to-bring-tokenized-us-stocks-to-solana-3.png" length="1840904" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>NFL backs New Jersey authorities in SCOTUS petition over Kalshi </title>
+      <pubDate>Thu, 08 Oct 2026 19:17:18 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 04:41:30 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/nfl-new-jersey-supreme-court-kalshi</guid>
+      <link><![CDATA[https://cointelegraph.com/news/nfl-new-jersey-supreme-court-kalshi?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E1T9RDDQM4RHT8VGKG97F0/hi-nfl-players-choosing-crypto-over-cash2.jpg" alt="NFL backs New Jersey authorities in SCOTUS petition over Kalshi " class="type:primaryImage"></p><p>According to the league, Kalshi and other prediction markets “threaten game integrity” because many event contracts are “highly susceptible to manipulation.”</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E1T9RDDQM4RHT8VGKG97F0/hi-nfl-players-choosing-crypto-over-cash2.jpg" fileSize="555421" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E1T9RDDQM4RHT8VGKG97F0/hi-nfl-players-choosing-crypto-over-cash2.jpg" length="555421" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Netflix drops trailer for series based on FTX’s SBF and Caroline Ellison</title>
+      <pubDate>Thu, 08 Oct 2026 18:17:35 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 06:09:42 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/netflix-series-ftx-sam-bankman-fried-caroline-ellison</guid>
+      <link><![CDATA[https://cointelegraph.com/news/netflix-series-ftx-sam-bankman-fried-caroline-ellison?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E9874D134FZFY2WSZBNXKY/hi-from-ellison-to-bankman-fried.png" alt="Netflix drops trailer for series based on FTX’s SBF and Caroline Ellison" class="type:primaryImage"></p><p>Sam Bankman-Fried remains in federal prison following his 2023 conviction, while Caroline Ellison was released in January.</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E9874D134FZFY2WSZBNXKY/hi-from-ellison-to-bankman-fried.png" fileSize="1907873" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E9874D134FZFY2WSZBNXKY/hi-from-ellison-to-bankman-fried.png" length="1907873" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>IMF warns tokenized markets could amplify financial risks</title>
+      <pubDate>Thu, 08 Oct 2026 16:25:06 +0000</pubDate>
+      <atom:updated>Thu, 08 Oct 2026 16:29:31 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/imf-flags-volatility-liquidity-risks-tokenized-markets-grow</guid>
+      <link><![CDATA[https://cointelegraph.com/news/imf-flags-volatility-liquidity-risks-tokenized-markets-grow?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E33RFBJJSYXE4M7F92S5P1/hi-imf-and-blockchain.png" alt="IMF warns tokenized markets could amplify financial risks" class="type:primaryImage"></p><p>The global financial institution found tokenized equity markets less liquid and more volatile than traditional markets, despite growing demand for 24/7 trading.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E33RFBJJSYXE4M7F92S5P1/hi-imf-and-blockchain.png" fileSize="1612559" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E33RFBJJSYXE4M7F92S5P1/hi-imf-and-blockchain.png" length="1612559" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitcoin nears 3-week low as oil heads higher on Iran strike woes </title>
+      <pubDate>Thu, 08 Oct 2026 15:55:55 +0000</pubDate>
+      <atom:updated>Thu, 08 Oct 2026 16:05:49 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-nears-3-week-low-as-oil-heads-higher-on-iran-strike-woes</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-nears-3-week-low-as-oil-heads-higher-on-iran-strike-woes?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E31FD5W40BBWD1JCVBH0A8/hi-beyond-bitcoin-the-future-of-digital-assets-bitcoin-price-us-iran-1.jpg" alt="Bitcoin nears 3-week low as oil heads higher on Iran strike woes " class="type:primaryImage"></p><p>Bitcoin dipped below $81,000 and oil prices gained after reports that military confrontation between the US and Iran could return.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E31FD5W40BBWD1JCVBH0A8/hi-beyond-bitcoin-the-future-of-digital-assets-bitcoin-price-us-iran-1.jpg" fileSize="645874" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4E31FD5W40BBWD1JCVBH0A8/hi-beyond-bitcoin-the-future-of-digital-assets-bitcoin-price-us-iran-1.jpg" length="645874" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>US government moves $1B in seized Bitcoin after $770M transfers</title>
+      <pubDate>Thu, 08 Oct 2026 15:24:16 +0000</pubDate>
+      <atom:updated>Fri, 09 Oct 2026 04:42:45 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/us-government-seized-bitcoin-moved-one-transaction</guid>
+      <link><![CDATA[https://cointelegraph.com/news/us-government-seized-bitcoin-moved-one-transaction?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4DZ1JGVGB95RQTVV556XSXB/hi-the-united-states-turns-its-attention-to-bitcoin-regulation.jpg" alt="US government moves $1B in seized Bitcoin after $770M transfers" class="type:primaryImage"></p><p>Blockchain analysts identified the US government wallet tied to the recovery of funds from the Bitfinex hack.</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4DZ1JGVGB95RQTVV556XSXB/hi-the-united-states-turns-its-attention-to-bitcoin-regulation.jpg" fileSize="859486" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M4DZ1JGVGB95RQTVV556XSXB/hi-the-united-states-turns-its-attention-to-bitcoin-regulation.jpg" length="859486" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+  </channel>
+</rss>

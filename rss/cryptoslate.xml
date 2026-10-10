@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Sat, 10 Oct 2026 12:46:54 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>CFTC proposes a divide between prediction contracts and sportsbook wagers</title>
+		<link>https://cryptoslate.com/cftc-proposes-new-divide-between-prediction-contracts-and-sportsbook-wagers/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 10 Oct 2026 16:00:40 +0000</pubDate>
+				<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Kalshi]]></category>
+		<category><![CDATA[regulation]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=570912</guid>
+
+					<description><![CDATA[<p>An event-contract proposal and separate casino-wager rule sharpen the federal classification boundary while leaving state-law access disputes unresolved.</p>
+<p>The post <a href="https://cryptoslate.com/cftc-proposes-new-divide-between-prediction-contracts-and-sportsbook-wagers/">CFTC proposes a divide between prediction contracts and sportsbook wagers</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The Commodity Futures Trading Commission announced two actions on Oct. 9 seeking to clarify the federal regulatory boundary between <a href="https://cryptoslate.com/prediction-markets/">prediction-market contracts</a> and traditional gambling. It proposed expressly including sports and other event contracts in the definition of a swap, a category of financial derivative, while announcing a separate interim final rule to codify the exclusion of sportsbook and casino wagers.</p>
+<p>The <a href="https://www.cftc.gov/PressRoom/PressReleases/9310-26">event-contract proposal</a> covers sports, politics, cultural events and weather-related outcomes. CFTC Chairman Michael S. Selig said these products fall within the agency’s exclusive jurisdiction under the Commodity Exchange Act.</p>
+<p>That classification matters because the products can look familiar to bettors. The CFTC <a href="https://www.cftc.gov/LearnandProtect/PredictionMarkets">explains</a> that event contracts often let traders buy yes-or-no positions on a future outcome, with a fixed payout, usually $1. Their value depends on that outcome, and they can be used to hedge risk or speculate.</p>
+<p>The distinction is visible in how platforms present their products: CryptoSlate’s <a href="https://cryptoslate.com/crypto-sportsbooks/cloudbet-sportsbook-review/">Cloudbet sportsbook review</a> examines odds-based wagers, while its <a href="https://cryptoslate.com/prediction-markets/polymarket-review/">Polymarket review</a> examines tradeable outcome contracts.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/cftc-staff-presses-exchanges-on-political-speech-prediction-market-bets-asks-how-to-prevent-manipulation/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">CFTC staff presses exchanges on political speech prediction market bets, asks how to prevent manipulation</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The proposed inclusion is not final. The CFTC is seeking written comments through Regulations.gov within 30 days of the proposal’s publication in the Federal Register.</p>
+<p>The <a href="https://www.cftc.gov/PressRoom/PressReleases/9309-26">casino-wager action</a> is an interim final rule. The agency describes it as codifying its longstanding position that casino-style gambling products, including wagers placed on sportsbooks and casino games, fall outside the swap definition.</p>
+<p>According to the CFTC, the exclusion takes effect immediately upon publication in the Federal Register. It also carries a 30-day comment window tied to that publication. Neither announcement specifies the Federal Register publication date, so the Oct. 9 date does not establish an effective date or comment deadline.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-0d4964c7-facf-4494-b6ca-5f31fabac9d7.png" target="_blank" rel="noopener"><img fetchpriority="high" decoding="async" class="aligncenter shoggoth-infographic shoggoth-infographic-portrait wp-image-570915" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-0d4964c7-facf-4494-b6ca-5f31fabac9d7.png" alt="Comparison of the CFTC's proposed event-contract swap inclusion and announced casino-wager exclusion, with Federal Register publication triggers and unresolved state-law access." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-0d4964c7-facf-4494-b6ca-5f31fabac9d7.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-0d4964c7-facf-4494-b6ca-5f31fabac9d7-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-0d4964c7-facf-4494-b6ca-5f31fabac9d7-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-0d4964c7-facf-4494-b6ca-5f31fabac9d7-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<h2>State-law disputes remain consequential</h2>
+<p>The agency’s classification position faces a separate legal question: whether federal regulation displaces state gambling laws.</p>
+<p>In a <a href="https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0272p-06.pdf">Sept. 25 ruling</a> on preliminary-injunction appeals involving prediction-market operator <a href="https://cryptoslate.com/prediction-markets/kalshi-review/">Kalshi</a>, the Sixth Circuit held that the company had not shown its sports-event contracts met the statutory swap definition. It also held, alternatively, that even assuming the contracts were swaps, the Commodity Exchange Act did not expressly or impliedly preempt Ohio’s or Tennessee’s gambling laws.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/kalshi-must-lock-out-state-users-after-major-court-loss/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Kalshi must lock out state users after major court loss</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>That alternative holding illustrates the obstacle for operators seeking nationwide access: winning an argument about product classification does not necessarily win the argument over state authority.</p>
+<p>The distinction also drew criticism from advocacy group Better Markets. In an <a href="https://bettermarkets.org/newsroom/cftc-cant-tell-the-difference-between-sports-betting-and-derivatives-trading/">Oct. 9 statement</a>, securities-policy director Benjamin Schiffrin argued that sports event contracts enable <a href="https://cryptoslate.com/crypto-sportsbooks/">sports betting</a> and should remain subject to state gambling laws.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/new-york-sues-polymarket-seeks-triple-gains-and-100000-penalties-over-prediction-markets/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">New York sues Polymarket, seeks triple gains and $100,000 penalties over prediction markets</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The post <a href="https://cryptoslate.com/cftc-proposes-new-divide-between-prediction-contracts-and-sportsbook-wagers/">CFTC proposes a divide between prediction contracts and sportsbook wagers</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/cftc-sportsbook-divide.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/cftc-sportsbook-divide.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Luxor’s reported 6–13% annualized Bitcoin yield depends on mining delivery</title>
+		<link>https://cryptoslate.com/bitcoins-reported-6-13-mining-yield-still-carries-miner-credit-risk/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 10 Oct 2026 15:00:54 +0000</pubDate>
+				<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Lending]]></category>
+		<category><![CDATA[Mining]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[mining]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=570898</guid>
+
+					<description><![CDATA[<p>Luxor’s paired forwards can fix gross BTC receipts, while mining delivery, counterparty performance and financing terms still determine repayment.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoins-reported-6-13-mining-yield-still-carries-miner-credit-risk/">Luxor’s reported 6–13% annualized Bitcoin yield depends on mining delivery</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Luxor, a Bitcoin mining derivatives provider, reported a 6–13% annualized Bitcoin financing spread in its <a href="https://hashrateindex.com/blog/luxor-hashrate-lookback-series-september-2026/">September lookback, published Oct. 9</a>. It says lenders and Bitcoin treasury companies bought prepaid mining power and paired it with a price hedge, while miners used the reverse trade to obtain financing.</p>
+<p>The return comes from the discount a miner accepts for receiving money upfront. The hedge can fix gross BTC receipts if mining delivery and settlement perform, while the investor’s capital remains exposed to failure in that repayment chain. Luxor’s reported September range does not establish an executed return after costs or a quote available today.</p>
+<h2>Where the Bitcoin return comes from</h2>
+<p>Mining power, or hashrate, produces revenue at a rate known as hashprice. Luxor’s contracts express that rate in Bitcoin or dollars per unit of computing power per day. Buying <a href="https://cryptoslate.com/mining/">future mining power</a> gives the purchaser exposure to the income that power generates over the contract period.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-miners-escape-months-of-financial-distress-as-daily-revenue-surges-by-78/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin miners escape months of distress as daily revenue surges by 78%</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>In a <a href="https://docs.luxor.tech/platform/derivatives/luxor-contract-and-market-details/luxors-deliverable-bitcoin-hashrate-forward">deliverable forward</a>, the buyer pays the full purchase price upfront. The seller must deliver hashrate to Luxor’s Bitcoin Mining Pool, with the buyer’s daily BTC settlement tied to the hashprice index and contracted amount of mining power.</p>
+<p>That prepayment supplies financing to the miner. Luxor says deliverable forwards typically trade below comparable non-deliverable forwards to compensate the buyer for credit risk and the cost of committing capital. The lower prepaid purchase price is the source of the lender’s potential profit.</p>
+<p>Without a hedge, the buyer’s receipts would vary with the mining-revenue rate. The paired trade adds a sale of a <a href="https://docs.luxor.tech/platform/derivatives/luxor-contract-and-market-details/luxors-nondeliverable-bitcoin-hashrate-forward">non-deliverable forward</a>, or NDF, which settles in cash rather than requiring physical mining-power delivery.</p>
+<p>For the NDF seller, daily settlement is the agreed hashprice minus that day’s index rate, multiplied by the contracted hashrate. When the index is below the agreed price, the seller receives the difference. When it is above, the seller owes the difference.</p>
+<p>If the two legs use the same BTC denomination, hashrate quantity, settlement dates and index methodology, their price exposures cancel. Fully delivered mining receipts at the daily index rate, plus the NDF settlement, equal receipts at the fixed NDF rate. The profit depends on how much those receipts exceed the prepaid purchase cost and other costs.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-66228339-839c-4f0f-9900-37eaf4352fa1.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter shoggoth-infographic shoggoth-infographic-portrait wp-image-570899" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-66228339-839c-4f0f-9900-37eaf4352fa1.png" alt="Luxor’s reported September 6–13% annualized financing spread: prepaid mining receipts and a matched short BTC forward fix gross receipts if both perform, while delivery, counterparty, margin and settlement risks remain." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-66228339-839c-4f0f-9900-37eaf4352fa1.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-66228339-839c-4f0f-9900-37eaf4352fa1-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-66228339-839c-4f0f-9900-37eaf4352fa1-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-66228339-839c-4f0f-9900-37eaf4352fa1-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p>The matching conditions matter. A hedge covering different quantities or dates leaves part of the mining revenue exposed. A dollar-denominated contract also cannot simply be substituted for a BTC-denominated one while preserving the same Bitcoin payoff.</p>
+<p>A BTC-denominated hedge also leaves the dollar value of Bitcoin receipts exposed to BTC/USD changes.</p>
+<p>Luxor’s product pages describe monthly contracts up to 18 months out and custom durations. That is the general product range; the September financing discussion does not identify which tenors produced the reported 6–13%, or give its annualization formula.</p>
+<p>Annualized pricing also does not mean an investor earns the quoted percentage over any shorter contract. The actual contract period, repayment timing, costs and capital committed across both legs determine the return on the investor’s funds.</p>
+<h2>Delivery failure can leave the hedge running</h2>
+<p>The cancellation works because the buyer receives the mining revenue against which the NDF settles. If promised mining power is not delivered and the shortfall is not cured, that revenue leg can be smaller than expected while the hedge still has settlement obligations.</p>
+<p>When settlement hashprice exceeds the NDF’s fixed rate, the seller owes the difference, expecting higher mining receipts to offset it. If those receipts fail to arrive, the price hedge can require payment without the corresponding income.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/plunging-gpu-prices-threaten-ai-hosts-and-new-hedges-step-in/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Plunging GPU prices threaten AI hosts, and new hedges step in</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>There is also a distinction between the miner supplying the output and the investor’s contractual counterparty. Luxor’s <a href="https://docs.luxor.tech/platform/derivatives/getting-started/order-book">order-book documentation</a> says Luxor is counterparty to both the buyer and seller. The platform displays buy and sell orders, and its derivatives team contacts the parties to confirm trades; the book itself is not an execution system.</p>
+<p>For an investor, that makes Luxor’s own performance part of the repayment chain alongside the mining operation.</p>
+<p>Luxor’s <a href="https://docs.luxor.tech/platform/derivatives/luxor-contract-and-market-details/upfront-payment-requrements-and-procedures">upfront-payment procedures</a> require seller credit profiling before money is advanced. The requirements cover mining-site and power documents, insurance, pool performance, financial statements and future obligations. Its margin policy also lists documentation for a performance bond or guarantor among its supplemental checks.</p>
+<p>Credit checks reduce uncertainty about a seller’s ability to perform, while recovery after failure depends on enforceable claims. The public requirements do not specify a complete repayment priority or identify which assets an investor could enforce against after default.</p>
+<p>For eligible investors, collateral custody and the ability to exit remain part of the credit exposure. The order book allows open orders to be canceled; that does not establish an exit from a confirmed forward.</p>
+<h2>Margin changes the capital calculation</h2>
+<p>Collateral determines how much additional capital may be needed to maintain the hedge. Luxor’s <a href="https://docs.luxor.tech/platform/derivatives/luxor-contract-and-market-details/margin-requirements-policies-and-procedures">margin policy</a> requires BTC collateral for BTC contracts and collects variation margin when the lower of realized and unrealized margin balances falls below maintenance requirements. Credit-qualified deliverable sellers can have custom procedures based on realized balances.</p>
+<p>The policy describes initial margin as protection against potential exposure during the time needed to close out and replace a defaulted position.</p>
+<p>The public schedules are not consistent: the NDF page quotes 18% BTC initial margin and the DF page quotes 18% seller hashprice margin plus possible delivery margin, while the general policy lists 17.5% BTC initial and 14% maintenance on non-offset future daily notional. The pages do not explain the difference.</p>
+<p>The policy identifies Nov. 14, 2025, as its last initial-margin evaluation. Qualified BTC deliverable sellers can receive discretionary initial terms after supplemental credit profiling, so neither product-page rate establishes a universal requirement for the paired trade.</p>
+<p>Prepaid DF buyers are exempt from that leg’s initial-margin schedule because they already pay in full. That exemption does not establish that their NDF leg is collateral-free.</p>
+<p>That capital matters when comparing the reported spread with an investor’s net return. Fees, execution prices and any additional funds committed to support the hedge can affect the amount earned relative to the money put at risk.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/hut-8-locks-in-1b-credit-line-but-faces-40-liquidity-rules/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Hut 8 locks in $1B credit line, but faces 40% liquidity rules</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>Luxor’s <a href="https://luxor.tech/case-studies/lending-into-mining-how-steelhead-used-luxors-hashrate-forwards-to-lend-with-confidence">Steelhead Capital Management case study</a> describes the pairing in practice: Steelhead bought physical hashrate upfront, added an NDF to fix hashprice, and used Luxor Pool for delivery, reward distribution and settlement.</p>
+<p>Luxor says daily repayment reduces exposure over the contract’s life. That supports the mechanism of returning funds progressively, while the remaining unpaid amount still depends on performance.</p>
+<p>Access is also restricted. Luxor’s <a href="https://docs.luxor.tech/platform/derivatives/resources">resources page</a> says participants must qualify as Eligible Contract Participants. Its examples include entities with more than $10 million in assets and entities with at least $1 million in net worth hedging commercial risk. The structure is not universally available to retail Bitcoin holders.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoins-reported-6-13-mining-yield-still-carries-miner-credit-risk/">Luxor’s reported 6–13% annualized Bitcoin yield depends on mining delivery</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/bitcoin-mining-risk-balance.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/bitcoin-mining-risk-balance.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Coinbase’s Texas move gets a shareholder suit dismissed over Delaware-era claims</title>
+		<link>https://cryptoslate.com/coinbase-shareholder-suit-hits-texas-demand-rule-for-conduct-from-its-delaware-years/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 10 Oct 2026 14:00:52 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Governance]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[regulation]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=570890</guid>
+
+					<description><![CDATA[<p>The October 2 court order required a written board demand in this action, without deciding whether directors committed misconduct.</p>
+<p>The post <a href="https://cryptoslate.com/coinbase-shareholder-suit-hits-texas-demand-rule-for-conduct-from-its-delaware-years/">Coinbase’s Texas move gets a shareholder suit dismissed over Delaware-era claims</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Coinbase’s move to Texas changed the rule a shareholder had to satisfy before suing its directors over alleged conduct from the company’s Delaware years. In an <a href="https://www.txcourts.gov/media/1463428/26-bc01a-0052-guillaume-v-armstrong-2026-tex-bus-70.pdf">October 2 ruling</a>, the Texas Business Court dismissed Gary Guillaume’s derivative action because he had not first demanded that Coinbase take action on the claims.</p>
+<p>The dismissal was without prejudice, and the court did not decide whether the alleged misconduct occurred. Its consequential finding concerned who could pursue claims belonging to Coinbase: Texas’s demand requirement applied to the shareholder’s authority to sue, even though the court assumed without deciding that Delaware law governed the underlying claims.</p>
+<p>On October 9, Coinbase CEO Brian Armstrong <a href="https://x.com/brian_armstrong/status/2108579563097694389">praised the precedent</a> as encouraging more companies to incorporate in Texas and thanked Greg Abbott. That endorsement came a week after Judge Andrea K. Bouressa signed the order. The immediate lesson for public shareholders is that the law governing a company’s past conduct and the law governing their ability to challenge it can diverge after reincorporation.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/stand-with-cryptos-4-million-registered-advocates-couldnt-get-the-clarity-act-through-the-senate/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Stand With Crypto's 4 million registered advocates couldn't get the CLARITY Act through the Senate</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Why older claims faced Texas’s demand rule</h2>
+<p>A derivative action lets a shareholder pursue a claim on the corporation’s behalf. The claim belongs to the company, and the shareholder seeks to exercise authority ordinarily held by its board. That distinction explains why the first dispute here concerned permission to bring the action rather than the directors’ alleged wrongdoing.</p>
+<p>The parties agreed that Guillaume filed his suit on April 16, 2026, alleging misconduct between April 14, 2021, and June 5, 2023. Coinbase was incorporated in Delaware during that earlier period. Its <a href="https://www.sec.gov/Archives/edgar/data/1679788/000167978825000247/coin-20251215.htm">Texas conversion became effective on December 15, 2025</a>, several months before the suit was filed.</p>
+<p>Under the Delaware framework described in the opinion, a derivative plaintiff can make a demand or plead that doing so would be futile. Futility requires particularized allegations about individual directors, examining whether they received a material personal benefit, face a substantial likelihood of liability, or lack independence from someone who benefited or faces such liability. At least half the relevant board must satisfy the test.</p>
+<p>Guillaume tried that route. He did not make a pre-suit demand.</p>
+<p>For this action involving a public company, Texas required a particularized written demand identifying the disputed conduct and requesting suitable corporate action. The October 2 opinion described an ordinary 90-day wait after demand, with derivative proceedings permitted from the 91st day. Corporate rejection of the demand or irreparable injury to the corporation can shorten the waiting period. Both exceptions leave the written-demand requirement in place.</p>
+<p>Guillaume’s futility allegations could not substitute for the written request Texas required. The missing demand was enough to end this action before the court reached its merits.</p>
+<p>Guillaume argued that Delaware law should apply because the claims arose before Coinbase’s Texas move. Bouressa accepted that premise about the underlying claims for purposes of the analysis, without resolving it.</p>
+<p>She then considered a separate question: which state’s law governed the shareholder’s authority to file those claims for Coinbase?</p>
+<p>The court’s answer turned on the company’s incorporation when the shareholder exercised that authority. A corporate claim can arise under one state’s law, while a later effort to pursue it derivatively is governed by another state’s rules. The opinion reasoned that a shareholder does not acquire a vested right, when a corporate claim arises, to bring it personally on the corporation’s behalf at some later date.</p>
+<p>That reasoning gives reincorporation consequences beyond future board decisions. In this case, the December 2025 conversion affected the route for challenging alleged conduct dating back to 2021.</p>
+<p><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-6df46503-e2a9-4300-9c0d-372f44ff47e5.png" target="_blank" rel="noopener"><img decoding="async" class="aligncenter shoggoth-infographic shoggoth-infographic-portrait wp-image-570895" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-6df46503-e2a9-4300-9c0d-372f44ff47e5.png" alt="Timeline and legal comparison for Coinbase’s Texas conversion: the October 2, 2026 court required a written demand and dismissed one shareholder action without deciding alleged misconduct." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-6df46503-e2a9-4300-9c0d-372f44ff47e5.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-6df46503-e2a9-4300-9c0d-372f44ff47e5-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-6df46503-e2a9-4300-9c0d-372f44ff47e5-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-6df46503-e2a9-4300-9c0d-372f44ff47e5-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a></p>
+<p>Coinbase’s conversion disclosures supplied Guillaume with another argument. He relied on language preserving eligible shareholders’ standing and ability to bring derivative claims concerning earlier conduct, subject to continued ownership.</p>
+<p>The <a href="https://www.txcourts.gov/media/1463428/26-bc01a-0052-guillaume-v-armstrong-2026-tex-bus-70.pdf">opinion’s treatment of that language</a> was narrower than Guillaume’s interpretation. The court said it did not promise that Delaware law would continue to govern shareholder authority after conversion. The disclosures also expressly said Texas law would govern Coinbase’s affairs following the move.</p>
+<p>Bouressa further found that Guillaume offered no argument or evidence showing how losing the option to plead demand futility adversely affected his ability to sue. He had not shown that making a demand was impossible, irreparably harmful or prejudicial, or that the futility option gave him a particular advantage.</p>
+<p>The court also found no evidence that Coinbase had successfully contracted around the Texas requirement.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/sec-pays-150000-as-coinbase-backed-freedom-of-information-act-settlement-releases-two-withheld-documents/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">SEC pays $150,000 as Coinbase-backed Freedom Of Information Act settlement releases two withheld documents</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Concentrated votes, a different accountability route</h2>
+<p>The governance backdrop makes that distinction matter. Coinbase’s <a href="https://www.sec.gov/Archives/edgar/data/1679788/000167978825000227/coin-def14cinformationstat.htm">November 2025 information statement</a> said the Armstrong- and Fred Ehrsam-associated consenting group held approximately 78.40% of voting power at the October 31, 2025 record date. The group approved the conversion by written consent on November 4.</p>
+<p>Coinbase said a committee of Christa Davies and Paul Clement, whom the board found independent and disinterested, evaluated Delaware, Nevada and Texas before recommending Texas. The board unanimously approved the move.</p>
+<p>The company cited greater litigation predictability, potential savings on defense costs, indemnification and insurance, and Texas’s crypto-friendly environment.</p>
+<p>The consent figure describes approval in 2025. In its <a href="https://www.sec.gov/Archives/edgar/data/1679788/000167978826000045/coin-20260424.htm">April 24, 2026 proxy</a>, Coinbase reported March 31 voting-power figures of 49.6% for Armstrong, 18.9% for separately listed Armstrong-associated entities and trusts with an independent trustee, and 10.6% for Ehrsam. The figures use SEC beneficial-ownership rules, including qualifying options. Class B shares carry 20 votes each, compared with one for Class A.</p>
+<p>Coinbase’s <a href="https://www.sec.gov/Archives/edgar/data/1679788/000167978826000015/coin-20251231.htm">February 2026 annual filing</a> described Armstrong and the independent trustee collectively as able to exercise majority voting rights. Its <a href="https://www.sec.gov/Archives/edgar/data/1679788/000167978826000088/coin-20260630.htm">July 30 quarterly filing</a> reported no material changes to the annual risk factors, without supplying a new individual voting-power percentage.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/funds-are-buying-crypto-stocks-are-they-getting-less-risk-or-more/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Funds are buying crypto stocks. Are they exposed to less risk — or more?</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>The post <a href="https://cryptoslate.com/coinbase-shareholder-suit-hits-texas-demand-rule-for-conduct-from-its-delaware-years/">Coinbase’s Texas move gets a shareholder suit dismissed over Delaware-era claims</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/coinbase-delaware-texas-transition.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/coinbase-delaware-texas-transition.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Bitcoin’s weekend rebound faces an $80,400 test after nearly $730 million in ETF outflows</title>
+		<link>https://cryptoslate.com/bitcoin-faces-weekend-test-as-80400-level-determines-next-move/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 10 Oct 2026 13:00:34 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Price Watch]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=570893</guid>
+
+					<description><![CDATA[<p>Bitcoin traded near $82,900 in PerpFinder’s Oct. 10, 09:36 UTC snapshot, with traders watching whether the weekend rebound brings fresh leverage or further position unwinding. The same snapshot put Binance BTC futures open interest at $7.70 billion and showed longs receiving funding, indicating negative funding. Saturday’s Deribit expiry has already settled at 08:00 UTC; Sunday’s [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-faces-weekend-test-as-80400-level-determines-next-move/">Bitcoin’s weekend rebound faces an $80,400 test after nearly $730 million in ETF outflows</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Bitcoin traded near $82,900 in <a href="https://perpfinder.com/asset/BTC">PerpFinder’s Oct. 10, 09:36 UTC snapshot</a>, with traders watching whether the weekend rebound brings fresh leverage or further position unwinding.</p>
+<p>The same snapshot put Binance BTC futures open interest at $7.70 billion and showed longs receiving funding, indicating negative funding. Saturday’s Deribit expiry has already settled at 08:00 UTC; <a href="https://perpfinder.com/options/expiries">Sunday’s expiry</a> remains ahead.</p>
+<p>The rebound’s durability depends on what traders do with leverage: rebuild it, keep closing positions, or hedge against another decline.</p>
+<h2>Futures positioning is the test</h2>
+<p><a href="https://cryptoslate.com/bitcoin-crashes-through-81000-buy-wall-as-1-billion-crypto-liquidation-bloodbath-unfolds/">Funding payments</a> help distinguish those paths: positive funding means longs pay shorts, while negative funding reverses that flow.</p>
+<p>A recovery with price up, open interest stable or climbing, and funding modest would be consistent with traders rebuilding risk in a healthy way. Price rising while open interest falls would be consistent with position unwinding, including short covering, rather than necessarily showing fresh conviction.</p>
+<p>Price falling with open interest falling would suggest continued deleveraging. Falling price with rising open interest could indicate new bearish exposure, particularly if funding also turns more negative.</p>
+<p>The following positioning scenarios and price areas are the author’s illustrations. They are conditional reference points, rather than a quoted market forecast.</p>
+<table>
+<thead>
+<tr>
+<th>BTC price action</th>
+<th align="right">Open interest</th>
+<th align="right">Funding</th>
+<th>What it would suggest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Price rises</td>
+<td align="right">Stable or rising</td>
+<td align="right">Modest</td>
+<td>Possible healthy risk rebuild</td>
+</tr>
+<tr>
+<td>Price rises</td>
+<td align="right">Falling</td>
+<td align="right">Modest or falling</td>
+<td>Possible short covering / position cleanup</td>
+</tr>
+<tr>
+<td>Price falls</td>
+<td align="right">Falling</td>
+<td align="right">Weakening</td>
+<td>Continued deleveraging</td>
+</tr>
+<tr>
+<td>Price falls</td>
+<td align="right">Rising</td>
+<td align="right">Neutral to negative</td>
+<td>Possible new bearish exposure</td>
+</tr>
+</tbody>
+</table>
+<h2>Sunday’s options book is put-heavy</h2>
+<p>PerpFinder’s Oct. 10, 09:49 UTC options snapshot put Sunday’s BTC expiry at $272.4 million of open interest, with $98.5 million in calls and $174.0 million in puts, <a href="https://cryptoslate.com/bitcoins-85000-sell-wall-is-gone-and-traders-are-now-betting-on-100000/">a put/call ratio</a> of 1.77. The contracts settle at 08:00 UTC on Oct. 11.</p>
+<p>Each outstanding contract has a buyer and a seller. The put-heavy book shows where risk is concentrated in the <a href="https://cryptoslate.com/companies/deribit/">Deribit</a> expiry, consistent with downside hedging or bearish exposure without identifying which side initiated those positions.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-etfs-suffer-biggest-exodus-since-june-as-ethereum-withdrawals-hit-nine-month-high/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin ETFs suffer biggest exodus since June as Ethereum withdrawals hit nine-month high</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>What Bitcoin volatility implies</h2>
+<p>The same <a href="https://perpfinder.com/options">09:49 UTC snapshot</a> put Deribit’s DVOL index at 36.63% annualized. Using an assumed $82,600 starting price, a two-day, one-standard-deviation calculation gives about $2,239 either side, leaving rounded reference points near $80,400 and $84,800.</p>
+<p>Spot demand is the swing factor. US <a href="https://cryptoslate.com/coins/bitcoin/">spot Bitcoin ETFs</a> recorded <a href="https://cryptoslate.com/bitcoin-etfs-suffer-biggest-exodus-since-june-as-ethereum-withdrawals-hit-nine-month-high/">nearly $730 million in outflows between Oct. 7 and Oct. 8</a>: $484.9 million and $244.1 million respectively, according to <a href="https://farside.co.uk/btc/">Farside’s daily table</a>. Friday, Oct. 9, then returned to a modest $21.1 million net inflow.</p>
+<p>Weekend liquidity leans on derivatives, so a futures-led rebound can fade faster when weekday ETF buying is soft.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th align="right">Price area</th>
+<th>Confirmation signals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bearish continuation</td>
+<td align="right">$80,000–$80,400</td>
+<td>BTC loses $80,400, long liquidations return, OI keeps falling</td>
+</tr>
+<tr>
+<td>Range stabilization</td>
+<td align="right">$82,000–$83,000</td>
+<td>OI flattens, funding stays modest, price holds the weekend range</td>
+</tr>
+<tr>
+<td>Recovery extension</td>
+<td align="right">$84,500–$85,000</td>
+<td>Price rises with stable/rising OI and healthy spot demand</td>
+</tr>
+<tr>
+<td>Overshoot / thin-liquidity move</td>
+<td align="right">Below $79,000 or above $86,000</td>
+<td>Sharp weekend move without strong confirmation, with reversal risk</td>
+</tr>
+</tbody>
+</table>
+<h2>What decides the weekend for Bitcoin</h2>
+<p>If Bitcoin holds above $82,000, open interest stabilizes or climbs, and funding stays modest, a move toward $84,500 to $85,000 would have healthier positioning behind it. ETF and spot demand strengthening beyond Friday’s modest inflow, along with short liquidations outnumbering long ones, would support that reading.</p>
+<p>If Bitcoin loses $80,400, <a href="https://cryptoslate.com/companies/binance/">Binance</a> open interest keeps falling, funding remains weak or turns more negative, long liquidations return, and Sunday’s put-heavy expiry meets weak spot demand, $80,000 comes back into play.</p>
+<p>The post <a href="https://cryptoslate.com/bitcoin-faces-weekend-test-as-80400-level-determines-next-move/">Bitcoin’s weekend rebound faces an $80,400 test after nearly $730 million in ETF outflows</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/570893-featured-upload.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/570893-featured-upload.jpg" length="1672" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Stealing $1.5B in crypto is easy, cashing out is the trap</title>
+		<link>https://cryptoslate.com/the-business-that-turns-north-korean-stolen-crypto-into-spendable-money/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 10 Oct 2026 12:00:37 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Crime]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Hacks]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=569491</guid>
+
+					<description><![CDATA[<p>North Korean hackers stole around $1.5 billion from Bybit in February 2025. While the hack itself has been widely covered and analyzed, few have focused on what happened afterward and what became of the stolen funds. To move all that money, hackers needed to rely on an entire network of people willing to handle stolen [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/the-business-that-turns-north-korean-stolen-crypto-into-spendable-money/">Stealing $1.5B in crypto is easy, cashing out is the trap</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>North Korean hackers stole around $1.5 billion from Bybit in February 2025. While the hack itself has been widely covered and analyzed, few have focused on what happened afterward and what became of the stolen funds.</p>
+<p>To move all that money, hackers needed to rely on an entire network of people willing to handle stolen assets, creating a chain of relationships that someone prepared to spend enough money could infiltrate.</p>
+<p>That's what <a href="https://cryptoslate.com/people/zachxbt/">ZachXBT</a>, a pseudonymous blockchain investigator, did. He <a href="https://cryptoslate.com/coins/usd-coin/">committed 349,700 USDC</a> and accepted a 5% loss on each completed order while posing as a client of a Chinese laundering network.</p>
+<p>He eventually obtained information that helped him trace more than $12 million in <a href="https://cryptoslate.com/companies/bybit/">Bybit</a>-linked funds and, according to his account, contributed to <a href="https://cryptoslate.com/companies/tether/">Tether</a> freezing <a href="https://cryptoslate.com/coins/tether/">442,000 USDT</a>.</p>
+<p>His <a href="https://x.com/zachxbt/status/2107081638073319437">investigation</a> led <span style="box-sizing: border-box; margin: 0px; padding: 0px;">him to a network he believes <a href="https://cryptoslate.com/zachxbt-infiltrates-1b-crypto-syndicate-to-expose-lazarus-group/" target="_blank" rel="noopener">laundered more than $1 billion</a> from crypto thefts linked to</span> the North Korean Lazarus Group, including proceeds from the Bybit attack.</p>
+<p>The implications of his investigations extend to a much larger market for criminal financial services that American authorities have spent the past two years trying to disrupt.</p>
+<p>In September, the US Treasury <a href="https://home.treasury.gov/news/press-releases/sb0624">sanctioned Xinbi Guarantee</a>, a marketplace it said has processed more than $24 billion in digital assets and fiat currency through its platforms since 2022, and explicitly identified North Korean hackers among the illicit actors reported to have used its services.</p>
+<p>Treasury also acknowledged that criminals tried to preserve their operations by moving from Huione to Xinbi after it was sanctioned, showing how removing one marketplace doesn't eliminate the relationships and demand that supported it in the first place.</p>
+<p>Believe it or not, hacking an exchange and stealing funds is actually the easiest part of this crime. Converting stolen crypto into fiat or another form of real purchasing power is where it gets difficult.</p>
+<p>To do that, hackers rely on payment services and other shady relationships that let investigators and regulators intervene.</p>
+<h2>The $349,700 customer</h2>
+<p>The <a href="https://www.ic3.gov/PSA/2025/PSA250226">FBI attributed the Bybit theft to North Korean hackers</a> on Feb. 26, 2025, identifying the activity as TraderTraitor and warning that stolen assets were being converted into Bitcoin and other cryptocurrencies before being distributed across thousands of blockchain addresses.</p>
+<p>While it took no time to identify the hackers, identifying the intermediaries handling the stolen money required much more investigative work.</p>
+<p>According to ZachXBT, he began that work when he saw more than 15 accounts in public Telegram and Discord groups seeking help with transactions tied to the stolen Bybit funds, suggesting that at least part of the subsequent laundering process involved intermediaries openly soliciting or arranging services.</p>
+<p>He contacted several of those accounts and eventually developed a relationship with someone using the Telegram alias Jimmy Green, who presented himself as someone who needed help moving cryptocurrency between networks.</p>
+<p>On March 6, 2025, ZachXBT says he funded a new Ethereum address with 349,700 USDC and began exchanging the dollar-linked token for USDT on Tron through the contact, accepting unfavorable exchange terms while trying to establish himself as a credible customer.</p>
+<p>The 349,700 USDC represented capital committed to the transactions rather than a disclosed net investigative loss, while the 5% he says he lost on each order is the cost he was prepared to accept for access to information that ordinary blockchain analysis could not provide.</p>
+<p>The arrangement also carried the risk that the intermediary could just disappear with the funds.</p>
+<p>Hackers depend on intermediaries who might steal from them in turn, and without enforceable commercial protections, reputation and personal familiarity become especially important to keeping those relationships working.</p>
+<p>That gave ZachXBT a way into the operation, since a customer willing to conduct repeated transactions became more valuable to the person providing the service.</p>
+<p>The relationship eventually produced information beyond wallet addresses, including discussions of planned fund movements before the transactions occurred, allowing ZachXBT to compare statements made privately with activity subsequently recorded on public blockchains.</p>
+<p>In one instance, the intermediary discussed moving funds to Solana before the corresponding movement took place, while other exchanges and wallet connections allegedly helped identify a larger cluster of assets linked to the Bybit theft.</p>
+<p>This was a major turning point in his investigation, because on-chain data can't identify the person behind the transaction or its intent. Private conversations about a transaction provided the key evidence about who controlled it and what they used it for.</p>
+<p>Even though ZachXBT's investigation still doesn't completely match the FBI's official record, it's still one of the most significant investigative efforts we've seen in a while. It showed that personal and commercial relationships can provide evidence blockchain alone can't, and that similar tactics could help investigate and eventually resolve other thefts.</p>
+<h2>Tracing $12 million differs from recovering it</h2>
+<p>ZachXBT said information from his relationship with Jimmy Green helped identify a cluster with more than $12 million in Bybit-linked funds, including transactions across several networks.</p>
+<p>He also reported that Tether later froze 442,000 USDT linked to the North Korean hack. This showed that quickly identifying stolen assets, while they remain accessible through issuer-controlled tokens like USDT or USDC, can be crucial to recovering the funds.</p>
+<p>The two amounts should not be confused: tracing more than $12 million does not mean the entire amount was frozen, and freezing 442,000 USDT does not mean the tokens were seized or returned to Bybit.</p>
+<p>The specific 442,000 USDT figure and its connection to ZachXBT's investigation come from his account, although Tether has separately disclosed larger freezes tied to the Bybit theft.</p>
+<p>There's a considerable distance between observing stolen cryptocurrency, identifying the people handling it, and obtaining legal or technical control over the proceeds.</p>
+<p>Public blockchains don't prevent the assets from moving again, especially when they pass through services that refuse to cooperate with investigators or operate beyond the reach of relevant authorities.</p>
+<p>Centrally issued stablecoins create a potential intervention point because their issuers can retain the administrative ability to restrict transfers from designated addresses.</p>
+<p>Native Bitcoin has no equivalent issuer-controlled restriction, although authorities can still restrain assets held by custodians or seize the keys controlling them when they obtain the necessary access and legal authority.</p>
+<p>That leaves investigators dependent on more than tracing accuracy, since an identified balance must also remain within reach of someone who has the technical ability and authority to act.</p>
+<p>During <a href="https://cryptoslate.com/this-1-5-billion-hack-is-exposing-just-how-irreversible-stolen-crypto-really-is/">Bybit's recovery effort</a>, court orders and cooperation from financial intermediaries could restrict assets long after the initial theft, without guaranteeing full recovery.</p>
+<p>The problem is that stolen cryptocurrency can become increasingly fragmented as it moves between wallets, chains, custodians, and trading counterparties, with each additional service potentially requiring another source of evidence or another legal process before the pursuit can continue.</p>
+<p>That's why investigators can see where the funds traveled but have no way to stop the next transaction or recover the funds.</p>
+<h2>$4 billion in crypto laundering</h2>
+<p>The use of outside intermediaries isn't limited to the Bybit theft, and American enforcement records show a longer history of attempts to identify businesses that convert stolen crypto into assets criminals can use.</p>
+<p>In March 2020, the Justice Department <a href="https://www.justice.gov/archives/opa/pr/two-chinese-nationals-charged-laundering-over-100-million-cryptocurrency-exchange-hack">charged two Chinese nationals</a>, Tian Yinyin and Li Jiadong, with laundering more than $100 million worth of crypto, primarily through activity connected to exchange hacks.</p>
+<p>These charges show how individuals who don't carry out the hack can still play an essential role in the crime.</p>
+<p>The <a href="https://home.treasury.gov/news/press-releases/sm924">Treasury's sanctions announcement</a> also revealed that Tian converted nearly $1.4 million in Bitcoin into prepaid Apple iTunes gift cards, showing how laundering can eventually involve ordinary retail instruments rather than the more elaborate financial services usually associated with international cybercrime.</p>
+<p>The same economic requirement operates on a much larger scale through marketplaces that connect criminals with merchants offering settlement, exchange, payment and other services.</p>
+<p>In May 2025, the Treasury's Financial Crimes Enforcement Network <a href="https://www.fincen.gov/news/news-releases/fincen-finds-cambodia-based-huione-group-be-primary-money-laundering-concern">identified Cambodia-based Huione Group</a> as a financial institution of primary money laundering concern, finding that its operations had laundered at least $4 billion in illicit proceeds between August 2021 and January 2025.</p>
+<p>Of that amount, FinCEN identified at least $37 million in crypto stemming from North Korean cyber thefts, along with other proceeds from investment fraud and cyber scams.</p>
+<p>The $4 billion figure reflects illicit activity across several crime categories, and the $37 million represents the minimum North Korean-linked component identified in the agency's findings.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/zachxbt-infiltrates-1b-crypto-syndicate-to-expose-lazarus-group/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">ZachXBT infiltrates $1B crypto syndicate to expose Lazarus Group</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>FinCEN's assessment also identified serious deficiencies in anti-money-laundering and customer-verification controls across the group, including an acknowledgment that inadequate checks had allowed one component to indirectly receive funds connected to a North Korean heist.</p>
+<p>The significance of those findings extends beyond any individual transaction because an intermediary that offers repeated access to payment services can become infrastructure for multiple criminal customers, reducing the need for each organization to build its own arrangements for converting stolen assets.</p>
+<p>That concentrates activity around businesses that can become targets for sanctions, seizures, restrictions on banking relationships and other enforcement measures.</p>
+<p><a href="https://cryptoslate.com/telegram-takes-down-35-billion-black-market-networks-but-illicit-operators-plan-comeback/">Huione's marketplace</a> handled a substantial volume of transactions and illicit services, and operators tried to keep operating after Telegram disrupted access to parts of the network.</p>
+<p>Those marketplace transaction figures and FinCEN's narrower estimates of identified illicit proceeds measure different categories of activity, making it key not to treat all funds moving through a platform as proven criminal proceeds.</p>
+<h2>The customers moved</h2>
+<p>The difficulty is that a criminal marketplace can lose infrastructure without losing the demand that made its services profitable, particularly when users can still contact alternative providers.</p>
+<p>In June 2026, the <a href="https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services">Justice Department announced the seizure</a> of a cloud computing account that hosted backend infrastructure used by Huione Group subsidiaries allegedly involved in moving proceeds from fraud, cyber scams and other criminal activity.</p>
+<p>The action followed earlier US restrictions on the group and targeted technology that supports the transfer and concealment of illicit funds.</p>
+<p>Removing that infrastructure doesn't automatically eliminate relationships between customers and the intermediaries willing to serve them.</p>
+<p>The Treasury made that limitation particularly explicit on Sept. 9, when it <a href="https://home.treasury.gov/news/press-releases/sb0624">sanctioned Xinbi Guarantee</a>, describing an illicit marketplace that connected criminal organizations with merchants providing financial services, technology, and other resources needed to support their operations.</p>
+<p>According to Treasury, Xinbi had processed the equivalent of more than $24 billion in digital assets and fiat currency since approximately 2022, with its services primarily supporting transactions involving Southeast Asian markets.</p>
+<p>The scale makes the platform relevant to enforcement efforts against the broader financial infrastructure that serves criminal organizations.</p>
+<p>Treasury also said cybercriminals had attempted to preserve their operations by migrating activities from Huione-related services to Xinbi following FinCEN's earlier action, with the new marketplace offering substantially similar services to an overlapping group of customers.</p>
+<p>The agencies described a commercial market where participants could seek another provider when enforcement made their previous arrangements less reliable.</p>
+<p><a href="https://cryptoslate.com/dark-market-activity-on-telegram-persists-despite-27b-huione-ban-elliptic/" target="_blank" rel="noopener">During the Huione crackdown,</a><span style="color: #333333;"> Telegram removed thousands of channels associated with Huione Guarantee as merchants moved</span> to alternative marketplaces.</p>
+<p>This is why a crackdown's success cannot be measured solely by the number of websites, accounts, or servers taken offline, since customers who still need an illicit financial service can try to rebuild access through providers that remain operational.</p>
+<p>The disruption still imposes costs, particularly when balances are frozen, settlements fail, or established counterparties become unavailable, but the economic incentive to move stolen funds continues as long as the underlying crime remains profitable.</p>
+<p>The problem for enforcement agencies is making those services increasingly expensive and unreliable across the network of potential replacements.</p>
+<h2>Tether's freezes push crypto laundering networks toward other payment options</h2>
+<p>The enforcement action against Xinbi shows how financial restrictions can disrupt criminal operations while prompting the businesses involved to change their payment arrangements.</p>
+<p>A series of Tether freezes restricted over $45 million in USDT <a href="https://cryptoslate.com/how-tethers-45-million-crackdown-drove-southeast-asian-scam-compounds-into-an-unfreezable-decentralized-stablecoin/">across at least 22 wallets associated with Xinbi's operations</a>.</p>
+<p>The marketplace responded by telling users it would move toward USDD, a stablecoin structure that doesn't offer the same issuer-controlled address-freezing mechanism as USDT.</p>
+<p>That was an important shift because the ability to freeze a token can be valuable to investigators when suspected proceeds remain within the issuer's administrative reach, while customers attempting to avoid those restrictions have an incentive to move toward instruments with different controls.</p>
+<p>The move shows how restrictions on one part of the payment system can redirect transactions toward another, requiring investigators to follow both the assets and the businesses that provide access to them.</p>
+<p>During <a href="https://cryptoslate.com/us-hit-on-24-billion-crypto-black-market-sends-rival-money-launderers-running-for-exits/">the September crackdown</a>, authorities also targeted Xinbi-linked infrastructure and restrained over $52 million in cryptocurrency, while withdrawals accelerated and competing marketplaces reportedly began restricting laundering-related merchants.</p>
+<p>Those developments differ from the 442,000 USDT freeze ZachXBT attributes to North Korean hackers, since public reporting does not establish that the same addresses, participants, or funds were involved.</p>
+<p>Both cases show that criminal operations depend on financial intermediaries whose services can create opportunities for intervention even after the original theft is complete.</p>
+<p>Where a token issuer can freeze assets, the relevant exposure may be the balance held in an identifiable address. Where a marketplace serves multiple criminal groups, its vulnerability may extend to the infrastructure, merchant relationships, and settlement arrangements supporting those customers.</p>
+<p>Both routes can reduce the ability to move and use stolen money without additional cost or risk.</p>
+<h2>People behind the transfers are harder to replace</h2>
+<p>ZachXBT's investigation made an impact because he described how a paid relationship produced information about the people arranging the transactions.</p>
+<p>Criminal intermediaries who repeatedly handle stolen cryptocurrency develop a commercial reputation, establish preferred counterparties, and learn which services can complete transactions without interfering with the proceeds.</p>
+<p>Those relationships can make an operation more effective over time, especially when customers need to move large amounts of money without revealing their identities or risking that a counterparty will keep the assets.</p>
+<p>However, they also create dependencies that are hard to replicate quickly when an established provider disappears, especially if alternatives charge higher fees, reject suspicious funds, or prove less reliable.</p>
+<p>Those dependencies also provide investigators with another source of evidence because a service provider can reveal what it knows about future transactions, other participants, and the payment infrastructure required to complete an order.</p>
+<p>Investigators still need to test the information against observable activity and other records, and the fact that an address receives funds connected to a theft does not establish the recipient's intent or knowledge.</p>
+<p>But comparing private communications with subsequent blockchain movements can narrow that uncertainty in ways tracing transactions alone cannot.</p>
+<p>The broader enforcement record points out that making criminal financial services less attractive requires more than periodically taking down their websites, because the customers and commercial incentives supporting those services can outlast the equipment used to deliver them.</p>
+<p>Seizing assets, restricting financial access, prosecuting service providers, and identifying the people who control settlement arrangements can change that calculation, though the point at which those costs outweigh revenue from serving illicit customers will differ across businesses.</p>
+<p>This is also why the dollar value of a cryptocurrency theft cannot automatically be treated as money successfully converted into spendable revenue for the responsible government, much less as a verified amount used for any particular military or state expenditure.</p>
+<p>The original theft, the amount moved through intermediary addresses, the value successfully converted into other forms of purchasing power, and the amount ultimately recovered by authorities are separate measures that require separate evidence.</p>
+<p>For North Korean hackers, relying on laundering services adds risk after the initial intrusion succeeds, since gaining control of stolen assets doesn't eliminate the need for others to accept, exchange, and ultimately spend them.</p>
+<p>ZachXBT's reported infiltration shows how that requirement can turn a customer relationship into an investigative opening, while the US actions against Huione and Xinbi demonstrate how the surrounding businesses can become enforcement targets even when criminal customers attempt to migrate elsewhere.</p>
+<p>The essential weakness is that stealing cryptocurrency and using it in practice are different, and the second still depends on commercial arrangements whose participants have assets, reputations, and financial interests to protect.</p>
+<p>North Korean hackers' efforts to make that money spendable can still pull them back into relationships that require trust, and the people providing it have something to lose.</p>
+<p>The post <a href="https://cryptoslate.com/the-business-that-turns-north-korean-stolen-crypto-into-spendable-money/">Stealing $1.5B in crypto is easy, cashing out is the trap</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/shadow-broker-profile.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/shadow-broker-profile.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Inflation target of 2% may not stop the next Fed rate freeze</title>
+		<link>https://cryptoslate.com/what-would-actually-stop-the-fed-from-raising-rates-again/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 10 Oct 2026 07:00:05 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=569490</guid>
+
+					<description><![CDATA[<p>The Fed can stop raising rates before inflation reaches 2% if officials believe the economy's already heading there without another increase. September's meeting left most unconvinced, with strong spending and persistent price increases outweighing the strain expensive borrowing was putting on parts of the economy. The minutes released Oct. 7 explain the thinking behind that [&#8230;]</p>
+<p>The post <a href="https://cryptoslate.com/what-would-actually-stop-the-fed-from-raising-rates-again/">Inflation target of 2% may not stop the next Fed rate freeze</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>The Fed can stop raising rates before inflation reaches 2% if officials believe the economy's already heading there without another increase.</p>
+<p>September's meeting left most unconvinced, with strong spending and persistent price increases outweighing the strain expensive borrowing was putting on parts of the economy.</p>
+<p>The <a href="https://www.federalreserve.gov/monetarypolicy/fomcminutes20260916.htm">minutes released Oct. 7</a> explain the thinking behind that month's unanimous decision to raise its main interest rate to 3.75%-4%.</p>
+<p>Most participants expected another hike by year-end, but their reasons differed: many saw higher rates as insurance against inflation sticking around, while others thought the economy would need higher rates anyway.</p>
+<p>Those views can overlap, but they leave different amounts of room for persuasion. Evidence that temporary price increases are fading could reassure someone seeking insurance, while an official who thinks spending is too strong would also want to see people and businesses spending less freely.</p>
+<p>That discussion helps explain what could stop another hike, although officials didn't agree on a set of conditions that would rule it out.</p>
+<h2>Cheaper gasoline won't do all the work</h2>
+<p>Higher rates make borrowing more expensive and saving more attractive, discouraging some spending and making it harder for businesses to charge more. The effects take time, and they don't reach everyone equally: homebuyers may pull back while companies with plenty of cash keep investing.</p>
+<p>The Fed can't produce oil or remove an import tax, so raising borrowing costs won't fix the shortages behind some price increases. It can reduce spending enough to make those increases harder to pass along, lowering the risk that an initial jump in costs turns into persistent inflation across the economy.</p>
+<p>In September, officials described higher energy costs alongside heavy spending on the equipment and data centers needed for artificial intelligence.</p>
+<p>Some businesses appeared better able to pass their costs to customers, and several participants pointed to continued price increases in services other than housing. Cheaper fuel would help those businesses, but customers willing to keep spending could still let them raise other prices.</p>
+<p>Repeated reports showing slower price increases across different purchases would give the Fed more reason to wait. Inflation falling just means <span style="box-sizing: border-box; margin: 0px; padding: 0px;">prices are rising <em>more slowly</em>, so groceries can still feel expensive while the data improves. Officials would look for evidence that businesses are losing the ability or </span>need to keep charging more.</p>
+<p>They'd also need to separate economic improvement from revisions to how it's measured. The minutes noted that a planned revision to the inflation calculation would reduce how much software prices and investment-management fees added to the reported rate.</p>
+<p>Better measurement can improve policy decisions, but a lower reading from a revised calculation doesn't mean businesses have simply reduced their price increases.</p>
+<p>Officials thought people still expected inflation to settle around the 2% goal over time, although they worried that more years above target could lead workers to seek larger pay increases and businesses to plan bigger price increases.</p>
+<p>Slower price increases across more of the economy, with people still expecting inflation to come down, would give officials less reason to raise rates as a precaution before the target is reached.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/bitcoin-uncertain-the-fed-and-treasury-are-pulling-the-bond-market-in-opposite-directions/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Bitcoin’s faces a weird new macro reality as the Fed turns off the tap and Treasury opens the floodgates</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>The jobs market doesn't have to collapse to count</h2>
+<p>The Fed's responsibility to support employment limits how far it should go in making borrowing more expensive.</p>
+<p>In September, participants generally saw steady employment with relatively few people out of work, and most thought it had strengthened somewhat, giving the Fed room to act against inflation.</p>
+<p>Some said pay was rising fast enough for inflation to return to 2%, or that the jobs market wasn't currently driving inflation. Several noted that hiring and layoffs were both unusually low, while people out of work had difficulty finding another job.</p>
+<p>Low layoffs can make employment look healthy to someone who already has a job, while weak hiring makes it miserable for someone seeking one. If employers start cutting staff before hiring improves, people who lose their jobs have fewer places to go, potentially turning a stable unemployment rate into a much less reassuring picture.</p>
+<p>Repeated unemployment increases alongside broader layoffs would make another hike harder to justify, even if inflation hadn't improved as much as officials wanted. One disappointing jobs report could reflect temporary conditions or be revised, so evidence across several reports would carry more weight than a single number.</p>
+<p>Slower inflation with stable employment would give the Fed a better reason to stop. In September, officials generally saw roughly equal chances of employment doing better or worse than expected, while inflation seemed more at risk of being too high.</p>
+<p>Continued weak hiring or more job losses would give them reason to reconsider without waiting for a recession.</p>
+<h2>Your mortgage rate can feel expensive while money still flows</h2>
+<p>Several officials thought interest rates were doing little to slow the economy, despite expensive mortgages and strain on lower-income households.</p>
+<p>Many businesses could still borrow money, investment in AI was strong, and stock-market gains were supporting spending among wealthier households.</p>
+<p>People struggling to buy a home and the companies financing new projects experienced the same economy very differently. The Fed has to judge whether their combined spending is slowing enough to bring inflation down, which is why painful housing borrowing costs don't automatically settle the decision.</p>
+<p>Economists describe an interest rate that neither speeds up nor slows down the economy as neutral, but they have to estimate where it is. Two officials had raised their estimates of that rate, meaning they thought a higher interest rate was needed to slow the economy by the same amount.</p>
+<p>Lenders becoming more cautious and spending slowing down would provide evidence that existing borrowing costs were doing more of the work.</p>
+<p>Market rates can also <span style="box-sizing: border-box; margin: 0px; padding: 0px;">rise without another Fed hike, although longer-term loan rates</span> <a href="https://cryptoslate.com/bitcoin-uncertain-the-fed-and-treasury-are-pulling-the-bond-market-in-opposite-directions/">don't automatically move in step with the short-term rate the Fed controls</a>. Officials would need to see those costs actually slowing borrowing and spending.</p>
+<p>Lower inflation with employment holding up could give investors reason to expect cheaper borrowing while keeping them willing to own Bitcoin and other assets with large price swings. If job losses and difficulty getting loans instead persuaded the Fed to pause, investors could be selling those assets to keep more money in cash at the same time.</p>
+<p>Holding rates steady wouldn't promise cuts or make financing cheap again. Officials meet next on <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm">Oct. 27–28</a>, and these minutes just describe their September judgment.</p>
+<p>Evidence that price increases are slowing without another rate hike would give them a reason to wait, while evidence that more people are losing jobs would make another increase harder to defend, with much less for Bitcoin investors to celebrate.</p>
+<p>The post <a href="https://cryptoslate.com/what-would-actually-stop-the-fed-from-raising-rates-again/">Inflation target of 2% may not stop the next Fed rate freeze</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/fed-zipper-squeeze.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/fed-zipper-squeeze.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Celsius founder faces lifetime ban, but can trade his own crypto</title>
+		<link>https://cryptoslate.com/celsius-founder-faces-lifetime-ban-but-can-trade-his-own-crypto/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 10 Oct 2026 01:50:00 +0000</pubDate>
+				<category><![CDATA[Bankruptcy]]></category>
+		<category><![CDATA[Crime]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[Celsius Network]]></category>
+		<category><![CDATA[payments]]></category>
+		<category><![CDATA[regulation]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=570868</guid>
+
+					<description><![CDATA[<p>A qualifying DOJ payment can satisfy the $25 million obligation, while a separate $10 million judgment has a sentence-completion condition with exceptions.</p>
+<p>The post <a href="https://cryptoslate.com/celsius-founder-faces-lifetime-ban-but-can-trade-his-own-crypto/">Celsius founder faces lifetime ban, but can trade his own crypto</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><span style="box-sizing: border-box; margin: 0px; padding: 0px;">Bankrupt crypto lender Celsius founder Alex Mashinsky has agreed to a permanent <span style="box-sizing: border-box; margin: 0px; padding: 0px;">ban from the securities, commodities, and crypto business under a New York settlement announced on Oct. 9.</span></span></p>
+<p><span style="box-sizing: border-box; margin: 0px; padding: 0px;"><span style="box-sizing: border-box; margin: 0px; padding: 0px;"> The agreement also <a href="https://ag.ny.gov/press-release/2026/attorney-general-james-bans-former-cryptocurrency-ceo-who-defrauded-investors">sets conditional state payment obligations</a> of up to $35 million, without creating a new</span> payout to Celsius creditors.</span></p>
+<p>The deal resolves New York’s civil suit, filed in January 2023, and adds state obligations to a separate federal criminal case. Mashinsky is serving a 12-year prison sentence.</p>
+<h2>What the $35 million figure means</h2>
+<p>The first obligation is $25 million in damages to New York. Under paragraph 2 of the <a href="https://ag.ny.gov/sites/default/files/settlements-agreements/new-york-v-alex-mashinsky-stipulation-2026.pdf">annexed consent order</a>, that obligation is deemed satisfied by a qualifying $10 million payment to the US Department of Justice under paragraph 11 of his federal forfeiture order.</p>
+<p>DOJ payments made after May 20, 2025, may count dollar for dollar toward that $10 million. If the specified payment is not made, New York's Attorney General is due the entire $ 25 million.</p>
+<p>The second obligation is a separate $10 million monetary judgment payable to New York. Paragraph 3 says it is deemed satisfied by completion of Mashinsky’s imprisonment under the federal judgment entered May 12, 2025, subject to express exceptions.</p>
+<p>Those exceptions cover a sentence overturned or reduced by a court, including through a Section 2255 challenge. The clause also lists compassionate release, good-time credits, earned-time credits, First Step Act early release, and home confinement through a Bureau of Prisons program.</p>
+<figure id="attachment_570876" aria-describedby="caption-attachment-570876" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-fab2ac0e-31eb-4a20-ae7d-86daf2d384df.png" target="_blank" rel="noopener"><img decoding="async" class="shoggoth-infographic shoggoth-infographic-portrait wp-image-570876" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-fab2ac0e-31eb-4a20-ae7d-86daf2d384df.png" alt="Mashinsky’s New York settlement: $25 million damages can be satisfied by a qualifying $10 million DOJ payment, while a separate $10 million state judgment has a sentence-completion condition with exceptions. A permanent business ban preserves personal purchases and sales; the announcement does not establish a new creditor payout." width="720" height="1000" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-fab2ac0e-31eb-4a20-ae7d-86daf2d384df.png 1064w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-fab2ac0e-31eb-4a20-ae7d-86daf2d384df-216x300.png 216w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-fab2ac0e-31eb-4a20-ae7d-86daf2d384df-737x1024.png 737w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-fab2ac0e-31eb-4a20-ae7d-86daf2d384df-768x1067.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-570876" class="wp-caption-text">Alex Mashinsky’s New York settlement creates up to $35 million in conditional obligations alongside a permanent financial-business ban.</figcaption></figure>
+<p>Beyond the payment conditions, New York describes the industry ban as permanent. The agreed restrictions cover securities and commodities businesses, including crypto, and roles such as broker, investment adviser, manager, officer and consultant. They also prohibit investment advice distributed for compensation or economic benefit.</p>
+<p>The terms retain an exception for <a href="https://cryptoslate.com/people/alex-mashinsky/">Mashinsky’s</a> own personal purchases or sales. The stipulation also records his admission that he misled investors about <a href="https://cryptoslate.com/companies/celsius-network/">Celsius’s</a> regulatory approval and his own sales of Celsius’s <a href="https://cryptoslate.com/coins/celsius/">CEL token</a>.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/celsius-founders-face-permanent-crypto-bans-that-could-cost-more-than-their-16-5m-in-obligations/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Celsius founders face permanent crypto bans that could cost more than their $16.5M obligations</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p><span style="color: #333333;">The court </span><a href="https://cryptoslate.com/former-celsius-ceo-alex-mashinsky-receives-12-years-in-prison-over-fraud-scheme/">sentenced Mashinsky on May 8, 2025</a>, and the stipulation records federal forfeiture ordered at $48.4 million.</p>
+<p>The New York Attorney General says Celsius distributed more than $3.4 billion to creditors as of August 2026. Qualifying DOJ payments would establish compliance with one settlement condition, but wouldn't establish another creditor distribution.</p>
+<p>The post <a href="https://cryptoslate.com/celsius-founder-faces-lifetime-ban-but-can-trade-his-own-crypto/">Celsius founder faces lifetime ban, but can trade his own crypto</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/mashinsky-new-york-settlement-standard.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/mashinsky-new-york-settlement-standard.jpg" length="1672" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Solana doubles block production speed to 200ms as network prepares for Alpenglow upgrade</title>
+		<link>https://cryptoslate.com/solana-doubles-block-production-speed-to-200ms-as-network-prepares-for-alpenglow-upgrade/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 10 Oct 2026 00:40:59 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Solana]]></category>
+		<category><![CDATA[Solana foundation]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=570834</guid>
+
+					<description><![CDATA[<p>The final SIMD-0525 step halves Solana’s original slot-time target, shortening leader windows and epochs while per-slot budgets keep work capacity roughly steady.</p>
+<p>The post <a href="https://cryptoslate.com/solana-doubles-block-production-speed-to-200ms-as-network-prepares-for-alpenglow-upgrade/">Solana doubles block production speed to 200ms as network prepares for Alpenglow upgrade</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a href="https://cryptoslate.com/blockchain/solana/">Solana</a> has doubled its targeted block-production frequency after activating 200-millisecond slots on mainnet, completing a months-long effort to accelerate the blockchain.</p>
+<p>The Oct. 9 upgrade reduces <a href="https://cryptoslate.com/solana-cuts-slot-time-to-350ms-as-early-telemetry-tests-its-path-to-200ms/">Solana's original 400-millisecond slot</a> target by half, allowing the network to create five block-production opportunities per second instead of 2.5. It also shortens the time required to complete a network epoch to approximately 24 hours from 48 hours.</p>
+<p>Anza, the developer behind Solana's Agave validator client, <a href="https://x.com/anza_xyz/status/2108568843178422694">confirmed the activation</a>, declaring that the SIMD-0525 upgrade had been completed.</p>
+<p>&#8220;Blocks land twice as often as they did at genesis. An epoch now takes about a day instead of two,&#8221; Anza stated.</p>
+<p>Jacob Creech, the Solana Foundation's vice president of technology, also <a href="https://x.com/jacobvcreech/status/2108572182536224910">celebrated</a> the milestone, saying the network continues to improve with successive software releases.</p>
+<p>&#8220;Solana continues to improve release after release, proving to be the best place to build,&#8221; Creech said, before identifying Alpenglow as the network's next major upgrade.</p>
+<p>Early performance data indicated that the change was already producing faster slots, although the network had yet to consistently reach its new target.</p>
+<p><em>CryptoSlate's</em> sampling of Solana's public mainnet RPC <a href="https://api.mainnet-beta.solana.com/">showed</a> an average of approximately 222 milliseconds across 1,413 slots following activation, compared with roughly 268 milliseconds under the previous 250ms target.</p>
+<p>The latest change completes a four-stage rollout that began in August, when Solana first reduced its slot target to 350 milliseconds. Subsequent reductions to 300ms and 250ms prepared validators for Friday's final adjustment.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/solanas-250ms-slots-turn-validator-coordination-into-the-networks-next-security-test/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Why Solana’s new 250ms speed boost could actually trigger network instability</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<h2>Faster slots put Solana's next upgrade in focus</h2>
+<p>The shorter intervals could improve transaction responsiveness for applications operating on Solana, particularly decentralized trading platforms and market makers that depend on rapid updates to prices and orders.</p>
+<p>Under the <a href="https://github.com/solana-foundation/solana-improvement-documents/blob/main/proposals/0525-reduce-slot-times.md">SIMD-0525 proposal</a>, each validator's nominal four-slot block-production window has fallen to 800 milliseconds from the original 1.6 seconds, reducing how long individual validators can control transaction inclusion.</p>
+<p>However, the upgrade does not automatically double Solana's transaction-processing capacity. Developers proportionally reduced the computational budget available within each slot, keeping the network's approximate execution capacity per second unchanged.</p>
+<p>The faster cadence also introduces operational adjustments.</p>
+<p>According to the <a href="https://solana.com/upgrades/reduced-slot-times">Solana Foundation</a>, transaction blockhashes now have an expiration window of approximately 30 seconds, compared with 60 seconds under the original configuration. That gives applications using offline signing or delayed transaction submission less time before transactions require refreshing.</p>
+<p>Infrastructure providers must also accommodate more frequent blocks, while validators face tighter deadlines for producing and propagating them.</p>
+<p>Those demands make sustained performance and skipped-slot rates important measures of the upgrade's success.</p>
+<p>Meanwhile, community attention now shifts to <a href="https://solana.com/upgrades/alpenglow">Alpenglow</a>, Solana's planned consensus overhaul targeting transaction finality of approximately 150 milliseconds, compared with roughly 12.8 seconds under the existing TowerBFT system.</p>
+<p><a href="https://cryptoslate.com/solana-moves-alpenglow-into-testnet-as-sol-nears-january-highs/">Alpenglow has undergone deployment on Solana's testnet</a> and devnet, but a mainnet activation date has not been announced.</p>
+<p>The post <a href="https://cryptoslate.com/solana-doubles-block-production-speed-to-200ms-as-network-prepares-for-alpenglow-upgrade/">Solana doubles block production speed to 200ms as network prepares for Alpenglow upgrade</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/solana-block-canyon.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/solana-block-canyon.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>Tether freezes $1.4M in TRON vaults and THORChain stalls</title>
+		<link>https://cryptoslate.com/tether-freezes-1-4m-in-tron-vaults-and-thorchain-stalls/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Fri, 09 Oct 2026 23:30:53 +0000</pubDate>
+				<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[DEX]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Bitget]]></category>
+		<category><![CDATA[payments]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<category><![CDATA[Tether]]></category>
+		<category><![CDATA[Thorchain]]></category>
+		<category><![CDATA[USDT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=570846</guid>
+
+					<description><![CDATA[<p>A researcher reported resumed TRON swaps after four vaults were blacklisted, exposing issuer control over USDT inside decentralized infrastructure.</p>
+<p>The post <a href="https://cryptoslate.com/tether-freezes-1-4m-in-tron-vaults-and-thorchain-stalls/">Tether freezes $1.4M in TRON vaults and THORChain stalls</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>THORChain's TRON operations were interrupted on Oct. 9 after a USDT vault blocklist, according to reports by its co-founder Chad Barraford and researcher Khal. The researcher put the affected balance at about 1.45 million USDT.</p>
+<p>Both accounts later reversed the restrictions, according to updates from both accounts. At 3:35 p.m. UTC, <a href="https://x.com/CBarraford/status/2108582069958033547">Barraford said the addresses appeared unfrozen,</a> and trading would resume soon. At 3:58 p.m. UTC, <a href="https://x.com/khalkaz/status/2108587916574572872">Khal reported that TRON USDT swaps had resumed</a>. The earlier payout queue describes the interruption before the reported resumption of swaps.</p>
+<p>In <a href="https://x.com/khalkaz/status/2108552150238286208">his initial analysis</a>, Khal reported that block 86958330 blocklisted four of THORChain's six TRON vaults. Those vaults held 93% of the protocol's TRON USDT, concentrating the disruption in the balances needed to process payments on that route.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/why-trons-30-trillion-lifetime-volume-could-become-a-trap/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Why TRON’s $30 trillion lifetime volume could become a trap</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>He reported that TRON trading, transaction signing, and liquidity-provider actions halted about 27 minutes later, with roughly $363,000 in payouts queued during the freeze.</p>
+<p><a href="https://x.com/CBarraford/status/2108557964629921938">Barraford said</a> the protocol received no communication before the action and didn't know why it happened. Khal argued that the vaults may have been caught in a broader blocklist that included roughly 30 other wallets.</p>
+<figure id="attachment_570851" aria-describedby="caption-attachment-570851" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-fea7eeb2-51d9-4658-924b-cb6cd7559d41.png" target="_blank" rel="noopener"><img decoding="async" class="shoggoth-infographic shoggoth-infographic-portrait wp-image-570851" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-fea7eeb2-51d9-4658-924b-cb6cd7559d41.png" alt="Timeline of the reported October 9 THORChain TRON USDT blacklist, affecting about 1.45 million USDT, and later reports of unfreezing and resumed swaps." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-fea7eeb2-51d9-4658-924b-cb6cd7559d41.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-fea7eeb2-51d9-4658-924b-cb6cd7559d41-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-fea7eeb2-51d9-4658-924b-cb6cd7559d41-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-fea7eeb2-51d9-4658-924b-cb6cd7559d41-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-570851" class="wp-caption-text">THORChain’s TRON-USDT vaults were reportedly frozen at 13:36 UTC, affecting $1.45 million, before appearing unfrozen at 15:35 UTC and resuming swaps at 15:58 UTC.</figcaption></figure>
+<p>The incident follows scrutiny of how the protocol handles illicit flows. <a href="https://cryptoslate.com/thorchain-made-63-of-its-record-3-million-september-income-during-the-bitget-hack-linked-trading-surge/">On Oct. 8</a>, THORChain's September trading surge coincided with <a href="https://cryptoslate.com/companies/bitget/">Bitget</a>-hack-linked activity, and the protocol refused to selectively block addresses.</p>
+<h2>Two layers of control</h2>
+<p>THORChain's <a href="https://dev.thorchain.org/bifrost/vault-behaviors.html">vault documentation</a> describes accounts managed by validator nodes that hold assets on external blockchains and handle incoming funds and outgoing transactions.</p>
+<p>Distributing control of those accounts among validators determines who can authorize a payment, while the tokens inside them remain subject to their issuer's restrictions.</p>
+<p>THORChain itself drew a related distinction in an <a href="https://blog.thorchain.org/can-or-should-thorchain-censor-transactions">Oct. 1 blog recap</a>: node operators can pause a chain or the whole protocol for safety, but cannot selectively remove an individual swap.</p>
+<p>Meanwhile, <a href="https://cryptoslate.com/companies/tether/">Tether</a> says its wallet-freezing policy follows OFAC's sanctions list and <a href="https://tether.io/news/tether-has-supported-nearly-550-million-in-iran-linked-usdt-freezes-as-u-s-expands-sanctions-campaign/">extends to secondary-market wallets</a>. Its power to <a href="https://cryptoslate.com/coins/tether/">restrict USDT transfers</a> operates separately from the validator controls governing THORChain's vaults.</p>
+<p>The operational dependency remains: distributing the authority to sign transactions does not remove Tether's ability to freeze USDT held in the accounts those transactions use.</p>
+<p>The post <a href="https://cryptoslate.com/tether-freezes-1-4m-in-tron-vaults-and-thorchain-stalls/">Tether freezes $1.4M in TRON vaults and THORChain stalls</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/tether-unfreeze-thorchain-swaps.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/tether-unfreeze-thorchain-swaps.webp" length="1280" type="image/jpg"/>
+	</item>
+		<item>
+		<title>ETH fee burns cover just 2% of new coins printed in 2026</title>
+		<link>https://cryptoslate.com/eth-fee-burns-cover-just-2-of-new-coins-printed-in-2026/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Fri, 09 Oct 2026 22:20:23 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Research]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[Ethereum foundation]]></category>
+		<category><![CDATA[Glamsterdam]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=570837</guid>
+
+					<description><![CDATA[<p>An October 9 ledger puts fee burn at 2.07% of gross issuance, while a conditional capacity model tests the demand needed to shrink supply.</p>
+<p>The post <a href="https://cryptoslate.com/eth-fee-burns-cover-just-2-of-new-coins-printed-in-2026/">ETH fee burns cover just 2% of new coins printed in 2026</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Ethereum's transaction fees have burned enough ETH to offset just 2.07% of the new coins issued in 2026, according to an Oct. 9 supply ledger.</p>
+<p>After fee burn, validator penalties, and other destruction, the network has added approximately 778,413 ETH, increasing supply by about 0.64% from the window's opening level.</p>
+<p>A larger gas limit can spread the necessary fee spending across more activity, lowering the required fee per gas and creating a hurdle for holders that expect scalability to make ETH scarcer. Developers pursue a conditional 200 million maximum gas goal after the Glamsterdam upgrade.</p>
+<p>Using one current finalized accounting sample, an illustration puts the execution base fee needed to offset gross issuance at about 13.85 gwei with today's 60 million gas limit, or 4.16 gwei with a hypothetical 200 million limit.</p>
+<p>Both require roughly 2,992 ETH of daily burn under the model's assumptions.</p>
+<h2>What the 2026 ledger shows</h2>
+<p>The <a href="https://ethsupply.fyi/api/tracked">ethsupply.fyi retained ledger</a> covers Jan. 1 at 00:00:11 UTC through Oct. 9 at 15:44:23 UTC. It reports 796,623.377 ETH of gross issuance against 16,524.553 ETH destroyed through execution and blob transaction fees.</p>
+<p>A further 1,685.919 ETH was removed through consensus penalties, with 0.059 ETH in other execution destruction. Subtracting these components leaves 778,412.846 ETH in net additions.</p>
+<p>Those categories explain why the fee-burn offset is 2.074%, while the offset from all destruction is 2.286%. The latter includes penalties that do not represent customers paying for <a href="https://cryptoslate.com/coins/ethereum/">Ethereum activity</a>. Treating the larger figure as transaction-fee demand would overstate how much issuance users have offset.</p>
+<figure id="attachment_570841" aria-describedby="caption-attachment-570841" style="width: 720px" class="wp-caption aligncenter"><a href="https://cryptoslate.com/wp-content/uploads/2026/10/exec-54c8877e-73f3-4c67-a982-b711a956e336.png" target="_blank" rel="noopener"><img decoding="async" class="shoggoth-infographic shoggoth-infographic-portrait wp-image-570841" src="https://cryptoslate.com/wp-content/uploads/2026/10/exec-54c8877e-73f3-4c67-a982-b711a956e336.png" alt="Ethereum's January 1–October 9, 2026 ledger: 796,623.377 ETH issued, 16,524.553 ETH fee burn, 1,685.919 ETH penalties, 0.059 ETH other destruction and 778,412.846 ETH net additions; fee burn offsets 2.074% of issuance." width="720" height="900" srcset="https://cryptoslate.com/wp-content/uploads/2026/10/exec-54c8877e-73f3-4c67-a982-b711a956e336.png 1122w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-54c8877e-73f3-4c67-a982-b711a956e336-240x300.png 240w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-54c8877e-73f3-4c67-a982-b711a956e336-819x1024.png 819w, https://cryptoslate.com/wp-content/uploads/2026/10/exec-54c8877e-73f3-4c67-a982-b711a956e336-768x960.png 768w" sizes="(max-width: 720px) 100vw, 720px" /></a><figcaption id="caption-attachment-570841" class="wp-caption-text">Ethereum added 778,412.846 ETH to its supply in 2026 through Oct. 9, as issuance significantly exceeded fee burns, penalties and other destruction.</figcaption></figure>
+<p>The provider's <a href="https://ethsupply.fyi/methodology/">methodology</a> separates newly created validator rewards from execution base fees, blob fees, penalties, and rare destruction through SELFDESTRUCT. Transfers, staking deposits and withdrawals preserve supply while moving existing ETH between accounts or accounting layers.</p>
+<p>Its <a href="https://ethsupply.fyi/api/live">same-cutoff supply snapshot</a> reports approximately 122.116 million ETH. Subtracting the net additions implies about 121.338 million ETH at the window's opening, producing the roughly 0.64% increase.</p>
+<p>The 2.074% offset covers the cumulative 2026 window, while a current daily burn rate would require a separate daily comparison.</p>
+<p>Ethereum's <a href="https://eips.ethereum.org/EIPS/eip-1559">EIP-1559 fee mechanism</a> burns the execution base fee on gas actually consumed. Priority fees go to block producers. Blob base fees also destroy ETH, while MEV payments and application revenue do not automatically become protocol burn.</p>
+<p>The base fee, quoted in gwei, determines the ETH burned for each unit consumed. With an elasticity multiplier of two, a 60 million gas maximum corresponds to a 30 million target. A hypothetical 200 million maximum would imply a 100 million target if that rule remains unchanged.</p>
+<p>A <a href="https://ethereum-beacon-api.publicnode.com/eth/v1/beacon/blinded_blocks/15394656">finalized mainnet beacon block</a> at slot 15,394,656 contains execution block 26,155,767, timestamped Oct. 9 at 15:31:35 UTC, with a 60 million maximum. The <a href="https://eth.blockscout.com/api/v2/blocks/26155767">matching execution-block record</a> shows a base fee of approximately 0.335 gwei.</p>
+<p>The supply consequence depends on consumed gas multiplied by its base fee, plus blob burn and other destruction. An unused increase in capacity cannot burn ETH, nor does a larger transaction count by itself establish greater burn if the transactions require less gas or pay lower base fees.</p>
+<p><em>CryptoSlate’s</em> Oct. 1 coverage already concluded that Ethereum’s <a href="https://cryptoslate.com/ethereum-is-preparing-a-200-million-gas-push-as-its-layer-1-scaling-strategy-accelerates/">200 million gas target is conditional</a>, validator-dependent, and not an automatic new limit. A <a href="https://cryptoslate.com/solana-flips-ethereum-in-fees-while-eth-holds-the-burn-lead/">Sept. 23 fee comparison</a> highlighted the missing matched-period issuance denominator.</p>
+<h2>The same burn budget at two limits</h2>
+<p>For a current illustration, ethsupply.fyi's finalized-epoch accounting snapshot for epoch 481082, as of Oct. 9 at 15:31:23 UTC, records 13.296472924 ETH of gross issuance over 32 slots. At 12 seconds per slot, that is a 384-second sample.</p>
+<p>The calculation holds that issuance pace constant, assumes every slot produces a block and consumes gas at the target, and initially sets blob burn, penalties, and other destruction to zero. The resulting thresholds describe the execution base-fee burn needed to offset gross issuance under those assumptions.</p>
+<table>
+<thead>
+<tr>
+<th>Illustrative assumption or result</th>
+<th>Current 60 million maximum</th>
+<th>Conditional 200 million maximum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gas target per block</td>
+<td>30 million</td>
+<td>100 million</td>
+</tr>
+<tr>
+<td>Base fee needed at target consumption</td>
+<td>13.85 gwei</td>
+<td>4.16 gwei</td>
+</tr>
+<tr>
+<td>Daily equivalent gross-offset burn</td>
+<td>About 2,992 ETH</td>
+<td>About 2,992 ETH</td>
+</tr>
+<tr>
+<td>Base fee needed at half target consumption</td>
+<td>27.70 gwei</td>
+<td>8.31 gwei</td>
+</tr>
+</tbody>
+</table>
+<p>The daily figure extends the single sample across 225 epochs, with the resulting daily burn budget applying to this hypothetical day. Daily issuance and burn would require a full day's observations, as the larger gas target lowers the required base fee because the same ETH budget is divided across more consumed gas.</p>
+<p>The more complete zero-net-growth calculation credits the sample's 0.016575391 ETH of penalties and 0.000442673483 ETH of blob burn. Holding those amounts constant lowers the execution thresholds slightly, to about 13.83 gwei and 4.15 gwei. The corresponding total transaction-fee burn budget after penalties is approximately 2,988 ETH per modeled day.</p>
+
+<div class="cs-article-embed">
+    <a href="https://cryptoslate.com/solana-flips-ethereum-in-fees-while-eth-holds-the-burn-lead/" class="cs-article-embed__link">
+        <div class="cs-article-embed__body">
+            <span class="cs-article-embed__related-reading">Related Reading</span>
+            <h3 class="cs-article-embed__title">Solana flips Ethereum in fees, while ETH holds the burn lead</h3>
+        </div>
+        <span class="cs-article-embed__arrow" aria-hidden="true">
+            <i class="fa-light fa-arrow-up-right"></i>
+        </span>
+    </a>
+</div>
+
+<p>If gas consumed stays unchanged when the maximum rises, the balancing fee does not fall. The half-target row illustrates the arithmetic sensitivity to consumed gas, but EIP-1559 reduces base fees over successive blocks when consumption remains below target.</p>
+<p>The live provider snapshot reports approximately 43.754 million ETH in active effective stake across 853,325 active validators. Ethereum's <a href="https://ethereum.org/eth/supply/">supply explanation</a> identifies staking participation as a determinant of issuance, so a future threshold needs a fresh issuance sample alongside gas and blob usage.</p>
+<h2>Glamsterdam is a capacity scenario</h2>
+<p>The <a href="https://cryptoslate.com/companies/ethereum-foundation/">Ethereum Foundation's</a> May 11 protocol update described <a href="https://blog.ethereum.org/2026/05/11/protocol-update-may-26">200 million gas as a credible post-Glamsterdam target</a>. The upgrade's proposer-builder separation and block-level access lists aim to support greater throughput, alongside changes to gas accounting.</p>
+<p>The Foundation's <a href="https://blog.ethereum.org/2026/09/17/glamsterdam-testnet-announcement">testnet announcement</a> on Sept. 28 scheduled Sepolia for Oct. 6 at 13:53:36 UTC while leaving Hoodi and mainnet activation dates undecided. The <a href="https://ethereum.org/roadmap/glamsterdam/">official roadmap</a> leaves the mainnet date unconfirmed.</p>
+<p>Changes to the gas charged for execution and state growth mean a gas unit may buy different work after the upgrade. The modeled limits cannot be translated directly into proportionally more identical transactions, users, or burned ETH.</p>
+<p>For holders, the relevant signal is whether burned fees and other destruction approach or exceed issuance over a matched interval. More available gas creates room for activity, but the shrinking-supply case needs that activity to generate enough aggregate burned fees.</p>
+<p>Layer-2 (L2) blockchain growth and staking balances distinguish from <a href="https://cryptoslate.com/l2-growth-and-120-billion-in-staking-hide-ethereums-supply-reality/">fresh ETH purchases and settlement spending</a>. The same distinction applies here, since existing holders can stake, and applications can grow, without those measures alone establishing the required burn.</p>
+<p>The October ledger shows supply increasing while developers work toward greater capacity. A sustained shift toward shrinking supply would appear in consumed gas, execution base fees, blob burn, and stake-dependent issuance together.</p>
+<p>The post <a href="https://cryptoslate.com/eth-fee-burns-cover-just-2-of-new-coins-printed-in-2026/">ETH fee burns cover just 2% of new coins printed in 2026</a> appeared first on <a href="https://cryptoslate.com">CryptoSlate</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/ethereum-scaling-capacity-construction.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/ethereum-scaling-capacity-construction.webp" length="1280" type="image/jpg"/>
+	</item>
+	</channel>
+</rss>
