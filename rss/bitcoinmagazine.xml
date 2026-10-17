@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/" >
+
+<channel>
+	<title>Bitcoin Magazine</title>
+	<atom:link href="https://bitcoinmagazine.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://bitcoinmagazine.com</link>
+	<description>Bitcoin News, Articles and Expert Insights</description>
+	<lastBuildDate>Fri, 16 Oct 2026 22:15:50 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1.3</generator>
+
+<image>
+	<url>https://bitcoinmagazine.com/wp-content/uploads/2024/09/cropped-Bitcoin-Magazine-glyph-black-01-32x32.png</url>
+	<title>Bitcoin Magazine</title>
+	<link>https://bitcoinmagazine.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Poetic Justice: Scammer Lost $5M in Bitcoin After Being Targeted by Ledger Thieves</title>
+		<link>https://bitcoinmagazine.com/news/scammer-lost-bitcoin-to-ledger-thieves</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 22:12:36 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Chainalysis]]></category>
+		<category><![CDATA[Ledger]]></category>
+		<category><![CDATA[Theft]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55957</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Pics-16.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/scammer-lost-bitcoin-to-ledger-thieves">Poetic Justice: Scammer Lost $5M in Bitcoin After Being Targeted by Ledger Thieves</a></p>
+<p>Chainalysis has revealed that a victim of last week’s Ledger theft was a scammer themself. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/scammer-lost-bitcoin-to-ledger-thieves">Poetic Justice: Scammer Lost $5M in Bitcoin After Being Targeted by Ledger Thieves</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Pics-16.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/scammer-lost-bitcoin-to-ledger-thieves">Poetic Justice: Scammer Lost $5M in Bitcoin After Being Targeted by Ledger Thieves</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Call it poetic justice: one of the biggest victims of last week’s Ledger theft happened to be a scammer themself, according to blockchain analysts, and lost nearly $5 million in bitcoin.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">In a post Thursday, Chainalysis <a href="https://x.com/chainalysis/status/2110748973971468382">wrote</a> that a crook lost 60 bitcoins worth about $4.8 million they&#8217;d stolen via a so-called task scam. </p>
+
+
+
+<p class="wp-block-paragraph">According to Chainalysis, the address was linked with a con where people were paid to fake sales and reviews of real items. They were told to add their own money in order to get paid — and then stolen from. </p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="550" data-dnt="true"><p lang="en" dir="ltr">One of the biggest victims of the Ledger theft was a scammer themselves. They lost more than 60BTC, about $4.8M. The funds were from a task scam.<br><br>In this task scam, people were paid to fake sales and reviews of real items. Then a &quot;negative balance&quot; appeared, and they were told… <a href="https://t.co/IJX4tx9ib3">https://t.co/IJX4tx9ib3</a> <a href="https://t.co/pGXNJkZJUi">pic.twitter.com/pGXNJkZJUi</a></p>&mdash; Chainalysis (@chainalysis) <a href="https://x.com/chainalysis/status/2110748973971468382?ref_src=twsrc%5Etfw">October 15, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p class="wp-block-paragraph">But the mastermind behind the task scam moved the stolen money to Ledger addresses which were then targeted by different scammers last week.</p>
+
+
+
+<p class="wp-block-paragraph">“On Sep 22, the person behind the scam moved the proceeds into three separate Ledger addresses,” Chainalysis said. “On Oct 9, thieves emptied all three. One transfer each, into the same wallet. The wallet is reported as stolen funds.”</p>
+
+
+
+<p class="wp-block-paragraph">Paris-based Ledger last week <a href="https://x.com/Ledger_Support/status/2108551100613714002">said</a> it had started an investigation after customers in South East Asia reported they’d lost funds after buying from Malaysia-based reseller, CryptoBilis.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Ledger has since said that the scam was a massive organized crime operation where a group installed implants into devices and put them back on the market. The implants could read users’ seed phrases so criminals could then drain wallets.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Calling it one the most “sophisticated attacks” the digital asset industry has experienced, Ledger is yet to reveal how much money has been lost — but blockchain investigator Specter said $86 million had been drained.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">And the task scam conman, according to Chainalysis, was one of the victims. </p>
+
+
+
+<p class="wp-block-paragraph">Ledger has said that it is working with law enforcement to “follow the funds and dismantle the attackers’ infrastructure” and has made sure no other vendors have been targeted by scammers.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">CryptoBilis has stopped selling Ledger products, the company said.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Criminals have targeted bitcoin hardware sellers this year, with a huge attack taking place in July on the popular Coldcard products.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Crooks were able to <a href="https://bitcoinmagazine.com/news/coldcard-security-risk-immediate-action-required">steal</a> close to $120 million in bitcoin from Coldcard users because the devices had a firmware bug which led to faulty seed generation, allowing hackers to guess investor seedphrases.&nbsp;</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/scammer-lost-bitcoin-to-ledger-thieves">Poetic Justice: Scammer Lost $5M in Bitcoin After Being Targeted by Ledger Thieves</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>BFFS26 Denver: Joseph Kelly on Bitcoin Custody and Credit; Alan Lane on Banking Lessons</title>
+		<link>https://bitcoinmagazine.com/press-releases/bffs26-denver-joseph-kelly-on-bitcoin-custody-and-credit-alan-lane-on-banking-lessons</link>
+		
+		<dc:creator><![CDATA[Juan Galt]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 19:44:29 +0000</pubDate>
+				<category><![CDATA[PRESS RELEASES]]></category>
+		<category><![CDATA[CULTURE]]></category>
+		<category><![CDATA[bffs]]></category>
+		<category><![CDATA[denver]]></category>
+		<category><![CDATA[Unchained]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55954</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/tn-1.webp" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/press-releases/bffs26-denver-joseph-kelly-on-bitcoin-custody-and-credit-alan-lane-on-banking-lessons">BFFS26 Denver: Joseph Kelly on Bitcoin Custody and Credit; Alan Lane on Banking Lessons</a></p>
+<p>CPAs, wealth advisors, and lenders gather in Denver for BFFS26, featuring Patrick Lowry on public-company Bitcoin treasury reserves and Wyoming Deputy Secretary of State Colin Crossman on regulatory outlook.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/press-releases/bffs26-denver-joseph-kelly-on-bitcoin-custody-and-credit-alan-lane-on-banking-lessons">BFFS26 Denver: Joseph Kelly on Bitcoin Custody and Credit; Alan Lane on Banking Lessons</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/juan-galt">Juan Galt</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/tn-1.webp" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/press-releases/bffs26-denver-joseph-kelly-on-bitcoin-custody-and-credit-alan-lane-on-banking-lessons">BFFS26 Denver: Joseph Kelly on Bitcoin Custody and Credit; Alan Lane on Banking Lessons</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">The Bitcoin for Financial Services Summit (BFFS26) returns to Denver October 20–22, 2026, bringing together CPAs, wealth advisors, attorneys, lenders, and finance leaders who are building Bitcoin into their practices. Now in its second year, the summit has grown to more than 30 sessions across two full program days, with a speaker lineup drawn from the firms defining Bitcoin custody, credit, and advisory.</p>
+
+
+
+<p class="wp-block-paragraph">Headlining the program are Joseph Kelly, CEO and co-founder of Unchained, who opens the summit with a keynote on custody, credit, and trust at scale; Alan Lane, former CEO of Silvergate Bank, on lessons for Bitcoin and banking; Patrick Lowry, CEO of Samara Asset Group, on holding Bitcoin as a public-company treasury reserve; and Colin Crossman, Wyoming&#8217;s Deputy Secretary of State, on the regulatory outlook for banks, exchanges, and advisors. Additional speakers include Kate Goldman of Anchorage Digital, Sam Baker of River, Eric Yakes of Epoch Ventures, Daniel Hillery of UTXO Management, Moish Peltz of Falcon Rappaport &amp; Berkman, and CJ Konstantinos of Peoples Reserve.</p>
+
+
+
+<p class="wp-block-paragraph">Sessions focus on practical application: bringing Bitcoin into wealth planning and family offices, Bitcoin-backed lending and mortgages, treasury accounting and valuation, retirement and income planning, charitable giving strategies, mining as an asset class, and fiduciary duty when clients hold Bitcoin. Dedicated workshops will offer continuing education credit for financial advisors and CPAs.</p>
+
+
+
+<p class="wp-block-paragraph">&#8220;Last year proved that financial professionals want more than a Bitcoin primer. They want to know how to serve clients who already own it,&#8221; said Jordan Guess, CPA, co-host of the summit in a press release shared with Bitcoin Magazine. &#8220;This year&#8217;s program is built around the questions advisors and accountants are actually getting from clients, answered by the people building the infrastructure.&#8221;</p>
+
+
+
+<p class="wp-block-paragraph">The summit opens Tuesday, October 20, with the Better Money Invitational golf tournament at City Park Golf Course, hosted with Bitcoin Sports Network, followed by a welcome party at The Space sponsored by Falcon Rappaport &amp; Berkman. Evening programming includes wine and whiskey tastings, and Thursday begins with an optional sunrise hike in the Rocky Mountains.</p>
+
+
+
+<p class="wp-block-paragraph">BFFS26 is co-hosted by Jordan Guess and Wyatt O&#8217;Rourke of BFFS Media, producers of the Bitcoin for Financial Services podcast. Sponsors include Unchained, Anchorage Digital, UTXO Management, River, SOUND HSA, SustainHash, and Stormrake.</p>
+
+
+
+<p class="wp-block-paragraph">Registration is open now at <a href="https://www.bffs.media/summit" target="_blank" rel="noopener">https://www.bffs.media/summit</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Media contact: Wyatt O’Rourke, wyatt@bffs.media</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/press-releases/bffs26-denver-joseph-kelly-on-bitcoin-custody-and-credit-alan-lane-on-banking-lessons">BFFS26 Denver: Joseph Kelly on Bitcoin Custody and Credit; Alan Lane on Banking Lessons</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/juan-galt">Juan Galt</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Sazmining Now Sells Jack Dorsey’s Proto Immersion Hashboards </title>
+		<link>https://bitcoinmagazine.com/news/sazmining-now-sells-proto-hashboards</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 19:19:40 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin mining]]></category>
+		<category><![CDATA[Block]]></category>
+		<category><![CDATA[Jack Dorsey]]></category>
+		<category><![CDATA[Proto]]></category>
+		<category><![CDATA[Sazmining]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55951</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/b7d506cc-b358-4bfd-a7fa-f948d9b6fa68.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/sazmining-now-sells-proto-hashboards">Sazmining Now Sells Jack Dorsey’s Proto Immersion Hashboards </a></p>
+<p>Block’s Proto mining hashboards are now available on Sazmining’s mining-as-a-service platform. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/sazmining-now-sells-proto-hashboards">Sazmining Now Sells Jack Dorsey’s Proto Immersion Hashboards </a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/b7d506cc-b358-4bfd-a7fa-f948d9b6fa68.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/sazmining-now-sells-proto-hashboards">Sazmining Now Sells Jack Dorsey’s Proto Immersion Hashboards </a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph"><a href="https://bitcoinmagazine.com/guides/bitcoin-mining">Bitcoin mining</a> just got a lower barrier to entry.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph"><a href="https://www.sazmining.com/" target="_blank" rel="noopener">Sazmining</a> announced Thursday that it is now selling <a href="https://proto.xyz/products/rig" target="_blank" rel="noopener">Proto</a>’s immersion hashboards directly to individual and institutional buyers through its mining-as-a-service platform. Previously, the hardware was mostly in the hands of large-scale operators.</p>
+
+
+
+<p class="wp-block-paragraph">Each hashboard delivers roughly 200 TH at around 15 J/TH, and buyers own them outright while Sazmining handles deployment, monitoring and maintenance at a US facility. Mining rewards go straight to the owner’s wallet.</p>
+
+
+
+<p class="wp-block-paragraph">The move follows a multi-megawatt supply deal between Sazmining and Proto — the bitcoin mining arm of Jack Dorsey’s Block (NYSE: XYZ) — which both companies expect to expand as demand grows.</p>
+
+
+
+<p class="wp-block-paragraph">“Because of our aligned-incentive model, Sazmining only earns when we produce bitcoin for our clients,” said Kent Halliburton, CEO and co-founder of Sazmining.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">He also pitched mining as a form of bitcoin acquisition diversification: rather than paying the market price on the day of purchase, a miner’s costs are spread across the machine’s working life.</p>
+
+
+
+<p class="wp-block-paragraph">Wyoming-based Sazmining, founded in 2018, operates renewable-powered facilities across the US, Paraguay, and Norway. It says its fleet runs more than 20 percentage points ahead of the Bitcoin network’s carbon-free share.</p>
+
+
+
+<p class="wp-block-paragraph">Proto is Jack Dorsey’s Block’s bitcoin mining play. The Twitter founder has spent years arguing bitcoin is the foundation of “a more open financial system,” funding everything from Cash App’s buy-and-send rails to the Bitkey self-custody wallet, and he framed mining as the obvious missing piece back in 2021: “Bitcoin mining should be as easy as plugging a rig into a power source.”&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Block formally announced it was building an open bitcoin mining system in January 2022, with the stated aim of making mining “more distributed and efficient.”</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/sazmining-now-sells-proto-hashboards">Sazmining Now Sells Jack Dorsey’s Proto Immersion Hashboards </a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Hot Inflation Data Puts Bitcoin Under Pressure, but ‘Difficult’ Isn’t ‘Bearish’: CoinShares</title>
+		<link>https://bitcoinmagazine.com/news/bitcoin-under-pressure-says-coinshares</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 18:30:57 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[Coinshares]]></category>
+		<category><![CDATA[Federal reserve]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55948</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Pics-15.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/bitcoin-under-pressure-says-coinshares">Hot Inflation Data Puts Bitcoin Under Pressure, but ‘Difficult’ Isn’t ‘Bearish’: CoinShares</a></p>
+<p>Bitcoin is still reacting to weekly data but long-term investors shouldn’t be worried, according to the European asset manager. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/bitcoin-under-pressure-says-coinshares">Hot Inflation Data Puts Bitcoin Under Pressure, but ‘Difficult’ Isn’t ‘Bearish’: CoinShares</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Pics-15.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/bitcoin-under-pressure-says-coinshares">Hot Inflation Data Puts Bitcoin Under Pressure, but ‘Difficult’ Isn’t ‘Bearish’: CoinShares</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Bitcoin’s <a href="https://bitcoinmagazine.com/bitcoin-price">price</a> has dropped this week as new inflation data has come in hot.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">But while the largest cryptocurrency’s near-term setup is difficult, it’s not “fundamentally bearish,” <a href="https://coinshares.com/se-en/insights/research-data/market-update-16-10-2026/" target="_blank" rel="noopener">according</a> to European asset manager CoinShares’ Head of Research, James Butterfill.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">In a report Friday, the analyst said that bitcoin’s near-term challenge stems from a macro environment that’s caught in an awkward middle ground: inflation is too elevated for the Fed to ease up, while the economy is too resilient to force a policy pivot.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“Bitcoin and the broader digital asset market have moved lower on the resulting hawkish repricing, a reminder of how sensitive Bitcoin remains to monetary policy over short horizons,” he wrote.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin’s price recently stood at $81,473, down 2% over a seven-day period.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The price of the leading cryptocurrency dropped Wednesday after data <a href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-on-cpi-inflation-data">showed</a> that U.S. consumer prices shot up more than expected in September.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Then, on Thursday, the Labor Department’s Bureau of Labor Statistics <a href="https://www.bls.gov/news.release/cpi.nr0.htm" target="_blank" rel="noopener">said</a> that U.S. producer prices rose in September at the fastest pace in more than four years.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">This has weighed on bitcoin’s price because higher inflation means the Federal Reserve may hike interest rates. Higher borrowing costs can restrict the liquidity the digital coin needs to rally.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The Federal Reserve hiked rates in September and will meet at the end of this month.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">But Butterfill added that investors should be patient and advised investors to instead think in the long-term and not react to any single weekly data point.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“For investors, that argues for reading the coming weeks as a data-driven range rather than a trend, and for sizing digital asset exposure against a strategic allocation rather than against this week’s print,” he wrote.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin spent the first half of 2026 in a bear market but had its best quarter in years after surging in August and September. Analysts have now <a href="https://bitcoinmagazine.com/news/amount-of-bitcoin-exchanges-is-shrinking">said</a> the leading cryptocurrency is now back in a bull market after trading above its 365-day moving average.&nbsp;</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/bitcoin-under-pressure-says-coinshares">Hot Inflation Data Puts Bitcoin Under Pressure, but ‘Difficult’ Isn’t ‘Bearish’: CoinShares</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Deutsche Bank To Debut Bitcoin Custody Within Weeks: Report</title>
+		<link>https://bitcoinmagazine.com/news/deutsche-bank-will-debut-bitcoin-custody</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 16:35:55 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Citi]]></category>
+		<category><![CDATA[Custody]]></category>
+		<category><![CDATA[Deutsche Bank]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55945</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/image7_1920x1080.png" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/deutsche-bank-will-debut-bitcoin-custody">Deutsche Bank To Debut Bitcoin Custody Within Weeks: Report</a></p>
+<p>The German lender is moving fast with its crypto custody service. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/deutsche-bank-will-debut-bitcoin-custody">Deutsche Bank To Debut Bitcoin Custody Within Weeks: Report</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/09/image7_1920x1080.png" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/deutsche-bank-will-debut-bitcoin-custody">Deutsche Bank To Debut Bitcoin Custody Within Weeks: Report</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">German multinational Deutsche Bank is just weeks away from its crypto custody service, according to reports.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The lender — which is Germany’s biggest — also plans to ​expand the custody platform into Asia next year​, <a href="https://www.reuters.com/business/finance/deutsche-bank-prepares-crypto-custody-launch-targets-asia-growth-2026-10-16/" target="_blank" rel="noopener">according</a> to a Friday Reuters report, which quoted its corporate banking chief.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Top banks worldwide are debuting or planning to debut crypto custody services, with BNY Mellon, State Street, Standard Chartered, U.S. Bank, and Citigroup all committing to direct crypto custody over the past 18 months.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="550" data-dnt="true"><p lang="en" dir="ltr">JUST IN: <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f1e9-1f1ea.png" alt="🇩🇪" class="wp-smiley" style="height: 1em; max-height: 1em;" /> €732 billion Deutsche Bank to launch Bitcoin custody to its 28 million clients <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f680.png" alt="🚀" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://t.co/TAh9EwLkIX">pic.twitter.com/TAh9EwLkIX</a></p>&mdash; Bitcoin Magazine (@BitcoinMagazine) <a href="https://x.com/BitcoinMagazine/status/2111109914751811850?ref_src=twsrc%5Etfw">October 16, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p class="wp-block-paragraph">Deutsche Bank first officially <a href="https://www.db.com/news/detail/20260916-deutsche-bank-to-launch-digital-asset-custody-solution-for-institutional-and-corporate-clients" target="_blank" rel="noopener">announced</a> plans to debut a bitcoin custody service for European corporate and institutional clients in September, with the German multinational at the time saying service was subject to the completion of the applicable regulatory timeline.</p>
+
+
+
+<p class="wp-block-paragraph">Friday’s report added that the service will support custody of ​major ⁠cryptocurrencies such as bitcoin before moving to services that help clients move money into and out of ⁠stablecoins.</p>
+
+
+
+<p class="wp-block-paragraph">Gerald Podobnik, co-head of the corporate ⁠bank, was quoted by Reuters saying that the financial system will need to “offer tokenized or blockchain solutions.”&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">A number of top banks have started using the technology that powers bitcoin, the blockchain, for their own products in recent years.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Stablecoins and tokenization in particular have become a hot topic as traditional financial firms aim to accelerate certain services.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Crypto custody is often a starting point for banks moving into the digital asset space. BNY Mellon in 2022 <a href="https://uk.practicallaw.thomsonreuters.com/w-037-3196?transitionType=Default&amp;contextData=(sc.Default)" target="_blank" rel="noopener">became</a> the first major U.S. bank to offer digital asset custody services.&nbsp;&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Banks like <a href="https://bitcoinmagazine.com/news/citi-to-debut-bitcoin-custody">Citi</a> and <a href="https://bitcoinmagazine.com/news/standard-chartered-singapore-custody-plans">Standard Chartered</a> have this year debuted or announced plans for bitcoin custody around the world.&nbsp;</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/deutsche-bank-will-debut-bitcoin-custody">Deutsche Bank To Debut Bitcoin Custody Within Weeks: Report</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>MSCI To Move Forward With Proposal That Could Exclude Strategy From Index</title>
+		<link>https://bitcoinmagazine.com/news/msci-could-exclude-strategy-from-index</link>
+		
+		<dc:creator><![CDATA[Mathew Di Salvo]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 16:32:41 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[MSCI]]></category>
+		<category><![CDATA[Strategy]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55943</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/06/Strategy-MSTR-Sells-Bitcoin-for-First-Time-in-Years-as-Bitcoin-Price-Tumbles.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/msci-could-exclude-strategy-from-index">MSCI To Move Forward With Proposal That Could Exclude Strategy From Index</a></p>
+<p>MSCI has adopted new rules that could push Bitcoin treasury Strategy out of its global equity benchmarks. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/msci-could-exclude-strategy-from-index">MSCI To Move Forward With Proposal That Could Exclude Strategy From Index</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/06/Strategy-MSTR-Sells-Bitcoin-for-First-Time-in-Years-as-Bitcoin-Price-Tumbles.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/msci-could-exclude-strategy-from-index">MSCI To Move Forward With Proposal That Could Exclude Strategy From Index</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Morgan Stanley Capital International is moving ahead with a proposal that could remove bitcoin juggernaut Strategy from its global equity benchmarks.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The index maker <a href="https://app2.msci.com/webapp/index_ann/DocGet?pub_key=aq0wbkjxPgo%3D&amp;lang=en&amp;format=html" target="_blank" rel="noopener">said</a> Thursday that it “will implement the proposal to define and classify non-operating companies as ineligible for inclusion in the MSCI Global Investable Market Indexes.”&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin treasury Strategy previously <a href="https://bitcoinmagazine.com/news/bitcoin-treasury-strategy-opposes-msci">blasted</a> the idea, calling it “misguided” and “flawed.”&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“MSCI will implement the proposal to define and classify non-operating companies as ineligible for inclusion in the MSCI Global Investable Market Indexes, as set out in the consultation announced on August 3, 2026, with minor modifications,” the statement read.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“The changes will be implemented as part of the November 2026 Index Review, which will take effect as of the close of November 30, 2026.”</p>
+
+
+
+<p class="wp-block-paragraph">MSCI’s decision won’t immediately remove Strategy from its Global Investable Market Indexes but future tests could end up excluding the company from the index.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">If Strategy does get removed from the index, it would mean that fewer institutional investors can or will hold the stock.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Strategy did not immediately comment on the MSCI’s decision. The company <a href="https://bitcoinmagazine.com/news/strategy-slams-msci-possible-index-removal">said</a> of the proposal in August: “Bitcoin doesn’t need MSCI. Neither does Strategy.”</p>
+
+
+
+<p class="wp-block-paragraph">MSCI in 2025 <a href="https://bitcoinmagazine.com/featured/strategy-msci-keep-dats-in-indexes">proposed</a> excluding from its indices all companies whose digital-asset holdings represent 50% or more of total assets.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Strategy — formerly MicroStrategy — is an enterprise software company that pivoted to buying and holding bitcoin in 2020.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">It first bought the cryptocurrency to protect shareholders but has since aggressively bought the asset and is now the <a href="https://www.strategy.com/ledger" target="_blank" rel="noopener">largest corporate holder</a> of the cryptocurrency, with 848,250 bitcoins worth $69.2 billion at today’s prices.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Investors can buy Strategy’s Nasdaq-listed stock (MSTR) to get heightened exposure to bitcoin’s performance.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Nasdaq-listed Strategy’s shares were trading over 6% lower on Friday.&nbsp;</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/msci-could-exclude-strategy-from-index">MSCI To Move Forward With Proposal That Could Exclude Strategy From Index</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/mathewdisalvo">Mathew Di Salvo</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Crypto Analyst Lark Davis: The Bitcoin Bull Run has Begun</title>
+		<link>https://bitcoinmagazine.com/videos/crypto-analyst-lark-davis-the-bitcoin-bull-run-has-begun</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 13:48:18 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Bitcoin ETFs]]></category>
+		<category><![CDATA[BMTV]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[Bull Run]]></category>
+		<category><![CDATA[Lark Davis]]></category>
+		<category><![CDATA[Video]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55940</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Crypto-Analyst-Lark-Davis-The-Bitcoin-Bull-Run-has-Begun-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/crypto-analyst-lark-davis-the-bitcoin-bull-run-has-begun">Crypto Analyst Lark Davis: The Bitcoin Bull Run has Begun</a></p>
+<p>Bitcoin trades sideways in $80Ks, but Lark Davis sees a major cycle ahead. He explains on-chain signals, whale accumulation, and a $57K market bottom.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/crypto-analyst-lark-davis-the-bitcoin-bull-run-has-begun">Crypto Analyst Lark Davis: The Bitcoin Bull Run has Begun</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Crypto-Analyst-Lark-Davis-The-Bitcoin-Bull-Run-has-Begun-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/crypto-analyst-lark-davis-the-bitcoin-bull-run-has-begun">Crypto Analyst Lark Davis: The Bitcoin Bull Run has Begun</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Bitcoin has been trading sideways in the $80Ks, but Lark Davis says we’re on the cusp of the next major cycle. The crypto investor and YouTuber joins Grace Remington and Sean Hagan to explain why a dozen on-chain and technical indicators, from record whale accumulation to the two-week MACD, point to a market bottom at $57K. He also explains why the trauma of the bear market makes it hard to believe things could get better.</p>
+
+
+
+<p class="wp-block-paragraph">Chapters:<br>0:00 – Lark Davis: Are We on the Cusp of the Next Bitcoin Bull Run?<br>1:13 – Why the Bitcoin Bottom Is Likely In at $57K<br>1:53 – Early in a New Bull Market: Opportunity in Bitcoin and Altcoins<br>2:33 – Why Bitcoin Dominates ETF Inflows<br>4:07 – ETF Flows as a Percentage of Market Cap<br>5:28 – Is the Four-Year Cycle Dead?<br>8:31 – The Gold ETF Parallel: How ETFs Are Changing Bitcoin<br>10:00 – The Shallowest, Shortest Bear Market Ever<br>12:08 – The Strategic Bitcoin Reserve and the Clarity Act Outlook<br>15:15 – Why Codifying a Bitcoin Reserve Would Add Legitimacy</p>
+
+
+
+<p class="wp-block-paragraph">DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/crypto-analyst-lark-davis-the-bitcoin-bull-run-has-begun">Crypto Analyst Lark Davis: The Bitcoin Bull Run has Begun</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Math Professor Warns of Threat to Bitcoin from AI Pivot</title>
+		<link>https://bitcoinmagazine.com/videos/math-professor-warns-of-threat-to-bitcoin-from-ai-pivot</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 13:25:44 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BMTV]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[Game Theory]]></category>
+		<category><![CDATA[Micah Warren]]></category>
+		<category><![CDATA[University of Oregon]]></category>
+		<category><![CDATA[Video]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55937</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Math-Professor-Warns-of-Threat-to-Bitcoin-from-AI-Pivot-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/math-professor-warns-of-threat-to-bitcoin-from-ai-pivot">Math Professor Warns of Threat to Bitcoin from AI Pivot</a></p>
+<p>Could anyone actually break Bitcoin? Math professor Micah Warren applies game theory to explain why miner incentives and strong security prevent attacks.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/math-professor-warns-of-threat-to-bitcoin-from-ai-pivot">Math Professor Warns of Threat to Bitcoin from AI Pivot</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Math-Professor-Warns-of-Threat-to-Bitcoin-from-AI-Pivot-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/math-professor-warns-of-threat-to-bitcoin-from-ai-pivot">Math Professor Warns of Threat to Bitcoin from AI Pivot</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Could anyone actually break Bitcoin? Micah Warren, associate professor of mathematics at the University of Oregon and author of Bitcoin: A Game-Theoretic Analysis, joins Grace Remington and Sean Hagan to break down Bitcoin’s security through the lens of game theory. He explains why miner incentives are one of the main things holding Bitcoin up, and why classic reorg and double-spend attacks are unlikely today.</p>
+
+
+
+<p class="wp-block-paragraph">Chapters:<br>0:00 – Micah Warren on What Game Theory Reveals About Bitcoin’s Security<br>1:33 – Why Miner Incentives Hold Bitcoin Together<br>3:40 – How Treasury Companies, Governments and Miners Change the Game<br>4:54 – North Korea, Iran and Bad Actors in the Bitcoin Ecosystem<br>6:18 – AI vs. Bitcoin Mining: When Miners Have Other Options<br>8:30 – Feather Forks: How a Minority of Miners Could Try to Censor Transactions<br>12:09 – Could Government Stakes in Miners Raise Censorship Risk?<br>13:02 – Blacklisted vs. Clean Bitcoin: The Institutional Demand Choke Point<br>16:19 – How Resilient Is Bitcoin? Rogue Attacks vs. Centralization<br>17:45 – The Security Budget Debate and Why Miner Collusion Is the Bigger Risk</p>
+
+
+
+<p class="wp-block-paragraph">DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/math-professor-warns-of-threat-to-bitcoin-from-ai-pivot">Math Professor Warns of Threat to Bitcoin from AI Pivot</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Morgan Stanley’s Amy Oldenburg: The Digital Gold Investment Case for Bitcoin</title>
+		<link>https://bitcoinmagazine.com/videos/morgan-stanleys-amy-oldenburg-the-digital-gold-investment-case-for-bitcoin</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 13:20:36 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Amy Oldenburg]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BMTV]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[Gold]]></category>
+		<category><![CDATA[Morgan stanley]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Video]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55934</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Morgan-Stanleys-Amy-Oldenburg-The-Digital-Gold-Investment-Case-for-Bitcoin-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/morgan-stanleys-amy-oldenburg-the-digital-gold-investment-case-for-bitcoin">Morgan Stanley’s Amy Oldenburg: The Digital Gold Investment Case for Bitcoin</a></p>
+<p>Bitcoin's digital gold case is strong, says Morgan Stanley’s Amy Oldenburg, but she wants less tech risk correlation and more gold-like trade behavior.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/morgan-stanleys-amy-oldenburg-the-digital-gold-investment-case-for-bitcoin">Morgan Stanley’s Amy Oldenburg: The Digital Gold Investment Case for Bitcoin</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Morgan-Stanleys-Amy-Oldenburg-The-Digital-Gold-Investment-Case-for-Bitcoin-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/morgan-stanleys-amy-oldenburg-the-digital-gold-investment-case-for-bitcoin">Morgan Stanley’s Amy Oldenburg: The Digital Gold Investment Case for Bitcoin</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph"><a href="https://www.youtube.com/@BitcoinMagazine" target="_blank" rel="noopener"></a></p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin’s digital gold case is “a pretty strong rationale,” says Morgan Stanley’s Amy Oldenburg. But she wants to see Bitcoin trade more like gold and less like risk assets. She discusses Bitcoin’s correlation with gold, how stablecoins, quantum fears, AI, and inflation are weighing on demand, and why she won’t let one day or one inflation print define Bitcoin’s outlook.</p>
+
+
+
+<p class="wp-block-paragraph">Chapters:<br>0:00 – Stablecoins and USDT on Bitcoin<br>1:23 – Who’s Buying Morgan Stanley’s Spot Bitcoin ETF?<br>2:54 – Bitcoin as Digital Gold in Client Portfolios<br>4:11 – Moving Self-Custodied Bitcoin Into ETF Shares<br>5:33 – Borrowing Against Bitcoin ETFs and Spot Bitcoin<br>6:33 – Bitcoin’s Correlation With Gold and What’s Weighing on Demand<br>8:52 – How Morgan Stanley Is Assessing Quantum Risk<br>9:55 – Why Tokenization Could Transform Every Asset Class<br>12:24 – Morgan Stanley’s Digital Asset Lab<br>15:42 – AI Agents and the Future of the Agentic Economy</p>
+
+
+
+<p class="wp-block-paragraph">DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/morgan-stanleys-amy-oldenburg-the-digital-gold-investment-case-for-bitcoin">Morgan Stanley’s Amy Oldenburg: The Digital Gold Investment Case for Bitcoin</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Sazmining Brings Proto’s Immersion Hashboards to Individual Owners, With 0% Financing From $1,397 Down</title>
+		<link>https://bitcoinmagazine.com/press-releases/sazmining-brings-protos-immersion-hashboards-to-individual-owners-with-0-financing-from-1397-down</link>
+		
+		<dc:creator><![CDATA[Bitcoin Magazine]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 12:42:22 +0000</pubDate>
+				<category><![CDATA[PRESS RELEASES]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Mining]]></category>
+		<category><![CDATA[Press Release]]></category>
+		<category><![CDATA[Ssazmning]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=55931</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Sazmining-Brings-Protos-Immersion-Hashboards-to-Individual-Owners.jpeg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/press-releases/sazmining-brings-protos-immersion-hashboards-to-individual-owners-with-0-financing-from-1397-down">Sazmining Brings Proto’s Immersion Hashboards to Individual Owners, With 0% Financing From $1,397 Down</a></p>
+<p>Proto immersion hashboards, built for efficiency and long service life, are now available for  outright purchase through Sazmining’s mining-as-a-service platform, with mining rewards paid  directly to the owner’s wallet. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/press-releases/sazmining-brings-protos-immersion-hashboards-to-individual-owners-with-0-financing-from-1397-down">Sazmining Brings Proto’s Immersion Hashboards to Individual Owners, With 0% Financing From $1,397 Down</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/bitcoin-magazine">Bitcoin Magazine</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Sazmining-Brings-Protos-Immersion-Hashboards-to-Individual-Owners.jpeg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/press-releases/sazmining-brings-protos-immersion-hashboards-to-individual-owners-with-0-financing-from-1397-down">Sazmining Brings Proto’s Immersion Hashboards to Individual Owners, With 0% Financing From $1,397 Down</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">SHERIDAN, Wyo. — October 16th, 2026 — Sazmining today began offering Proto immersion&nbsp; hashboards to individual and institutional buyers through its mining-as-a-service platform. The&nbsp; launch brings Proto’s immersion systems, until now deployed by large operators, to anyone who&nbsp; wants to own competitive hashrate, starting at $1,397 with 0% financing over 18 months.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Proto, Block’s (NYSE: XYZ) suite of bitcoin mining products and services, designs its immersion&nbsp; mining hardware for efficiency, durability, and long-term performance. Customers purchase Proto&nbsp; immersion hashboards, each configured to deliver roughly 200 TH at about 15 J/TH, and own&nbsp; them outright. Sazmining provides and operates at a facility in the United States, managing the&nbsp; deployment, monitoring, and maintenance of the hardware. Buying at the hashboard level rather&nbsp; than the full system lowers the entry point without changing what customers own. Owners receive&nbsp; the bitcoin their rigs produce directly in their own wallets and pay one all-in rate for power and&nbsp; maintenance.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The launch follows a multi-megawatt supply relationship between Sazmining and Proto, which&nbsp; both companies intend to expand as demand grows. “Because of our aligned-incentive model,&nbsp; Sazmining only earns when we produce bitcoin for our clients. That’s how Sazmining was built&nbsp; from day one, and it’s why we seek out the best available mining systems,” said Kent Halliburton,&nbsp; CEO and Co-Founder of Sazmining. “Proto’s hardware is built to last, and durability means more&nbsp; uptime hashing for the people who own them. This puts hashboards within reach of owners who&nbsp; would have otherwise needed to buy a full system, and we expect the relationship to grow with&nbsp; demand.”&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">“Mining is also a fundamentally different way to acquire bitcoin,” Halliburton added. “The coins&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Your rigs produce arrive in your own wallet, with no exchange, no order book, and no counterparty holding them on your behalf. And because a miner pays for rigs and power rather than the market&nbsp; price on the day of purchase, mining diversifies how you acquire bitcoin: your cost is spread across the machine&#8217;s working life instead of dollar cost averaging through purchases. Nobody can quantify that in advance, which is why we describe it as diversification rather than a promise. Mined bitcoin belongs alongside bought bitcoin in any serious acquisition plan.”&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Sazmining is offering 0% financing over 18 months on Proto immersion hashboards purchased&nbsp; through its platform, with the option to pay by either card or bitcoin/USDT/USDC for a discount.&nbsp; Hashboards are covered by a one-year Proto warranty. Pricing, terms, and applicable sales tax&nbsp; are shown at checkout.&nbsp;&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Sazmining’s fleet runs more than 20 points ahead of the Bitcoin network’s carbon-free share, part of the company’s standing commitment to renewable-powered, professionally operated mining.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Proto immersion hashboards are available to order at sazmining.com starting today, with systems energizing between November and December 2026. Customers can order directly or book a consultation with a Bitcoin Strategy Advisor at sazmining.com.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph"><strong>About Sazmining&nbsp;</strong></p>
+
+
+
+<p class="wp-block-paragraph">Sazmining is the Airbnb of Bitcoin mining. Customers own the mining rigs; Sazmining operates&nbsp; and maintains them in professional, renewable-powered data centers, and owners receive the&nbsp; bitcoin their machines produce directly in their own wallets. Founded in 2018, Sazmining operates&nbsp; facilities across the United States, Paraguay, and Norway and serves individual and institutional owners worldwide. Sazmining, Inc. is headquartered in Wyoming. Learn more at sazmining.com.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Media Contact&nbsp;</strong></p>
+
+
+
+<p class="wp-block-paragraph">Sazmining Media Relations&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">press@sazmining.com&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Sazmining, Inc., 30 N Gould St #60011, Sheridan, WY 82801&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">sazmining.com</p>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+
+
+<p class="wp-block-paragraph"><em><strong>Disclaimer</strong>: This is a sponsored press release. Readers are encouraged to perform their own due diligence before acting on any information presented in this article.</em></p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/press-releases/sazmining-brings-protos-immersion-hashboards-to-individual-owners-with-0-financing-from-1397-down">Sazmining Brings Proto’s Immersion Hashboards to Individual Owners, With 0% Financing From $1,397 Down</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/bitcoin-magazine">Bitcoin Magazine</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

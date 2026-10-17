@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Sat, 17 Oct 2026 09:08:30 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Stablecoin cards are booming, but who makes money when you swipe?</title>
+		<link>https://cryptoslate.com/stablecoin-cards-are-booming-but-who-makes-money-when-you-swipe/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 15:00:18 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Research]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=571893</guid>
+
+					<description><![CDATA[<p>Someone paying for lunch with a stablecoin card doesn&#039;t need the restaurant to know what USDC is. The card works like any other at the terminal, with the customer&#039;s digital dollar balance funding the purchase while the merchant receives regular dollars through its usual payment provider. That leaves several companies to collect fees for connecting…</p>
+<p><a href="https://cryptoslate.com/stablecoin-cards-are-booming-but-who-makes-money-when-you-swipe/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/stablecoin-payment-fee-chain.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/stablecoin-payment-fee-chain.webp" length="186222" type="image/webp"/>
+	</item>
+		<item>
+		<title>Binance Pool shuts on November 10, with record access ending two weeks later</title>
+		<link>https://cryptoslate.com/binance-will-shut-its-mining-pool-on-nov-10-giving-miners-a-deadline-to-move/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 13:30:39 +0000</pubDate>
+				<category><![CDATA[Exchanges]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Mining]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[mining]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=573265</guid>
+
+					<description><![CDATA[<p>Mining stops at 07:00 UTC, while final payments depend on eligibility and historical pages close two weeks later.</p>
+<p><a href="https://cryptoslate.com/binance-will-shut-its-mining-pool-on-nov-10-giving-miners-a-deadline-to-move/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/binance-miners-forced-migration.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/binance-miners-forced-migration.webp" length="224640" type="image/webp"/>
+	</item>
+		<item>
+		<title>Eclair patches a browser attack that could send commands to your Lightning node</title>
+		<link>https://cryptoslate.com/eclair-blocks-browser-requests-that-could-let-a-webpage-control-a-bitcoin-lightning-node/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 12:00:20 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Lightning]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=573281</guid>
+
+					<description><![CDATA[<p>The Oct. 15 release blocks a cached-authentication route to Eclair&#039;s API and requires direct browser interfaces to add a backend.</p>
+<p><a href="https://cryptoslate.com/eclair-blocks-browser-requests-that-could-let-a-webpage-control-a-bitcoin-lightning-node/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/eclair-browser-attack-filter.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/eclair-browser-attack-filter.webp" length="183566" type="image/webp"/>
+	</item>
+		<item>
+		<title>The hidden trade behind Strive&#8217;s 16.7% Bitcoin income offer</title>
+		<link>https://cryptoslate.com/the-hidden-trade-behind-strives-16-7-bitcoin-income-offer/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 11:00:07 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Debt]]></category>
+		<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Digital Asset Treasuries]]></category>
+		<category><![CDATA[Featured]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=572158</guid>
+
+					<description><![CDATA[<p>There&#039;s a Bitcoin company that&#039;s now offering investors a 15% annual dividend, paid in small installments every business day. While a 15% dividend is high enough to grab everyone&#039;s attention, the more revealing number is what buyers agreed to pay for it. On Oct. 15, Strive priced seven million shares of its new SATS preferred…</p>
+<p><a href="https://cryptoslate.com/the-hidden-trade-behind-strives-16-7-bitcoin-income-offer/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/strive-sats-preferred-standard.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/strive-sats-preferred-standard.jpg" length="488282" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Bitcoin&#8217;s inflation hedge has a hidden cost, and leverage makes it worse</title>
+		<link>https://cryptoslate.com/bitcoins-inflation-hedge-has-a-hidden-cost-and-leverage-makes-it-worse/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 07:00:46 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Investments]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=572156</guid>
+
+					<description><![CDATA[<p>Borrowing costs, missed interest income, and futures fees can all eat into returns even when Bitcoin holds its value. That&#039;s a big problem, and it gets even worse when inflation stays high. September&#039;s US inflation report showed consumer prices up 3.7% year over year, fueling concerns about the dollar&#039;s purchasing power. That same inflation pressure…</p>
+<p><a href="https://cryptoslate.com/bitcoins-inflation-hedge-has-a-hidden-cost-and-leverage-makes-it-worse/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/bitcoin-borrowing-pressure-squeeze.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/bitcoin-borrowing-pressure-squeeze.webp" length="239060" type="image/webp"/>
+	</item>
+		<item>
+		<title>Cardano shifts $26M to USDCx as bridge controls freeze payouts</title>
+		<link>https://cryptoslate.com/cardano-shifts-26m-to-usdcx-as-bridge-controls-freeze-payouts/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 05:00:24 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Governance]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Cardano]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[USDC]]></category>
+		<category><![CDATA[USDCx]]></category>
+		<category><![CDATA[USDM]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=573244</guid>
+
+					<description><![CDATA[<p>Converted Intersect-administered budgets reduce ADA exposure, while milestone release and stablecoin cash-out conditions still govern access to usable money.</p>
+<p><a href="https://cryptoslate.com/cardano-shifts-26m-to-usdcx-as-bridge-controls-freeze-payouts/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/cardano-stablecoin-development-funding-standard.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/cardano-stablecoin-development-funding-standard.jpg" length="399977" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Visa and Mastercard adopt USDC payouts across 200 countries</title>
+		<link>https://cryptoslate.com/visa-and-mastercard-adopt-usdc-payouts-across-200-countries/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 17 Oct 2026 02:00:33 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<category><![CDATA[BVNK]]></category>
+		<category><![CDATA[Mastercard]]></category>
+		<category><![CDATA[OUSD]]></category>
+		<category><![CDATA[USDC]]></category>
+		<category><![CDATA[Visa]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=573178</guid>
+
+					<description><![CDATA[<p>Visa&#039;s Inyo rollout and Mastercard&#039;s BVNK platform give businesses stablecoin funding routes, subject to eligibility and rollout limits.</p>
+<p><a href="https://cryptoslate.com/visa-and-mastercard-adopt-usdc-payouts-across-200-countries/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/visa-mastercard-stablecoin-payments-standard.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/visa-mastercard-stablecoin-payments-standard.jpg" length="397479" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Cross River Bank links $2.4B RLUSD to core banking system</title>
+		<link>https://cryptoslate.com/cross-river-bank-links-2-4b-rlusd-to-core-banking-system/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 22:30:17 +0000</pubDate>
+				<category><![CDATA[Banking]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Ripple]]></category>
+		<category><![CDATA[RLUSD]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<category><![CDATA[Standard Chartered]]></category>
+		<category><![CDATA[xrp]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=573123</guid>
+
+					<description><![CDATA[<p>The bank says fintechs can access dollar and RLUSD payments through one API, with availability limited to some US states.</p>
+<p><a href="https://cryptoslate.com/cross-river-bank-links-2-4b-rlusd-to-core-banking-system/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/rlusd-dollar-paper-boats.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/rlusd-dollar-paper-boats.webp" length="209584" type="image/webp"/>
+	</item>
+		<item>
+		<title>Cardano governance hits a wall as treasury reaches 91% cap</title>
+		<link>https://cryptoslate.com/cardano-has-42-6-million-ada-left-under-its-current-treasury-spending-limit/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 21:10:02 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[DAOs]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Governance]]></category>
+		<category><![CDATA[Cardano]]></category>
+		<category><![CDATA[OpenZeppelin]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=573149</guid>
+
+					<description><![CDATA[<p>Thirty enacted withdrawals have used 457.4 million ADA of the 500 million allowance, which incoming funds and refunds do not replenish.</p>
+<p><a href="https://cryptoslate.com/cardano-has-42-6-million-ada-left-under-its-current-treasury-spending-limit/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/cardano-withdrawal-crane-lift.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/cardano-withdrawal-crane-lift.webp" length="209250" type="image/webp"/>
+	</item>
+		<item>
+		<title>USDC processed $36 trillion in H1 transactions, but Circle kept just 7 cents of every revenue dollar</title>
+		<link>https://cryptoslate.com/usdc-processed-36-trillion-in-h1-transactions-but-circle-kept-just-7-cents-of-every-revenue-dollar/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Fri, 16 Oct 2026 19:50:21 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=573121</guid>
+
+					<description><![CDATA[<p>Stablecoin issuer Circle spent 93% of its first-half revenue on distribution, operations, and investment as USDC processed more than $36 trillion in transactions. The stablecoin issuer generated about $1.4 billion in revenue in the first six months of 2026, but $819 million went to distribution partners and transaction costs, while another $473 million covered operating…</p>
+<p><a href="https://cryptoslate.com/usdc-processed-36-trillion-in-h1-transactions-but-circle-kept-just-7-cents-of-every-revenue-dollar/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/circle-usdc-cost-pressure.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/circle-usdc-cost-pressure.webp" length="176944" type="image/webp"/>
+	</item>
+	</channel>
+</rss>
