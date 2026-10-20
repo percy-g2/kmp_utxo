@@ -77,8 +77,11 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -870,6 +873,22 @@ fun TickerCard(
         "$baseAsset/$actualTradingPair"
     }
 
+    // Base asset with the quote inline ("BTC/USDT") so showing the pair doesn't add a row to the card.
+    val baseColor = MaterialTheme.colorScheme.onSurface
+    val quoteColor = MaterialTheme.colorScheme.onSurfaceVariant
+    val symbolText = remember(baseAsset, actualTradingPair, showTradingPair, baseColor, quoteColor) {
+        buildAnnotatedString {
+            withStyle(SpanStyle(fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = baseColor)) {
+                append(baseAsset)
+            }
+            if (showTradingPair) {
+                withStyle(SpanStyle(fontSize = 12.sp, fontWeight = FontWeight.Normal, color = quoteColor)) {
+                    append("/$actualTradingPair")
+                }
+            }
+        }
+    }
+
     // Pre-compute formatted volume
     val formattedVolume = remember(tickerData.volume) {
         tickerData.volume.formatVolume()
@@ -921,22 +940,10 @@ fun TickerCard(
                     Spacer(Modifier.width(10.dp))
                     Column(modifier = Modifier.weight(1f, fill = false)) {
                         Text(
-                            text = baseAsset,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = MaterialTheme.colorScheme.onSurface,
+                            text = symbolText,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
-                        if (showTradingPair) {
-                            Text(
-                                text = actualTradingPair,
-                                fontSize = 12.sp,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                        }
                         Spacer(Modifier.height(4.dp))
                         // Plain Text (no per-tick crossfade/relayout); volume is informational.
                         Text(
