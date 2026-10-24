@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description>Cryptocurrency News and Real-time Coin Data</description>
+	<lastBuildDate>Sat, 24 Oct 2026 15:14:29 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Circle shareholder sues Trump over UAE crypto deals, citing up to $82 million in potential annual revenue</title>
+		<link>https://cryptoslate.com/circle-shareholder-sues-trump-over-uae-crypto-deals-citing-up-to-82-million-in-potential-annual-revenue/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 15:45:44 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[People]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=575973</guid>
+
+					<description><![CDATA[<p>A Circle shareholder sued President Donald Trump, alleging UAE-linked cryptocurrency payments enriched his family and diverted business from USDC. The complaint, filed Oct. 22 in Washington federal court, challenges a $500 million investment in Trump&#039;s World Liberty Financial and a separate $2 billion transaction settled using its USD1 stablecoin. The lawsuit alleges that “No president…</p>
+<p><a href="https://cryptoslate.com/circle-shareholder-sues-trump-over-uae-crypto-deals-citing-up-to-82-million-in-potential-annual-revenue/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/circle-usd1-reserve-dispute.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/circle-usd1-reserve-dispute.webp" length="226092" type="image/webp"/>
+	</item>
+		<item>
+		<title>Bitcoin Core speeds up security fixes as 44% of surveyed nodes run unsupported versions</title>
+		<link>https://cryptoslate.com/bitcoin-core-speeds-up-security-fixes-as-44-of-surveyed-nodes-run-unsupported-versions/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 14:45:04 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Governance]]></category>
+		<category><![CDATA[Technology]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=575739</guid>
+
+					<description><![CDATA[<p>Bitcoin Core merged a policy amendment on Oct. 22 that lets developers backport fixes for easily rediscovered vulnerabilities to every maintained release line and publish an advisory alongside them. A network snapshot from Oct. 18 shows that 3,671 of 8,422 self-reported Bitcoin Core peers (43.6%) ran release lines that had already reached end of life.…</p>
+<p><a href="https://cryptoslate.com/bitcoin-core-speeds-up-security-fixes-as-44-of-surveyed-nodes-run-unsupported-versions/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/bitcoin-core-security-fixes.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/bitcoin-core-security-fixes.webp" length="246716" type="image/webp"/>
+	</item>
+		<item>
+		<title>Ethereum sees biggest exchange withdrawal in four months as October ETF losses top $1 billion</title>
+		<link>https://cryptoslate.com/ethereum-sees-biggest-exchange-withdrawal-in-four-months-as-october-etf-losses-top-1-billion/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 13:30:53 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Derivatives]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Market]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=575743</guid>
+
+					<description><![CDATA[<p>About 169,770 ETH left centralized exchanges on net in one day, Santiment reported Oct. 23, the largest daily withdrawal in more than four months and worth about $407 million at the $2,400 reference price. The last bigger episode came June 5, when roughly 223,800 ETH left exchanges near what Santiment calls a local buying opportunity.…</p>
+<p><a href="https://cryptoslate.com/ethereum-sees-biggest-exchange-withdrawal-in-four-months-as-october-etf-losses-top-1-billion/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/ethereum-etf-outflow-pressure.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/ethereum-etf-outflow-pressure.webp" length="230828" type="image/webp"/>
+	</item>
+		<item>
+		<title>Wall Street&#8217;s $359 billion-a-day repo market has found a use for blockchain</title>
+		<link>https://cryptoslate.com/wall-streets-359-billion-a-day-repo-market-has-found-a-use-for-blockchain/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 12:00:47 +0000</pubDate>
+				<category><![CDATA[Banking]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Tokenization]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=574977</guid>
+
+					<description><![CDATA[<p>Wall Street has found a use for blockchain that involves neither memecoins nor replacing the banking system. It&#039;s now helping institutions borrow billions between breakfast and lunch, usually because they have government bonds but not enough cash when a payment comes due. Getting a bill paid on time might be the technology&#039;s least glamorous selling…</p>
+<p><a href="https://cryptoslate.com/wall-streets-359-billion-a-day-repo-market-has-found-a-use-for-blockchain/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/wall-street-repo-settlement.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/wall-street-repo-settlement.webp" length="220130" type="image/webp"/>
+	</item>
+		<item>
+		<title>Senator probes Tether’s reported $6 million payments to ex-White House crypto adviser’s firm</title>
+		<link>https://cryptoslate.com/senator-probes-tethers-reported-6-million-payments-to-ex-white-house-crypto-advisers-firm/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 11:00:33 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=575843</guid>
+
+					<description><![CDATA[<p>Tether faces US Senate scrutiny over multimillion-dollar payments to a consulting firm co-owned by a former White House crypto adviser. On Oct. 22, Senator Richard Blumenthal, the ranking Democrat on the Senate Permanent Subcommittee on Investigations, demanded records on the stablecoin issuer&#039;s reported payments to Nxum, a consulting firm co-founded by Bo Hines, who helped…</p>
+<p><a href="https://cryptoslate.com/senator-probes-tethers-reported-6-million-payments-to-ex-white-house-crypto-advisers-firm/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/tether-payment-papertrail.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/tether-payment-papertrail.webp" length="196388" type="image/webp"/>
+	</item>
+		<item>
+		<title>Ethereum staking yield is losing to cash rates, so why are investors still lining up?</title>
+		<link>https://cryptoslate.com/ethereum-staking-yield-is-losing-to-cash-rates-so-why-are-investors-still-lining-up/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 07:00:27 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Staking]]></category>
+		<category><![CDATA[TradFi]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=574983</guid>
+
+					<description><![CDATA[<p>Put €10,000 into Ethereum staking at a 2.2% annual return and, if ETH&#039;s price stays unchanged, you&#039;ll earn about €220 over a year. That&#039;s just €7 more than the same amount would earn at the average rate on new euro household deposits with maturities up to one year, but with Ethereum&#039;s price volatility attached to…</p>
+<p><a href="https://cryptoslate.com/ethereum-staking-yield-is-losing-to-cash-rates-so-why-are-investors-still-lining-up/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/ethereum-european-banking-balance.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/ethereum-european-banking-balance.webp" length="243922" type="image/webp"/>
+	</item>
+		<item>
+		<title>JST Buyback &#038; Burn Upgrade: GasFree Revenue and $20.34M Surplus Injected as JUST&#8217;s Ecosystem Trio Solidifies JST Token Value</title>
+		<link>https://cryptoslate.com/jst-buyback-burn-upgrade-gasfree-revenue-and-20-34m-surplus-injected-as-justs-ecosystem-trio-solidifies-jst-token-value/</link>
+		
+		<dc:creator><![CDATA[News Desk]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 06:38:41 +0000</pubDate>
+				<category><![CDATA[Sponsored]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=575800</guid>
+
+					<description><![CDATA[<p>Summary: The upgraded JST Buyback and Burn program features the following highlights: $50M Treasury Reserve Cushion: Establishes a safety buffer for sustainable ecosystem operations. Expanded Funding Sources: Integrates GasFree revenue alongside JustLend and USDD to cover 100% of JUST core products. ~$20.34M Capital Injection: Unlocks legacy surplus funds to be released in phases for future…</p>
+<p><a href="https://cryptoslate.com/jst-buyback-burn-upgrade-gasfree-revenue-and-20-34m-surplus-injected-as-justs-ecosystem-trio-solidifies-jst-token-value/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/jst-buyback-burn-upgrade-gasfree-revenue-surplus.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/jst-buyback-burn-upgrade-gasfree-revenue-surplus.jpg" length="126379" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>New York demands $1.3B from NovaTech and 11,000 victims face delay</title>
+		<link>https://cryptoslate.com/new-york-demands-1-3b-from-novatech-and-11000-victims-face-delay/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 05:50:59 +0000</pubDate>
+				<category><![CDATA[Crime]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Legal]]></category>
+		<category><![CDATA[Scams]]></category>
+		<category><![CDATA[mining]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=575717</guid>
+
+					<description><![CDATA[<p>The October 22 motion follows a 2025 liability ruling, while separate promoter obligations include Ciceron’s installments through 2029.</p>
+<p><a href="https://cryptoslate.com/new-york-demands-1-3b-from-novatech-and-11000-victims-face-delay/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/novatech-legal-pressure.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/novatech-legal-pressure.webp" length="245154" type="image/webp"/>
+	</item>
+		<item>
+		<title>3.3M users gain HSBC RedCoin, yet 1 strict rule blocks them</title>
+		<link>https://cryptoslate.com/3-3m-users-gain-hsbc-redcoin-yet-1-strict-rule-blocks-them/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 24 Oct 2026 02:20:15 +0000</pubDate>
+				<category><![CDATA[Adoption]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[hsbc]]></category>
+		<category><![CDATA[payments]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=575715</guid>
+
+					<description><![CDATA[<p>Eligible users can activate RedCoin wallets for payments as access expands over coming days, while investment subscriptions remain planned for later in 2026.</p>
+<p><a href="https://cryptoslate.com/3-3m-users-gain-hsbc-redcoin-yet-1-strict-rule-blocks-them/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/redcoin-banking-barrier.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/redcoin-banking-barrier.webp" length="249494" type="image/webp"/>
+	</item>
+		<item>
+		<title>New OCC stablecoin rule resets redemptions, and banks face big shifts</title>
+		<link>https://cryptoslate.com/new-occ-stablecoin-rule-resets-redemptions-and-banks-face-big-shifts/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Fri, 23 Oct 2026 22:50:04 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Circle]]></category>
+		<category><![CDATA[payments]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<category><![CDATA[USDC]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=575696</guid>
+
+					<description><![CDATA[<p>For covered issuers, the ordinary two-business-day limit ends at payment initiation or requested issuer credit, with external bank availability assessed separately.</p>
+<p><a href="https://cryptoslate.com/new-occ-stablecoin-rule-resets-redemptions-and-banks-face-big-shifts/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/10/occ-seven-day-reversal.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/10/occ-seven-day-reversal.webp" length="236678" type="image/webp"/>
+	</item>
+	</channel>
+</rss>
