@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+  <channel>
+    <title>Cointelegraph.com News</title>
+    <link>https://cointelegraph.com</link>
+    <atom:link href="https://cointelegraph.com/rss" rel="self" type="application/rss+xml"/>
+    <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    <generator>cointelegraph.com</generator>
+    <lastBuildDate>Sat, 31 Oct 2026 11:55:09 +0000</lastBuildDate>
+    <language>en</language>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <title>Cointelegraph.com News</title>
+      <link>https://cointelegraph.com</link>
+      <url>https://s3.cointelegraph.com/storage/uploads/view/b9ea15d46738b4df64e6e100ab59b373.png</url>
+      <description>Cointelegraph covers fintech, blockchain and Bitcoin bringing you the latest crypto news and analyses on the future of money.</description>
+    </image>
+    <item>
+      <title>Blockchain investigator Chainalysis hit by cybersecurity incident </title>
+      <pubDate>Sat, 31 Oct 2026 11:22:49 +0000</pubDate>
+      <atom:updated>Sat, 31 Oct 2026 11:26:05 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/blockchain-investigator-chainalysis-hit-by-cybersecurity-incident</guid>
+      <link><![CDATA[https://cointelegraph.com/news/blockchain-investigator-chainalysis-hit-by-cybersecurity-incident?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M68V2D1TX4051JHJ9QKN8R4P/hi-how-to-utilize-ai-agents-in-decentralized-finance-defi-platforms-chainalysis.jpg" alt="Blockchain investigator Chainalysis hit by cybersecurity incident " class="type:primaryImage"></p><p>Chainalysis has engaged world-class third-party experts to support a review of its security and strengthen its defenses.</p>]]></description>
+      <dc:creator>Cointelegraph by Michael Millard</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M68V2D1TX4051JHJ9QKN8R4P/hi-how-to-utilize-ai-agents-in-decentralized-finance-defi-platforms-chainalysis.jpg" fileSize="760280" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M68V2D1TX4051JHJ9QKN8R4P/hi-how-to-utilize-ai-agents-in-decentralized-finance-defi-platforms-chainalysis.jpg" length="760280" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Binance $6.3B record hack sparks pre-election political chatter  </title>
+      <pubDate>Sat, 31 Oct 2026 09:58:50 +0000</pubDate>
+      <atom:updated>Sat, 31 Oct 2026 10:21:32 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-63b-record-hack-sparks-pre-election-political-chatter</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-63b-record-hack-sparks-pre-election-political-chatter?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M50GBDK9V1K1J9DSAGNBWX7S/us-binance.jpg" alt="Binance $6.3B record hack sparks pre-election political chatter  " class="type:primaryImage"></p><p>Some political and administration figures tried to make hay of the biggest-ever crypto heist. </p>]]></description>
+      <dc:creator>Cointelegraph by Michael Millard</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M50GBDK9V1K1J9DSAGNBWX7S/us-binance.jpg" fileSize="295750" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M50GBDK9V1K1J9DSAGNBWX7S/us-binance.jpg" length="295750" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Binance hackers raced to move billions before it could be frozen</title>
+      <pubDate>Fri, 30 Oct 2026 22:00:00 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 18:28:38 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/magazine/binance-hackers-raced-to-move-billions-before-could-be-frozen</guid>
+      <link><![CDATA[https://cointelegraph.com/magazine/binance-hackers-raced-to-move-billions-before-could-be-frozen?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66R86X5ZSP95YYCM3AYG2MN/hi-north-korean-hack-crime-dragon.jpg" alt="Binance hackers raced to move billions before it could be frozen" class="type:primaryImage"></p><p>Attackers raced to convert stolen stablecoins into crypto that issuers could not freeze as industry players like Tether and Circle moved to immobilize billions of dollars in assets.</p>]]></description>
+      <dc:creator>Cointelegraph by Christina Comben</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66R86X5ZSP95YYCM3AYG2MN/hi-north-korean-hack-crime-dragon.jpg" fileSize="374586" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66R86X5ZSP95YYCM3AYG2MN/hi-north-korean-hack-crime-dragon.jpg" length="374586" type="image/jpeg"/>
+      <category>Magazine</category>
+    </item>
+    <item>
+      <title>Tether’s excess reserves nearly double to $8B as Q3 profit hits $1.5B </title>
+      <pubDate>Fri, 30 Oct 2026 19:01:58 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 19:05:50 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/tethers-excess-reserves-nearly-double-to-8b-as-q3-profit-hits-15b</guid>
+      <link><![CDATA[https://cointelegraph.com/news/tethers-excess-reserves-nearly-double-to-8b-as-q3-profit-hits-15b?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M671D68XPHRMK1R429A6YV2Q/analytics3-tether.jpg" alt="Tether’s excess reserves nearly double to $8B as Q3 profit hits $1.5B " class="type:primaryImage"></p><p>The stablecoin issuer’s US Treasury holdings are comparable to those of major foreign holders, while its Bitcoin reserves were valued at $8.37 billion at the end of September.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M671D68XPHRMK1R429A6YV2Q/analytics3-tether.jpg" fileSize="345414" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M671D68XPHRMK1R429A6YV2Q/analytics3-tether.jpg" length="345414" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Coinbase leads crypto stock selloff following $6.3B Binance hack</title>
+      <pubDate>Fri, 30 Oct 2026 17:48:27 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 18:32:20 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/coinbase-leads-crypto-stock-selloff-shares-tumble</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/coinbase-leads-crypto-stock-selloff-shares-tumble?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66WKPS8FDGYTHCJZHC1FP3Y/hi-why-bitcoin-treasury-stocks-fall-faster-than-the-assets-they-hold.png" alt="Coinbase leads crypto stock selloff following $6.3B Binance hack" class="type:primaryImage"></p><p>Circle, Strategy and other crypto-linked stocks fell sharply Friday, a day after Binance disclosed a $6.3 billion security breach.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66WKPS8FDGYTHCJZHC1FP3Y/hi-why-bitcoin-treasury-stocks-fall-faster-than-the-assets-they-hold.png" fileSize="1711296" type="image/png" medium="image" height="768" width="1376">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66WKPS8FDGYTHCJZHC1FP3Y/hi-why-bitcoin-treasury-stocks-fall-faster-than-the-assets-they-hold.png" length="1711296" type="image/png"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Crypto Biz: Bitcoin’s quantum threat is becoming an economic problem </title>
+      <pubDate>Fri, 30 Oct 2026 17:09:31 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 17:45:16 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/bitcoin-quantum-threat-ripple-bank-usdc-vaneck-crypto-biz</guid>
+      <link><![CDATA[https://cointelegraph.com/news/bitcoin-quantum-threat-ripple-bank-usdc-vaneck-crypto-biz?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66WK9FWJATF4KMADN8DRH10/hi-will-googles-quantum-supremacy-break-bitcoin-in-2022.jpg" alt="Crypto Biz: Bitcoin’s quantum threat is becoming an economic problem " class="type:primaryImage"></p><p>Bitcoin faces mounting quantum security concerns as Ripple secures a US banking charter, USDC gains ground in Europe and VanEck adds BTC to a new ETF.</p>]]></description>
+      <dc:creator>Cointelegraph by Sam Bourgi</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66WK9FWJATF4KMADN8DRH10/hi-will-googles-quantum-supremacy-break-bitcoin-in-2022.jpg" fileSize="619239" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66WK9FWJATF4KMADN8DRH10/hi-will-googles-quantum-supremacy-break-bitcoin-in-2022.jpg" length="619239" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Recap: How Binance’s record $6.3B hack unfolded</title>
+      <pubDate>Fri, 30 Oct 2026 16:53:46 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 20:55:48 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/recap-binances-record-63b-hack-unfolded</guid>
+      <link><![CDATA[https://cointelegraph.com/news/recap-binances-record-63b-hack-unfolded?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66TN01T6CSZ7TMBS3C4EWKE/digitally-locked-binance.png" alt="Recap: How Binance’s record $6.3B hack unfolded" class="type:primaryImage"></p><p>A recap of Cointelegraph’s live coverage of the Binance hack, including early breach reports and the exchange’s full reimbursement pledge.</p>]]></description>
+      <dc:creator>Cointelegraph by Yohan Yun</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66TN01T6CSZ7TMBS3C4EWKE/digitally-locked-binance.png" fileSize="1715393" type="image/png" medium="image" height="848" width="1264">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66TN01T6CSZ7TMBS3C4EWKE/digitally-locked-binance.png" length="1715393" type="image/png"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>As it happened: Binance’s record $6.3B crypto hack</title>
+      <pubDate>Fri, 30 Oct 2026 16:49:50 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 20:44:40 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/live-updates-binance-63b-hack-linked-to-north-koreas-tradertraitor</guid>
+      <link><![CDATA[https://cointelegraph.com/news/live-updates-binance-63b-hack-linked-to-north-koreas-tradertraitor?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65VKEHPWZPADDH0AZM1CR3Q/trying-to-open-monitor-1.jpg" alt="As it happened: Binance’s record $6.3B crypto hack" class="type:primaryImage"></p><p>How Binance’s $6.3 billion hack unfolded, from the first onchain alerts to $3 billion in frozen funds and a widening security investigation.</p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65VKEHPWZPADDH0AZM1CR3Q/trying-to-open-monitor-1.jpg" fileSize="504911" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65VKEHPWZPADDH0AZM1CR3Q/trying-to-open-monitor-1.jpg" length="504911" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitcoin risks worst October in 12 years as tech sell-off spreads to gold</title>
+      <pubDate>Fri, 30 Oct 2026 16:06:28 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 17:50:28 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-risks-worst-october-in-12-years-as-tech-sell-off-spreads-to-gold</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-risks-worst-october-in-12-years-as-tech-sell-off-spreads-to-gold?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66RSMA8MM7W9WSFC6PFHK6S/hi-bull-market-vs-bear-market-whats-the-difference.jpg" alt="Bitcoin risks worst October in 12 years as tech sell-off spreads to gold" class="type:primaryImage"></p><p>Bitcoin circled $77,000 as crypto markets navigated US stock-market downside, while the gold price fell to its lowest in a year.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66RSMA8MM7W9WSFC6PFHK6S/hi-bull-market-vs-bear-market-whats-the-difference.jpg" fileSize="404595" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66RSMA8MM7W9WSFC6PFHK6S/hi-bull-market-vs-bear-market-whats-the-difference.jpg" length="404595" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Here’s what happened in crypto today</title>
+      <pubDate>Fri, 30 Oct 2026 14:07:42 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 21:46:54 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/what-happened-in-crypto-today</guid>
+      <link><![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" alt="Here’s what happened in crypto today" class="type:primaryImage"></p><p>Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, Web3 and crypto regulation.</p>]]></description>
+      <dc:creator>Cointelegraph by Yohan Yun</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" fileSize="848525" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/article-covers-110589-what-happened-in-crypto-today.jpg" length="848525" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Will gold’s ‘infinite mint bug’ make Bitcoin more valuable?</title>
+      <pubDate>Fri, 30 Oct 2026 13:30:00 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 00:05:22 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/magazine/will-golds-infinite-mint-bug-make-bitcoin-more-valuable</guid>
+      <link><![CDATA[https://cointelegraph.com/magazine/will-golds-infinite-mint-bug-make-bitcoin-more-valuable?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M63WZ15V7ZF12NWAD2K229V7/hi-magazine-unexpected-crypto-millionaires.png" alt="Will gold’s ‘infinite mint bug’ make Bitcoin more valuable?" class="type:primaryImage"></p><p>A US fusion startup says it has turned mercury into gold. Could a potential increase in the gold supply strengthen Bitcoin’s claim to be a better form of digital gold?</p>]]></description>
+      <dc:creator>Cointelegraph by Christina Comben</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M63WZ15V7ZF12NWAD2K229V7/hi-magazine-unexpected-crypto-millionaires.png" fileSize="1724084" type="image/png" medium="image" height="768" width="1376">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M63WZ15V7ZF12NWAD2K229V7/hi-magazine-unexpected-crypto-millionaires.png" length="1724084" type="image/png"/>
+      <category>Magazine</category>
+    </item>
+    <item>
+      <title>FBI and Secret Service join response to Binance’s $6.3B hack</title>
+      <pubDate>Fri, 30 Oct 2026 13:11:10 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 21:07:56 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-fbi-recover-assets-hack</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-fbi-recover-assets-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66DY7634YFAY00EZKKKTQV0/hi-crypto-crime-investigation-regulation-police-cybercrime-criminal-detective-token.jpg" alt="FBI and Secret Service join response to Binance’s $6.3B hack" class="type:primaryImage"></p><p>US agencies are investigating the theft and helping trace stolen assets, while Binance says about $3 billion has been frozen.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66DY7634YFAY00EZKKKTQV0/hi-crypto-crime-investigation-regulation-police-cybercrime-criminal-detective-token.jpg" fileSize="518227" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66DY7634YFAY00EZKKKTQV0/hi-crypto-crime-investigation-regulation-police-cybercrime-criminal-detective-token.jpg" length="518227" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Binance says it holds $5B in matching tokens to cover hack losses</title>
+      <pubDate>Fri, 30 Oct 2026 12:41:43 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 13:33:27 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-5-billion-replacement-crypto-in-custody</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-5-billion-replacement-crypto-in-custody?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66BRB3N5FEXF6ZJA32PXWYM/hi-binance-is-now-accumulating-btc-at-an-even-faster-rate.jpg" alt="Binance says it holds $5B in matching tokens to cover hack losses" class="type:primaryImage"></p><p>The exchange said it set aside more than $6.34 billion to cover losses and would include the assets in its next proof-of-reserves report.</p>]]></description>
+      <dc:creator>Cointelegraph by Helen Partz</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66BRB3N5FEXF6ZJA32PXWYM/hi-binance-is-now-accumulating-btc-at-an-even-faster-rate.jpg" fileSize="810954" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M66BRB3N5FEXF6ZJA32PXWYM/hi-binance-is-now-accumulating-btc-at-an-even-faster-rate.jpg" length="810954" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Zcash grants group offers $124M compromise as governance backlash grows</title>
+      <pubDate>Fri, 30 Oct 2026 11:36:23 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 11:40:17 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/zcash-grants-46m-proposal-governance-backlash</guid>
+      <link><![CDATA[https://cointelegraph.com/news/zcash-grants-46m-proposal-governance-backlash?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M668WKWWM9YJGJA1PV483QEA/zcash-proposal-grant-allocation.jpg" alt="Zcash grants group offers $124M compromise as governance backlash grows" class="type:primaryImage"></p><p>Zcash Community Grants proposed redirecting about $124 million in existing and future funding toward mining rewards, but critics say the plan fails to address governance and accountability concerns.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M668WKWWM9YJGJA1PV483QEA/zcash-proposal-grant-allocation.jpg" fileSize="328038" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M668WKWWM9YJGJA1PV483QEA/zcash-proposal-grant-allocation.jpg" length="328038" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Bitcoin price metrics hint at rebound as $1.6B liquidations follow Binance hack</title>
+      <pubDate>Fri, 30 Oct 2026 11:29:23 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 11:32:24 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/bitcoin-price-metrics-hint-at-rebound-as-16b-liquidations-follow-binance-hack</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/bitcoin-price-metrics-hint-at-rebound-as-16b-liquidations-follow-binance-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3ANFG8K9N6H2586MPQRV7KT/hi-got-crypto-losses-wallet-1.jpg" alt="Bitcoin price metrics hint at rebound as $1.6B liquidations follow Binance hack" class="type:primaryImage"></p><p>Bitcoin held above $76,000 after a $6.3 billion Binance hack and a tech-stock sell-off, as momentum indicators pointed to a possible rebound.</p>]]></description>
+      <dc:creator>Cointelegraph by William Suberg</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3ANFG8K9N6H2586MPQRV7KT/hi-got-crypto-losses-wallet-1.jpg" fileSize="816534" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3ANFG8K9N6H2586MPQRV7KT/hi-got-crypto-losses-wallet-1.jpg" length="816534" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>EIP-7702 didn’t cause Binance hack, but may have amplified losses</title>
+      <pubDate>Fri, 30 Oct 2026 11:00:10 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 16:37:19 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-hack-security-ethereum-eip-7702-role</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-hack-security-ethereum-eip-7702-role?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6602N70GW2FG23Y7A1E55CV/hi-binance-hack.jpg" alt="EIP-7702 didn’t cause Binance hack, but may have amplified losses" class="type:primaryImage"></p><p>Security experts said attackers could have drained Binance’s wallets without EIP-7702, but the Ethereum upgrade may have helped bypass withdrawal safeguards.</p>]]></description>
+      <dc:creator>Cointelegraph by Helen Partz</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6602N70GW2FG23Y7A1E55CV/hi-binance-hack.jpg" fileSize="291861" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6602N70GW2FG23Y7A1E55CV/hi-binance-hack.jpg" length="291861" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Binance hacker’s Bitcoin haul tops Coinbase’s corporate treasury</title>
+      <pubDate>Fri, 30 Oct 2026 10:54:30 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 14:11:25 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-hacker-bitcoin-holdings-exceed-coinbase-btc-treasury</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-hacker-bitcoin-holdings-exceed-coinbase-btc-treasury?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M663XBRMVF35RHDZ0MC72744/hacker-binance-bitcoin-treasury.jpg" alt="Binance hacker’s Bitcoin haul tops Coinbase’s corporate treasury" class="type:primaryImage"></p><p>The attackers held 18,270 BTC early Friday, topping Coinbase’s reported corporate holdings, and an Ether stash exceeding 500,000 ETH.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M663XBRMVF35RHDZ0MC72744/hacker-binance-bitcoin-treasury.jpg" fileSize="257753" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M663XBRMVF35RHDZ0MC72744/hacker-binance-bitcoin-treasury.jpg" length="257753" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>THORChain’s RUNE jumps 13% after Binance’s record $6.3B hack</title>
+      <pubDate>Fri, 30 Oct 2026 09:52:29 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 14:25:04 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/rune-token-surges-binance-hack</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/rune-token-surges-binance-hack?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1P1ZHH851JBMYW8FC0YFCV0/hi-top-crypto-hacks-and-scams-to-beware-of-in-october-2024.jpg" alt="THORChain’s RUNE jumps 13% after Binance’s record $6.3B hack" class="type:primaryImage"></p><p>North Korean hackers previously used THORChain to move funds stolen from Bybit and Bitget, prompting calls for the protocol to intervene.</p>]]></description>
+      <dc:creator>Cointelegraph by Zoltan Vardai</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1P1ZHH851JBMYW8FC0YFCV0/hi-top-crypto-hacks-and-scams-to-beware-of-in-october-2024.jpg" fileSize="246375" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M1P1ZHH851JBMYW8FC0YFCV0/hi-top-crypto-hacks-and-scams-to-beware-of-in-october-2024.jpg" length="246375" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Trezor warns CryptoBilis buyers to move funds over suspected implant</title>
+      <pubDate>Fri, 30 Oct 2026 09:26:45 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 14:51:06 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/trezor-cryptobilis-wallet-implant-funds-warning</guid>
+      <link><![CDATA[https://cointelegraph.com/news/trezor-cryptobilis-wallet-implant-funds-warning?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65XV5M4X2K1YMKC92QM6YWV/trezor-cryptobilis.jpg" alt="Trezor warns CryptoBilis buyers to move funds over suspected implant" class="type:primaryImage"></p><p>Trezor urged customers who bought devices from CryptoBilis since March to move their funds after a report of a suspected hardware implant.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65XV5M4X2K1YMKC92QM6YWV/trezor-cryptobilis.jpg" fileSize="415951" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65XV5M4X2K1YMKC92QM6YWV/trezor-cryptobilis.jpg" length="415951" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Strategy eyes more Bitcoin buys as Saylor touts $30B credit capacity</title>
+      <pubDate>Fri, 30 Oct 2026 05:53:07 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 08:22:55 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/strategy-30-billion-digital-credit-capacity-bitcoin-buys</guid>
+      <link><![CDATA[https://cointelegraph.com/news/strategy-30-billion-digital-credit-capacity-bitcoin-buys?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65N18RTP4EB58E1CCHH5C3R/earnings-calls-strategy-saylor-phong-le.jpg" alt="Strategy eyes more Bitcoin buys as Saylor touts $30B credit capacity" class="type:primaryImage"></p><p>Michael Saylor says Strategy could create up to $30 billion in digital credit without new common-stock fundraising or further Bitcoin price gains, as the company plans more BTC purchases.</p>]]></description>
+      <dc:creator>Cointelegraph by Ezra Reguerra</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65N18RTP4EB58E1CCHH5C3R/earnings-calls-strategy-saylor-phong-le.jpg" fileSize="284631" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65N18RTP4EB58E1CCHH5C3R/earnings-calls-strategy-saylor-phong-le.jpg" length="284631" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>North Korea’s TraderTraitor linked to $6.3B Binance hack</title>
+      <pubDate>Fri, 30 Oct 2026 05:51:41 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 16:39:03 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/north-korea-linked-to-63b-binance-hack-by-crypto-investigators</guid>
+      <link><![CDATA[https://cointelegraph.com/news/north-korea-linked-to-63b-binance-hack-by-crypto-investigators?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65N1W42V728M2XGSHNH0A01/hi-north-korea-own-crypto.jpg" alt="North Korea’s TraderTraitor linked to $6.3B Binance hack" class="type:primaryImage"></p><p>TRM Labs said it has high confidence in the attribution, while ZachXBT identified stolen funds from the Binance and Bitget hacks converging at the same address.</p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65N1W42V728M2XGSHNH0A01/hi-north-korea-own-crypto.jpg" fileSize="433844" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65N1W42V728M2XGSHNH0A01/hi-north-korea-own-crypto.jpg" length="433844" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Binance hack could accelerate shift to DEXs: Standard Chartered</title>
+      <pubDate>Fri, 30 Oct 2026 03:47:01 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 14:58:59 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-hack-could-accelerate-shift-to-dexs-standard-chartered</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-hack-could-accelerate-shift-to-dexs-standard-chartered?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65CZZGFZ3KNMMA8P6JN3YH4/uniswap.jpg" alt="Binance hack could accelerate shift to DEXs: Standard Chartered" class="type:primaryImage"></p><p>Standard Chartered’s Geoffrey Kendrick said the breach could accelerate a shift toward decentralized trading and strengthen his case for Uniswap’s UNI token reaching $100 by 2030.</p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65CZZGFZ3KNMMA8P6JN3YH4/uniswap.jpg" fileSize="288602" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M65CZZGFZ3KNMMA8P6JN3YH4/uniswap.jpg" length="288602" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Binance points to engineer’s hacked laptop in $6.3B breach </title>
+      <pubDate>Fri, 30 Oct 2026 00:11:26 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 16:38:06 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-hack-may-involve-private-key-misuse-not-theft-blockaid-ceo</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-hack-may-involve-private-key-misuse-not-theft-blockaid-ceo?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6527RDQRJD95JK0XDRPNDD2/key.jpg" alt="Binance points to engineer’s hacked laptop in $6.3B breach " class="type:primaryImage"></p><p>Binance said attackers may have used a compromised DevOps laptop to access internal infrastructure.</p>]]></description>
+      <dc:creator>Cointelegraph by Felix Ng</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6527RDQRJD95JK0XDRPNDD2/key.jpg" fileSize="552816" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6527RDQRJD95JK0XDRPNDD2/key.jpg" length="552816" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Binance hack rattles markets as BNB falls 8%, Bitcoin nears $77K</title>
+      <pubDate>Thu, 29 Oct 2026 23:24:21 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 10:47:23 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/binance-hack-rattles-crypto-markets-bnb-bitcoin-slide</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/binance-hack-rattles-crypto-markets-bnb-bitcoin-slide?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64Y4PTFHTAMEWNV8MMJQWCT/hi-crypto-trading-basics-a-beginners-guide-to-cryptocurrency-order-types1.jpeg" alt="Binance hack rattles markets as BNB falls 8%, Bitcoin nears $77K" class="type:primaryImage"></p><p>Bitcoin, Ether and the broader crypto market took a dive as Binance suffered a multibillion-dollar hack.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64Y4PTFHTAMEWNV8MMJQWCT/hi-crypto-trading-basics-a-beginners-guide-to-cryptocurrency-order-types1.jpeg" fileSize="994693" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64Y4PTFHTAMEWNV8MMJQWCT/hi-crypto-trading-basics-a-beginners-guide-to-cryptocurrency-order-types1.jpeg" length="994693" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>Tampered Ledger reported in Singapore a month before news broke: Asia Express</title>
+      <pubDate>Thu, 29 Oct 2026 22:31:07 +0000</pubDate>
+      <atom:updated>Thu, 29 Oct 2026 22:40:18 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/magazine/tampered-ledger-reported-in-singapore-a-month-before-news-broke-asia-express</guid>
+      <link><![CDATA[https://cointelegraph.com/magazine/tampered-ledger-reported-in-singapore-a-month-before-news-broke-asia-express?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64RA36J2CBE1BC6ZENWQDFJ/asia-express-13.jpg" alt="Tampered Ledger reported in Singapore a month before news broke: Asia Express" class="type:primaryImage"></p><p>Singapore police say tampered Ledgers started showing up there on September 10. South Korean lawmakers look set to delay the crypto tax law for a fourth time.</p>]]></description>
+      <dc:creator>Cointelegraph by Andrew Fenton</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64RA36J2CBE1BC6ZENWQDFJ/asia-express-13.jpg" fileSize="799803" type="image/jpeg" medium="image" height="1446" width="2570">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64RA36J2CBE1BC6ZENWQDFJ/asia-express-13.jpg" length="799803" type="image/jpeg"/>
+      <category>Magazine</category>
+    </item>
+    <item>
+      <title>Binance hit by $6.3B hack, the largest in cryptocurrency history</title>
+      <pubDate>Thu, 29 Oct 2026 21:24:36 +0000</pubDate>
+      <atom:updated>Fri, 30 Oct 2026 12:09:44 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/binance-linked-wallet-faces-possible-exploit-blockchain-researcher-warns</guid>
+      <link><![CDATA[https://cointelegraph.com/news/binance-linked-wallet-faces-possible-exploit-blockchain-researcher-warns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3PS8B3233YZFS40258RE4KQ/hi-top-hacks-so-far-5.jpg" alt="Binance hit by $6.3B hack, the largest in cryptocurrency history" class="type:primaryImage"></p><p>Binance pledged to cover all losses after a $6.3 billion hack, with about $3 billion in assets frozen by the exchange and its partners.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3PS8B3233YZFS40258RE4KQ/hi-top-hacks-so-far-5.jpg" fileSize="592568" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/09/01M3PS8B3233YZFS40258RE4KQ/hi-top-hacks-so-far-5.jpg" length="592568" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Public companies double share of blockchain revenue since 2022: Report </title>
+      <pubDate>Thu, 29 Oct 2026 19:53:14 +0000</pubDate>
+      <atom:updated>Thu, 29 Oct 2026 19:57:29 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/public-companies-double-share-of-blockchain-revenue-since-2022-report</guid>
+      <link><![CDATA[https://cointelegraph.com/news/public-companies-double-share-of-blockchain-revenue-since-2022-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64KJ64YRMXTP1BG2ZXATA10/wallet-crypto-savings-digital-assets.jpg" alt="Public companies double share of blockchain revenue since 2022: Report " class="type:primaryImage"></p><p>A new 1kx report finds that public companies are capturing a larger share of blockchain revenue, driven by institutional adoption and real-world applications.</p>]]></description>
+      <dc:creator>Cointelegraph by Nate Kostar</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64KJ64YRMXTP1BG2ZXATA10/wallet-crypto-savings-digital-assets.jpg" fileSize="478145" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64KJ64YRMXTP1BG2ZXATA10/wallet-crypto-savings-digital-assets.jpg" length="478145" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>Polymarket suspended trading amid reports of user funds being drained</title>
+      <pubDate>Thu, 29 Oct 2026 19:23:03 +0000</pubDate>
+      <atom:updated>Thu, 29 Oct 2026 21:26:21 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/polymarket-suspends-trading-user-funds-compromised</guid>
+      <link><![CDATA[https://cointelegraph.com/news/polymarket-suspends-trading-user-funds-compromised?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64FW4X54T1VWYMX6B1PR4H5/hi-you-are-once-again-banning-crypto-content-polymarket-1.jpg" alt="Polymarket suspended trading amid reports of user funds being drained" class="type:primaryImage"></p><p>The prediction markets platform halted trading on Thursday after it reported one of its third party providers had been compromised.</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64FW4X54T1VWYMX6B1PR4H5/hi-you-are-once-again-banning-crypto-content-polymarket-1.jpg" fileSize="421438" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64FW4X54T1VWYMX6B1PR4H5/hi-you-are-once-again-banning-crypto-content-polymarket-1.jpg" length="421438" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+    <item>
+      <title>HYPE teases all-time high as NYSE owner ICE eyes US Hyperliquid perps </title>
+      <pubDate>Thu, 29 Oct 2026 17:12:03 +0000</pubDate>
+      <atom:updated>Thu, 29 Oct 2026 17:26:37 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/markets/hype-price-all-time-high-ice-us-hyperliquid-perps</guid>
+      <link><![CDATA[https://cointelegraph.com/markets/hype-price-all-time-high-ice-us-hyperliquid-perps?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64A2KNXVBJKMFSK75GFQ3JG/hyperliquid-futures-2.jpg" alt="HYPE teases all-time high as NYSE owner ICE eyes US Hyperliquid perps " class="type:primaryImage"></p><p>Hyperliquid’s token pumped following news of ICE and Trade[XYZ] unveiling plans for US perpetual futures.</p>]]></description>
+      <dc:creator>Cointelegraph by Bryan O'Shea</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64A2KNXVBJKMFSK75GFQ3JG/hyperliquid-futures-2.jpg" fileSize="467036" type="image/jpeg" medium="image" height="960" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M64A2KNXVBJKMFSK75GFQ3JG/hyperliquid-futures-2.jpg" length="467036" type="image/jpeg"/>
+      <category>Markets</category>
+    </item>
+    <item>
+      <title>KuCoin suspends services in Russia and Belarus</title>
+      <pubDate>Thu, 29 Oct 2026 17:08:41 +0000</pubDate>
+      <atom:updated>Thu, 29 Oct 2026 17:11:42 +0000</atom:updated>
+      <guid isPermaLink="true">https://cointelegraph.com/news/kucoin-services-russia-belarus-suspended</guid>
+      <link><![CDATA[https://cointelegraph.com/news/kucoin-services-russia-belarus-suspended?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]></link>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6474T6TR1T4C3BDRR2HK11E/hi-crypto-offers-russia-no-way-out-from-western-sanctions-stablecoin.jpg" alt="KuCoin suspends services in Russia and Belarus" class="type:primaryImage"></p><p>The exchange cited legal and regulatory compliance in its reason for cutting off services to users based in the two countries, currently the targets of international sanctions.</p>]]></description>
+      <dc:creator>Cointelegraph by Turner Wright</dc:creator>
+      <media:content url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6474T6TR1T4C3BDRR2HK11E/hi-crypto-offers-russia-no-way-out-from-western-sanctions-stablecoin.jpg" fileSize="752148" type="image/jpeg" medium="image" height="966" width="1450">
+        <credit>Cointelegraph</credit>
+        <media:credit role="publishing company">Cointelegraph</media:credit>
+      </media:content>
+      <enclosure url="https://s3-images.ctmedia.io/media/article-covers/2026/10/01M6474T6TR1T4C3BDRR2HK11E/hi-crypto-offers-russia-no-way-out-from-western-sanctions-stablecoin.jpg" length="752148" type="image/jpeg"/>
+      <category>Latest News</category>
+    </item>
+  </channel>
+</rss>

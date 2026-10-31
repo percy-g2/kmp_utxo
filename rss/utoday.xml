@@ -1,0 +1,677 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xml:base="https://u.today/rss_feed">
+    <channel>
+        <title>U.Today - IT, AI and Fintech Daily News for You Today</title>
+        <link>
+        https://u.today</link>
+        <description>All Crypto News for Today</description>
+        <generator>U.today RSS Main</generator>
+        <lastBuildDate>Sat, 31 Oct 2026 11:57:12 +0000</lastBuildDate>
+        <language>en-US</language>
+
+        <image>
+            <title>U.Today CryptoNews</title>
+            <link>
+            https://u.today</link>
+            <url>https://u.today/themes/cryptod/i/og-image.png</url>
+            <description>All Crypto News for Today</description>
+        </image>
+
+
+        
+
+                
+        <item>
+  <title>'XRP at 100'? Ripple CTO Emeritus Reveals Surprising Story Behind Iconic T-Shirt</title>
+  <link>https://u.today/xrp-at-100-ripple-cto-emeritus-reveals-surprising-story-behind-iconic-t-shirt</link>
+  <description>Ripple CTO Emeritus David Schwartz explains how XRP T-shirt accidentally became a $1 price story.</description>
+  <pubDate>Sat, 31 Oct 2026 10:15:11 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-at-100-ripple-cto-emeritus-reveals-surprising-story-behind-iconic-t-shirt</guid>
+    </item><item>
+  <title>XRP Reserves on Binance Hit Lowest Level Since 2022</title>
+  <link>https://u.today/xrp-reserves-on-binance-hit-lowest-level-since-2022</link>
+  <description>XRP supply across all major exchanges continues to shrink as Binance records its lowest level since 2022, suggesting that demand is still intact despite price volatility.</description>
+  <pubDate>Sat, 31 Oct 2026 09:29:36 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-reserves-on-binance-hit-lowest-level-since-2022</guid>
+    </item><item>
+  <title>Why November's +80% History Is a Statistical Flaw for XRP Holders</title>
+  <link>https://u.today/why-novembers-80-history-is-a-statistical-flaw-for-xrp-holders</link>
+  <description>A statistical flaw in XRP price's historical data warns of major price turbulence this November.</description>
+  <pubDate>Sat, 31 Oct 2026 04:00:00 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/why-novembers-80-history-is-a-statistical-flaw-for-xrp-holders</guid>
+    </item><item>
+  <title>3 Shiba Inu (SHIB) Indicators Paint Worrying Picture: Where Can Its Price Drop?</title>
+  <link>https://u.today/3-shiba-inu-shib-indicators-paint-worrying-picture-where-can-its-price-drop</link>
+  <description>Shiba Inu's SHIB faces mounting downside risk as three bearish indicators align.</description>
+  <pubDate>Sat, 31 Oct 2026 03:00:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/3-shiba-inu-shib-indicators-paint-worrying-picture-where-can-its-price-drop</guid>
+    </item><item>
+  <title>Binance Coin (BNB), XRP, Bitcoin (BTC) and Ethereum (ETH) Price Analysis for October 31: Biggest Volatility Increase on Market in October</title>
+  <link>https://u.today/price-analysis/binance-coin-bnb-xrp-bitcoin-btc-and-ethereum-eth-price-analysis-for-october-31-biggest-volatility</link>
+  <description>Bitcoin, Ethereum, XRP and BNB all took a beating on October 30, and each of them is now sitting on support.</description>
+  <pubDate>Sat, 31 Oct 2026 00:01:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/price-analysis/binance-coin-bnb-xrp-bitcoin-btc-and-ethereum-eth-price-analysis-for-october-31-biggest-volatility</guid>
+    </item><item>
+  <title>Ledger CTO Sounds Alarm Over New Cryptographic Threats to Bitcoin</title>
+  <link>https://u.today/ledger-cto-sounds-alarm-over-new-cryptographic-threats-to-bitcoin</link>
+  <description>Ledger CTO Charles Guillemet has warned that two new cryptographic breakthroughs could pose a long-term threat to Bitcoin (BTC).</description>
+  <pubDate>Fri, 30 Oct 2026 21:00:17 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/ledger-cto-sounds-alarm-over-new-cryptographic-threats-to-bitcoin</guid>
+    </item><item>
+  <title>Solana (SOL) Moves In on Hong Kong Banks to Scale Its $14 Billion Stablecoin Market</title>
+  <link>https://u.today/solana-sol-moves-in-on-hong-kong-banks-to-scale-its-14-billion-stablecoin-market</link>
+  <description>While China bans crypto, Solana secures a regulated Hong Kong dollar gateway via a licensed Standard Chartered venture.</description>
+  <pubDate>Fri, 30 Oct 2026 17:01:05 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/solana-sol-moves-in-on-hong-kong-banks-to-scale-its-14-billion-stablecoin-market</guid>
+    </item><item>
+  <title>Not Just Ledger: Karpeles Warns of Tampered Trezor Devices</title>
+  <link>https://u.today/not-just-ledger-karpeles-warns-of-tampered-trezor-devices</link>
+  <description>Former Mt. Gox CEO Mark Karpeles has warned that Trezor hardware wallets may have been compromised by sophisticated implants, suggesting that the recent Ledger supply chain attack was not an isolated incident.</description>
+  <pubDate>Fri, 30 Oct 2026 16:51:09 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/not-just-ledger-karpeles-warns-of-tampered-trezor-devices</guid>
+    </item><item>
+  <title>Dogecoin Death Cross Completed: Is This the Right Timing?</title>
+  <link>https://u.today/dogecoin-death-cross-completed-is-this-the-right-timing</link>
+  <description>Dogecoin completes first daily death cross in 2026, with the market now paying attention.</description>
+  <pubDate>Fri, 30 Oct 2026 14:55:15 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/dogecoin-death-cross-completed-is-this-the-right-timing</guid>
+    </item><item>
+  <title>XRP Ledger Ranks Third in Stablecoin Expansion, But Who Is First?</title>
+  <link>https://u.today/xrp-ledger-ranks-third-in-stablecoin-expansion-but-who-is-first</link>
+  <description>While XRPL positions for expansion with $58.3M in stablecoin growth, an automated AI payment network claims a dominant first-place victory.</description>
+  <pubDate>Fri, 30 Oct 2026 14:44:55 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-ledger-ranks-third-in-stablecoin-expansion-but-who-is-first</guid>
+    </item><item>
+  <title>Stellar (XLM) Absorbs 92% of RWA Fund Inflows in Sudden Market Consolidation</title>
+  <link>https://u.today/stellar-xlm-absorbs-92-of-rwa-fund-inflows-in-sudden-market-consolidation</link>
+  <description>Stellar dominates the RWA market as institutional investors pump $111.5 million into the network, capturing 92% of daily tokenization growth.</description>
+  <pubDate>Fri, 30 Oct 2026 14:16:15 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/stellar-xlm-absorbs-92-of-rwa-fund-inflows-in-sudden-market-consolidation</guid>
+    </item><item>
+  <title>Ripple Moves $389 Million of XRP Amid Aid for Binance Hack</title>
+  <link>https://u.today/ripple-moves-389-million-of-xrp-amid-aid-for-binance-hack</link>
+  <description>Over $389 million worth of XRP has been moved by Ripple amid the ongoing market volatility, sparking concerns about what the blockchain firm could be up to.</description>
+  <pubDate>Fri, 30 Oct 2026 13:38:23 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/ripple-moves-389-million-of-xrp-amid-aid-for-binance-hack</guid>
+    </item><item>
+  <title>Ripple's Sudden 310-Million XRP Transfers Ignite Mystery in Crypto Circles</title>
+  <link>https://u.today/ripples-sudden-310-million-xrp-transfers-ignite-mystery-in-crypto-circles</link>
+  <description>The timing of the transactions totalling 310 million XRP remains significant.</description>
+  <pubDate>Fri, 30 Oct 2026 13:10:08 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/ripples-sudden-310-million-xrp-transfers-ignite-mystery-in-crypto-circles</guid>
+    </item><item>
+  <title>Near Protocol (NEAR) Adds 270% in Futures Funding: Can It Affect Price?</title>
+  <link>https://u.today/near-protocol-near-adds-270-in-futures-funding-can-it-affect-price</link>
+  <description>Near Protocol's NEAR is attracting heavy derivatives activity even as its price corrects.</description>
+  <pubDate>Fri, 30 Oct 2026 13:00:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/near-protocol-near-adds-270-in-futures-funding-can-it-affect-price</guid>
+    </item><item>
+  <title>Elon Musk Trolls Binance Over $6.3 Billion Heist, Gets Hit With $1 Billion SpaceX Reminder</title>
+  <link>https://u.today/elon-musk-trolls-binance-over-63-billion-heist-gets-hit-with-1-billion-spacex-reminder</link>
+  <description>Elon Musk tried to troll Binance over its $6.3 billion heist but got hit with a surprise $1 billion SpaceX reminder from the crypto exchange founder. </description>
+  <pubDate>Fri, 30 Oct 2026 11:30:25 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/elon-musk-trolls-binance-over-63-billion-heist-gets-hit-with-1-billion-spacex-reminder</guid>
+    </item><item>
+  <title>0.05% of SHIB Supply Faces Uncertain Fate: Shiba Inu Veteran Issues Warning to Community</title>
+  <link>https://u.today/005-of-shib-supply-faces-uncertain-fate-shiba-inu-veteran-issues-warning-to-community</link>
+  <description>499.9 billion SHIB, 0.05% of Shiba Inu supply in focus after exploiter-tagged wallet transfer.</description>
+  <pubDate>Fri, 30 Oct 2026 10:45:49 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/005-of-shib-supply-faces-uncertain-fate-shiba-inu-veteran-issues-warning-to-community</guid>
+    </item><item>
+  <title>Bitwise Buys XRP After Five Days of Silence</title>
+  <link>https://u.today/bitwise-buys-xrp-after-five-days-of-silence</link>
+  <description> Bitwise tops up its Bitcoin holdings with another purchase after multiple days of zero trading activity, suggesting that institutional demand is returning to the XRP ETF market.</description>
+  <pubDate>Fri, 30 Oct 2026 10:40:59 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/bitwise-buys-xrp-after-five-days-of-silence</guid>
+    </item><item>
+  <title>Hyperliquid (HYPE) Adds 680% in Volume: Analyzing Record-Breaking Surge</title>
+  <link>https://u.today/hyperliquid-hype-adds-680-in-volume-analyzing-record-breaking-surge</link>
+  <description>Hyperliquid's HYPE has rallied above $91 on a 680% volume spike, but derivatives risks linger.</description>
+  <pubDate>Fri, 30 Oct 2026 10:25:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/hyperliquid-hype-adds-680-in-volume-analyzing-record-breaking-surge</guid>
+    </item><item>
+  <title>Former Ripple CTO Mocks $6 Billion Binance Hack With Stellar (XLM) Joke</title>
+  <link>https://u.today/former-ripple-cto-mocks-6-billion-binance-hack-with-stellar-xlm-joke</link>
+  <description>Former Ripple CTO drops a savage Stellar joke amid a $6 billion Binance breach, while hackers walk away with over 233 million XRP. </description>
+  <pubDate>Fri, 30 Oct 2026 09:54:05 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/former-ripple-cto-mocks-6-billion-binance-hack-with-stellar-xlm-joke</guid>
+    </item><item>
+  <title>Crypto Developers Using Claude Via VS Code May Have Been Compromised: This Version Has a Backdoor</title>
+  <link>https://u.today/crypto-developers-using-claude-via-vs-code-may-have-been-compromised-this-version-has-a-backdoor</link>
+  <description>A malicious Claude Code extension on Open VSX carried a hidden backdoor, putting developers' machines at risk.</description>
+  <pubDate>Fri, 30 Oct 2026 08:45:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/crypto-developers-using-claude-via-vs-code-may-have-been-compromised-this-version-has-a-backdoor</guid>
+    </item><item>
+  <title>Elon Musk Predicts AI Agents Will Steal Crypto for Themselves</title>
+  <link>https://u.today/elon-musk-predicts-ai-agents-will-steal-crypto-for-themselves</link>
+  <description>Elon Musk has predicted that superintelligent AI agents will eventually start stealing cryptocurrencies for themselves, reacting to the massive $6.3 billion Binance hack.</description>
+  <pubDate>Fri, 30 Oct 2026 07:29:42 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/elon-musk-predicts-ai-agents-will-steal-crypto-for-themselves</guid>
+    </item><item>
+  <title>Binance Reveals When It Will Resume Withdrawals After Historic Hack</title>
+  <link>https://u.today/binance-reveals-when-it-will-resume-withdrawals-after-historic-hack</link>
+  <description>Binance expects to resume withdrawals within the next 48 hours following a massive $6.3 billion hack, which investigators have linked to North Korean hackers.</description>
+  <pubDate>Fri, 30 Oct 2026 05:08:44 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/binance-reveals-when-it-will-resume-withdrawals-after-historic-hack</guid>
+    </item><item>
+  <title>Hyperliquid (HYPE), XRP, Cardano (ADA) and Zcash (ZEC) Price Analysis For October 30: Market Picture Is Distorted</title>
+  <link>https://u.today/price-analysis/hyperliquid-hype-xrp-cardano-ada-and-zcash-zec-price-analysis-for-october-30-market-picture-is</link>
+  <description>HYPE, XRP, ADA and ZEC show mixed technical signals on October 30, with buyers pushing higher in two markets and sellers still in control of the others.</description>
+  <pubDate>Fri, 30 Oct 2026 00:01:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/price-analysis/hyperliquid-hype-xrp-cardano-ada-and-zcash-zec-price-analysis-for-october-30-market-picture-is</guid>
+    </item><item>
+  <title>Massive $5.9 Billion Binance Hack Hits XRP, BTC, ETH and Other Tokens</title>
+  <link>https://u.today/massive-59-billion-binance-hack-hits-xrp-btc-eth-and-other-tokens</link>
+  <description>Cryptocurrency exchange Binance is investigating a potentially record-breaking security breach after blockchain analysts detected nearly $6 billion in suspicious outflows across multiple networks.</description>
+  <pubDate>Thu, 29 Oct 2026 23:28:45 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/massive-59-billion-binance-hack-hits-xrp-btc-eth-and-other-tokens</guid>
+    </item><item>
+  <title>Hackers Target Crypto Users With Fake ChatGPT and Claude Apps</title>
+  <link>https://u.today/hackers-target-crypto-users-with-fake-chatgpt-and-claude-apps</link>
+  <description>Hackers are using fake ChatGPT and Claude desktop apps to secretly install cryptocurrency mining malware, according to cybersecurity researchers at Check Point Research.</description>
+  <pubDate>Thu, 29 Oct 2026 20:17:07 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/hackers-target-crypto-users-with-fake-chatgpt-and-claude-apps</guid>
+    </item><item>
+  <title>Polymarket Hit by Massive Hack</title>
+  <link>https://u.today/polymarket-hit-by-massive-hack</link>
+  <description>Nearly 1,000 Polymarket accounts have reportedly been drained in a massive security breach, with hackers stealing more than $2.6 million.</description>
+  <pubDate>Thu, 29 Oct 2026 19:01:44 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/polymarket-hit-by-massive-hack</guid>
+    </item><item>
+  <title>Hyperliquid (HYPE) Rockets 20% as Druckenmiller Invests and Elon Musk Reacts</title>
+  <link>https://u.today/hyperliquid-hype-rockets-20-as-druckenmiller-invests-and-elon-musk-reacts</link>
+  <description>Hyperliquid (HYPE) market cap hits $24 billion following Stanley Druckenmiller's historic X post and a viral response from Elon Musk.</description>
+  <pubDate>Thu, 29 Oct 2026 17:43:45 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/hyperliquid-hype-rockets-20-as-druckenmiller-invests-and-elon-musk-reacts</guid>
+    </item><item>
+  <title>Gemini Boss Slams Crypto-Hater Lagarde Following Her Resignation Announcement</title>
+  <link>https://u.today/gemini-boss-slams-crypto-hater-lagarde-following-her-resignation-announcement</link>
+  <description>Gemini co-founder Tyler Winklevoss has mocked ECB President Christine Lagarde following her surprise resignation announcement, taking aim at her long history of criticizing Bitcoin and other cryptocurrencies.</description>
+  <pubDate>Thu, 29 Oct 2026 15:49:24 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/gemini-boss-slams-crypto-hater-lagarde-following-her-resignation-announcement</guid>
+    </item><item>
+  <title>A New Way of Trading to Come to XRP Ledger Next Week: What's Known So Far</title>
+  <link>https://u.today/a-new-way-of-trading-to-come-to-xrp-ledger-next-week-whats-known-so-far</link>
+  <description>Bypassing Apple delays, a unique new way of trading is readying a launch on the XRP Ledger next week.</description>
+  <pubDate>Thu, 29 Oct 2026 15:14:30 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/a-new-way-of-trading-to-come-to-xrp-ledger-next-week-whats-known-so-far</guid>
+    </item><item>
+  <title>Solana Hits $5 Billion in RWA Value</title>
+  <link>https://u.today/solana-hits-5-billion-in-rwa-value</link>
+  <description>Solana achieves a new record in its real-world asset ecosystem as tokenization activity on its network continues to grow.</description>
+  <pubDate>Thu, 29 Oct 2026 14:31:10 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/solana-hits-5-billion-in-rwa-value</guid>
+    </item><item>
+  <title>17,833,333 DOGE Longs Liquidated in Market Selloff: What's Ahead?</title>
+  <link>https://u.today/17833333-doge-longs-liquidated-in-market-selloff-whats-ahead</link>
+  <description>$342 million crypto selloff offsets Dogecoin bulls with markets pausing to see what comes next.</description>
+  <pubDate>Thu, 29 Oct 2026 14:00:51 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/17833333-doge-longs-liquidated-in-market-selloff-whats-ahead</guid>
+    </item><item>
+  <title>Ethereum Faces $2,000 Price Warning as Whales Offload $348 Million in ETH</title>
+  <link>https://u.today/ethereum-faces-2000-price-warning-as-whales-offload-348-million-in-eth</link>
+  <description>Ethereum whales offload 160,000 coins, putting ETH at the risk of 14% drop.</description>
+  <pubDate>Thu, 29 Oct 2026 13:10:44 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/ethereum-faces-2000-price-warning-as-whales-offload-348-million-in-eth</guid>
+    </item><item>
+  <title>$342 Million Crypto Bloodbath as Bitcoin and XRP Longs Smashed: Main Crypto News This Morning</title>
+  <link>https://u.today/342-million-crypto-bloodbath-as-bitcoin-and-xrp-longs-smashed-main-crypto-news-this-morning</link>
+  <description>Key crypto news this morning, Oct. 29: Fed pause sparks a $342 million bloodbath for BTC and XRP longs, but HYPE counters the drop by surging 9% on a Druckenmiller backing.</description>
+  <pubDate>Thu, 29 Oct 2026 13:00:00 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/342-million-crypto-bloodbath-as-bitcoin-and-xrp-longs-smashed-main-crypto-news-this-morning</guid>
+    </item><item>
+  <title>Binance's CZ Denies Owning Shiba Inu (SHIB)</title>
+  <link>https://u.today/binances-cz-denies-owning-shiba-inu-shib</link>
+  <description>Binance's CZ dismisses a false story alleging that he owns a Shiba Inu dog named Riki. CZ declared that he has never owned any Shiba Inu.</description>
+  <pubDate>Thu, 29 Oct 2026 12:07:07 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/binances-cz-denies-owning-shiba-inu-shib</guid>
+    </item><item>
+  <title>92 Billion Shiba Inu (SHIB) in 24 Hours: Reasons Behind the Drop Are Clear Now</title>
+  <link>https://u.today/92-billion-shiba-inu-shib-in-24-hours-reasons-behind-the-drop-are-clear-now</link>
+  <description>Shiba Inu is facing renewed selling pressure as about 92.07 billion SHIB flowed into exchanges on a net basis.</description>
+  <pubDate>Thu, 29 Oct 2026 11:30:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/92-billion-shiba-inu-shib-in-24-hours-reasons-behind-the-drop-are-clear-now</guid>
+    </item><item>
+  <title>XRP Ledger Hits Highest Level of 2026</title>
+  <link>https://u.today/xrp-ledger-hits-highest-level-of-2026</link>
+  <description>XRP Ledger activity has jumped to its highest level this year, even as the price of XRP slips lower.</description>
+  <pubDate>Thu, 29 Oct 2026 10:05:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-ledger-hits-highest-level-of-2026</guid>
+    </item><item>
+  <title>Ripple President Breaks Down Why Tokenization Is Crypto's Next Big Chapter</title>
+  <link>https://u.today/ripple-president-breaks-down-why-tokenization-is-cryptos-next-big-chapter</link>
+  <description>Ripple’s Monica Long and Robinhood’s Johann Kerbrat discuss crypto’s next chapter at Swell event.</description>
+  <pubDate>Thu, 29 Oct 2026 10:00:23 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/ripple-president-breaks-down-why-tokenization-is-cryptos-next-big-chapter</guid>
+    </item><item>
+  <title>Hyperliquid (HYPE) Burns Nearly 5% of Token Supply as Lifetime Revenue Hits $1.38 Billion</title>
+  <link>https://u.today/hyperliquid-hype-burns-nearly-5-of-token-supply-as-lifetime-revenue-hits-138-billion</link>
+  <description>Decentralized exchange Hyperliquid burns 5% of total HYPE supply, backed by $1.38 billion in lifetime protocol revenue.</description>
+  <pubDate>Thu, 29 Oct 2026 09:33:25 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/hyperliquid-hype-burns-nearly-5-of-token-supply-as-lifetime-revenue-hits-138-billion</guid>
+    </item><item>
+  <title>Large 5x Monero (XMR) Long Spotted as Price Dives Below $600</title>
+  <link>https://u.today/large-5x-monero-xmr-long-spotted-as-price-dives-below-600</link>
+  <description>A newly created wallet has opened a 5x leveraged long on 3,000 XMR on Hyperliquid as Monero slips below $600.</description>
+  <pubDate>Thu, 29 Oct 2026 08:20:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/large-5x-monero-xmr-long-spotted-as-price-dives-below-600</guid>
+    </item><item>
+  <title>Coinbase CEO Predicts End of Subscription Era</title>
+  <link>https://u.today/coinbase-ceo-predicts-end-of-subscription-era</link>
+  <description>Coinbase CEO Brian Armstrong has predicted that stablecoins and AI-powered payments could disrupt the subscription economy, allowing consumers to pay for individual articles and other digital services instead of committing to monthly subscriptions.</description>
+  <pubDate>Thu, 29 Oct 2026 06:57:51 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/coinbase-ceo-predicts-end-of-subscription-era</guid>
+    </item><item>
+  <title>Garlinghouse: 2026 Is Phenomenal Year for Ripple</title>
+  <link>https://u.today/garlinghouse-2026-is-phenomenal-year-for-ripple</link>
+  <description>Ripple CEO Brad Garlinghouse has described 2026 as a phenomenal year for the company, citing significant growth in transaction volumes while predicting that XRP could become the institutional gold standard for crypto payment rails.</description>
+  <pubDate>Thu, 29 Oct 2026 06:06:22 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/garlinghouse-2026-is-phenomenal-year-for-ripple</guid>
+    </item><item>
+  <title>Near Protocol (NEAR), Shiba Inu (SHIB), Chainlink (LINK) and Ethereum (ETH) Price Analysis for October 29: Will the Market Dodge a Bullet?</title>
+  <link>https://u.today/price-analysis/near-protocol-near-shiba-inu-shib-chainlink-link-and-ethereum-eth-price-analysis-for-october-29</link>
+  <description>Four major altcoins are cooling after sharp rallies, and each now faces a decisive support test.</description>
+  <pubDate>Thu, 29 Oct 2026 00:01:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/price-analysis/near-protocol-near-shiba-inu-shib-chainlink-link-and-ethereum-eth-price-analysis-for-october-29</guid>
+    </item><item>
+  <title>XRP Ledger Foundation Adds Flare to Validator List</title>
+  <link>https://u.today/xrp-ledger-foundation-adds-flare-to-validator-list</link>
+  <description>The XRP Ledger Foundation has officially added Flare Networks to its recommended validator list, marking a significant milestone for the project and strengthening its involvement in XRPL governance.</description>
+  <pubDate>Wed, 28 Oct 2026 20:47:57 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-ledger-foundation-adds-flare-to-validator-list</guid>
+    </item><item>
+  <title>'There Will Be Run on Banks': Bitcoin Bull Draper Predicts 'Seismic Shift'</title>
+  <link>https://u.today/there-will-be-run-on-banks-bitcoin-bull-draper-predicts-seismic-shift</link>
+  <description>Billionaire venture capitalist Tim Draper has predicted a seismic shift toward Bitcoin adoption, warning that the eventual abandonment of fiat currencies could trigger widespread bank runs.</description>
+  <pubDate>Wed, 28 Oct 2026 18:59:19 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/there-will-be-run-on-banks-bitcoin-bull-draper-predicts-seismic-shift</guid>
+    </item><item>
+  <title>'We Will Never Give Up on XRP': Ripple CEO Ends Speculations</title>
+  <link>https://u.today/we-will-never-give-up-on-xrp-ripple-ceo-ends-speculations</link>
+  <description>Ripple CEO Brad Garlinghouse defends XRP utility at Swell 2026 amid a record-breaking $900 million product revenue run rate.</description>
+  <pubDate>Wed, 28 Oct 2026 16:36:05 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/we-will-never-give-up-on-xrp-ripple-ceo-ends-speculations</guid>
+    </item><item>
+  <title>BlackRock Resumes Buying Bitcoin as Price Reclaims $81,000</title>
+  <link>https://u.today/blackrock-resumes-buying-bitcoin-as-price-reclaims-81000</link>
+  <description>BlackRock spends over $151 million on new Bitcoin purchase as its Bitcoin ETF records a fresh influx of new capital amid growing demand.</description>
+  <pubDate>Wed, 28 Oct 2026 16:05:34 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/blackrock-resumes-buying-bitcoin-as-price-reclaims-81000</guid>
+    </item><item>
+  <title>Forget AI: Wintermute Explains Why Bitcoin's Next Move Now Depends on Oil</title>
+  <link>https://u.today/forget-ai-wintermute-explains-why-bitcoins-next-move-now-depends-on-oil</link>
+  <description>Wintermute explains why spiking crude oil price markets, not AI, now control Bitcoin’s price path and defines the ultimate levels to watch.</description>
+  <pubDate>Wed, 28 Oct 2026 15:49:15 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/forget-ai-wintermute-explains-why-bitcoins-next-move-now-depends-on-oil</guid>
+    </item><item>
+  <title>'DOGE Was Never Meant to Be Ethereum or Solana': Dogecoin Contributor Sets Record Straight</title>
+  <link>https://u.today/doge-was-never-meant-to-be-ethereum-or-solana-dogecoin-contributor-sets-record-straight</link>
+  <description>Dogecoin contributor defends its original purpose, saying its  simplicity remains strength.</description>
+  <pubDate>Wed, 28 Oct 2026 14:45:21 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/doge-was-never-meant-to-be-ethereum-or-solana-dogecoin-contributor-sets-record-straight</guid>
+    </item><item>
+  <title>Coinbase Launches Ripple USD, Challenging Kraken's Market Hold</title>
+  <link>https://u.today/coinbase-launches-ripple-usd-challenging-krakens-market-hold</link>
+  <description>Ripple’s new RLUSD stablecoin lands Coinbase, a move which may force a major liquidity reshuffle for U.S. regulated corporate cash.</description>
+  <pubDate>Wed, 28 Oct 2026 14:37:45 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/coinbase-launches-ripple-usd-challenging-krakens-market-hold</guid>
+    </item><item>
+  <title>Stellar Scores Significant Tokenization Win With Securitize</title>
+  <link>https://u.today/stellar-scores-significant-tokenization-win-with-securitize</link>
+  <description>Stellar (XLM) is set to expand its institutional footprint as tokenization giant Securitize announces plans to integrate the blockchain into its regulated infrastructure.</description>
+  <pubDate>Wed, 28 Oct 2026 14:28:39 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/stellar-scores-significant-tokenization-win-with-securitize</guid>
+    </item><item>
+  <title>Shiba Inu (SHIB) Risks Losing $50 Million OI Threshold</title>
+  <link>https://u.today/shiba-inu-shib-risks-losing-50-million-oi-threshold</link>
+  <description>Shiba Inu's derivatives market is cooling, with open interest well below the $50 million level traders watch as a sign of healthy activity.</description>
+  <pubDate>Wed, 28 Oct 2026 13:00:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/shiba-inu-shib-risks-losing-50-million-oi-threshold</guid>
+    </item><item>
+  <title>$10 Million Crypto Whale Awakening Closes Market Gap Between Shiba Inu (SHIB) and PEPE</title>
+  <link>https://u.today/10-million-crypto-whale-awakening-closes-market-gap-between-shiba-inu-shib-and-pepe</link>
+  <description>Two dormant whales moved 2.27 trillion PEPE, yet prices jumped 10.8% and the SHIB–PEPE market cap gap fell to a record low of $1.06 billion.</description>
+  <pubDate>Wed, 28 Oct 2026 12:41:20 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/10-million-crypto-whale-awakening-closes-market-gap-between-shiba-inu-shib-and-pepe</guid>
+    </item><item>
+  <title>Binance Delisting Alert: 10 Pairs to Go as October Ends, BTC and ETH Affected</title>
+  <link>https://u.today/binance-delisting-alert-10-pairs-to-go-as-october-ends-btc-and-eth-affected</link>
+  <description>October ends with a Binance delisting shake-up affecting 10 margin pairs.</description>
+  <pubDate>Wed, 28 Oct 2026 12:00:05 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/binance-delisting-alert-10-pairs-to-go-as-october-ends-btc-and-eth-affected</guid>
+    </item><item>
+  <title>428,862% Surge in 24 Hours: Shiba Inu Sees Highest Burn Rate This Month</title>
+  <link>https://u.today/428862-surge-in-24-hours-shiba-inu-sees-highest-burn-rate-this-month</link>
+  <description>Shiba Inu witnesses the highest daily surge in burn activity seen over the last month following a six-figure increase in the metric.</description>
+  <pubDate>Wed, 28 Oct 2026 11:16:47 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/428862-surge-in-24-hours-shiba-inu-sees-highest-burn-rate-this-month</guid>
+    </item><item>
+  <title>XRP Ledger's 2,633% Increase Turns to Almost 0 as Investors Fail to Catch Momentum</title>
+  <link>https://u.today/xrp-ledgers-2633-increase-turns-to-almost-0-as-investors-fail-to-catch-momentum</link>
+  <description>The XRP Ledger's 2,633% jump in daily payment volume faded within days, as investors failed to catch the momentum.</description>
+  <pubDate>Wed, 28 Oct 2026 10:15:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-ledgers-2633-increase-turns-to-almost-0-as-investors-fail-to-catch-momentum</guid>
+    </item><item>
+  <title>Coinbase Shuts Down Data Breach Rumors: No Customer Funds at Risk</title>
+  <link>https://u.today/coinbase-shuts-down-data-breach-rumors-no-customer-funds-at-risk</link>
+  <description>Major crypto exchange Coinbase responds to recent security concerns.</description>
+  <pubDate>Wed, 28 Oct 2026 10:10:41 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/coinbase-shuts-down-data-breach-rumors-no-customer-funds-at-risk</guid>
+    </item><item>
+  <title>Ripple Makes Stablecoin History With Top-Tier Moody's Rating</title>
+  <link>https://u.today/ripple-makes-stablecoin-history-with-top-tier-moodys-rating</link>
+  <description>Ripple makes history as Moody’s issues its first-ever investment-grade stablecoin rating.</description>
+  <pubDate>Wed, 28 Oct 2026 09:14:15 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/ripple-makes-stablecoin-history-with-top-tier-moodys-rating</guid>
+    </item><item>
+  <title>Zcash (ZEC) Launched 10 Years Ago, 2 Things That Made It Stand Out in 2026</title>
+  <link>https://u.today/zcash-zec-launched-10-years-ago-2-things-that-made-it-stand-out-in-2026</link>
+  <description>Zcash turns 10 this week after a massive price run that has made it one of the most talked-about assets in crypto.</description>
+  <pubDate>Wed, 28 Oct 2026 08:10:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/zcash-zec-launched-10-years-ago-2-things-that-made-it-stand-out-in-2026</guid>
+    </item><item>
+  <title>Bitcoin Treasury Stock Crashes 50% Amid Withdrawal Trouble</title>
+  <link>https://u.today/bitcoin-treasury-stock-crashes-50-amid-withdrawal-trouble</link>
+  <description>Shares of Bitcoin treasury company Datavault AI (DVLT) have crashed nearly 50% after the company revealed that it has been unable to withdraw its Bitcoin from cryptocurrency exchange Biconomy for approximately four months.</description>
+  <pubDate>Wed, 28 Oct 2026 06:33:00 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/bitcoin-treasury-stock-crashes-50-amid-withdrawal-trouble</guid>
+    </item><item>
+  <title>Garlinghouse Celebrates Historic Ripple Swell Milestone</title>
+  <link>https://u.today/garlinghouse-celebrates-historic-ripple-swell-milestone</link>
+  <description>Ripple CEO Brad Garlinghouse has celebrated a historic milestone as the company's flagship Swell conference marks its 10th anniversary.</description>
+  <pubDate>Wed, 28 Oct 2026 05:24:48 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/garlinghouse-celebrates-historic-ripple-swell-milestone</guid>
+    </item><item>
+  <title>XRP, Zcash (ZEC), Tron (TRX) and Near Protocol (NEAR) Price Analysis for October 28: Will Bulls Finally Lose Control?</title>
+  <link>https://u.today/price-analysis/xrp-zcash-zec-tron-trx-and-near-protocol-near-price-analysis-for-october-28-will-bulls-finally-lose</link>
+  <description>Bulls and bears remain locked in a standoff across the majors, with volume fading and momentum near neutral.</description>
+  <pubDate>Wed, 28 Oct 2026 00:01:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/price-analysis/xrp-zcash-zec-tron-trx-and-near-protocol-near-price-analysis-for-october-28-will-bulls-finally-lose</guid>
+    </item><item>
+  <title>Bitcoin Sees Massive $1 Billion Exchange Exodus</title>
+  <link>https://u.today/bitcoin-sees-massive-1-billion-exchange-exodus</link>
+  <description>Bitcoin has recorded a massive $1 billion exchange exodus, with roughly 12,570 BTC leaving trading platforms on a net basis in one of the largest daily outflows this month, fueling speculation about a potential supply shock.</description>
+  <pubDate>Tue, 27 Oct 2026 20:20:17 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/bitcoin-sees-massive-1-billion-exchange-exodus</guid>
+    </item><item>
+  <title>Ripple's Garlinghouse Meets Bessent at Swell</title>
+  <link>https://u.today/ripples-garlinghouse-meets-bessent-at-swell</link>
+  <description>Ripple CEO Brad Garlinghouse appeared alongside U.S. Treasury Secretary Scott Bessent at Swell 2026 in New York.</description>
+  <pubDate>Tue, 27 Oct 2026 19:07:33 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/ripples-garlinghouse-meets-bessent-at-swell</guid>
+    </item><item>
+  <title>Ripple President Explains Why Robinhood Chose RLUSD Stablecoin</title>
+  <link>https://u.today/ripple-president-explains-why-robinhood-chose-rlusd-stablecoin</link>
+  <description>Ripple President Monica Long makes known why Robinhood is anchoring its global business operations and 28 million accounts to RLUSD tech.</description>
+  <pubDate>Tue, 27 Oct 2026 16:41:15 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/ripple-president-explains-why-robinhood-chose-rlusd-stablecoin</guid>
+    </item><item>
+  <title>Michael Saylor Counters Anti-Bitcoin Buy Argument</title>
+  <link>https://u.today/michael-saylor-counters-anti-bitcoin-buy-argument</link>
+  <description>Michael Saylor shuns critics raising narratives that there is no need to buy Bitcoin since anyone could just create a cryptocurrency.</description>
+  <pubDate>Tue, 27 Oct 2026 15:44:41 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/michael-saylor-counters-anti-bitcoin-buy-argument</guid>
+    </item><item>
+  <title>NEAR Protocol Launches Confidential Pre-IPO Futures for AI Giant Anthropic</title>
+  <link>https://u.today/near-protocol-launches-confidential-pre-ipo-futures-for-ai-giant-anthropic</link>
+  <description>NEAR Protocol initiates confidential pre-IPO futures trading as Claude maker Anthropic prepares for its upcoming listing on the Nasdaq.</description>
+  <pubDate>Tue, 27 Oct 2026 15:42:15 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/near-protocol-launches-confidential-pre-ipo-futures-for-ai-giant-anthropic</guid>
+    </item><item>
+  <title>XRP Ledger Scores Huge BNY Trade Finance Breakthrough</title>
+  <link>https://u.today/xrp-ledger-scores-huge-bny-trade-finance-breakthrough</link>
+  <description>Ripple has expanded its partnership with banking giant BNY, bringing institutional XRP and RLUSD custody support and plans for tokenized trade finance to the XRP Ledger.</description>
+  <pubDate>Tue, 27 Oct 2026 14:01:10 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-ledger-scores-huge-bny-trade-finance-breakthrough</guid>
+    </item><item>
+  <title>SHIB Community Buzzes as Shiba Inu Unlocks New Travel Use Case</title>
+  <link>https://u.today/shib-community-buzzes-as-shiba-inu-unlocks-new-travel-use-case</link>
+  <description>SHIB community reacts as Shiba Inu now accepted for car rentals at over 50,000 locations.</description>
+  <pubDate>Tue, 27 Oct 2026 13:15:37 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/shib-community-buzzes-as-shiba-inu-unlocks-new-travel-use-case</guid>
+    </item><item>
+  <title>Hyperliquid Chases XRP Ledger in $100 Million Stablecoin Sprint: Main Crypto News This Morning</title>
+  <link>https://u.today/hyperliquid-chases-xrp-ledger-in-100-million-stablecoin-sprint-main-crypto-news-this-morning</link>
+  <description>Morning crypto brief, Oct 27: Ripple wins OCC bank approval and expands with BNY as Hyperliquid nears XRP Ledger in stablecoins.</description>
+  <pubDate>Tue, 27 Oct 2026 12:57:45 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/hyperliquid-chases-xrp-ledger-in-100-million-stablecoin-sprint-main-crypto-news-this-morning</guid>
+    </item><item>
+  <title>XRP Whale Holdings Hit Highest Supply Share Since November 2022</title>
+  <link>https://u.today/xrp-whale-holdings-hit-highest-supply-share-since-november-2022</link>
+  <description>XRP holders continue to stack up on XRP even during its dip as their total holdings now represent about 68.5% of XRP's supply.</description>
+  <pubDate>Tue, 27 Oct 2026 11:58:34 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-whale-holdings-hit-highest-supply-share-since-november-2022</guid>
+    </item><item>
+  <title>130% Near Protocol (NEAR) Surge in Spot Inflows Secures $1.3 Million</title>
+  <link>https://u.today/130-near-protocol-near-surge-in-spot-inflows-secures-13-million</link>
+  <description>NEAR Protocol sees a 130% jump in inflows as buyers defend key support.</description>
+  <pubDate>Tue, 27 Oct 2026 11:45:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/130-near-protocol-near-surge-in-spot-inflows-secures-13-million</guid>
+    </item><item>
+  <title>Binance Lists 227 Futures Pairs So Far as Traditional Assets Dominate</title>
+  <link>https://u.today/binance-lists-227-futures-pairs-so-far-as-traditional-assets-dominate</link>
+  <description>Bear market is not slowing Binance with 227 new futures pairs listed so far this year.</description>
+  <pubDate>Tue, 27 Oct 2026 10:15:38 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/binance-lists-227-futures-pairs-so-far-as-traditional-assets-dominate</guid>
+    </item><item>
+  <title>XRP Ledger Jumps 100% in Active Account Counts</title>
+  <link>https://u.today/xrp-ledger-jumps-100-in-active-account-counts</link>
+  <description>XRP Ledger witnesses a recovery of active account count on the market: more than 100% increase in the last 24 hours.</description>
+  <pubDate>Tue, 27 Oct 2026 10:00:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-ledger-jumps-100-in-active-account-counts</guid>
+    </item><item>
+  <title>Tapping Ripple Network: BlackRock Leverages SBI for Japan Tokenization Push</title>
+  <link>https://u.today/tapping-ripple-network-blackrock-leverages-sbi-for-japan-tokenization-push</link>
+  <description>SBI, Ripple’s key partner and one of its largest shareholders, opens Japan’s on-chain market to BlackRock’s money market funds.</description>
+  <pubDate>Tue, 27 Oct 2026 09:43:25 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/tapping-ripple-network-blackrock-leverages-sbi-for-japan-tokenization-push</guid>
+    </item><item>
+  <title>Stellar (XLM) Double-Confirms Death Cross, But It Has Another Support Available</title>
+  <link>https://u.today/stellar-xlm-double-confirms-death-cross-but-it-has-another-support-available</link>
+  <description>Stellar could be diving even deeper following the finalization of a golden cross that can push price even lower than before.</description>
+  <pubDate>Tue, 27 Oct 2026 08:40:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/stellar-xlm-double-confirms-death-cross-but-it-has-another-support-available</guid>
+    </item><item>
+  <title>XRP Whales Reach Milestone Not Seen Since 2022</title>
+  <link>https://u.today/xrp-whales-reach-milestone-not-seen-since-2022</link>
+  <description>XRP whales have reached their highest concentration of holdings since November 2022, even as the cryptocurrency struggles near $1.30 and derivatives trading activity remains elevated.</description>
+  <pubDate>Tue, 27 Oct 2026 08:05:42 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-whales-reach-milestone-not-seen-since-2022</guid>
+    </item><item>
+  <title>Ripple Secures Major US Banking Approval, XRP Fails to Rally</title>
+  <link>https://u.today/ripple-secures-major-us-banking-approval-xrp-fails-to-rally</link>
+  <description>Ripple has secured final US regulatory approval for its national trust bank, marking a major milestone for the company.</description>
+  <pubDate>Tue, 27 Oct 2026 06:14:45 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/ripple-secures-major-us-banking-approval-xrp-fails-to-rally</guid>
+    </item><item>
+  <title>Binance Chain (BNB), Zcash (ZEC), Tron (TRX) and Shiba Inu (SHIB) Price Analysis for October 26: Bearish Trend Is Stable</title>
+  <link>https://u.today/price-analysis/binance-chain-bnb-zcash-zec-tron-trx-and-shiba-inu-shib-price-analysis-for-october-26-bearish-trend</link>
+  <description>Despite the fact that multiple assets are holding above their respected key levels, the market has barely any fuel left for a proper recovery. </description>
+  <pubDate>Tue, 27 Oct 2026 00:01:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/price-analysis/binance-chain-bnb-zcash-zec-tron-trx-and-shiba-inu-shib-price-analysis-for-october-26-bearish-trend</guid>
+    </item><item>
+  <title>XRP Legend David Schwartz Drops New Swell Message</title>
+  <link>https://u.today/xrp-legend-david-schwartz-drops-new-swell-message</link>
+  <description>XRP Ledger co-creator David Schwartz has shared an enthusiastic message from Ripple's Swell Demo Day in New York, fueling anticipation ahead of the company's flagship conference.</description>
+  <pubDate>Mon, 26 Oct 2026 20:53:37 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-legend-david-schwartz-drops-new-swell-message</guid>
+    </item><item>
+  <title>Bitcoin Creator Satoshi Nakamoto Praised by Billionaire Tim Draper</title>
+  <link>https://u.today/bitcoin-creator-satoshi-nakamoto-praised-by-billionaire-tim-draper</link>
+  <description>Billionaire venture capitalist Tim Draper has praised Bitcoin creator Satoshi Nakamoto for his bold vision and optimism, crediting the mysterious figure with challenging the foundations of the global financial system.</description>
+  <pubDate>Mon, 26 Oct 2026 19:25:47 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/bitcoin-creator-satoshi-nakamoto-praised-by-billionaire-tim-draper</guid>
+    </item><item>
+  <title>Ripple Treasury SVP Unveils Always-On AI Treasury: What It Means for XRP Ecosystem</title>
+  <link>https://u.today/ripple-treasury-svp-unveils-always-on-ai-treasury-what-it-means-for-xrp-ecosystem</link>
+  <description>American Airlines, Subway and Christian Louboutin already use Ripple’s new 24/7 treasury platform, which puts idle cash to work via RLUSD.</description>
+  <pubDate>Mon, 26 Oct 2026 17:00:05 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/ripple-treasury-svp-unveils-always-on-ai-treasury-what-it-means-for-xrp-ecosystem</guid>
+    </item><item>
+  <title>Who Owns Dogecoin (DOGE)? Controversial Corporate Merger Splits Community</title>
+  <link>https://u.today/who-owns-dogecoin-doge-controversial-corporate-merger-splits-community</link>
+  <description>Dogecoin faces a major ideological crisis after a new corporate merger transfers key developer accounts to a private firm.</description>
+  <pubDate>Mon, 26 Oct 2026 16:30:05 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/who-owns-dogecoin-doge-controversial-corporate-merger-splits-community</guid>
+    </item><item>
+  <title>BitMine Ethereum Stash Hits $14 Billion After Latest Buy</title>
+  <link>https://u.today/bitmine-ethereum-stash-hits-14-billion-after-latest-buy</link>
+  <description>BitMine is rapidly drawing closer to owning 5% of Ethereum's supply as its total Ethereum holdings are now worth over $14 billion.</description>
+  <pubDate>Mon, 26 Oct 2026 15:35:42 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/bitmine-ethereum-stash-hits-14-billion-after-latest-buy</guid>
+    </item><item>
+  <title>Gargantuan Bitcoin Purchase Announced by Strive</title>
+  <link>https://u.today/gargantuan-bitcoin-purchase-announced-by-strive</link>
+  <description>Strive has acquired an additional 6,182 BTC, bringing its total holdings to 43,000 BTC and cementing its position as the world's fourth-largest publicly traded corporate Bitcoin holder.</description>
+  <pubDate>Mon, 26 Oct 2026 15:21:33 +0000</pubDate>
+    <dc:creator>Alex Dovbnya</dc:creator>
+    <guid isPermaLink="true">https://u.today/gargantuan-bitcoin-purchase-announced-by-strive</guid>
+    </item><item>
+  <title>$200 Million in 7 Days: Ripple's New Stablecoin Outpaces Rivals in Weekly DeFi Volume</title>
+  <link>https://u.today/200-million-in-7-days-ripples-new-stablecoin-outpaces-rivals-in-weekly-defi-volume</link>
+  <description>Ripple USD doubles closest rival USDG in weekly DEX growth as institutional capital bets on NYDFS-regulated compliance.</description>
+  <pubDate>Mon, 26 Oct 2026 14:53:05 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/200-million-in-7-days-ripples-new-stablecoin-outpaces-rivals-in-weekly-defi-volume</guid>
+    </item><item>
+  <title>XRP Spot Flows Drop Puts Whale Activity in Focus, $1.40 Next?</title>
+  <link>https://u.today/xrp-spot-flows-drop-puts-whale-activity-in-focus-140-next</link>
+  <description>This comes amid a potential big week for Ripple and XRP ecosystem.</description>
+  <pubDate>Mon, 26 Oct 2026 13:36:41 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-spot-flows-drop-puts-whale-activity-in-focus-140-next</guid>
+    </item><item>
+  <title>Satoshi's 'Most Underrated' Bitcoin Innovation Has Litecoin, Dogecoin in It</title>
+  <link>https://u.today/satoshis-most-underrated-bitcoin-innovation-has-litecoin-dogecoin-in-it</link>
+  <description>Satoshi’s Bitcoin legacy runs deeper with Litecoin, Dogecoin, Zcash in focus.</description>
+  <pubDate>Mon, 26 Oct 2026 12:10:47 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/satoshis-most-underrated-bitcoin-innovation-has-litecoin-dogecoin-in-it</guid>
+    </item><item>
+  <title>Ethereum ETF Loses $1 Billion in Capital: Will We See Fresh Injections?</title>
+  <link>https://u.today/ethereum-etf-loses-1-billion-in-capital-will-we-see-fresh-injections</link>
+  <description>Ethereum's market performance stays suppressed and the 30-day ETF performance perfectly reflects the sentiment we've been witnessing among institutional and retail investors.</description>
+  <pubDate>Mon, 26 Oct 2026 12:00:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/ethereum-etf-loses-1-billion-in-capital-will-we-see-fresh-injections</guid>
+    </item><item>
+  <title>XRP Ledger Payment Volume Soars 2,633%: What's the Drive?</title>
+  <link>https://u.today/xrp-ledger-payment-volume-soars-2633-whats-the-drive</link>
+  <description>XRP Ledger sees a sharp surge in network activity as payment volume spikes in four figures, providing a bullish signal for XRP.</description>
+  <pubDate>Mon, 26 Oct 2026 11:42:30 +0000</pubDate>
+    <dc:creator>Caroline Amosun</dc:creator>
+    <guid isPermaLink="true">https://u.today/xrp-ledger-payment-volume-soars-2633-whats-the-drive</guid>
+    </item><item>
+  <title>$29 Billion More for XRP: Aviva Partners With Ripple for Milestone RWA Deal</title>
+  <link>https://u.today/29-billion-more-for-xrp-aviva-partners-with-ripple-for-milestone-rwa-deal</link>
+  <description>Aviva Investors taps Ripple and XRPL to tokenize its £22 billion liquidity fund, but only 0.4% of it has moved on-chain so far.</description>
+  <pubDate>Mon, 26 Oct 2026 11:38:25 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/29-billion-more-for-xrp-aviva-partners-with-ripple-for-milestone-rwa-deal</guid>
+    </item><item>
+  <title>2,633% XRP Ledger Surge: Enormous Recovery Recorded</title>
+  <link>https://u.today/2633-xrp-ledger-surge-enormous-recovery-recorded</link>
+  <description>Ledger finally secures a substantial increase in the value and payments volume.</description>
+  <pubDate>Mon, 26 Oct 2026 10:25:00 +0000</pubDate>
+    <dc:creator>Arman Shirinyan</dc:creator>
+    <guid isPermaLink="true">https://u.today/2633-xrp-ledger-surge-enormous-recovery-recorded</guid>
+    </item><item>
+  <title>10 Days Left: Zcash Set to Cut Block Times to 25 Seconds</title>
+  <link>https://u.today/10-days-left-zcash-set-to-cut-block-times-to-25-seconds</link>
+  <description>Zcash upgrade countdown begins with 25 seconds blocks ahead.</description>
+  <pubDate>Mon, 26 Oct 2026 10:10:22 +0000</pubDate>
+    <dc:creator>Tomiwabold Olajide</dc:creator>
+    <guid isPermaLink="true">https://u.today/10-days-left-zcash-set-to-cut-block-times-to-25-seconds</guid>
+    </item><item>
+  <title>Crypto Without Buying Crypto: Expert Decodes Franklin Templeton's New Bitcoin Play</title>
+  <link>https://u.today/crypto-without-buying-crypto-expert-decodes-franklin-templetons-new-bitcoin-play</link>
+  <description>Nate Geraci calls it smart product design: Franklin Templeton’s new ETFs give Bitcoin exposure through dividends, not direct coin purchases.</description>
+  <pubDate>Mon, 26 Oct 2026 09:50:45 +0000</pubDate>
+    <dc:creator>Gamza Khanzadaev</dc:creator>
+    <guid isPermaLink="true">https://u.today/crypto-without-buying-crypto-expert-decodes-franklin-templetons-new-bitcoin-play</guid>
+    </item>
+    </channel>
+</rss>
