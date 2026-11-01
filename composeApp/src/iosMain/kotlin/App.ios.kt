@@ -1,4 +1,8 @@
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
@@ -36,7 +40,13 @@ import platform.Network.nw_path_monitor_set_queue
 import platform.Network.nw_path_monitor_set_update_handler
 import platform.Network.nw_path_monitor_start
 import platform.Network.nw_path_status_satisfied
+import platform.SafariServices.SFSafariViewController
+import platform.SafariServices.SFSafariViewControllerDismissButtonStyle
 import platform.UIKit.UIApplication
+import platform.UIKit.UIColor
+import platform.UIKit.UIViewController
+import platform.UIKit.UIWindow
+import platform.UIKit.UIWindowScene
 import platform.UIKit.UIPasteboard
 import platform.darwin.DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL
 import platform.darwin.dispatch_queue_create
@@ -60,6 +70,48 @@ actual fun openLink(link: String) {
     }.getOrElse {
         AppLogger.logger.e(throwable = it) { "Failed to open URL: $link" }
     }
+}
+
+@Composable
+actual fun rememberInAppBrowser(): (link: String) -> Unit {
+    val tint = MaterialTheme.colorScheme.primary
+    val barTint = MaterialTheme.colorScheme.surface
+    return remember(tint, barTint) {
+        { link ->
+            // SFSafariViewController raises an ObjC exception for anything but http(s).
+            val url = if (isInAppBrowsable(link)) NSURL.URLWithString(link) else null
+            val presenter = topViewController()
+            if (url == null || presenter == null) {
+                openLink(link)
+            } else {
+                val safari = SFSafariViewController(uRL = url).apply {
+                    preferredControlTintColor = tint.toUIColor()
+                    preferredBarTintColor = barTint.toUIColor()
+                    dismissButtonStyle = SFSafariViewControllerDismissButtonStyle.SFSafariViewControllerDismissButtonStyleClose
+                }
+                presenter.presentViewController(safari, animated = true, completion = null)
+            }
+        }
+    }
+}
+
+private fun Color.toUIColor(): UIColor = UIColor.colorWithRed(
+    red = red.toDouble(),
+    green = green.toDouble(),
+    blue = blue.toDouble(),
+    alpha = alpha.toDouble()
+)
+
+private fun topViewController(): UIViewController? {
+    val keyWindow = UIApplication.sharedApplication.connectedScenes
+        .filterIsInstance<UIWindowScene>()
+        .flatMap { scene -> scene.windows.filterIsInstance<UIWindow>() }
+        .firstOrNull { it.isKeyWindow() }
+    var controller = keyWindow?.rootViewController
+    while (controller?.presentedViewController != null) {
+        controller = controller.presentedViewController
+    }
+    return controller
 }
 
 actual fun copyToClipboard(text: String) {
