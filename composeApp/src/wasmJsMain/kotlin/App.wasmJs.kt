@@ -1,4 +1,6 @@
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.storage.storeOf
 import io.ktor.client.HttpClient
@@ -24,6 +26,9 @@ import ui.Settings
 actual fun openLink(link: String) {
     window.open(link)
 }
+
+@Composable
+actual fun rememberInAppBrowser(): (link: String) -> Unit = remember { { link -> openLink(link) } }
 
 actual fun copyToClipboard(text: String) {
     writeClipboardText(text)

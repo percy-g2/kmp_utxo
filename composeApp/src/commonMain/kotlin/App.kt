@@ -411,6 +411,18 @@ expect fun getKStore(): KStore<ui.Settings>
 expect fun openLink(link: String)
 
 /**
+ * Returns a launcher that opens [link] inside the app where the platform has a native in-app
+ * browser (Custom Tabs on Android, SFSafariViewController on iOS) and falls back to [openLink]
+ * elsewhere. Desktop and web stay external: most publishers forbid framing, and JavaFX's engine
+ * is too dated for modern news sites.
+ */
+@Composable
+expect fun rememberInAppBrowser(): (link: String) -> Unit
+
+internal fun isInAppBrowsable(link: String): Boolean =
+    link.startsWith("https://", ignoreCase = true) || link.startsWith("http://", ignoreCase = true)
+
+/**
  * Puts [text] on the system clipboard.
  *
  * `LocalClipboard` is common in CMP 1.11.1, but the only helper that builds a plain-text

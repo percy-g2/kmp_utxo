@@ -4,6 +4,7 @@ android-compileSdk = "37"
 android-minSdk = "24"
 android-targetSdk = "37"
 androidx-activityCompose = "1.13.0"
+androidx-browser = "1.9.0"
 atomicfu = "0.33.0"
 kotlin = "2.4.21"
 kotlinxDatetime = "0.8.0"
@@ -28,6 +29,7 @@ compose-material-icons-extended = "1.7.3"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-browser = { module = "androidx.browser:browser", version.ref = "androidx-browser" }
 androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
 atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }

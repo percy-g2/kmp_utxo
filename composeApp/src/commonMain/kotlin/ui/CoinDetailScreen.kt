@@ -5,7 +5,7 @@ import DeviceInfo
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import copyToClipboard
-import openLink
+import rememberInAppBrowser
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
@@ -1217,6 +1217,7 @@ fun NewsItemCard(
     newsItem: NewsItem,
     isDarkTheme: Boolean
 ) {
+    val openArticle = rememberInAppBrowser()
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -1224,7 +1225,7 @@ fun NewsItemCard(
             .debouncedClickable {
                 if (newsItem.link.isNotEmpty()) {
                     try {
-                        openLink(newsItem.link)
+                        openArticle(newsItem.link)
                     } catch (e: Exception) {
                         AppLogger.logger.e(throwable = e) { "Failed to open link: ${newsItem.link}" }
                     }

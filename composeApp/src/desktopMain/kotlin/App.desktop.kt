@@ -1,4 +1,6 @@
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
 import io.ktor.client.HttpClient
@@ -113,6 +115,9 @@ actual fun wrapRssUrlForPlatform(url: String): List<String> {
 actual fun openLink(link: String) {
     Desktop.getDesktop().browse(URI(link));
 }
+
+@Composable
+actual fun rememberInAppBrowser(): (link: String) -> Unit = remember { { link -> openLink(link) } }
 
 actual fun copyToClipboard(text: String) {
     // Win32 hands out an exclusive clipboard lock, so setContents throws IllegalStateException

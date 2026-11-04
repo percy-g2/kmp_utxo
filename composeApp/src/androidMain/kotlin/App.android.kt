@@ -7,6 +7,14 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.net.toUri
 import io.github.xxfast.kstore.KStore
 import io.github.xxfast.kstore.file.storeOf
@@ -26,6 +34,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.io.files.Path
 import kotlinx.serialization.json.Json
+import logging.AppLogger
 import network.newsClientJson
 import org.androdevlinux.utxo.ContextProvider
 import org.androdevlinux.utxo.storage.SettingsFile
@@ -121,6 +130,45 @@ actual fun openLink(link: String) {
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
     context.startActivity(intent)
+}
+
+@Composable
+actual fun rememberInAppBrowser(): (link: String) -> Unit {
+    // Launch from the hosting Activity, not ContextProvider's application context, so the tab
+    // stays in the app's task and Back returns to the news list.
+    val context = LocalContext.current
+    val surface = MaterialTheme.colorScheme.surface
+    return remember(context, surface) {
+        { link ->
+            if (!isInAppBrowsable(link)) {
+                openLink(link)
+            } else {
+                try {
+                    CustomTabsIntent.Builder()
+                        .setDefaultColorSchemeParams(
+                            CustomTabColorSchemeParams.Builder()
+                                .setToolbarColor(surface.toArgb())
+                                .build()
+                        )
+                        .setColorScheme(
+                            if (surface.luminance() < 0.5f) {
+                                CustomTabsIntent.COLOR_SCHEME_DARK
+                            } else {
+                                CustomTabsIntent.COLOR_SCHEME_LIGHT
+                            }
+                        )
+                        .setShowTitle(true)
+                        .setShareState(CustomTabsIntent.SHARE_STATE_ON)
+                        .build()
+                        .launchUrl(context, link.toUri())
+                } catch (e: Exception) {
+                    // No Custom Tabs-capable browser (or the Activity went away): hand off externally.
+                    AppLogger.logger.w(throwable = e) { "Custom Tab launch failed, opening externally: $link" }
+                    openLink(link)
+                }
+            }
+        }
+    }
 }
 
 actual fun copyToClipboard(text: String) {
