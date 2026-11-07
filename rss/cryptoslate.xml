@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>CryptoSlate</title>
+	<atom:link href="https://cryptoslate.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://cryptoslate.com/</link>
+	<description></description>
+	<lastBuildDate>Sat, 07 Nov 2026 14:47:15 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://cryptoslate.com/wp-content/uploads/2023/06/cropped-cryptoslate-transparent-icon-256x256-1-32x32.png</url>
+	<title>CryptoSlate</title>
+	<link>https://cryptoslate.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>MEXC sees $126 million outflows as US targets exchange over $16.7 billion in suspected illicit transactions</title>
+		<link>https://cryptoslate.com/mexc-sees-126-million-outflows-as-us-targets-exchange-over-16-7-billion-in-suspected-illicit-transactions/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 15:10:42 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Exchanges]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581496</guid>
+
+					<description><![CDATA[<p>FinCEN’s order starts 30 days after Federal Register publication and gives covered institutions limited discretion over unsolicited crypto receipts.</p>
+<p><a href="https://cryptoslate.com/mexc-sees-126-million-outflows-as-us-targets-exchange-over-16-7-billion-in-suspected-illicit-transactions/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/mexc-dual-transfer-cutoff.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/mexc-dual-transfer-cutoff.webp" length="273406" type="image/webp"/>
+	</item>
+		<item>
+		<title>Stablecoin contraction forces Bitcoin drop despite Fed reserve gains</title>
+		<link>https://cryptoslate.com/stablecoin-contraction-forces-bitcoin-drop-despite-fed-reserve-gains/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 12:40:07 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[federal reserve]]></category>
+		<category><![CDATA[Tether]]></category>
+		<category><![CDATA[usd coin]]></category>
+		<category><![CDATA[USDC]]></category>
+		<category><![CDATA[USDT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581308</guid>
+
+					<description><![CDATA[<p>The dated comparison pairs a reserve rebound with shrinking dollar-token circulation, leaving the link to Bitcoin buying unestablished.</p>
+<p><a href="https://cryptoslate.com/stablecoin-contraction-forces-bitcoin-drop-despite-fed-reserve-gains/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/02-fed-facade.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/02-fed-facade.jpg" length="561540" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Morpho loan stress exposes cbXRP, but spares native XRP</title>
+		<link>https://cryptoslate.com/morpho-loan-stress-exposes-cbxrp-but-spares-native-xrp/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 10:30:51 +0000</pubDate>
+				<category><![CDATA[DeFi]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Lending]]></category>
+		<category><![CDATA[Liquidations]]></category>
+		<category><![CDATA[Coinbase]]></category>
+		<category><![CDATA[stablecoins]]></category>
+		<category><![CDATA[USDC]]></category>
+		<category><![CDATA[xrp]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581396</guid>
+
+					<description><![CDATA[<p>A November 6 snapshot placed 8.84 million USDC across 1,070 positions within a further 10% oracle decline, assuming unchanged debt and collateral.</p>
+<p><a href="https://cryptoslate.com/morpho-loan-stress-exposes-cbxrp-but-spares-native-xrp/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/morpho-cbxrp-tension.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/morpho-cbxrp-tension.jpg" length="393298" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Millions watched Kalshi&#8217;s election odds without betting a dollar</title>
+		<link>https://cryptoslate.com/millions-watched-kalshis-election-odds-without-betting-a-dollar/</link>
+		
+		<dc:creator><![CDATA[Andjela Radmilac]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 08:20:10 +0000</pubDate>
+				<category><![CDATA[Adoption]]></category>
+		<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Politics]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=580767</guid>
+
+					<description><![CDATA[<p>Kalshi says people watching its midterm markets outnumbered traders five to one. For those spectators, Kalshi offers a forecast that keeps moving while the country waits for an answer. You could spend election night on Kalshi without buying anything, as millions of people did this week. Its midterm display offered maps of congressional races and…</p>
+<p><a href="https://cryptoslate.com/millions-watched-kalshis-election-odds-without-betting-a-dollar/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/kalshi-election-window-watchers.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/kalshi-election-window-watchers.webp" length="167902" type="image/webp"/>
+	</item>
+		<item>
+		<title>EIP-8037 state-gas rules force Ethereum dApps to rewrite billing</title>
+		<link>https://cryptoslate.com/eip-8037-state-gas-rules-force-ethereum-dapps-to-rewrite-billing/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 06:10:22 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Governance]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[Wallets]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[Ethereum foundation]]></category>
+		<category><![CDATA[payments]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581474</guid>
+
+					<description><![CDATA[<p>A November 6 appeal asks projects to test gas assumptions and report repair options that could shape Glamsterdam’s specifications.</p>
+<p><a href="https://cryptoslate.com/eip-8037-state-gas-rules-force-ethereum-dapps-to-rewrite-billing/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/glamsterdam-01-meter-bypass.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/glamsterdam-01-meter-bypass.jpg" length="493123" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Moscow Exchange sets December 1 to launch Bitcoin and Ethereum trading</title>
+		<link>https://cryptoslate.com/moscow-exchange-sets-dec-1-to-launch-bitcoin-and-ethereum-trading/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 04:40:10 +0000</pubDate>
+				<category><![CDATA[Exchanges]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Trading]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[BTC]]></category>
+		<category><![CDATA[ETH]]></category>
+		<category><![CDATA[Ether]]></category>
+		<category><![CDATA[ethereum]]></category>
+		<category><![CDATA[Tether]]></category>
+		<category><![CDATA[USDT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581455</guid>
+
+					<description><![CDATA[<p>Non-qualified buyers face a 300,000-ruble annual cap per intermediary and testing, while Moscow Exchange plans a December pilot.</p>
+<p><a href="https://cryptoslate.com/moscow-exchange-sets-dec-1-to-launch-bitcoin-and-ethereum-trading/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/moex-one-live-lane.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/moex-one-live-lane.jpg" length="418351" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Zero-click iOS exploits drain $4M USDT from active TRON wallets</title>
+		<link>https://cryptoslate.com/zero-click-ios-exploits-drain-4m-usdt-from-active-tron-wallets/</link>
+		
+		<dc:creator><![CDATA[Gino Matos]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 03:30:04 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Hacks]]></category>
+		<category><![CDATA[Research]]></category>
+		<category><![CDATA[Wallets]]></category>
+		<category><![CDATA[Tether]]></category>
+		<category><![CDATA[Trust Wallet]]></category>
+		<category><![CDATA[USDT]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581457</guid>
+
+					<description><![CDATA[<p>The 365-address TRON network includes 89 TRX-only losses, while just one theft matches a published iPhone-owner account.</p>
+<p><a href="https://cryptoslate.com/zero-click-ios-exploits-drain-4m-usdt-from-active-tron-wallets/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/single-iphone-exhibit.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/single-iphone-exhibit.jpg" length="430994" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Samsung teams with Stripe to bring USDC to 82M phones</title>
+		<link>https://cryptoslate.com/samsung-teams-with-stripe-to-bring-usdc-to-82m-phones/</link>
+		
+		<dc:creator><![CDATA[Liam 'Akiba' Wright]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 02:10:27 +0000</pubDate>
+				<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Payments]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<category><![CDATA[Wallets]]></category>
+		<category><![CDATA[bridge]]></category>
+		<category><![CDATA[Circle]]></category>
+		<category><![CDATA[Coinbase]]></category>
+		<category><![CDATA[Samsung]]></category>
+		<category><![CDATA[stripe]]></category>
+		<category><![CDATA[USDC]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581459</guid>
+
+					<description><![CDATA[<p>Samsung Pay, cards and ACH fund the account, with New York excluded and fees varying by transaction.</p>
+<p><a href="https://cryptoslate.com/samsung-teams-with-stripe-to-bring-usdc-to-82m-phones/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/samsung-stripe-usdc-fingerprint-1280x720-1.jpg" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/samsung-stripe-usdc-fingerprint-1280x720-1.jpg" length="476333" type="image/jpeg"/>
+	</item>
+		<item>
+		<title>Bitcoin faces $70,000 risk as investors realize $2 billion in losses and US jobs shock deepens pressure</title>
+		<link>https://cryptoslate.com/bitcoin-faces-70000-risk-as-investors-realize-2-billion-in-losses-and-us-jobs-shock-deepens-pressure/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 00:40:34 +0000</pubDate>
+				<category><![CDATA[Analysis]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Market]]></category>
+		<category><![CDATA[Trading]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581419</guid>
+
+					<description><![CDATA[<p>Bitcoin holders realized more than $2 billion in losses over three days as exchange selling intensified and expectations of a US rate hike rose. On Friday, Bitcoin briefly plunged below $75,000 as a sharp sell-off in US technology stocks spilled into digital assets. This came as selling pressure now dominates spot trading on Binance and…</p>
+<p><a href="https://cryptoslate.com/bitcoin-faces-70000-risk-as-investors-realize-2-billion-in-losses-and-us-jobs-shock-deepens-pressure/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/bitcoin-realized-losses.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/bitcoin-realized-losses.webp" length="160914" type="image/webp"/>
+	</item>
+		<item>
+		<title>Bitcoin and USDT attract modest premiums in Paraguay as millions face banking crisis</title>
+		<link>https://cryptoslate.com/bitcoin-and-usdt-attract-modest-premiums-in-paraguay-as-millions-face-banking-crisis/</link>
+		
+		<dc:creator><![CDATA[Oluwapelumi Adejumo]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 23:20:28 +0000</pubDate>
+				<category><![CDATA[Banking]]></category>
+		<category><![CDATA[Featured]]></category>
+		<category><![CDATA[Macro]]></category>
+		<category><![CDATA[Trading]]></category>
+		<guid isPermaLink="false">https://cryptoslate.com/?p=581449</guid>
+
+					<description><![CDATA[<p>Bitcoin and USDT have traded at premiums in Paraguay&#039;s peer-to-peer markets as a banking collapse unsettles the country&#039;s financial system. The turmoil has coincided with a 10% surge in the dollar against the Paraguayan guaraní, growing public interest in Bitcoin and calls from crypto executives for alternatives to traditional banking. Data from CriptoNoticias, which tracks…</p>
+<p><a href="https://cryptoslate.com/bitcoin-and-usdt-attract-modest-premiums-in-paraguay-as-millions-face-banking-crisis/">Read the full story on CryptoSlate</a></p><p>Understand the crypto stories that matter and what to watch next. <a href="https://cryptoslate.com/newsletters/#newsletter-catalyst">Get The Catalyst in your inbox</a></p>]]></description>
+		
+		
+		
+		<media:content url="https://cryptoslate.com/wp-content/uploads/2026/11/paraguay-crypto-search-interest.webp" medium="image"/>
+<enclosure url="https://cryptoslate.com/wp-content/uploads/2026/11/paraguay-crypto-search-interest.webp" length="149442" type="image/webp"/>
+	</item>
+	</channel>
+</rss>

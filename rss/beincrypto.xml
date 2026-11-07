@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+>
+
+<channel>
+	<title>BeInCrypto</title>
+	<atom:link href="https://beincrypto.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://beincrypto.com/</link>
+	<description>Cryptocurrency News</description>
+	<lastBuildDate>Sat, 07 Nov 2026 13:01:55 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.11</generator>
+
+<image>
+	<url>https://assets.beincrypto.com/img/ULB28daJBFR3Nw9y1kUzR_AA--E=/32x32/smart/e3ad5fc1201d4ea8b2d44804964c6e9e</url>
+	<title>BeInCrypto</title>
+	<link>https://beincrypto.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Bitcoin Developer Proposes a Quantum Trap for Hackers</title>
+		<link>https://beincrypto.com/bitcoin-quantum-hackers-traps-old-wallets/</link>
+		
+		<dc:creator><![CDATA[Luis Blanco]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 13:01:51 +0000</pubDate>
+				<category><![CDATA[Security]]></category>
+		<category><![CDATA[Bitcoin (BTC) News]]></category>
+		<category><![CDATA[Cryptocurrency Market News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878525</guid>
+
+					<description><![CDATA[<p>What if someone hacked your Bitcoin wallet and ended up paying you for the theft? That is the idea behind a proposal from Bitcoin Core developer Cory Fields. As Bitcoin prepares for Q-Day, when powerful quantum computers could break its current cryptography, Fields wants to make stealing vulnerable coins a costly gamble. On November 4,</p>
+<p>The post <a href="https://beincrypto.com/bitcoin-quantum-hackers-traps-old-wallets/">Bitcoin Developer Proposes a Quantum Trap for Hackers</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>What if someone hacked your Bitcoin wallet and ended up paying you for the theft? That is the idea behind a proposal from Bitcoin Core developer Cory Fields.</strong></p>
+
+
+
+<p>As Bitcoin prepares for<a href="https://beincrypto.com/bitcoin-q-day-decade-away-lopp/"> Q-Day</a>, when powerful quantum computers could break its current cryptography, Fields wants to make stealing vulnerable coins a costly gamble.</p>
+
+
+
+<p>On November 4, he introduced<a href="https://groups.google.com/g/bitcoindev/c/ARMwWdWcz9A"> &ldquo;quantum landmines&rdquo;</a> to the Bitcoin Development Mailing List. The idea is surprisingly simple: let Bitcoin owners secretly prepare traps that punish future hackers.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-how-could-a-bitcoin-hacker-lose-their-own-money"><strong>How Could a Bitcoin Hacker Lose Their Own Money?</strong></h2>
+
+
+
+<p>Imagine you own 1 BTC in an old wallet vulnerable to quantum attacks.</p>
+
+
+
+<p>Before Q-Day, you create a hidden proof of ownership inside a tiny quantum-safe Bitcoin output. Nobody else can see that proof.</p>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li><strong>Hackers must give Bitcoin to steal Bitcoin: </strong>Under the proposed rules, once quantum attacks become possible, anyone attempting to move that vulnerable 1 BTC must provide another 1 BTC as collateral. Both amounts then face a waiting period, potentially 30 days.<br></li>
+
+
+
+<li><strong>Hackers can steal, but you will get it back: </strong>If a quantum hacker steals your Bitcoin, you can reveal your secret proof during that window, recover your BTC and seize the hacker&rsquo;s deposit.</li>
+</ul>
+
+
+
+<p><strong>The hacker loses money. You could walk away with twice your original holdings.</strong></p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>Fields argues that attackers would become &ldquo;wary of stealing coins as they may be secretly guarded by mines.&rdquo;</p>
+</blockquote>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-but-there-s-a-major-problem-for-bitcoin-holders"><strong>But There&rsquo;s a Major Problem for Bitcoin Holders</strong></h2>
+
+
+
+<p>The blockchain cannot distinguish a hacker from a legitimate owner. So everyone moving vulnerable Bitcoin would face the same collateral requirement.</p>
+
+
+
+<p><strong>Someone holding 10 BTC in an old wallet might need another 10 BTC in quantum-safe funds just to move their savings.</strong></p>
+
+
+
+<p>There is another complication &ndash;<a href="https://beincrypto.com/bitcoin-quantum-threat-migration-deadline/"> dormant Bitcoin, including Satoshi-era holdings</a>.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">What if quantum computers hack Satoshi's 1M <a href="https://x.com/search?q=%24BTC&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$BTC</a> and nobody can stop it?<br><br>Binance founder CZ proposes freezing Satoshi's stack for good!<br><br>He said "Why don't we give a timeline say within 6 months or 12 months, if those coins don't move then we're going to lock them"<br><br>"So, on the&hellip; <a href="https://t.co/5TQd3qAyzp">pic.twitter.com/5TQd3qAyzp</a></p>&mdash; BeInCrypto (@beincrypto) <a href="https://x.com/beincrypto/status/2068387151058809336?ref_src=twsrc%5Etfw">June 20, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>If their private keys are lost, nobody can prepare a landmine. Fields proposes alternative auction mechanisms where bidders could challenge hackers and claim their deposits. One version would permanently destroy the vulnerable coins.</p>
+
+
+
+<p>That raises difficult questions about ownership and Bitcoin&rsquo;s supply.</p>
+
+
+
+<p>For now, the debate exposes a difficult trade-off: protecting Bitcoin from future hackers could make moving older coins far more expensive for legitimate owners.</p>
+<p>The post <a href="https://beincrypto.com/bitcoin-quantum-hackers-traps-old-wallets/">Bitcoin Developer Proposes a Quantum Trap for Hackers</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/Gjub1QE848DBQrEyby-vJSzUfWg=/smart/48f87364f5304db09926cffdf352473e" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/Gjub1QE848DBQrEyby-vJSzUfWg=/smart/48f87364f5304db09926cffdf352473e"/>
+<ticker>BTC</ticker>
+	</item>
+		<item>
+		<title>PS5 Pro is Sold Out Everywhere as GTA VI Pre-Load Starts Next Week</title>
+		<link>https://beincrypto.com/ps5-pro-sold-out-gta-6-pre-downloads/</link>
+		
+		<dc:creator><![CDATA[Phil Haunhorst]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 11:31:59 +0000</pubDate>
+				<category><![CDATA[Gaming]]></category>
+		<category><![CDATA[Celebrity News]]></category>
+		<category><![CDATA[Stock Market News]]></category>
+		<category><![CDATA[Web3 Gaming News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878508</guid>
+
+					<description><![CDATA[<p>The PS5 Pro is sold out at major US retailers as GTA 6 pre-downloads open Nov. 10 with a 212GB storage need, while Sony stock slipped Friday.</p>
+<p>The post <a href="https://beincrypto.com/ps5-pro-sold-out-gta-6-pre-downloads/">PS5 Pro is Sold Out Everywhere as GTA VI Pre-Load Starts Next Week</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Grand Theft Auto VI (GTA 6) pre-download starts on Tuesday, November 10, with a massive 212 GB storage size. However, most US retailers are sold out of the PS5 Pro console, even at a record $899 price.&nbsp;</strong></p>
+
+
+
+<p>Former executive at X (Twitter), Nikita Bier, says he searched for the console for two weeks without success.&nbsp;</p>
+
+
+
+<p>Sony has raised the price of PS5 Pro by $200 since April. Even most resellers are now selling the console at a higher price. SONY stock price has benefited from this demand and hype, rallying 7% this week.&nbsp;</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">I&rsquo;m not going to play poor man&rsquo;s GTA6 (1080p)</p>&mdash; Nikita Bier (@nikitabier) <a href="https://x.com/nikitabier/status/2118914106107568415?ref_src=twsrc%5Etfw">November 7, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-is-the-ps5-pro-so-hard-to-buy">Why Is the PS5 Pro So Hard to Buy?</h2>
+
+
+
+<p>Major US retailers, including Amazon, Best Buy, Target, GameStop, and PlayStation Direct, list the PS5 Pro as sold out at its retail price. A brief Best Buy restock in late October <a href="https://www.theshortcut.com/p/ps5-pro-restock-best-buy-october-2026" target="_blank" rel="noopener nofollow">sold</a> out quickly.</p>
+
+
+
+<p>Meanwhile, resellers ask far more. Refurbished and third-party units have appeared for $1,399 to more than $1,600.</p>
+
+
+
+<p>Sony <a href="https://blog.playstation.com/2026/03/27/new-price-changes-for-ps5-ps5-pro-and-playstation-portal-remote-player/" target="_blank" rel="noopener nofollow">raised</a> its console prices on April 2 and blamed pressure in the global economy. Microsoft followed with <a href="https://beincrypto.com/xbox-price-hike-gta-6-launch/" target="_blank" rel="noopener">its own Xbox price hike</a> in August as AI demand drove up memory chip costs.</p>
+
+
+
+<p>In Japan, scalpers forced Sony to go further. The company introduced <a href="https://beincrypto.com/sony-ps5-pro-japan-60-hours/" target="_blank" rel="noopener">a 60-hour play rule</a> for Japanese PS5 Pro buyers.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-can-sony-and-take-two-shareholders-cash-in">Can Sony and Take-Two Shareholders Cash In?</h2>
+
+
+
+<p>GTA 6 launches on Nov. 19 for PS5 and Xbox Series X|S, with pre-downloads opening on Nov. 10. PlayStation also <a href="https://blog.playstation.com/2026/11/03/grand-theft-auto-vi-pre-download-begins-november-10/" target="_blank" rel="noopener nofollow">said</a> players need at least 212GB of free storage on their PS5.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="art" dir="ltr">&#128161; <a href="https://t.co/WZk2m59U9b">https://t.co/WZk2m59U9b</a></p>&mdash; PlayStation (@PlayStation) <a href="https://x.com/PlayStation/status/2118771673180872873?ref_src=twsrc%5Etfw">November 6, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>Meanwhile, Sony lifted its net profit forecast for the year ending March 2027 to a record 1.33 trillion yen. Investors stayed cautious, though, and the shares gave back part of their earlier gains on Friday.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/MuszJAPaKDTrO4uRI-lD9jNKEQI=/smart/e973bffcaa144219af88bcaac49a0a82" alt="Sony stock price as PS5 Pro sells out ahead of GTA 6 pre-downloads" class="wp-image-878510"><figcaption class="wp-element-caption">Sony Group (SONY) Stock Price. Source: <a href="https://www.tradingview.com/symbols/NYSE-SONY/" target="_blank" rel="noopener nofollow">TradingView</a></figcaption></figure>
+
+
+
+<p>Take-Two Interactive (TTWO), the parent company of GTA 6 developer Rockstar, faces a similar test. <a href="https://beincrypto.com/rockstar-gta-6-take-two-stock/" target="_blank" rel="noopener">Take-Two&rsquo;s stock slide</a> this year leaves the company heavily dependent on the launch.</p>
+
+
+
+<p>For now, demand for the PS5 Pro outruns supply. Whether that translates into earnings for Sony and Take-Two will become clearer once GTA 6 sales figures arrive.</p>
+<p>The post <a href="https://beincrypto.com/ps5-pro-sold-out-gta-6-pre-downloads/">PS5 Pro is Sold Out Everywhere as GTA VI Pre-Load Starts Next Week</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/UQoixBWcKq0DqzA9aoprT1ulUSo=/smart/4e0540d4a01c480e8b270284d01c9c65" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/UQoixBWcKq0DqzA9aoprT1ulUSo=/smart/4e0540d4a01c480e8b270284d01c9c65"/>
+
+	</item>
+		<item>
+		<title>3 Altcoins Defy the Crypto Market Crash</title>
+		<link>https://beincrypto.com/altcoins-to-watch-market-crash-november-second-week/</link>
+		
+		<dc:creator><![CDATA[Jakub Dziadkowiec]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 10:39:50 +0000</pubDate>
+				<category><![CDATA[Trading]]></category>
+		<category><![CDATA[Altcoin Analysis]]></category>
+		<category><![CDATA[Monero (XMR) Analysis]]></category>
+		<category><![CDATA[Technical Analysis]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878448</guid>
+
+					<description><![CDATA[<p>JST, XMR, and LEO hold their bullish setups as Bitcoin slides. See the key altcoin levels to watch during the market crash.</p>
+<p>The post <a href="https://beincrypto.com/altcoins-to-watch-market-crash-november-second-week/">3 Altcoins Defy the Crypto Market Crash</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>US midterm fallout and the stock market crash continue to weigh on the crypto market, as Bitcoin trades around $76,000. Yet three altcoins have shown unusual resilience. </strong><strong><br></strong><br>JUST (JST), Monero (XMR), and LEO Token (LEO) are holding important technical levels despite the broader market weakness.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading"><strong>1. JUST (JST): Can a 265% Rally Continue?</strong></h2>
+
+
+
+<p>JUST trades near $0.1427, just below the $0.144 resistance that has repeatedly stopped its advance since October. The token has gained roughly 265% since February.</p>
+
+
+
+<p>Its chart remains bullish. JST continues forming higher lows, suggesting buyers are stepping in at increasingly higher prices. Its daily Relative Strength Index (RSI) remains near 58, indicating positive momentum without being overbought.</p>
+
+
+
+<p><strong>Where could JST head next?</strong></p>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li><strong>Bullish:</strong> A daily close above $0.144 could trigger another upward move, particularly if trading volume increases.</li>
+
+
+
+<li><strong>Bearish:</strong> Losing $0.135 would weaken the short-term setup. Deeper support sits near $0.114 and $0.104.</li>
+</ul>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img decoding="async" src="https://assets.beincrypto.com/img/a_Db5jQwCceoQTcwyzYvEIdoppM=/smart/d73c54cd78d64e65a03d4121ab779c1f" alt="" class="wp-image-878452" style="width:1024px;height:auto"><figcaption class="wp-element-caption">JST daily chart. <a href="https://www.tradingview.com/symbols/JSTUSDT/?exchange=BINANCE" target="_blank" rel="noreferrer noopener nofollow">Source: TradingView</a></figcaption></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-2-monero-xmr-the-600-test"><strong>2. Monero (XMR): The $600 Test</strong></h2>
+
+
+
+<p>Monero has fallen to around $612 from $623 yesterday. However, the privacy coin remains up more than 120% from its February low near $276.</p>
+
+
+
+<p>The bullish case rests on $600, a key Fibonacci level that previously acted as resistance. XMR recently reclaimed that level and has repeatedly tested it as support. Still, declining volume and a cooling RSI suggest buyers are losing some momentum.</p>
+
+
+
+<p><strong>Where could XMR head next?</strong></p>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li><strong>Bearish:</strong> A daily close below $600 would threaten the recovery, with $538 becoming the next major support.</li>
+</ul>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li><strong>Bullish:</strong> Holding $600 and breaking 650&ndash;660 could open a move toward $688.</li>
+</ul>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/cX5JXfyM-dW0DTgtn501wzoKAYc=/smart/0e7a4808b1ab46ed8c7aea809621c2d1" alt="" class="wp-image-878451"><figcaption class="wp-element-caption">XMR daily chart. <a href="https://www.tradingview.com/symbols/XMRUSDT/?exchange=KUCOIN" target="_blank" rel="noreferrer noopener nofollow">Source: TradingView</a></figcaption></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-3-leo-token-leo-holding-near-record-highs"><strong>3. LEO Token (LEO): Holding Near Record Highs</strong></h2>
+
+
+
+<p>LEO trades around $9.34, roughly 12% below its May all-time high of $10.61. Unlike most cryptocurrencies, it has barely moved during Bitcoin&rsquo;s latest decline.</p>
+
+
+
+<p>Since August, LEO has largely traded between $8.91 and $9.49. Buyers have repeatedly defended the lower boundary, while sellers have blocked attempts to break higher. However, thin trading volume makes its apparent stability less convincing.</p>
+
+
+
+<p><strong>Where could LEO head next?</strong></p>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li><strong>Bearish:</strong> Losing $8.91 could expose $8.44, followed by $7.97.</li>
+</ul>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li><strong>Bullish:</strong> Clearing 9.49&ndash;9.60 could push LEO toward $9.90, followed by its record high.</li>
+</ul>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/U107EuxmAO7D1D1xSTuNB7-2FP8=/smart/b2ef5f95e4e3445a9b5d4dc7a30f57be" alt="" class="wp-image-878450"><figcaption class="wp-element-caption">LEO daily chart. <a href="https://www.tradingview.com/symbols/LEOUSD/?exchange=CRYPTO" target="_blank" rel="noreferrer noopener nofollow">Source: TradingView</a></figcaption></figure>
+
+
+
+<p>For now, all three altcoins remain technically resilient. Their next moves will depend on whether buyers can defend support, particularly if Bitcoin breaks decisively below $75,000 again.<br></p>
+<p>The post <a href="https://beincrypto.com/altcoins-to-watch-market-crash-november-second-week/">3 Altcoins Defy the Crypto Market Crash</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/HuqS985-Lypf23xEaOqwcakMfJU=/smart/2199d2da2d744d0292b7ef518ffa069f" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/HuqS985-Lypf23xEaOqwcakMfJU=/smart/2199d2da2d744d0292b7ef518ffa069f"/>
+
+	</item>
+		<item>
+		<title>Elon Musk Says He Never Urged Binance Users to Move Funds</title>
+		<link>https://beincrypto.com/elon-musk-binance-fake-quote-cz/</link>
+		
+		<dc:creator><![CDATA[Phil Haunhorst]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 09:59:44 +0000</pubDate>
+				<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Binance News]]></category>
+		<category><![CDATA[Celebrity News]]></category>
+		<category><![CDATA[Changpeng Zhao News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Elon Musk News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878498</guid>
+
+					<description><![CDATA[<p>Elon Musk called a viral Binance post fake after CZ flagged it. The claim blamed Binance's 80% market share and urged users to move funds.</p>
+<p>The post <a href="https://beincrypto.com/elon-musk-binance-fake-quote-cz/">Elon Musk Says He Never Urged Binance Users to Move Funds</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Elon Musk has dismissed a viral post claiming he blamed Binance&rsquo;s 80% market share for holding crypto back. The Tesla CEO called the quote made up on Saturday, after Binance founder Changpeng &ldquo;CZ&rdquo; Zhao flagged it as false.</strong></p>
+
+
+
+<p>The timing gave the fake claim extra weight. The post urged users to move funds to rival exchanges while Binance still dealt with the fallout from a roughly $6.3 billion hack.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-binance-hack-fallout-continues">Binance Hack Fallout Continues</h2>
+
+
+
+<p>A crypto influencer account published the claim on Saturday morning. According to the post, Musk wanted users to move funds off Binance to restore competition and spark a bull run.</p>
+
+
+
+<p>The post cited no original statement. Within about an hour, CZ told the account not to spread false information.</p>
+
+
+
+<p>His reply included an answer from Grok, the AI chatbot built into X. Grok found no matching post on Musk&rsquo;s account and called the story fabricated.</p>
+
+
+
+<p>Musk then settled the matter in the same thread. The billionaire wrote that he never posted anything like it.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Yeah, I never wrote anything like that. This is made up.</p>&mdash; Elon Musk (@elonmusk) <a href="https://x.com/elonmusk/status/2118967587069673914?ref_src=twsrc%5Etfw">November 7, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>The exchange stands out because the two men have clashed repeatedly in recent weeks. Late in October, Musk was <a href="https://beincrypto.com/cz-elon-musk-spacex-shares-binance-hack-gap/" target="_blank" rel="noopener">trolling the Binance hack</a> on X.</p>
+
+
+
+<p>This week, their <a href="https://beincrypto.com/cz-elon-musk-spat-memes-market-crash/" target="_blank" rel="noopener">crash-day meme spat</a> showed the rivalry was far from over. On this point, however, both sides agreed.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-a-fake-withdrawal-call-hits-harder-now">Why a Fake Withdrawal Call Hits Harder Now</h2>
+
+
+
+<p>Musk&rsquo;s reach on X means even an unsourced claim can shape sentiment within hours. A call to pull funds from the largest exchange carries more risk than an ordinary rumor.</p>
+
+
+
+<p>Binance customers already have reasons to worry about security. The breach has been tied to <a href="https://beincrypto.com/north-korean-hackers-7-billion-2026/" target="_blank" rel="noopener">North Korean hacking operations</a>, which have taken billions from crypto firms this year.</p>
+
+
+
+<p>Meanwhile, Strategy chairman Michael Saylor has warned that <a href="https://beincrypto.com/michael-saylor-ai-hackers-binance-hack/" target="_blank" rel="noopener">AI hackers targeting exchanges</a> are the industry&rsquo;s next threat.</p>
+
+
+
+<p>Against that backdrop, a fake Elon Musk post about Binance becomes more than a nuisance. Each viral rumor now tests how quickly exchanges, founders, and AI tools can correct the record.</p>
+<p>The post <a href="https://beincrypto.com/elon-musk-binance-fake-quote-cz/">Elon Musk Says He Never Urged Binance Users to Move Funds</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/LZrkCcWZe4OlDs2znW07nE4DzDM=/smart/065772033d8d45a492c75cdfddb59d08" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/LZrkCcWZe4OlDs2znW07nE4DzDM=/smart/065772033d8d45a492c75cdfddb59d08"/>
+<ticker>BNB</ticker>
+	</item>
+		<item>
+		<title>Tom Lee and a JPMorgan Manager Call the AI Rout Normal: Will Nasdaq Rally 15%?</title>
+		<link>https://beincrypto.com/tom-lee-buy-ai-dip-nasdaq-rally/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 22:00:00 +0000</pubDate>
+				<category><![CDATA[Stocks]]></category>
+		<category><![CDATA[AI News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Nasdaq]]></category>
+		<category><![CDATA[Stock Market News]]></category>
+		<category><![CDATA[US Politics]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878463</guid>
+
+					<description><![CDATA[<p>Tom Lee says buy the AI dip after a $2.3 trillion Nasdaq rout. See his 15% rally case and what could break it.</p>
+<p>The post <a href="https://beincrypto.com/tom-lee-buy-ai-dip-nasdaq-rally/">Tom Lee and a JPMorgan Manager Call the AI Rout Normal: Will Nasdaq Rally 15%?</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Fundstrat&rsquo;s Tom Lee says he would buy the AI stock dip and expects a 15% Nasdaq rally. His video update posted Friday, a day after the tech-heavy Nasdaq-100 fell 6.36% and erased $2.3 trillion in value.</strong></p>
+
+
+
+<p>Holders of chip and AI stocks took the heaviest losses. Yet Lee&rsquo;s own Granny Shots US Large Cap ETF (GRNY), which owns many of them, is up 7.5% this year versus 11.7% for the S&amp;P 500, he said.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-does-lee-call-the-ai-selloff-a-buying-chance">Why Does Lee Call the AI Selloff a Buying Chance?</h2>
+
+
+
+<p>Lee blamed the drop on fears that a Democratic &ldquo;blue tsunami&rdquo; in Congress will choke AI spending.</p>
+
+
+
+<p>He pointed to August. The Nasdaq-100 fell about 12% from June 30 to early August, then the S&amp;P 500 rallied 15%, he said.</p>
+
+
+
+<p>Democrats may delay data center spending but will not stop it, Lee argued. A split Washington also eases White House pressure on the Federal Reserve (Fed), he <a href="https://www.youtube.com/watch?v=Rsp2EF6BVqo" target="_blank" rel="noreferrer noopener nofollow">said</a>.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;But bottom line, I think that I would be buying this AI dip.&rdquo;</p>
+</blockquote>
+
+
+
+<p>Lee first floated a <a href="https://beincrypto.com/tom-lee-tech-rally-democrat-midterms/" target="_blank" rel="noreferrer noopener">15% to 20% tech rally</a> on Wednesday, before <a href="https://beincrypto.com/why-us-stock-market-crashing-3-reasons/" target="_blank" rel="noreferrer noopener">Thursday&rsquo;s AI chip crash</a>. Lee, who also chairs Ethereum (ETH) treasury firm BitMine, cited crypto&rsquo;s rebound as a bull market signal.</p>
+
+
+
+<p>JPMorgan Asset Management equity portfolio manager Jack Caffrey also called the drop normal. The Nasdaq should see one or two corrections a year, he told <a href="https://www.youtube.com/watch?v=u2ysQMgm0UM" target="_blank" rel="noreferrer noopener nofollow">CNBC</a> on Friday.</p>
+
+
+
+<p>Companies he met this week reported order backlogs of 12 to 24 months, Caffrey said. He called that a long-term earnings story investors can buy into.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-what-could-break-lee-s-15-rebound-call">What Could Break Lee&rsquo;s 15% Rebound Call?</h2>
+
+
+
+<p>Lee&rsquo;s case leans on falling bond yields and oil prices. This week&rsquo;s data pulled the other way.</p>
+
+
+
+<p>Brent crude traded near $98 a barrel on Thursday. On Friday, <a href="https://beincrypto.com/gold-bitcoin-fall-us-jobs-report/" target="_blank" rel="noreferrer noopener">US payrolls rose 165,000 in October</a>, far above the roughly 65,000 expected.</p>
+
+
+
+<p>That data lifted bets on a December Fed rate hike. Lee had argued the Fed now faces less pressure to tighten.</p>
+
+
+
+<p>Caffrey saw it differently. Speaking before the jobs data, he said the Fed was on a path of gradual tightening, and that a hot report would keep it there. October payrolls came in at more than double expectations.</p>
+
+
+
+<p>Tech analyst Dan Ives had forecast a 10% to 12% drop in chip stocks after a Democratic sweep, Stocktwits <a href="https://stocktwits.com/news-articles/markets/equity/tom-lee-expects-20-tech-rally-but-dan-ives-warns-of-more-downside/cNGLr3UR9Ec" target="_blank" rel="noreferrer noopener nofollow">reported</a>. The Philadelphia Semiconductor Index fell 12.25% on Thursday alone.</p>
+
+
+
+<p>Thursday&rsquo;s selling also hit more than 400 stocks in the S&amp;P 500, not just the AI leaders, Caffrey noted. Risk managers and margin calls, rather than portfolio managers, were driving many trades, he said.</p>
+
+
+
+<p>Chipmakers bounced Friday. AMD rose about 8% after a 17% fall.</p>
+
+
+
+<p>On October 26, Lee told viewers the AI selloff was ending. Ten days later, the Nasdaq slid into correction. Jim Cramer had called Friday&rsquo;s jobs data the <a href="https://beincrypto.com/jim-cramer-jobs-report-midterm-rally/" target="_blank" rel="noreferrer noopener">midterm rally&rsquo;s real test</a>. The Fed&rsquo;s next rate decision comes in December.</p>
+<p>The post <a href="https://beincrypto.com/tom-lee-buy-ai-dip-nasdaq-rally/">Tom Lee and a JPMorgan Manager Call the AI Rout Normal: Will Nasdaq Rally 15%?</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/ipEEn2RbxuwNqreRrNSzmYfMRV4=/smart/223fea65144c43f1ad0111d23d4ed790" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/ipEEn2RbxuwNqreRrNSzmYfMRV4=/smart/223fea65144c43f1ad0111d23d4ed790"/>
+
+	</item>
+		<item>
+		<title>US Treasury Bans MEXC Exchange Over Alleged $16B in Illicit Transactions</title>
+		<link>https://beincrypto.com/us-bans-mexc-16-billion-illicit-transactions/</link>
+		
+		<dc:creator><![CDATA[Mohammad Shahid]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 21:34:53 +0000</pubDate>
+				<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Centralized Exchanges (CEX)]]></category>
+		<category><![CDATA[Regulation News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878475</guid>
+
+					<description><![CDATA[<p>The US Treasury has ordered crypto exchange MEXC Global cut off from the American financial system over allegations that it processed $16.7 billion linked to illicit activity. The November 6 announcement says the Financial Crimes Enforcement Network (FinCEN) will prohibit US financial institutions from sending or receiving funds involving MEXC. The restriction covers cryptocurrency transfers</p>
+<p>The post <a href="https://beincrypto.com/us-bans-mexc-16-billion-illicit-transactions/">US Treasury Bans MEXC Exchange Over Alleged $16B in Illicit Transactions</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>The US Treasury has ordered crypto exchange MEXC Global cut off from the American financial system over allegations that it processed $16.7 billion linked to illicit activity.</strong></p>
+
+
+
+<p>The<a href="https://home.treasury.gov/news/press-releases/sb0685/" target="_blank" rel="noreferrer noopener nofollow"> November 6 announcement</a> says the Financial Crimes Enforcement Network (FinCEN) will prohibit US financial institutions from sending or receiving funds involving MEXC.</p>
+
+
+
+<p>The restriction covers cryptocurrency transfers and takes effect 30 days after publication in the Federal Register.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-did-the-us-treasury-target-mexc"><strong>Why Did the US Treasury Target MEXC?</strong></h2>
+
+
+
+<p>According to the<a href="https://www.fincen.gov/system/files/2026-11/MEXC-Section-9714.pdf" target="_blank" rel="noreferrer noopener nofollow"> 24-page FinCEN order</a>, MEXC handled approximately $16.7 billion in suspected illicit transactions between May 2021 and May 2026.</p>
+
+
+
+<p>Treasury linked nearly $1.5 billion to Russian sanctions evasion, including transactions involving sanctioned exchange Garantex. It also identified more than $1 billion in direct transfers with over 40 Iranian crypto exchanges.</p>
+
+
+
+<p>FinCEN further alleged that MEXC facilitated approximately $350,000 for sanctioned North Korean money launderer Sim Hyon Sop in 2025.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;Either you support the Iranian regime, or you have access to the US financial system,&rdquo; Treasury Secretary Scott Bessent said.</p>
+</blockquote>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-mexc-already-bans-us-customers-why-does-this-matter"><strong>MEXC Already Bans US Customers. Why Does This Matter?</strong></h2>
+
+
+
+<p>MEXC&rsquo;s<a href="https://www.mexc.com/learn/article/mexc-restricted-countries-complete-list-of-prohibited-limited-regions/1" target="_blank" rel="noreferrer noopener nofollow"> own user agreement</a> already prohibits American customers. Iran and North Korea are also restricted.</p>
+
+
+
+<p>The existing restrictions govern who can trade on MEXC. Treasury&rsquo;s order targets how money moves through US financial institutions, including transactions involving customers living elsewhere.</p>
+
+
+
+<p><strong>For example, a trader in Europe could see a crypto transfer between MEXC and a US-regulated exchange rejected once the prohibition takes effect.</strong></p>
+
+
+
+<p>The bigger concern is counterparty risk.</p>
+
+
+
+<p>Foreign exchanges and banking partners may reconsider their relationships with MEXC to avoid regulatory exposure. This could disrupt deposits and withdrawals, potentially affecting liquidity worldwide.</p>
+
+
+
+<p>The order does not automatically freeze customer assets or shut down MEXC globally.</p>
+
+
+
+<p>However, it has no scheduled expiration date. How MEXC&rsquo;s financial partners respond will determine how severely the restrictions affect its international operations.</p>
+
+
+
+<p></p>
+<p>The post <a href="https://beincrypto.com/us-bans-mexc-16-billion-illicit-transactions/">US Treasury Bans MEXC Exchange Over Alleged $16B in Illicit Transactions</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/jProVfdPmPwuafHwxN2_QXrmtxw=/smart/c0eae47862fb491eaeb634791e072926" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/jProVfdPmPwuafHwxN2_QXrmtxw=/smart/c0eae47862fb491eaeb634791e072926"/>
+
+	</item>
+		<item>
+		<title>BeInCrypto and Coinhold Wallet to Host AMA on Stablecoins and Inflation in Latin America</title>
+		<link>https://beincrypto.com/beincrypto-coinhold-stablecoins-inflation-latam-ama/</link>
+		
+		<dc:creator><![CDATA[Advertorial]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 19:57:57 +0000</pubDate>
+				<category><![CDATA[Events]]></category>
+		<category><![CDATA[Stablecoins]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878472</guid>
+
+					<description><![CDATA[<p>November 6, 2026 &#8212; BeInCrypto LATAM and Coinhold Wallet will host a live Ask Me Anything (AMA) session titled &#8220;&#191;Devaluaci&#243;n a la vista? Por qu&#233; las stablecoins se est&#225;n volviendo clave en LATAM&#8221; on Monday, November 9, from 18:00 to 19:00 (GMT-5), broadcast online via X&#160; As inflation, currency depreciation, and economic uncertainty continue to</p>
+<p>The post <a href="https://beincrypto.com/beincrypto-coinhold-stablecoins-inflation-latam-ama/">BeInCrypto and Coinhold Wallet to Host AMA on Stablecoins and Inflation in Latin America</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>November 6, 2026</strong> &mdash; BeInCrypto LATAM and Coinhold Wallet will host a live Ask Me Anything (AMA) session titled &ldquo;&iquest;Devaluaci&oacute;n a la vista? Por qu&eacute; las stablecoins se est&aacute;n volviendo clave en LATAM&rdquo; on Monday, November 9, from 18:00 to 19:00 (GMT-5), broadcast online via X&nbsp;</p>
+
+
+
+<p>As inflation, currency depreciation, and economic uncertainty continue to influence financial decisions across Latin America, stablecoins are attracting growing interest as an alternative way to hold and transfer value.</p>
+
+
+
+<p>The discussion will explore why people in countries such as Colombia and Peru are turning to dollar-pegged stablecoins like USDT, how digital assets can fit into everyday financial activities, and what risks users should consider.</p>
+
+
+
+<p>Speakers will also discuss the outlook for crypto adoption in LATAM, barriers to wider adoption, and practical applications beyond simply holding cryptocurrencies, including payments, transfers, and digital asset management.</p>
+
+
+
+<h3 class="wp-block-heading" id="h-speakers-and-moderator"><strong>Speakers and moderator</strong></h3>
+
+
+
+<p>The AMA will bring together three industry representatives:</p>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li><strong>Nicol&aacute;s Rinc&oacute;n</strong>, Sales &amp; Partnerships Manager at Coinhold Wallet, who will discuss how the platform helps users manage and use digital assets through products such as Grow and the Payment Card.</li>
+
+
+
+<li><strong>The Bitcoin Coffee Guy</strong> (<a href="https://x.com/josebitcoiner">@josebitcoiner</a>), sharing insights into Bitcoin and cryptocurrency adoption.</li>
+
+
+
+<li><strong>Luis Almonte</strong>, Gener&aacute; tu Sueldo (<a href="https://x.com/generatusueldoo">@generatusueldoo</a>), offering a perspective on the practical use of digital assets.</li>
+</ul>
+
+
+
+<p>The session will be moderated by <strong>Lu&iacute;s de Magalh&atilde;es, LATAM Team Lead at BeInCrypto</strong>, a journalist with over 15 years of experience covering financial and political affairs for major Brazilian broadcasters, including Globo and Band.</p>
+
+
+
+<h3 class="wp-block-heading" id="h-how-to-participate"><strong>How to participate</strong></h3>
+
+
+
+<p>The AMA is open to everyone interested in stablecoins, cryptocurrency, and the future of digital finance in Latin America. Participants will also have an opportunity to win a $100 Apple Gift Card, with giveaway details to be announced during the event.</p>
+
+
+
+<p><strong>Event details:</strong></p>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li><strong>Date:</strong> Monday, November 9, 2026</li>
+
+
+
+<li><strong>Time:</strong> 18:00&ndash;19:00 (GMT-5)</li>
+
+
+
+<li><strong>Platform:</strong> X</li>
+
+
+
+<li><strong>Register: https://luma.com/3cxc7cjs&nbsp;</strong></li>
+
+
+
+<li><strong>Topic:</strong> Activos digitales en tu bolsillo: monedas estables vs inflaci&oacute;n en LATAM</li>
+</ul>
+
+
+
+<p><strong>About Coinhold Wallet</strong></p>
+
+
+
+<p>Coinhold Wallet is a digital asset platform developed within the EMCD ecosystem, offering tools for storing, transferring, exchanging, and managing cryptocurrencies. With over $70 million in total value on the platform, Coinhold Wallet aims to make digital assets more accessible and practical for everyday use.</p>
+<p>The post <a href="https://beincrypto.com/beincrypto-coinhold-stablecoins-inflation-latam-ama/">BeInCrypto and Coinhold Wallet to Host AMA on Stablecoins and Inflation in Latin America</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/G-xGksuhEiyoXOqOGJXUOznOljA=/smart/48dbc7ff6f5440dc98c8bb4fbb5be608" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/G-xGksuhEiyoXOqOGJXUOznOljA=/smart/48dbc7ff6f5440dc98c8bb4fbb5be608"/>
+
+	</item>
+		<item>
+		<title>$26 Billion Bitcoin ETFs Selloff Wipes Out Every 2026 Inflow</title>
+		<link>https://beincrypto.com/bitcoin-etfs-zero-net-flows-2026/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 18:00:00 +0000</pubDate>
+				<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Bitcoin (BTC) News]]></category>
+		<category><![CDATA[ETF News]]></category>
+		<category><![CDATA[Ethereum (ETH) News]]></category>
+		<category><![CDATA[Ethereum ETF]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878438</guid>
+
+					<description><![CDATA[<p>US Bitcoin ETFs took in $25.6 billion in 2026 but lost $26.1 billion. Ethereum ETFs are negative for the year too.</p>
+<p>The post <a href="https://beincrypto.com/bitcoin-etfs-zero-net-flows-2026/">$26 Billion Bitcoin ETFs Selloff Wipes Out Every 2026 Inflow</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>As of this writing, US spot Bitcoin (BTC) exchange-traded funds (ETFs) have taken in $25.6 billion this year and paid out $26.1 billion. That leaves 2026 net flows at minus $502 million, according to SoSoValue data through November 5.</strong></p>
+
+
+
+<p>The funds still hold $96.65 billion, down from $113.29 billion at the end of 2025. For Bitcoin holders, Wall Street&rsquo;s main buying channel has added no net demand this year.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-flat-flows-at-bitcoin-etfs-matter-for-price">Why Flat Flows at Bitcoin ETFs Matter for Price</h2>
+
+
+
+<p>Spot ETFs buy real Bitcoin when investors put cash in. They sell Bitcoin when investors cash out.</p>
+
+
+
+<p>That process created steady buying before. The funds took in about $35.2 billion in 2024 and $21.4 billion in 2025, SoSoValue data shows.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/iaDba5WbN92dbjmdGCVPzxAnFyw=/smart/a3d06a91a4724e88a18330c514748c2a" alt="Weekly net flows at US spot Bitcoin ETFs, September 2025 to November 2026, Source: SoSoValue" class="wp-image-878440"><figcaption class="wp-element-caption">Weekly net flows at US spot Bitcoin ETFs, September 2025 to November 2026, Source: <a href="https://sosovalue.com/assets/etf/us-btc-spot" target="_blank" rel="noreferrer noopener nofollow">SoSoValue</a></figcaption></figure>
+
+
+
+<p>Trading has not slowed. Investors swapped $3.89 billion in ETF shares on November 5 alone, yet money leaving matched money arriving.</p>
+
+
+
+<p>Selling picked up into November. The funds lost $869.8 million between November 2 and November 5, including $430.2 million on Thursday.</p>
+
+
+
+<p>Bitcoin retested $75,000 as tech stocks fell, a move covered in <a href="https://beincrypto.com/bitcoin-price-crash-48-hours-spot-selling-analysis/" target="_blank" rel="noreferrer noopener">Bitcoin&rsquo;s 48-hour reversal</a>. It traded near $75,500 on Friday, per SoSoValue.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-are-ethereum-etfs-losing-money-too">Are Ethereum ETFs Losing Money Too?</h2>
+
+
+
+<p>Yes. US spot Ethereum (ETH) ETFs have about $310 million in net outflows this year, SoSoValue data shows.</p>
+
+
+
+<p>Their assets fell from $17.95 billion to $13.04 billion over the same stretch. October was their <a href="https://beincrypto.com/ethereum-etfs-record-october-outflow/" target="_blank" rel="noreferrer noopener">worst month since launch</a>, with $1.61 billion withdrawn.</p>
+
+
+
+<p>On-chain analytics firm Glassnode counted 23 straight trading days of Ethereum ETF outflows as of October 31, a record.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/aVpKgV4O2dHUowPjDE_CZmYR8Ro=/smart/94d83c93b7e64b90afdc9e1fbe6dd461" alt="Weekly net flows at US spot Ethereum ETFs, September 2025 to November 2026, Source: SoSoValue" class="wp-image-878441"><figcaption class="wp-element-caption">Weekly net flows at US spot Ethereum ETFs, September 2025 to November 2026, Source: <a href="https://sosovalue.com/assets/etf/us-eth-spot" target="_blank" rel="noreferrer noopener nofollow">SoSoValue</a></figcaption></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-what-could-push-bitcoin-etf-flows-back-above-zero">What Could Push Bitcoin ETF Flows Back Above Zero?</h2>
+
+
+
+<p>Not every fund is bleeding. Morgan Stanley&rsquo;s Bitcoin ETF, MSBT, has drawn $783 million in net inflows, SoSoValue data shows.</p>
+
+
+
+<p>Banks are also still selling the product. <a href="https://beincrypto.com/citi-bitcoin-etf-clients-billion-outflows/" target="_blank" rel="noreferrer noopener">Citi Wealth pitched Bitcoin ETFs</a> to clients this week despite the outflows.</p>
+
+
+
+<p><strong>Friday&rsquo;s flows had not been published as of this writing and could shift the yearly total</strong>.</p>
+
+
+
+<p>To finish 2026 positive, the funds need more than $502 million in net inflows over the final eight weeks.</p>
+
+
+
+<p>If they fall short, it would be the first calendar year of net outflows since US spot Bitcoin ETFs launched in January 2024.</p>
+<p>The post <a href="https://beincrypto.com/bitcoin-etfs-zero-net-flows-2026/">$26 Billion Bitcoin ETFs Selloff Wipes Out Every 2026 Inflow</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/ADHGiAxERHy_554lxlEkdG5jHNI=/smart/c9e0d1f4ef4f41f69bb700eaba265351" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/ADHGiAxERHy_554lxlEkdG5jHNI=/smart/c9e0d1f4ef4f41f69bb700eaba265351"/>
+<ticker>BTC</ticker>
+<ticker>ETH</ticker>
+	</item>
+		<item>
+		<title>Elon Musk Offers to Cancel SpaceX Government Contracts: Can the Stock Live Without Them?</title>
+		<link>https://beincrypto.com/musk-cancel-spacex-government-contracts-stock/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 17:10:43 +0000</pubDate>
+				<category><![CDATA[Stocks]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Elon Musk News]]></category>
+		<category><![CDATA[Stock Market News]]></category>
+		<category><![CDATA[US Politics]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878454</guid>
+
+					<description><![CDATA[<p>Elon Musk offers to cancel SpaceX government contracts as SPCX stock rebounds. See how much revenue is really at stake.</p>
+<p>The post <a href="https://beincrypto.com/musk-cancel-spacex-government-contracts-stock/">Elon Musk Offers to Cancel SpaceX Government Contracts: Can the Stock Live Without Them?</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>SpaceX (SPCX) shares rose about 6% on Friday despite Elon Musk offering to cancel any federal contract the government no longer wants. He said government work is under 10% of SpaceX revenue this quarter.</strong></p>
+
+
+
+<p>The bounce repairs only part of the damage. SpaceX lost 12.5% of its market value in the two sessions after Democrats won Congress, leaving June IPO buyers below their $135 entry price.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/eycjB8rq-0pzAKZ64P5RqMxYBWs=/smart/84e22076c17547219a0760458e045d20" alt="SPCX five-day price chart showing the post-midterm drop and Friday rebound, Source: Yahoo Finance" class="wp-image-878456"><figcaption class="wp-element-caption">SPCX 5-Day Price Chart Showing the Post-Midterm Drop and Friday Rebound, Source: <a href="https://finance.yahoo.com/quote/SPCX/" target="_blank" rel="noreferrer noopener nofollow">Yahoo Finance</a></figcaption></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-how-much-of-spacex-s-revenue-comes-from-washington">How Much of SpaceX&rsquo;s Revenue Comes From Washington?</h2>
+
+
+
+<p>Musk was replying to Warren Redlich, who urged him to offer Democrats a list of contracts to cancel.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;Moreover government revenue will be less than 10% of SpaceX revenue this quarter and less then 5% a year from now. Happy to cancel any that the government doesn&rsquo;t want. Just say the word!&rdquo; Must <a href="https://x.com/elonmusk/status/2118737725964837353" target="_blank" rel="noreferrer noopener nofollow">stated</a>. </p>
+</blockquote>
+
+
+
+<p>At Musk&rsquo;s figure, government work would be at most about $1.46 billion of SpaceX&rsquo;s $14.58 billion third-quarter revenue. However, the 10% figure is a forecast that results have not yet confirmed.</p>
+
+
+
+<p>TipRanks <a href="https://www.tipranks.com/news/article/spacex-stock-spcx-is-plunging-why-investors-are-scared-today-november-5-2026" target="_blank" rel="noreferrer noopener nofollow">argued</a> that Washington still depends on SpaceX&rsquo;s rockets and satellites. In September, NASA added $946 million to SpaceX&rsquo;s astronaut contract, bringing it to $5.92 billion.</p>
+
+
+
+<p>Musk&rsquo;s figure also sits well below SpaceX&rsquo;s own <a href="https://washingtontechnology.com/companies/2026/05/spacexs-s-1-lays-out-its-government-work-and-market-ambitions/413681/" target="_blank" rel="noreferrer noopener nofollow">filing</a>. Its S-1, the disclosure filed before going public, put US government agencies at about one-fifth of 2025 revenue.</p>
+
+
+
+<p>Since then, the AI division has outgrown the rest of the company, bringing in $7.56 billion of that third-quarter total.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">Exactly &#128514;<br><br>Tesla has no government contracts and President Trump ended federal incentives for electric vehicles. <br><br>SpaceX contracts with the government are BOTH the best product AND the lowest price! Moreover government revenue will be less than 10% of SpaceX revenue this&hellip; <a href="https://t.co/T0tJTHal7U">https://t.co/T0tJTHal7U</a></p>&mdash; Elon Musk (@elonmusk) <a href="https://x.com/elonmusk/status/2118737725964837353?ref_src=twsrc%5Etfw">November 6, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-contracts-may-not-be-spacex-stock-s-biggest-risk">Why Contracts May Not Be SpaceX Stock&rsquo;s Biggest Risk</h2>
+
+
+
+<p>Democrats, whose win triggered the <a href="https://beincrypto.com/tesla-spacex-stocks-fall-us-midterms/" target="_blank" rel="noopener">Tesla and SpaceX selloff</a>, can hold hearings and demand records from January. Still, an investigation alone would not cancel existing contracts.</p>
+
+
+
+<p>Musk&rsquo;s offer also leaves the AI side untouched. Gina Hinojosa, the Democrat who won the Texas governor&rsquo;s race, wants to pause new data center approvals until power and water protections are in place.</p>
+
+
+
+<p>That plan targets the business now producing more than half of SpaceX&rsquo;s sales.</p>
+
+
+
+<p>SPCX first <a href="https://beincrypto.com/spacex-stock-below-ipo-price-cz/" target="_blank" rel="noopener">slipped below its IPO</a> price in late October, then recovered above $140 before the vote.</p>
+
+
+
+<p>Two tests now follow:</p>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li>Fourth-quarter results will show whether government revenue really drops under 10%. </li>
+</ul>
+
+
+
+<ul class="bic-gutenberg-list wp-list list-disc ">
+<li>Hinojosa and the new Congress both take office in January.</li>
+</ul>
+
+
+
+<p><strong><em><a href="https://go.beincrypto.com/beincrypto-youtube" target="_blank" rel="noreferrer noopener">Subscribe to our YouTube</a> channel to watch leaders and journalists provide expert insights</em></strong></p>
+
+
+
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe title="He Thinks This SpaceX-Linked Stock Could Go 70X! Seriously" width="500" height="281" src="https://www.youtube.com/embed/6ujwFBEuSH0?start=10&amp;feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div></figure>
+<p>The post <a href="https://beincrypto.com/musk-cancel-spacex-government-contracts-stock/">Elon Musk Offers to Cancel SpaceX Government Contracts: Can the Stock Live Without Them?</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/4QJWA7eOPSn9XB4go-bQXEAjzKk=/smart/dae86dbf26c14b04b7c56196848c6d57" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/4QJWA7eOPSn9XB4go-bQXEAjzKk=/smart/dae86dbf26c14b04b7c56196848c6d57"/>
+
+	</item>
+		<item>
+		<title>Trump’s Plan to Let 401(k)s Hold Crypto Is Almost Final: When Can Savers Buy In?</title>
+		<link>https://beincrypto.com/crypto-401k-rule-white-house-review/</link>
+		
+		<dc:creator><![CDATA[Lockridge Okoth]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 16:00:00 +0000</pubDate>
+				<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Regulation News]]></category>
+		<category><![CDATA[Trump News]]></category>
+		<category><![CDATA[US Crypto News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878421</guid>
+
+					<description><![CDATA[<p>The final crypto 401(k) rule is under White House review. Here is when savers could see private assets and crypto.</p>
+<p>The post <a href="https://beincrypto.com/crypto-401k-rule-white-house-review/">Trump’s Plan to Let 401(k)s Hold Crypto Is Almost Final: When Can Savers Buy In?</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>A final Labor Department rule that would shield employers who add private equity, real estate, and crypto to 401(k) plans reached the White House on Thursday. The review is the last step before the rule is published.</strong></p>
+
+
+
+<p>Employer savings plans such as 401(k)s held $15 trillion at the end of June, Investment Company Institute (ICI) data shows. Asset managers want access to that money. Three Democratic lawmakers urged in June that the rule be withdrawn.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-how-the-crypto-401-k-rule-s-lawsuit-shield-works">How the Crypto 401(k) Rule&rsquo;s Lawsuit Shield Works</h2>
+
+
+
+<p>The rule landed at the Office of Information and Regulatory Affairs (OIRA), which vets major regulations, <a href="https://news.bloomberglaw.com/employee-benefits/401k-private-asset-rule-lands-at-white-house-for-final-review" target="_blank" rel="noopener">Bloomberg</a> Law <a href="https://news.bloomberglaw.com/employee-benefits/401k-private-asset-rule-lands-at-white-house-for-final-review" target="_blank" rel="noreferrer noopener nofollow">reported</a>. It carries out a Trump executive order.</p>
+
+
+
+<p>No plan is forced to offer new assets. Instead, employers who weigh six factors get a legal shield, known as a safe harbor. The factors are performance, fees, liquidity, valuation, benchmarks, and complexity.</p>
+
+
+
+<p>Courts would then presume those employers acted prudently. The <a href="https://www.federalregister.gov/documents/2026/03/31/2026-06178/fiduciary-duties-in-selecting-designated-investment-alternatives" target="_blank" rel="noreferrer noopener nofollow">proposal</a> says lawsuit threats have narrowed the choices employers offer.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-when-private-assets-could-reach-401-k-savers">When Private Assets Could Reach 401(k) Savers</h2>
+
+
+
+<p>OIRA has up to 90 days to finish its review, as BeInCrypto&rsquo;s <a href="https://beincrypto.com/learn/crypto-401k/" target="_blank" rel="noreferrer noopener">guide to crypto 401(k)s</a> explains. The draft moved faster. OIRA received it on January 13 and cleared it on March 24, federal <a href="https://www.reginfo.gov/public/do/eoDetails?rrid=1242111" target="_blank" rel="noreferrer noopener nofollow">records</a> show.</p>
+
+
+
+<p>The Labor Department <a href="https://beincrypto.com/401k-crypto-private-credit-rule-proposal/" target="_blank" rel="noreferrer noopener">proposed the rule</a> a week later. After publication, each employer still chooses its own menu.</p>
+
+
+
+<p>ICI, which backs the rule, sees target-date funds, which shift a saver&rsquo;s assets with age, as the main route. In ICI&rsquo;s model, a 20% private allocation lifted the median balance after 40 years by 12%.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-critics-want-the-rule-withdrawn">Why Critics Want the Rule Withdrawn</h2>
+
+
+
+<p>A typical S&amp;P 500 index fund in a 401(k) charges 0.03% to 0.10% a year. One crypto option cited in BeInCrypto&rsquo;s guide charges about 1%.</p>
+
+
+
+<p>Senators Edward Markey and Elizabeth Warren, with Rep. Stephen Lynch, said private equity has trailed stock indexes while charging more.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;DOL should not use Americans&rsquo; retirement security to prop up an industry searching for its next cash infusion,&rdquo; <a href="https://www.markey.senate.gov/imo/media/doc/comment_letter_on_alternative_assets_proposed_rule.pdf" target="_blank" rel="noreferrer noopener nofollow">read</a> an exerpt in the letter. </p>
+</blockquote>
+
+
+
+<p>Savers are wary too. In a National Institute on Retirement Security survey, <a href="https://beincrypto.com/americans-reject-crypto-401k-retirement/" target="_blank" rel="noreferrer noopener">77% of Americans</a> called crypto in retirement plans risky.</p>
+
+
+
+<p>The published text will show whether the six-factor test survived tens of thousands of public comments. Employers, not Washington, then decide whether crypto reaches workers&rsquo; accounts.</p>
+<p>The post <a href="https://beincrypto.com/crypto-401k-rule-white-house-review/">Trump’s Plan to Let 401(k)s Hold Crypto Is Almost Final: When Can Savers Buy In?</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/wLORznaEKSMZskQJ_q1_76W9pyI=/smart/07501917facb4af18ff6b3be88696281" medium="image" width="300" height="150" type="image/png" />
+<media:thumbnail url="https://assets.beincrypto.com/img/wLORznaEKSMZskQJ_q1_76W9pyI=/smart/07501917facb4af18ff6b3be88696281"/>
+
+	</item>
+		<item>
+		<title>6 US Stocks to Watch After Wall Street&#039;s $2.5 Trillion Crash</title>
+		<link>https://beincrypto.com/6-us-stocks-to-watch-after-wall-street-market-crash/</link>
+		
+		<dc:creator><![CDATA[Luis Blanco]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 15:31:29 +0000</pubDate>
+				<category><![CDATA[Stocks]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Stock Market News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878423</guid>
+
+					<description><![CDATA[<p>Wall Street lost roughly $2.5 trillion in Nasdaq market value on Thursday as investors dumped AI stocks. Yet some of America&#8217;s biggest companies now look potentially attractive for long-term investors. Fears of tighter AI regulation and slowing data-center construction triggered the selloff. Friday brought a modest recovery, but the Nasdaq still recorded its fourth consecutive</p>
+<p>The post <a href="https://beincrypto.com/6-us-stocks-to-watch-after-wall-street-market-crash/">6 US Stocks to Watch After Wall Street&#039;s $2.5 Trillion Crash</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Wall Street lost roughly $2.5 trillion in Nasdaq market value on Thursday as investors dumped AI stocks. Yet some of America&rsquo;s biggest companies now look potentially attractive for long-term investors.</strong></p>
+
+
+
+<p><a href="https://beincrypto.com/why-us-stock-market-crashing-3-reasons/">Fears of tighter AI regulation</a> and slowing data-center construction triggered the selloff. Friday brought a modest recovery, but the Nasdaq still recorded its fourth consecutive weekly decline.</p>
+
+
+
+<blockquote class="max-w-xl text-4.5 border-l-2 border-blue-600 pl-11 mb-9 select-all [&amp;_p]:!mb-0 wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>&ldquo;We still think AI is the dominant theme in this bull market,&rdquo; Keith Lerner, chief investment officer at Truist Advisory Services,<a href="https://www.reuters.com/business/nasdaq-futures-rise-after-steep-ai-selloff-chip-stocks-stabilize-2026-11-06/" target="_blank" rel="noreferrer noopener nofollow"> told Reuters</a>.</p>
+</blockquote>
+
+
+
+<p>Six stocks stand out based on their earnings, valuations, and Wall Street forecasts.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/NwechLRwIWugiJ6qUmVMbS-StEE=/smart/594f210a9c2545fd90500af55c4d2db3" alt="" class="wp-image-878479"></figure>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-which-6-us-stocks-could-recover-after-the-crash"><strong>Which 6 US Stocks Could Recover After the Crash?</strong></h2>
+
+
+
+<h3 class="wp-block-heading" id="h-1-nvidia-nvda">1. NVIDIA (NVDA)</h3>
+
+
+
+<p>The chipmaker<a href="https://stockanalysis.com/stocks/nvda/" target="_blank" rel="noreferrer noopener nofollow"> plunged 9.3%</a> Thursday, but its business continues expanding rapidly. Quarterly revenue doubled to $96.2 billion, and analysts see roughly 75% upside.&nbsp;</p>
+
+
+
+<p>Trading at 15.4 times forward earnings, Nvidia looks increasingly affordable. However, shares remain below their 200-day moving average. November 17 earnings could determine the next direction.</p>
+
+
+
+<h3 class="wp-block-heading" id="h-2-vistra-vst">2. Vistra (VST)</h3>
+
+
+
+<p>The energy producer gained 10.5% Friday after<a href="https://investor.vistracorp.com/2026-11-06-Vistra-Reports-Third-Quarter-2026-Results" target="_blank" rel="noreferrer noopener nofollow"> reporting</a> a 50% increase in quarterly adjusted EBITDA. Its expanding electricity business benefits from data-center demand.<br><br>Analysts project 63% upside, although possible restrictions on AI infrastructure remain a risk.</p>
+
+
+
+<h3 class="wp-block-heading" id="h-3-amazon-amzn">3. Amazon (AMZN)</h3>
+
+
+
+<p>Amazon&rsquo;s cloud business grew 39.3% last quarter, while its operating margin reached a record 13.9%. Its diversified operations offer some protection from AI-sector volatility. However,<a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Third-Quarter-Results/default.aspx" target="_blank" rel="noreferrer noopener nofollow"> heavy infrastructure investment</a> pushed annual free cash flow negative.</p>
+
+
+
+<h3 class="wp-block-heading" id="h-4-alphabet-googl">4. Alphabet (GOOGL)</h3>
+
+
+
+<p>Google&rsquo;s parent reported 25% revenue growth, with cloud sales more than doubling. Its forward earnings multiple of 20.7 looks attractive relative to that growth.&nbsp;</p>
+
+
+
+<p>The <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000080/googexhibit991q32026.htm" target="_blank" rel="noreferrer noopener nofollow">concern</a> is negative quarterly free cash flow, driven by aggressive capital spending.</p>
+
+
+
+<h3 class="wp-block-heading" id="h-5-uber-uber">5. Uber (UBER)</h3>
+
+
+
+<p>Uber offers an alternative to AI-heavy investments. Quarterly <a href="https://investor.uber.com/news-events/news/press-release-details/2026/Uber-Announces-Results-for-Third-Quarter-2026/default.aspx" target="_blank" rel="noreferrer noopener nofollow">bookings</a> grew 20%, while free cash flow reached $2.5 billion. Analysts see nearly 47% upside, although weaker earnings guidance remains a concern.</p>
+
+
+
+<h3 class="wp-block-heading" id="h-6-netflix-nflx">6. Netflix (NFLX)</h3>
+
+
+
+<p><a href="https://beincrypto.com/netflix-stock-26-month-low-earnings/" target="_blank" rel="noreferrer noopener nofollow">Netflix trades near its yearly lows</a> despite 12% quarterly revenue growth and improving profitability. Its 17.7 forward earnings multiple looks relatively inexpensive.&nbsp;</p>
+
+
+
+<p>However, slower advertising growth makes its recovery less certain.</p>
+
+
+
+<p>All six retain bullish Wall Street consensus ratings. Still, the broader market remains technically weak. For investors, the next test is whether earnings growth can support these valuations as the AI selloff continues to unfold.</p>
+<p>The post <a href="https://beincrypto.com/6-us-stocks-to-watch-after-wall-street-market-crash/">6 US Stocks to Watch After Wall Street&#039;s $2.5 Trillion Crash</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/winH4LT7QQRjlfdiSvulGuhzOdA=/smart/5865be9d67504e52bf74f903acb4c608" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/winH4LT7QQRjlfdiSvulGuhzOdA=/smart/5865be9d67504e52bf74f903acb4c608"/>
+
+	</item>
+		<item>
+		<title>Wall Street Is Now More Scared Than Crypto Traders After a 70% Fear Gauge Spike</title>
+		<link>https://beincrypto.com/fear-gauge-stocks-crypto-nasdaq-crash/</link>
+		
+		<dc:creator><![CDATA[Jakub Dziadkowiec]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 15:26:32 +0000</pubDate>
+				<category><![CDATA[Markets]]></category>
+		<category><![CDATA[Bitcoin (BTC) News]]></category>
+		<category><![CDATA[Editor's Pick]]></category>
+		<category><![CDATA[Nasdaq]]></category>
+		<category><![CDATA[South Korea News]]></category>
+		<category><![CDATA[Stock Market News]]></category>
+		<guid isPermaLink="false">https://beincrypto.com/?p=878347</guid>
+
+					<description><![CDATA[<p>The VIX jumped 70% and CNN's fear gauge hit 20 after the Nasdaq crash. Crypto sentiment fell to 28. Here's what it shows.</p>
+<p>The post <a href="https://beincrypto.com/fear-gauge-stocks-crypto-nasdaq-crash/">Wall Street Is Now More Scared Than Crypto Traders After a 70% Fear Gauge Spike</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>Wall Street&rsquo;s fear gauge jumped nearly 70% on Thursday as the Nasdaq crashed 5.52%. Sentiment readings now place US stocks in deeper fear than crypto, flipping the usual order.</strong></p>
+
+
+
+<p>CNN&rsquo;s Fear and Greed Index for stocks sits at 20, in extreme fear. The crypto version reads 28, yet it lost 22 points in one day, leaving Bitcoin (BTC) holders exposed to sharper sentiment swings.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-why-did-wall-street-s-fear-gauge-spike-70-in-a-day">Why Did Wall Street&rsquo;s Fear Gauge Spike 70% in a Day?</h2>
+
+
+
+<p>The Nasdaq Composite fell 5.52% to 24,315 on November 5, entering correction territory. Meanwhile, the S&amp;P 500 lost 4.36%, and the Philadelphia Semiconductor Index sank 12.25%.</p>
+
+
+
+<p>Chipmakers took the heaviest damage. Democrats won Congress and three governor races in major data center states, adding <a href="https://beincrypto.com/why-us-stock-market-crashing-3-reasons/" target="_blank" rel="noreferrer noopener">pressure on tech stocks</a> already weighed down by AI spending doubts.</p>
+
+
+
+<p>The reversal came fast. Only a day earlier, the Dow had rallied roughly 1,500 points on the same election result.</p>
+
+
+
+<p>That whiplash showed up in the Cboe Volatility Index (VIX). Built by <a href="https://www.cboe.com/en/tradable-products/volatility-trading/" target="_blank" rel="noreferrer noopener nofollow">Cboe</a>, it tracks the 30-day volatility traders expect, based on S&amp;P 500 options prices. Wall Street calls it the fear gauge.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">CBOE Volatility Index <a href="https://x.com/search?q=%24VIX&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$VIX</a> soared 70% today, its 3rd largest gain in history &#128680; &#128123; &#128561; <a href="https://t.co/5pQKexhjVN">pic.twitter.com/5pQKexhjVN</a></p>&mdash; Barchart (@Barchart) <a href="https://x.com/Barchart/status/2118520089846636811?ref_src=twsrc%5Etfw">November 6, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>The VIX closed at 28.18, a gain Barchart ranked as the third-largest in the index&rsquo;s history. According to <a href="https://www.td.com/ca/en/investing/direct-investing/articles/understanding-vix" target="_blank" rel="noreferrer noopener nofollow">TD</a>, readings between 25 and 30 point to growing turbulence, while levels above 30 signal a highly volatile market.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-how-deep-does-the-fear-run-in-stocks">How Deep Does the Fear Run in Stocks?</h2>
+
+
+
+<p>CNN&rsquo;s Fear and Greed Index confirms the mood. It blends seven market indicators, including the VIX, options activity, and demand for junk bonds and safe havens.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/Xxh5rPML9kiOvUkcQ4IVsQ0wtys=/smart/3e3553c5b9d54b7f9bdfd28a0830f8f4" alt="" class="wp-image-878350"><figcaption class="wp-element-caption">CNN Fear and Greed Index at 20, extreme fear / <a href="https://edition.cnn.com/markets/fear-and-greed" target="_blank" rel="noreferrer noopener nofollow">Source: CNN Business</a></figcaption></figure>
+
+
+
+<p>The index read 20 on Friday morning. In contrast, it stood at a neutral 47 a month ago and 26 last week.</p>
+
+
+
+<p>The selloff also crossed the Pacific. South Korea&rsquo;s main index fell 8.55% on Friday, pushing the <a href="https://beincrypto.com/kospi-circuit-breaker-index-below-5000/" target="_blank" rel="noreferrer noopener">KOSPI below 5,000</a> for the first time since February.</p>
+
+
+
+<p>That plunge triggered a 20-minute trading halt in Seoul. SK Hynix and Samsung Electronics, which together make up about half of the index, each lost roughly 10% or more.</p>
+
+
+
+<h2 class="bic-gutenberg-heading wp-heading wp-block-heading" id="h-is-crypto-s-fear-close-to-a-bottom">Is Crypto&rsquo;s Fear Close to a Bottom?</h2>
+
+
+
+<p>Crypto sentiment cracked as well, though from a much higher starting point. The Crypto Fear and Greed Index, published by Alternative.me, dropped to 28 from a neutral 50 one day earlier.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://assets.beincrypto.com/img/Lw0nheQSJ7jpUgAvarYEW9G0wEg=/smart/9a178408b89e474e92f407c60efe7707" alt="" class="wp-image-878351"><figcaption class="wp-element-caption">Crypto Fear and Greed Index at 28 / <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noreferrer noopener nofollow">Source: Alternative.me</a></figcaption></figure>
+
+
+
+<p>A month ago, the same gauge showed Greed at 71. Crypto analyst CryptoTony expects the slide to deepen before it turns, arguing extreme fear is near and a bottom is close.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="500" data-dnt="true"><p lang="en" dir="ltr">CRYPTO FEAR AND GREED INDEX<br><br>"30" &ndash; FEAR .. FEAR is back in and EXTREME FEAR is not to far behind. Bottom is close .. <a href="https://t.co/4bPa3FoRob">pic.twitter.com/4bPa3FoRob</a></p>&mdash; Crypto Tony (@CryptoTony__) <a href="https://x.com/CryptoTony__/status/2118610106325852345?ref_src=twsrc%5Etfw">November 6, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<p>Not everyone shares that view. Analyst Benjamin Cowen warned that a 2018-style selloff could <a href="https://beincrypto.com/ben-cowen-nasdaq-bitcoin-58000-warning/" target="_blank" rel="noreferrer noopener">send Bitcoin to $58,000</a>.</p>
+
+
+
+<p>Historical data offer some support for patience. The Nasdaq traded higher six months after nine of its <a href="https://beincrypto.com/nasdaq-correction-rebound-fed-rate-hike/" target="_blank" rel="noreferrer noopener">last 10 Nasdaq corrections</a>.</p>
+
+
+
+<p>However, the lone exception came in 2022, when the Federal Reserve (Fed) kept raising rates. Traders now price a 68% chance of another Fed hike in December.</p>
+
+
+
+<p>That leaves both markets tied to the same lever. The October jobs report, due later on Friday, may show whether tighter policy keeps the fear gauge elevated in stocks and crypto alike.</p>
+<p>The post <a href="https://beincrypto.com/fear-gauge-stocks-crypto-nasdaq-crash/">Wall Street Is Now More Scared Than Crypto Traders After a 70% Fear Gauge Spike</a> appeared first on <a href="https://beincrypto.com">BeInCrypto</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<media:content url="https://assets.beincrypto.com/img/5VyV-a5Svo193AZ7TXFF9fB5nGQ=/smart/a9dc490141d44368b2d6f711d7b878c5" medium="image" width="300" height="150" type="image/jpeg" />
+<media:thumbnail url="https://assets.beincrypto.com/img/5VyV-a5Svo193AZ7TXFF9fB5nGQ=/smart/a9dc490141d44368b2d6f711d7b878c5"/>
+
+	</item>
+	</channel>
+</rss>

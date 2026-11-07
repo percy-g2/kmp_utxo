@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/" >
+
+<channel>
+	<title>Bitcoin Magazine</title>
+	<atom:link href="https://bitcoinmagazine.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://bitcoinmagazine.com</link>
+	<description>Bitcoin News, Articles and Expert Insights</description>
+	<lastBuildDate>Fri, 06 Nov 2026 21:29:32 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1.4</generator>
+
+<image>
+	<url>https://bitcoinmagazine.com/wp-content/uploads/2024/09/cropped-Bitcoin-Magazine-glyph-black-01-32x32.png</url>
+	<title>Bitcoin Magazine</title>
+	<link>https://bitcoinmagazine.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>U.S. Treasury Cuts Off MEXC From U.S. Financial System Over Alleged $16 Billion in Illicit Flows</title>
+		<link>https://bitcoinmagazine.com/news/fincen-cuts-off-mexc-us-financial-system</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 21:28:56 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[crypto exchange]]></category>
+		<category><![CDATA[Fincen]]></category>
+		<category><![CDATA[Iran]]></category>
+		<category><![CDATA[Russia]]></category>
+		<category><![CDATA[Sanctions]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56954</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/07/U.S.-Senator-Clarity-Act-is-Almost-There-Treasury-Secretary-Puts-It-at-the-1-Yard-Line.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/fincen-cuts-off-mexc-us-financial-system">U.S. Treasury Cuts Off MEXC From U.S. Financial System Over Alleged $16 Billion in Illicit Flows</a></p>
+<p>FinCEN issued a final order under section 9714(a) that will bar U.S. financial institutions from sending or receiving funds with MEXC Global 30 days after Federal Register publication, citing at least $16 billion in alleged illicit activity.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/fincen-cuts-off-mexc-us-financial-system">U.S. Treasury Cuts Off MEXC From U.S. Financial System Over Alleged $16 Billion in Illicit Flows</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/07/U.S.-Senator-Clarity-Act-is-Almost-There-Treasury-Secretary-Puts-It-at-the-1-Yard-Line.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/fincen-cuts-off-mexc-us-financial-system">U.S. Treasury Cuts Off MEXC From U.S. Financial System Over Alleged $16 Billion in Illicit Flows</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">The U.S. Treasury&#8217;s Financial Crimes Enforcement Network issued a final order Friday that will cut offshore exchange MEXC Global off from the American banking system over alleged links to sanctions evasion by Iran, North Korea and Russia, the department <a href="https://home.treasury.gov/news/press-releases/sb0685/" target="_blank" rel="noopener">said</a>.</p>
+
+
+
+<p class="wp-block-paragraph">FinCEN&#8217;s order, published as a PDF pending Federal Register placement, finds MEXC a &#8220;primary money laundering concern in connection with Russian illicit finance&#8221; under section 9714(a) of the Combating Russian Money Laundering Act. Thirty days after that Register notice, covered U.S. financial institutions will be barred from any funds transfer — including convertible virtual currency — to or from MEXC.</p>
+
+
+
+<p class="wp-block-paragraph"><em>Reuters</em> <a href="https://www.devdiscourse.com/article/international/4002985-us-treasurys-fincen-cuts-off-money-exchanger-mexc-over-iran-north-korea-russia-transactions" target="_blank" rel="noopener">reported</a> the same cut-off Friday afternoon. Treasury framed the move as part of Operation Economic Outcast. It is not an OFAC sanctions designation: the order says it does not rewrite Bank Secrecy Act duties or OFAC rules, and it is a FinCEN funds-transmittal ban rather than a Section 311 proposed rulemaking.</p>
+
+
+
+<p class="wp-block-paragraph">Treasury alleges MEXC facilitated at least $16 billion in illicit flows from May 2021 through May 2026, including nearly $1.5 billion tied to Russian sanctions evasion and about $22 million linked to Iran&#8217;s Central Bank and the Islamic Revolutionary Guard Corps&#8217; Qods Force. The platform was still processing trades with sanctioned Garantex and successor Grinex as recently as June 2026, more than four years after OFAC designated Garantex, the release says.</p>
+
+
+
+<h2 class="wp-block-heading">What the order does — and when</h2>
+
+
+
+<p class="wp-block-paragraph">The <a href="https://www.fincen.gov/system/files/2026-11/MEXC-Section-9714.pdf" target="_blank" rel="noopener">order</a>, signed by FinCEN Deputy Director Jimmy L. Kirby, covers MEXC Global and named affiliates operating outside the United States, including Seychelles-incorporated MEXC Global Ltd / MX Global Ltd, Estonia&#8217;s MEXC Estonia OÜ, Switzerland&#8217;s GIDA Technology AG and the U.K.&#8217;s MXC Global Ltd, plus successors. Covered institutions face civil or criminal penalties for willful violations.</p>
+
+
+
+<p class="wp-block-paragraph">Until the Federal Register publishes the notice, the 30-day clock has not started. As of Friday evening eastern time the Register&#8217;s public index still showed no MEXC document, matching the order&#8217;s own cover note that publication is pending.</p>
+
+
+
+<h2 class="wp-block-heading">Background on MEXC</h2>
+
+
+
+<p class="wp-block-paragraph">Founded in 2018 and formerly branded MXC, MEXC ranks among the world&#8217;s 20 largest centralized crypto venues by volume. Treasury puts daily turnover above $1 billion and reserves near $5 billion as of mid-2026, with access claimed across more than 170 countries. The exchange already lists the United States as a prohibited jurisdiction in its user terms, so Friday&#8217;s action mainly hits any remaining dollar rails, banking partners and counterparties that still touch U.S. institutions.</p>
+
+
+
+<p class="wp-block-paragraph">Regulators elsewhere have been circling for years. The U.K. Financial Conduct Authority put MEXC Global Ltd on its warning list in March 2024 as unauthorized. Hong Kong&#8217;s Securities and Futures Commission <a href="https://apps.sfc.hk/edistributionWeb/gateway/EN/news-and-announcements/news/doc?refNo=24PR48" target="_blank" rel="noopener">warned</a> the same month that the platform was marketing to local investors without a licence. Seychelles&#8217; Financial Services Authority <a href="https://fsaseychelles.sc/news/press-releases/fsa-takes-enforcement-action-against-mx-global-ltd-for-unlicensed-virtual-asset-services-operations" target="_blank" rel="noopener">said</a> in May 2026 it took action against MX Global Ltd for unlicensed virtual-asset operations — footnoted in FinCEN&#8217;s order.</p>
+
+
+
+<p class="wp-block-paragraph">Those compliance gaps matter because the illicit-flow thesis is specific, not guilt by association. Beyond Russia, FinCEN cites about $1 billion in direct traffic with more than 40 Iranian crypto exchangers, nearly $26 million with the OFAC-sanctioned A7 sanctions-evasion network, and almost $200 million tied to the A7A5 stablecoin. DPRK facilitators and cybercrime flows are also alleged. MEXC has not issued a public response to the Friday order; its main X account kept posting marketing content through the afternoon.</p>
+
+
+
+<h2 class="wp-block-heading">Why it matters for bitcoin markets</h2>
+
+
+
+<p class="wp-block-paragraph">Practically, once the order bites, U.S. banks, money transmitters and other covered firms cannot move dollars or crypto to MEXC wallets or accounts. Offshore users may keep trading peer-to-peer, but dollar on-ramps and any bank that still clears for MEXC become legal risk. The template tracks earlier 9714 cut-offs of venues such as <a href="https://bitcoinmagazine.com/legal/doj-shuts-down-bitzlato-crypto-exchange">Bitzlato</a>, and it lands beside a busy sanctions week that has already seen <a href="https://bitcoinmagazine.com/news/sanctions-crypto-behind-north-korea-worker">North Korea crypto</a> designations, an <a href="https://bitcoinmagazine.com/news/treasury-sanctions-iran-bitcoin-exchange">Iranian exchange</a> action, and Russia&#8217;s push to put bitcoin trading on the <a href="https://bitcoinmagazine.com/news/moscow-exchange-bitcoin-trading-dec-1">Moscow Exchange</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Whether MEXC contests the finding, seeks an exemption, or quietly reroutes liquidity is the open question. For now the paper trail is clear: a final FinCEN order under 9714(a), a 30-day fuse after Federal Register publication, and Treasury&#8217;s claim of at least $16 billion in illicit volume sitting behind the cut-off.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/fincen-cuts-off-mexc-us-financial-system">U.S. Treasury Cuts Off MEXC From U.S. Financial System Over Alleged $16 Billion in Illicit Flows</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Magazine Books Opens 333-Copy Genesis Book Collector Edition for 3rd Anniversary</title>
+		<link>https://bitcoinmagazine.com/news/genesis-book-333-collector-3rd-anniversary</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 18:32:32 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Aaron van Wirdum]]></category>
+		<category><![CDATA[Bitcoin Magazine Books]]></category>
+		<category><![CDATA[Books]]></category>
+		<category><![CDATA[Genesis]]></category>
+		<category><![CDATA[The Genesis Book]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56939</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Pics-51.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/genesis-book-333-collector-3rd-anniversary">Bitcoin Magazine Books Opens 333-Copy Genesis Book Collector Edition for 3rd Anniversary</a></p>
+<p>Bitcoin Magazine Books opened a third-anniversary campaign for Aaron van Wirdum's The Genesis Book, capping a hand-signed Collectors Edition at 333 numbered copies.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/genesis-book-333-collector-3rd-anniversary">Bitcoin Magazine Books Opens 333-Copy Genesis Book Collector Edition for 3rd Anniversary</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Pics-51.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/genesis-book-333-collector-3rd-anniversary">Bitcoin Magazine Books Opens 333-Copy Genesis Book Collector Edition for 3rd Anniversary</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Bitcoin Magazine Books <a href="https://store.bitcoinmagazine.com/pages/the-genesis-book-3rd-anniversary" target="_blank" rel="noopener">opened</a> a third-anniversary campaign Friday for Aaron van Wirdum&#8217;s <em>The Genesis Book</em>, offering a redesigned Collectors Edition limited to 333 hand-signed, individually numbered hardcovers in an exclusive Genesis Block slipcase.</p>
+
+
+
+<p class="wp-block-paragraph">Each Collectors Edition hardcover is hand-signed and hand-numbered by van Wirdum, the former <em>Bitcoin Magazine</em> editor-in-chief whose book traces the people, projects and ideas that preceded Satoshi Nakamoto&#8217;s peer-to-peer cash design. The standard <a href="https://store.bitcoinmagazine.com/products/the-genesis-book-collectors-edition-package" target="_blank" rel="noopener">package</a> is priced at $221 and pairs the book with a limited trading card carrying a Certificate of Authenticity, a collector pin, a sticker sheet, the slipcase and a digital package.</p>
+
+
+
+<p class="wp-block-paragraph">Two one-of-one packages sit outside the ordinary number queue. The <a href="https://store.bitcoinmagazine.com/products/the-genesis-book-1-collectors-edition-package" target="_blank" rel="noopener">#1 package</a> is listed at $5,000 and the <a href="https://store.bitcoinmagazine.com/products/the-genesis-book-21-collectors-edition-package" target="_blank" rel="noopener">#21 package</a> at $2,500; each includes the matching numbered copy, a matching one-of-one collector card and the same accessories as the standard collector package.</p>
+
+
+
+<p class="wp-block-paragraph">Standard collector numbers are assigned in purchase order starting at #2 and skipping #21, the campaign FAQ says. Once preorders close, the signed Genesis print run will not be reproduced.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="550" data-dnt="true"><p lang="en" dir="ltr">The Genesis Book Collector&#39;s Edition is live!<br><br>333 copies.<br>Individually numbered.<br>Exclusive Genesis Block slipcase.<br>Hand-signed by Aaron van Wirdum.<br><br>Once they&#39;re gone, they&#39;re gone. <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f680.png" alt="🚀" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://t.co/BgiJoCVt8m">pic.twitter.com/BgiJoCVt8m</a></p>&mdash; Bitcoin Magazine (@BitcoinMagazine) <a href="https://x.com/BitcoinMagazine/status/2118711090901139782?ref_src=twsrc%5Etfw">November 6, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<h2 class="wp-block-heading">What ships with the anniversary editions</h2>
+
+
+
+<p class="wp-block-paragraph">Beside the signed run, Bitcoin Magazine Books is selling a <a href="https://store.bitcoinmagazine.com/products/the-genesis-book-premium-edition" target="_blank" rel="noopener">Premium Edition</a> hardcover for $160 with foil stamping, a ribbon marker, stained page edges and custom endsheets. That edition is not limited, signed, numbered or slipcased, and it does not include the collector accessories or digital files.</p>
+
+
+
+<p class="wp-block-paragraph">A standalone <a href="https://store.bitcoinmagazine.com/products/the-genesis-book-digital-package" target="_blank" rel="noopener">Digital Package</a> at $9.99 delivers the ebook in EPUB and the audiobook in MP4 immediately after purchase, independent of whether the physical campaign clears its funding bar.</p>
+
+
+
+<p class="wp-block-paragraph">Physical collector and premium orders are scheduled to ship in calendar year 2027.</p>
+
+
+
+<p class="wp-block-paragraph"><a href="https://x.com/AaronvanW?lang=en" data-type="link" data-id="https://x.com/AaronvanW?lang=en">Van Wirdum</a>, who <a href="https://bitcoinmagazine.com/business/author-aaron-van-wirdum-appointed-bitcoin-magazine-editor-in-chief" data-type="link" data-id="https://bitcoinmagazine.com/business/author-aaron-van-wirdum-appointed-bitcoin-magazine-editor-in-chief">discovered</a> bitcoin in 2013 and later led <em>Bitcoin Magazine</em>&#8216;s editorial desk, frames <em>The Genesis Book</em> as a history of computer scientists, privacy activists and heterodox economists who chased government-independent digital money long before the 2008 white paper — from early cypherpunk culture through experiments such as David Chaum&#8217;s ecash, Wei Dai&#8217;s b-money, Adam Back&#8217;s Hashcash and Hal Finney&#8217;s reusable proof of work. </p>
+
+
+
+<p class="wp-block-paragraph">Store images for the slipcase and accessories are artistic renderings; the campaign page notes that color, materials and finishes may vary in production. The campaign is operated by BTC Inc., which publishes <em>Bitcoin Magazine</em>.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/genesis-book-333-collector-3rd-anniversary">Bitcoin Magazine Books Opens 333-Copy Genesis Book Collector Edition for 3rd Anniversary</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Thailand SEC Files Criminal Complaint Against Bitget Ahead of Dec. 5 Access Block</title>
+		<link>https://bitcoinmagazine.com/news/thailand-sec-bitget-criminal-dec-5</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 17:30:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[bitget]]></category>
+		<category><![CDATA[crypto exchange]]></category>
+		<category><![CDATA[crypto regulation]]></category>
+		<category><![CDATA[SEC]]></category>
+		<category><![CDATA[Thailand]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56935</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/02/Thailand-Moves-to-Cement-Bitcoin-and-Digital-Assets-in-Regulated-Derivatives-Market.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/thailand-sec-bitget-criminal-dec-5">Thailand SEC Files Criminal Complaint Against Bitget Ahead of Dec. 5 Access Block</a></p>
+<p>Thailand's SEC filed a criminal complaint against Bitget operator BG Limited for unlicensed Thai trading from 2022 to 2025.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/thailand-sec-bitget-criminal-dec-5">Thailand SEC Files Criminal Complaint Against Bitget Ahead of Dec. 5 Access Block</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/02/Thailand-Moves-to-Cement-Bitcoin-and-Digital-Assets-in-Regulated-Derivatives-Market.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/thailand-sec-bitget-criminal-dec-5">Thailand SEC Files Criminal Complaint Against Bitget Ahead of Dec. 5 Access Block</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Thailand&#8217;s Securities and Exchange Commission <a href="https://www.sec.or.th/EN/Pages/News_Detail.aspx?Lang=EN&#038;NewsNo=241&#038;NewsYear=2026&#038;SECID=13530" target="_blank" rel="noopener">filed</a> a criminal complaint Thursday against BG Limited, the operator of cryptocurrency exchange Bitget, alleging it ran an unlicensed digital-asset exchange for Thai users from 2022 to 2025, and notified the government to block the platform from Dec. 5.</p>
+
+
+
+<p class="wp-block-paragraph">The complaint, lodged with the Economic Crime Suppression Division, also names Mr. Kritsana Kritsananuwat as an alleged supporter who promoted Bitget through Facebook and YouTube channels, the SEC <a href="https://www.sec.or.th/EN/Pages/News_Detail.aspx?Lang=EN&#038;NewsNo=241&#038;NewsYear=2026&#038;SECID=13530" target="_blank" rel="noopener">said</a> in statement No. 241/2026.</p>
+
+
+
+<p class="wp-block-paragraph">From 2022 through 2025, the regulator found, Bitget offered a trading system in the ordinary course of business, charged fees, ran a Thai-language website that could show values in baht, and solicited Thai users on social channels including &#8220;Bitget Thailand&#8221; on X, &#8220;BGB Thai Holder&#8221; on Telegram and &#8220;bitgetthailand&#8221; on TikTok.</p>
+
+
+
+<p class="wp-block-paragraph">That conduct amounts to operating a digital-asset exchange under Section 3 of the Emergency Decree on Digital Asset Businesses B.E. 2561 (2018) without a license, a violation of Section 26 punishable under Section 66, the SEC said. The case now moves to an inquiry official, then prosecutors and the courts.</p>
+
+
+
+<p class="wp-block-paragraph">Separately, the SEC submitted Bitget&#8217;s website, other domains and its app to the Ministry of Digital Economy and Society under a 2025 royal decree that authorizes access blocks on unlicensed trading platforms. From Dec. 5, the public &#8220;will be unable to access the platform,&#8221; the <a href="https://www.sec.or.th/EN/Pages/News_Detail.aspx?Lang=EN&#038;NewsNo=241&#038;NewsYear=2026&#038;SECID=13530" target="_blank" rel="noopener">statement</a> said, and investors still holding assets there were told to consider acting before the cutoff.</p>
+
+
+
+<h2 class="wp-block-heading">A licensed path that now sits next to a criminal case</h2>
+
+
+
+<p class="wp-block-paragraph">The enforcement push lands weeks after Bitget <a href="https://www.bitget.com/blog/articles/bitget-thailand-crypto-exchange-acquisition" target="_blank" rel="noopener">announced</a> a planned acquisition of GMO-Z.com Cryptonomics (Thailand), a Bangkok digital-asset exchange and brokerage that already holds Thai licenses, through its interest in BTGT Management (Thailand) Ltd.</p>
+
+
+
+<p class="wp-block-paragraph">Under that deal, GMO Internet and its Thai holding company would transfer their entire stake in GMO-Z — about 49% and 50.94%, respectively — to BTGT or a designee at completion, a Sept. 24 GMO Internet <a href="https://internet.gmo/en/ir/pdf/irlibrary/gmointernet_e_disclose_20260924.pdf" target="_blank" rel="noopener">filing</a> showed. Bitget said completion remains subject to regulatory approval and, after a change-of-control nod, it intends to introduce its trading platform to Thai users under local rules.</p>
+
+
+
+<p class="wp-block-paragraph">&#8220;Thailand is an important part of Southeast Asia&#8217;s digital asset landscape, and this acquisition gives us a great opportunity to establish local operations,&#8221; Bitget CEO Gracy Chen <a href="https://www.bitget.com/blog/articles/bitget-thailand-crypto-exchange-acquisition" target="_blank" rel="noopener">said</a> in the Oct. 20 release.</p>
+
+
+
+<p class="wp-block-paragraph">The timetable has already slipped. GMO Internet Group <a href="https://ir.group.gmo/en/pdf/irlibrary/gmo_disclose_info20261030_02_e.pdf" target="_blank" rel="noopener">pushed</a> the effective date of the share transfer from Oct. 31 to Nov. 30, citing careful work on Thai regulatory applications and closing procedures. That revised date sits five days before the planned Bitget access block.</p>
+
+
+
+<p class="wp-block-paragraph"><em>CoinDesk</em> <a href="https://www.coindesk.com/business/2026/11/05/thailand-moves-to-block-bitget-as-crypto-exchange-s-local-acquisition-faces-uncertainty" target="_blank" rel="noopener">reported</a> that Bitget&#8217;s own terms of use, updated in October, already list Thailand among jurisdictions where its services are prohibited, and that the SEC has not said whether the criminal complaint will weigh on the GMO-Z change of control.</p>
+
+
+
+<h2 class="wp-block-heading">What the block does and does not settle</h2>
+
+
+
+<p class="wp-block-paragraph">Thailand has used the same access-blocking tool before. In mid-2025 the SEC <a href="http://www.sec.or.th/TH/Pages/News_Detail.aspx?SECID=11852" target="_blank" rel="noopener">referred</a> Bybit, OKX and three other unlicensed platforms for a June 28 cutoff, telling users to move assets first. The Bitget action follows that template — and adds a criminal complaint against the exchange operator and a named promoter.</p>
+
+
+
+<p class="wp-block-paragraph">Licensed venues still sit at the center of Bangkok&#8217;s policy mix. Thailand has <a href="https://bitcoinmagazine.com/news/thailand-approves-five-year-bitcoin-and-crypto-tax-break">approved</a> a multi-year capital-gains tax break only for trades on SEC-regulated platforms, and has been <a href="https://bitcoinmagazine.com/news/thailand-moves-to-cement-bitcoin">expanding</a> regulated crypto products in derivatives and capital markets. Unlicensed platforms get the opposite treatment: investor alerts, access blocks and, now for Bitget, a police referral.</p>
+
+
+
+<p class="wp-block-paragraph">What is not yet clear is whether a criminal case against BG Limited for the 2022–2025 period bars, slows or leaves untouched BTGT&#8217;s bid to take over a licensed local operator. The SEC statement does not mention GMO-Z. Bitget has not publicly answered the complaint in a statement posted with the acquisition release.</p>
+
+
+
+<p class="wp-block-paragraph">For Thai users still on Bitget, the practical clock is Dec. 5. For Bitget, the test is whether Nov. 30 closes a regulated door into Thailand — or whether the complaint filed Thursday makes that licensed path the next question the ECD and the SEC have to answer.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/thailand-sec-bitget-criminal-dec-5">Thailand SEC Files Criminal Complaint Against Bitget Ahead of Dec. 5 Access Block</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Former FBI Agent Pleads Guilty to Stealing $2.47 Million in Crypto From Investigations</title>
+		<link>https://bitcoinmagazine.com/news/former-fbi-agent-pleads-crypto-theft</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 17:00:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Crime]]></category>
+		<category><![CDATA[DOJ]]></category>
+		<category><![CDATA[FBI]]></category>
+		<category><![CDATA[Fraud]]></category>
+		<category><![CDATA[Theft]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56937</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Former-FBI-Agent-Pleads-Guilty-to-Stealing-2.47-Million-in-Crypto-From-Investigations.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/former-fbi-agent-pleads-crypto-theft">Former FBI Agent Pleads Guilty to Stealing $2.47 Million in Crypto From Investigations</a></p>
+<p>Patrick Steven Yaroch, 37, of Ashburn, Virginia, pleaded guilty Thursday to wire fraud and money laundering after using wallet credentials from 35 FBI investigations to take about $2.47 million in cryptocurrency.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/former-fbi-agent-pleads-crypto-theft">Former FBI Agent Pleads Guilty to Stealing $2.47 Million in Crypto From Investigations</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Former-FBI-Agent-Pleads-Guilty-to-Stealing-2.47-Million-in-Crypto-From-Investigations.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/former-fbi-agent-pleads-crypto-theft">Former FBI Agent Pleads Guilty to Stealing $2.47 Million in Crypto From Investigations</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">A former FBI agent pleaded guilty Thursday to stealing about $2.47 million in cryptocurrency with wallet credentials the bureau had collected in its own cases, the U.S. Attorney&#8217;s Office for the Eastern District of Virginia <a href="https://www.justice.gov/usao-edva/pr/former-fbi-agent-pleads-guilty-cryptocurrency-theft" target="_blank" rel="noopener">announced</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Patrick Steven Yaroch, 37, of Ashburn, Virginia, entered pleas to wire fraud and money laundering in federal court in Alexandria. U.S. District Judge Patricia Tolliver Giles accepted the plea. He faces up to 20 years in prison and is scheduled for sentencing on March 4, 2027.</p>
+
+
+
+<p class="wp-block-paragraph">Court papers put the illicit haul at $2,474,380.66. Prosecutors say Yaroch made roughly 100 fraudulent transfers using credentials tied to 35 separate FBI investigations, drawing on wallets controlled by investigation subjects, adversarial nation-state actors and at least one wallet the FBI itself had created for an operation.</p>
+
+
+
+<p class="wp-block-paragraph">The Justice Department Office of the Inspector General had <a href="https://oig.justice.gov/news/press-release/fbi-supervisory-special-agent-arrested-following-theft-cryptocurrency" target="_blank" rel="noopener">flagged</a> the case in August after Yaroch&#8217;s arrest on a criminal complaint. That earlier account described a smaller set of transfers — about 10 moves totaling roughly $1 million — and noted that Yaroch self-reported the activity to two department employees on July 29, 2026. The plea figures are larger.</p>
+
+
+
+<p class="wp-block-paragraph">From 2017 through early 2025, Yaroch worked in the FBI Boston Division on a squad focused on an adversarial nation-state. From February 2025 through July 31, 2026, he served in the FBI&#8217;s Counterintelligence and Espionage Division at headquarters, with access to systems that stored cryptocurrency credentials gathered in investigations.</p>
+
+
+
+<h2 class="wp-block-heading">How the FBI credentials turned into cash</h2>
+
+
+
+<p class="wp-block-paragraph">Beginning no later than December 2024, Yaroch used that access to move coins out of those wallets and into ones he controlled. After the transfers, he swapped the stolen cryptocurrency into other digital assets and ran further transactions meant to obscure its source, nature and ownership.</p>
+
+
+
+<p class="wp-block-paragraph">Between Nov. 25, 2025, and Jan. 13, 2026, he moved about $93,082 into one of his accounts, then shuffled funds among other accounts to cover debts, including credit cards, car payments and loans, the office said.</p>
+
+
+
+<p class="wp-block-paragraph"><em>FOX 5 DC</em>, citing the same U.S. Attorney&#8217;s Office <a href="https://www.fox5dc.com/news/ex-fbi-agent-pleads-guilty-2-5m-cryptocurrency-theft-scheme-where-he-chatgpt-how-flee-portugal" target="_blank" rel="noopener">release</a>, noted the Portugal planning that appears in the plea papers. Yaroch asked ChatGPT how to maximize investment returns and where to live in the European Union. After the chatbot suggested buying a vineyard in Portugal, he gave Portuguese lawyers a power of attorney on June 15, 2026, to register him with the Portuguese Tax and Customs Authority, obtain a tax identification number and collect the password to his finance portal. He arranged travel to Portugal for September 2026.</p>
+
+
+
+<h2 class="wp-block-heading">What the plea says the FBI lost</h2>
+
+
+
+<p class="wp-block-paragraph">The agreed statement of facts goes beyond the dollar figure. Yaroch&#8217;s conduct compromised multiple FBI investigations into criminal groups and nation-state adversaries, the office said, and it compromised FBI sources and methods used in foreign intelligence collection and criminal cases. It also &#8220;deprived FBI employees of their ability to carry out their functions to protect public safety and national security.&#8221;</p>
+
+
+
+<p class="wp-block-paragraph">First Assistant U.S. Attorney Theophani K. Stamos and Daniel S. Wierzbicki, special agent in charge of the FBI Washington Field Office&#8217;s Counterintelligence Division, announced the plea. Assistant U.S. Attorneys Kathleen Robeson and Russell Carlberg are prosecuting, with help from the National Security Cyber Section of the Justice Department&#8217;s National Security Division and the DOJ inspector general&#8217;s Mid-Atlantic region. The case is 1:26-CR-208 in the Eastern District of Virginia.</p>
+
+
+
+<p class="wp-block-paragraph">The admission lands in a week when federal crypto-crime stories keep stacking up — from a <a href="https://bitcoinmagazine.com/news/man-admits-role-in-failed-bitcoin-plot">failed bitcoin kidnapping plot</a> that produced its own guilty plea last month to <a href="https://bitcoinmagazine.com/news/american-crypto-fraud-topped-11-billion">FBI tallies</a> putting U.S. crypto fraud losses above $11 billion in 2025, a figure the White House has used to <a href="https://bitcoinmagazine.com/news/president-trump-to-highlight-crackdown">frame</a> a wider crackdown.</p>
+
+
+
+<p class="wp-block-paragraph">What sentencing will do with the gap between Yaroch&#8217;s July self-report and the $2.47 million plea figure is still open. So is how many of the 35 FBI cases can be repaired after an insider treated the bureau&#8217;s own wallet credentials as a personal ATM. March 4, 2027, is when Judge Giles gets to answer the first question.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/former-fbi-agent-pleads-crypto-theft">Former FBI Agent Pleads Guilty to Stealing $2.47 Million in Crypto From Investigations</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Strive (ASST) Posts $474.8 Million Common Net Income as Bitcoin Yield Hits 63.2%</title>
+		<link>https://bitcoinmagazine.com/news/strive-asst-posts-474-8m-common-net-income</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 16:15:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[asst]]></category>
+		<category><![CDATA[bitcoin treasury]]></category>
+		<category><![CDATA[earnings]]></category>
+		<category><![CDATA[matt cole]]></category>
+		<category><![CDATA[Strive]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56926</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/07/Strive-ASST-Adds-17.76-Bitcoin-as-Falling-Prices-Boost-Its-Quarterly-Yield.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/strive-asst-posts-474-8m-common-net-income">Strive (ASST) Posts $474.8 Million Common Net Income as Bitcoin Yield Hits 63.2%</a></p>
+<p>Strive posted $474.8M in Q3 net income to common holders, almost entirely a $533.7M unrealized bitcoin gain, and touted 103.7% year-to-date outperformance versus bitcoin.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/strive-asst-posts-474-8m-common-net-income">Strive (ASST) Posts $474.8 Million Common Net Income as Bitcoin Yield Hits 63.2%</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/07/Strive-ASST-Adds-17.76-Bitcoin-as-Falling-Prices-Boost-Its-Quarterly-Yield.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/strive-asst-posts-474-8m-common-net-income">Strive (ASST) Posts $474.8 Million Common Net Income as Bitcoin Yield Hits 63.2%</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Strive <a href="https://www.globenewswire.com/news-release/2026/11/06/3397482/0/en/strive-inc-announces-third-quarter-2026-financial-results.html" target="_blank" rel="noopener">reported</a> $474.8 million of net income attributable to common stockholders for the third quarter ended Sept. 30, a print that arrived Friday alongside a company claim that Class A total return had outperformed bitcoin by 103.7% year to date through the same date.</p>
+
+
+
+<p class="wp-block-paragraph">GAAP net income was $509.0 million, or $5.24 a share on a fully diluted basis. Almost all of that came from a $533.7 million unrealized gain on digital assets marked to fair value. Operating revenue for the quarter was just $2.7 million, so the earnings line is a treasury mark, not a fee business.</p>
+
+
+
+<p class="wp-block-paragraph">In a <a href="https://x.com/Strive/status/2118703023358697932" target="_blank" rel="noopener">post</a> on X that led with the outperformance figure, Strive also highlighted a year-to-date bitcoin yield of 63.2% and a bitcoin dollar gain of $9.00 per assumed diluted share outstanding, both measured through Sept. 30. Chairman and CEO Matthew Cole tied those metrics to the stock&#8217;s relative showing against the asset.</p>
+
+
+
+<p class="wp-block-paragraph">&#8220;Strive has continued to successfully execute on its treasury management strategy, delivering a strong bitcoin yield year to date in 2026, which I believe is the primary driver of our common equity&#8217;s outperformance relative to Bitcoin so far this year,&#8221; Cole <a href="https://www.globenewswire.com/news-release/2026/11/06/3397482/0/en/strive-inc-announces-third-quarter-2026-financial-results.html" target="_blank" rel="noopener">said</a> in the earnings release.</p>
+
+
+
+<h2 class="wp-block-heading">Bitcoin yield, buys and the preferred stack</h2>
+
+
+
+<p class="wp-block-paragraph">Bitcoin yield, as Strive defines it, is the percentage change in bitcoin per share over a period — not a cash yield. On that measure the company posted 18.5% in the third quarter alone and 19.3% from Oct. 1 through Oct. 30, after the <a href="https://bitcoinmagazine.com/news/strive-debuts-new-preferred-stock">SATS preferred</a> debut.</p>
+
+
+
+<p class="wp-block-paragraph">Strive <a href="https://www.globenewswire.com/news-release/2026/11/06/3397482/0/en/strive-inc-announces-third-quarter-2026-financial-results.html" target="_blank" rel="noopener">acquired</a> 8,136 bitcoin in the third quarter at an average cost of about $78,885 and 20,373 bitcoin over the nine months ended Sept. 30. Another 15,124 coins followed between Oct. 1 and Oct. 30. Holdings stood at 28,000 bitcoin on Sept. 30 and 43,124 by Oct. 30, keeping Strive among the largest public corporate stacks after recent <a href="https://bitcoinmagazine.com/news/strive-asst-buys-6182-bitcoin">multi-thousand-coin buys</a> and smaller weekly adds that <a href="https://bitcoinmagazine.com/news/strategy-mstr-adds-811-bitcoin-strive-too">still trailed Strategy</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Digital assets at fair value were $2.34 billion on the Sept. 30 balance sheet. Cash had risen to $490.4 million by Oct. 30, and Strive still held Strategy&#8217;s variable-rate STRC preferred with a fair value of about $50.1 million.</p>
+
+
+
+<p class="wp-block-paragraph">The capital stack that funded the buys is mostly perpetual preferreds. On Oct. 20 Strive closed a registered offering of 7 million shares of its 15% Series A perpetual preferred (SATS) for about $609 million in net proceeds. Preferred dividends of $34.2 million in the quarter are what turned the $509.0 million GAAP profit into the $474.8 million common figure.</p>
+
+
+
+<p class="wp-block-paragraph">Strip the story to nine-month GAAP and the picture flips. For the nine months ended Sept. 30, Strive posted a net loss attributable to common stockholders of $88.4 million. The third-quarter profit is real under fair-value accounting, but it is concentrated in one mark-to-market line.</p>
+
+
+
+<h2 class="wp-block-heading">What ASST stock has done over the past year</h2>
+
+
+
+<p class="wp-block-paragraph">ASST itself has not moved in a straight line with the company&#8217;s bitcoin-yield scoreboard. Shares <a href="https://finance.yahoo.com/quote/ASST/" target="_blank" rel="noopener">closed</a> at $20.59 on Thursday, down about 10% on the day, and traded near $20.70 early Friday. That leaves the stock roughly 29% below its level a year earlier, when Yahoo Finance data put the close near $29, and about 33% under its Oct. 21 local high of $30.75.</p>
+
+
+
+<p class="wp-block-paragraph">The 52-week range on Yahoo Finance runs from $7.02 to $34.40. Year to date, the price path from the Jan. 2 close near $17.30 into the mid-$20s is a gain of roughly 20%, with a February low near the 52-week floor and a September push back toward $30. Through Sept. 30 — the cutoff on Strive&#8217;s outperformance claim — ASST had risen about 70% from that January close while bitcoin was down roughly 7% over the same window on Yahoo Finance data, a wide gap even before the company&#8217;s own total-return methodology.</p>
+
+
+
+<p class="wp-block-paragraph">The longer chart still carries the scar of 2025, when Asset Entities became the public shell for Strive&#8217;s bitcoin-treasury reverse merger and the share price spiked into triple digits on weekly closes before collapsing. Investors who held through that conversion saw a different ride than the tidy year-to-date relative-return figure Strive put at the top of Friday&#8217;s note.</p>
+
+
+
+<p class="wp-block-paragraph">Cole said the recent SATS issuance leaves Strive &#8220;never been in a better position to generate long-term returns in excess of Bitcoin for our common equity shareholders.&#8221; The test for ASST from here is whether another quarter of bitcoin yield and preferred-funded buys can reopen the gap to bitcoin after a year in which the stock still sits well below where it traded twelve months ago, even as the treasury has <a href="https://bitcoinmagazine.com/news/strive-buys-more-bitcoin-to-hit-30000-btc">climbed past 30,000 then 40,000 bitcoin</a>.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/strive-asst-posts-474-8m-common-net-income">Strive (ASST) Posts $474.8 Million Common Net Income as Bitcoin Yield Hits 63.2%</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Rule to Allow Crypto in 401(k)s Arrives at White House for Final Review</title>
+		<link>https://bitcoinmagazine.com/news/dol-rule-crypto-401k-white-house-review</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 15:09:02 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[401K]]></category>
+		<category><![CDATA[Cryptocurrency]]></category>
+		<category><![CDATA[Department Of Labor]]></category>
+		<category><![CDATA[Trump]]></category>
+		<category><![CDATA[White House]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56929</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Rule-to-Allow-Crypto-in-401ks-Arrives-at-White-House-for-Final-Review.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/dol-rule-crypto-401k-white-house-review">Rule to Allow Crypto in 401(k)s Arrives at White House for Final Review</a></p>
+<p>A final Labor Department rule that would create a fiduciary safe harbor for private equity, real estate and crypto in 401(k) menus arrived at OIRA on Thursday, putting public release within reach.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/dol-rule-crypto-401k-white-house-review">Rule to Allow Crypto in 401(k)s Arrives at White House for Final Review</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Rule-to-Allow-Crypto-in-401ks-Arrives-at-White-House-for-Final-Review.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/dol-rule-crypto-401k-white-house-review">Rule to Allow Crypto in 401(k)s Arrives at White House for Final Review</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">A final DOL rule that would ease alternative assets such as private equity, real estate and cryptocurrency into 401(k) retirement plans arrived at the White House on Thursday for review, <em>Bloomberg Law</em> <a href="https://news.bloomberglaw.com/employee-benefits/401k-private-asset-rule-lands-at-white-house-for-final-review" data-type="link" data-id="https://news.bloomberglaw.com/employee-benefits/401k-private-asset-rule-lands-at-white-house-for-final-review" target="_blank" rel="noopener">reported</a>, a procedural step that usually precedes public release.</p>
+
+
+
+<p class="wp-block-paragraph">The Office of Information and Regulatory Affairs <a href="https://www.reginfo.gov/public/do/eoDetails?rrid=1591871" target="_blank" rel="noopener">logged</a> the package on Nov. 5 under the title &#8220;Fiduciary Duties In Selecting Designated Investment Alternatives,&#8221; RIN 1210-AC38. The filing lists the DOL&#8217;s Employee Benefits Security Administration as the authoring office, marks the stage as a final rule, flags it as economically significant and notes that there is no legal deadline for completion.</p>
+
+
+
+<p class="wp-block-paragraph">The DOL <a href="https://bitcoinmagazine.com/news/labor-department-bitcoin-and-alt-assets" data-type="link" data-id="https://bitcoinmagazine.com/news/labor-department-bitcoin-and-alt-assets">unveiled</a> the proposal on March 30. In that draft, plan fiduciaries who follow a documented process when adding private assets to a 401(k) menu would get a legal safe harbor under the Employee Retirement Income Security Act of 1974.</p>
+
+
+
+<p class="wp-block-paragraph">The six factors named in the proposal are performance, fees, liquidity, valuation, performance benchmarks and complexity. Satisfying them does not force plans to offer crypto. It lowers the litigation risk for employers that decide they want to.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="550" data-dnt="true"><p lang="en" dir="ltr">JUST IN: <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f1fa-1f1f8.png" alt="🇺🇸" class="wp-smiley" style="height: 1em; max-height: 1em;" /> The White House is now reviewing a new rule which will allow Americans to invest in crypto through their 401(k) retirement plans <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f440.png" alt="👀" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://t.co/uXGGIXEzdC">pic.twitter.com/uXGGIXEzdC</a></p>&mdash; Bitcoin Magazine (@BitcoinMagazine) <a href="https://x.com/BitcoinMagazine/status/2118719128924217606?ref_src=twsrc%5Etfw">November 6, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<h2 class="wp-block-heading">What the DOL safe harbor covers</h2>
+
+
+
+<p class="wp-block-paragraph">President Donald Trump&#8217;s Aug. 7, 2025, executive order, &#8220;Democratizing Access to Alternative Assets for 401(k) Investors,&#8221; <a href="https://www.whitehouse.gov/presidential-actions/2025/08/democratizing-access-to-alternative-assets-for-401k-investors/" target="_blank" rel="noopener">directed</a> the Labor secretary to reexamine ERISA guidance and, where appropriate, propose rules with &#8220;appropriately calibrated safe harbors.&#8221; The order defined alternative assets to include private-market equity and debt, real estate, holdings in actively managed vehicles that invest in digital assets, commodities, infrastructure and lifetime-income strategies.</p>
+
+
+
+<p class="wp-block-paragraph">The March proposal <a href="https://www.federalregister.gov/documents/2026/03/31/2026-06178/fiduciary-duties-in-selecting-designated-investment-alternatives" target="_blank" rel="noopener">implements</a> that order. A DOL <a href="https://beta.dol.gov/research-data/fact-sheets/fiduciary-duties-selecting-designated-investment-alternatives-proposed-rule" target="_blank" rel="noopener">fact sheet</a> said prudence under ERISA is process-based and that fiduciaries retain discretion to select any designated investment alternative if they follow the outlined review. Deputy Labor Secretary Keith Sonderling cast the approach as neutral: &#8220;The department&#8217;s days of picking winners and losers are over.&#8221;</p>
+
+
+
+<p class="wp-block-paragraph">That stance reverses a prior chill. In May 2025 the DOL <a href="https://www.dol.gov/agencies/ebsa/employers-and-advisers/plan-administration-and-compliance/compliance-assistance-releases/2025-01" target="_blank" rel="noopener">rescinded</a> its March 2022 compliance release that told fiduciaries to use &#8220;extreme care&#8221; before putting cryptocurrency on a 401(k) menu. The department said that phrase was not found in ERISA and restored a context-specific standard.</p>
+
+
+
+<p class="wp-block-paragraph">Later, it was <a href="https://bitcoinmagazine.com/news/sanders-and-warren-push-bitcoin-401k-rule">reported</a> that Sens. Bernie Sanders and Elizabeth Warren pressed the DOL to abandon the crypto-friendly path. House Republicans have separately pushed to <a href="https://bitcoinmagazine.com/legal/new-gop-bill-wants-to-solidify-trumps-bitcoin-friendly-401k-order">codify</a> Trump&#8217;s crypto order in statute.</p>
+
+
+
+<h2 class="wp-block-heading">Why OIRA review matters for bitcoin and crypto</h2>
+
+
+
+<p class="wp-block-paragraph">OIRA review under Executive Order 12866 is the last interagency checkpoint before a final rule can be published in the Federal Register. Bloomberg Law <a href="https://news.bloomberglaw.com/employee-benefits/401k-private-asset-rule-lands-at-white-house-for-final-review" target="_blank" rel="noopener">said</a> the arrival signals the package is nearing completion. The same office cleared the <em>proposed</em> version in late March before the DOL published it; that earlier pass took roughly two months after the January submission, per prior Bloomberg coverage of the roughly $12 trillion 401(k) market.</p>
+
+
+
+<p class="wp-block-paragraph">What is not yet public is the final text itself. Whether the six-factor safe harbor survived comment intact, how digital-asset vehicles are described, and what effective date the DOL chose will only be clear when OIRA returns the rule and the department posts it. Comment volume on the proposal was heavy; industry and labor groups have argued opposite sides of the prudence standard for months.</p>
+
+
+
+<p class="wp-block-paragraph">For bitcoin, the stakes sit in plan menus rather than spot ETF flows. Trump&#8217;s August order <a href="https://bitcoinmagazine.com/markets/bitcoin-surges-to-117k-as-trump-signs-401k-crypto-order-plans">helped</a> frame digital assets as a retirement-access issue for more than 90 million defined-contribution savers. A finalized DOL safe harbor would not put bitcoin and crypto on every lineup overnight. It would give plan committees a clearer map if they want exposure through an asset-allocation sleeve that holds digital assets.</p>
+
+
+
+<p class="wp-block-paragraph">The test now is how fast OIRA clears the economically significant package — and whether the published final rule still gives fiduciaries the process cover the March draft promised, or whether the comment fight rewrote the safe harbor before the White House stamps it.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/dol-rule-crypto-401k-white-house-review">Rule to Allow Crypto in 401(k)s Arrives at White House for Final Review</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Binance Hackers Swap About $50 Million of Stolen XRP Mostly Into Bitcoin, Elliptic Says</title>
+		<link>https://bitcoinmagazine.com/news/binance-hackers-swap-50m-xrp-bitcoin</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 14:50:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[binance hack]]></category>
+		<category><![CDATA[Elliptic]]></category>
+		<category><![CDATA[North korea]]></category>
+		<category><![CDATA[Xrp]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56907</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Binance-Hackers-Swap-XRP-Into-Bitcoin.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/binance-hackers-swap-50m-xrp-bitcoin">Binance Hackers Swap About $50 Million of Stolen XRP Mostly Into Bitcoin, Elliptic Says</a></p>
+<p>About 42 million stolen XRP, worth roughly $50 million, has been swapped mostly into bitcoin via THORChain, Elliptic said, lifting converted bitcoin from the Binance theft to about 1,650 BTC.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/binance-hackers-swap-50m-xrp-bitcoin">Binance Hackers Swap About $50 Million of Stolen XRP Mostly Into Bitcoin, Elliptic Says</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Binance-Hackers-Swap-XRP-Into-Bitcoin.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/binance-hackers-swap-50m-xrp-bitcoin">Binance Hackers Swap About $50 Million of Stolen XRP Mostly Into Bitcoin, Elliptic Says</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Hackers tied to the record Binance theft have begun converting a large slice of the stolen XRP into bitcoin, blockchain analytics firm Elliptic <a href="https://www.elliptic.co/insights/how-north-korea-is-laundering-the-6-4-billion-stolen-from-binance/" target="_blank" rel="noopener">said</a> in an update dated through Friday, with about 42 million XRP — roughly $50 million — already swapped, mostly through THORChain.</p>
+
+
+
+<p class="wp-block-paragraph">Converted bitcoin from other stolen assets nearly doubled overnight to about 1,650 BTC, worth some $124 million, Elliptic <a href="https://www.elliptic.co/insights/how-north-korea-is-laundering-the-6-4-billion-stolen-from-binance/" target="_blank" rel="noopener">wrote</a>. Most of that jump came from the XRP route. About 192 million XRP, roughly $226 million, remained unswapped in addresses linked to the Binance theft.</p>
+
+
+
+<p class="wp-block-paragraph">The XRP was part of the Oct. 29 drain that Binance later put at $6.34 billion. Between 20:05 and 20:09 UTC that day, five hot wallets <a href="https://bitcoinmagazine.com/news/binance-says-6-34-billion-hack-job">sent</a> 233.46 million XRP to an attacker address. The FBI has <a href="https://bitcoinmagazine.com/news/north-korea-6-3-billion-binance-hack">attributed</a> the campaign to North Korea&#8217;s TraderTraitor group. Binance has <a href="https://bitcoinmagazine.com/news/binance-reopens-withdrawals-hack">reopened withdrawals</a> in stages and said it has frozen or intercepted about $2.85 billion while covering customer losses from its own funds.</p>
+
+
+
+<h2 class="wp-block-heading">How the XRP started moving</h2>
+
+
+
+<p class="wp-block-paragraph">The stolen XRP sat quiet at first. Early on Nov. 2, between 02:12 and 04:00 UTC, all about 233 million XRP moved into six new addresses, where it stayed until Nov. 5, Elliptic <a href="https://www.elliptic.co/insights/how-north-korea-is-laundering-the-6-4-billion-stolen-from-binance/" target="_blank" rel="noopener">said</a>. From the afternoon of Nov. 5, two of those six addresses began sending XRP on to dozens of new accounts that swapped it, mostly through THORChain into bitcoin.</p>
+
+
+
+<p class="wp-block-paragraph">A small amount of ether also went through THORChain into bitcoin that evening. The main bitcoin and ether holdings from the theft — the largest pools — have still not moved, Elliptic said. That pattern matches what the firm saw after the Bybit hack: turn freezable and mid-liquidity tokens into bitcoin first, then attempt cash-out later through OTC brokers.</p>
+
+
+
+<p class="wp-block-paragraph">The broader laundering trail is already vast. Since the Binance theft, Elliptic has counted more than 20,000 wallets on 16 blockchains, at least 36 services and at least 65,000 transactions — roughly one new wallet every 30 seconds and one transaction every 10 seconds. About $3.11 billion remains in addresses linked to the Binance theft, mostly as ether and bitcoin. A negligible amount has likely been cashed out so far.</p>
+
+
+
+<h2 class="wp-block-heading">Why XRP and bitcoin matter here</h2>
+
+
+
+<p class="wp-block-paragraph">Issuers can freeze many stablecoins. They cannot freeze XRP the same way, and they cannot freeze bitcoin. After Tether and Circle locked down large stablecoin tranches on Oct. 29, the attacker prioritized assets that sit outside that kill switch. Swapping XRP into bitcoin continues that logic: bitcoin is harder to claw back once it is fragmented across fresh addresses.</p>
+
+
+
+<p class="wp-block-paragraph">All of the stolen SOL, about $87 million at Elliptic&#8217;s prices, has already been swapped, bridged or mixed, with much of it ending as bitcoin. Most early Tron laundering — about $220 million in TRX — has also run, a flow Bitcoin Magazine <a href="https://bitcoinmagazine.com/news/tether-tron-scrap-t3-crime-unit">noted</a> when covering the quiet shutdown of the T3 Financial Crime Unit before the hack. Only small parts of the main ether and NEAR piles have moved.</p>
+
+
+
+<p class="wp-block-paragraph">Some converted bitcoin has gone into Wasabi-style coinjoins — about 33 BTC, or $2.5 million, since Nov. 1 — and about $1.1 million in ether and SOL entered the Privacy Cash pool before that service paused deposits. Elliptic said the speed points to conventional automation, not an AI agent making live decisions: fixed timing, set amounts, blind retries and new tactics introduced hours apart.</p>
+
+
+
+<p class="wp-block-paragraph">U.S. bank supervisors have already <a href="https://bitcoinmagazine.com/news/fed-occ-quiz-banks-binance-hack">checked in</a> with lenders after the Binance breach. For bitcoin markets, the nearer question is how much more of the remaining ~192 million XRP — and eventually the parked ether — gets turned into BTC before anyone tries to cash out.</p>
+
+
+
+<p class="wp-block-paragraph">The test now is whether THORChain operators and other bridges keep blocking the published attacker addresses fast enough to slow the XRP-to-bitcoin pipe, or whether the rest of that pile follows the same overnight path the first $50 million already took.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/binance-hackers-swap-50m-xrp-bitcoin">Binance Hackers Swap About $50 Million of Stolen XRP Mostly Into Bitcoin, Elliptic Says</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Price Holds Near $75,000 After Hot October Jobs Report</title>
+		<link>https://bitcoinmagazine.com/markets/bitcoin-price-holds-near-75800-jobs</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 14:30:11 +0000</pubDate>
+				<category><![CDATA[MARKETS]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[ETFs]]></category>
+		<category><![CDATA[liquidations]]></category>
+		<category><![CDATA[midterms]]></category>
+		<category><![CDATA[Nasdaq]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56910</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Bitcoin-Price-Holds-Near-75800-After-Hot-October-Jobs-Report.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-holds-near-75800-jobs">Bitcoin Price Holds Near $75,000 After Hot October Jobs Report</a></p>
+<p>Bitcoin price held near $75,800 Friday after U.S. employers added 165,000 jobs in October, far above the 59,000 forecast, as December Fed hike odds climbed toward 80%.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-holds-near-75800-jobs">Bitcoin Price Holds Near $75,000 After Hot October Jobs Report</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Bitcoin-Price-Holds-Near-75800-After-Hot-October-Jobs-Report.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-holds-near-75800-jobs">Bitcoin Price Holds Near $75,000 After Hot October Jobs Report</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">U.S. employers added 165,000 jobs in October, nearly three times the 59,000 economists expected, the Labor Department <a href="https://www.bls.gov/news.release/empsit.nr0.htm" target="_blank" rel="noopener">said</a> Friday, and the bitcoin price briefly pushed above $76,100 before settling near $75,500, <em>Bitcoin Magazine Pro</em> data shows.</p>
+
+
+
+<p class="wp-block-paragraph">The unemployment rate edged down to 4.1% from 4.2%, beating the Dow Jones forecast that called for it to hold. Average hourly earnings rose 0.4% on the month and 3.1% over the year, both ahead of estimates, <em>CNBC</em> <a href="https://www.cnbc.com/2026/11/06/jobs-report-october-2026.html" target="_blank" rel="noopener">reported</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Prior months were revised higher as well. August payrolls moved to 186,000, an upward revision of 53,000, and September rose to 60,000 after a 31,000 upgrade, leaving the two-month total 84,000 stronger than first reported.</p>
+
+
+
+<p class="wp-block-paragraph">The print lands on a market still digesting Thursday&#8217;s Nasdaq-led rout. The bitcoin price <a href="https://bitcoinmagazine.com/markets/bitcoin-price-trades-near-76000-nasdaq">had held near $76,000</a> into that close, dipped toward $75,200 late in the session, then recovered into the mid-$75,000s overnight before the 8:30 a.m. ET release. Spot bitcoin changed hands around $75,800 after the data, with a market cap of about $1.52 trillion and roughly $48 billion in trading volume over the past day, <em>Yahoo Finance</em> <a href="https://finance.yahoo.com/quote/BTC-USD/" target="_blank" rel="noopener">data</a> indicated.</p>
+
+
+
+<h2 class="wp-block-heading">Bitcoin price reaction</h2>
+
+
+
+<p class="wp-block-paragraph">Bitcoin price&#8217;s first move was a quick spike above $76,100, then a slide toward $75,600 before it settled back near $75,800. The range on the day has run from about $75,240 to $76,280, leaving the market little changed from its pre-release level even as rate futures repriced.</p>
+
+
+
+<p class="wp-block-paragraph">That muted finish fits the pattern after big macro prints. Most of the damage to the bitcoin price this week came from equity risk-off, not from the labor market itself, and a hot payrolls number mainly reinforces the path the Fed was already pricing.</p>
+
+
+
+<p class="wp-block-paragraph">CME FedWatch odds put roughly a 79% chance of a 25-basis-point hike at the Dec. 9 meeting after the release, up from about 70% into the open. The next employment report is due Dec. 4, five days before that decision, and the signal points the same way the last <a href="https://bitcoinmagazine.com/markets/bitcoin-price-trades-near-81500-fed">Fed hold</a> did: stronger hiring and firmer wages leave less room for another pause.</p>
+
+
+
+<h2 class="wp-block-heading">Tech rout aftermath and ETF outflows</h2>
+
+
+
+<p class="wp-block-paragraph">Thursday&#8217;s session still sets the floor under the bitcoin price. The Nasdaq Composite <a href="https://www.cnbc.com/2026/11/05/nasdaq-drops-into-correction-territory-heres-what-typically-happens-next.html" target="_blank" rel="noopener">fell</a> about 5.5% and dropped into correction territory, more than 10% below its recent high, while the S&amp;P 500 lost about 4.4% and the Dow shed roughly 1,800 points, or 3.4%, <em>CNBC</em> <a href="https://www.cnbc.com/2026/11/05/stock-market-selloff-ai-fears.html" target="_blank" rel="noopener">reported</a>.</p>
+
+
+
+<p class="wp-block-paragraph">The Magnificent Seven erased more than $1 trillion in market value. Nvidia alone lost more than 9%, wiping out roughly $440 billion in capitalization, as investors priced in a slower AI data-center buildout after the Democratic midterm sweep.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin has traded with that AI-heavy complex for most of the year, so a correction in the Nasdaq has pulled the bitcoin price lower even when on-chain flows looked steady. Miners that leased power and floor space to AI tenants are caught in both trades.</p>
+
+
+
+<p class="wp-block-paragraph">Fund flows followed the risk-off tape. U.S. spot bitcoin ETFs <a href="https://www.coindesk.com/markets/2026/11/06/bitcoin-recovers-usd76-000-level-as-etfs-shed-usd430-million-after-tech-rout" target="_blank" rel="noopener">posted</a> $430.2 million in net outflows on Thursday, led by about $200 million from Fidelity&#8217;s FBTC and roughly $105 million from BlackRock&#8217;s IBIT, bringing week-to-date redemptions through Thursday to about $870 million.</p>
+
+
+
+<p class="wp-block-paragraph">Leverage kept the bitcoin price soft into the overnight. More than $1 billion in crypto positions were <a href="https://www.coindesk.com/markets/2026/11/06/bitcoin-recovers-usd76-000-level-as-etfs-shed-usd430-million-after-tech-rout" target="_blank" rel="noopener">liquidated</a> over 24 hours, mostly long bets built during Wednesday&#8217;s short-squeeze bounce that <a href="https://bitcoinmagazine.com/markets/bitcoin-price-holds-near-80000-short">lifted bitcoin near $80,000</a>.</p>
+
+
+
+<h2 class="wp-block-heading">What comes next for bitcoin price</h2>
+
+
+
+<p class="wp-block-paragraph">Professional and business services led October hiring with 70,000 jobs, health care added 42,000, and transportation and warehousing gained 25,000. Manufacturing rose 19,000. The breadth undercuts the recent pattern in which health care carried most of the gains.</p>
+
+
+
+<p class="wp-block-paragraph">Policy risk has not eased either. House Democrats are already <a href="https://bitcoinmagazine.com/news/house-democrats-crypto-market-structure">drafting their own market structure bill</a> ahead of taking the committees in January, a backdrop that has hung over crypto equities since the midterm results <a href="https://bitcoinmagazine.com/markets/bitcoin-price-trades-near-77500-midterm">first hit the bitcoin price</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Traders are watching whether the bitcoin price can defend the mid-$75,000 zone that held on election night and several times since August. A clean break would leave September&#8217;s low back in sight after a week that erased most of the post-election squeeze, now with a hotter labor market and firmer hike odds stacked on top.</p>
+
+
+
+<p class="wp-block-paragraph">At the time of writing, the bitcoin price is near $75,500.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-holds-near-75800-jobs">Bitcoin Price Holds Near $75,000 After Hot October Jobs Report</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>South Korean Crypto Exchange Gopax Suspends Withdrawals and Trading After Hacking Threat</title>
+		<link>https://bitcoinmagazine.com/news/gopax-suspends-withdrawals-hacking-threat</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 14:22:23 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Cold storage]]></category>
+		<category><![CDATA[Gopax]]></category>
+		<category><![CDATA[hack]]></category>
+		<category><![CDATA[Security]]></category>
+		<category><![CDATA[South korea]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56903</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Gopax-Suspends-Withdrawals-Cold-Storage.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/gopax-suspends-withdrawals-hacking-threat">South Korean Crypto Exchange Gopax Suspends Withdrawals and Trading After Hacking Threat</a></p>
+<p>South Korea's Gopax halted standard withdrawals at 2:55 p.m. and trading at 3:53 p.m. Friday after a hacking-threat email, and is transferring all held assets to cold wallets with no loss reported so far.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/gopax-suspends-withdrawals-hacking-threat">South Korean Crypto Exchange Gopax Suspends Withdrawals and Trading After Hacking Threat</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Gopax-Suspends-Withdrawals-Cold-Storage.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/gopax-suspends-withdrawals-hacking-threat">South Korean Crypto Exchange Gopax Suspends Withdrawals and Trading After Hacking Threat</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">South Korean cryptocurrency exchange Gopax suspended withdrawals and trading on Friday after receiving a hacking-threat email, and said it is moving all held virtual assets into offline cold wallets as a preemptive step to protect customer funds.</p>
+
+
+
+<p class="wp-block-paragraph">Gopax <a href="https://en.yna.co.kr/view/AEN20261106011700320" target="_blank" rel="noopener">halted</a> standard deposit and withdrawal services at 2:55 p.m. local time and stopped trading at 3:53 p.m., Yonhap News Agency <a href="https://en.sedaily.com/finance/2026/11/06/gopax-halts-withdrawals-after-hacking-threat" target="_blank" rel="noopener">reported</a>, citing the exchange. Direct withdrawals through the website and app are unavailable. Customers who want coins out must apply through the customer support center, where requests are processed manually after internal verification.</p>
+
+
+
+<p class="wp-block-paragraph">&#8220;To ensure the safe custody of user assets, we plan to transfer all virtual assets to cold wallets for storage,&#8221; Gopax <a href="https://en.sedaily.com/finance/2026/11/06/gopax-halts-withdrawals-after-hacking-threat" target="_blank" rel="noopener">said</a> in remarks carried by Seoul Economic Daily. &#8220;Direct withdrawals through the Gopax website or app are temporarily unavailable, and customers wishing to withdraw funds should apply through the Gopax customer support center.&#8221;</p>
+
+
+
+<p class="wp-block-paragraph">No actual loss of assets has been reported. The company has not set a date to reopen trading or standard withdrawals.</p>
+
+
+
+<h2 class="wp-block-heading">What Gopax closed and what still works</h2>
+
+
+
+<p class="wp-block-paragraph">With trading offline, all open orders were canceled, Chosun Biz <a href="https://biz.chosun.com/en/en-finance/2026/11/06/MZYDNKCYJVHVLNIQQNCF7H3P2Y/" target="_blank" rel="noopener">reported</a>. Deposits were initially paused with withdrawals; later Korean coverage said deposits had been restored while web and app withdrawals stayed shut. Manual withdrawals through support will take longer than usual.</p>
+
+
+
+<p class="wp-block-paragraph">A cold wallet is a storage setup kept offline, cut off from the internet that hot wallets use to process customer sends. Gopax said the shift of remaining hot-wallet balances into cold storage is meant to shrink the surface available to anyone who can reach online systems.</p>
+
+
+
+<p class="wp-block-paragraph">A Gopax official told Yonhap the email came from a party claiming it could hack the exchange, but that the threat itself had not been verified. &#8220;We ask for your understanding, as this measure is intended to prevent financial incidents and protect user assets,&#8221; the company <a href="https://en.sedaily.com/finance/2026/11/06/gopax-halts-withdrawals-after-hacking-threat" target="_blank" rel="noopener">said</a>.</p>
+
+
+
+<h2 class="wp-block-heading">A rough stretch for Korean crypto platforms</h2>
+
+
+
+<p class="wp-block-paragraph">The freeze lands in a week when exchange security is already under a bright light. On Oct. 29, attackers drained about $6.34 billion from Binance hot wallets in what Binance later <a href="https://bitcoinmagazine.com/news/binance-says-6-34-billion-hack-job">described</a> as a months-long campaign that began with a fake job interview. The FBI has <a href="https://bitcoinmagazine.com/news/north-korea-6-3-billion-binance-hack">tied</a> that theft to North Korea; Binance has <a href="https://bitcoinmagazine.com/news/binance-reopens-withdrawals-hack">reopened withdrawals</a> in stages and said it is covering customer losses from its own funds.</p>
+
+
+
+<p class="wp-block-paragraph">Brazil&#8217;s Mercado Bitcoin <a href="https://bitcoinmagazine.com/news/brazils-mercado-bitcoin-freezes-40-million">froze deposits and withdrawals</a> earlier this week after its own security incident, with preliminary estimates of suspicious transfers near $40 million. Gopax&#8217;s case is different on the facts disclosed so far: the exchange is describing a threat email and a precautionary lockdown, not a confirmed drain.</p>
+
+
+
+<p class="wp-block-paragraph">Gopax itself has been dealing with account trouble. From early September, abnormal access hit some user accounts, leaking personal information on seven customers and two current or former employees, with further leakage confirmed last month, Yonhap&#8217;s Korean <a href="https://www.yna.co.kr/view/AKR20261106174751002" target="_blank" rel="noopener">dispatch</a> said. The company has treated that breach as separate from Friday&#8217;s threat email; any link has not been confirmed.</p>
+
+
+
+<p class="wp-block-paragraph">South Korea&#8217;s Financial Services Commission has also been pressing domestic platforms after a broader wave of cybersecurity incidents across financial firms. Korean exchanges are already required to keep at least 80% of customer crypto in cold storage. Friday&#8217;s move pushes Gopax further offline while it checks whether the threat is real.</p>
+
+
+
+<p class="wp-block-paragraph">For bitcoin holders on Gopax, the practical effect is a queue: coins are being parked offline while support staff approve outbound sends one by one. That is slower than an app button, and it is the trade the exchange says it is making to keep balances intact.</p>
+
+
+
+<p class="wp-block-paragraph">The test for Gopax now is whether it can finish the cold-wallet transfer, clear the manual withdrawal queue without a loss, and say when trading comes back — or whether the unverified threat turns into the incident it was trying to get ahead of.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/gopax-suspends-withdrawals-hacking-threat">South Korean Crypto Exchange Gopax Suspends Withdrawals and Trading After Hacking Threat</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires</title>
+		<link>https://bitcoinmagazine.com/culture/argentine-bitcoiners-debut-the-genesis-of-satoshi-nakamoto-artwork-in-downtown-buenos-aires</link>
+		
+		<dc:creator><![CDATA[Juan Galt]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 14:00:00 +0000</pubDate>
+				<category><![CDATA[CULTURE]]></category>
+		<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[PRESS RELEASES]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=56895</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/tn-4.webp" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/culture/argentine-bitcoiners-debut-the-genesis-of-satoshi-nakamoto-artwork-in-downtown-buenos-aires">Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires</a></p>
+<p>Bitcoin.ar presented the 2.4-meter stainless steel and glass cube “The Genesis of Satoshi Nakamoto” on October 29 at Polo Dot as part of LABITCONF 2026’s Open Fest.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/culture/argentine-bitcoiners-debut-the-genesis-of-satoshi-nakamoto-artwork-in-downtown-buenos-aires">Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/juan-galt">Juan Galt</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/tn-4.webp" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/culture/argentine-bitcoiners-debut-the-genesis-of-satoshi-nakamoto-artwork-in-downtown-buenos-aires">Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">“The Genesis of Satoshi Nakamoto,” a 2.4-meter, multi-dimensional cube, was presented on October 29 at Polo Dot as part of the Open Fest of <a href="https://www.labitconf.com/" target="_blank" rel="noopener">LABITCONF 2026</a>. Driven by <a href="https://bitcoin.ar/" target="_blank" rel="noopener">Bitcoin.ar</a> through the Premio B·Arte, the work combines art, technology, and education in a journey through Bitcoin’s fundamental principles. The inauguration featured guided remarks by Rodolfo Andragnes and a musical performance by Mayumaná, according to an <a href="https://ongbitcoinargentina.medium.com/buenos-aires-inaugur%C3%B3-un-monumento-a-satoshi-nakamoto-que-invita-a-descubrir-y-aprender-sobre-77238103d750" target="_blank" rel="noopener">announcement</a> by the organization.</p>
+
+
+
+<p class="wp-block-paragraph">Buenos Aires now has a monument dedicated to Satoshi Nakamoto, the person—or group of people—behind the creation of Bitcoin, whose identity remains unknown.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Driven by <a href="https://bitcoin.ar/" target="_blank" rel="noopener">Bitcoin.ar</a> through the fifth edition of the Premio B·Arte, the monument was conceived not only as a tribute to Satoshi, but also as an artistic and educational experience. Through its five faces—four lateral and one upper—it proposes a journey to approach different concepts that explain Bitcoin’s origin, functioning, and philosophy.</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img fetchpriority="high" decoding="async" width="1024" height="768" src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-1024x768.png" alt="" class="wp-image-56899" style="aspect-ratio:1.3319838056680162;width:658px;height:auto" title="Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires 1" srcset="https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-1024x768.png 1024w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-300x225.png 300w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-80x60.png 80w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-200x150.png 200w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-324x243.png 324w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-768x576.png 768w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-480x360.png 480w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-696x522.png 696w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4-1068x801.png 1068w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-4.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">During the inauguration, Rodolfo Andragnes — co-founder of <a href="http://bitcoin.ar" target="_blank" rel="noopener">Bitcoin.ar</a> and LABITCONF — accompanied the public with words and explanations about the details of the work, guiding the reading of its various elements and the meaning behind each representation. The presentation was accompanied by a musical show by Mayumaná, which added rhythm and sound to the opening of this new space dedicated to Bitcoin’s history.</p>
+
+
+
+<h3 class="wp-block-heading">Five faces to discover Bitcoin’s history and principles</h3>
+
+
+
+<p class="wp-block-paragraph">Each of the monument’s faces offers a gateway to a different aspect of Bitcoin. The figure of Satoshi Nakamoto, for example, represents the anonymous character of its creator and the collective dimension of a technology that, once set in motion, continued to grow thanks to thousands of people distributed around the world. The reflections and multiplied geometric forms also evoke the structure of a network that replicates and expands.</p>
+
+
+
+<p class="wp-block-paragraph">Another of its faces addresses Bitcoin’s programmed scarcity through a cube that successively divides into halves in a Fibonacci sequence. The representation refers to “the halving”, the mechanism that approximately every four years halves the reward miners receive for validating blocks and that regulates the issuance of new bitcoins. Starting at 50 bitcoins per block, the total reward gets cut in half every four years for roughly 130 years, until 21 million bitcoins have been emitted and the block reward becomes zero. This supply limit is iconic to the cryptocurrency and key to its qualities as hard money.</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img decoding="async" width="1024" height="768" src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-1024x768.png" alt="" class="wp-image-56897" style="aspect-ratio:1.3319838056680162;width:658px;height:auto" title="Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires 2" srcset="https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-1024x768.png 1024w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-300x225.png 300w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-80x60.png 80w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-200x150.png 200w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-768x576.png 768w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-324x243.png 324w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-480x360.png 480w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-696x522.png 696w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2-1068x801.png 1068w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-2.png 1280w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The work also incorporates the first words of Bitcoin’s foundational document, the <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener">white paper</a> published by Satoshi Nakamoto in October 31st,&nbsp; 2008. There, the possibility of making electronic payments directly between people, without needing to go through a financial institution, is proposed. That idea constitutes a foundational principle of the technology.</p>
+
+
+
+<p class="wp-block-paragraph">Another face reproduces information from the genesis block, the first block of the Bitcoin chain, created on January 3, 2009. Among its elements appears the reference to the headline from The Times newspaper that Satoshi incorporated into that block, a historical mark that places Bitcoin’s birth in its context and anchors it to history and time.</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img decoding="async" width="768" height="1024" src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-3-768x1024-1.png" alt="" class="wp-image-56898" style="aspect-ratio:0.750285062713797;width:658px;height:auto" title="Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires 3" srcset="https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-3-768x1024-1.png 768w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-3-225x300.png 225w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-3-300x400.png 300w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-3-696x928.png 696w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-3.png 960w" sizes="(max-width: 768px) 100vw, 768px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Finally, on the upper part are two expressions that synthesize principles associated with this technology: “Don’t trust, verify”, an invitation to check information for oneself, rather than trust at face value. And “Vires in numeris,” Latin for “strength in numbers,” which refers to the safety of the crowd when it comes to privacy, as well as the self-evident, self-asserting strength of a money built and defended by cryptography rather than authority or military might.</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img loading="lazy" decoding="async" width="768" height="1024" src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-1-768x1024.png" alt="" class="wp-image-56896" style="aspect-ratio:0.750285062713797;width:658px;height:auto" title="Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires 4" srcset="https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-1-768x1024-1.png 768w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-1-225x300.png 225w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-1-300x400.png 300w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-1-696x928.png 696w, https://bitcoinmagazine.com/wp-content/uploads/2026/11/image-1.png 960w" sizes="auto, (max-width: 768px) 100vw, 768px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Thus, the monument proposes something more than contemplating a sculpture: it invites one to walk around it, observe it from different angles, and discover the concepts behind each of its parts; “The intention is to bring Bitcoin closer to those who are already part of its community, but also to awaken the curiosity of those who do not yet know its history.”</p>
+
+
+
+<h3 class="wp-block-heading">A collective work that connects art, technology, and education</h3>
+
+
+
+<p class="wp-block-paragraph"><a href="https://bitcoin.ar/premiobarte-monumento/" target="_blank" rel="noopener">The monument</a> was created by Ricardo Alonso, engineer, and Celeste Difabio Videla, architect, a couple of artists from Bariloche who won the fifth edition of the Premio B·Arte. The work measures 2.40 meters in width, length, and height, and is made of stainless steel and glass.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Its construction involved teams and collaborators from different localities across the country, in a process that combined different trades, materials, and techniques. Aída Pippo, visual artist, researcher of new technologies applied to art, and member of the Board of Directors of Bitcoin.ar, led the project and coordinated the different stages of production and assembly.</p>
+
+
+
+<p class="wp-block-paragraph">“It gives me great pride to feel that this is something we can leave in our city and in our country,” Andragnes expressed during the presentation, highlighting the value of a collective initiative that seeks to leave a cultural and educational footprint.</p>
+
+
+
+<p class="wp-block-paragraph">For their part, the creators noted that they sought for the work to function as a meeting point for the community and, at the same time, as a gateway for those who do not yet know Bitcoin. “You don’t always have the possibility of leaving something for posterity,” they shared when speaking of the experience of seeing the monument finished and installed in Buenos Aires.</p>
+
+
+
+<p class="wp-block-paragraph">With this inauguration, Bitcoin.ar seeks for the monument to become a permanent resource for the city: a space that schools, universities, families, and visitors can approach to learn Bitcoin’s history, discover its principles, and open new conversations about the future of money and technology. The intention is that what is presented today as an artistic work can continue to grow through educational activities and new experiences, and remain in Buenos Aires as a legacy for future generations.</p>
+
+
+
+<p class="wp-block-paragraph">The project was financed by the <a href="https://bitcoiniberoamerica.org/" target="_blank" rel="noopener">Fundación Bitcoin Iberoamérica</a> and represents a new way of bringing Bitcoin’s history and principles to public and cultural spaces, beyond screens and specialized environments.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/culture/argentine-bitcoiners-debut-the-genesis-of-satoshi-nakamoto-artwork-in-downtown-buenos-aires">Argentine Bitcoiners Debut “The Genesis of Satoshi Nakamoto” Artwork in Downtown Buenos Aires</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/juan-galt">Juan Galt</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
