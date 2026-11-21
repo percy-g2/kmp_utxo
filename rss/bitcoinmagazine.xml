@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/" >
+
+<channel>
+	<title>Bitcoin Magazine</title>
+	<atom:link href="https://bitcoinmagazine.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://bitcoinmagazine.com</link>
+	<description>Bitcoin News, Articles and Expert Insights</description>
+	<lastBuildDate>Fri, 20 Nov 2026 22:10:11 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1.5</generator>
+
+<image>
+	<url>https://bitcoinmagazine.com/wp-content/uploads/2024/09/cropped-Bitcoin-Magazine-glyph-black-01-32x32.png</url>
+	<title>Bitcoin Magazine</title>
+	<link>https://bitcoinmagazine.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Tracy Schuchart: Bitcoin Trading “Like a Risk Asset” as Fed Hikes Loom</title>
+		<link>https://bitcoinmagazine.com/videos/tracy-schuchart-bitcoin-trading-like-a-risk-asset-as-fed-hikes-loom</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 22:10:11 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[NinjaTrader]]></category>
+		<category><![CDATA[Tracy Shuchart]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/videos/tracy-schuchart-bitcoin-trading-like-a-risk-asset-as-fed-hikes-loom</guid>
+
+					<description><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=8ZLlc6cnmDs" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/8ZLlc6cnmDs/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/tracy-schuchart-bitcoin-trading-like-a-risk-asset-as-fed-hikes-loom-8ZLlc6cnmDs.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/tracy-schuchart-bitcoin-trading-like-a-risk-asset-as-fed-hikes-loom">Tracy Schuchart: Bitcoin Trading “Like a Risk Asset” as Fed Hikes Loom</a></p>
+<p>Tracy Shuchart says Bitcoin's biggest long-term argument is its monetary scarcity, but investors need to separate the long-term thesis from how it's trading today.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/tracy-schuchart-bitcoin-trading-like-a-risk-asset-as-fed-hikes-loom">Tracy Schuchart: Bitcoin Trading “Like a Risk Asset” as Fed Hikes Loom</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=8ZLlc6cnmDs" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/8ZLlc6cnmDs/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/tracy-schuchart-bitcoin-trading-like-a-risk-asset-as-fed-hikes-loom-8ZLlc6cnmDs.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/tracy-schuchart-bitcoin-trading-like-a-risk-asset-as-fed-hikes-loom">Tracy Schuchart: Bitcoin Trading “Like a Risk Asset” as Fed Hikes Loom</a></p>
+<div id="bsf_rt_marker"></div><p>Tracy Shuchart says Bitcoin&#8217;s biggest long-term argument is its monetary scarcity, but investors need to separate the long-term thesis from how it&#8217;s trading today. In tightening liquidity, with rising yields and a stronger dollar, she says Bitcoin &#8220;behaves much more like a risk asset than a safe haven.&#8221; She adds that Bitcoin transactions have stayed strong even as price falls, and &#8220;the long-term argument hasn&#8217;t changed.&#8221; She expects continued adoption from here.   </p>
+<p>Grab 1 of only 333 The Genesis Book 3rd Anniversary Edition packages now<br />
+<img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://store.bitcoinmagazine.com/pages/the-genesis-book-3rd-anniversary" rel="nofollow noopener noreferrer" target="_blank">https://store.bitcoinmagazine.com/pages/the-genesis-book-3rd-anniversary</a></p>
+<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f9f3.png" alt="🧳" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partnership Enquiries: Let’s find your fit! BMTV offers customized sponsorships tailored to your brand’s goals and target audience.<br />
+ <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partner with us: <a href="https://bitcoinmagazine.com/bmtv">https://bitcoinmagazine.com/bmtv</a></p>
+<p>Chapters:<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=0s" data-yt-seek="0" rel="nofollow noopener noreferrer" target="_blank">00:00</a> The Fed, the Dollar and the Commodities Sell-Off<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=85s" data-yt-seek="85" rel="nofollow noopener noreferrer" target="_blank">01:25</a> Silver and Copper Hit by the AI CapEx Trade<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=124s" data-yt-seek="124" rel="nofollow noopener noreferrer" target="_blank">02:04</a> Gold and Central Bank Buying<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=191s" data-yt-seek="191" rel="nofollow noopener noreferrer" target="_blank">03:11</a> Oil Supply Risk Hasn&#8217;t Disappeared<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=284s" data-yt-seek="284" rel="nofollow noopener noreferrer" target="_blank">04:44</a> Will Gulf Oil Move Away From Hormuz for Good?<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=374s" data-yt-seek="374" rel="nofollow noopener noreferrer" target="_blank">06:14</a> The Anthropic IPO Is Sucking the Air From the Market<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=492s" data-yt-seek="492" rel="nofollow noopener noreferrer" target="_blank">08:12</a> When AI Stocks Could Detach From Anthropic<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=556s" data-yt-seek="556" rel="nofollow noopener noreferrer" target="_blank">09:16</a> AI Data Centers and Natural Gas Demand<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=711s" data-yt-seek="711" rel="nofollow noopener noreferrer" target="_blank">11:51</a> Tracy&#8217;s Bull Case for Bitcoin<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=742s" data-yt-seek="742" rel="nofollow noopener noreferrer" target="_blank">12:22</a> Why Bitcoin Trades Like a Risk Asset Right Now<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=8ZLlc6cnmDs&amp;t=787s" data-yt-seek="787" rel="nofollow noopener noreferrer" target="_blank">13:07</a> Fed Outlook: 25 or 50 Basis Points?</p>
+<p>DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/tracy-schuchart-bitcoin-trading-like-a-risk-asset-as-fed-hikes-loom">Tracy Schuchart: Bitcoin Trading “Like a Risk Asset” as Fed Hikes Loom</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Price Slips to Lows Not Seen Since 2024, Nasdaq Plunges 5%</title>
+		<link>https://bitcoinmagazine.com/markets/bitcoin-price-slips-58300-nasdaq</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 21:08:02 +0000</pubDate>
+				<category><![CDATA[MARKETS]]></category>
+		<category><![CDATA[Bitcoin ETF]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[bitcoin stocks]]></category>
+		<category><![CDATA[Federal reserve]]></category>
+		<category><![CDATA[Stocks]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57616</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Bitcoin-Price-Falls-Below-72000-as-Nvidia-CEO-Jensen-Huang-Steps-Down-and-Strategy-MSTR-Slides.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-58300-nasdaq">Bitcoin Price Slips to Lows Not Seen Since 2024, Nasdaq Plunges 5%</a></p>
+<p>The bitcoin price slipped to near $58,300 on Friday afternoon, briefly dipping under its summer low, as a chip-led selloff sent the Nasdaq down about 5% and dragged crypto stocks and miners sharply lower.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-58300-nasdaq">Bitcoin Price Slips to Lows Not Seen Since 2024, Nasdaq Plunges 5%</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Bitcoin-Price-Falls-Below-72000-as-Nvidia-CEO-Jensen-Huang-Steps-Down-and-Strategy-MSTR-Slides.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-58300-nasdaq">Bitcoin Price Slips to Lows Not Seen Since 2024, Nasdaq Plunges 5%</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">The bitcoin price <a href="https://www.bitcoinmagazinepro.com/bitcoin-price-live/" target="_blank" rel="noopener">slid</a> to near $58,300 on Friday afternoon, down about 6.2% over the past 24 hours, according to <em>Look Into Bitcoin</em> data, as a deepening selloff in chip and artificial intelligence stocks sent the Nasdaq down about 5% and pushed bitcoin just under its summer low.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin <a href="https://bitcoinmagazine.com/markets/bitcoin-price-crashes-below-60000">broke below $60,000</a> late Friday morning, a few hours after <a href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-61500-asia">this morning&#8217;s report</a> had it near $61,500. Over the past 24 hours, the bitcoin price has traded between $57,655 and $62,562, a drop of about $3,880. Bitcoin is <a href="https://finance.yahoo.com/markets/article/bitcoin-plunges-below-59000-on-pace-for-its-worst-month-since-june-2022-192922111.html" target="_blank" rel="noopener">down about 25%</a> in November, on pace for its worst month since June 2022.</p>
+
+
+
+<h2 class="wp-block-heading">Chip stocks drag Wall Street lower</h2>
+
+
+
+<p class="wp-block-paragraph">Selling on Wall Street sped up through the afternoon. The Nasdaq Composite fell about 5% in late trading and the S&amp;P 500 dropped about 3.5%. Yahoo Finance <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-november-19-dow-sp-500-nasdaq-anthropic-nvidia-141644188.html" target="_blank" rel="noopener">said</a> the Nasdaq was on pace to close negative for the year, while the S&amp;P 500 was poised to close in correction territory.</p>
+
+
+
+<p class="wp-block-paragraph">Chipmakers led the drop. Nvidia (NVDA) fell about 12.5% to near $128, and AMD, Broadcom and Micron also posted double-digit losses. Gold futures dropped nearly 5%. Treasury yields fell as traders <a href="https://www.reuters.com/5f374b32b07b/world/china/global-markets-global-markets-2026-11-20/" target="_blank" rel="noopener">rotated</a> into bonds and defensive sectors such as consumer staples and healthcare, Reuters reported.</p>
+
+
+
+<p class="wp-block-paragraph">Anthropic (ANT) fell nearly 12% to around $86 on its first full day of trading, leaving it just above its $83 IPO price. The stock had <a href="https://www.cnbc.com/2026/11/20/anthropic-stock-ai-amd-nvidia.html" target="_blank" rel="noopener">closed</a> its Thursday debut at $97.17 after raising $81.3 billion in the largest IPO of all time, CNBC reported.</p>
+
+
+
+<h2 class="wp-block-heading">Liquidations and outflows weigh on the bitcoin price</h2>
+
+
+
+<p class="wp-block-paragraph">Leveraged traders were forced out as the bitcoin price broke support. About $1.53 billion in crypto bets were <a href="https://finance.yahoo.com/markets/crypto/articles/bitcoin-drops-below-59k-wiping-183406394.html" target="_blank" rel="noopener">wiped out</a> over 24 hours, with long positions making up $1.4 billion of that total. Bitcoin alone accounted for around $540 million, while ether fell more than 8% to around $1,600.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin funds have been sellers, too. Investors have <a href="https://finance.yahoo.com/markets/article/bitcoin-plunges-below-59000-on-pace-for-its-worst-month-since-june-2022-192922111.html" target="_blank" rel="noopener">pulled</a> roughly $3.5 billion from U.S. spot bitcoin ETFs so far this month, including $582 million on Thursday. BlackRock&#8217;s iShares Bitcoin Trust (IBIT) accounted for $541.1 million of Thursday&#8217;s withdrawals, its largest one-day outflow on record.</p>
+
+
+
+<p class="wp-block-paragraph">Rate worries are adding pressure. Treasury Secretary Scott Bessent <a href="https://bitcoinmagazine.com/markets/bessent-fed-bigger-rate-hike-bitcoin">pushed back</a> Friday on calls for a half-point Federal Reserve hike in December. Traders still saw a more than 98% chance of a quarter-point increase, and some strategists <a href="https://www.coindesk.com/markets/2026/11/20/bitcoin-plunges-below-usd59-000-as-rush-to-cash-puts-new-bear-market-lows-back-in-play" target="_blank" rel="noopener">warned</a> that further hikes could deepen the selloff.</p>
+
+
+
+<p class="wp-block-paragraph">CoinShares head of research James Butterfill <a href="https://cointelegraph.com/markets/bitcoin-falls-below-60k-for-first-time-since-july-amid-broader-market-selloff" target="_blank" rel="noopener">said</a> the drop looks driven more by the AI stock selloff than by problems inside crypto. Bitcoin has increasingly traded alongside other growth assets that depend on easy money, he said.</p>
+
+
+
+<p class="wp-block-paragraph">The dip to $57,655 briefly took bitcoin just under its summer low near $57,700. It is also on track for a seventh straight weekly loss, its longest losing streak since 2022.</p>
+
+
+
+<h2 class="wp-block-heading">Crypto stocks extend losses</h2>
+
+
+
+<p class="wp-block-paragraph">Strategy (MSTR) fell about 8.4% to near $78.90, adding to the losses after the stock <a href="https://bitcoinmagazine.com/markets/strategy-stock-sinks-62000">fell for a sixth straight day</a> on Thursday. Coinbase (COIN) dropped about 5.5% to near $103. Robinhood (HOOD) lost about 9.6% and Circle (CRCL) fell about 7.9%.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin miners fared worst. MARA Holdings (MARA) sank about 17% to near $5.17, IREN (IREN) fell about 17% and CleanSpark (CLSK) dropped about 16%. Riot Platforms (RIOT) lost about 8.4%, and Galaxy Digital (GLXY) fell about 9.4%. Many miners have expanded into AI data centers, tying their shares to the chip selloff.</p>
+
+
+
+<p class="wp-block-paragraph">The bitcoin price is now down more than 50% from its record above $126,000, set in October 2025.</p>
+
+
+
+<p class="wp-block-paragraph">At the time of writing, the bitcoin price is near $58,300.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-58300-nasdaq">Bitcoin Price Slips to Lows Not Seen Since 2024, Nasdaq Plunges 5%</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>MSTR Head of Investor Relations Addresses Bitcoin Pullback, Equity Performance</title>
+		<link>https://bitcoinmagazine.com/videos/mstr-head-of-investor-relations-addresses-bitcoin-pullback-equity-performance</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 19:24:55 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[MSTR]]></category>
+		<category><![CDATA[Strategy]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/videos/mstr-head-of-investor-relations-addresses-bitcoin-pullback-equity-performance</guid>
+
+					<description><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=ctWQsAPySls" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/ctWQsAPySls/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/mstr-head-of-investor-relations-addresses-bitcoin-pullback-equity-performance-ctWQsAPySls.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/mstr-head-of-investor-relations-addresses-bitcoin-pullback-equity-performance">MSTR Head of Investor Relations Addresses Bitcoin Pullback, Equity Performance</a></p>
+<p>Chaitanya "CJ" Jain, Head of Investor Relations at Strategy, joins Bitcoin Magazine TV as Bitcoin trades below Strategy's average cost.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/mstr-head-of-investor-relations-addresses-bitcoin-pullback-equity-performance">MSTR Head of Investor Relations Addresses Bitcoin Pullback, Equity Performance</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=ctWQsAPySls" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/ctWQsAPySls/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/mstr-head-of-investor-relations-addresses-bitcoin-pullback-equity-performance-ctWQsAPySls.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/mstr-head-of-investor-relations-addresses-bitcoin-pullback-equity-performance">MSTR Head of Investor Relations Addresses Bitcoin Pullback, Equity Performance</a></p>
+<div id="bsf_rt_marker"></div><p>Chaitanya &#8220;CJ&#8221; Jain, Head of Investor Relations at Strategy, joins Bitcoin Magazine TV as Bitcoin trades below Strategy&#8217;s average cost. He says the Anthropic IPO has been the clear negative catalyst for Bitcoin over the last couple of weeks, with risk-on investors rotating into the AI trade. CJ expects that rotation to reverse, and says the bigger catalyst will be monetary debasement. When central banks are forced to print, he says, &#8220;everyone will chase Bitcoin again.&#8221;</p>
+<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f9c2.png" alt="🧂" class="wp-smiley" style="height: 1em; max-height: 1em;" />SALT Lending: Don&#8217;t sell your Bitcoin. Borrow against it.<br />
+BMTV viewers borrow from 6.99% APR, a half point below SALT&#8217;s standard 7.49%. No credit check, no origination fees, no prepayment fees.</p>
+<p>The original Bitcoin-backed lender, lending against BTC since 2016.</p>
+<p>GET YOUR BMTV OFFER: <a href="https://saltlending.com/bmtv/?utm_source=bmtv&amp;utm_medium=youtube&amp;utm_campaign=bmtv_offer" rel="nofollow noopener noreferrer" target="_blank">https://saltlending.com/bmtv/?utm_source=bmtv&#038;utm_medium=youtube&#038;utm_campaign=bmtv_offer</a><br />
+SALT is the official Liquidity Sponsor of BMTV.</p>
+<p>SALT loans are originated by SALT Lending LLC (f/k/a SALT Master Fund II, LLC), NMLS 1711910. Borrowing against collateral involves risk. Not available in all jurisdictions. Digital currency is not legal tender and is not FDIC or SIPC insured. Terms: <a href="https://saltlending.com/terms-of-use/" rel="nofollow noopener noreferrer" target="_blank">https://saltlending.com/terms-of-use/</a> </p>
+<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f9f3.png" alt="🧳" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partnership Enquiries: Let’s find your fit! BMTV offers customized sponsorships tailored to your brand’s goals and target audience.<br />
+ <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partner with us: <a href="https://bitcoinmagazine.com/bmtv">https://bitcoinmagazine.com/bmtv</a></p>
+<p>Chapters:<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=0s" data-yt-seek="0" rel="nofollow noopener noreferrer" target="_blank">00:00</a> Bitcoin Below Strategy&#8217;s Average Cost<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=80s" data-yt-seek="80" rel="nofollow noopener noreferrer" target="_blank">01:20</a> The Anthropic IPO Rotation Out of Bitcoin<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=124s" data-yt-seek="124" rel="nofollow noopener noreferrer" target="_blank">02:04</a> Monetary Debasement Is the Bigger Catalyst<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=175s" data-yt-seek="175" rel="nofollow noopener noreferrer" target="_blank">02:55</a> MSCI Drops Strategy From Its Indexes<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=322s" data-yt-seek="322" rel="nofollow noopener noreferrer" target="_blank">05:22</a> STRC Holds Up in the Bitcoin Sell-Off<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=490s" data-yt-seek="490" rel="nofollow noopener noreferrer" target="_blank">08:10</a> Nearly $3B in STRC Buybacks<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=624s" data-yt-seek="624" rel="nofollow noopener noreferrer" target="_blank">10:24</a> Why Strategy Is Holding STRC at 12%<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=803s" data-yt-seek="803" rel="nofollow noopener noreferrer" target="_blank">13:23</a> Sponsor: SALT<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=833s" data-yt-seek="833" rel="nofollow noopener noreferrer" target="_blank">13:53</a> S&amp;P&#8217;s B- Credit Rating<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=973s" data-yt-seek="973" rel="nofollow noopener noreferrer" target="_blank">16:13</a> A Message to Long-Time MSTR Holders<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=1125s" data-yt-seek="1125" rel="nofollow noopener noreferrer" target="_blank">18:45</a> Honoring the STRC Par Commitment<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=ctWQsAPySls&amp;t=1293s" data-yt-seek="1293" rel="nofollow noopener noreferrer" target="_blank">21:33</a> The Silver Lining for Long-Term Investors</p>
+<p>DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/mstr-head-of-investor-relations-addresses-bitcoin-pullback-equity-performance">MSTR Head of Investor Relations Addresses Bitcoin Pullback, Equity Performance</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>SEC Freezes Assets in $560 Million Crypto Trading Ponzi Scheme</title>
+		<link>https://bitcoinmagazine.com/news/sec-freezes-crypto-560-million-ponzi</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 19:15:56 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[CFTC]]></category>
+		<category><![CDATA[DOJ]]></category>
+		<category><![CDATA[FBI]]></category>
+		<category><![CDATA[Fraud]]></category>
+		<category><![CDATA[Ponzi scheme]]></category>
+		<category><![CDATA[SEC]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57611</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/SEC-Freezes-Assets-in-560-Million-Crypto-Trading-Ponzi-Scheme.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/sec-freezes-crypto-560-million-ponzi">SEC Freezes Assets in $560 Million Crypto Trading Ponzi Scheme</a></p>
+<p>The SEC obtained an asset freeze against Backward Hat Capital and its founders, alleging a $560 million Ponzi scheme sold as AI-driven FX trading funded through crypto. Prosecutors and the CFTC filed parallel cases.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/sec-freezes-crypto-560-million-ponzi">SEC Freezes Assets in $560 Million Crypto Trading Ponzi Scheme</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/SEC-Freezes-Assets-in-560-Million-Crypto-Trading-Ponzi-Scheme.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/sec-freezes-crypto-560-million-ponzi">SEC Freezes Assets in $560 Million Crypto Trading Ponzi Scheme</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">The Securities and Exchange Commission has <a href="https://www.sec.gov/newsroom/press-releases/2026-116-sec-charges-indianapolis-based-backward-hat-capital-its-co-founders-560-million-dollar-offering" target="_blank" rel="noopener">frozen the assets</a> of Indianapolis-based Backward Hat Capital and its two co-founders, saying the firm ran a $560 million Ponzi scheme that told investors their money would be turned into crypto and used for AI-driven currency trading.</p>
+
+
+
+<p class="wp-block-paragraph">The agency said Backward Hat, co-founders Phillip Williams and Devin Johnson, Johnson’s firm Traders Point Capital and Joseph Anderson raised the money from more than 2,000 investors starting in July 2022. A federal court granted a temporary restraining order, an asset freeze and expedited discovery to halt what the SEC called an ongoing scheme.</p>
+
+
+
+<p class="wp-block-paragraph">Federal prosecutors in New York and the Commodity Futures Trading Commission brought parallel cases. The SEC and CFTC suits were filed in the U.S. District Court for the Southern District of Indiana, and the CFTC <a href="https://www.cftc.gov/PressRoom/PressReleases/9328-26" target="_blank" rel="noopener">said</a> the court has appointed Kevin B. Duff as temporary receiver to take control of the companies and the individual defendants’ assets.</p>
+
+
+
+<h2 class="wp-block-heading">The pitch: crypto, AI and 6% a month</h2>
+
+
+
+<p class="wp-block-paragraph">According to the SEC’s <a href="https://www.sec.gov/files/litigation/complaints/2026/comp-pr2026-116.pdf" target="_blank" rel="noopener">complaint</a>, Williams and Johnson sold limited partnership interests in private funds through a network of promoters, including to Williams’s former investment advisory clients. They promised a proprietary, “AI-driven” algorithm that supposedly returned at least 6% every month by trading foreign exchange.</p>
+
+
+
+<p class="wp-block-paragraph">Investor money, the pitch went, would first be converted into a crypto asset and then used for that arbitrage. The complaint does not name bitcoin as the asset. It says about $109 million of the roughly $210 million raised from July 2022 to September 2025 was sent to the fund’s Coinbase account and converted.</p>
+
+
+
+<p class="wp-block-paragraph">Of that, more than $56 million went to personal crypto accounts held by Williams, Johnson and a relief defendant, according to the complaint. About $40 million ended up on three platforms where some of it was used to trade other crypto assets, but little to no money was used to trade FX. After October 2025, the scheme raised about $350 million, and none of it was sent to Coinbase.</p>
+
+
+
+<h2 class="wp-block-heading">Where the money went</h2>
+
+
+
+<p class="wp-block-paragraph">The SEC said the defendants made more than $250 million in Ponzi payments to earlier investors and moved more than $220 million to themselves. The money paid for exotic cars, expensive homes, private air travel and other businesses they owned, and helped feed Johnson’s gambling. Promoters took more than $50 million.</p>
+
+
+
+<p class="wp-block-paragraph">Anderson is accused of producing fake financial reports, including at least two “audit reports” and a “quality of earnings” report from a supposedly independent firm. The SEC said the documents falsely claimed the returns had been verified against bank and brokerage records. It said Anderson did no audit work, was not independent and had a financial stake in the scheme.</p>
+
+
+
+<p class="wp-block-paragraph">Prosecutors in Manhattan <a href="https://www.irs.gov/compliance/criminal-investigation/two-individuals-charged-in-600-million-ponzi-scheme" target="_blank" rel="noopener">charged</a> Williams and Johnson with securities fraud, conspiracy to commit wire fraud and conspiracy to commit securities fraud. The FBI arrested Williams in Kokomo, Indiana, and Johnson in Gilbert, Arizona, on Wednesday. Prosecutors put the total raised at more than $600 million.</p>
+
+
+
+<p class="wp-block-paragraph">“As alleged, Phillip Patrick Williams and Devin Allen Johnson promised to use investor funds for profitable foreign exchange currency trading,” said U.S. Attorney Jamie McDonald. “Williams and Johnson instead stole hundreds of millions of dollars from their investors for personal expenses and to pay off earlier investors in a Ponzi-like fashion.”</p>
+
+
+
+<h2 class="wp-block-heading">Regulators’ latest crypto fraud cases</h2>
+
+
+
+<p class="wp-block-paragraph">The CFTC put the Ponzi at more than $550 million from at least 2,100 participants and said defendants kept soliciting money through at least October 2026. Its complaint seeks restitution, disgorgement, civil penalties, trading bans and a permanent injunction. The SEC is seeking injunctions, disgorgement and civil penalties.</p>
+
+
+
+<p class="wp-block-paragraph">The case follows other recent enforcement actions tied to crypto-branded fraud. The SEC <a href="https://bitcoinmagazine.com/news/sec-charges-companies-130-million-crypto" target="_blank" rel="noopener">charged two companies</a> in a $130 million crypto trading scheme last month, and New York <a href="https://bitcoinmagazine.com/news/ny-seeks-1-37-b-judgement-novatech" target="_blank" rel="noopener">sought a $1.37 billion judgment</a> against the operators of the NovaTech Ponzi scheme. In August, the CFTC <a href="https://bitcoinmagazine.com/news/cftc-charges-goliath-in-bitcoin-fraud" target="_blank" rel="noopener">charged Goliath Ventures</a> with a $400 million bitcoin fraud.</p>
+
+
+
+<p class="wp-block-paragraph">Anne McKinley, acting associate director of the SEC’s Chicago Regional Office, said the promise of “a low-risk, high rate of return on a purportedly complex investment should make all potential investors stop and think before investing their money.”</p>
+
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/sec-freezes-crypto-560-million-ponzi">SEC Freezes Assets in $560 Million Crypto Trading Ponzi Scheme</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Researchers Publish Security Analysis of Bitcoin’s Post-Quantum SHRINCS Proposal</title>
+		<link>https://bitcoinmagazine.com/news/blockstream-shrincs-security-shrincs</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 16:55:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Blockstream]]></category>
+		<category><![CDATA[post quantum]]></category>
+		<category><![CDATA[post-quantum cryptography]]></category>
+		<category><![CDATA[Quantum]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57599</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Researchers-Publish-Security-Analysis-of-Bitcoins-Post-Quantum-SHRINCS-Proposal.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/blockstream-shrincs-security-shrincs">Researchers Publish Security Analysis of Bitcoin’s Post-Quantum SHRINCS Proposal</a></p>
+<p>Blockstream researchers published a 131-page security analysis of SHRINCS, a hash-based post-quantum signature scheme for Bitcoin, and are asking the community to review it for flaws.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/blockstream-shrincs-security-shrincs">Researchers Publish Security Analysis of Bitcoin’s Post-Quantum SHRINCS Proposal</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Researchers-Publish-Security-Analysis-of-Bitcoins-Post-Quantum-SHRINCS-Proposal.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/blockstream-shrincs-security-shrincs">Researchers Publish Security Analysis of Bitcoin’s Post-Quantum SHRINCS Proposal</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Several researchers have published a 131-page security analysis of SHRINCS, a proposed post-quantum signature scheme for Bitcoin, and are asking the wider community to look for flaws in it. Researcher Mikhail Kudinov <a href="https://x.com/kudinov_mikhail/status/2123408450571153453" target="_blank" rel="noopener">announced</a> the first version Thursday in a thread on X, saying the paper reduces SHRINCS’ security to the properties of its underlying hash function.</p>
+
+
+
+<p class="wp-block-paragraph">The analysis, dated Nov. 18, estimates classical security of 121.4 to 122.7 bits for SHRINCS, though those figures rest on assumptions that include three unproven conjectures. Kudinov <a href="https://x.com/kudinov_mikhail/status/2123409202349850829" target="_blank" rel="noopener">said</a> the work is not finished. The team is still working on a new analysis of a property called SM-DSPR, whose bound has so far been conjectured, and on tightening a reprogramming step and improving a bound against quantum attackers.</p>
+
+
+
+<h2 class="wp-block-heading">How SHRINCS works</h2>
+
+
+
+<p class="wp-block-paragraph">SHRINCS is a hash-based scheme, meaning its security rests on hash functions rather than the elliptic curve math behind today’s Bitcoin signatures. It <a href="https://x.com/kudinov_mikhail/status/2123408901781479769" target="_blank" rel="noopener">places</a> two designs under one key: a stateful part built on FXMSS with WOTS+C, and a stateless fallback built on SLH-DSA. Because both use the same hash function, Kudinov said, the proof has to cover both.</p>
+
+
+
+<p class="wp-block-paragraph">Signature size is the main cost. Under the draft proposal, stateful SHRINCS signatures <a href="https://github.com/SHRINCS/shrincs-bip/blob/main/SHRINCS.md" target="_blank" rel="noopener">run</a> from 548 to 4,619 bytes, while the stateless fallback is 5,777 bytes. Schnorr signatures on Bitcoin today are 64 bytes, and ECDSA signatures typically come in around 71. Signatures take up scarce block space, so larger ones mean fewer transactions per block.</p>
+
+
+
+<h2 class="wp-block-heading">The risk of a stateful signature</h2>
+
+
+
+<p class="wp-block-paragraph">The compact stateful path carries a danger. It relies on one-time keys, and if a wallet accidentally reuses one, an attacker can forge a signature for that address and steal the funds. Wallet software therefore has to track the state of every key. The stateless path avoids the problem, but at a much larger size.</p>
+
+
+
+<p class="wp-block-paragraph">Jonas Nick, Blockstream’s director of research, <a href="https://youtu.be/C2t1Bhy65Ig" target="_blank" rel="noopener">told</a> Isabel Foxen Duke, head of the MARA Foundation, on MARA Foundation TV that wallets must automatically fall back to the stateless path whenever a state counter could be compromised. “It needs to be impossible for the user to behave in a way that this catastrophic event happens,” he said. “Wallet developers need to deal with this stateful component correctly.”</p>
+
+
+
+<p class="wp-block-paragraph">Nick also warned that heavy use of the larger signatures would weigh on the network. “We don’t know what the fee market will look like once we have these very big signatures,” he said. “And it’s not just the fee market, it’s also just fewer transactions fit into a block, meaning fewer people can use Bitcoin. And I think this changes the value proposition of Bitcoin.”</p>
+
+
+
+<h2 class="wp-block-heading">Researchers ask for review</h2>
+
+
+
+<p class="wp-block-paragraph">The authors are clear that the analysis needs scrutiny. Kudinov <a href="https://x.com/kudinov_mikhail/status/2123408497459278097" target="_blank" rel="noopener">said</a> it has not been sufficiently peer reviewed, and the project’s GitHub repository <a href="https://github.com/SHRINCS/Security-Analysis" target="_blank" rel="noopener">warns</a> that the documents may contain errors and should not be the sole basis for deploying SHRINCS. “We tried to be careful, but a proof of this size can have mistakes,” he <a href="https://x.com/kudinov_mikhail/status/2123408973340762614" target="_blank" rel="noopener">wrote</a>, asking readers to open an issue if they find one.</p>
+
+
+
+<p class="wp-block-paragraph">The team also produced two results that are not specific to SHRINCS: a classical bound for a property called ITSR without reprogramming, and a quadratic quantum bound for undetectability. Kudinov <a href="https://x.com/kudinov_mikhail/status/2123408638467313724" target="_blank" rel="noopener">said</a> they also apply to SPHINCS+ and SLH-DSA, the hash-based schemes SHRINCS borrows from, and that they were published as separate papers.</p>
+
+
+
+<p class="wp-block-paragraph">The SHRINCS work lands as quantum risk climbs the agenda. A global securities regulators’ group this week <a href="https://bitcoinmagazine.com/news/iosco-quantum-computing-warning-bitcoin" target="_blank" rel="noopener">warned</a> that moving blockchains to quantum-resistant cryptography may be especially hard, and researchers recently <a href="https://bitcoinmagazine.com/news/quantum-defense-for-bitcoins-lightning" target="_blank" rel="noopener">built</a> a post-quantum defense for the Lightning Network after Bitcoin’s <a href="https://bitcoinmagazine.com/news/bitcoin-quantum-resistant-transaction" target="_blank" rel="noopener">first quantum-safe transaction</a> was shown without a fork.</p>
+
+
+
+<p class="wp-block-paragraph">The draft Bitcoin Improvement Proposal for SHRINCS is also open for comment. “We need all the possible feedback — engineers, cryptographers, protocol developers,” Kudinov, a post-quantum cryptography researcher at Blockstream, said of it. “There are a lot of things to check, test, complain about, or praise.”</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/blockstream-shrincs-security-shrincs">Researchers Publish Security Analysis of Bitcoin’s Post-Quantum SHRINCS Proposal</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>U.S. Treasury Secretary Pushes Back on Bigger Fed Hike</title>
+		<link>https://bitcoinmagazine.com/markets/bessent-fed-bigger-rate-hike-bitcoin</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 16:22:32 +0000</pubDate>
+				<category><![CDATA[MARKETS]]></category>
+		<category><![CDATA[bear market]]></category>
+		<category><![CDATA[Bitcoin ETF]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[Blackrock]]></category>
+		<category><![CDATA[Coinshares]]></category>
+		<category><![CDATA[MVRV]]></category>
+		<category><![CDATA[onchain]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57606</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/08/US-Treasury-Asks-For-Public-Input-on-Landmark-Genius-Act-Crypto-Legislation.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bessent-fed-bigger-rate-hike-bitcoin">U.S. Treasury Secretary Pushes Back on Bigger Fed Hike</a></p>
+<p>Treasury Secretary Scott Bessent urged the Fed not to embrace a bigger rate hike as Citi and traders still see a quarter-point move in December and bitcoin fell below $60,000.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bessent-fed-bigger-rate-hike-bitcoin">U.S. Treasury Secretary Pushes Back on Bigger Fed Hike</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/08/US-Treasury-Asks-For-Public-Input-on-Landmark-Genius-Act-Crypto-Legislation.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bessent-fed-bigger-rate-hike-bitcoin">U.S. Treasury Secretary Pushes Back on Bigger Fed Hike</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Treasury Secretary Scott Bessent pushed back Friday on calls for a bigger Federal Reserve rate hike, even as bitcoin broke below $60,000 for the first time since July and stocks sank on bets that the Fed will keep tightening into a selloff.</p>
+
+
+
+<p class="wp-block-paragraph">Bessent <a href="https://www.investing.com/news/economy-news/bessent-advocates-lower-fed-rate-hike-cites-energy-shock-5042202" target="_blank" rel="noopener">told CNBC</a> he would encourage the Fed not to embrace a half-point increase at its Dec. 8-9 meeting. He cited the energy supply shock and a drop in crude prices as reasons for the central bank to hold back.</p>
+
+
+
+<h2 class="wp-block-heading">Bessent says the Fed should look forward</h2>
+
+
+
+<p class="wp-block-paragraph">He argued that one governor now backing a 50 basis point hike had wanted a similar cut within the last year. Bessent said it “seems somewhat peripatetic” to want the bigger increase only 11 or 12 months later. He did not name the governor.</p>
+
+
+
+<p class="wp-block-paragraph">“I would encourage the Fed to look forward, not backwards,” Bessent said.</p>
+
+
+
+<p class="wp-block-paragraph">The comments came two days after Fed Governor Christopher Waller <a href="https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html" target="_blank" rel="noopener">told CNBC</a> a half-point hike is probably necessary in December and that the central bank may need to “shock people.” Waller said inflation is “headed in the wrong direction, and it’s spreading out.”</p>
+
+
+
+<h2 class="wp-block-heading">Fed officials split on how far to go</h2>
+
+
+
+<p class="wp-block-paragraph">Waller is not alone. Minutes of the October meeting <a href="https://apnews.com/article/federal-reserve-inflation-rates-9e72f3b6e3484173471cc382d6918de0" target="_blank" rel="noopener">showed</a> nearly all officials expect a quarter-point hike in December, and two floated a larger one. Chicago Fed President Austan Goolsbee also <a href="https://qz.com/goolsbee-chicago-fed-larger-rate-hike-december-112026" target="_blank" rel="noopener">declined to rule out</a> a bigger move on Thursday.</p>
+
+
+
+<p class="wp-block-paragraph">“We’ve now had multiple months in a row of borderline disturbingly high inflation rates with little progress in the sectors where we would expect to be seeing some progress,” Goolsbee told reporters. “So everything’s always on the table.”</p>
+
+
+
+<p class="wp-block-paragraph">Not everyone wants to go bigger. New York Fed President John Williams said Tuesday that “I don’t think the situation calls for dramatic action.” St. Louis Fed President Alberto Musalem has suggested as many as four hikes by the spring of 2027.</p>
+
+
+
+<p class="wp-block-paragraph">The Fed raised rates in September for the first time in more than three years and held them steady in October. Inflation has stayed hot since the Iran strikes pushed up energy prices earlier this year.</p>
+
+
+
+<h2 class="wp-block-heading">Citi and traders still see a quarter-point hike</h2>
+
+
+
+<p class="wp-block-paragraph">Citi still expects a quarter-point increase in December. Global chief economist Nathan Sheets <a href="https://www.cnbc.com/video/2026/11/19/citi-doesnt-see-need-for-fed-to-hike-by-50-basis-points-in-december.html" target="_blank" rel="noopener">said Thursday</a> he does not see a need for 50 basis points despite persistent inflation. In a note Friday, the bank <a href="https://www.investing.com/news/stock-market-news/market-is-telling-the-fed-that-rates-are-unsustainably-high-citi-5041776" target="_blank" rel="noopener">wrote</a> that “Fed officials will consequently have little appetite to hike into an equity sell-off.”</p>
+
+
+
+<p class="wp-block-paragraph">Citi expects the Fed to hold after December and begin cutting later in 2027. Traders agree on the next step: the CME Group’s FedWatch tool <a href="https://www.cnbc.com/2026/11/20/treasury-yields-bonds-inflation.html" target="_blank" rel="noopener">showed</a> a more than 98% chance of a quarter-point hike, and the 10-year Treasury yield fell more than 10 basis points to 4.95% as investors bought bonds.</p>
+
+
+
+<p class="wp-block-paragraph">Stocks fell for another day. The Nasdaq Composite <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-november-19-dow-sp-500-nasdaq-anthropic-nvidia-141644188.html" target="_blank" rel="noopener">dropped more than 2%</a> in morning trading, and the VIX volatility index <a href="https://money.usnews.com/investing/news/articles/2026-11-20/wall-streets-fear-gauge-touches-seven-month-high-as-ai-worries-mount" target="_blank" rel="noopener">topped 30</a>, its highest level since March.</p>
+
+
+
+<h2 class="wp-block-heading">What it means for bitcoin</h2>
+
+
+
+<p class="wp-block-paragraph">Bitcoin traded near $59,700 shortly before 11 a.m. ET, down more than 5% on the day, <a href="https://www.bitcoinmagazinepro.com/" target="_blank" rel="noopener">according to Bitcoin Magazine Pro</a>. It <a href="https://bitcoinmagazine.com/markets/bitcoin-price-crashes-below-60000" target="_blank" rel="noopener">broke below $60,000</a> for the first time since early July and is on track for a seventh straight weekly loss, the longest streak since 2022.</p>
+
+
+
+<p class="wp-block-paragraph">Higher rates are a headwind for assets that pay no yield, and the selloff has reached companies that hold bitcoin. Strategy’s stock <a href="https://bitcoinmagazine.com/markets/strategy-stock-sinks-62000" target="_blank" rel="noopener">fell for a sixth straight session</a> on Thursday, and the bitcoin price has dropped roughly 25% in a month, a slide Bitcoin Magazine <a href="https://bitcoinmagazine.com/markets/bitcoin-price-slumps-under-62000" target="_blank" rel="noopener">tracked</a> earlier this week.</p>
+
+
+
+<p class="wp-block-paragraph">CoinShares head of research James Butterfill tied the outlook to inflation in a note dated Nov. 18. “Our base case remains range trading around USD 60k to 90k through much of 2027, until falling inflation gives monetary policy room to ease,” he said.</p>
+
+
+
+<p class="wp-block-paragraph">At the time of writing, the bitcoin price is near $59,300.</p>
+
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bessent-fed-bigger-rate-hike-bitcoin">U.S. Treasury Secretary Pushes Back on Bigger Fed Hike</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Price Crashes to $59,000 as Market Selloff Deepens</title>
+		<link>https://bitcoinmagazine.com/markets/bitcoin-price-crashes-below-60000</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 15:59:50 +0000</pubDate>
+				<category><![CDATA[MARKETS]]></category>
+		<category><![CDATA[bear market]]></category>
+		<category><![CDATA[Bitcoin ETF]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[Blackrock]]></category>
+		<category><![CDATA[Coinshares]]></category>
+		<category><![CDATA[MVRV]]></category>
+		<category><![CDATA[onchain]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57598</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Bitcoin-Price-Crashes-Below-60000-as-Market-Selloff-Deepens.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-crashes-below-60000">Bitcoin Price Crashes to $59,000 as Market Selloff Deepens</a></p>
+<p>Bitcoin fell below $60,000 for the first time since early July on Friday as a tech stock rout, rate hike bets and record ETF outflows hit risk assets.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-crashes-below-60000">Bitcoin Price Crashes to $59,000 as Market Selloff Deepens</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Bitcoin-Price-Crashes-Below-60000-as-Market-Selloff-Deepens.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-crashes-below-60000">Bitcoin Price Crashes to $59,000 as Market Selloff Deepens</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">The bitcoin price crashed below $60,000 on Friday for the first time since early July, falling about $1,800 in roughly an hour as a deepening U.S. tech stock selloff dragged risk assets lower.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin traded near $61,400 at 9:40 a.m. ET and slid to about $59,600 by 10:45 a.m., a drop of nearly 3%, <a href="https://www.bitcoinmagazinepro.com/" target="_blank" rel="noopener">according to <em>Look Into Bitcoin</em> data</a>. The bitcoin price is down about $3,400, or more than 5%, from the same time Thursday, when it traded near $63,000.</p>
+
+
+
+<p class="wp-block-paragraph">The break of $60,000 is a key psychological level, and it came with little warning. Bitcoin price had held above $61,000 for most of the morning, even after a third straight daily loss.</p>
+
+
+
+<h2 class="wp-block-heading">Stocks and rate hike bets drive the selloff</h2>
+
+
+
+<p class="wp-block-paragraph">Wall Street opened sharply lower. The Nasdaq Composite fell more than 2% in morning trading as shares of Anthropic <a href="https://www.cnbc.com/2026/11/20/anthropic-stock-ai-amd-nvidia.html" target="_blank" rel="noopener">extended losses</a> in its second day since a record Nasdaq debut. Nvidia and AMD also traded lower.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin has been moving with tech stocks. The market has questioned whether heavy spending on artificial intelligence will pay off, and Friday’s open did nothing to ease that worry.</p>
+
+
+
+<p class="wp-block-paragraph">Rate expectations are adding pressure. Traders see a roughly 94% chance the Federal Reserve raises rates in December, <a href="https://www.devdiscourse.com/article/international/4010013-us-stocks-nasdaq-set-for-lower-open-as-anthropic-retreat-deepens-ai-jitters" target="_blank" rel="noopener">CME Group’s FedWatch tool showed</a>. Higher rates tend to hurt bitcoin and other assets that pay no yield.</p>
+
+
+
+<p class="wp-block-paragraph">Earlier Friday, South Korea’s Kospi index fell more than 5% and chipmakers sank across Asia. That selling carried into U.S. trading and then into bitcoin.</p>
+
+
+
+<p class="wp-block-paragraph">Some analysts had flagged $60,000 as a floor. Katie Stockton of Fairlead Strategies told <a href="https://www.cnbc.com/2026/11/20/bitcoin-price-gold-market-hedge.html" target="_blank" rel="noopener">CNBC</a> the bottom of bitcoin’s trading range sits “just below 60,000,” and that it “appears to be trying to find a footing.” Friday’s drop tests that view.</p>
+
+
+
+<p class="wp-block-paragraph">CoinShares head of research James Butterfill said this week the drop is a “continuation of the existing bear market.” His base case is range trading around $60,000 to $90,000 through much of 2027.</p>
+
+
+
+<figure class="wp-block-embed is-type-rich is-provider-x wp-block-embed-x"><div class="wp-block-embed__wrapper">
+<blockquote class="twitter-tweet" data-width="550" data-dnt="true"><p lang="en" dir="ltr">JUST IN: Bitcoin falls below $60,000 for the first time since June.<br><br>BTC is now less than 4% away from a new cycle low <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f440.png" alt="👀" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <a href="https://t.co/GSZkbGdzZz">pic.twitter.com/GSZkbGdzZz</a></p>&mdash; Bitcoin Magazine (@BitcoinMagazine) <a href="https://x.com/BitcoinMagazine/status/2123803973115342915?ref_src=twsrc%5Etfw">November 20, 2026</a></blockquote><script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+</div></figure>
+
+
+
+<h2 class="wp-block-heading">ETF outflows and liquidations</h2>
+
+
+
+<p class="wp-block-paragraph">Funds have been sellers. BlackRock’s iShares Bitcoin Trust (IBIT) lost $541.1 million on Thursday, its biggest one-day outflow on record. U.S. spot bitcoin ETFs lost about $582 million in total, <a href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-61500-asia" target="_blank" rel="noopener">extending a streak</a> of heavy withdrawals this week.</p>
+
+
+
+<p class="wp-block-paragraph">Leveraged traders were hit as well. More than $700 million in crypto positions were liquidated in the 24 hours before the latest drop, and about 86% were bets on higher prices. The slide below $60,000 likely forced out more of them.</p>
+
+
+
+<p class="wp-block-paragraph">The move extends a month-long slump. Bitcoin has dropped roughly $20,000 in the past month, a slide <a href="https://bitcoinmagazine.com/markets/bitcoin-price-slumps-under-62000" target="_blank" rel="noopener">tracked</a> as the price fell under $62,000 on Thursday.</p>
+
+
+
+<h2 class="wp-block-heading">Crypto stocks fall harder than bitcoin price</h2>
+
+
+
+<p class="wp-block-paragraph">Crypto stocks fell even faster. Strategy (MSTR) was down about 7% near $79.85, a day after it <a href="https://bitcoinmagazine.com/markets/strategy-stock-sinks-62000" target="_blank" rel="noopener">tumbled for a sixth straight session</a>. Coinbase (COIN) fell about 3% to $105.36. Shares of Strive (ASST) fell to $15.31 Friday morning, down 21.47%, or $4.19, over the past five days. The stock has slid steadily from near $19.50 as bitcoin price&#8217;s sell-off deepened, with its sharpest drop in Friday&#8217;s trading.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin miners took the worst of it. MARA Holdings (MARA) dropped about 11% to $5.55. Riot Platforms (RIOT) lost about 11% to $15.85, and CleanSpark (CLSK) fell about 12% to $5.13.</p>
+
+
+
+<p class="wp-block-paragraph">Data center operators that also mine bitcoin were hit hard. IREN fell about 12% to $12.62, and Cipher Digital (CIFR) dropped 14% to $5.58. Both have traded with AI stocks, which are also under pressure.</p>
+
+
+
+<p class="wp-block-paragraph">The bitcoin price is now at its lowest since the first days of July. Bitcoin set its record above $126,000 in October 2025, so it has lost more than half its value from that peak.</p>
+
+
+
+<p class="wp-block-paragraph">At the time of writing, the bitcoin price is near $59,600. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-crashes-below-60000">Bitcoin Price Crashes to $59,000 as Market Selloff Deepens</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Block Says Most Bitcoin Payments on Square Are for Coffee and Food</title>
+		<link>https://bitcoinmagazine.com/news/block-square-bitcoin-payments-report</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 14:45:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Bitcoin Payments]]></category>
+		<category><![CDATA[Block Inc]]></category>
+		<category><![CDATA[Cash App]]></category>
+		<category><![CDATA[Square]]></category>
+		<category><![CDATA[Taxes]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57589</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Block-Says-Most-Bitcoin-Payments-on-Square-Are-for-Coffee-and-Food.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/block-square-bitcoin-payments-report">Block Says Most Bitcoin Payments on Square Are for Coffee and Food</a></p>
+<p>Block’s first bitcoin payments report found the median Square payment is about $13, with 72% at food and drink businesses, as it pushes for a de minimis tax exemption.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/block-square-bitcoin-payments-report">Block Says Most Bitcoin Payments on Square Are for Coffee and Food</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Block-Says-Most-Bitcoin-Payments-on-Square-Are-for-Coffee-and-Food.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/block-square-bitcoin-payments-report">Block Says Most Bitcoin Payments on Square Are for Coffee and Food</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Most bitcoin payments at Square sellers are small, everyday purchases at coffee shops and restaurants, Block said in <a href="https://block.xyz/bitcoin/payments-report" target="_blank" rel="noopener">a new report</a> that it hopes will inform a debate in Congress over a tax break for small crypto purchases.</p>
+
+
+
+<p class="wp-block-paragraph">The report, “The State of Bitcoin Payments,” covers completed bitcoin payments at U.S. Square sellers from Nov. 1, 2025, to Oct. 15, 2026. The median payment was about $13, and the average was about $29.</p>
+
+
+
+<p class="wp-block-paragraph">Food and drink businesses took 72% of those payments, Block found. That is a bigger share than the category’s 67.5% slice of regular card payments on Square over the same period.</p>
+
+
+
+<p class="wp-block-paragraph">“Most bitcoin payments are small and routine,” the company <a href="https://x.com/BitcoinatBlock/status/2123464669872656803" target="_blank" rel="noopener">wrote</a> on X Thursday, calling the report one of the first datasets on how people spend bitcoin in the local economy.</p>
+
+
+
+<h2 class="wp-block-heading">Coffee, quick bites and repeat visits</h2>
+
+
+
+<p class="wp-block-paragraph">Coffee shops and fast food businesses accounted for 62.6% of the bitcoin payments in the food and drink category, with a median payment of $9.10. Grocery stores made up a smaller share but had the highest average payment in the group, at $60.73.</p>
+
+
+
+<p class="wp-block-paragraph">Small tickets dominated. About 42% of bitcoin payments on Square were under $10, and 65.1% were under $20. Those sub-$20 payments made up just 19.1% of total payment value, though, with a few larger purchases accounting for much of the dollars spent.</p>
+
+
+
+<p class="wp-block-paragraph">Customers also came back. Among Cash App users who paid with bitcoin at least twice at the same merchant, the median was three purchases per customer-merchant pair. About 44% of bitcoin payments from Cash App were repeat payments, and 86% of those came within 30 days.</p>
+
+
+
+<p class="wp-block-paragraph">The activity was not limited to Block’s own app. External Lightning wallets such as Strike, Wallet of Satoshi, Phoenix and Coinbase handled 56.6% of Square bitcoin payments and about 66% of payment value, while Cash App wallets made up the rest.</p>
+
+
+
+<p class="wp-block-paragraph">Square sellers can choose how much of each sale they keep in bitcoin, and Square converts the rest to dollars automatically. Block said zero-fee processing for bitcoin payments on Square has been extended through Dec. 31, 2027. Local governments are testing similar setups, with Miami-Dade County <a href="https://bitcoinmagazine.com/news/miami-dade-takes-bitcoin-property-taxes" target="_blank" rel="noopener">now taking bitcoin</a> for property taxes and converting it to dollars.</p>
+
+
+
+<h2 class="wp-block-heading">A push for a de minimis bitcoin exemption</h2>
+
+
+
+<p class="wp-block-paragraph">Block tied the data to tax policy. Under current U.S. federal rules, paying with bitcoin generally means calculating a capital gain or loss on every purchase, even a $10 coffee, the company said.</p>
+
+
+
+<p class="wp-block-paragraph">A Morning Consult survey that Block commissioned found that 23.6% of businesses that don’t accept bitcoin cite tax and accounting complexity as a reason. That is about the same share that cite regulation, refunds or price swings. Among businesses that have considered taking bitcoin but haven’t, the figure was 27%.</p>
+
+
+
+<p class="wp-block-paragraph">Consumers pointed to friction, too. Morning Consult surveyed 8,669 U.S. adults who are aware of bitcoin in August. Among those who don’t own it, 29.6% said they would be more likely to pay with bitcoin if it were easier, and 15.7% of that group said they were unsure how it is taxed or regulated.</p>
+
+
+
+<p class="wp-block-paragraph">Block said Congress is weighing a crypto tax package and pointed to a de minimis exemption, which would exempt small gains on qualifying purchases, as one option. Industry groups have <a href="https://bitcoinmagazine.com/news/blockchain-association-presses-congress" target="_blank" rel="noopener">pressed lawmakers</a> on crypto tax rules for months, with little movement so far.</p>
+
+
+
+<p class="wp-block-paragraph">The report doesn’t give totals. Block said the number of Square bitcoin payments, the number of sellers receiving them and total bitcoin payment volume are proprietary and not disclosed. Merchant lists like the <a href="https://bitcoinmagazine.com/news/los-angeles-bitcoin-425" target="_blank" rel="noopener">425 Los Angeles businesses</a> that accept bitcoin offer a rough sense of reach.</p>
+
+
+
+<p class="wp-block-paragraph">“We think tax policy should account for how people spend bitcoin as well as how they hold it,” Block said.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/block-square-bitcoin-payments-report">Block Says Most Bitcoin Payments on Square Are for Coffee and Food</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Hovers Just Above Average Holder’s Cost Basis as Price Keeps Dipping</title>
+		<link>https://bitcoinmagazine.com/markets/bitcoin-hovers-above-realized-price</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 14:25:00 +0000</pubDate>
+				<category><![CDATA[MARKETS]]></category>
+		<category><![CDATA[bear market]]></category>
+		<category><![CDATA[Bitcoin ETF]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[Blackrock]]></category>
+		<category><![CDATA[Coinshares]]></category>
+		<category><![CDATA[MVRV]]></category>
+		<category><![CDATA[onchain]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57591</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/2026-11-12-morning.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-hovers-above-realized-price">Bitcoin Hovers Just Above Average Holder’s Cost Basis as Price Keeps Dipping</a></p>
+<p>Bitcoin is trading barely above its realized price, the average cost of every coin, and a break below would put the average holder at a loss for the first time since early 2023.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-hovers-above-realized-price">Bitcoin Hovers Just Above Average Holder’s Cost Basis as Price Keeps Dipping</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/2026-11-12-morning.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-hovers-above-realized-price">Bitcoin Hovers Just Above Average Holder’s Cost Basis as Price Keeps Dipping</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Bitcoin is trading just above its realized price, the average cost of every coin on the network, and a break below that level would put the average holder at a loss for the first time since early 2023, Glassnode, an onchain analytics firm <a href="https://x.com/glassnode/status/2123729671921799551" target="_blank" rel="noopener">posted</a> Friday.</p>
+
+
+
+<p class="wp-block-paragraph">The price of bitcoin sat near $61,700 on Friday after sliding below $62,000. The realized price is a measure of what holders paid, not where the market trades. When bitcoin trades above it, the typical coin is sitting on a gain. Below it, the typical coin is underwater.</p>
+
+
+
+<p class="wp-block-paragraph">The margin is thin. The firm said the MVRV ratio, which compares bitcoin’s market value with its realized value, sits “just above 1.” A reading of 1 means the market price has fallen all the way to the realized price.</p>
+
+
+
+<h2 class="wp-block-heading">What the realized price measures</h2>
+
+
+
+<p class="wp-block-paragraph">Realized price values each coin at the price it last moved on the blockchain, then averages across the supply. <a href="https://www.bitcoinmagazinepro.com/charts/realized-price/" target="_blank" rel="noopener"><em>Look Into Bitcoin</em></a> describes it as bitcoin’s average cost basis. Because it tracks the price when coins last changed hands, it moves far more slowly than the market.</p>
+
+
+
+<p class="wp-block-paragraph">The MVRV ratio expresses the same idea as a multiple. Above 1, holders are in profit on average. Below 1, they are not. A reading just above 1 means the market price is only a sliver higher than what the average coin cost.</p>
+
+
+
+<p class="wp-block-paragraph">The firm did not give the exact realized price in its post, which included a chart. That leaves the exact cushion between today’s price and the average cost basis unstated. Bitcoin Magazine Pro’s full realized price chart sits behind a login, so the current level could not be confirmed independently for this report.</p>
+
+
+
+<p class="wp-block-paragraph">“The average Bitcoin holder is still in profit,” the firm wrote. “The margin is thin.”</p>
+
+
+
+<h2 class="wp-block-heading">Outflows and liquidations add to the pressure</h2>
+
+
+
+<p class="wp-block-paragraph">The slide has come with heavy selling from funds. BlackRock’s iShares Bitcoin Trust (IBIT) lost about $541 million on Thursday, its largest one-day outflow since it launched in January 2024, <a href="https://www.bloomberglinea.com/cripto/fondo-de-bitcoin-de-blackrock-registra-salida-record-de-us541-millones-mientras-persiste-ola-de-ventas/" target="_blank" rel="noopener">Bloomberg reported</a>. U.S. spot bitcoin ETFs lost about $582 million in total that day.</p>
+
+
+
+<p class="wp-block-paragraph">The selling stands out against the buying earlier in the fall. Institutions <a href="https://bitcoinmagazine.com/markets/institutional-bitcoin-etf-holdings" target="_blank" rel="noopener">piled into bitcoin ETFs</a> through the third quarter, pushing their combined holdings to a record, Bitcoin Magazine reported this week.</p>
+
+
+
+<p class="wp-block-paragraph">Leveraged traders took losses too. More than $700 million in leveraged crypto positions were liquidated over 24 hours, and about 86% of them were bets on higher prices. Bitcoin accounted for roughly $200 million of the total.</p>
+
+
+
+<h2 class="wp-block-heading">CoinShares sees range trading through 2027</h2>
+
+
+
+<p class="wp-block-paragraph">CoinShares head of research James Butterfill said the drop is part of a longer downturn rather than the start of a new one. “I see this as a continuation of the existing bear market rather than the start of another,” he <a href="https://coinshares.com/uk/insights/research-data/crypto-s-bear-market-tech-s-correction-what-our-experts-see/" target="_blank" rel="noopener">said</a> in a note dated Nov. 18.</p>
+
+
+
+<p class="wp-block-paragraph">The note frames Friday’s price action as a late stage of a decline that began well before November. Butterfill pointed to whale selling that weighed on prices from late 2025, expectations of higher interest rates and weakness in technology stocks, all of which have kept buyers cautious.</p>
+
+
+
+<p class="wp-block-paragraph">“Our base case remains range trading around USD 60k to 90k through much of 2027, until falling inflation gives monetary policy room to ease,” he said. “Geopolitics will have a considerable say in that.”</p>
+
+
+
+<p class="wp-block-paragraph">A move through the realized price would put bitcoin near the bottom edge of that range. The firm said holders as a group have not been in loss since early 2023.</p>
+
+
+
+<p class="wp-block-paragraph">A sustained breakout, Butterfill said, would likely require “a change in the policy outlook, renewed whale participation or both.”</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-hovers-above-realized-price">Bitcoin Hovers Just Above Average Holder’s Cost Basis as Price Keeps Dipping</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Price Slips Near $61,500 as Tech Selloff Spreads to Asia</title>
+		<link>https://bitcoinmagazine.com/markets/bitcoin-price-slips-61500-asia</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 14:00:15 +0000</pubDate>
+				<category><![CDATA[MARKETS]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[bitcoin stocks]]></category>
+		<category><![CDATA[Stocks]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57592</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/08/Bitcoin-Price-May-Be-Battered-but-Analysts-See-Structural-Adoption-Story-Still-Intact.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-61500-asia">Bitcoin Price Slips Near $61,500 as Tech Selloff Spreads to Asia</a></p>
+<p>The bitcoin price slipped to near $61,500 on Friday morning, its lowest level since July, as the tech selloff spread to Asia and IBIT posted a record outflow.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-61500-asia">Bitcoin Price Slips Near $61,500 as Tech Selloff Spreads to Asia</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/08/Bitcoin-Price-May-Be-Battered-but-Analysts-See-Structural-Adoption-Story-Still-Intact.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-61500-asia">Bitcoin Price Slips Near $61,500 as Tech Selloff Spreads to Asia</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">The bitcoin price <a href="https://www.bitcoinmagazinepro.com/bitcoin-price-live/" target="_blank" rel="noopener">slipped</a> to near $61,500 on Friday morning, according to <em>Look Into Bitcoin</em> data, as a selloff in technology stocks that followed Anthropic&#8217;s Nasdaq debut spread to Asian markets and dragged bitcoin to its lowest level since July.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin first broke below $62,000 on Thursday evening, after <a href="https://bitcoinmagazine.com/markets/bitcoin-price-slumps-under-62000">Thursday afternoon&#8217;s report</a> showed it giving back a rebound toward $64,000. The bitcoin price then <a href="https://www.coindesk.com/markets/2026/11/20/bitcoin-drops-for-third-straight-day-as-asian-tech-shares-slide" target="_blank" rel="noopener">slid</a> to nearly $61,200 during Asian trading before bouncing back above $61,700. Friday marks a third straight day of losses.</p>
+
+
+
+<h2 class="wp-block-heading">Asian stocks extend the AI rout</h2>
+
+
+
+<p class="wp-block-paragraph">The selling started in Asia. South Korea&#8217;s Kospi slid more than 5%, with chipmakers SK Hynix and Samsung Electronics down around 6%. The Korea Exchange <a href="https://news.bitcoin.com/market-updates/bitcoin-price-lowest-since-july-asian-stocks-crash-kospi/" target="_blank" rel="noopener">halted</a> program selling for five minutes after the drop, while Japan&#8217;s Nikkei fell as much as 4.85% to a seven-month low.</p>
+
+
+
+<p class="wp-block-paragraph">U.S. futures pointed lower too. Nasdaq-100 futures <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-november-19-dow-sp-500-nasdaq-anthropic-nvidia-volatility-092827348.html" target="_blank" rel="noopener">fell</a> more than 1.7% and S&amp;P 500 futures dropped 0.8%, Yahoo Finance reported. Gold futures lost 3%. The S&amp;P 500 is <a href="https://apnews.com/article/stock-markets-anthropic-ai-chips-boom-c4c3f4878b12989347f8a930ed813dad" target="_blank" rel="noopener">pointing</a> to a seventh straight daily decline, its longest losing streak since the start of the COVID-19 pandemic in 2020.</p>
+
+
+
+<p class="wp-block-paragraph">Anthropic shares <a href="https://www.cnbc.com/2026/11/20/anthropic-stock-ai-amd-nvidia.html" target="_blank" rel="noopener">fell</a> 8% in premarket trading after closing their first session at $97.17, up 17% from the $83 IPO price. Nvidia was down about 2.4% and AMD fell nearly 7%, CNBC reported. Hawkish signals from Federal Reserve officials this week also <a href="https://www.investing.com/news/economy-news/wall-st-futures-slip-as-anthropic-debut-fails-to-reassure-ai-investors-5041171" target="_blank" rel="noopener">weighed</a> on sentiment, Reuters said.</p>
+
+
+
+<h2 class="wp-block-heading">ETF outflows and liquidations pressure the bitcoin price</h2>
+
+
+
+<p class="wp-block-paragraph">Bitcoin funds are feeling the pressure. BlackRock&#8217;s iShares Bitcoin Trust (IBIT) <a href="https://www.coindesk.com/markets/2026/11/20/bitcoin-drops-for-third-straight-day-as-asian-tech-shares-slide" target="_blank" rel="noopener">recorded</a> $541.1 million in net outflows on Thursday, its largest single-day outflow since launch. That topped the previous record of $528.3 million set on Jan. 30. The fund <a href="https://bitcoinmagazine.com/markets/blackrock-ibit-nine-days-outflows">bled</a> $2 billion over nine straight days of outflows earlier this month.</p>
+
+
+
+<p class="wp-block-paragraph">Leveraged traders took heavy losses as the bitcoin price broke support. Bitcoin liquidations hit $712.9 million over 24 hours, with $614 million coming from long positions. Open interest in bitcoin futures fell to $18 billion from $20 billion a week ago, and funding rates flipped broadly negative as traders unwound their bets.</p>
+
+
+
+<p class="wp-block-paragraph">Traders are now watching whether the bitcoin price can hold the $60,000 area. A large pocket of long positions sits in the $60,500 to $60,900 band, just below the current price, and could come into play on a further drop. Bitcoin is also <a href="https://www.coindesk.com/markets/2026/11/19/live-updates-bitcoin-nears-usd64-000-as-anthropic-s-record-ipo-lifts-tech" target="_blank" rel="noopener">on track</a> for a seventh straight weekly loss, which would be its second-longest losing streak after nine weeks of declines in 2022.</p>
+
+
+
+<h2 class="wp-block-heading">Crypto stocks slide before the bell</h2>
+
+
+
+<p class="wp-block-paragraph">Crypto stocks pointed lower in premarket trading. Strategy (MSTR) <a href="https://finance.yahoo.com/quote/MSTR/" target="_blank" rel="noopener">traded</a> near $83.90, down about 2.6% from Thursday&#8217;s close of $86.13, after the stock <a href="https://bitcoinmagazine.com/markets/strategy-stock-sinks-62000">fell for a sixth straight day</a> on Thursday. Coinbase (COIN) <a href="https://finance.yahoo.com/quote/COIN/" target="_blank" rel="noopener">slipped</a> about 2.7% to near $106.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin miners fell harder. IREN (IREN) dropped about 4.4%, CleanSpark (CLSK) lost about 3.6% and MARA Holdings (MARA) declined about 3.4%. Riot Platforms (RIOT) was down about 3.3%. IREN has also been <a href="https://finance.yahoo.com/markets/stocks/articles/nasdaq-futures-slide-anthropic-shares-122004660.html" target="_blank" rel="noopener">under pressure</a> as investors reassess AI infrastructure stocks. Delays in bringing some of its capacity online led Microsoft to spend less with the miner than planned last quarter.</p>
+
+
+
+<p class="wp-block-paragraph">Longer-term buyers have not left entirely. Institutional investors <a href="https://bitcoinmagazine.com/markets/institutional-bitcoin-etf-holdings">added</a> 49,229 BTC through U.S. spot bitcoin ETFs in the third quarter, lifting their holdings to a record 356,491 BTC. Swiss bank Sygnum <a href="https://bitcoinmagazine.com/markets/sygnum-bitcoin-new-high-128000">called</a> the current downturn the shallowest bear market for bitcoin to date, putting the drawdown at around 54% compared with declines of more than 70% in previous cycles.</p>
+
+
+
+<p class="wp-block-paragraph">At the time of writing, the bitcoin price is near $61,800.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-61500-asia">Bitcoin Price Slips Near $61,500 as Tech Selloff Spreads to Asia</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
