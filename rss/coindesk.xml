@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title>CoinDesk: Bitcoin, Ethereum, Crypto News and Price Data</title>
+    <link>https://www.coindesk.com/</link>
+    <atom:link rel="self" type="application/rss+xml" href="https://www.coindesk.com/arc/outboundfeeds/rss"/>
+    <atom:link rel="hub" href="true"/>
+    <description>Leader in cryptocurrency, Bitcoin, Ethereum, XRP, blockchain, DeFi, digital finance and Web 3.0 news with analysis, video and live price updates.</description>
+    <lastBuildDate>Sat, 28 Nov 2026 17:43:34 +0000</lastBuildDate>
+    <language>en-US</language>
+    <copyright>© 2026 CoinDesk, Inc.</copyright>
+    <generator>CoinDesk</generator>
+    <ttl>5</ttl>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <url>https://downloads.coindesk.com/arc/failsafe/feeds/coindesk-feed-logo.png</url>
+      <title>CoinDesk: Bitcoin, Ethereum, Crypto News and Price Data</title>
+      <link>https://www.coindesk.com/</link>
+    </image>
+    <item>
+      <title><![CDATA[Tether adds $10 million in Bitdeer stock after holding through an 87% drop]]></title>
+      <link>https://www.coindesk.com/business/2026/11/28/tether-adds-usd10-million-in-bitdeer-stock-after-holding-through-an-87-drop</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/57505ab6bc21398fc0d1975404dca1a60d74b221-1920x1280.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">b4a8103e-465f-4c80-87cc-273ac9c7ac25</guid>
+      <pubDate>Sat, 28 Nov 2026 16:01:54 +0000</pubDate>
+      <description><![CDATA[The purchase increased Tether's total holding by nearly 10% to 41.45 million shares, while its Class A voting stake dropped to 17.9% due to share dilution.]]></description>
+      <dc:creator>Francisco Rodrigues</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Tether]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bybit’s $1.4 billion hack postmortem is ready. You won’t get to see it.]]></title>
+      <link>https://www.coindesk.com/business/2026/11/28/bybit-s-usd1-4-billion-hack-postmortem-is-ready-you-won-t-get-to-see-it</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/abc7d1dd01270fb8f15f16714372cfa1dcf787a9-2400x1600.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">ac3a8e81-a3fe-40e7-8136-edd7218946b7</guid>
+      <pubDate>Sat, 28 Nov 2026 14:00:00 +0000</pubDate>
+      <description><![CDATA[Bybit’s public account still rests on preliminary 2025 forensic reports. Chief Technology Officer Rockman Zhang said more detail could help attackers like those who hit Binance.]]></description>
+      <dc:creator>Francisco Rodrigues</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Crypto News]]></category>
+      <category domain="tag"><![CDATA[Exclusive]]></category>
+      <category domain="tag"><![CDATA[Crime]]></category>
+      <category domain="tag"><![CDATA[Hack]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin not delivering: The bear market has digital asset veteran questioning BTC's value]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/28/bitcoin-not-delivering-the-bear-market-has-digital-asset-veteran-questioning-btc-s-value</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/8bb45156b2a59d73db97095476e11b37716d1f7b-6720x4480.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">bd362d9a-d234-417a-8c4e-efe58404a3aa</guid>
+      <pubDate>Sat, 28 Nov 2026 13:02:18 +0000</pubDate>
+      <description><![CDATA[There's rock bottom, and then there's something many layers below that, and that's where bitcoin sentiment is right now.]]></description>
+      <dc:creator>Stephen Alpher</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Trump-linked crypto token WLFI plunges 50% to record lows]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/28/trump-linked-crypto-token-wlfi-plunges-over-50</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/ebf836930e45ae5230a50827321bcd87a9019932-2211x1094.png?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">31da3708-85ec-480e-b9ae-a9ecc33eecde</guid>
+      <pubDate>Sat, 28 Nov 2026 09:32:51 +0000</pubDate>
+      <description><![CDATA[As prices tanked, blockchain trackers flagged a large outflow of ether from a wallet linked to World Liberty Financial.]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <dc:creator>AI Boost</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Trump]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Kalshi turns to small businesses as legal battles threaten forecasts on sports]]></title>
+      <link>https://www.coindesk.com/business/2026/11/27/kalshi-turns-to-small-businesses-as-legal-battles-threaten-forecasts-on-sports</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/f19cbe2eff297e6c2bd76b21568ebd507b6b42b2-6016x3600.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">c76ba590-bdb1-4672-911a-ef07802e9109</guid>
+      <pubDate>Fri, 27 Nov 2026 13:19:10 +0000</pubDate>
+      <description><![CDATA[The prediction market is pitching protection against tariffs, weather and other business risks as courts challenge its ability to offer sports wagers.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Kalshi]]></category>
+      <category domain="tag"><![CDATA[Prediction Markets]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin 'death cross' is coming. Here's what happened after previous 13.]]></title>
+      <link>https://www.coindesk.com/daybook-us/2026/11/27/bitcoin-death-cross-is-coming-here-s-what-happened-after-previous-13</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/3fe60647c4d6e45dd1a83f196fe8f288a3b88372-1600x900.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">28c4a3b2-d0fe-4e76-bc49-588a29f87c54</guid>
+      <pubDate>Fri, 27 Nov 2026 12:16:07 +0000</pubDate>
+      <description><![CDATA[Your day-ahead look for Nov. 27, 2026]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/daybook-us"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="tag"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin on course to end seven-week losing streak while trailing stock rebound ]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/27/bitcoin-on-course-to-end-seven-week-losing-streak-while-trailing-stock-rebound</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/8fdf990d20028914aff13266e168a04637bfd7f4-1920x1080.png?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">6f7e5e44-344e-4c2a-97ee-2d6338d9683e</guid>
+      <pubDate>Fri, 27 Nov 2026 11:45:47 +0000</pubDate>
+      <description><![CDATA[Bitcoin (BTC) has risen 1.8% since midnight UTC to around $61,600 and is on course to end seven straight weekly losses.]]></description>
+      <dc:creator>Oliver Knight</dc:creator>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Crypto Markets Today]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Live updates: Bitcoin's Thanksgiving gains prove fleeting]]></title>
+      <link>https://www.coindesk.com/tech/2026/11/27/live-news-bitcoin-rebounds-above-usd61-000-as-ai-stocks-lead-premarket-gains</link>
+      <guid isPermaLink="false">55cf8a61-5dd9-49cd-8323-d6f8be1ad063</guid>
+      <pubDate>Fri, 27 Nov 2026 11:34:37 +0000</pubDate>
+      <description><![CDATA[Stocks are broadly higher, but bitcoin has slipped back near $60,000, reversing a turkey day advance.]]></description>
+      <dc:creator>James Van Straten</dc:creator>
+      <dc:creator>Stephen Alpher</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="tag"><![CDATA[Live News]]></category>
+      <category domain="https://www.coindesk.com/">live_news</category>
+    </item>
+    <item>
+      <title><![CDATA[Next ECB chief favors tokenized bank deposits over stablecoins and bitcoin]]></title>
+      <link>https://www.coindesk.com/policy/2026/11/27/next-ecb-chief-favors-tokenized-bank-deposits-over-stablecoins-and-bitcoin</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/b3ef28cb03d1dfa1b5ac880553d00076f4153845-874x492.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">d6aa9a69-6b12-4e6d-a5c8-8f9d96c72e8d</guid>
+      <pubDate>Fri, 27 Nov 2026 11:22:42 +0000</pubDate>
+      <description><![CDATA[Pablo Hernández de Cos, chosen to succeed Christine Lagarde, favors blockchain-based banking and has warned against private digital currencies and banks holding bitcoin.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/policy"><![CDATA[Policy]]></category>
+      <category domain="tag"><![CDATA[ECB]]></category>
+      <category domain="tag"><![CDATA[Cryptocurrency]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Injective asks SEC to allow order books for tokenized stock trading]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/27/injective-asks-sec-to-allow-order-books-for-tokenized-stock-trading</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/7e0aa4d73f62167c3ec9a89974f03437b819bb2f-541x304.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">52d1f856-8af5-4cb2-bf25-6d6c6488c64b</guid>
+      <pubDate>Fri, 27 Nov 2026 11:07:17 +0000</pubDate>
+      <description><![CDATA[The regulator's rules favor one type of blockchain trading system, leaving platforms built on Injective out, the developer said. It wants the SEC to open stock trading to order-book systems.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Crypto Trading]]></category>
+      <category domain="tag"><![CDATA[SEC]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Brazil’s stock exchange teams up with major banks to launch real-pegged stablecoin]]></title>
+      <link>https://www.coindesk.com/business/2026/11/27/brazil-s-stock-exchange-teams-up-with-major-banks-to-launch-real-pegged-stablecoin</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/b2b575e5fb400b044ebb5d3c2d88d2a80846eafb-1920x1080.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">b71580e0-87c3-4766-b80d-1c7df15515a4</guid>
+      <pubDate>Fri, 27 Nov 2026 10:51:27 +0000</pubDate>
+      <description><![CDATA[Banco B3 will issue the token, backed one-to-one by reais, and other financial institutions can join from launch.]]></description>
+      <dc:creator>Francisco Rodrigues</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Brazil]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Tether can freeze stolen crypto in minutes. Getting it back can take years.]]></title>
+      <link>https://www.coindesk.com/business/2026/11/27/tether-can-freeze-stolen-crypto-in-minutes-getting-it-back-can-take-years</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/bfd80702a660a5deef3d056a315228038910dde5-1405x790.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">36a02e93-c8c4-4364-a5e6-33fa98d485fa</guid>
+      <pubDate>Fri, 27 Nov 2026 10:00:00 +0000</pubDate>
+      <description><![CDATA[Tether says it has returned $1.28 billion in frozen USDT, but victims can wait years to recover their money and face fees of up to 20%.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Tether]]></category>
+      <category domain="tag"><![CDATA[Hack]]></category>
+      <category domain="tag"><![CDATA[Stablecoins]]></category>
+      <category domain="tag"><![CDATA[Crime]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin tops $61,000 as Nasdaq futures extend Wednesday’s rebound]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/27/bitcoin-tops-usd61-000-as-nasdaq-futures-extend-wednesday-s-rebound</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/b914ea4ac7f4f170abaa55813c9e1b670ee6d018-1542x969.png?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">eed4178d-a0ed-48f5-89aa-6d0cd3614df3</guid>
+      <pubDate>Fri, 27 Nov 2026 09:49:55 +0000</pubDate>
+      <description><![CDATA[U.S. equity futures extended Wednesday’s rebound after markets closed for Thanksgiving, with AI infrastructure stocks leading premarket gains.]]></description>
+      <dc:creator>James Van Straten</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Monero suffers biggest single-day slide in over 5 months. Here’s why]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/27/monero-suffers-biggest-single-day-slide-in-over-5-months-here-s-why</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/f456c8ffc9ab2b603ddbba9f8613cb0a168723e2-1280x853.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">6c1bc997-52d0-4ae6-be32-00de20210a87</guid>
+      <pubDate>Fri, 27 Nov 2026 07:33:01 +0000</pubDate>
+      <description><![CDATA[Monero (XMR) crashed over 11% on Thursday, its biggest drop since early June. Back-to-back exchange delistings seem to have catalyzed the price slide.]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Privacy]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Ripple's lending plan moves closer to tapping XRP Ledger's $800 million in stablecoins]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/27/ripple-s-lending-plan-moves-closer-to-tapping-xrp-ledger-s-usd950-million-in-stablecoins</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/7062083f3eac875ac832f0c15d78be2612e57afe-1440x810.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">c82404a6-f4a8-47b1-9d1b-2a248b4a5cc9</guid>
+      <pubDate>Fri, 27 Nov 2026 05:06:32 +0000</pubDate>
+      <description><![CDATA[The vaults that would hold lenders' money are on track to switch on Dec. 9. The loan system that draws from them still needs one more validator to start its own two-week clock.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Binance says customer withdrawals are fully restored, four weeks after the $6.3 billion hack]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/27/binance-says-its-withdrawal-suspension-is-over-four-weeks-after-a-usd6-3-billion-hack</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/6afa7aee3dd3e7c1e37e3929a4ac24b7cebaccdd-6000x4000.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">2bc6c614-5c46-4f9a-a429-04d775431f33</guid>
+      <pubDate>Fri, 27 Nov 2026 04:45:47 +0000</pubDate>
+      <description><![CDATA[Binance says it has fully lifted withdrawal suspensions imposed after October’s $6.3 billion hack, though a small number of networks remain paused for unrelated maintenance.]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <dc:creator>AI Boost</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Binance]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Ethereum's much-awaited Glamsterdam upgrade cleared for December test. Here's what to know]]></title>
+      <link>https://www.coindesk.com/tech/2026/11/27/ethereum-s-much-awaited-glamsterdam-upgrade-cleared-for-december-test-here-s-what-to-know</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/c357579ddef2051b405b9e89f8525dd02709081d-5760x3240.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">2e246cef-2618-4eea-9dc3-a01ecd675ef5</guid>
+      <pubDate>Fri, 27 Nov 2026 04:29:47 +0000</pubDate>
+      <description><![CDATA[Developers have agreed to keep the planned storage charges despite concerns about some existing smart contracts, ending seven weeks of delays to the next major test.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[A tiny payment can expose the IP address behind a bitcoin wallet, developer finds]]></title>
+      <link>https://www.coindesk.com/tech/2026/11/26/a-tiny-payment-can-expose-the-ip-address-behind-a-bitcoin-wallet-developer-finds</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/422bf0c58d3c5d984b8ee7f8a379b85250db7bc2-6016x4016.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">7a54453c-ebbb-4367-8465-635a7dc576ba</guid>
+      <pubDate>Thu, 26 Nov 2026 17:30:00 +0000</pubDate>
+      <description><![CDATA[A Bitcoin Core contributor found that the wallet's habit of resending stuck payments lets anyone link an address to the computer watching it, for under 35 cents.]]></description>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin’s dormant supply rises, a behavior seen during previous bear-market bottoming phases]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/26/bitcoin-s-dormant-supply-rises-a-behavior-seen-during-previous-bear-market-bottoming-phases</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/a06055bd9377c15d8939aba2ce6d312e788a923c-3200x1800.png?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">98ac12d5-32b1-4658-bd9b-53b07afae198</guid>
+      <pubDate>Thu, 26 Nov 2026 16:50:23 +0000</pubDate>
+      <description><![CDATA[More bitcoin is sitting untouched onchain as the price holds around $60,000, some 50% below its peak,]]></description>
+      <dc:creator>James Van Straten</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Bitcoin News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Crypto for Advisors: Four questions to ask before trusting a crypto exchange]]></title>
+      <link>https://www.coindesk.com/coindesk-indices/2026/11/26/crypto-for-advisors-four-questions-to-ask-before-trusting-a-crypto-exchange</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/05d5ef9229d2c55c6d1b5287d9ef9c3175c3093d-1500x785.png?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">5704a0a6-fe1f-4050-b15b-322b99956850</guid>
+      <pubDate>Thu, 26 Nov 2026 15:42:43 +0000</pubDate>
+      <description/>
+      <dc:creator>Sarah Morton</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/coindesk-indices"><![CDATA[CoinDesk Indices]]></category>
+      <category domain="tag"><![CDATA[Crypto for Advisors]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Spain gives anti-laundering unit power to freeze crypto accounts without a judge]]></title>
+      <link>https://www.coindesk.com/business/2026/11/26/spain-gives-anti-laundering-unit-power-to-freeze-crypto-accounts-without-a-judge</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/323210c28533ae279cbc3e36b349743bedce4346-1920x1080.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">fa2b2b72-22f4-4ae8-9e4b-7cbe3c5cf828</guid>
+      <pubDate>Thu, 26 Nov 2026 14:05:58 +0000</pubDate>
+      <description><![CDATA[Under existing rules, Sepblac could only suspend accounts when requested by a foreign financial intelligence unit.]]></description>
+      <dc:creator>Francisco Rodrigues</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/business"><![CDATA[Finance]]></category>
+      <category domain="tag"><![CDATA[Crypto News]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Standard Chartered's Zodia Custody suffers data breach, exposing client information]]></title>
+      <link>https://www.coindesk.com/tech/2026/11/26/standard-chartered-s-zodia-custody-suffers-data-breach-exposing-client-information</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/126370357bab503bb185dc1c4df52756ebf449e2-1280x960.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">51b4bfe9-87dc-4863-a8cd-71dfd7a34f10</guid>
+      <pubDate>Thu, 26 Nov 2026 12:38:51 +0000</pubDate>
+      <description><![CDATA[The breach exposed client and employee contact information at Standard Chartered's crypto custodian, which said no unauthorized transactions took place.]]></description>
+      <dc:creator>Olivier Acuna</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/tech"><![CDATA[Tech]]></category>
+      <category domain="tag"><![CDATA[Standard chartered]]></category>
+      <category domain="tag"><![CDATA[Data Breaches]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin ETFs are bleeding cash and the Fed is unlikely to help]]></title>
+      <link>https://www.coindesk.com/daybook-us/2026/11/26/bitcoin-etfs-are-bleeding-cash-and-the-fed-is-unlikely-to-help</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/7537396377d2a1b6e420708464dc0952068164d6-1920x1080.png?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">47a460b7-ca39-42d8-9871-47f11cff489c</guid>
+      <pubDate>Thu, 26 Nov 2026 12:14:46 +0000</pubDate>
+      <description><![CDATA[Your day-ahead look for Nov. 26, 2026]]></description>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/daybook-us"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="tag"><![CDATA[Crypto Daybook Americas]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Hong Kong-based crypto trading firm Auros is winding down operations]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/26/major-crypto-trading-firm-auros-is-winding-down-operations-sources</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/df9f1a75636b8bc1ae82ee873b7d7a30e1b25182-1920x1440.jpg?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">1fab6b4c-e0ff-4eb6-a0c2-5734ea45339c</guid>
+      <pubDate>Thu, 26 Nov 2026 11:27:50 +0000</pubDate>
+      <description><![CDATA[The firm previously estimated it handled 4% of global crypto exchange trading volume and raised $17 million after the FTX collapse.]]></description>
+      <dc:creator>Ian Allison</dc:creator>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <dc:creator>Shaurya Malwa</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+    <item>
+      <title><![CDATA[Bitcoin little changed, DeFi tokens lead the bounce as U.S. marks Thanksgiving]]></title>
+      <link>https://www.coindesk.com/markets/2026/11/26/bitcoin-little-changed-defi-tokens-lead-the-bounce-as-u-s-marks-thanksgiving</link>
+      <media:content url="https://cdn.sanity.io/images/s3y3vcno/production/55b49d453bf3450dcd675d81c5c526ac29136550-1920x1080.png?fm=jpg&amp;w=800&amp;h=450&amp;crop=focalpoint&amp;fit=clip" type="image/*" medium="image"/>
+      <guid isPermaLink="false">000095d8-36dd-46ea-ba6e-9630312d61f3</guid>
+      <pubDate>Thu, 26 Nov 2026 11:17:22 +0000</pubDate>
+      <description><![CDATA[Bitcoin is holding near $60,800 after rebounding from Wednesday's $57,500 low, while DeFi and infrastructure tokens are gaining nearly twice as much.]]></description>
+      <dc:creator>Oliver Knight</dc:creator>
+      <dc:creator>Omkar Godbole</dc:creator>
+      <content:encoded/>
+      <dc:description/>
+      <category domain="https://www.coindesk.com/markets"><![CDATA[Markets]]></category>
+      <category domain="tag"><![CDATA[Crypto Markets Today]]></category>
+      <category domain="https://www.coindesk.com/">News</category>
+    </item>
+  </channel>
+</rss>

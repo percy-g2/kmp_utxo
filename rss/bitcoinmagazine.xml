@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/" >
+
+<channel>
+	<title>Bitcoin Magazine</title>
+	<atom:link href="https://bitcoinmagazine.com/feed" rel="self" type="application/rss+xml" />
+	<link>https://bitcoinmagazine.com</link>
+	<description>Bitcoin News, Articles and Expert Insights</description>
+	<lastBuildDate>Fri, 27 Nov 2026 17:06:52 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1.5</generator>
+
+<image>
+	<url>https://bitcoinmagazine.com/wp-content/uploads/2024/09/cropped-Bitcoin-Magazine-glyph-black-01-32x32.png</url>
+	<title>Bitcoin Magazine</title>
+	<link>https://bitcoinmagazine.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Binance Fully Lifts Withdrawal Suspension a Month After $6.3 Billion Hack</title>
+		<link>https://bitcoinmagazine.com/news/binance-lifts-withdrawal-suspension-hack</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 18:00:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Binance]]></category>
+		<category><![CDATA[binance hack]]></category>
+		<category><![CDATA[Hacks]]></category>
+		<category><![CDATA[North korea]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57790</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Binance-Says-6.34-Billion-Hack-Began-With-Fake-Job-Interview-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/binance-lifts-withdrawal-suspension-hack">Binance Fully Lifts Withdrawal Suspension a Month After $6.3 Billion Hack</a></p>
+<p>Binance said its withdrawal recovery work is complete and the suspension tied to the Oct. 29 hack has been fully lifted, as researchers track North Korean launderers moving the stolen funds.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/binance-lifts-withdrawal-suspension-hack">Binance Fully Lifts Withdrawal Suspension a Month After $6.3 Billion Hack</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Binance-Says-6.34-Billion-Hack-Began-With-Fake-Job-Interview-.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/binance-lifts-withdrawal-suspension-hack">Binance Fully Lifts Withdrawal Suspension a Month After $6.3 Billion Hack</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Binance has fully lifted the withdrawal suspension it put in place after last month&#8217;s record $6.3 billion hack, saying its recovery work is complete and that withdrawals are open across nearly all networks.</p>
+
+
+
+<p class="wp-block-paragraph">“Our withdrawal recovery work is completed and the withdrawal suspension from the security incident has been fully lifted,” the exchange <a href="https://x.com/binance/status/2126024872773951938" target="_blank" rel="noopener">said</a> in an X post Thursday afternoon. A small number of networks remain paused for maintenance, which Binance called standard practice and said was unrelated to the hack.</p>
+
+
+
+<p class="wp-block-paragraph">The update closes out a month of phased reopenings. Binance <a href="https://bitcoinmagazine.com/news/bitcoin-price-slides-near-76000-binance">confirmed the breach</a> on Oct. 29, saying its initial investigation pointed to a compromised DevOps engineer&#8217;s laptop that gave the attacker access to a service container, which was then used to submit unauthorized withdrawals.</p>
+
+
+
+<p class="wp-block-paragraph">The world&#8217;s largest crypto exchange stopped all customer withdrawals for two days after the theft, Reuters <a href="https://www.channelnewsasia.com/business/binance-lifts-withdrawal-suspension-after-63-billion-crypto-heist-6585911" target="_blank" rel="noopener">reported</a>. When they first reopened, customers pulled a net $4.7 billion off the platform, Binance said on Nov. 2.</p>
+
+
+
+<h2 class="wp-block-heading">Binance covered the losses</h2>
+
+
+
+<p class="wp-block-paragraph">Binance said on Nov. 12 that it had <a href="https://bitcoinmagazine.com/news/binance-covers-6-34-billion-hack">completed coverage</a> of the affected assets with more than $6.34 billion of company funds. The money came from a partial draw on its Secure Asset Fund for Users, part of its futures insurance fund and its corporate treasury, and the exchange pledged to rebuild SAFU to about $1 billion.</p>
+
+
+
+<p class="wp-block-paragraph">Coverage is not the same as recovery. Binance replaced the stolen tokens from its own books, while about $2.85 billion of the stolen funds have been frozen remotely by the companies that issue them. The rest remains in the hands of the attackers.</p>
+
+
+
+<p class="wp-block-paragraph">U.S. authorities have blamed North Korean hackers for the theft, which North Korea denies. On Nov. 23, the Justice Department <a href="https://bitcoinmagazine.com/news/doj-forfeit-usdc-binance-hack">moved to forfeit</a> more than $1.1 billion in USDC that Circle froze, and said the U.S. has helped freeze, seize or return more than $2.9 billion since the attack.</p>
+
+
+
+<h2 class="wp-block-heading">Launderers turn to THORChain and coinjoin</h2>
+
+
+
+<p class="wp-block-paragraph">The unfrozen funds are on the move. North Korean launderers have stepped up transfers through THORChain and a coinjoin service in recent days, blockchain researchers <a href="https://www.investing.com/news/economy-news/north-korean-launderers-turn-to-littleknown-crypto-services-to-move-binance-haul-say-researchers-5052603" target="_blank" rel="noopener">told Reuters</a>, as part of an operation spanning tens of thousands of transactions across blockchains.</p>
+
+
+
+<p class="wp-block-paragraph">Chainalysis and Elliptic estimate that more than $600 million of the stolen crypto has passed through THORChain, though Elliptic said that figure could count funds that went through more than once. TRM Labs estimates THORChain earned as much as $1 million in fees from the swaps.</p>
+
+
+
+<p class="wp-block-paragraph">Separately, $342 million has moved through a coinjoin service mostly coordinated by a pseudonymous figure named Kruw, Elliptic said. A coinjoin combines coins from many users into a single transaction, so their origin is no longer visible on the blockchain. Elliptic has said the launderers will still need other services, such as over-the-counter brokers, to turn the coins into cash.</p>
+
+
+
+<p class="wp-block-paragraph">The FBI on Oct. 31 published wallet addresses used by the attacker and asked crypto service providers, including the network of computers that runs THORChain, to block them. In a video posted Thursday, THORChain co-founder Chad Barraford said 98% of trading on the network was for people&#8217;s “own individual financial freedom and liberty.”</p>
+
+
+
+<p class="wp-block-paragraph">THORChain, which describes itself as decentralized, says on its website that it does not “censor” transactions or run Know-Your-Customer checks. Ari Redbord, global head of policy at TRM Labs, called the FBI&#8217;s move to single out the network&#8217;s operators “pretty extraordinary.”</p>
+
+
+
+<p class="wp-block-paragraph">Redbord said the laundering could take months or even years, and that cashing out even a fraction would be a windfall for North Korea. The total stolen from Binance equals about a sixth of the country&#8217;s estimated gross domestic product.</p>
+
+
+
+<p class="wp-block-paragraph">“They don&#8217;t have to get a lot off in order to make this all worthwhile for them,” Redbord said.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/binance-lifts-withdrawal-suspension-hack">Binance Fully Lifts Withdrawal Suspension a Month After $6.3 Billion Hack</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Russia&#8217;s VTB Opens Bitcoin Trading as Central Bank Finalizes Crypto Test</title>
+		<link>https://bitcoinmagazine.com/news/russia-vtb-bitcoin-trading-crypto-test</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 17:06:12 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[bank of russia]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Russia]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57796</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/U.S.-Sanctioned-Moscow-Exchange-Will-List-Bitcoin-on-Dec.-1-as-Russia-Pulls-Crypto-Trading-Home.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/russia-vtb-bitcoin-trading-crypto-test">Russia&#8217;s VTB Opens Bitcoin Trading as Central Bank Finalizes Crypto Test</a></p>
+<p>VTB began letting qualified investors trade bitcoin in its app on Friday, a day after the Bank of Russia approved the knowledge test every crypto buyer must pass. SPB Exchange plans to open spot trading Dec. 1.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/russia-vtb-bitcoin-trading-crypto-test">Russia&#8217;s VTB Opens Bitcoin Trading as Central Bank Finalizes Crypto Test</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/U.S.-Sanctioned-Moscow-Exchange-Will-List-Bitcoin-on-Dec.-1-as-Russia-Pulls-Crypto-Trading-Home.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/russia-vtb-bitcoin-trading-crypto-test">Russia&#8217;s VTB Opens Bitcoin Trading as Central Bank Finalizes Crypto Test</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Russian bank VTB began letting brokerage clients buy and sell bitcoin in its investing app on Friday, a day after the Bank of Russia approved the knowledge test every Russian crypto buyer now has to pass.</p>
+
+
+
+<p class="wp-block-paragraph">Starting Nov. 27, clients of VTB&#8217;s brokerage can trade cryptocurrencies in the VTB My Investments app, the broker <a href="https://www.rbc.ru/quote/27/11/2026/6b087dd64e4ce3ce0a252ce7" target="_blank" rel="noopener">said</a>. For now, the trades happen over the counter rather than on an exchange, and access is limited to qualified investors, the legal term for Russians who meet wealth or experience thresholds, who also pass the new test.</p>
+
+
+
+<p class="wp-block-paragraph">&#8220;In our model, access to cryptocurrencies will require qualified investor status and passing special testing,&#8221; Andrei Yatskov, head of brokerage services at VTB, <a href="https://1prime.ru/20261127/vtb-875615530.html" target="_blank" rel="noopener">said</a>. He said the test would appear in the app on Nov. 27 and work like the bank&#8217;s existing tests for other instruments.</p>
+
+
+
+<p class="wp-block-paragraph">VTB handles the buying, storage and record-keeping itself on Russian infrastructure. To trade, clients need to open a separate digital account at VTB&#8217;s digital depository, where the crypto is held, on top of their regular brokerage account. The bank <a href="https://www.vedomosti.ru/investments/news/2026/11/27/1415770-dostup-k-kriptovalyutam" target="_blank" rel="noopener">received</a> its digital depository and crypto exchange licenses on Oct. 6.</p>
+
+
+
+<p class="wp-block-paragraph">&#8220;At the start, we will focus on buying and selling cryptocurrencies, and then we will introduce additional services as regulation develops,&#8221; Yatskov said.</p>
+
+
+
+<h2 class="wp-block-heading">Eight questions before the first trade</h2>
+
+
+
+<p class="wp-block-paragraph">The launch came quickly after the regulator moved. On Nov. 26, the Bank of Russia <a href="https://www.cbr.ru/eng/press/event/?id=33023" target="_blank" rel="noopener">approved</a> the first basic standards for brokers and crypto exchange offices, setting the rules for the test. Every investor has to take it, qualified or not, and it is free.</p>
+
+
+
+<p class="wp-block-paragraph">Buyers must answer at least seven of eight questions correctly. The standard <a href="https://www.cbr.ru/StaticHtml/File/117620/standart_26112026_1.pdf" target="_blank" rel="noopener">lays out</a> eight topic blocks, from regulation, technical basics and information security to stablecoins, low-liquidity coins, address labeling and blocked transactions, and volatility, with one question drawn at random from each.</p>
+
+
+
+<p class="wp-block-paragraph">Investors who fail can try once more the same day, with different questions. Brokers are barred from sharing the correct answers with clients or telling them which questions they missed. A passing result stays valid for one year from the test date or the latest trade, whichever comes later.</p>
+
+
+
+<p class="wp-block-paragraph">The test was the missing piece for Russian banks. When retail buying <a href="https://bitcoinmagazine.com/news/russia-retail-bitcoin-buying-starts">became legal on Nov. 17</a>, T-Bank said it was waiting on a market standard for testing, and VTB said it was waiting on the remaining rules. Under the broker standard, the industry&#8217;s self-regulatory organization has three working days after publication to send brokers the answer options and correct answers.</p>
+
+
+
+<p class="wp-block-paragraph">Ordinary investors still face tight limits once they pass. Non-qualified buyers can only purchase bitcoin, ether and Tether&#8217;s USDT, and no more than 300,000 rubles a year through a single intermediary.</p>
+
+
+
+<h2 class="wp-block-heading">SPB Exchange sets Dec. 1 start</h2>
+
+
+
+<p class="wp-block-paragraph">Exchange trading is next. SPB Exchange <a href="http://spbexchange.ru/about/news/9c53589a-1ddc-4567-ba10-afb78fcc5f1b/" target="_blank" rel="noopener">said</a> Friday it will open spot trading in bitcoin, ether and USDT against the ruble on Dec. 1, after the Bank of Russia added it to the registry of digital depositories on Nov. 27. Trading will run from 9 a.m. to 4 p.m. Moscow time, with same-day settlement in rubles.</p>
+
+
+
+<p class="wp-block-paragraph">Investors won&#8217;t all get in on day one. SPB Exchange said brokers will first use the market to set up their systems, and access will open as each broker is ready. TRX and USDC are also approved, but only for qualified investors, with a start date still to come.</p>
+
+
+
+<p class="wp-block-paragraph">Russian exchanges have been allowed to run organized crypto trading <a href="https://bitcoinmagazine.com/news/russia-clears-exchange-crypto-trading">since Nov. 22</a>, once the central bank signs off on their rules. <a href="https://bitcoinmagazine.com/news/moscow-exchange-bitcoin-trading-dec-1">Moscow Exchange</a> has also been aiming to open bitcoin trading on Dec. 1.</p>
+
+
+
+<p class="wp-block-paragraph">&#8220;We expect that in 2027, as brokers become ready, investor access to the spot market will expand and new products and investment services will appear,&#8221; said Evgeny Serdyukov, SPB Exchange&#8217;s chief executive.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/russia-vtb-bitcoin-trading-crypto-test">Russia&#8217;s VTB Opens Bitcoin Trading as Central Bank Finalizes Crypto Test</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>New York Wins $1.37 Billion Judgment Against NovaTech Crypto Ponzi Founders</title>
+		<link>https://bitcoinmagazine.com/news/new-york-novatech-judgment-1-37-billion</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 16:15:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[AWS Mining]]></category>
+		<category><![CDATA[Fraud]]></category>
+		<category><![CDATA[Letitia James]]></category>
+		<category><![CDATA[New York]]></category>
+		<category><![CDATA[Novatech]]></category>
+		<category><![CDATA[Ponzi scheme]]></category>
+		<category><![CDATA[scam]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57726</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/New-York-Wins-1.37-Billion-Judgment-Against-NovaTech-Crypto-Ponzi-Founders.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/new-york-novatech-judgment-1-37-billion">New York Wins $1.37 Billion Judgment Against NovaTech Crypto Ponzi Founders</a></p>
+<p>A New York judge ordered NovaTech founders Cynthia and Eddy Petion to pay more than $1.37 billion over a crypto Ponzi scheme that targeted Haitian communities.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/new-york-novatech-judgment-1-37-billion">New York Wins $1.37 Billion Judgment Against NovaTech Crypto Ponzi Founders</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/New-York-Wins-1.37-Billion-Judgment-Against-NovaTech-Crypto-Ponzi-Founders.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/news/new-york-novatech-judgment-1-37-billion">New York Wins $1.37 Billion Judgment Against NovaTech Crypto Ponzi Founders</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">A New York judge has ordered the founders of NovaTech, a cryptocurrency investment scheme that targeted Haitian communities, to pay more than $1.37 billion, closing out the state’s case against a couple who fled the country rather than answer it.</p>
+
+
+
+<p class="wp-block-paragraph">Justice Anar Rathod Patel of the New York County Supreme Court signed the <a href="https://ag.ny.gov/sites/default/files/decisions/new-york-v-nova-tech-ltd-et-al-order-and-judgement-2026.pdf" target="_blank" rel="noopener">order</a> on Nov. 24. It holds Cynthia and Eddy Petion and their companies NovaTech Ltd, NovaTech Advisors and NovaPay jointly liable for $1,367,023,585 in disgorgement and interest.</p>
+
+
+
+<p class="wp-block-paragraph">New York Attorney General Letitia James <a href="https://ag.ny.gov/press-release/2026/attorney-general-james-wins-13-billion-judgment-against-crypto-scammers-who" target="_blank" rel="noopener">announced</a> the win on Wednesday.</p>
+
+
+
+<p class="wp-block-paragraph">“Today’s historic judgment finally delivers some semblance of justice for the thousands of New Yorkers who were targeted by this merciless scam,” James said. “NovaTech cruelly targeted immigrant families through faith and community groups with the promise of a better life while robbing them of their life savings.”</p>
+
+
+
+<h2 class="wp-block-heading">Where the $1.37 billion figure comes from</h2>
+
+
+
+<p class="wp-block-paragraph">The award matches what the attorney general’s office <a href="https://bitcoinmagazine.com/news/ny-seeks-1-37-b-judgement-novatech">asked for in October</a>. The figure starts with the cryptocurrency investors sent to NovaTech’s wallet at payment processor CoinPayments, which totaled about $1.16 billion from August 2019 through May 2023, according to an <a href="https://ag.ny.gov/sites/default/files/settlements-agreements/new-york-v-nova-tech-ltd-et-al-affirmation-2026.pdf" target="_blank" rel="noopener">affirmation</a> filed by the state.</p>
+
+
+
+<p class="wp-block-paragraph">Prosecutors subtracted the roughly $26 million NovaTech actually moved to its trading platform, leaving $1.13 billion in principal. Nine percent annual interest from June 2023 through September 2025 added another $232.5 million.</p>
+
+
+
+<p class="wp-block-paragraph">NovaTech’s traders lost about $18.2 million of the money they did trade, the filing said. Everything else paid out of the wallet, including so-called returns and recruitment bonuses, came from other investors’ deposits.</p>
+
+
+
+<p class="wp-block-paragraph">Cynthia Petion was the only authorized user on the CoinPayments account, and the state says she approved at least $134.5 million in crypto withdrawals to wallets belonging to her and her husband.</p>
+
+
+
+<p class="wp-block-paragraph">The judge also ordered the Petions’ earlier venture, AWS Mining, to pay about $1.46 million. Cynthia Petion owes a separate $4.69 million tied to her promotion of that scheme.</p>
+
+
+
+<h2 class="wp-block-heading">A NovaTech scheme built on prayer groups</h2>
+
+
+
+<p class="wp-block-paragraph">AWS Mining sold crypto mining contracts and promised 15% to 20% monthly returns before it collapsed in 2019, according to the attorney general’s office. The Petions then launched NovaTech, falsely marketed it as a registered hedge fund broker and advertised trading profits of about 2% to 4% a week.</p>
+
+
+
+<p class="wp-block-paragraph">Promoters recruited through prayer groups, WhatsApp chats and ads in Haitian Creole. More than 11,000 New Yorkers invested, alongside what the state called hundreds of thousands of investors worldwide.</p>
+
+
+
+<p class="wp-block-paragraph">NovaTech collapsed in May 2023, and tens of thousands of investors couldn’t withdraw their crypto. The state sued in June 2024.</p>
+
+
+
+<p class="wp-block-paragraph">The Petions never answered the complaint. The court entered a default judgment in August 2025 that found they violated New York’s Martin Act and banned them from the securities, commodities and cryptocurrency industries. They also never produced the investor accounting the court ordered.</p>
+
+
+
+<p class="wp-block-paragraph">Because the money award also came by default, NovaTech’s founders never contested the figures. The order lets the state docket it as a money judgment and begin collection, though it’s unclear how much can be recovered from defendants who left the U.S.</p>
+
+
+
+<p class="wp-block-paragraph">Four of NovaTech’s top promoters <a href="https://ag.ny.gov/press-release/2026/attorney-general-james-secures-nearly-6-million-crypto-scammers-who-targeted" target="_blank" rel="noopener">settled in October</a>. Martin Zizi, Frantz Ciceron, Ricardo Roy Sr. and James Corbett agreed to pay nearly $6 million combined for the benefit of victims and accepted permanent industry bans.</p>
+
+
+
+<p class="wp-block-paragraph">The judgment lands as regulators step up crypto fraud cases. Last week, the SEC <a href="https://bitcoinmagazine.com/news/sec-freezes-crypto-560-million-ponzi">froze assets</a> in a separate $560 million crypto trading Ponzi scheme run out of Indianapolis, weeks after it <a href="https://bitcoinmagazine.com/news/sec-charges-companies-130-million-crypto">charged companies</a> in a $130 million crypto case.</p>
+
+
+
+<p class="wp-block-paragraph">“My office will always fight to bring fraudsters who take advantage of hardworking New Yorkers to justice,” James said.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/new-york-novatech-judgment-1-37-billion">New York Wins $1.37 Billion Judgment Against NovaTech Crypto Ponzi Founders</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Spain Lets Anti-Money Laundering Unit Freeze Crypto Accounts Without a Judge</title>
+		<link>https://bitcoinmagazine.com/news/spain-sepblac-freeze-crypto-accounts</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 15:00:00 +0000</pubDate>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[crypto regulation]]></category>
+		<category><![CDATA[Europe]]></category>
+		<category><![CDATA[European Union]]></category>
+		<category><![CDATA[Money laundering]]></category>
+		<category><![CDATA[Regulation]]></category>
+		<category><![CDATA[Spain]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57773</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a></p>
+<p><a rel="nofollow" href="https://bitcoinmagazine.com/news/spain-sepblac-freeze-crypto-accounts">Spain Lets Anti-Money Laundering Unit Freeze Crypto Accounts Without a Judge</a></p>
+<p>A royal decree lets Sepblac, Spain's financial intelligence unit, freeze crypto, bank and payment accounts for up to five business days without a court order.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/spain-sepblac-freeze-crypto-accounts">Spain Lets Anti-Money Laundering Unit Freeze Crypto Accounts Without a Judge</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a></p>
+<p><a rel="nofollow" href="https://bitcoinmagazine.com/news/spain-sepblac-freeze-crypto-accounts">Spain Lets Anti-Money Laundering Unit Freeze Crypto Accounts Without a Judge</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Spain has given its financial intelligence unit the power to freeze crypto accounts on its own authority, without first getting a judge&#8217;s approval, when it suspects money laundering or terrorist financing.</p>
+
+
+
+<p class="wp-block-paragraph">The change <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-24702" target="_blank" rel="noopener">was published</a> in Spain&#8217;s official state gazette on Wednesday as part of Royal Decree-Law 44/2026, a sweeping decree that mostly deals with consumer credit contracts and the sale of bad loan portfolios. Its sixth final provision adds a new Article 46 bis to the country&#8217;s 2010 anti-money laundering law.</p>
+
+
+
+<p class="wp-block-paragraph">The new article lets the Executive Service of the Commission for the Prevention of Money Laundering and Monetary Offenses, known as Sepblac, suspend or refuse to authorize a transaction in progress. It can also suspend the use of a bank, payment or crypto-asset account, or a business relationship, when there are “indications” that it could be tied to money laundering or terrorist financing.</p>
+
+
+
+<p class="wp-block-paragraph">According to the text, the goal is to preserve the funds while Sepblac carries out its analysis and checks whether the suspicion holds up. If it does, the unit passes the information to the competent authorities so they can take further action.</p>
+
+
+
+<h2 class="wp-block-heading">Five days for accounts, 10 for transactions</h2>
+
+
+
+<p class="wp-block-paragraph">The decree sets two separate time limits. Sepblac can hold a pending transaction for no more than 10 business days, and it can freeze an account or business relationship for no more than five. Either hold must be lifted sooner if it is no longer needed to preserve the funds.</p>
+
+
+
+<p class="wp-block-paragraph">When the suspicion comes from a suspicious activity report filed by a bank or other regulated firm, Sepblac must issue the suspension within three business days of that report. When the case comes from the unit&#8217;s own analysis, the decree says it must act “as soon as possible.”</p>
+
+
+
+<p class="wp-block-paragraph">Once those deadlines pass, the freeze ends unless a court ratifies or extends it at the request of the public prosecutor&#8217;s office. Appeals against a court&#8217;s decision follow Spain&#8217;s criminal procedure law.</p>
+
+
+
+<p class="wp-block-paragraph">The decree also shields Sepblac, its staff and the firms that carry out its orders from liability. Firms that ignore a suspension order commit an offense under the anti-money laundering law. Sepblac can also act at the request of Spanish police and security forces, or of financial intelligence units in other EU states and outside the bloc.</p>
+
+
+
+<h2 class="wp-block-heading">Why Spain made the change</h2>
+
+
+
+<p class="wp-block-paragraph">Until now, Sepblac could only use this power when a foreign financial intelligence unit asked it to. The government said in the decree&#8217;s preamble that the limit is a deficiency the Financial Action Task Force will assess, and that waiting longer could hurt Spain&#8217;s international evaluation.</p>
+
+
+
+<p class="wp-block-paragraph">The government also said the speed of financial transactions, especially online, lets possibly criminal funds move before authorities can finish their analysis. The provision transposes Article 24 of <a href="https://eur-lex.europa.eu/eli/dir/2024/1640/oj" target="_blank" rel="noopener">an EU directive</a> adopted in May 2024 on the mechanisms member states must set up to fight money laundering.</p>
+
+
+
+<p class="wp-block-paragraph">The rule <a href="https://www.coindesk.com/business/2026/11/26/spain-gives-anti-laundering-unit-power-to-freeze-crypto-accounts-without-a-judge" target="_blank" rel="noopener">takes effect</a> Jan. 25, 2027, two months after the decree&#8217;s publication. As a royal decree-law, it must also be <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229" target="_blank" rel="noopener">put to a vote</a> in Spain&#8217;s Congress of Deputies within 30 days to be validated or repealed.</p>
+
+
+
+<p class="wp-block-paragraph">The decree does not name individual crypto platforms, and it is not yet clear how exchanges operating in Spain will receive and carry out the orders. Several European governments have been moving the same way. Poland&#8217;s parliament <a href="https://bitcoinmagazine.com/news/poland-votes-240-202-freeze-crypto">voted 240-202</a> this month to let officials freeze bitcoin and bank funds of people on a national sanctions list before a court reviews the case.</p>
+
+
+
+<p class="wp-block-paragraph">Other moves in Europe have gone the opposite way. France&#8217;s Senate <a href="https://bitcoinmagazine.com/news/france-senate-rejects-self-custody">rejected amendments</a> that would have forced holders to declare self-custody wallets worth €100,000 or more, while Binance <a href="https://bitcoinmagazine.com/news/binance-closing-accounts-four-eu-countries">is closing accounts</a> in four EU countries at the end of the year.</p>
+
+
+
+<p class="wp-block-paragraph">Under the decree, crypto-asset accounts fall under the same five-day freeze limit as bank and payment accounts.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/news/spain-sepblac-freeze-crypto-accounts">Spain Lets Anti-Money Laundering Unit Freeze Crypto Accounts Without a Judge</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Peter St. Onge: “Massively Bullish” for Bitcoin if Fed Abandons 2% Inflation Target</title>
+		<link>https://bitcoinmagazine.com/videos/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 14:45:09 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/videos/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target</guid>
+
+					<description><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=m1MlydKvsJI" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/m1MlydKvsJI/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target-m1MlydKvsJI.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target">Peter St. Onge: “Massively Bullish” for Bitcoin if Fed Abandons 2% Inflation Target</a></p>
+<p>Inflation is back near 4%, the Fed is hiking, and Peter St.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target">Peter St. Onge: “Massively Bullish” for Bitcoin if Fed Abandons 2% Inflation Target</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=m1MlydKvsJI" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/m1MlydKvsJI/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target-m1MlydKvsJI.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target">Peter St. Onge: “Massively Bullish” for Bitcoin if Fed Abandons 2% Inflation Target</a></p>
+<div id="bsf_rt_marker"></div><p>Inflation is back near 4%, the Fed is hiking, and Peter St. Onge, Senior Economist at The Heritage Foundation, says that&#8217;s &#8220;sucking all of the oxygen out of any kind of hard money assets for the moment.&#8221; He argues &#8220;Washington is addicted to inflation&#8221; after COVID and the war in Iran, and says a move to a 3% inflation target would hit savers and young people hardest. Near term, it&#8217;s a hit to Bitcoin and gold. &#8220;Long term, massively bullish for both of them.&#8221;    </p>
+<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f399.png" alt="🎙" class="wp-smiley" style="height: 1em; max-height: 1em;" />Thanks to Plaud for sponsoring BMTV!<br />
+Get 20% off the Plaud Note Pin S through November 30 → <a href="https://plaud.ai/BMTV" rel="nofollow noopener noreferrer" target="_blank">https://plaud.ai/BMTV</a></p>
+<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f9f3.png" alt="🧳" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partnership Enquiries: Let’s find your fit! BMTV offers customized sponsorships tailored to your brand’s goals and target audience.<br />
+ <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partner with us: <a href="https://bitcoinmagazine.com/bmtv">https://bitcoinmagazine.com/bmtv</a></p>
+<p>Chapters:<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=0s" data-yt-seek="0" rel="nofollow noopener noreferrer" target="_blank">00:00</a> Why Bitcoin Is a Life Raft in a K-Shaped Economy<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=95s" data-yt-seek="95" rel="nofollow noopener noreferrer" target="_blank">01:35</a> What a 3% Inflation Target Means for Savers<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=193s" data-yt-seek="193" rel="nofollow noopener noreferrer" target="_blank">03:13</a> The Economy Is Floating on AI<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=281s" data-yt-seek="281" rel="nofollow noopener noreferrer" target="_blank">04:41</a> $25 Minimum Wage and AI&#8217;s Hit to Young Workers<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=409s" data-yt-seek="409" rel="nofollow noopener noreferrer" target="_blank">06:49</a> The End of Every Generation Getting Richer<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=473s" data-yt-seek="473" rel="nofollow noopener noreferrer" target="_blank">07:53</a> Midterms and Voter Anger at Washington<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=538s" data-yt-seek="538" rel="nofollow noopener noreferrer" target="_blank">08:58</a> Falling Commodities, Liquidity and Fed Hikes<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=647s" data-yt-seek="647" rel="nofollow noopener noreferrer" target="_blank">10:47</a> $40 Trillion in Debt and Timing the Fiat Collapse<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=747s" data-yt-seek="747" rel="nofollow noopener noreferrer" target="_blank">12:27</a> Why Bitcoin and Gold Could Become Money<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=821s" data-yt-seek="821" rel="nofollow noopener noreferrer" target="_blank">13:41</a> The Risk of a 2008-Style AI Crash<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=905s" data-yt-seek="905" rel="nofollow noopener noreferrer" target="_blank">15:05</a> Where Capital Goes After the Crash<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=m1MlydKvsJI&amp;t=999s" data-yt-seek="999" rel="nofollow noopener noreferrer" target="_blank">16:39</a> Divided Congress and the Trump Wildcard</p>
+<p>DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/peter-st-onge-massively-bullish-for-bitcoin-if-fed-abandons-2-inflation-target">Peter St. Onge: “Massively Bullish” for Bitcoin if Fed Abandons 2% Inflation Target</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Price Trades Near $61,300 as Tech Stock Futures Rally</title>
+		<link>https://bitcoinmagazine.com/markets/bitcoin-price-61300-tech-futures</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 13:57:15 +0000</pubDate>
+				<category><![CDATA[MARKETS]]></category>
+		<category><![CDATA[Bitcoin ETFs]]></category>
+		<category><![CDATA[Bitcoin mining]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[Strategy]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57791</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Pics-11.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-61300-tech-futures">Bitcoin Price Trades Near $61,300 as Tech Stock Futures Rally</a></p>
+<p>The bitcoin price traded near $61,300 on Friday as tech stock futures jumped ahead of a shortened Wall Street session, putting bitcoin on track to snap a seven-week losing streak.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-61300-tech-futures">Bitcoin Price Trades Near $61,300 as Tech Stock Futures Rally</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/10/Pics-11.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-61300-tech-futures">Bitcoin Price Trades Near $61,300 as Tech Stock Futures Rally</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">The bitcoin price <a href="https://www.bitcoinmagazinepro.com/bitcoin-price-live/" target="_blank" rel="noopener">traded</a> near $61,300 on Friday morning, as tech stock futures jumped ahead of a holiday-shortened session on Wall Street. Bitcoin price is on track for its first weekly gain after seven straight weekly losses, though it is still down about 20% in November.</p>
+
+
+
+<p class="wp-block-paragraph">The bitcoin price was up about 1.7% early Friday and set to add 4.8% for the week, Investing.com <a href="https://www.investing.com/news/cryptocurrency-news/bitcoin-recovers-to-615k-set-for-first-positive-week-in-8-5052949" target="_blank" rel="noopener">reported</a>, extending a recovery from a two-year low of $57,325.70 hit earlier in the week. Bitcoin <a href="https://bitcoinmagazine.com/markets/bitcoin-price-falls-57500-nasdaq">slumped below $57,500</a> on Wednesday as the Nasdaq sank at the open, before a late rebound in tech shares lifted risk assets.</p>
+
+
+
+<p class="wp-block-paragraph">Short sellers helped fuel the bounce. Shorts made up 77% of $84.7 million in bitcoin liquidations over the past day, while futures open interest was little changed. That suggests forced short covering, rather than fresh leverage, <a href="https://www.coindesk.com/markets/2026/11/27/bitcoin-on-course-to-end-seven-week-losing-streak-while-trailing-stock-rebound" target="_blank" rel="noopener">supplied</a> much of the lift.</p>
+
+
+
+<h2 class="wp-block-heading">Tech futures lead the risk rebound</h2>
+
+
+
+<p class="wp-block-paragraph">Nasdaq 100 futures <a href="https://www.investing.com/news/stock-market-news/wall-st-futures-surge-as-investors-return-from-holiday-5053052" target="_blank" rel="noopener">rose</a> 2.2% by 6:42 a.m. ET, Reuters reported, as investors returned from Thanksgiving and piled back into battered AI-linked shares. Nvidia gained 3.6% in premarket trading, while AMD climbed 4.4% and Broadcom added 3.4%. S&amp;P 500 futures rose 1.6%, and Dow futures gained 1.3%.</p>
+
+
+
+<p class="wp-block-paragraph">&#8220;There have been some signs that the tech selloff has stabilised for now, and that risk appetite is returning to markets,&#8221; Deutsche Bank analysts said in a note cited by Reuters. The S&amp;P 500 is headed for its best week since April, though it remains on course for its worst November since 2008.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin price has followed that rebound but lagged it. The major U.S. stock indexes are each up around 4% on the week, and silver <a href="https://www.coindesk.com/markets/2026/11/27/bitcoin-tops-usd61-000-as-nasdaq-futures-extend-wednesday-s-rebound" target="_blank" rel="noopener">jumped</a> about 7% to above $44 an ounce on Friday while gold added 2.5% to above $3,670. Stocks <a href="https://finance.yahoo.com/markets/live/stock-market-today-firday-november-27-dow-sp-500-nasdaq-black-friday-holiday-091152065.html" target="_blank" rel="noopener">close early</a> at 1 p.m. ET, and the bond market shuts at 2 p.m.</p>
+
+
+
+<h2 class="wp-block-heading">Rate hike bets and ETF outflows linger</h2>
+
+
+
+<p class="wp-block-paragraph">The macro backdrop still weighs on the bitcoin price. Traders are almost fully pricing in a Federal Reserve rate hike in December after data this week showed the economy grew faster than first estimated in the third quarter and inflation accelerated in October, Reuters reported. Third-quarter GDP growth was revised up to 4.3%, and the 10-year Treasury yield <a href="https://finance.yahoo.com/markets/live/stock-market-today-firday-november-27-dow-sp-500-nasdaq-black-friday-holiday-091152065.html" target="_blank" rel="noopener">slipped</a> to 4.84%.</p>
+
+
+
+<p class="wp-block-paragraph">Spot bitcoin ETFs are also still losing cash. The U.S. funds <a href="https://farside.co.uk/btc/" target="_blank" rel="noopener">lost</a> $453 million on Wednesday, their seventh straight day of outflows, with BlackRock&#8217;s iShares Bitcoin Trust accounting for $329.7 million. That pushed November outflows to about $5.39 billion, extending what was already a <a href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-60000-etf-outflows">record month</a> for the funds.</p>
+
+
+
+<h2 class="wp-block-heading">Crypto stocks and miners in focus</h2>
+
+
+
+<p class="wp-block-paragraph">Crypto stocks face their own test in Friday&#8217;s short session. Strategy shares <a href="https://finance.yahoo.com/quote/MSTR/history/" target="_blank" rel="noopener">rose</a> 3.1% to $79.96 on Wednesday, while Coinbase gained 1.3% to $103.72. Bitcoin miners that have moved into AI hosting tracked the tech rally, with IREN and Cipher Digital each <a href="https://www.coindesk.com/markets/2026/11/27/bitcoin-tops-usd61-000-as-nasdaq-futures-extend-wednesday-s-rebound" target="_blank" rel="noopener">gaining</a> 8% in premarket trading.</p>
+
+
+
+<p class="wp-block-paragraph">Mining economics remain tight with the bitcoin price this low. CleanSpark has <a href="https://bitcoinmagazine.com/news/cleanspark-987-million-loss-fiscal-2026">weighed selling more bitcoin than it mines</a> after a $987 million loss, and network mining difficulty <a href="https://mempool.space/api/v1/mining/difficulty-adjustments/1m" target="_blank" rel="noopener">jumped</a> 7.61% early Friday, reversing most of a 9.13% drop on Nov. 14. That means miners must spend more computing power for each bitcoin they earn.</p>
+
+
+
+<p class="wp-block-paragraph">In options markets, about $7 billion of bitcoin contracts <a href="https://www.coindesk.com/markets/2026/11/27/bitcoin-on-course-to-end-seven-week-losing-streak-while-trailing-stock-rebound" target="_blank" rel="noopener">expired</a> at 3 a.m. ET Friday, with traders positioned defensively going into the expiry. Over the past day, four of the six busiest bitcoin options were calls, three of them at $62,000 to $64,000 strikes, though the single busiest contract was a Dec. 25 put at $50,000.</p>
+
+
+
+<p class="wp-block-paragraph">At the time of writing, the bitcoin price is near $61,300.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/bitcoin-price-61300-tech-futures">Bitcoin Price Trades Near $61,300 as Tech Stock Futures Rally</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Galaxy Withdraws Call That Bitcoin&#8217;s Bear Market Ended in June</title>
+		<link>https://bitcoinmagazine.com/markets/galaxy-withdraws-bitcoin-bear</link>
+		
+		<dc:creator><![CDATA[Micah Zimmerman]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2026 13:30:00 +0000</pubDate>
+				<category><![CDATA[MARKETS]]></category>
+		<category><![CDATA[bear market]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<category><![CDATA[Galaxy Digital]]></category>
+		<category><![CDATA[Research]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57758</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Galaxy-Withdraws-Call-That-Bitcoins-Bear-Market-Ended-in-June.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/galaxy-withdraws-bitcoin-bear">Galaxy Withdraws Call That Bitcoin&#8217;s Bear Market Ended in June</a></p>
+<p>Galaxy Research withdrew its October call that bitcoin's bear market ended in June and said a daily close below $58,525 would signal a move to a materially lower low.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/galaxy-withdraws-bitcoin-bear">Galaxy Withdraws Call That Bitcoin&#8217;s Bear Market Ended in June</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/Galaxy-Withdraws-Call-That-Bitcoins-Bear-Market-Ended-in-June.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/markets/galaxy-withdraws-bitcoin-bear">Galaxy Withdraws Call That Bitcoin&#8217;s Bear Market Ended in June</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">Galaxy has withdrawn its October call that bitcoin&#8217;s bear market ended in June, saying the technical signal behind it failed after seven straight weeks of losses and that the bear market is “very likely not over.”</p>
+
+
+
+<p class="wp-block-paragraph">Alex Thorn, Galaxy&#8217;s head of firmwide research, <a href="https://www.galaxy.com/insights/research/bitcoin-bear-market-7-weekly-losses-50-week-moving-average-break-2026" target="_blank" rel="noopener">laid out</a> the reversal in a report published Wednesday and sent to clients a day earlier. “We withdraw our call that the bear market ended in June,” the report said. “The signal it rested on has failed.”</p>
+
+
+
+<p class="wp-block-paragraph">The firm&#8217;s Oct. 26 note had <a href="https://bitcoinmagazine.com/markets/bitcoins-bear-market-is-over-galaxy-says">argued</a> that bitcoin had entered an accumulation phase. Galaxy said at the time that a weekly close back below the 50-week moving average that was not regained within a month would invalidate its technical case.</p>
+
+
+
+<p class="wp-block-paragraph">That is what happened. Bitcoin closed the week ended Nov. 8 at $74,968, 0.7% below the 50-week average, after seven weekly closes above it. It then closed the week ended Nov. 15 below the 200-week average, which Galaxy has described as the floor of past bear markets.</p>
+
+
+
+<h2 class="wp-block-heading">Galaxy points to $58,525</h2>
+
+
+
+<p class="wp-block-paragraph">The week ended Nov. 22 closed at $61,104, 17.9% below the 50-week average and 10.4% below the 200-week average of $68,159. Bitcoin traded below its July 1 intraday low on Nov. 20 and reached $55,100 on Nov. 21, but the June 30 closing low of $58,525 held on a daily basis through Nov. 22.</p>
+
+
+
+<p class="wp-block-paragraph">Galaxy now treats that level as the line to watch. A daily close below $58,525 would be “the start of a move to a materially lower low,” the report said, and the firm would not treat such a close as a buying signal by itself.</p>
+
+
+
+<p class="wp-block-paragraph">History is not kind to breaks like that. In the seven prior bear market cases where bitcoin closed below a low that had stood for at least 60 days, the eventual low was at least 17% lower, with a median of 52%. Applied to the June low, that works out to about $48,500 and $28,200.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin briefly <a href="https://bitcoinmagazine.com/markets/bitcoin-price-falls-57500-nasdaq">slumped below $57,500</a> on Wednesday morning as the Nasdaq sank, but it ended the day back above $60,000 and has not posted a daily close below $58,525. It traded near $60,800 on Thursday morning.</p>
+
+
+
+<h2 class="wp-block-heading">Late by the clock, early by the depth</h2>
+
+
+
+<p class="wp-block-paragraph">Galaxy said two readings of the market disagree. By the calendar, this bear is old: Nov. 22 was day 412 since the Oct. 6, 2025, record, longer than the 163 to 406 days from high to low in the four prior bear markets.</p>
+
+
+
+<p class="wp-block-paragraph">By depth, it looks unfinished. Bitcoin&#8217;s 53% decline compares with drops of 77% to 93% in earlier bears. It also has not closed a day below its realized price of $53,205, something every prior bear did for at least 140 days, and only two of the 13 bottom signals Galaxy tracks have been met.</p>
+
+
+
+<p class="wp-block-paragraph">“The clock says this bear is overdue to end, the depth says it has further to fall, and we do not believe the price record alone can settle which,” the report said.</p>
+
+
+
+<p class="wp-block-paragraph">Flows have not helped. Galaxy estimates U.S. spot bitcoin ETPs hold about 1.24 million BTC, 9.7% below their October 2025 peak, after shedding 71,339 BTC, or $4.95 billion, since Oct. 4. November is shaping up as a <a href="https://bitcoinmagazine.com/markets/bitcoin-price-slips-60000-etf-outflows">record month for ETF outflows</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Galaxy said the other three parts of its October thesis, covering positioning, fundamentals and sentiment, are stronger now than when it published. Its proprietary Bitcoin Fear &#038; Greed Index fell to 5.2 on Nov. 21, its lowest reading since June 30, 2022.</p>
+
+
+
+<p class="wp-block-paragraph">To swing back toward its October view, Galaxy wants a weekly close above the 200-week average and then the 50-week average, now $74,401, with the June weekly closing low of $59,517 holding. A weekly close below realized price would point to a deeper bear.</p>
+
+
+
+<p class="wp-block-paragraph">“We are not trying to call the low,” the report said. “Until one gives way, we will judge the market on weekly closes rather than headlines.”</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/markets/galaxy-withdraws-bitcoin-bear">Galaxy Withdraws Call That Bitcoin&#8217;s Bear Market Ended in June</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/micahzimmerman">Micah Zimmerman</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>The Agentic Economy Is WAY Bigger Than You Think &#124; Xen Baynham-Herd</title>
+		<link>https://bitcoinmagazine.com/videos/the-agentic-economy-is-way-bigger-than-you-think-xen-baynham-herd</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Thu, 26 Nov 2026 16:30:12 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/videos/the-agentic-economy-is-way-bigger-than-you-think-xen-baynham-herd</guid>
+
+					<description><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=V7bqBjXzf44" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/V7bqBjXzf44/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/the-agentic-economy-is-way-bigger-than-you-think-xen-baynham-herd-V7bqBjXzf44.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/the-agentic-economy-is-way-bigger-than-you-think-xen-baynham-herd">The Agentic Economy Is WAY Bigger Than You Think | Xen Baynham-Herd</a></p>
+<p>Tokenized stocks on Base grabbed about a third of weekly spot trading in their market just months after launch, and Xen Baynham-Herd, Director of Marketing and Global Expansion at Base, says that's only the start.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/the-agentic-economy-is-way-bigger-than-you-think-xen-baynham-herd">The Agentic Economy Is WAY Bigger Than You Think | Xen Baynham-Herd</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=V7bqBjXzf44" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/V7bqBjXzf44/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/the-agentic-economy-is-way-bigger-than-you-think-xen-baynham-herd-V7bqBjXzf44.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/the-agentic-economy-is-way-bigger-than-you-think-xen-baynham-herd">The Agentic Economy Is WAY Bigger Than You Think | Xen Baynham-Herd</a></p>
+<div id="bsf_rt_marker"></div><p>Tokenized stocks on Base grabbed about a third of weekly spot trading in their market just months after launch, and Xen Baynham-Herd, Director of Marketing and Global Expansion at Base, says that&#8217;s only the start. ETFs were built to solve an operational and cost problem that tokenization solves better. Combine tokenized stocks with AI agents building personalized portfolios, and he says &#8220;we see Tokenized stocks really take over the ETF business over time.&#8221;    </p>
+<p> <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f399.png" alt="🎙" class="wp-smiley" style="height: 1em; max-height: 1em;" />Thanks to Plaud for sponsoring BMTV!<br />
+Get 20% off the Plaud Note Pin S through November 30 → <a href="https://plaud.ai/BMTV" rel="nofollow noopener noreferrer" target="_blank">https://plaud.ai/BMTV</a></p>
+<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f9f3.png" alt="🧳" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partnership Enquiries: Let’s find your fit! BMTV offers customized sponsorships tailored to your brand’s goals and target audience.<br />
+ <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partner with us: <a href="https://bitcoinmagazine.com/bmtv">https://bitcoinmagazine.com/bmtv</a></p>
+<p>Chapters:<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=0s" data-yt-seek="0" rel="nofollow noopener noreferrer" target="_blank">00:00</a> Coinbase&#8217;s $3 Billion in Bitcoin-Backed Loans on Base<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=59s" data-yt-seek="59" rel="nofollow noopener noreferrer" target="_blank">00:59</a> More Holders Borrowing Against Bitcoin<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=110s" data-yt-seek="110" rel="nofollow noopener noreferrer" target="_blank">01:50</a> Tokenized Stocks vs. ETFs<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=177s" data-yt-seek="177" rel="nofollow noopener noreferrer" target="_blank">02:57</a> AI Agents and Personalized Portfolios<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=207s" data-yt-seek="207" rel="nofollow noopener noreferrer" target="_blank">03:27</a> How AI Agents Borrow on Base Today<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=273s" data-yt-seek="273" rel="nofollow noopener noreferrer" target="_blank">04:33</a> AI Agent-Run Banks and Global Stablecoin Loans<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=352s" data-yt-seek="352" rel="nofollow noopener noreferrer" target="_blank">05:52</a> Collateralized vs. Unsecured Agent Loans<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=442s" data-yt-seek="442" rel="nofollow noopener noreferrer" target="_blank">07:22</a> Building Through the Bear Market<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=506s" data-yt-seek="506" rel="nofollow noopener noreferrer" target="_blank">08:26</a> Tokenization and Emerging Markets<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=595s" data-yt-seek="595" rel="nofollow noopener noreferrer" target="_blank">09:55</a> A 24/7 Agentic Market<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=684s" data-yt-seek="684" rel="nofollow noopener noreferrer" target="_blank">11:24</a> Fundamentals, Streamers and Global Power Laws<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=V7bqBjXzf44&amp;t=770s" data-yt-seek="770" rel="nofollow noopener noreferrer" target="_blank">12:50</a> Volatility, Correlation and Regulatory Competition</p>
+<p>DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/the-agentic-economy-is-way-bigger-than-you-think-xen-baynham-herd">The Agentic Economy Is WAY Bigger Than You Think | Xen Baynham-Herd</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin Has Become Boring, Finally</title>
+		<link>https://bitcoinmagazine.com/culture/bitcoin-has-become-boring-finally</link>
+		
+		<dc:creator><![CDATA[Roy Sheinfeld]]></dc:creator>
+		<pubDate>Thu, 26 Nov 2026 15:51:27 +0000</pubDate>
+				<category><![CDATA[CULTURE]]></category>
+		<category><![CDATA[FEATURED]]></category>
+		<category><![CDATA[Bitcoin]]></category>
+		<category><![CDATA[Boring]]></category>
+		<category><![CDATA[Lightning]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/?p=57761</guid>
+
+					<description><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/boringbitcoin-scaled.jpeg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/culture/bitcoin-has-become-boring-finally">Bitcoin Has Become Boring, Finally</a></p>
+<p>Bitcoin isn't a shiny new technology any more, it is established, and it is here to stay. </p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/culture/bitcoin-has-become-boring-finally">Bitcoin Has Become Boring, Finally</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/roy-sheinfeld">Roy Sheinfeld</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/boringbitcoin-scaled.jpeg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/culture/bitcoin-has-become-boring-finally">Bitcoin Has Become Boring, Finally</a></p>
+<div id="bsf_rt_marker"></div>
+<p class="wp-block-paragraph">The 2019 Lightning conference in Berlin was lit: five hundred “cypherpunks” getting each other high on visions of a future with peer-to-peer electronic cash. Attending a bitcoin conference back in the day felt like being a teenager at a friend’s party while their parents were out of town. It was exciting and new. The feeling was the opposite of FOMO: something big was happening, we were on the inside, and the rest of the world was going to envy us. It was the kind of party that you could only have when the adults weren’t looking. Whenever someone bought a beer (with bitcoin), everyone would hoot and holler and record it on their phones for Instagram/Twitter (it was still called Twitter).</p>
+
+
+
+<p class="wp-block-paragraph">Lightning was the bleeding edge. We called it “the Lightning Network” (capitalized, if you please), and talking about it felt like talking about string theory: something so far out you’re not even sure it’s real. I spent a lot of time <a href="https://medium.com/breez-technology/understanding-lightning-network-using-an-abacus-daad8dc4cf4b?source=search_post---------0-------------------------------------" target="_blank" rel="noopener">invoking the abacus</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Those are the times some of us remember fondly and keep trying to relive at bitcoin conferences today. That’s why we engage in rituals like drone shows, <a href="https://loveisbitcoin.com/smells-like-pleb-spirit-at-satoshi-rockamoto/" target="_blank" rel="noopener">Satoshi Rockamoto</a> sets, <a href="https://www.bitcoinbeefsteak.com/" target="_blank" rel="noopener">beefsteak dinners</a>, and video game tournaments for sats, but it’s not the same. The ratio of bitcoin OG speakers to suits is shifting. Many event rooms are half empty, and the halls and meeting rooms are full of people negotiating cap tables and profit-sharing splits.</p>
+
+
+
+<p class="wp-block-paragraph">The adults haven’t shut the party down, but they have crashed it, and it kinda feels like their party now. The most exciting thing I noticed at the last bitcoin conference I attended was that nothing exciting happened.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">And that’s worth celebrating.</p>
+
+
+
+<h1 class="wp-block-heading">From Tech Subcultures to Mainstream Tech Adoption</h1>
+
+
+
+<p class="wp-block-paragraph">The road to boring is seldom smooth. Technological innovation benefits from passion and bold ideas. People work harder on a project when they feel strongly about it and identify closely with like-minded collaborators. That’s where tech subcultures, their rituals, and their dogmas come from. But such passion and tribalism feed conflict, at least for a while until the tech goes mainstream, and normies, who couldn’t care less about subculture squabbles, take over.</p>
+
+
+
+<p class="wp-block-paragraph">This progression from an exciting new technology that inspires strong emotions to a humdrum utility is not unusual. World-changing innovations often (always?) start with a committed subculture that identifies fiercely with their weird tech before the mainstream adopts it and soon expects it. In fact, this trajectory has become <a href="https://geoffreyamoore.com/book/crossing-the-chasm/" target="_blank" rel="noopener">the standard doctrine</a> of tech marketing. For example, in the early days of the internet, early adopters wrote a <a href="https://www.eff.org/cyberspace-independence" target="_blank" rel="noopener">Declaration of the Independence of Cyberspace</a>, picking a fight with states and corporations despite having nothing to back it up but chatrooms and dreams.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">One case that resembles the early days of bitcoin was <a href="https://en.wikipedia.org/wiki/War_of_the_currents" target="_blank" rel="noopener">the war of the currents</a> between high-voltage AC current and low-voltage DC current in the 1880s-1890s. Both featured big personalities stunning audiences with flashy <a href="https://en.wikipedia.org/wiki/International_Exposition_of_Electricity" target="_blank" rel="noopener">demos at conferences</a>. Edison and Westinghouse wowed crowds with their lightbulbs that made artificial light, just like bitcoiners in 2019 wowed YouTube by <a href="https://www.youtube.com/watch?v=9WPpNCT2QsI" target="_blank" rel="noopener">buying beer with bitcoin</a>. And both cases featured rabid subcultures that accused each other of putting the future of the technology, if not of humanity, at stake. In the 1880s, the issue was <a href="https://en.wikipedia.org/wiki/War_of_the_currents#Associating_AC_and_Westinghouse_with_the_electric_chair" target="_blank" rel="noopener">whether AC was more deadly</a> to humans and animals than DC; in the 2010s it was whether limiting <a href="https://www.bitstamp.net/learn/crypto-101/what-was-the-blocksize-war/" target="_blank" rel="noopener">the size of bitcoin’s blocks</a> to 1MB would perpetuate monetary servitude forever.</p>
+
+
+
+<p class="wp-block-paragraph">In both cases, there were devoted subcultures whose disagreements helped the technology to mature before the tech crossed the chasm of exoticism to become the new, boring normal. Both are now largely managed by experts on pragmatic principles, not passionate conviction. Conferences went from spectacular showcases for technological miracles to sedate affairs where professionals debate and agree on industry standards. Pragmatism and consensus replaced ideology and dissent. In both instances things got boring, and boring was actually better.</p>
+
+
+
+<h1 class="wp-block-heading">Mainstream Adoption Is Boring</h1>
+
+
+
+<p class="wp-block-paragraph">Bitcoin is getting boring, although what that means and how it’s come to be that way depends on your point of view. As always, where you stand depends on where you sit.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Generally speaking, there are two broad points of view on what bitcoin is and is for. And though they started in different places, they’re both coming to a common conclusion: bitcoin &lt;yawn&gt; is more boring than ever. So let’s review these two points of view, how they view bitcoin now, and why both would agree that the status quo is now so awfully, wonderfully boring.</p>
+
+
+
+<h2 class="wp-block-heading">The State of Bitcoin as a Tradable Asset</h2>
+
+
+
+<p class="wp-block-paragraph">The basic existential question that defined bitcoin’s first decade is settled: bitcoin is not a scam, and it’s not going away. That status is stable largely because bitcoin is now too big to fail, with a market cap exceeding a trillion dollars.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Much of this scale is thanks to the millions of people who want to own bitcoin as part of their savings, but not necessarily to trade and circulate it. In other words, they see bitcoin as a better form of gold, not cash. These savers want to integrate bitcoin into their fiat portfolio, just like any other asset. They aren’t terribly concerned about bitcoin’s status as a medium of exchange so long as it becomes firmly established as a viable, tradable commodity.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">People investing in bitcoin are happy when the number goes up, and it generally does (you might have to zoom out on the price graph a bit, depending on the week). Bitcoin used to be a rollercoaster; now it’s more of a hike. The ups and downs still happen, but they’re gentler and a bit more predictable. How boring.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin’s price started to settle down as mainstream finance started growing more comfortable with it as an asset. Whereas conventional finance used to want governments to <a href="https://www.cnbc.com/2023/12/06/jamie-dimon-lashes-out-on-crypto-if-i-was-the-government-id-close-it-down.html" target="_blank" rel="noopener">shut bitcoin down</a>, there is now about <a href="https://www.coinglass.com/etf/bitcoin" target="_blank" rel="noopener">$100B worth of bitcoin held in ETFs</a> and traded on ordinary equity markets. Major banks used to shun bitcoin, and now they <a href="https://www.ccn.com/education/crypto/5-major-us-banks-accept-bitcoin-as-loan-collateral/" target="_blank" rel="noopener">accept it as collateral</a>. Bitcoin is a regular feature in corporate treasuries, and some companies exist just to hold bitcoin. Strategy is worth about $55B on the open market, and it holds <a href="https://www.strategy.com/" target="_blank" rel="noopener">about $63B worth of bitcoin</a>, so the entire company is a discounted bitcoin wallet. Bitcoin is also a regular feature in retirement accounts, pension allocations, and sovereign wealth funds. Thinking of bitcoin as another kind of asset ripe for institutional and retail investors now makes a lot of sense, because that’s what it is.</p>
+
+
+
+<p class="wp-block-paragraph">Why are these canny investors bored? It seems that all the exciting developments leading to bitcoin becoming a valuable asset have already happened. If the goal was integration into the world of conventional finance, it has incontrovertibly been achieved. You can’t YOLO on bitcoin any more than you can YOLO on gold. The milestones are all in the history section of the Wikipedia page, not on the roadmap.</p>
+
+
+
+<p class="wp-block-paragraph">People who wanted bitcoin to become a tradable asset are bored because mainstream finance has effectively tamed bitcoin. It is easily tradable, and its <a href="https://www.coinglass.com/volume/BTC" target="_blank" rel="noopener">trading volumes are remarkable</a>. It is digital gold, just with a slightly steeper curve and a little more volatility, which is exactly what these folks always wanted.</p>
+
+
+
+<h2 class="wp-block-heading">The State of Bitcoin as P2P Electronic Cash</h2>
+
+
+
+<p class="wp-block-paragraph">The main alternative to seeing bitcoin as a mainstream investment asset is to view it as monetary dynamite to ignite a revolution. People subscribing to this point of view wanted bitcoin to blossom into a system of peer-to-peer electronic cash that would first operate in parallel to the mainstream monetary system before supplanting it. These radicals wanted to see the banks collapse, not accept bitcoin as collateral. It was monetary insurrection, not incremental change.</p>
+
+
+
+<p class="wp-block-paragraph">This radical point of view is still around, but the wind has gone out of its combative sails for a few reasons.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">First, there has been a generational shift. Many of the people who were pushing the revolutionary vision of bitcoin in their 20s fifteen years ago have moved on. Some got rich and retired or started to see and use bitcoin more as a tradable asset. For others, bitcoin never achieved the success they dreamt of, but it was successful enough that fighting for its future no longer felt necessary.</p>
+
+
+
+<p class="wp-block-paragraph">Second, AI is the new cool kid on the tech block. Instead of building vending machines for beer that accept bitcoin, enthusiasts who want to hack the system are now decompiling games with AI. No VC will waste a second on a pitch deck that doesn’t have AI on at least half of the slides. Miners are turning their server stacks and power contracts into AI data centers. Curious engineers have a new, much bigger toy to play with.</p>
+
+
+
+<p class="wp-block-paragraph">Third, mainstream bitcoin fans on Wall Street simply consume too much bandwidth. Not surprisingly, banks, publicly traded companies, and financial institutions with billions in their pockets are dominating panels at conferences and supplying the talking heads for financial news shows. They want to discuss topics like volatility and discount rates instead of personal sovereignty and individual financial freedom. Fighting against the system is not a narrative they can sell while representing the interests of that very system.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Fourth, bitcoin usage has moved past the radical mantras and progressed in a different direction. The dream of bitcoin becoming the standard payment medium in a circular economy where everyone buys coffee with bitcoin (why is it always coffee?) is starting to feel like an alternative history in a parallel universe.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">A circular economy is simply not the role in society bitcoin has grown into. Instead of everyday payments, <a href="https://blog.breez.technology/the-utility-of-bitcoin-moving-value-like-information-2513eae84676" target="_blank" rel="noopener">bitcoin is the medium of global value transfer</a>. It has evolved into a technology to move real money across borders as remittances, into a settlement layer between various crypto assets, and into a store of value that people constantly buy, sell, and trade. It’s become a valuable network of rails that even stablecoins are happy to use.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Fixating on coffee purchases obscures the remarkable scale bitcoin has achieved. Somewhere <a href="https://kingonly.github.io/bitcoin-moe/" target="_blank" rel="noopener">between $1.6 and $4.1 trillion</a> was settled on-chain between Q1 and Q3 2026 (depending on how you count). PayPal processed <a href="https://www.chargeflow.io/blog/paypal-statistics-facts" target="_blank" rel="noopener">$1.79 trillion</a> in all of 2025. The average payment on PayPal is about <a href="https://capitaloneshopping.com/research/paypal-statistics/" target="_blank" rel="noopener">$70</a>. The average bitcoin transaction (using the strict counting method) is $10,000. With bitcoin moving trillions in value, we can stop worrying about coffee.<img fetchpriority="high" decoding="async" src="blob:https://bitcoinmagazine.com/da2c258a-c288-42f1-a233-a686512b86a2" width="471" height="220" title="Bitcoin Has Become Boring, Finally 1"></p>
+
+
+
+<p class="wp-block-paragraph"><em>Sources:</em> <a href="https://kingonly.github.io/bitcoin-moe/" target="_blank" rel="noopener"><em>Bitcoin</em></a><em>,</em> <a href="https://www.sec.gov/Archives/edgar/data/0001141391/000114139126000122/ma09302026-exx991xearnings.htm" target="_blank" rel="noopener"><em>Mastercard</em></a><em>,</em> <a href="https://investor.pypl.com/financials/quarterly-results/default.aspx" target="_blank" rel="noopener"><em>PayPal</em></a></p>
+
+
+
+<p class="wp-block-paragraph">Bitcoin may not have cornered retail payments, but it’s a mature and highly liquid asset. It’s an industry unto itself. It has found its place in the economy, and it’s thriving. Despite the lack of revolutionary fireworks, bitcoin is changing mainstream finance by opening new possibilities and financially enfranchising new user groups. That’s still worth celebrating.&nbsp;</p>
+
+
+
+<h1 class="wp-block-heading">Awesome Reality &gt; Perfect Fantasy</h1>
+
+
+
+<p class="wp-block-paragraph">You know what’s really boring? Electricity infrastructure. You know what no one can live without despite how boring it is? Electricity infrastructure.</p>
+
+
+
+<p class="wp-block-paragraph">When revolutionary technologies fade into the background of everyday life, when people use them constantly without thinking about them, they become boring, and they become essential. Buying a beer with Lightning is no longer exciting because we can now expect that it will just work without fanfare. Being able to say “it will just work” sounds boring, but it’s a clear sign of triumph.</p>
+
+
+
+<p class="wp-block-paragraph">Bitcoiners and builders need to adjust to this beautiful, boring reality. We can <a href="https://blog.breez.technology/orange-pilling-has-stopped-working-4a407252c7a3" target="_blank" rel="noopener">stop annoying our neighbors with orange pills</a>. It’s about utility, not evangelism. Utility means building rails that bitcoin and stablecoins can use together seamlessly, adding bitcoin to mainstream fintech apps, and building new financial applications on top of the bitcoin chain. Perhaps none of this will light the fireworks at the radicals’ victory party or replace T-bills as the base layer of global finance, but every user who discovers the unique utility of bitcoin is further evidence of its mainstream adoption.</p>
+
+
+
+<p class="wp-block-paragraph">What we have is a thriving technology that enables us to do miraculous new things, and it’s achieved an undeniable scale, such that it is now too big to fail. That’s fantastic. It may not be the future we were dreaming about seven years ago in Berlin, but it’s wonderful in its own right, and it’s worth cultivating and celebrating.</p>
+
+
+
+<p class="wp-block-paragraph">Even though nobody sets out to grow up and become boring one day, it’s still a valid kind of success. It means you’ve made it, and you’re doing fine. Boring is what happens when things just work and things have just worked out. So we didn’t break the world with bitcoin. <a href="https://www.youtube.com/watch?v=7Voa01r3UOE" target="_blank" rel="noopener">Oh well</a>. We’re making a new one. A party with adults present is still a party. And maybe we’re now the adults. So dance while you wait for the dollar to collapse <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/culture/bitcoin-has-become-boring-finally">Bitcoin Has Become Boring, Finally</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/roy-sheinfeld">Roy Sheinfeld</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Bitcoin is Vanishing into “Deep Storage” Faster than Miners Make It</title>
+		<link>https://bitcoinmagazine.com/videos/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it</link>
+		
+		<dc:creator><![CDATA[Patrick Green]]></dc:creator>
+		<pubDate>Wed, 25 Nov 2026 23:30:12 +0000</pubDate>
+				<category><![CDATA[VIDEOS]]></category>
+		<category><![CDATA[Bitcoin magazine]]></category>
+		<category><![CDATA[Bitcoin News]]></category>
+		<category><![CDATA[bitcoin price]]></category>
+		<guid isPermaLink="false">https://bitcoinmagazine.com/videos/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it</guid>
+
+					<description><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=rWfTVQTY8vU" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/rWfTVQTY8vU/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it-rWfTVQTY8vU.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it">Bitcoin is Vanishing into “Deep Storage” Faster than Miners Make It</a></p>
+<p>Miners produce about 450 new Bitcoin a day, but over the past year about 630 a day moved into wallets dormant for 10 years.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it">Bitcoin is Vanishing into “Deep Storage” Faster than Miners Make It</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<div class="rss-video-container" style="margin-bottom: 20px;"><a href="https://www.youtube.com/watch?v=rWfTVQTY8vU" target="_blank" rel="noopener noreferrer" style="display:block; position:relative; text-decoration:none;"><img src="https://img.youtube.com/vi/rWfTVQTY8vU/hqdefault.jpg" alt="Watch video" style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; margin:0; border-radius:8px;" /><span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(255,0,0,0.9); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; line-height:1;">&#9654;</span></a></div><hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;" /><p><a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a><br />
+<img src="https://bitcoinmagazine.com/wp-content/uploads/2026/11/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it-rWfTVQTY8vU.jpg" style="display: block; margin: 1em auto"><br />
+<a rel="nofollow" href="https://bitcoinmagazine.com/videos/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it">Bitcoin is Vanishing into “Deep Storage” Faster than Miners Make It</a></p>
+<div id="bsf_rt_marker"></div><p>Miners produce about 450 new Bitcoin a day, but over the past year about 630 a day moved into wallets dormant for 10 years. Sean Hagan says that means about 1.4 coins went into deep storage for every new coin mined, after the trend stalled in 2025. He explains why Bitcoin may be disappearing into deep storage faster than new supply is being issued.   </p>
+<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f9f3.png" alt="🧳" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partnership Enquiries: Let’s find your fit! BMTV offers customized sponsorships tailored to your brand’s goals and target audience.<br />
+ <img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f449.png" alt="👉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Partner with us: <a href="https://bitcoinmagazine.com/bmtv">https://bitcoinmagazine.com/bmtv</a></p>
+<p>Chapters:<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=rWfTVQTY8vU&amp;t=0s" data-yt-seek="0" rel="nofollow noopener noreferrer" target="_blank">00:00</a> Which Bitcoin Isn&#8217;t for Sale at All<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=rWfTVQTY8vU&amp;t=47s" data-yt-seek="47" rel="nofollow noopener noreferrer" target="_blank">00:47</a> Deep Storage vs. New Miner Supply<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=rWfTVQTY8vU&amp;t=94s" data-yt-seek="94" rel="nofollow noopener noreferrer" target="_blank">01:34</a> From Accumulation to the 2025 Great Distribution<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=rWfTVQTY8vU&amp;t=143s" data-yt-seek="143" rel="nofollow noopener noreferrer" target="_blank">02:23</a> The 10-Year Club Hits a Record 3.6M BTC<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=rWfTVQTY8vU&amp;t=178s" data-yt-seek="178" rel="nofollow noopener noreferrer" target="_blank">02:58</a> The 7-10 Year Pipeline and the 2028 Halving<br />
+<a class="yt-rss-ts" href="https://www.youtube.com/watch?v=rWfTVQTY8vU&amp;t=209s" data-yt-seek="209" rel="nofollow noopener noreferrer" target="_blank">03:29</a> Bull and Bear Readings of Dormant Coins</p>
+<p>DISCLAIMER: The views and opinions expressed in this show are those of the participants and do not necessarily reflect the official policy or position of BTC Inc., Bitcoin Magazine, or any affiliated entities. This content is provided for informational and educational purposes only and should not be construed as investment, legal, tax, or accounting advice. Nothing contained in this show constitutes a solicitation, recommendation, endorsement, or offer to buy or sell any securities or financial instruments. Viewers should consult their own advisors before making financial or business decisions.</p>
+<p>This post <a rel="nofollow" href="https://bitcoinmagazine.com/videos/bitcoin-is-vanishing-into-deep-storage-faster-than-miners-make-it">Bitcoin is Vanishing into “Deep Storage” Faster than Miners Make It</a> first appeared on <a rel="nofollow" href="https://bitcoinmagazine.com">Bitcoin Magazine</a> and is written by <a rel="nofollow" href="https://bitcoinmagazine.com/authors/patrickgreen">Patrick Green</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

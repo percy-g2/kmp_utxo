@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    >
+
+<channel>
+    <title>The Block</title>
+    <link>https://www.theblock.co</link>
+    <atom:link href="https://www.theblock.co/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.theblock.co/rss.xml?paged=2" rel="next" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+    <description>The Block features breaking Crypto news about Bitcoin, Blockchain, Web3, and DeFi from the web&#039;s most reliable source.</description>
+    <lastBuildDate>Sat, 28 Nov 2026 15:16:48 +0000</lastBuildDate>
+    <language>en-US</language>
+    <copyright>© 2026 THE BLOCK</copyright>
+    <generator>TheBlock</generator>
+    <ttl>5</ttl>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+        <url>https://www.tbstat.com/wp/uploads/2024/03/the-block-logo-wordmark-black.png</url>
+        <title>The Block</title>
+        <link>https://www.theblock.co</link>
+    </image>
+        <item>
+        <title><![CDATA[CZ says Netflix’s ‘The Altruists’ is ‘basically defamation,’ says he is talking to lawyers]]></title>
+        <link>https://www.theblock.co/news/business/2026-11-28-cz-says-netflixs-the-altruists-is-basically-defamation-says-he-is-talking-to-lawyers-447599</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/Tech-Conference-Speaker-on-CELO-Binance-Stage-unmarker.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">8062b5cc-3e45-5162-b439-474a237114b4</guid>
+        <pubDate>Sat, 28 Nov 2026 15:16:48 +0000</pubDate>
+            <description><![CDATA[Zhao said the show may be trying to shift public perception ahead of a possible pardon push for convicted FTX founder Sam Bankman-Fried.]]></description>            <dc:creator><![CDATA[Zack Abrams]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Bitcoin recovery needs USDT supply growth: CryptoQuant, K33 weighs AI threat to Bitcoin, and more]]></title>
+        <link>https://www.theblock.co/newsletters/the-daily/2026-11-27-bitcoin-recovery-usdt-supply-ai-threat-bitcoin-more-crypto-news-447571</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/GettyImages-1258091878.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">2e2a2d15-b172-517d-ae1e-06a934435d39</guid>
+        <pubDate>Sat, 28 Nov 2026 04:11:00 +0000</pubDate>
+            <description><![CDATA[In today's newsletter, CryptoQuant says bitcoin price recovery needs USDT supply growth; K33 assesses AI's growing threat to Bitcoin security; and more.]]></description>            <dc:creator><![CDATA[Yogita Khatri]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[CryptoQuant says bitcoin price recovery needs USDT supply growth]]></title>
+        <link>https://www.theblock.co/news/markets/2026-11-27-cryptoquant-bitcoin-price-recovery-usdt-supply-growth-447560</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/GettyImages-2090417937.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">ebfe6ec7-485f-586a-9cb1-75d353fb9bbf</guid>
+        <pubDate>Fri, 27 Nov 2026 18:13:45 +0000</pubDate>
+            <description><![CDATA[Bitcoin needs USDT supply to start growing again for a sustained price recovery, according to CryptoQuant.]]></description>            <dc:creator><![CDATA[Yogita Khatri]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/equities"><![CDATA[Equities]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/stablecoins"><![CDATA[Stablecoins]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[Analyst Reports]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="tag"><![CDATA[Crypto]]></category>
+		<category domain="tag"><![CDATA[Tether]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Tether buys $10 million of Bitdeer shares as stock hovers near all-time low]]></title>
+        <link>https://www.theblock.co/news/business/2026-11-27-tether-buys-10-million-of-bitdeer-shares-as-stock-hovers-near-all-time-low-447554</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2025/10/tether.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">4b26e0ab-1955-5cf5-aa2c-bcb3319c402c</guid>
+        <pubDate>Fri, 27 Nov 2026 15:00:21 +0000</pubDate>
+            <description><![CDATA[USDT issuer Tether spent about $10 million earlier this week to acquire 3.72 million Bitdeer Class A ordinary shares.]]></description>            <dc:creator><![CDATA[Brian Danga]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/crypto-infrastructure"><![CDATA[Crypto Infrastructure]]></category>
+		<category domain="https://www.theblock.co/category/deals"><![CDATA[Deals]]></category>
+		<category domain="https://www.theblock.co/category/infrastructure"><![CDATA[Infrastructure]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/stablecoins"><![CDATA[Stablecoins]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[Mining]]></category>
+		<category domain="tag"><![CDATA[Tether]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[AI math breakthroughs revive Bitcoin security fears, but practical threat remains unproven: K33]]></title>
+        <link>https://www.theblock.co/news/ecosystems/2026-11-27-ai-math-breakthroughs-revive-bitcoin-security-fears-but-practical-threat-remains-unproven-k33-447549</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/GettyImages-1341874258-scaled-e1795787607657.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">c629112e-2377-5e03-8a7f-a83448981cef</guid>
+        <pubDate>Fri, 27 Nov 2026 14:24:21 +0000</pubDate>
+            <description><![CDATA[K33 said recent mathematical advances had not demonstrated a compromise of Bitcoin's cryptography, while urging closer attention to AI.]]></description>            <dc:creator><![CDATA[James Hunt]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/equities"><![CDATA[Equities]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[AI]]></category>
+		<category domain="tag"><![CDATA[Analyst Reports]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="tag"><![CDATA[Crypto]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Bank of Japan official says stablecoins need reserve rules to preserve ‘singleness of money’]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-11-27-bank-of-japan-official-says-stablecoins-need-reserve-rules-to-preserve-singleness-of-money-447059</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/image-9.png" type="image/*" medium="image"/>        <guid isPermaLink="false">cf302f74-1ab1-5fd5-bbb7-946c72180beb</guid>
+        <pubDate>Fri, 27 Nov 2026 10:45:02 +0000</pubDate>
+            <description><![CDATA[Japan’s central bank warned that stablecoins and tokenized deposits need safeguards to prevent fragmentation across the financial system.]]></description>            <dc:creator><![CDATA[Brian Danga]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/finance-firms"><![CDATA[Finance firms]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/stablecoins"><![CDATA[Stablecoins]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[Tokenization]]></category>
+		<category domain="tag"><![CDATA[TradFi banks]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Ethereum devs schedule Glamsterdam upgrade for Hoodi testnet on Dec. 15]]></title>
+        <link>https://www.theblock.co/news/ecosystems/2026-11-27-ethereum-devs-schedule-glamsterdam-upgrade-hoodi-447051</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/ethereum-2-scaled-e1795764449268.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">7c082949-52fb-5572-ab6c-acea13e5b9b0</guid>
+        <pubDate>Fri, 27 Nov 2026 07:51:14 +0000</pubDate>
+            <description><![CDATA[Developers also discussed whether post-quantum readiness should trump other proposals set for the subsequent Ethereum upgrade, Hegotá.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/defi"><![CDATA[DeFi]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[China, Japan, South Korea and ASEAN to form working group on digital payments, crypto regulation]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-11-26-china-japan-south-korea-asean-digital-payments-447029</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/ASEAN-plus-three-crop-scaled.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">cc48c80e-486f-5b6c-804f-864d1c4c974c</guid>
+        <pubDate>Fri, 27 Nov 2026 04:18:40 +0000</pubDate>
+            <description><![CDATA[The decision comes after the group met in May in Uzbekistan and identified cross-border digital payments as a new area of cooperation.]]></description>            <dc:creator><![CDATA[Timmy Shen]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[JPMorgan flags bitcoin ‘capitulation,’ Democrats push back on SEC’s crypto plans, and more]]></title>
+        <link>https://www.theblock.co/newsletters/the-daily/2026-11-26-jpmorgan-bitcoin-capitulation-democrats-sec-crypto-plans-more-news-447025</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/GettyImages-914886116.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">b1dff50f-dc88-55b4-9c63-3596fea9290c</guid>
+        <pubDate>Fri, 27 Nov 2026 02:20:00 +0000</pubDate>
+            <description><![CDATA[In today's newsletter, JPMorgan flags bitcoin 'capitulation' as Strategy's NAV multiple sinks; Democrats step up opposition to SEC's crypto plans; and more.]]></description>            <dc:creator><![CDATA[Yogita Khatri]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Tokenized Anthropic Holders Doubled in 3 Days]]></title>
+        <link>https://www.theblock.co/newsletters/tokenization-briefing/2026-11-26-tokenized-anthropic-holders-doubled-in-3-days-446013</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/anthropic-listed-on-nasdaq-cover-1920x1080-1.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">d68854dc-c24f-502c-82bf-8f8193e97615</guid>
+        <pubDate>Thu, 26 Nov 2026 17:32:00 +0000</pubDate>
+            <description><![CDATA[The Cash Leg Moves Onchain An onchain trade requires both the tokenized asset itself and an onchain payment that clears it. Most of this year’s progress has been focused on the asset. Last week bank money started to move onchain too. Last Tuesday, Fed Governor Christopher Waller said that central bank money needs to stay […]]]></description>            <dc:creator><![CDATA[Ian Devendorf]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[JPMorgan says bitcoin ‘capitulation’ signaled by Strategy’s record-low NAV multiple]]></title>
+        <link>https://www.theblock.co/news/markets/2026-11-26-jpmorgan-bitcoin-capitulation-strategy-low-nav-multiple-447007</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/GettyImages-1395728828.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">f0e926cc-a251-5bd6-bc83-8794335e1575</guid>
+        <pubDate>Thu, 26 Nov 2026 16:18:24 +0000</pubDate>
+            <description><![CDATA[JPMorgan analysts said Strategy's valuation relative to its bitcoin holdings has hit a record low, signaling bitcoin "capitulation."]]></description>            <dc:creator><![CDATA[Yogita Khatri]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/equities"><![CDATA[Equities]]></category>
+		<category domain="https://www.theblock.co/category/finance-firms"><![CDATA[Finance firms]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[Analyst Reports]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="tag"><![CDATA[Crypto]]></category>
+		<category domain="tag"><![CDATA[exclusive]]></category>
+		<category domain="tag"><![CDATA[JPMorgan]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[‘The time to prepare for a cryptographic breakthrough is before it happens’: Zcash team urges faster deprecation of legacy shielded pool]]></title>
+        <link>https://www.theblock.co/news/ecosystems/2026-11-26-the-time-to-prepare-for-a-cryptographic-breakthrough-is-before-it-happens-zcash-team-urges-faster-deprecation-of-legacy-shielded-pool-447000</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/GettyImages-1341105242-scaled.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">d1d11c56-b0da-5475-b781-bf484ce86fa9</guid>
+        <pubDate>Thu, 26 Nov 2026 13:22:47 +0000</pubDate>
+            <description><![CDATA[Zakura wants Zcash to disable Sapling deposits over speculative concerns about AI-assisted mathematical breakthroughs.]]></description>            <dc:creator><![CDATA[James Hunt]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/privacy"><![CDATA[Privacy]]></category>
+		<category domain="https://www.theblock.co/category/web3"><![CDATA[Web3]]></category>
+		<category domain="tag"><![CDATA[AI]]></category>
+		<category domain="tag"><![CDATA[Zcash]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Switzerland approves 57 jurisdictions for crypto data exchange from 2028]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-11-26-switzerland-approves-57-jurisdictions-for-crypto-data-exchange-from-2028-446821</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/image-8.png" type="image/*" medium="image"/>        <guid isPermaLink="false">1ef68fe1-cc0e-58b0-8ef4-3a51b8d0bc6a</guid>
+        <pubDate>Thu, 26 Nov 2026 09:40:41 +0000</pubDate>
+            <description><![CDATA[The Swiss Federal Council cleared 57 potential partners for cryptoasset tax-information exchanges beginning in 2028.]]></description>            <dc:creator><![CDATA[Brian Danga]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Spot bitcoin ETFs on track for worst month on record as bear market drags on]]></title>
+        <link>https://www.theblock.co/news/markets/2026-11-26-spot-bitcoin-etfs-worst-month-november-446814</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/bitcoin-unsplash-scaled.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">1e1295aa-71e2-5d00-bdd0-e7a8e0ddf301</guid>
+        <pubDate>Thu, 26 Nov 2026 08:50:46 +0000</pubDate>
+            <description><![CDATA[Spot bitcoin ETFs have already hit record monthly net outflows of $5.39 billion in November, with several trading days remaining.]]></description>            <dc:creator><![CDATA[Timmy Shen]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Europe’s only spot bitcoin ETF starts trading in Switzerland, BIT says]]></title>
+        <link>https://www.theblock.co/news/markets/2026-11-26-swiss-bitcoin-etf-bbit-begins-trading-europes-only-446724</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/GettyImages-1473813395.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">6ca5adda-41fc-512d-b8de-da84b16ae3b5</guid>
+        <pubDate>Thu, 26 Nov 2026 06:30:00 +0000</pubDate>
+            <description><![CDATA[BIT Asset Management's BBIT fund debuted on SIX Swiss Exchange with 350 BTC in assets and a 0.19% annual expense ratio.]]></description>            <dc:creator><![CDATA[Yogita Khatri]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/category/funds"><![CDATA[Funds]]></category>
+		<category domain="https://www.theblock.co/category/layer-1s"><![CDATA[Layer 1s]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/category/token-projects"><![CDATA[Token Projects]]></category>
+		<category domain="tag"><![CDATA[Bitcoin]]></category>
+		<category domain="tag"><![CDATA[Bitcoin ETF]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Fidelity files for Chainlink ETF, Musk’s X wins ruling in alleged bitcoin content-farm case, and more]]></title>
+        <link>https://www.theblock.co/newsletters/the-daily/2026-11-26-fidelity-chainlink-etf-musk-x-ruling-alleged-bitcoin-content-farm-case-more-crypto-news-446755</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/GettyImages-2245231384.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">b2224940-3aa0-5547-a0fa-783e167afd47</guid>
+        <pubDate>Thu, 26 Nov 2026 05:45:00 +0000</pubDate>
+            <description><![CDATA[In today's newsletter, Fidelity files for spot Chainlink ETF; Musk's X wins ruling in alleged bitcoin content-farm case; and more.]]></description>            <dc:creator><![CDATA[Yogita Khatri]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Galaxy walks back bitcoin’s June-bottom call, warns of deeper losses below $58,525]]></title>
+        <link>https://www.theblock.co/news/markets/2026-11-26-galaxy-walks-back-bitcoin-bottom-call-446786</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/jonathan-borba-8nmwyC812Zo-unsplash-scaled-e1795669890672.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">74cc4a17-e48e-5ecd-8ef8-2e7a07ec1f07</guid>
+        <pubDate>Thu, 26 Nov 2026 05:16:11 +0000</pubDate>
+            <description><![CDATA[Galaxy now treats a daily close below $58,525, the June 30 closing low, as the start of a move toward a materially lower low.]]></description>            <dc:creator><![CDATA[Timmy Shen]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/markets"><![CDATA[Markets]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[House Committee advances Strategic Bitcoin Reserve bill with narrow path to passage]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-11-25-house-committee-advances-strategic-bitcoin-reserve-bill-446778</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/darren-halstead-sT50jo9LCH0-unsplash-scaled-e1795660899257.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">b3dae379-2846-546b-b2b3-7b6c82840b7e</guid>
+        <pubDate>Thu, 26 Nov 2026 03:03:01 +0000</pubDate>
+            <description><![CDATA[The current 119th Congress is expected to adjourn in the coming weeks, leaving little time for full passage before the session ends.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[LayerZero adds Samsung Card, Kakao Pay, ZAN as validators for upcoming Zero blockchain]]></title>
+        <link>https://www.theblock.co/news/business/2026-11-25-layerzero-kakaopay-samsung-446770</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/gettyimages-1642600681-170667a-e1795658386161.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">be5eb1d2-80d4-50fc-9c1c-0142acbc14cd</guid>
+        <pubDate>Thu, 26 Nov 2026 02:22:43 +0000</pubDate>
+            <description><![CDATA[Zero uses ZK proofs to separate execution from verification, removing a layer of redundancy by leaving validators to only verify the proofs.]]></description>            <dc:creator><![CDATA[Danny Park]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/companies"><![CDATA[Companies]]></category>
+		<category domain="https://www.theblock.co/category/crypto-ecosystems"><![CDATA[Crypto Ecosystems]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+        <item>
+        <title><![CDATA[Sens. Warren, Van Hollen lead push to scrap SEC’s Regulation Crypto and innovation exemption]]></title>
+        <link>https://www.theblock.co/news/regulation/2026-11-25-warren-van-hollen-lead-push-scrap-sec-regulation-crypto-innovation-exemption-446756</link>
+        <media:content url="https://www.tbstat.com/cdn-cgi/image/width=1600,height=900,fit=cover,format=jpeg,quality=80/wp/uploads/2026/11/gettyimages-2305951485-594x594-1.jpg" type="image/*" medium="image"/>        <guid isPermaLink="false">ca065de0-da8b-55b7-9190-a85de0b11abd</guid>
+        <pubDate>Wed, 25 Nov 2026 22:20:02 +0000</pubDate>
+            <description><![CDATA[Sens. Warren and Van Hollen sent two letters to SEC Chair Atkins demanding he rescind the innovation exemption and Regulation Crypto.]]></description>            <dc:creator><![CDATA[Sarah Wynn]]></dc:creator>
+        <content:encoded/>
+        		<category domain="https://www.theblock.co/category/policy-people"><![CDATA[People]]></category>
+		<category domain="https://www.theblock.co/category/policy"><![CDATA[Policy]]></category>
+		<category domain="https://www.theblock.co/category/regulation"><![CDATA[Regulation]]></category>
+		<category domain="https://www.theblock.co/category/us-policymaking"><![CDATA[U.S. Policymaking]]></category>
+		<category domain="tag"><![CDATA[SEC]]></category>
+		<category domain="tag"><![CDATA[Senate Banking Committee]]></category>
+		<category domain="https://www.theblock.co/">News</category>
+                </item>
+    </channel>
+</rss>
